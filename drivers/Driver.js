@@ -3,6 +3,7 @@
 'use strict';
 
 const Homey = require('homey');
+
 /**
  * Base class for drivers
  * @class

@@ -1,0 +1,13 @@
+{
+    "id": "valve_state_false",
+    "title": {
+        "en": "The valve turned off"
+    },
+    "args": [
+        {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=all_devices&capabilities=valve_state"
+          }
+    ]
+}

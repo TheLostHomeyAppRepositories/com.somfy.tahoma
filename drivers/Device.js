@@ -278,9 +278,9 @@ class Device extends Homey.Device
                 {
                     try
                     {
-                        if (xRefEntry.somfyNameGet === 'core:OperatingModeState')
+                        if (xRefEntry.somfyNameGet === 'io:DerogationHeatingModeState')
                         {
-                            this.log('core:OperatingModeState');
+                            this.log('io:DerogationHeatingModeState');
                         }
 
                         // Find the tahoma device state for the table entry
@@ -306,7 +306,7 @@ class Device extends Homey.Device
                                     // Find the translation for this capability with the Somfy enum id
                                     const translateName = `${xRefEntry.homeyName}.${tahomaState.value}`;
                                     const translatedState = this.homey.__(translateName);
-                                    if (translatedState !== translateName)
+                                    if (translatedState && (translatedState !== translateName))
                                     {
                                         tahomaState.value = translatedState;
                                     }

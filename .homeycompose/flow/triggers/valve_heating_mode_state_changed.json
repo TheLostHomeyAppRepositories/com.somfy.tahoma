@@ -1,0 +1,61 @@
+{
+    "id": "valve_heating_mode_state_changed",
+    "title": {
+        "en": "The heating mode changed"
+    },
+    "titleFormatted": {
+        "en": "The heating mode changed to [[valve_heating_mode_state]]"
+    },
+    "args": [
+        {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=all_devices&capabilities=valve_heating_mode"
+        },
+        {
+            "name": "valve_heating_mode_state",
+            "type": "dropdown",
+            "title": {
+                "en": "Heating Mode"
+            },
+            "values": [
+                {
+                    "id": "comfort",
+                    "title": {
+                        "en": "Comfort"
+                    }
+                },
+                {
+                    "id": "awayMode",
+                    "title": {
+                        "en": "Away"
+                    }
+                },
+                {
+                    "id": "eco",
+                    "title": {
+                        "en": "Night"
+                    }
+                },
+                {
+                    "id": "manual",
+                    "title": {
+                        "en": "Manual"
+                    }
+                },
+                {
+                    "id": "frostprotection",
+                    "title": {
+                        "en": "Frost Protection"
+                    }
+                },
+                {
+                    "id": "suddenDropMode",
+                    "title": {
+                        "en": "Open Window Mode"
+                    }
+                }
+            ]
+        }
+    ]
+}

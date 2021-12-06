@@ -1,0 +1,13 @@
+{
+    "id": "stop_siren",
+    "title": {
+        "en": "Stop the siren"
+    },
+    "args": [
+        {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=all_devices&capabilities=stop_button"
+        }
+    ]
+}

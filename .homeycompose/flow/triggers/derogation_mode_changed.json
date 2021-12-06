@@ -1,0 +1,55 @@
+{
+    "id": "derogation_mode_changed",
+    "title": {
+        "en": "The operating mode changed"
+    },
+    "titleFormatted": {
+        "en": "The operating mode changed to [[derogation_mode]]"
+    },
+    "args": [
+        {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=all_devices&capabilities=derogation_mode"
+        },
+        {
+            "name": "derogation_mode",
+            "type": "dropdown",
+            "title": {
+                "en": "Operating Mode"
+            },
+            "values": [
+                {
+                    "id": "comfort",
+                    "title": {
+                        "en": "Comfort"
+                    }
+                },
+                {
+                    "id": "away",
+                    "title": {
+                        "en": "Away"
+                    }
+                },
+                {
+                    "id": "eco",
+                    "title": {
+                        "en": "Night"
+                    }
+                },
+                {
+                    "id": "manual",
+                    "title": {
+                        "en": "Manual"
+                    }
+                },
+                {
+                    "id": "frostprotection",
+                    "title": {
+                        "en": "Frost Protection"
+                    }
+                }
+            ]
+        }
+    ]
+}

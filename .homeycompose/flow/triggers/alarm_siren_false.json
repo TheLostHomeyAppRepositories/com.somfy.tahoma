@@ -1,0 +1,13 @@
+{
+    "id": "alarm_siren_false",
+    "title": {
+      "en": "The Siren turned off"
+    },
+    "args": [
+        {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=all_devices&capabilities=alarm_siren"
+        }
+    ]
+  }

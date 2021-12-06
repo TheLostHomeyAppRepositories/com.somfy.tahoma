@@ -1,0 +1,13 @@
+{
+    "id": "start_siren",
+    "title": {
+      "en": "Ring the siren"
+    },
+    "args": [
+        {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=all_devices&capabilities=soundAlarm_1_button"
+        }
+    ]
+  }

@@ -5,103 +5,113 @@
 const SensorDevice = require('../SensorDevice');
 
 const CapabilitiesXRef = [
-    {
-        homeyName: 'measure_temperature',
-        somfyNameGet: 'core:TemperatureState',
-        somfyNameSet: [],
-        somfyArray: 0,
-    },
-    {
-        homeyName: 'target_temperature.comfort_heating',
-        somfyNameGet: 'core:ComfortRoomTemperatureState',
-        somfyNameSet: ['setAllModeTemperatures'],
-        somfyArray: 0,
-    },
-    {
-        homeyName: 'target_temperature.eco_heating',
-        somfyNameGet: 'core:EcoTargetTemperatureState',
-        somfyNameSet: ['setAllModeTemperatures'],
-        somfyArray: 1,
-    },
-    {
-        homeyName: 'target_temperature.away',
-        somfyNameGet: 'io:AwayModeTargetTemperatureState',
-        somfyNameSet: ['setAllModeTemperatures'],
-        somfyArray: 2,
-    },
-    {
-        homeyName: 'target_temperature.frost_protection',
-        somfyNameGet: 'core:FrostProtectionRoomTemperatureState',
-        somfyNameSet: ['setAllModeTemperatures'],
-        somfyArray: 3,
-    },
-    {
-        homeyName: 'open_window_activation',
-        somfyNameGet: 'core:OpenWindowDetectionActivationState',
-        somfyNameSet: ['setValveSettings'],
-        compare: ['inactive', 'active'],
-        parameters: [{ openWindow: false }, { openWindow: true }],
-    },
-    {
-        homeyName: 'measure_battery',
-        somfyNameGet: 'core:BatteryLevelState',
-        somfyNameSet: [],
-    },
-    {
-        homeyName: 'valve_heating_mode_state',
-        somfyNameGet: 'io:CurrentHeatingModeState',
-        somfyNameSet: [],
-    },
-    {
-        homeyName: 'valve_operating_mode_state',
-        somfyNameGet: 'core:OperatingModeState',
-        somfyNameSet: [],
-        conversions: { 'auto (schedule)': 'auto' },
-    },
-    {
-        homeyName: 'valve_auto_mode',
-        somfyNameGet: 'core:OperatingModeState',
-        somfyNameSet: [0, 'exitDerogation'],
-        conversions: { 'auto (schedule)': 'auto' },
-        compare: ['inactive', 'auto'],
-        parameters: [],
-        otherCapability: ['derogation_mode'],
-    },
-    {
-        homeyName: 'derogation_mode',
-        somfyNameGet: 'io:DerogationHeatingModeState',
-        somfyNameSet: ['setDerogation'],
-        somfyArray: 0,
-    },
-    {
-        homeyName: 'derogation_type',
-        somfyNameGet: 'io:DerogationTypeState',
-        somfyNameSet: ['setDerogation'],
-        somfyArray: 1,
-    },
-    {
-        homeyName: 'valve_state',
-        somfyNameGet: 'core:OpenClosedValveState',
-        somfyNameSet: [],
-        compare: ['closed', 'open'],
-    },
-    {
-        homeyName: 'defect_state',
-        somfyNameGet: 'core:SensorDefectState',
-        somfyNameSet: [],
-        allowNull: true,
-    },
-    {
-        homeyName: 'rssi',
-        somfyNameGet: 'core:RSSILevelState',
-        somfyNameSet: [],
-    },
-];
+{
+    homeyName: 'measure_temperature',
+    somfyNameGet: 'core:TemperatureState',
+    somfyNameSet: [],
+    somfyArray: 0,
+},
+{
+    homeyName: 'target_temperature.comfort_heating',
+    somfyNameGet: 'core:ComfortRoomTemperatureState',
+    somfyNameSet: ['setAllModeTemperatures'],
+    somfyArray: 0,
+},
+{
+    homeyName: 'target_temperature.eco_heating',
+    somfyNameGet: 'core:EcoTargetTemperatureState',
+    somfyNameSet: ['setAllModeTemperatures'],
+    somfyArray: 1,
+},
+{
+    homeyName: 'target_temperature.away',
+    somfyNameGet: 'io:AwayModeTargetTemperatureState',
+    somfyNameSet: ['setAllModeTemperatures'],
+    somfyArray: 2,
+},
+{
+    homeyName: 'target_temperature.frost_protection',
+    somfyNameGet: 'core:FrostProtectionRoomTemperatureState',
+    somfyNameSet: ['setAllModeTemperatures'],
+    somfyArray: 3,
+},
+{
+    homeyName: 'open_window_activation',
+    somfyNameGet: 'core:OpenWindowDetectionActivationState',
+    somfyNameSet: ['setValveSettings'],
+    compare: ['inactive', 'active'],
+    parameters: [{ openWindow: false }, { openWindow: true }],
+},
+{
+    homeyName: 'measure_battery',
+    somfyNameGet: 'core:BatteryLevelState',
+    somfyNameSet: [],
+},
+{
+    homeyName: 'valve_heating_mode_state',
+    somfyNameGet: 'io:CurrentHeatingModeState',
+    somfyNameSet: [],
+},
+{
+    homeyName: 'valve_operating_mode_state',
+    somfyNameGet: 'core:OperatingModeState',
+    somfyNameSet: [],
+    conversions: { 'auto (schedule)': 'auto' },
+},
+{
+    homeyName: 'valve_auto_mode',
+    somfyNameGet: 'core:OperatingModeState',
+    somfyNameSet: [0, 'exitDerogation'],
+    conversions: { 'auto (schedule)': 'auto' },
+    compare: ['inactive', 'auto'],
+    parameters: [],
+    otherCapability: ['derogation_mode'],
+},
+{
+    homeyName: 'target_temperature',
+    somfyNameGet: 'io:ManualModeTargetTemperatureState',
+    somfyNameSet: ['setDerogation'],
+    somfyArray: 0,
+},
+{
+    homeyName: 'derogation_mode',
+    somfyNameGet: 'io:DerogationHeatingModeState',
+    somfyNameSet: ['setDerogation'],
+    somfyArray: 1,
+},
+{
+    homeyName: 'derogation_type',
+    somfyNameGet: 'io:DerogationTypeState',
+    somfyNameSet: ['setDerogation'],
+    somfyArray: 2,
+},
+{
+    homeyName: 'valve_state',
+    somfyNameGet: 'core:OpenClosedValveState',
+    somfyNameSet: [],
+    compare: ['closed', 'open'],
+},
+{
+    homeyName: 'defect_state',
+    somfyNameGet: 'core:SensorDefectState',
+    somfyNameSet: [],
+    allowNull: true,
+},
+{
+    homeyName: 'rssi',
+    somfyNameGet: 'core:RSSILevelState',
+    somfyNameSet: [],
+}];
 class ValveHeatingDevice extends SensorDevice
 {
 
     async onInit()
     {
+        if (!this.hasCapability('target_temperature'))
+        {
+            this.addCapability('target_temperature');
+        }
+
         await super.onInit(CapabilitiesXRef);
         this.boostSync = true;
     }
@@ -128,12 +138,48 @@ class ValveHeatingDevice extends SensorDevice
                 await this.homey.app.boostSync();
             }
 
-            const applicableEntries = CapabilitiesXRef.filter(entry => entry.somfyNameSet[0] === capabilityXRef.somfyNameSet[0]).sort((a, b) => a.somfyArray - b.somfyArray);
-
             const somfyValues = [];
-            for (const element of applicableEntries)
+
+            if (capabilityXRef.somfyNameSet[0] === 'setDerogation')
             {
-                somfyValues.push(element.homeyName === capabilityXRef.homeyName ? value : this.getCapabilityValue(element.homeyName));
+                if (capabilityXRef.homeyName === 'target_temperature')
+                {
+                    this.setCapabilityValue('derogation_mode', 'manual');
+                    somfyValues.push(value);
+                    somfyValues.push(this.getCapabilityValue('derogation_type'));
+                }
+                else if (capabilityXRef.homeyName === 'derogation_mode')
+                {
+                    if (value === 'manual')
+                    {
+                        somfyValues.push(this.getCapabilityValue('target_temperature'));
+                        somfyValues.push(this.getCapabilityValue('derogation_type'));
+                    }
+                    else
+                    {
+                        somfyValues.push(value);
+                        somfyValues.push(this.getCapabilityValue('derogation_type'));
+                    }
+                }
+                else if (this.getCapabilityValue('derogation_mode') === 'manual')
+                {
+                    somfyValues.push(this.getCapabilityValue('target_temperature'));
+                    somfyValues.push(value);
+                }
+                else
+                {
+                    somfyValues.push(this.getCapabilityValue('derogation_mode'));
+                    somfyValues.push(value);
+                }
+            }
+            else
+            {
+                const applicableEntries = CapabilitiesXRef.filter(entry => entry.somfyNameSet[0] === capabilityXRef.somfyNameSet[0]).sort((a, b) => a.somfyArray - b.somfyArray);
+
+                for (const element of applicableEntries)
+                {
+                    somfyValues.push(element.homeyName === capabilityXRef.homeyName ? value : this.getCapabilityValue(element.homeyName));
+                }
             }
 
             const deviceData = this.getData();

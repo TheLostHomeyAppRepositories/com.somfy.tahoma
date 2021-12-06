@@ -1,0 +1,39 @@
+{
+    "id": "set_open_window_activation",
+    "title": {
+        "en": "Set the open window detection state"
+    },
+    "titleFormatted": {
+        "en": "Set the open window detection state to [[open_window_activation]]"
+    },
+    "args": [
+        {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=all_devices&capabilities=open_window_activation"
+        },
+        {
+            "name": "open_window_activation",
+            "type": "dropdown",
+            "title": {
+                "en": "Detection State"
+            },
+            "values": [
+                {
+                    "id": "on",
+                    "label": {
+                        "en": "On",
+                        "nl": "aan"
+                    }
+                },
+                {
+                    "id": "off",
+                    "label": {
+                        "en": "Off",
+                        "nl": "uit"
+                    }
+                }
+            ]
+        }
+    ]
+}

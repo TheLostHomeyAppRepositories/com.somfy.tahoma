@@ -1,0 +1,82 @@
+{
+    "id": "set_derogation_mode",
+    "title": {
+        "en": "Set the operating mode"
+    },
+    "titleFormatted": {
+        "en": "Set the operating mode to [[derogation_mode]] until [[type]]"
+    },
+    "args": [
+        {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=all_devices&capabilities=derogation_mode"
+        },
+        {
+            "name": "derogation_mode",
+            "type": "dropdown",
+            "title": {
+                "en": "Operating Mode"
+            },
+            "values": [
+                {
+                    "id": "comfort",
+                    "title": {
+                        "en": "Comfort"
+                    }
+                },
+                {
+                    "id": "away",
+                    "title": {
+                        "en": "Away"
+                    }
+                },
+                {
+                    "id": "eco",
+                    "title": {
+                        "en": "Night"
+                    }
+                },
+                {
+                    "id": "manual",
+                    "title": {
+                        "en": "Manual"
+                    }
+                },
+                {
+                    "id": "frostprotection",
+                    "title": {
+                        "en": "Frost Protection"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "type",
+            "type": "dropdown",
+            "title": {
+                "en": "Until"
+            },
+            "values": [
+                {
+                    "id": "date",
+                    "title": {
+                        "en": "Date"
+                    }
+                },
+                {
+                    "id": "further_notice",
+                    "title": {
+                        "en": "Further notice"
+                    }
+                },
+                {
+                    "id": "next_mode",
+                    "title": {
+                        "en": "Next mode"
+                    }
+                }
+            ]
+        }
+    ]
+}
