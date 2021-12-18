@@ -13,5 +13,6 @@
       "title": "LED"
     }
   },
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "hub.svg"
 }

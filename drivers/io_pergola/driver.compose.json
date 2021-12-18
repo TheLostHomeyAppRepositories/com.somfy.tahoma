@@ -31,5 +31,6 @@
       }
     }
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "pergola.svg"
 }

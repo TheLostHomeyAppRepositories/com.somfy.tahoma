@@ -6,5 +6,6 @@
   "capabilities": [
     "alarm_contact"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "window_handle.svg"
 }

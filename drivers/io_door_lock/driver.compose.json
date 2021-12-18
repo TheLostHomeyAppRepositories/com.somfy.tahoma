@@ -7,5 +7,7 @@
     "onoff",
     "locked"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "door_lock.svg"
+
 }

@@ -783,197 +783,6 @@
       {
         "id": "key_go_remote_state_changed",
         "title": {
-          "en": "Remote state changed"
-        },
-        "tokens": [
-          {
-            "name": "remote_state",
-            "type": "string",
-            "title": {
-              "en": "New State"
-            },
-            "example": "pressed"
-          }
-        ],
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=key_go_remote"
-          }
-        ]
-      },
-      {
-        "id": "key_go_remote_state_changed_to",
-        "title": {
-          "en": "Remote state changed to"
-        },
-<<<<<<< HEAD
-        "titleFormatted": {
-          "en": "Remote state changed to [[expected_state]]"
-=======
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=io_valve_heating"
-          }
-        ]
-      },
-      {
-        "id": "open_window_activation_false",
-        "title": {
-          "en": "The open window detection turned off"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=io_valve_heating"
-          }
-        ]
-      },
-      {
-        "id": "derogation_mode_changed",
-        "title": {
-          "en": "The operating mode changed"
-        },
-        "titleFormatted": {
-          "en": "The operating mode changed to [[derogation_mode]]"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=io_valve_heating"
-          },
-          {
-            "name": "derogation_mode",
-            "type": "dropdown",
-            "title": {
-              "en": "Operating Mode"
-            },
-            "values": [
-              {
-                "id": "comfort",
-                "title": {
-                  "en": "Comfort"
-                }
-              },
-              {
-                "id": "away",
-                "title": {
-                  "en": "Away"
-                }
-              },
-              {
-                "id": "eco",
-                "title": {
-                  "en": "Night"
-                }
-              },
-              {
-                "id": "manual",
-                "title": {
-                  "en": "Manual"
-                }
-              },
-              {
-                "id": "frostprotection",
-                "title": {
-                  "en": "Frost Protection"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "valve_heating_mode_state_changed",
-        "title": {
-          "en": "The heating mode changed"
-        },
-        "titleFormatted": {
-          "en": "The heating mode changed to [[valve_heating_mode_state]]"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=io_valve_heating"
-          },
-          {
-            "name": "valve_heating_mode_state",
-            "type": "dropdown",
-            "title": {
-              "en": "Heating Mode"
-            },
-            "values": [
-              {
-                "id": "comfort",
-                "title": {
-                  "en": "Comfort"
-                }
-              },
-              {
-                "id": "awayMode",
-                "title": {
-                  "en": "Away"
-                }
-              },
-              {
-                "id": "eco",
-                "title": {
-                  "en": "Night"
-                }
-              },
-              {
-                "id": "manual",
-                "title": {
-                  "en": "Manual"
-                }
-              },
-              {
-                "id": "frostprotection",
-                "title": {
-                  "en": "Frost Protection"
-                }
-              },
-              {
-                "id": "suddenDropMode",
-                "title": {
-                  "en": "Open Window Mode"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "defect_state_changed",
-        "title": {
-          "en": "The defect state changed"
-        },
-        "tokens": [
-          {
-            "name": "defect_state",
-            "type": "string",
-            "title": {
-              "en": "New state"
-            }
-          }
-        ],
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=io_valve_heating"
-          }
-        ]
-      },
-      {
-        "id": "key_go_remote_state_changed",
-        "title": {
           "en": "The remote state changed"
         },
         "tokens": [
@@ -1001,7 +810,6 @@
         },
         "titleFormatted": {
           "en": "The remote state changed to [[expected_state]]"
->>>>>>> develop
         },
         "args": [
           {
@@ -1532,35 +1340,13 @@
           {
             "name": "device",
             "type": "device",
-<<<<<<< HEAD
             "filter": "driver_id=all_devices&capabilities=derogation_mode"
           },
-=======
-            "filter": "driver_id=rts_interior_venetian_blind|io_roller_shutter_quiet|io_garage_door_partial|io_roller_shutter"
-          }
-        ]
-      },
-      {
-        "id": "set_polling_mode",
-        "title": {
-          "en": "Turn polling on / off",
-          "nl": "Polling aan/uit zetten"
-        },
-        "titleFormatted": {
-          "en": "Turn polling [[newPollingMode]]",
-          "nl": "Zet polling [[newPollingMode]]"
-        },
-        "args": [
->>>>>>> develop
           {
             "name": "derogation_mode",
             "type": "dropdown",
             "title": {
-<<<<<<< HEAD
               "en": "Operating Mode"
-=======
-              "en": "Mode"
->>>>>>> develop
             },
             "values": [
               {
@@ -1594,33 +1380,12 @@
                 }
               }
             ]
-<<<<<<< HEAD
           },
-=======
-          }
-        ]
-      },
-      {
-        "id": "set_polling_speed",
-        "title": {
-          "en": "Set Polling Interval",
-          "nl": "Stel de update frequentie in"
-        },
-        "titleFormatted": {
-          "en": "Set Polling Interval to [[syncSpeed]]",
-          "nl": "Update frequentie naar [[syncSpeed]]"
-        },
-        "args": [
->>>>>>> develop
           {
             "name": "type",
             "type": "dropdown",
             "title": {
-<<<<<<< HEAD
               "en": "Until"
-=======
-              "en": "Interval"
->>>>>>> develop
             },
             "values": [
               {
@@ -1646,9 +1411,166 @@
         ]
       },
       {
-<<<<<<< HEAD
         "id": "set_my_position",
-=======
+        "title": {
+          "en": "Move to MY position",
+          "nl": "Zet de positie naar MY"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=rts_interior_venetian_blind|io_roller_shutter_quiet|io_garage_door_partial|io_roller_shutter"
+          }
+        ]
+      },
+      {
+        "id": "set_open_window_activation",
+        "title": {
+          "en": "Set the open window detection state"
+        },
+        "titleFormatted": {
+          "en": "Set the open window detection state to [[open_window_activation]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=all_devices&capabilities=open_window_activation"
+          },
+          {
+            "name": "open_window_activation",
+            "type": "dropdown",
+            "title": {
+              "en": "Detection State"
+            },
+            "values": [
+              {
+                "id": "on",
+                "label": {
+                  "en": "On",
+                  "nl": "aan"
+                }
+              },
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off",
+                  "nl": "uit"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_polling_mode",
+        "title": {
+          "en": "Turn polling on / off",
+          "nl": "Polling aan/uit zetten"
+        },
+        "titleFormatted": {
+          "en": "Turn polling [[newPollingMode]]",
+          "nl": "Zet polling [[newPollingMode]]"
+        },
+        "args": [
+          {
+            "name": "newPollingMode",
+            "type": "dropdown",
+            "title": {
+              "en": "Mode"
+            },
+            "values": [
+              {
+                "id": "on",
+                "label": {
+                  "en": "On",
+                  "nl": "aan"
+                }
+              },
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off",
+                  "nl": "uit"
+                }
+              },
+              {
+                "id": "once",
+                "label": {
+                  "en": "Once",
+                  "nl": "eenmaal"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_polling_speed",
+        "title": {
+          "en": "Set Polling Interval",
+          "nl": "Stel de update frequentie in"
+        },
+        "titleFormatted": {
+          "en": "Set Polling Interval to [[syncSpeed]]",
+          "nl": "Update frequentie naar [[syncSpeed]]"
+        },
+        "args": [
+          {
+            "name": "syncSpeed",
+            "type": "number",
+            "title": {
+              "en": "Interval"
+            },
+            "min": 30,
+            "placeholder": {
+              "en": "Seconds",
+              "nl": "Seconden"
+            }
+          }
+        ]
+      },
+      {
+        "id": "set_valve_auto_mode",
+        "title": {
+          "en": "Set the Auto (Schedual) mode"
+        },
+        "titleFormatted": {
+          "en": "Set the auto mode to [[set_valve_auto]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=all_devices&capabilities=valve_auto_mode"
+          },
+          {
+            "name": "set_valve_auto",
+            "type": "dropdown",
+            "title": {
+              "en": "Auto Mode"
+            },
+            "values": [
+              {
+                "id": "on",
+                "label": {
+                  "en": "On",
+                  "nl": "aan"
+                }
+              },
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off",
+                  "nl": "uit"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "set_windowcoverings_state",
         "title": {
           "en": "Set state",
@@ -1717,219 +1639,6 @@
                   "no": "Ned",
                   "es": "Abajo",
                   "da": "Nede"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "calendar_state_on",
->>>>>>> develop
-        "title": {
-          "en": "Move to MY position",
-          "nl": "Zet de positie naar MY"
-        },
-        "args": [
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=rts_interior_venetian_blind|io_roller_shutter_quiet|io_garage_door_partial|io_roller_shutter"
-          }
-        ]
-      },
-      {
-        "id": "set_open_window_activation",
-        "title": {
-          "en": "Set the open window detection state"
-        },
-        "titleFormatted": {
-<<<<<<< HEAD
-          "en": "Set the open window detection state to [[open_window_activation]]"
-=======
-          "en": "Set the Eco temperature to [[target_temperature]]"
->>>>>>> develop
-        },
-        "args": [
-          {
-            "name": "device",
-<<<<<<< HEAD
-=======
-            "filter": "driver_id=io_atlantic_dhw_boiler"
-          },
-          {
-            "name": "target_temperature",
-            "type": "range",
-            "title": {
-              "en": "Target Temperature"
-            },
-            "min": 30,
-            "max": 60,
-            "step": 1,
-            "label": "°C",
-            "labelDecimals": 0
-          }
-        ]
-      },
-      {
-        "id": "comfort_temperature_set",
-        "title": {
-          "en": "Set the Comfort temperature"
-        },
-        "titleFormatted": {
-          "en": "Set the comfort temperature to [[target_temperature]]"
-        },
-        "args": [
-          {
->>>>>>> develop
-            "type": "device",
-            "filter": "driver_id=all_devices&capabilities=open_window_activation"
-          },
-          {
-            "name": "open_window_activation",
-            "type": "dropdown",
-            "title": {
-              "en": "Detection State"
-            },
-            "values": [
-              {
-                "id": "on",
-                "label": {
-                  "en": "On",
-                  "nl": "aan"
-                }
-              },
-              {
-                "id": "off",
-                "label": {
-                  "en": "Off",
-                  "nl": "uit"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "set_polling_mode",
-        "title": {
-<<<<<<< HEAD
-          "en": "Poll for status updates",
-          "nl": "Status updates"
-        },
-        "titleFormatted": {
-          "en": "Poll for status updates [[newPollingMode]]",
-          "nl": "Status updates [[newPollingMode]]"
-=======
-          "en": "Set the boiler mode"
-        },
-        "titleFormatted": {
-          "en": "Set the boiler mode to [[state]]"
->>>>>>> develop
-        },
-        "args": [
-          {
-            "name": "newPollingMode",
-            "type": "dropdown",
-            "title": {
-              "en": "Polling Mode"
-            },
-            "values": [
-              {
-                "id": "on",
-                "label": {
-                  "en": "On",
-                  "nl": "aan"
-                }
-              },
-              {
-                "id": "off",
-                "label": {
-                  "en": "Off",
-                  "nl": "uit"
-                }
-              },
-              {
-                "id": "once",
-                "label": {
-                  "en": "Once",
-                  "nl": "eenmaal"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "set_polling_speed",
-        "title": {
-<<<<<<< HEAD
-          "en": "Polling Interval",
-          "nl": "Update frequentie"
-        },
-        "titleFormatted": {
-          "en": "Polling Interval to [[syncSpeed]]",
-          "nl": "Update frequentie naar [[syncSpeed]]"
-        },
-        "args": [
-          {
-            "name": "syncSpeed",
-            "type": "number",
-            "title": {
-              "en": "Polling Interval"
-            },
-            "min": 30,
-            "placeholder": {
-              "en": "Seconds",
-              "nl": "Seconden"
-            }
-          }
-        ]
-      },
-      {
-        "id": "set_valve_auto_mode",
-        "title": {
-          "en": "Set the Auto (Schedual) mode"
-        },
-        "titleFormatted": {
-          "en": "Set the auto mode to [[set_valve_auto]]"
-=======
-          "en": "Turn boost On / Off",
-          "nl": "Zet aan / uit"
-        },
-        "titleFormatted": {
-          "en": "Turn boost [[state]]"
->>>>>>> develop
-        },
-        "args": [
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=all_devices&capabilities=valve_auto_mode"
-          },
-          {
-            "name": "set_valve_auto",
-            "type": "dropdown",
-            "title": {
-<<<<<<< HEAD
-              "en": "Auto Mode"
-=======
-              "en": "State"
->>>>>>> develop
-            },
-            "values": [
-              {
-                "id": "on",
-                "label": {
-                  "en": "On",
-                  "nl": "aan"
-                }
-              },
-              {
-                "id": "off",
-                "label": {
-                  "en": "Off",
-                  "nl": "uit"
                 }
               }
             ]
@@ -2052,7 +1761,6 @@
       {
         "id": "calendar_state_on",
         "title": {
-<<<<<<< HEAD
           "en": "Activate Agenda / Timer"
         },
         "args": [
@@ -2082,13 +1790,7 @@
           "en": "Set the Eco temperature"
         },
         "titleFormatted": {
-          "en": "Set the Eco Temperature to [[target_temperature]]"
-=======
-          "en": "Turn Auto Heat Cool On / Off"
-        },
-        "titleFormatted": {
-          "en": "Turn [[state]] auto heat / cool"
->>>>>>> develop
+          "en": "Set the Eco temperature to [[target_temperature]]"
         },
         "args": [
           {
@@ -2100,11 +1802,7 @@
             "name": "target_temperature",
             "type": "range",
             "title": {
-<<<<<<< HEAD
               "en": "Target Temperature"
-=======
-              "en": "State"
->>>>>>> develop
             },
             "min": 30,
             "max": 60,
@@ -2117,14 +1815,10 @@
       {
         "id": "comfort_temperature_set",
         "title": {
-<<<<<<< HEAD
           "en": "Set the Comfort temperature"
-=======
-          "en": "Set APC operating mode"
->>>>>>> develop
         },
         "titleFormatted": {
-          "en": "Set the Comfort Temperature to [[target_temperature]]"
+          "en": "Set the comfort temperature to [[target_temperature]]"
         },
         "args": [
           {
@@ -2149,10 +1843,10 @@
       {
         "id": "boiler_mode_set",
         "title": {
-          "en": "Set the Boiler Mode"
+          "en": "Set the boiler mode"
         },
         "titleFormatted": {
-          "en": "Set the Boiler Mode to [[state]]"
+          "en": "Set the boiler mode to [[state]]"
         },
         "args": [
           {
@@ -2222,11 +1916,11 @@
       {
         "id": "boost_on_off",
         "title": {
-          "en": "Switch Boost On / Off",
+          "en": "Turn boost On / Off",
           "nl": "Zet aan / uit"
         },
         "titleFormatted": {
-          "en": "Switch Boost [[state]]"
+          "en": "Turn boost [[state]]"
         },
         "args": [
           {
@@ -2238,7 +1932,7 @@
             "name": "state",
             "type": "dropdown",
             "title": {
-              "en": "Boost State"
+              "en": "State"
             },
             "values": [
               {
@@ -2331,10 +2025,10 @@
       {
         "id": "set_auto_heat_cool",
         "title": {
-          "en": "Switch Auto Heat Cool On / Off"
+          "en": "Turn Auto Heat Cool On / Off"
         },
         "titleFormatted": {
-          "en": "Switch [[state]] Auto Heat Cool"
+          "en": "Turn [[state]] auto heat / cool"
         },
         "args": [
           {
@@ -2346,7 +2040,7 @@
             "name": "state",
             "type": "dropdown",
             "title": {
-              "en": "Auto State"
+              "en": "State"
             },
             "values": [
               {
@@ -2370,7 +2064,7 @@
       {
         "id": "set_pac_operating_mode",
         "title": {
-          "en": "Switch APC operating mode"
+          "en": "Set APC operating mode"
         },
         "titleFormatted": {
           "en": "Set APC operating mode to [[state]]"
@@ -2896,153 +2590,6 @@
       {
         "id": "set_open_close_stop",
         "title": {
-          "en": "Open / Close / Stop gate"
-        },
-        "titleFormatted": {
-          "en": "[[state]] gate"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=rts_gate_opener"
-          },
-          {
-            "name": "state",
-            "type": "dropdown",
-            "title": {
-              "en": "Open / Close state"
-            },
-            "values": [
-              {
-                "id": "open",
-                "label": {
-                  "en": "Open"
-                }
-              },
-              {
-                "id": "close",
-                "label": {
-                  "en": "Close",
-                  "nl": "Dichtbij"
-                }
-              },
-              {
-                "id": "stop",
-                "label": {
-                  "en": "Stop",
-                  "nl": "Hou op"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "set_tahoma_alarm_state",
-        "title": {
-          "en": "Set state",
-          "nl": "Zet de status",
-          "de": "Status setzen",
-          "fr": "Définir l'état",
-          "it": "Imposta stato",
-          "sv": "Ställ in status",
-          "no": "Innstill status",
-          "es": "Definir estado",
-          "da": "Indstil status"
-        },
-        "titleFormatted": {
-          "en": "Set the alarm state to [[state]]"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=tahoma_alarm"
-          },
-          {
-            "name": "state",
-            "type": "dropdown",
-            "title": {
-              "en": "New State"
-            },
-            "values": [
-              {
-                "id": "off",
-                "title": {
-                  "en": "Disarmed",
-                  "nl": "Gedeactiveerd",
-                  "de": "unscharf",
-                  "fr": "Désarmé",
-                  "it": "Disattivato",
-                  "sv": "Avlarmat",
-                  "no": "Deaktivert",
-                  "es": "Desactivada",
-                  "da": "Deaktiveret"
-                }
-              },
-              {
-                "id": "partial1",
-                "title": {
-                  "en": "Partially armed",
-                  "nl": "Deels geactiveerd",
-                  "de": "teilweise scharf",
-                  "fr": "Partiellement armé",
-                  "it": "Parzialmente attivato",
-                  "sv": "Delvis larmat",
-                  "no": "Delvis aktivert",
-                  "es": "Parcialmente activada",
-                  "da": "Delvist aktiveret"
-                }
-              },
-              {
-<<<<<<< HEAD
-=======
-                "id": "manual",
-                "title": {
-                  "en": "Manual"
-                }
-              },
-              {
-                "id": "frostprotection",
-                "title": {
-                  "en": "Frost Protection"
-                }
-              }
-            ]
-          },
-          {
-            "name": "type",
-            "type": "dropdown",
-            "title": {
-              "en": "Until"
-            },
-            "values": [
-              {
-                "id": "date",
-                "title": {
-                  "en": "Date"
-                }
-              },
-              {
-                "id": "further_notice",
-                "title": {
-                  "en": "Further notice"
-                }
-              },
-              {
-                "id": "next_mode",
-                "title": {
-                  "en": "Next mode"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "set_open_close_stop",
-        "title": {
           "en": "Open, Close or Stop gate"
         },
         "titleFormatted": {
@@ -3086,119 +2633,6 @@
         ]
       },
       {
-        "id": "stop_siren",
-        "title": {
-          "en": "Stop the siren"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=siren"
-          }
-        ]
-      },
-      {
-        "id": "start_siren",
-        "title": {
-          "en": "Ring the siren"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=siren"
-          }
-        ]
-      },
-      {
-        "id": "sound_alarm1",
-        "title": {
-          "en": "Sound Alarm"
-        },
-        "titleFormatted": {
-          "en": "Sound alarm for [[duration]] with On/off ratio of [[on_off_ratio]] and repeat [[repeats]] times at [[volume]] volume"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=siren"
-          },
-          {
-            "name": "duration",
-            "type": "range",
-            "min": 5,
-            "max": 300,
-            "step": 5,
-            "placeholder": {
-              "en": "In seconds"
-            },
-            "title": {
-              "en": "Alarm Duration"
-            },
-            "label": "s",
-            "labelDecimals": 0
-          },
-          {
-            "name": "on_off_ratio",
-            "type": "range",
-            "min": 10,
-            "max": 90,
-            "step": 1,
-            "placeholder": {
-              "en": "%"
-            },
-            "title": {
-              "en": "On / Off ratio"
-            },
-            "label": "%",
-            "labelDecimals": 0
-          },
-          {
-            "name": "repeats",
-            "type": "range",
-            "min": 1,
-            "max": 10,
-            "step": 1,
-            "placeholder": {
-              "en": "repeats"
-            },
-            "title": {
-              "en": "Repeats"
-            },
-            "labelDecimals": 0
-          },
-          {
-            "name": "volume",
-            "type": "dropdown",
-            "title": {
-              "en": "Volume"
-            },
-            "values": [
-              {
-                "id": "highest",
-                "label": {
-                  "en": "Highest"
-                }
-              },
-              {
-                "id": "standard",
-                "label": {
-                  "en": "Standard"
-                }
-              },
-              {
-                "id": "memorizedVolume",
-                "label": {
-                  "en": "Memorized"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
         "id": "set_tahoma_alarm_state",
         "title": {
           "en": "Set state",
@@ -3256,7 +2690,6 @@
                 }
               },
               {
->>>>>>> develop
                 "id": "partial2",
                 "title": {
                   "en": "Partially armed",
@@ -3569,6 +3002,7 @@
       "capabilities": [
         "alarm_contact"
       ],
+      "icon": "window_handle.svg",
       "id": "enocean_window_handle"
     },
     {
@@ -3590,6 +3024,7 @@
       "capabilities": [
         "onoff"
       ],
+      "icon": "electric_radiator.svg",
       "id": "heater_on_off"
     },
     {
@@ -3618,6 +3053,7 @@
           "title": "LED"
         }
       },
+      "icon": "hub.svg",
       "id": "hub"
     },
     {
@@ -3658,6 +3094,7 @@
           "min": 0
         }
       },
+      "icon": "boiler.svg",
       "id": "io_atlantic_apc_zone_controller"
     },
     {
@@ -3695,6 +3132,7 @@
           "title": "Eco Temperature"
         }
       },
+      "icon": "boiler.svg",
       "id": "io_atlantic_dhw_boiler"
     },
     {
@@ -3727,6 +3165,7 @@
           "max": 60
         }
       },
+      "icon": "boiler.svg",
       "id": "io_atlantic_dhw_production"
     },
     {
@@ -3753,6 +3192,7 @@
           "title": "Force Heating"
         }
       },
+      "icon": "hw_tank.svg",
       "id": "io_atlantic_dhw_tank"
     },
     {
@@ -3807,6 +3247,7 @@
           "title": "Derogated Temperature"
         }
       },
+      "icon": "electric_heater.svg",
       "id": "io_atlantic_electric_heater"
     },
     {
@@ -3879,6 +3320,7 @@
           "title": "Heating Mode"
         }
       },
+      "icon": "radiator.svg",
       "id": "io_atlantic_hot_cold_zone"
     },
     {
@@ -3901,6 +3343,7 @@
         "onoff",
         "locked"
       ],
+      "icon": "door_lock.svg",
       "id": "io_door_lock"
     },
     {
@@ -3925,6 +3368,7 @@
       "energy": {
         "cumulative": true
       },
+      "icon": "house_energy.svg",
       "id": "io_energy_sensor"
     },
     {
@@ -3935,78 +3379,6 @@
       "connectivity": [
         "cloud"
       ],
-      "images": {
-        "large": "/drivers/io_exterior_venetian_blind/assets/images/large.png",
-        "small": "/drivers/io_exterior_venetian_blind/assets/images/small.png"
-      },
-      "name": {
-        "en": "Exterior Venetian (io)",
-        "nl": "Buitenjaloezieën (io)"
-      },
-      "class": "blinds",
-      "capabilities": [
-        "windowcoverings_state",
-        "windowcoverings_set",
-        "windowcoverings_tilt_set",
-        "quick_open"
-      ],
-      "settings": [
-        {
-<<<<<<< HEAD
-=======
-          "id": "login_credentials",
-          "template": "login_credentials",
-          "options": {
-            "logo": "logo.png",
-            "usernameLabel": {
-              "en": "E-mail address"
-            },
-            "usernamePlaceholder": {
-              "en": "john@doe.com"
-            },
-            "passwordLabel": {
-              "en": "Password"
-            },
-            "passwordPlaceholder": {
-              "en": "Password"
-            }
-          }
-        },
-        {
-          "id": "list_my_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
-          }
-        },
-        {
-          "id": "add_my_devices",
-          "template": "add_devices"
-        }
-      ],
-      "repair": [
-        {
-          "id": "login_credentials",
-          "template": "login_credentials",
-          "options": {
-            "logo": "logo.png",
-            "usernameLabel": {
-              "en": "E-mail address"
-            },
-            "usernamePlaceholder": {
-              "en": "john@doe.com"
-            },
-            "passwordLabel": {
-              "en": "Password"
-            },
-            "passwordPlaceholder": {
-              "en": "Password"
-            }
-          }
-        }
-      ],
-      "icon": "/drivers/io_exterior_venetian_blind/assets/icon.svg",
       "images": {
         "large": "/drivers/io_exterior_venetian_blind/assets/images/large.png",
         "small": "/drivers/io_exterior_venetian_blind/assets/images/small.png"
@@ -4024,7 +3396,6 @@
       ],
       "settings": [
         {
->>>>>>> develop
           "id": "invertUpDown",
           "type": "checkbox",
           "label": {
@@ -4058,6 +3429,7 @@
           }
         }
       ],
+      "icon": "exterior_venetian_blind.svg",
       "id": "io_exterior_venetian_blind"
     },
     {
@@ -4104,6 +3476,7 @@
           }
         }
       ],
+      "icon": "garage_door.svg",
       "id": "io_garage_door"
     },
     {
@@ -4139,6 +3512,7 @@
           }
         }
       ],
+      "icon": "garage_door.svg",
       "id": "io_garage_door_partial"
     },
     {
@@ -4199,6 +3573,7 @@
           }
         }
       ],
+      "icon": "awning.svg",
       "id": "io_horizontal_awning"
     },
     {
@@ -4221,6 +3596,7 @@
       "capabilities": [
         "measure_luminance"
       ],
+      "icon": "sunis_io.svg",
       "id": "io_light_sensor"
     },
     {
@@ -4242,6 +3618,7 @@
       "capabilities": [
         "alarm_motion"
       ],
+      "icon": "motion_sensor.svg",
       "id": "io_occupancy_detector"
     },
     {
@@ -4263,6 +3640,7 @@
       "capabilities": [
         "remote_state"
       ],
+      "icon": "remote.svg",
       "id": "io_open_close_remote"
     },
     {
@@ -4285,6 +3663,7 @@
       "capabilities": [
         "alarm_contact"
       ],
+      "icon": "opening_sensor.svg",
       "id": "io_opening_detector"
     },
     {
@@ -4331,6 +3710,7 @@
           }
         }
       ],
+      "icon": "pergola.svg",
       "id": "io_pergola"
     },
     {
@@ -4391,6 +3771,7 @@
           }
         }
       ],
+      "icon": "roller_shutter.svg",
       "id": "io_roller_shutter"
     },
     {
@@ -4452,6 +3833,7 @@
           }
         }
       ],
+      "icon": "roller_shutter.svg",
       "id": "io_roller_shutter_quiet"
     },
     {
@@ -4474,6 +3856,7 @@
         "pedestrian",
         "windowcoverings_state"
       ],
+      "icon": "sliding_gate.svg",
       "id": "io_sliding_gate"
     },
     {
@@ -4496,6 +3879,7 @@
       "capabilities": [
         "measure_temperature"
       ],
+      "icon": "thermometer.svg",
       "id": "io_temperature_sensor"
     },
     {
@@ -4625,6 +4009,7 @@
           }
         }
       ],
+      "icon": "velux_blind.svg",
       "id": "io_velux_interior_blind"
     },
     {
@@ -4684,6 +4069,7 @@
           }
         }
       ],
+      "icon": "velux_shutter.svg",
       "id": "io_velux_roller_shutter"
     },
     {
@@ -4743,6 +4129,7 @@
           }
         }
       ],
+      "icon": "velux_window.svg",
       "id": "io_velux_roof_window"
     },
     {
@@ -4802,6 +4189,7 @@
           }
         }
       ],
+      "icon": "exterior_blind.svg",
       "id": "io_vertical_exterior_blind"
     },
     {
@@ -4860,6 +4248,7 @@
           }
         }
       ],
+      "icon": "blind.svg",
       "id": "io_vertical_interior_blind"
     },
     {
@@ -4881,6 +4270,7 @@
       "capabilities": [
         "key_go_remote_state"
       ],
+      "icon": "keygo_remote.svg",
       "id": "key_go_remote"
     },
     {
@@ -4902,6 +4292,7 @@
       "capabilities": [
         "onoff"
       ],
+      "icon": "camera_light_controller.svg",
       "id": "myfox_light_controller"
     },
     {
@@ -4923,6 +4314,7 @@
       "capabilities": [
         "onoff"
       ],
+      "icon": "on_off_button.svg",
       "id": "on_off_switch"
     },
     {
@@ -4945,6 +4337,7 @@
         "alarm_generic",
         "homealarm_state"
       ],
+      "icon": "one_alarm.svg",
       "id": "one_alarm"
     },
     {
@@ -4967,6 +4360,7 @@
         "onoff",
         "heating_mode"
       ],
+      "icon": "house_temperature.svg",
       "id": "pilot_wire_programmer"
     },
     {
@@ -4988,6 +4382,7 @@
       "capabilities": [
         "alarm_water"
       ],
+      "icon": "water_sensor.svg",
       "id": "rtds_water_sensor"
     },
     {
@@ -5047,6 +4442,7 @@
           ]
         }
       ],
+      "icon": "gate.svg",
       "id": "rts_gate_opener"
     },
     {
@@ -5082,6 +4478,7 @@
           }
         }
       ],
+      "icon": "terrace.svg",
       "id": "rts_horizontal_awning"
     },
     {
@@ -5092,64 +4489,6 @@
       "connectivity": [
         "cloud"
       ],
-<<<<<<< HEAD
-=======
-      "pair": [
-        {
-          "id": "login_credentials",
-          "template": "login_credentials",
-          "options": {
-            "logo": "logo.png",
-            "usernameLabel": {
-              "en": "E-mail address"
-            },
-            "usernamePlaceholder": {
-              "en": "john@doe.com"
-            },
-            "passwordLabel": {
-              "en": "Password"
-            },
-            "passwordPlaceholder": {
-              "en": "Password"
-            }
-          }
-        },
-        {
-          "id": "list_my_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
-          }
-        },
-        {
-          "id": "add_my_devices",
-          "template": "add_devices"
-        }
-      ],
-      "repair": [
-        {
-          "id": "login_credentials",
-          "template": "login_credentials",
-          "options": {
-            "logo": "logo.png",
-            "usernameLabel": {
-              "en": "E-mail address"
-            },
-            "usernamePlaceholder": {
-              "en": "john@doe.com"
-            },
-            "passwordLabel": {
-              "en": "Password"
-            },
-            "passwordPlaceholder": {
-              "en": "Password"
-            }
-          }
-        }
-      ],
-      "icon": "/drivers/rts_interior_blind/assets/icon.svg",
->>>>>>> develop
       "images": {
         "large": "/drivers/rts_interior_blind/assets/images/large.png",
         "small": "/drivers/rts_interior_blind/assets/images/small.png"
@@ -5159,11 +4498,7 @@
       },
       "class": "blinds",
       "capabilities": [
-<<<<<<< HEAD
-        "windowcoverings_state",
-=======
         "windowcoverings_state.rts",
->>>>>>> develop
         "my_position"
       ],
       "settings": [
@@ -5179,6 +4514,7 @@
           }
         }
       ],
+      "icon": "blind.svg",
       "id": "rts_interior_blind"
     },
     {
@@ -5214,6 +4550,7 @@
           }
         }
       ],
+      "icon": "curtains.svg",
       "id": "rts_interior_curtain"
     },
     {
@@ -5253,11 +4590,10 @@
           "value": false,
           "hint": {
             "en": "Reverse the Up / Down direction controls"
-<<<<<<< HEAD
-=======
           }
         }
       ],
+      "icon": "venetian_blind.svg",
       "id": "rts_interior_venetian_blind"
     },
     {
@@ -5268,61 +4604,6 @@
       "connectivity": [
         "cloud"
       ],
-      "pair": [
-        {
-          "id": "login_credentials",
-          "template": "login_credentials",
-          "options": {
-            "logo": "logo.png",
-            "usernameLabel": {
-              "en": "E-mail address"
-            },
-            "usernamePlaceholder": {
-              "en": "john@doe.com"
-            },
-            "passwordLabel": {
-              "en": "Password"
-            },
-            "passwordPlaceholder": {
-              "en": "Password"
-            }
-          }
-        },
-        {
-          "id": "list_my_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
-          }
-        },
-        {
-          "id": "add_my_devices",
-          "template": "add_devices"
-        }
-      ],
-      "repair": [
-        {
-          "id": "login_credentials",
-          "template": "login_credentials",
-          "options": {
-            "logo": "logo.png",
-            "usernameLabel": {
-              "en": "E-mail address"
-            },
-            "usernamePlaceholder": {
-              "en": "john@doe.com"
-            },
-            "passwordLabel": {
-              "en": "Password"
-            },
-            "passwordPlaceholder": {
-              "en": "Password"
-            }
-          }
-        }
-      ],
-      "icon": "/drivers/rts_open_close/assets/icon.svg",
       "images": {
         "large": "/drivers/rts_open_close/assets/images/large.png",
         "small": "/drivers/rts_open_close/assets/images/small.png"
@@ -5334,92 +4615,7 @@
       "capabilities": [
         "button"
       ],
-      "id": "rts_open_close"
-    },
-    {
-      "platforms": [
-        "local",
-        "cloud"
-      ],
-      "connectivity": [
-        "cloud"
-      ],
-      "pair": [
-        {
-          "id": "login_credentials",
-          "template": "login_credentials",
-          "options": {
-            "logo": "logo.png",
-            "usernameLabel": {
-              "en": "E-mail address"
-            },
-            "usernamePlaceholder": {
-              "en": "john@doe.com"
-            },
-            "passwordLabel": {
-              "en": "Password"
-            },
-            "passwordPlaceholder": {
-              "en": "Password"
-            }
-          }
-        },
-        {
-          "id": "list_my_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
-          }
-        },
-        {
-          "id": "add_my_devices",
-          "template": "add_devices"
-        }
-      ],
-      "repair": [
-        {
-          "id": "login_credentials",
-          "template": "login_credentials",
-          "options": {
-            "logo": "logo.png",
-            "usernameLabel": {
-              "en": "E-mail address"
-            },
-            "usernamePlaceholder": {
-              "en": "john@doe.com"
-            },
-            "passwordLabel": {
-              "en": "Password"
-            },
-            "passwordPlaceholder": {
-              "en": "Password"
-            }
->>>>>>> develop
-          }
-        }
-      ],
-      "id": "rts_interior_venetian_blind"
-    },
-    {
-      "platforms": [
-        "local",
-        "cloud"
-      ],
-      "connectivity": [
-        "cloud"
-      ],
-      "images": {
-        "large": "/drivers/rts_open_close/assets/images/large.png",
-        "small": "/drivers/rts_open_close/assets/images/small.png"
-      },
-      "name": {
-        "en": "Open / Close (RTS)"
-      },
-      "class": "button",
-      "capabilities": [
-        "button"
-      ],
+      "icon": "remote2.svg",
       "id": "rts_open_close"
     },
     {
@@ -5492,6 +4688,7 @@
           "AA"
         ]
       },
+      "icon": "smoke_detector.svg",
       "id": "smoke_detector"
     },
     {
@@ -5514,6 +4711,7 @@
         "alarm_generic",
         "tahoma_alarm_state"
       ],
+      "icon": "alarm.svg",
       "id": "tahoma_alarm"
     },
     {
@@ -5537,6 +4735,7 @@
         "off_button",
         "on_with_timer"
       ],
+      "icon": "two_buttons.svg",
       "id": "two_button_on_off_light"
     },
     {

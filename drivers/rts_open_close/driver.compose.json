@@ -6,5 +6,6 @@
   "capabilities": [
     "button"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "remote2.svg"
 }

@@ -6,5 +6,6 @@
   "capabilities": [
     "key_go_remote_state"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "keygo_remote.svg"
 }

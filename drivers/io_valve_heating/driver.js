@@ -8,7 +8,7 @@ const Driver = require('../Driver');
  * Driver class for the opening detector with the io:HeatingValveIOComponent controllable name in TaHoma
  * @extends {Driver}
  */
-class ElectricHeaterDriver extends Driver
+class ValveHeaterDriver extends Driver
 {
 
     async onInit()
@@ -50,4 +50,4 @@ class ElectricHeaterDriver extends Driver
 
 }
 
-module.exports = ElectricHeaterDriver;
+module.exports = ValveHeaterDriver;

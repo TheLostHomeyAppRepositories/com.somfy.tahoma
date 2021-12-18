@@ -6,5 +6,6 @@
   "capabilities": [
     "alarm_water"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "water_sensor.svg"
 }

@@ -39,5 +39,7 @@
       "title": "Derogated Temperature"
     }
   },
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "electric_heater.svg"
+
 }

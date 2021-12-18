@@ -7,5 +7,6 @@
   "capabilities": [
     "alarm_contact"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "opening_sensor.svg"
 }

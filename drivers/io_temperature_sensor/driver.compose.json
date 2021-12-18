@@ -7,5 +7,6 @@
   "capabilities": [
     "measure_temperature"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "thermometer.svg"
 }

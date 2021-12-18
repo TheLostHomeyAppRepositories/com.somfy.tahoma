@@ -6,5 +6,6 @@
   "capabilities": [
     "alarm_motion"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "motion_sensor.svg"
 }

@@ -44,5 +44,6 @@
       }
     }
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "velux_blind.svg"
 }

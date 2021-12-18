@@ -7,5 +7,6 @@
     "alarm_generic",
     "homealarm_state"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "one_alarm.svg"
 }

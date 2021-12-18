@@ -45,5 +45,6 @@
       }
     }
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "roller_shutter.svg"
 }

@@ -16,6 +16,6 @@
     "alarm_siren",
     "alarm_battery"
   ],
-  "icon": "siren.svg",
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "siren.svg"
 }

@@ -27,5 +27,6 @@
       }
     }
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "venetian_blind.svg"
 }

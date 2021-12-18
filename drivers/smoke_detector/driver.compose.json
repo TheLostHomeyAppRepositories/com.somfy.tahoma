@@ -25,5 +25,6 @@
       "AA"
     ]
   },
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "smoke_detector.svg"
 }

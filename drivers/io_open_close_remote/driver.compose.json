@@ -6,5 +6,6 @@
   "capabilities": [
     "remote_state"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "remote.svg"
 }

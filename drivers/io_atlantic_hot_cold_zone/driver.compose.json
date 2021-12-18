@@ -57,5 +57,7 @@
       "title": "Heating Mode"
     }
   },
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "radiator.svg"
+
 }

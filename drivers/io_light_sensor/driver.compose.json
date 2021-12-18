@@ -7,5 +7,6 @@
   "capabilities": [
     "measure_luminance"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "sunis_io.svg"
 }

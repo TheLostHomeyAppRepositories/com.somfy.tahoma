@@ -17,5 +17,7 @@
       "max": 60
     }
   },
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "boiler.svg"
+
 }

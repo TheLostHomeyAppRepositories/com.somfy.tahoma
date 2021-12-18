@@ -6,5 +6,6 @@
   "capabilities": [
     "onoff"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "on_off_button.svg"
 }

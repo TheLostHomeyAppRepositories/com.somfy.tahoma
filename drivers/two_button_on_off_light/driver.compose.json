@@ -8,5 +8,6 @@
     "off_button",
     "on_with_timer"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "two_buttons.svg"
 }

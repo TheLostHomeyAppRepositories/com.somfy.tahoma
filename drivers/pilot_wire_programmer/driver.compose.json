@@ -7,5 +7,6 @@
     "onoff",
     "heating_mode"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "house_temperature.svg"
 }

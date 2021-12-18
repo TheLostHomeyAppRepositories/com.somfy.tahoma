@@ -7,5 +7,6 @@
     "alarm_generic",
     "tahoma_alarm_state"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "alarm.svg"
 }

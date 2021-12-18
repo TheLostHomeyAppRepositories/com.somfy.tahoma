@@ -7,5 +7,6 @@
     "pedestrian",
     "windowcoverings_state"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "sliding_gate.svg"
 }

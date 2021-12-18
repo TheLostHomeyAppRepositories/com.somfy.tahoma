@@ -9,5 +9,7 @@
   "energy": {
     "cumulative": true
   },
-  "$extends": ["cloudDriver"]
+  "$extends": ["cloudDriver"],
+  "icon": "house_energy.svg"
+
 }
