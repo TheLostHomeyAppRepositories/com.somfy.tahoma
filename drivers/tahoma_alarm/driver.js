@@ -14,9 +14,6 @@ class TahomaAlarmDriver extends Driver
     async onInit()
     {
         this.deviceType = ['internal:TSKAlarmComponent'];
-
-        /** * ALARM STATE CHANGE TRIGGER ** */
-        this._triggerTahoma_alarm_stateChange = this.homey.flow.getDeviceTriggerCard('tahoma_alarm_state_changed');
     }
 
 }

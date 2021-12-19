@@ -109,7 +109,6 @@ class OpenCloseDevice extends Device
                                 await this.homey.app.unBoostSync();
                             }
                             this.homey.app.triggerCommandComplete(this, this.executionCmd, (element.newState === 'COMPLETED'));
-                            this.driver.triggerDeviceCommandComplete(this, this.executionCmd, (element.newState === 'COMPLETED'));
                             this.executionId = null;
                             this.executionCmd = '';
                         }

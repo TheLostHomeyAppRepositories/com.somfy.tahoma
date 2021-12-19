@@ -162,10 +162,6 @@ class AllDevicesDriver extends Driver
     async onInit()
     {
         await super.onInit();
-
-        this._derogation_mode_changed = this.homey.flow.getDeviceTriggerCard('derogation_mode_changed');
-        this._valve_heating_mode_state_changed = this.homey.flow.getDeviceTriggerCard('valve_heating_mode_state_changed');
-        this._defect_state_changed = this.homey.flow.getDeviceTriggerCard('defect_state_changed');
     }
 
     onMapDeviceClass(device)

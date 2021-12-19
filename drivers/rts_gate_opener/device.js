@@ -168,7 +168,6 @@ class rtsGateOpenerDevice extends Device
                         }
 
                         this.homey.app.triggerCommandComplete(this, this.executionCmd, (element.newState === 'COMPLETED'));
-                        this.driver.triggerDeviceCommandComplete(this, this.executionCmd, (element.newState === 'COMPLETED'));
                         this.commandExecuting = '';
                         this.executionId = null;
                         this.executionCmd = '';

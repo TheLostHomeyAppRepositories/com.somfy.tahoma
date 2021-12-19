@@ -227,6 +227,88 @@ class myApp extends Homey.App
                 return (args.device.getAppId() === state.device.appId);
             });
 
+        /** * LUMINANCE TRIGGERS ** */
+        this._triggerLuminanceMoreThan = this.homey.flow.getDeviceTriggerCard('change_luminance_more_than');
+        this._triggerLuminanceMoreThan.registerRunListener((args, state) =>
+        {
+            return (state.measure_luminance > args.luminance);
+        });
+
+        this._triggerLuminanceLessThan = this.homey.flow.getDeviceTriggerCard('change_luminance_less_than');
+        this._triggerLuminanceLessThan.registerRunListener((args, state) =>
+        {
+            return (state.measure_luminance < args.luminance);
+        });
+
+        this._triggerLuminanceBetween = this.homey.flow.getDeviceTriggerCard('change_luminance_between');
+        this._triggerLuminanceBetween.registerRunListener((args, state) =>
+        {
+            return ((state.measure_luminance > args.luminance_from) && (state.measure_luminance < args.luminance_to));
+        });
+        this._derogation_mode_changed = this.homey.flow.getDeviceTriggerCard('derogation_mode_changed');
+        this._valve_heating_mode_state_changed = this.homey.flow.getDeviceTriggerCard('valve_heating_mode_state_changed');
+        this._defect_state_changed = this.homey.flow.getDeviceTriggerCard('defect_state_changed');
+        this.tilt_changedTrigger = this.homey.flow.getDeviceTriggerCard('windowcoverings_tilt_changed');
+
+        /** * MOTION TRIGGERS ** */
+        this._triggerMotionChange = this.homey.flow.getDeviceTriggerCard('motion_has_changed');
+
+        /** * CONTACT TRIGGERS ** */
+        this._triggerContactChange = this.homey.flow.getDeviceTriggerCard('contact_has_changed');
+
+        /** * TEMPERATURE TRIGGERS ** */
+        this._triggerTemperatureMoreThan = this.homey.flow.getDeviceTriggerCard('change_temperature_more_than');
+        this._triggerTemperatureMoreThan.registerRunListener((args, state) =>
+        {
+            const conditionMet = state.measure_temperature > args.temperature;
+            return Promise.resolve(conditionMet);
+        });
+
+        /** * ALARM SMOKE TRIGGERS ** */
+        this._triggerSmokeChange = this.homey.flow.getDeviceTriggerCard('smoke_has_changed');
+
+        /** * ALARM STATE CHANGE TRIGGER ** */
+        this._triggerTahoma_alarm_stateChange = this.homey.flow.getDeviceTriggerCard('tahoma_alarm_state_changed');
+
+        this._triggerTemperatureLessThan = this.homey.flow.getDeviceTriggerCard('change_temperature_less_than');
+        this._triggerTemperatureLessThan.registerRunListener((args, state) =>
+        {
+            const conditionMet = state.measure_temperature < args.temperature;
+            return Promise.resolve(conditionMet);
+        });
+
+        this._triggerTemperatureBetween = this.homey.flow.getDeviceTriggerCard('change_temperature_between');
+        this._triggerTemperatureBetween.registerRunListener((args, state) =>
+        {
+            const conditionMet = state.measure_temperature > args.temperature_from && state.measure_temperature < args.temperature_to;
+            return Promise.resolve(conditionMet);
+        });
+
+        this._remoteSateChangedTrigger = this.homey.flow.getDeviceTriggerCard('remote_state_changed');
+
+        this._remoteSateChangedTriggerTo = this.homey.flow.getDeviceTriggerCard('remote_state_changed_to')
+            .registerRunListener((args, state) =>
+            {
+                // If true, this flow should run
+                return Promise.resolve(args.expected_state === state.expected_state);
+            });
+
+        this.pedestrian_changedTrigger = this.homey.flow.getDeviceTriggerCard('pedestrian_changed');
+
+        this._derogation_mode_changed = this.homey.flow.getDeviceTriggerCard('derogation_mode_changed');
+        this._valve_heating_mode_state_changed = this.homey.flow.getDeviceTriggerCard('valve_heating_mode_state_changed');
+        this._defect_state_changed = this.homey.flow.getDeviceTriggerCard('defect_state_changed');
+
+        this._remoteSateChangedTrigger = this.homey.flow.getDeviceTriggerCard('key_go_remote_state_changed');
+        this._remoteSateChangedTriggerTo = this.homey.flow.getDeviceTriggerCard('key_go_remote_state_changed_to')
+            .registerRunListener((args, state) =>
+            {
+                // If true, this flow should run
+                return Promise.resolve(args.expected_state === state.expected_state);
+            });
+
+        this._triggerCommandComplete = this.homey.flow.getDeviceTriggerCard('device_command_complete');
+
         this.registerActionFlowCards();
 
         this.initSync();
@@ -662,7 +744,7 @@ class myApp extends Homey.App
                 source,
                 data,
             },
-            );
+);
             if (logData && logData.length > 100)
             {
                 logData.splice(0, 1);
@@ -1100,9 +1182,8 @@ class myApp extends Homey.App
         const tokens = { state: success, name: commandName };
         const state = { device };
 
-        this.commandCompleteTrigger.trigger(tokens, state)
-            .then(this.log)
-            .catch(this.error);
+        this.commandCompleteTrigger.trigger(tokens, state).catch(this.error);
+        this._triggerCommandComplete.trigger(tokens, state).catch(this.error);
     }
 
     /**
@@ -1259,6 +1340,143 @@ class myApp extends Homey.App
         }
 
         return source.toString();
+    }
+
+    /**
+     * Triggers a flow
+     * @param {this.homey.flow.getDeviceTriggerCard} trigger - A this.homey.flow.getDeviceTriggerCard instance
+     * @param {Device} device - A Device instance
+     * @param {Object} tokens - An object with tokens and their typed values, as defined in the app.json
+     */
+     triggerFlow(trigger, device, tokens, state)
+     {
+         if (trigger)
+         {
+             trigger.trigger(device, tokens, state)
+                 .then(result =>
+                 {
+                     if (result)
+                     {
+                         this.log(result);
+                     }
+                 })
+                 .catch(error =>
+                 {
+                     this.homey.app.logInformation(`triggerFlow (${trigger.id})`, error);
+                 });
+         }
+     }
+
+    triggerContactChange(device, value)
+    {
+        const tokens = {
+            isOpen: value,
+        };
+
+        const state = {
+            alarm_contact: value,
+        };
+
+        this.triggerFlow(this._triggerContactChange, device, tokens, state);
+    }
+
+    triggerTiltChange(device, tokens, state)
+    {
+        this.triggerFlow(this.tilt_changedTrigger, device, tokens, state);
+        return this;
+    }
+
+    triggerLuminanceFlows(device, capability, value)
+    {
+        const tokens = {
+            luminance: value,
+        };
+
+        const state = {
+            measure_luminance: value,
+        };
+
+        this.triggerFlow(this._triggerLuminanceMoreThan, device, tokens, state);
+        this.triggerFlow(this._triggerLuminanceLessThan, device, tokens, state);
+        this.triggerFlow(this._triggerLuminanceBetween, device, tokens, state);
+    }
+
+    triggerMotionFlows(device, capability, value)
+    {
+        const tokens = {
+            isMotion: value,
+        };
+
+        const state = {
+            alarm_motion: value,
+        };
+
+        this.triggerFlow(this._triggerMotionChange, device, tokens, state);
+    }
+
+    triggerRemoteSateChange(device, value)
+    {
+        const tokens = {
+            remote_state: value,
+        };
+
+        const state = {
+            expected_state: value,
+        };
+
+        this.triggerFlow(this._remoteSateChangedTrigger, device, tokens, state);
+        this.triggerFlow(this._remoteSateChangedTriggerTo, device, tokens, state);
+    }
+
+    triggerContactFlows(device, capability, value)
+    {
+        const tokens = {
+            isOpen: value,
+        };
+        this.triggerFlow(this._triggerContactChange, device, tokens);
+    }
+
+    triggerPedestrianChange(device, value)
+    {
+        const tokens = {
+            pedestrian: value,
+        };
+        this.triggerFlow(this.pedestrian_changedTrigger, device, tokens);
+    }
+
+    triggerTemperatureFlows(device, capability, value)
+    {
+        const tokens = {
+            temperature: value,
+        };
+
+        const state = {
+            measure_temperature: value,
+        };
+
+        this.triggerFlow(this._triggerTemperatureMoreThan, device, tokens, state);
+        this.triggerFlow(this._triggerTemperatureLessThan, device, tokens, state);
+        this.triggerFlow(this.measure_temperature, device, tokens, state);
+    }
+
+    triggerFlows(device, capability, value)
+    {
+        if (capability === 'measure_temperature')
+        {
+            this.triggerTemperatureFlows(device, capability, value);
+        }
+        else if (capability === 'alarm_contact')
+        {
+            this.triggerContactChange(device, value);
+        }
+        else if (capability === 'alarm_motion')
+        {
+            this.triggerMotionFlows(device, capability, value);
+        }
+        else if (capability === 'measure_luminance')
+        {
+            this.triggerLuminanceFlows(device, capability, value);
+        }
     }
 
 }

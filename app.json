@@ -205,7 +205,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=enocean_window_handle|io_opening_detector|one_alarm"
+            "filter": "driver_id=enocean_window_handle|io_opening_detector"
           }
         ]
       },

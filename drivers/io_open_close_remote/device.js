@@ -27,17 +27,8 @@ class io_open_close_remoteDevice extends Device
         {
             this.setCapabilityValue('remote_state', value).catch(this.error);
 
-            const device = this;
-            const tokens = {
-                remote_state: value,
-            };
-            const state = {
-                expected_state: value,
-            };
-
             // trigger flows
-            this.driver.triggerRemoteSateChange(device, tokens, state);
-            this.driver.triggerRemoteSateChangeTo(device, tokens, state);
+            this.homey.app.triggerRemoteSateChange(this, value);
         }
 
         return Promise.resolve();

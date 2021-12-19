@@ -25,17 +25,8 @@ class WindowHandleDevice extends SensorDevice
         {
             this.setCapabilityValue('alarm_contact', value).catch(this.error);
 
-            const device = this;
-            const tokens = {
-                isOpen: value,
-            };
-
-            const state = {
-                alarm_contact: value,
-            };
-
             // trigger flows
-            return this.driver.triggerContactChange(device, tokens, state);
+            this.homey.app.triggerContactChange(this, value);
         }
 
         return Promise.resolve();

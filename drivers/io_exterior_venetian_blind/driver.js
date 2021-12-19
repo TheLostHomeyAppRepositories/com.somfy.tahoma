@@ -15,21 +15,7 @@ class ExteriorVenetianBlindDriver extends ioWindowCoveringsDriver
     {
         this.deviceType = ['io:ExteriorVenetianBlindIOComponent'];
 
-        this.tilt_changedTrigger = this.homey.flow.getDeviceTriggerCard('windowcoverings_tilt_changed');
-
         await super.onInit();
-    }
-
-    /**
-     * Triggers the 'tilt change' flow
-     * @param {Device} device - A Device instance
-     * @param {Object} tokens - An object with tokens and their typed values, as defined in the app.json
-     * @param {Object} state - An object with properties which are accessible throughout the Flow
-     */
-    triggerTiltChange(device, tokens, state)
-    {
-        this.triggerFlow(this.tilt_changedTrigger, device, tokens, state);
-        return this;
     }
 
 }

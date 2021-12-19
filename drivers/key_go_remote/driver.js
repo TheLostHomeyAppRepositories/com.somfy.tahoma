@@ -16,14 +16,6 @@ class key_go_remoteDriver extends Driver
     {
         this.deviceType = ['io:KeygoController'];
         await super.onInit();
-
-        this._remoteSateChangedTrigger = this.homey.flow.getDeviceTriggerCard('key_go_remote_state_changed');
-
-        this._remoteSateChangedTriggerTo = this.homey.flow.getDeviceTriggerCard('key_go_remote_state_changed_to')
-            .registerRunListener((args, state) => {
-                // If true, this flow should run
-                return Promise.resolve(args.expected_state === state.expected_state);
-            });
     }
 
     async onReceiveSetupData(callback)
@@ -53,18 +45,6 @@ class key_go_remoteDriver extends Driver
             this.homey.app.logInformation('OnReceiveSetupData', error);
             callback(error);
         }
-    }
-
-    triggerRemoteSateChange(device, tokens, state)
-    {
-        this.triggerFlow(this._remoteSateChangedTrigger, device, tokens, state);
-        return this;
-    }
-
-    triggerRemoteSateChangeTo(device, tokens, state)
-    {
-        this.triggerFlow(this._remoteSateChangedTriggerTo, device, tokens, state);
-        return this;
     }
 
 }

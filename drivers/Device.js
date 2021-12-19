@@ -248,11 +248,8 @@ class Device extends Homey.Device
                     }
                 }
 
-                if (this.driver.triggerFlows)
-                {
-                    // trigger flows
-                    this.driver.triggerFlows(this, capabilityXRef.homeyName, value);
-                }
+                // trigger flows
+                this.homey.app.triggerFlows(this, capabilityXRef.homeyName, value);
             }
             catch (err)
             {
@@ -516,7 +513,6 @@ class Device extends Homey.Device
                         this.executionCommands.splice(idx, 1);
 
                         this.homey.app.triggerCommandComplete(this, this.executionCmd, (event.newState === 'COMPLETED'));
-                        this.driver.triggerDeviceCommandComplete(this, this.executionCmd, (event.newState === 'COMPLETED'));
                         this.commandExecuting = '';
 
                         if (event.newState === 'COMPLETED')

@@ -13,11 +13,6 @@ class WindowCoveringsDevice extends Device
 
     async onInit()
     {
-        if (this.hasCapability('lock_state'))
-        {
-            this.driver.lock_state_changedTrigger = this.homey.flow.getDeviceTriggerCard('lock_state_changed');
-        }
-
         this.invertPosition = this.getSetting('invertPosition');
         if (this.invertPosition === null)
         {
@@ -374,7 +369,7 @@ class WindowCoveringsDevice extends Device
             const tokens = {
                 windowcoverings_tilt: value,
             };
-            this.driver.triggerTiltChange(this, tokens);
+            this.homey.app.triggerTiltChange(this, tokens);
         }
     }
 
@@ -599,10 +594,7 @@ class WindowCoveringsDevice extends Device
             this.setCapabilityValue('pedestrian', value).catch(this.error);
 
             // trigger flows
-            const tokens = {
-                pedestrian: value,
-            };
-            this.driver.triggerPedestrianChange(this, tokens);
+            this.homey.app.triggerPedestrianChange(this, value);
         }
     }
 
@@ -919,7 +911,6 @@ class WindowCoveringsDevice extends Device
                             }
 
                             this.homey.app.triggerCommandComplete(this, this.executionCmd, (element.newState === 'COMPLETED'));
-                            this.driver.triggerDeviceCommandComplete(this, this.executionCmd, (element.newState === 'COMPLETED'));
                             this.executionId = null;
                             this.executionCmd = '';
                         }

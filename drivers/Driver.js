@@ -12,19 +12,6 @@ const Homey = require('homey');
 class Driver extends Homey.Driver
 {
 
-    async onInit()
-    {
-        /** * Command Complete ** */
-        this._triggerCommandComplete = this.homey.flow.getDeviceTriggerCard('device_command_complete');
-    }
-
-    triggerDeviceCommandComplete(device, commandName, success)
-    {
-        const tokens = { state: success, name: commandName };
-        this.triggerFlow(this._triggerCommandComplete, device, tokens);
-        return this;
-    }
-
     async onPair(session)
     {
         let username = this.homey.settings.get('username');
@@ -126,31 +113,6 @@ class Driver extends Homey.Driver
         }
 
         return null;
-    }
-
-    /**
-     * Triggers a flow
-     * @param {this.homey.flow.getDeviceTriggerCard} trigger - A this.homey.flow.getDeviceTriggerCard instance
-     * @param {Device} device - A Device instance
-     * @param {Object} tokens - An object with tokens and their typed values, as defined in the app.json
-     */
-    triggerFlow(trigger, device, tokens, state)
-    {
-        if (trigger)
-        {
-            trigger.trigger(device, tokens, state)
-                .then(result =>
-                {
-                    if (result)
-                    {
-                        this.log(result);
-                    }
-                })
-                .catch(error =>
-                {
-                    this.homey.app.logInformation(`triggerFlow (${trigger.id})`, error);
-                });
-        }
     }
 
     /**
