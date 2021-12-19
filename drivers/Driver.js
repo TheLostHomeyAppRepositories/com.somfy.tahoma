@@ -60,17 +60,6 @@ class Driver extends Homey.Driver
         let password = this.homey.settings.get('password');
         const linkurl = 'default';
 
-        // session.setHandler('showView', async view =>
-        // {
-        //     if (view === 'login_credentials')
-        //     {
-        //         if (username && password && this.homey.app.loggedIn)
-        //         {
-        //             await session.nextView();
-        //         }
-        //     }
-        // });
-
         session.setHandler('login', async data =>
         {
             username = data.username;

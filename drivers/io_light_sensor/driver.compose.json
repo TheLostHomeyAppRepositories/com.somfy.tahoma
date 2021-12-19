@@ -1,12 +1,20 @@
 {
-  "name": {
-    "en": "Sunis sun sensor (io)",
-    "nl": "Sunis zonsensor (io)"
-  },
-  "class": "sensor",
-  "capabilities": [
-    "measure_luminance"
-  ],
-  "$extends": ["cloudDriver"],
-  "icon": "sunis_io.svg"
+    "name": {
+        "en": "Sunis sun sensor (io)",
+        "nl": "Sunis zonsensor (io)"
+    },
+    "class": "sensor",
+    "energy": {
+        "batteries": [
+            "AA",
+            "AA"
+        ]
+    },
+    "capabilities": [
+        "measure_luminance"
+    ],
+    "$extends": [
+        "cloudDriver"
+    ],
+    "icon": "sunis_io.svg"
 }
