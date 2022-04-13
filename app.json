@@ -9215,5 +9215,15 @@
         "nl": "Klep gesloten"
       }
     }
+  },
+  "discovery": {
+    "somfy_tahoma": {
+      "type": "mdns-sd",
+      "mdns-sd": {
+        "name": "_kizboxdev",
+        "protocol": "tcp"
+      },
+      "id": "{{txt.gateway_pin}}"
+    }
   }
 }

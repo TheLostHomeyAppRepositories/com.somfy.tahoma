@@ -35,7 +35,7 @@ class LightSensorDevice extends SensorDevice
     // Update the capabilities
     async syncEvents(events)
     {
-        this.syncEventsList(events, CapabilitiesXRef);
+        await this.syncEventsList(events, CapabilitiesXRef);
     }
 
 }

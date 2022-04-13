@@ -95,7 +95,7 @@ class WaterTankDevice extends SensorDevice
     {
         try
         {
-            const states = await super.getStates();
+            let states = await super.getStates();
             if (states)
             {
                 const onOffState = states.find(state => (state && (state.name === 'core:ForceHeatingState')));
@@ -107,6 +107,8 @@ class WaterTankDevice extends SensorDevice
                         fromCloudSync: true,
                     }).catch(this.error);
                 }
+
+                states = null;
             }
         }
         catch (error)

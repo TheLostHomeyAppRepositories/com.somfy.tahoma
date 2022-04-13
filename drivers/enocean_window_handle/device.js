@@ -49,7 +49,7 @@ class WindowHandleDevice extends SensorDevice
     {
         try
         {
-            const states = await super.getStates();
+            let states = await super.getStates();
             if (states)
             {
                 const contactState = states.find(state => (state && (state.name === 'core:ThreeWayHandleDirectionState')));
@@ -58,6 +58,8 @@ class WindowHandleDevice extends SensorDevice
                     this.homey.app.logStates(`${this.getName()}: core:ThreeWayHandleDirectionState = ${contactState.value}`);
                     this.triggerCapabilityListener('alarm_contact', contactState.value !== 'closed').catch(this.error);
                 }
+
+                states = null;
             }
         }
         catch (error)

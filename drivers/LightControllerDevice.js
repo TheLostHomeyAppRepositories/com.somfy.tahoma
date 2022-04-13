@@ -281,7 +281,7 @@ class LightControllerDevice extends Device
     {
         try
         {
-            const states = await super.getStates();
+            let states = await super.getStates();
             if (states)
             {
                 // On / Off
@@ -341,7 +341,7 @@ class LightControllerDevice extends Device
     {
         if (events === null)
         {
-            return this.getStates();
+            return await this.getStates();
         }
 
         const myURL = this.getDeviceUrl();

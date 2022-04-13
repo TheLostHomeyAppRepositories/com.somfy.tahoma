@@ -268,37 +268,40 @@ class Device extends Homey.Device
         }
         else
         {
+            const homeyName = capabilityXRef.homeyName;
             try
             {
-                const oldValue = this.getCapabilityValue(capabilityXRef.homeyName);
-
-                this.setCapabilityValue(capabilityXRef.homeyName, value).catch(this.error);
-
-                // For boolean states, setup a safety timeout incase the off state is not received.
-                if (typeof value === 'boolean')
+                const oldValue = this.getCapabilityValue(homeyName);
+                if (oldValue != value)
                 {
-                    if (value && (value !== oldValue))
+                    this.setCapabilityValue(homeyName, value).catch(this.error);
+
+                    // For boolean states, setup a safety timeout incase the off state is not received.
+                    if (typeof value === 'boolean')
                     {
-                        this.checkTimerID = this.homey.setTimeout(() =>
+                        if (value && (value !== oldValue))
                         {
-                            this.syncEvents(null);
-                        }, 60000);
+                            this.checkTimerID = this.homey.setTimeout(() =>
+                            {
+                                this.syncEvents(null);
+                            }, 60000);
+                        }
+                        else
+                        {
+                            clearTimeout(this.checkTimerID);
+                        }
                     }
-                    else
-                    {
-                        clearTimeout(this.checkTimerID);
-                    }
-                }
 
-                if (this.driver.triggerFlows)
-                {
-                    // trigger flows
-                    this.driver.triggerFlows(this, capabilityXRef.homeyName, value);
+                    if (this.driver.triggerFlows)
+                    {
+                        // trigger flows
+                        this.driver.triggerFlows(this, homeyName, value);
+                    }
                 }
             }
             catch (err)
             {
-                this.homey.app.logInformation(`${this.getName()}: onCapability ${capabilityXRef.homeyName}`, err);
+                this.homey.app.logInformation(`${this.getName()}: onCapability ${homeyName}`, err);
             }
         }
     }
@@ -312,16 +315,19 @@ class Device extends Homey.Device
         try
         {
             // Get this devices states from Tahoma
-            const tahomaStates = await this.getStates();
+            let tahomaStates = await this.getStates();
             if (tahomaStates)
             {
                 // Look for each of the required capabilities
-                for (const xRefEntry of CapabilitiesXRef)
+                for (let i = 0; i < CapabilitiesXRef.length; i++)
                 {
+                    let xRefEntry = CapabilitiesXRef[ i ];
+                    const homeyName = xRefEntry.homeyName;
                     try
                     {
                         // Find the tahoma device state for the table entry
-                        const tahomaState = tahomaStates.find(state => (state && (state.name === xRefEntry.somfyNameGet)));
+                        const somfyName = xRefEntry.somfyNameGet;
+                        const tahomaState = tahomaStates.find((state) => (state && (state.name === somfyName)));
                         if (tahomaState)
                         {
                             let value = tahomaState.value;
@@ -356,7 +362,7 @@ class Device extends Homey.Device
                             }
 
                             // Found the entry
-                            this.homey.app.logStates(`${this.getName()}: ${xRefEntry.somfyNameGet}= ${value}`);
+                            this.homey.app.logStates(`${this.getName()}: ${xRefEntry.somfyNameGet} = ${value}`);
                             if (xRefEntry.compare)
                             {
                                 if (xRefEntry.compare[1].charAt(0) === '!')
@@ -373,18 +379,18 @@ class Device extends Homey.Device
                                 value = (value / xRefEntry.scale);
                             }
 
-                            await this.triggerCapabilityListener(xRefEntry.homeyName, value, { fromCloudSync: true }).catch(this.error);
+                            this.triggerCapabilityListener(homeyName, value, { fromCloudSync: true }).catch(this.error);
                         }
                         else
                         {
                             // Information not found for this parameter
-                            if (xRefEntry.homeyName === 'alarm_battery')
+                            if (homeyName === 'alarm_battery')
                             {
-                                await this.triggerCapabilityListener(xRefEntry.homeyName, false, { fromCloudSync: true }).catch(this.error);
+                                this.triggerCapabilityListener(homeyName, false, { fromCloudSync: true }).catch(this.error);
                             }
-                            else if (xRefEntry.homeyName === 'defect_state')
+                            else if (homeyName === 'defect_state')
                             {
-                                await this.triggerCapabilityListener(xRefEntry.homeyName, null, { fromCloudSync: true }).catch(this.error);
+                                this.triggerCapabilityListener(homeyName, null, { fromCloudSync: true }).catch(this.error);
                             }
                         }
                     }
@@ -396,7 +402,11 @@ class Device extends Homey.Device
                             stack: error.stack,
                         });
                     }
+
+                    xRefEntry = null;
                 }
+
+                tahomaStates = null;
             }
         }
         catch (error)
@@ -415,7 +425,7 @@ class Device extends Homey.Device
         if (events === null)
         {
             // No events so synchronise all capabilities
-            this.syncList(CapabilitiesXRef);
+            await this.syncList(CapabilitiesXRef);
             return;
         }
 
@@ -548,10 +558,10 @@ class Device extends Homey.Device
                                             stack: { capability: xRefEntry.homeyName, state: newState },
                                         });
                                     }
-                                    this.triggerCapabilityListener(xRefEntry.homeyName, newState, { fromCloudSync: true }).catch(this.error);
+                                    const homeyName = xRefEntry.homeyName;
+                                    this.triggerCapabilityListener(homeyName, newState, { fromCloudSync: true }).catch(this.error);
                                 }
-                                else
-                                if (this.homey.app.infoLogEnabled)
+                                else if (this.homey.app.infoLogEnabled)
                                 {
                                     this.homey.app.logInformation(this.getName(),
                                     {
@@ -635,7 +645,7 @@ class Device extends Homey.Device
             {
                 if (this.homey.app.infoLogEnabled)
                 {
-                    this.homey.app.logInformation('Device initial sync.', this.getName());
+                    this.homey.app.logInformation('Device Get States.', this.getName());
                 }
 
                 // Get the recorded url (might include a #1 on the end)

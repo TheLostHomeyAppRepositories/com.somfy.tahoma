@@ -191,11 +191,11 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
 
     async _checkLockSate()
     {
-        const states = await this.getStates();
-        if (states)
+        let tahomaStates = await this.getStates();
+        if (tahomaStates)
         {
             // Look for each of the required capabilities
-            const lockState = states.find(state => (state && (state.name === 'io:PriorityLockOriginatorState')));
+            const lockState = tahomaStates.find((state) => (state && (state.name === 'io:PriorityLockOriginatorState')));
             if (lockState)
             {
                 this.setCapabilityValue('lock_state', lockState.value).catch(this.error);
@@ -204,7 +204,7 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
             }
             else
             {
-                const lockStateTimer = states.find(state => (state && (state.name === 'core:PriorityLockTimerState')));
+                const lockStateTimer = tahomaStates.find((state) => (state && (state.name === 'core:PriorityLockTimerState')));
                 if (lockStateTimer)
                 {
                     if (lockStateTimer.value === 0)
@@ -218,6 +218,8 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
                     }
                 }
             }
+
+            tahomaStates = null;
         }
     }
 

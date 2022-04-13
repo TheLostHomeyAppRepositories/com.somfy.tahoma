@@ -50,7 +50,7 @@ class key_go_remoteDevice extends Device
     {
         try
         {
-            const states = await super.getStates();
+            let states = await super.getStates();
             if (states)
             {
                 const remoteState = states.find(state => (state && (state.name === 'io:OneWayStoppableButtonState')));
@@ -59,6 +59,8 @@ class key_go_remoteDevice extends Device
                     this.homey.app.logStates(`${this.getName()}: io:OneWayStoppableButtonState = ${remoteState.value}`);
                     this.triggerCapabilityListener('key_go_remote_state', remoteState.value).catch(this.error);
                 }
+
+                states = null;
             }
         }
         catch (error)

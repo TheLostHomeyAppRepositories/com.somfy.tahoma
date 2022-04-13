@@ -125,7 +125,7 @@ class OneAlarmDevice extends SensorDevice
     {
         try
         {
-            const states = await super.getStates();
+            let states = await super.getStates();
             if (states)
             {
                 const intrusionState = states.find(state => (state && (state.name === 'core:IntrusionState')));
@@ -144,6 +144,8 @@ class OneAlarmDevice extends SensorDevice
                         fromCloudSync: true,
                     }).catch(this.error);
                 }
+
+                states = null;
             }
         }
         catch (error)

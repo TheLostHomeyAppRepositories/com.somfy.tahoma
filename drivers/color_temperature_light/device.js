@@ -197,7 +197,7 @@ class ColorTemperatureLightControllerDevice extends LightControllerDevice
     {
         try
         {
-            const states = await super.getStates();
+            let states = await super.getStates();
             if (states)
             {
                 // Hue level
@@ -221,6 +221,8 @@ class ColorTemperatureLightControllerDevice extends LightControllerDevice
                         fromCloudSync: true,
                     }).catch(this.error);
                 }
+
+                states = null;
             }
         }
         catch (error)

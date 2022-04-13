@@ -262,7 +262,7 @@ class HotColdZoneDevice extends SensorDevice
     {
         try
         {
-            const states = await super.getStates();
+            let states = await super.getStates();
             if (states)
             {
                 const onOffStateCooling = states.find(state => (state && (state.name === 'core:CoolingOnOffState')));
@@ -363,6 +363,8 @@ class HotColdZoneDevice extends SensorDevice
                         fromCloudSync: true,
                     }).catch(this.error);
                 }
+
+                states = null;
             }
         }
         catch (error)

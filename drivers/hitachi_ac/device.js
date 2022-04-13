@@ -370,7 +370,7 @@ class HitachiACDevice extends SensorDevice
     {
         try
         {
-            const states = await super.getStates();
+            let states = await super.getStates();
             if (states)
             {
                 // const coolHeatingState = states.find(state => (state && (state.name === 'core:AutoManuModeState')));
@@ -436,6 +436,8 @@ class HitachiACDevice extends SensorDevice
                     this.homey.app.logStates(`${this.getName()}: ovp:FilterConditionState = ${filterAlarm.value}`);
                     this.setCapabilityValue('alarm_generic', filterAlarm.value.toLowerCase() === 'alert').catch(this.error);
                 }
+
+                states = null;
             }
         }
         catch (error)

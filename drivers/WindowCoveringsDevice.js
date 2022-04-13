@@ -744,7 +744,7 @@ class WindowCoveringsDevice extends Device
     {
         try
         {
-            const states = await super.getStates();
+            let states = await super.getStates();
             if (states)
             {
                 if (this.hasCapability('lock_state'))
@@ -851,6 +851,8 @@ class WindowCoveringsDevice extends Device
                         fromCloudSync: true,
                     }).catch(this.error);
                 }
+
+                states = null;
             }
             else if (this.openClosedStateName === '')
             {
