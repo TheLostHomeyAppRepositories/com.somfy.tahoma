@@ -1036,6 +1036,8 @@ class myApp extends Homey.App
             return;
         }
 
+        let timeout = 15000;
+
         try
         {
             if (this.infoLogEnabled)
@@ -1043,20 +1045,23 @@ class myApp extends Homey.App
                 this.logInformation('initSync', 'Starting');
             }
 
-            if (this.useLocal && this.localBearer)
+            if (this.useLocal)
             {
-                this.startSync();
+                if (this.localBearer)
+                {
+                    this.startSync();
+                    return;
+                }
             }
             else
             {
-                await this.newLogin_2(username, password, 'default', false);
+                return await this.newLogin_2(username, password, 'default', false);
             }
         }
         catch (error)
         {
             this.logInformation('initSync', 'Error');
 
-            let timeout = 15000;
             if (error.message === 'Far Too many login attempts (blocked for 15 minutes)')
             {
                 this.homey.clearTimeout(this.boostTimerId);
@@ -1069,10 +1074,10 @@ class myApp extends Homey.App
                 this.commandsQueued = 0;
                 timeout = 60000;
             }
-
-            // Try again later
-            this.timerId = this.homey.setTimeout(() => this.initSync(), timeout);
         }
+
+        // Try again later
+        this.timerId = this.homey.setTimeout(() => this.initSync(), timeout);
     }
 
     // Boost the sync speed when a command is executed that has status feedback
