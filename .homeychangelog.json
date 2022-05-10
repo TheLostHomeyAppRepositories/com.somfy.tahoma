@@ -499,5 +499,20 @@
   },
   "3.0.25": {
     "en": "Changed back to standard capability for RTS curtains and blinds so they are compatible with Google Home."
+  },
+  "3.0.26": {
+    "en": "Added support for ogp:VenetianBlind"
+  },
+  "3.0.27": {
+    "en": "New device icons provided by Athom"
+  },
+  "3.0.28": {
+    "en": "Added support for 'io:CyclicGarageOpenerIOComponent', 'io:CyclicSlidingGateOpenerIOComponent', 'rts:GarageDoorRTSComponent' and 'io:RollerShutterWithBatterySomfyIOComponent'. Added upper limit on polling interval of 90 seconds to prevent timeouts"
+  },
+  "3.0.29": {
+    "en": "Added support for 'io:IzymoController' and 'io:DimmableLightMicroModuleSomfyIOComponent'"
+  },
+  "3.0.30": {
+    "en": "Clean up settings and set maximum polling limit. Improved recovery from event fetch error."
   }
 }
