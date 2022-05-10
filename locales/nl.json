@@ -25,7 +25,6 @@
         "information_log": "Informatie log",
         "device_log": "Apparaat log",
         "state_log": "Status Log",
-        "oauth_method": "Gebruik de nieuwe OAuth-inlogmethode",
         "intro1": "Gebruik dit als u een apparaat heeft dat niet wordt ondersteund.",
         "intro2": "Klik op log ophalen en wacht tot de gegevens verschijnen. Verstuur daarna de log.",
         "intro3": "Neem contact op met @Adrian_Rockall op het communityforum. Geef aan welk apparaat niet wordt ondersteund.",
@@ -36,7 +35,6 @@
         "log_enabled": "Log ingeschakeld",
         "polling_enabled": "Status updates",
         "show_password": "Toon wachtwoord",
-        "pref_intro1": "Om Homey gesynchroniseerd te houden met uw apparaten, kan de app status updates doen.",
         "event_log": "Event Log"
     },
     "errors": {

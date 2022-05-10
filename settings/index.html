@@ -73,15 +73,20 @@
             </fieldset>
             <fieldset id="preferences">
                 <legend data-i18n="settings.preferences"></legend>
-                <p id="preferencesText1" data-i18n="settings.pref_intro1"></p>
                 <div class="field row">
-                    <label for="pollingEnabled" data-i18n="settings.polling_enabled"></label>
-                    <input id="pollingEnabled" type="checkbox" value="pollingEnabled" />
+                    <label for="useLocal" data-i18n="settings.use_local"></label>
+                    <input id="useLocal" type="checkbox" value="useLocal" />
                 </div>
-                <div class="field row">
-                    <label for="sync_speed" data-i18n="settings.sync_speed"></label>
-                    <input id="sync_speed" type="number" min="30" value="" /> &nbsp;<span data-i18n="settings.sync_tooltip"></span>
-                </div>
+                <fieldset id="polling">
+                    <div class="field row">
+                        <label for="pollingEnabled" data-i18n="settings.polling_enabled"></label>
+                        <input id="pollingEnabled" type="checkbox" value="pollingEnabled" />
+                    </div>
+                    <div class="field row">
+                        <label for="sync_speed" data-i18n="settings.sync_speed"></label>
+                        <input id="sync_speed" type="number" min="30" value="" /> &nbsp;<span data-i18n="settings.sync_tooltip"></span>
+                    </div>
+                </fieldset>
                 <button id="savePreferencesButton" class="left" style="display:block;background-color:#0f9e16;color:white;margin:5px 20px 5px 5px;" data-i18n="settings.save_preferences"></button>
             </fieldset>
         </fieldset>
@@ -175,6 +180,7 @@
         var usernameEl = document.getElementById('username');
         var passwordEl = document.getElementById('password');
         var showPasswordEl = document.getElementById('showPassword');
+        var useLocalEl = document.getElementById('useLocal');
         var pollingEnabledEl = document.getElementById('pollingEnabled');
         var syncSpeedEl = document.getElementById('sync_speed');
         var logoutEl = document.getElementById('logoutElement');
@@ -268,6 +274,14 @@
                         eventLogEnabledElement.checked = enable;
                     });
                 }
+                else if (param === 'useLocal')
+                {
+                    Homey.get('useLocal', function(err, useLocal)
+                    {
+                        if (err) return Homey.alert(err);
+                        useLocalEl.checked = useLocal;
+                    });
+                }
                 else if (param === 'pollingEnabled')
                 {
                     Homey.get('pollingEnabled', function(err, pollingEnabled)
@@ -319,6 +333,22 @@
                 }
             });
 
+            Homey.get('useLocal', function(err, useLocal)
+            {
+                if (err) return Homey.alert(err);
+                this.useLocal = useLocal;
+                useLocalEl.checked = useLocal;
+
+                if (useLocal)
+                {
+                    document.getElementById('polling').style.display =  'none';
+                }
+                else
+                {
+                    document.getElementById('polling').style.display =  'block';
+                }
+            });
+
             Homey.get('pollingEnabled', function(err, pollingEnabled)
             {
                 if (err) return Homey.alert(err);
@@ -330,7 +360,7 @@
                 if (err) return Homey.alert(err);
                 syncSpeedEl.value = interval;
             });
-
+            
             saveButton.addEventListener('click', function()
             {
                 Object.values(document.querySelectorAll('*')).forEach(element => element.style.cursor = "wait");
@@ -356,6 +386,18 @@
                     response.innerHTML = __('settings.login_success');
                     logoutEl.style.visibility = "visible";
                 });
+            });
+
+            useLocalEl.addEventListener('click', function()
+            {
+                if (useLocalEl.checked)
+                {
+                    document.getElementById('polling').style.display =  'none';
+                }
+                else
+                {
+                    document.getElementById('polling').style.display =  'block';
+                }
             });
 
             logoutButton.addEventListener('click', function()
@@ -404,6 +446,12 @@
                 {
                     if (err) return Homey.alert(err);
                 });
+
+                Homey.set('useLocal', useLocalEl.checked, function(err)
+                {
+                    if (err) return Homey.alert(err);
+                });
+
                 return Homey.alert(__('settings.pref_saved'));
             });
 

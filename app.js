@@ -34,7 +34,8 @@ class myApp extends Homey.App
         this.commandsQueued = 0;
         this.lastSync = 0;
 
-        this.localBridge = this.homey.settings.set('localBridge');
+        this.useLocal = this.homey.settings.get('useLocal');
+        this.localBridge = this.homey.settings.get('localBridge');
         this.localBearer = this.homey.settings.get('localBearer');
 
         if (process.env.DEBUG === '1')
@@ -93,7 +94,7 @@ class myApp extends Homey.App
         try
         {
             this.interval = Number(this.homey.settings.get('syncInterval'));
-            let minInterval = this.localBearer ? LOCAL_INTERVAL : MIN_SYNC_INTERVAL;
+            let minInterval = (this.useLocal && this.localBearer) ? LOCAL_INTERVAL : MIN_SYNC_INTERVAL;
             if (this.interval < minInterval)
             {
                 this.interval = minInterval;
@@ -102,7 +103,7 @@ class myApp extends Homey.App
         }
         catch (e)
         {
-            this.interval = this.localBearer ? LOCAL_INTERVAL : INITIAL_SYNC_INTERVAL;
+            this.interval = (this.useLocal && this.localBearer) ? LOCAL_INTERVAL : INITIAL_SYNC_INTERVAL;
             this.homey.settings.set('syncInterval', this.interval);
         }
 
@@ -123,6 +124,12 @@ class myApp extends Homey.App
 
         this.homey.settings.on('set', setting =>
         {
+            if (setting === 'useLocal')
+            {
+                this.useLocal = this.homey.settings.get('useLocal');
+                this.restartLogin();
+            }
+
             if (setting === 'pollingEnabled')
             {
                 this.pollingEnabled = this.homey.settings.get('pollingEnabled');
@@ -155,7 +162,7 @@ class myApp extends Homey.App
                 }
                 catch (e)
                 {
-                    this.interval = this.localBearer ? LOCAL_INTERVAL : INITIAL_SYNC_INTERVAL;
+                    this.interval = (this.useLocal && this.localBearer) ? LOCAL_INTERVAL : INITIAL_SYNC_INTERVAL;
                     this.homey.settings.set('syncInterval', this.interval);
                 }
 
@@ -251,12 +258,15 @@ class myApp extends Homey.App
 
         this.registerActionFlowCards();
 
-        if (!await this.doLocalLogin())
+        if (this.useLocal && !await this.doLocalLogin())
         {
             this.discoveryStrategy = this.homey.discovery.getStrategy( "somfy_tahoma" );
             this.discoveryStrategy.on( "result", discoveryResult =>
             {
-                this.log( "Got mDNS result:", this.varToString(discoveryResult) );
+                if (this.infoLogEnabled)
+                {
+                    this.logInformation('mDNS: Got mDNS result', this.varToString(discoveryResult) );
+                }
                 this.mDNSBridgesUpdate( discoveryResult );
             } );
 
@@ -278,11 +288,49 @@ class myApp extends Homey.App
         this.log(`${Homey.manifest.id} Initialised`);
     }
 
+    async restartLogin()
+    {
+        try
+        {
+            await this.logOut(false);
+
+            if (this.useLocal && !await this.doLocalLogin())
+            {
+                this.discoveryStrategy = this.homey.discovery.getStrategy( "somfy_tahoma" );
+                this.discoveryStrategy.on( "result", discoveryResult =>
+                {
+                    if (this.infoLogEnabled)
+                    {
+                        this.logInformation('mDNS: Got mDNS result', this.varToString(discoveryResult) );
+                    }
+                    this.mDNSBridgesUpdate( discoveryResult );
+                } );
+
+                let results = this.discoveryStrategy.getDiscoveryResults();
+                if (this.infoLogEnabled)
+                {
+                    this.logInformation( "Got mDNS result", this.varToString(results) );
+                }
+
+                for (const result in results)
+                {
+                    this.mDNSBridgesUpdate( results[result] );
+                }
+            }
+
+            this.timerId = this.homey.setTimeout(() => this.initSync(), 10000);
+        }
+        catch(err)
+        {
+            this.logInformation('Restart login failed', err.message);
+        }
+    }
+
     async mDNSBridgesUpdate( discoveryResult )
     {
         if (!discoveryResult.txt)
         {
-            console.log('No txt field in mDNS discovery');            
+            this.logInformation('mDNS', 'No txt field in discovery');            
             return;
         }
 
@@ -295,12 +343,12 @@ class myApp extends Homey.App
 
         if ( !this.localBridge.pin )
         {
-            console.log('No local pin');
+            this.logInformation('mDNS', 'No local pin discovered');
             return;
         }
 
         this.homey.settings.set('localBridge', this.localBridge);
-        console.log(`Found a bridge: ${this.varToString(this.localBridge)}`);
+        this.logInformation('Found a bridge', this.varToString(this.localBridge));
 
         const username = this.homey.settings.get('username');
         const password = this.homey.settings.get('password');
@@ -311,7 +359,7 @@ class myApp extends Homey.App
         }
         catch (err)
         {
-            this.log(`Local login failed: ${err.message}`);
+            this.logInformation('Local login failed', err.message);
         }
     }
 
@@ -319,11 +367,16 @@ class myApp extends Homey.App
     {
         if (username && password && this.localBridge)
         {
+            if (this.infoLogEnabled)
+            {
+                this.logInformation('Doing local login');
+            }
+
             this.localBearer = await this.tahoma.getLocalAuthCode(username, password, this.localBridge.pin, this.localBridge.port, this.localBearer, await this.homey.cloud.getHomeyId());
         }
         else
         {
-            console.log('No username or password or local bridge'); 
+            this.logInformation('Local login', 'Missing credentials or no local bridge detected yet'); 
             return false;           
         }
 
@@ -337,18 +390,21 @@ class myApp extends Homey.App
 
             try
             {
-                const apiVer = await this.tahoma.getLocalAPIVersion();
-                console.log(apiVer);
+                if (this.infoLogEnabled)
+                {
+                    const apiVer = await this.tahoma.getLocalAPIVersion();
+                    this.logInformation('Local login', apiVer);
+                }
             }
             catch (err)
             {
-                console.log(err);
+                this.logInformation('Local login', err.message);
             }
 
             return true;
         }
 
-        console.log('No local Bearer token');
+        this.logInformation('No local Bearer token');
         return false;
     }
 
@@ -659,17 +715,20 @@ class myApp extends Homey.App
     // Throws an exception if the login fails
     async newLogin_2(username, password, linkurl, ignoreBlock)
     {
-        if (this.localBearer)
+        if (this.useLocal)
         {
-            // Already have a local bearer token
-            return true;
-        }
-        if (this.localBridge && this.localBridge.pin)
-        {
-            // There is no token but there is a Tahoma box
-            if (await this.doLocalLogin( username, password))
+            if (this.localBearer)
             {
+                // Already have a local bearer token
                 return true;
+            }
+            if (this.localBridge && this.localBridge.pin)
+            {
+                // There is no token but there is a Tahoma box
+                if (await this.doLocalLogin( username, password))
+                {
+                    return true;
+                }
             }
         }
 
@@ -980,7 +1039,7 @@ class myApp extends Homey.App
                 this.logInformation('initSync', 'Starting');
             }
 
-            if (this.localBearer)
+            if (this.useLocal && this.localBearer)
             {
                 this.startSync();
             }
@@ -1015,7 +1074,7 @@ class myApp extends Homey.App
     // Boost the sync speed when a command is executed that has status feedback
     async boostSync()
     {
-        if (this.localBearer)
+        if ((this.useLocal && this.localBearer))
         {
             return true;
         }
@@ -1103,7 +1162,7 @@ class myApp extends Homey.App
 
     async unBoostSync(immediate = false)
     {
-        if (this.localBearer)
+        if ((this.useLocal && this.localBearer))
         {
             return;
         }
@@ -1220,7 +1279,7 @@ class myApp extends Homey.App
         }
 
         this.pollingEnabled = this.homey.settings.get('pollingEnabled');
-        if (this.pollingEnabled)
+        if (this.pollingEnabled || (this.useLocal && this.localBearer))
         {
             if (this.infoLogEnabled)
             {
@@ -1229,7 +1288,7 @@ class myApp extends Homey.App
 
             let interval = LOCAL_INTERVAL;
 
-            if (!this.localBearer)
+            if (!(this.useLocal && this.localBearer))
             {
                 // make sure the new sync is at least 30 second after the last one
                 let minSeconds = (30000 - (Date.now() - this.lastSync)) / 1000;
@@ -1245,7 +1304,7 @@ class myApp extends Homey.App
 
             if (this.infoLogEnabled)
             {
-                this.logInformation('Restart sync in: ', interval);
+                this.logInformation(`Restart sync in: ${interval} seconds`);
             }
 
             this.nextInterval = this.interval * 1000;
@@ -1296,30 +1355,23 @@ class myApp extends Homey.App
             this.syncing = true;
 
             // Make sure it has been about 30 seconds since last sync unless boost is on
-            if (this.localBearer || this.boostTimerId || (Date.now() - this.lastSync) > 28000)
+            if ((this.useLocal && this.localBearer) || this.boostTimerId || (Date.now() - this.lastSync) > 28000)
             {
                 this.lastSync = Date.now();
 
                 try
                 {
-                    if (this.localBearer)
+                    let events = await this.tahoma.getEvents();
+                    if ((events === null && this.boostTimerId === null) || (events && events.length > 0))
                     {
-                        await this.syncEvents(null);
-                    }
-                    else
-                    {
-                        let events = await this.tahoma.getEvents();
-                        if ((events === null && this.boostTimerId === null) || (events && events.length > 0))
+                        // If events === null and boostTimer === null then refresh all the devices, but don't do that if the boost is on
+                        if (events !== null && this.eventLogEnabled)
                         {
-                            // If events === null and boostTimer === null then refresh all the devices, but don't do that if the boost is on
-                            if (events !== null && this.eventLogEnabled)
-                            {
-                                this.logEvents(this.varToString(events));
-                            }
-                            await this.syncEvents(events);
+                            this.logEvents(this.varToString(events));
                         }
-                        events = null;
+                        await this.syncEvents(events);
                     }
+                    events = null;
                 }
                 catch (error)
                 {
@@ -1336,7 +1388,7 @@ class myApp extends Homey.App
                         this.commandsQueued = 0;
                         nextInterval = 60000;
                     }
-                    else if (this.localBearer && error.message === 'Request failed with status code 400')
+                    else if ((this.useLocal && this.localBearer) && error.message === 'Request failed with status code 400')
                     {
                         await this.syncEvents(null);
                     }
@@ -1468,7 +1520,7 @@ class myApp extends Homey.App
         this.homey.flow.getActionCard('set_polling_speed')
             .registerRunListener(async (args, state) =>
             {
-                this.interval = Math.max(args.syncSpeed, this.localBearer ? LOCAL_INTERVAL : 30);
+                this.interval = Math.max(args.syncSpeed, (this.useLocal && this.localBearer) ? LOCAL_INTERVAL : 30);
                 this.homey.settings.set('syncInterval', this.interval.toString());
                 this.homey.settings.set('pollingEnabled', true);
 
