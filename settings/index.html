@@ -39,6 +39,7 @@
         <button class="tablinks" onclick="setPage(event, 'deviceLogTab')"><span data-i18n="settings.device_log"></span></button>
         <button class="tablinks" onclick="setPage(event, 'stateLog')"><span data-i18n="settings.state_log"></span></button>
         <button class="tablinks" onclick="setPage(event, 'eventLog')"><span data-i18n="settings.event_log"></span></button>
+        <button class="tablinks" onclick="setPage(event, 'localTokens')"><span data-i18n="settings.local_tokens"></span></button>
         <button class="tablinks" onclick="setPage(event, 'simulator')" id="simLogTab" style="visibility:hidden">Simulation Data</button>
     </div>
 
@@ -167,6 +168,24 @@
         </fieldset>
     </div>
 
+    <!--LOCAL TOKENS PAGE -->
+    <div id="localTokens" class="tabcontent">
+        <fieldset>
+            <p data-i18n="settings.intro5"></p>
+            <fieldset id="preferences">
+                <div class="field row">
+                    <label for="localTokenUUIDElement" data-i18n="settings.token_id"></label>
+                    <input id="localTokenUUIDElement" type="text" value="" />
+                </div>
+                <button id="deleteLocalToken" style="background-color:#0f9e16;color:white;margin:5px 20px 5px 5px;" data-i18n="settings.delete_token"></button>
+            </fieldset>
+            <button id="getLocalTokens" style="background-color:#0f9e16;color:white;margin:5px 20px 5px 5px;" data-i18n="settings.get_tokens"></button>
+            <div class="field row">
+                <textarea id="localTokensData"></textarea>
+            </div>
+        </fieldset>
+    </div>
+
     <script type="text/javascript">
         // Create the busy indicator
         var busyi;
@@ -197,7 +216,7 @@
         var clearDeviceLogElement = document.getElementById('clearDeviceLog');
         var sendDeviceLogElement = document.getElementById('sendDeviceLog');
 
-        // Simulation log atb
+        // Simulation log tab
         var useSimElement = document.getElementById('useSim');
         var clearSimElement = document.getElementById('clearSim');
         var simDataElement = document.getElementById('simData');
@@ -212,6 +231,12 @@
         var eventLogEnabledElement = document.getElementById('eventLogEnabled');
         var clearEventLogElement = document.getElementById('clearEventLog');
         var sendEventLogElement = document.getElementById('sendEventLog');
+
+        // Local Tokens tab
+        var localTokensElement = document.getElementById('localTokensData');
+        var getlocalTokensElement = document.getElementById('getLocalTokens');
+        var deletelocalTokenElement = document.getElementById('deleteLocalToken');
+        var LocalTokenUUIDElement = document.getElementById('localTokenUUIDElement');
 
         // a method named 'onHomeyReady' must be present in your code
         function onHomeyReady(Homey)
@@ -340,11 +365,11 @@
 
                 if (useLocal)
                 {
-                    document.getElementById('polling').style.display =  'none';
+                    document.getElementById('polling').style.display = 'none';
                 }
                 else
                 {
-                    document.getElementById('polling').style.display =  'block';
+                    document.getElementById('polling').style.display = 'block';
                 }
             });
 
@@ -359,7 +384,7 @@
                 if (err) return Homey.alert(err);
                 syncSpeedEl.value = interval;
             });
-            
+
             saveButton.addEventListener('click', function()
             {
                 Object.values(document.querySelectorAll('*')).forEach(element => element.style.cursor = "wait");
@@ -391,11 +416,11 @@
             {
                 if (useLocalEl.checked)
                 {
-                    document.getElementById('polling').style.display =  'none';
+                    document.getElementById('polling').style.display = 'none';
                 }
                 else
                 {
-                    document.getElementById('polling').style.display =  'block';
+                    document.getElementById('polling').style.display = 'block';
                 }
             });
 
@@ -599,6 +624,48 @@
                 });
             });
 
+            getlocalTokensElement.addEventListener('click', function(e)
+            {
+                waitCursor(true);
+                Homey.api('POST', '/GetLocalTokens/', {}, function(err, result)
+                {
+                    waitCursor(false);
+
+                    if (err)
+                    {
+                        Homey.alert(err);
+                        return;
+                    }
+                    localTokensElement.value = result;
+                });
+            });
+
+            deletelocalTokenElement.addEventListener('click', function(e)
+            {
+                waitCursor(true);
+                Homey.api('POST', '/DeleteLocalToken/', { uuid: LocalTokenUUIDElement.value }, function(err, result)
+                {
+                    if (err)
+                    {
+                        waitCursor(false);
+                        Homey.alert(err);
+                        return;
+                    }
+
+                    Homey.api('POST', '/GetLocalTokens/', {}, function(err, result)
+                    {
+                        waitCursor(false);
+
+                        if (err)
+                        {
+                            Homey.alert(err);
+                            return;
+                        }
+                        localTokensElement.value = result;
+                        LocalTokenUUIDElement.value = '';
+                    });
+                });
+            });
 
             useSimElement.addEventListener('click', function(e)
             {
@@ -761,6 +828,13 @@
                 // Make the simulator text box fill the page
                 eventLogElement.setAttribute('cols', eventLogElement.parentElement.clientWidth / 8);
                 eventLogElement.style.height = (window.innerHeight - eventLogElement.offsetTop - 40) + 'px';
+            }
+
+            if (tabPage == 'localTokens')
+            {
+                // Make the text box fill the page
+                localTokensElement.setAttribute('cols', localTokensElement.parentElement.clientWidth / 8);
+                localTokensElement.style.height = (window.innerHeight - localTokensElement.offsetTop - 40) + 'px';
             }
         }
 

@@ -27,4 +27,12 @@ module.exports = {
     {
         return homey.app.sendLog('eventLog');
     },
+    async GetLocalTokens({ homey, body })
+    {
+        return homey.app.getLocalTokens();
+    },
+    async DeleteLocalToken({ homey, body })
+    {
+        return homey.app.deleteLocalToken(body.uuid);
+    }
 };

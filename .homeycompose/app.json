@@ -92,31 +92,39 @@
     ]
   },
   "api": {
-    "login": {
-      "method": "post",
-      "path": "/login/"
-    },
-    "logout": {
-      "method": "post",
-      "path": "/logout/"
-    },
-    "GetDeviceLog": {
-      "method": "post",
-      "path": "/GetDeviceLog/"
-    },
-    "SendDeviceLog": {
-      "method": "post",
-      "path": "/SendDeviceLog/",
-      "public": true
-    },
-    "SendInfoLog": {
-      "method": "post",
-      "path": "/SendInfoLog/"
-    },
-    "SendEventLog": {
-        "method": "post",
-        "path": "/SendEventLog/",
-        "public": true
-      }
+        "login": {
+            "method": "post",
+            "path": "/login/"
+        },
+        "logout": {
+            "method": "post",
+            "path": "/logout/"
+        },
+        "GetDeviceLog": {
+            "method": "post",
+            "path": "/GetDeviceLog/"
+        },
+        "SendDeviceLog": {
+            "method": "post",
+            "path": "/SendDeviceLog/",
+            "public": true
+        },
+        "SendInfoLog": {
+            "method": "post",
+            "path": "/SendInfoLog/"
+        },
+        "SendEventLog": {
+            "method": "post",
+            "path": "/SendEventLog/",
+            "public": true
+        },
+        "GetLocalTokens": {
+            "method": "post",
+            "path": "/GetLocalTokens/"
+        },
+        "DeleteLocalToken": {
+            "method": "post",
+            "path": "/DeleteLocalToken/"
+        }
     }
 }

@@ -118,6 +118,14 @@
       "method": "post",
       "path": "/SendEventLog/",
       "public": true
+    },
+    "GetLocalTokens": {
+      "method": "post",
+      "path": "/GetLocalTokens/"
+    },
+    "DeleteLocalToken": {
+      "method": "post",
+      "path": "/DeleteLocalToken/"
     }
   },
   "flow": {

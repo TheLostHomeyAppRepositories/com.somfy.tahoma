@@ -30,6 +30,7 @@
         "intro2": "Tap on Get Log and wait for the data to appear. Then send the log.",
         "intro3": "Contact @Adrian_Rockall on the community forum to describe which device is not supported.",
         "intro4": "No personal data is captured or sent so if you don't contact me I will not be able to respond.",
+        "intro5": "Local tokens are used to access the Somfy hub over the local network",
         "get": "Get Log",
         "clear": "Clear Log",
         "send": "Send Log",
@@ -37,7 +38,11 @@
         "use_local": "Connect directly to the hub via the local network",
         "polling_enabled": "Poll Somfy cloud for status updates",
         "show_password": "Show Password",
-        "event_log": "Event Log"
+        "event_log": "Event Log",
+        "local_tokens": "Local Tokens",
+        "get_tokens": "Get Tokens",
+        "delete_token": "Delete Token",
+        "token_id": "Token uuid:"
     },
     "errors":
     {
