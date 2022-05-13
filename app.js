@@ -5,7 +5,7 @@
 if (process.env.DEBUG === '1')
 {
     // eslint-disable-next-line node/no-unsupported-features/node-builtins, global-require
-    require('inspector').open(9223, '0.0.0.0', true);
+    require('inspector').open(9223, '0.0.0.0', false);
 }
 
 const Homey = require('homey');
@@ -263,7 +263,7 @@ class myApp extends Homey.App
 
         this.registerActionFlowCards();
 
-        if (this.useLocal && !await this.doLocalLogin())
+        if (this.useLocal)
         {
             this.discoveryStrategy = this.homey.discovery.getStrategy( "somfy_tahoma" );
             this.discoveryStrategy.on( "result", discoveryResult =>
@@ -282,12 +282,10 @@ class myApp extends Homey.App
             {
                 this.mDNSBridgesUpdate( results[result] );
             }
-
-            this.timerId = this.homey.setTimeout(() => this.initSync(), 10000);
         }
         else
         {
-            this.timerId = this.homey.setTimeout(() => this.initSync(), 30000);
+            this.timerId = this.homey.setTimeout(() => this.initSync(), 5000);
         }
 
         this.log(`${Homey.manifest.id} Initialised`);
@@ -322,6 +320,24 @@ class myApp extends Homey.App
                     this.mDNSBridgesUpdate( results[result] );
                 }
             }
+
+            try
+            {
+                if (this.useLocal)
+                {
+                    this.interval = LOCAL_INTERVAL;
+                }
+                else
+                {
+                    this.interval = Number(this.homey.settings.get('syncInterval'));
+                }
+            }
+            catch (e)
+            {
+                this.interval = this.useLocal ? LOCAL_INTERVAL : INITIAL_SYNC_INTERVAL;
+                this.homey.settings.set('syncInterval', this.interval);
+            }
+
 
             this.timerId = this.homey.setTimeout(() => this.initSync(), 10000);
         }
@@ -361,6 +377,7 @@ class myApp extends Homey.App
         try
         {
             await this.doLocalLogin(username, password);
+            this.timerId = this.homey.setTimeout(() => this.initSync(), 5000);
         }
         catch (err)
         {
@@ -1080,11 +1097,16 @@ class myApp extends Homey.App
 
             if (this.useLocal)
             {
-                if (this.localBearer)
+                if (!this.localBearer)
                 {
-                    this.startSync();
-                    return;
+                    if (!await this.doLocalLogin(username, password))
+                    {
+                        this.timerId = this.homey.setTimeout(() => this.initSync(), 5000);
+                    }
                 }
+
+                this.startSync();
+                return;
             }
             else
             {
@@ -1397,7 +1419,7 @@ class myApp extends Homey.App
             this.syncing = true;
 
             // Make sure it has been about 30 seconds since last sync unless boost is on
-            if (this.useLocal || this.boostTimerId || (Date.now() - this.lastSync) > 28000)
+            if (this.useLocal || this.boostTimerId || ((Date.now() - this.lastSync) > 28000))
             {
                 this.lastSync = Date.now();
 
