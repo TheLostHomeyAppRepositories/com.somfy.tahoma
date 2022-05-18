@@ -2,7 +2,7 @@
 
 'use strict';
 
-if (process.env.DEBUG === '1')
+//if (process.env.DEBUG === '1')
 {
     // eslint-disable-next-line node/no-unsupported-features/node-builtins, global-require
     require('inspector').open(9223, '0.0.0.0', false);
