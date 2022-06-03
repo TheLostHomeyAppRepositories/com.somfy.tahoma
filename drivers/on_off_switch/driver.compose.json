@@ -5,7 +5,8 @@
   },
   "class": "light",
   "capabilities": [
-    "onoff"
+    "onoff",
+    "on_with_timer"
   ],
   "$extends": ["cloudDriver"]
 }

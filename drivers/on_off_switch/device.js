@@ -22,13 +22,18 @@ class onOffLightControllerDevice extends LightControllerDevice
             controllableName = dd.controllableName.toString().toLowerCase();
         }
 
-        if (controllableName === 'io:OnOffIOComponent')
+        if (controllableName !== 'io:switchmicromodulesomfyiocomponent')
         {
-            if (this.getClass() !== 'socket')
+            if (this.hasCapability('on_with_timer'))
             {
-                this.setClass('socket');
+                this.removeCapability('on_with_timer');
             }
         }
+        else
+        {
+            this.registerCapabilityListener('on_with_timer', this.sendOnWithTimer.bind(this));
+        }
+
         await super.onInit();
     }
 

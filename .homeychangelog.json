@@ -514,5 +514,17 @@
   },
   "3.0.30": {
     "en": "Clean up settings and set maximum polling limit. Improved recovery from event fetch error."
+  },
+  "3.0.31": {
+    "en": "Added Danfoss Icon Thermostat (zigbee:DanfossHeatingFloorComponent). Added 'eliot:OnOffSwitchEliotComponent', 'eliot:OnOffLightEliotComponent', 'eliot:DimmerLightEliotComponent', 'eliot:ElectricVehicleChargerComponent', io:AtlanticElectricalHeaterIOComponent"
+  },
+  "3.0.32": {
+    "en": "Split io:AtlanticElectricalHeaterIOComponent to new IO Heating Interface device so it has the correct levels."
+  },
+  "3.0.33": {
+    "en": "Removed invalid options from io:AtlanticElectricalHeaterIOComponent levels. Added 'io:SwitchMicroModuleSomfyIOComponent' to the Socket (RTS & io) device."
+  },
+  "3.0.34": {
+    "en": "Added Move to MY position flow action card to devices that were missing it."
   }
 }
