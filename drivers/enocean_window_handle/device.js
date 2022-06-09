@@ -64,8 +64,7 @@ class WindowHandleDevice extends SensorDevice
         }
         catch (error)
         {
-            this.setUnavailable(error.message).catch(this.error);
-            this.homey.app.logInformation(this.getName(),
+            this.executionId && (            this.homey.app.logInformation(this.getName(),
             {
                 message: error.message,
                 stack: error.stack,
@@ -74,7 +73,7 @@ class WindowHandleDevice extends SensorDevice
     }
 
     // look for updates in the events array
-    async syncEvents(events)
+    async syncEvents(events, local)
     {
         if (events === null)
         {

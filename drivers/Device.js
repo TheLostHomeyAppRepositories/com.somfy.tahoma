@@ -167,7 +167,7 @@ class Device extends Homey.Device
                 // Found it so cancel the current command first
                 try
                 {
-                    await this.homey.app.tahoma.cancelExecution(this.executionCommands[idx].id);
+                    await this.homey.app.cancelExecution(this.executionCommands[idx].id, this.executionCommands[idx].local);
                 }
                 catch (err)
                 {
@@ -177,7 +177,7 @@ class Device extends Homey.Device
                         stack: err.stack,
                     });
                 }
-                // Remove from the command from the array
+                // Remove the command from the array
                 this.executionCommands.splice(idx, 1);
             }
 
@@ -212,7 +212,7 @@ class Device extends Homey.Device
             let result = null;
             try
             {
-                result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, action2);
+                result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, action2);
             }
             catch (err)
             {
@@ -641,7 +641,7 @@ class Device extends Homey.Device
     {
         try
         {
-            if (this.homey.app.loggedIn)
+            if (this.homey.app.isLoggedIn())
             {
                 if (this.homey.app.infoLogEnabled)
                 {
@@ -652,14 +652,14 @@ class Device extends Homey.Device
                 const deviceURL = this.getDeviceUrl(1);
                 if (deviceURL)
                 {
-                    let states = await this.homey.app.tahoma.getDeviceStates(deviceURL);
+                    let states = await this.homey.app.getDeviceStates(deviceURL);
                     if (!states)
                     {
                         const url0 = this.getDeviceUrl(0);
                         if (url0 && (deviceURL != url0))
                         {
                             // We have a sub url to check
-                            states = await this.homey.app.tahoma.getDeviceStates(url0);
+                            states = await this.homey.app.getDeviceStates(url0);
                         }
                     }
 
@@ -670,7 +670,7 @@ class Device extends Homey.Device
                         if (url2)
                         {
                             // We have a sub url to check
-                            const states2 = await this.homey.app.tahoma.getDeviceStates(url2);
+                            const states2 = await this.homey.app.getDeviceStates(url2);
                             states = states.concat(states2);
                         }
                     }

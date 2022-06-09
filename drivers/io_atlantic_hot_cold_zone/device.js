@@ -41,7 +41,7 @@ class HotColdZoneDevice extends SensorDevice
                 parameters: [value],
             };
 
-            const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
             if (result)
             {
                 if (result.errorCode)
@@ -61,7 +61,7 @@ class HotColdZoneDevice extends SensorDevice
                 else
                 {
                     this.executionCmd = action.name;
-                    this.executionId = result.execId;
+                    this.executionId = {id: result.execId, local: result.local};
                 }
             }
             else
@@ -143,7 +143,7 @@ class HotColdZoneDevice extends SensorDevice
                     parameters: ['on'],
                 };
             }
-            const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
             if (result)
             {
                 if (result.errorCode)
@@ -163,7 +163,7 @@ class HotColdZoneDevice extends SensorDevice
                 else
                 {
                     this.executionCmd = action.name;
-                    this.executionId = result.execId;
+                    this.executionId = {id: result.execId, local: result.local};
                 }
             }
             else
@@ -207,7 +207,7 @@ class HotColdZoneDevice extends SensorDevice
                 parameters: [value],
             };
 
-            const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
             if (result)
             {
                 if (result.errorCode)
@@ -222,7 +222,7 @@ class HotColdZoneDevice extends SensorDevice
                 else
                 {
                     this.executionCmd = action.name;
-                    this.executionId = result.execId;
+                    this.executionId = {id: result.execId, local: result.local};
                     if (this.boostSync)
                     {
                         if (!await this.homey.app.boostSync())
@@ -369,7 +369,6 @@ class HotColdZoneDevice extends SensorDevice
         }
         catch (error)
         {
-            // this.setUnavailable(error.message).catch(this.error);
             this.homey.app.logInformation(this.getName(),
             {
                 message: error.message,
@@ -379,7 +378,7 @@ class HotColdZoneDevice extends SensorDevice
     }
 
     // look for updates in the events array
-    async syncEvents(events)
+    async syncEvents(events, local)
     {
         if (events === null)
         {

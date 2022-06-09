@@ -22,7 +22,7 @@ class WaterSensorDevice extends SensorDevice
     }
 
     // Update the capabilities
-    async syncEvents(events)
+    async syncEvents(events, local)
     {
         this.syncEventsList(events, CapabilitiesXRef);
     }

@@ -23,7 +23,7 @@ class OpenCloseDevice extends Device
         const deviceData = this.getData();
         if (this.executionId !== null)
         {
-            await this.homey.app.tahoma.cancelExecution(this.executionId);
+            await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
             return;
         }
 
@@ -31,7 +31,7 @@ class OpenCloseDevice extends Device
             name: 'cycle',
             parameters: [],
         };
-        const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
         if (result)
         {
             if (result.errorCode)
@@ -45,7 +45,7 @@ class OpenCloseDevice extends Device
             }
             else
             {
-                this.executionId = result.execId;
+                this.executionId = {id: result.execId, local: result.local};
                 this.executionCmd = action.name;
                 if (this.boostSync)
                 {
@@ -71,7 +71,7 @@ class OpenCloseDevice extends Device
     async sync() { return null; }
 
     // look for updates in the events array
-    async syncEvents(events)
+    async syncEvents(events, local)
     {
         if (events === null)
         {
@@ -93,10 +93,17 @@ class OpenCloseDevice extends Device
                     {
                         if (myURL === element.actions[x].deviceURL)
                         {
-                            if (this.executionId !== element.execId)
+                            if (!this.executionId || (this.executionId.id !== element.execId))
                             {
-                                this.executionId = element.execId;
-                                this.executionCmd = element.actions[x].commands[0].name;
+                                this.executionId = {id: element.execId, local};
+                                if (element.actions[x].commands)
+                                {
+                                    this.executionCmd = element.actions[x].commands[0].name;
+                                }
+                                else
+                                {
+                                    this.executionCmd = element.actions[x].command;
+                                }
                                 if (this.boostSync)
                                 {
                                     if (!await this.homey.app.boostSync())
@@ -113,7 +120,7 @@ class OpenCloseDevice extends Device
                 {
                     if ((element.newState === 'COMPLETED') || (element.newState === 'FAILED'))
                     {
-                        if (this.executionId === element.execId)
+                        if (this.executionId && (this.executionId.id === element.execId))
                         {
                             if (this.boostSync)
                             {
@@ -130,7 +137,6 @@ class OpenCloseDevice extends Device
         }
         catch (error)
         {
-            this.setUnavailable(error.message).catch(this.error);
             this.homey.app.logInformation(this.getName(),
             {
                 message: error.message,

@@ -49,7 +49,7 @@ class HitachiACDevice extends SensorDevice
             {
                 try
                 {
-                    await this.homey.app.tahoma.cancelExecution(this.executionCommands[idx].id);
+                    await this.homey.app.cancelExecution(this.executionCommands[idx].id, this.executionCommands[idx].local);
                 }
                 catch (err)
                 {
@@ -71,7 +71,7 @@ class HitachiACDevice extends SensorDevice
             let result = null;
             try
             {
-                result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+                result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
             }
             catch (err)
             {
@@ -143,7 +143,7 @@ class HitachiACDevice extends SensorDevice
             {
                 try
                 {
-                    await this.homey.app.tahoma.cancelExecution(this.executionCommands[idx].id);
+                    await this.homey.app.cancelExecution(this.executionCommands[idx].id, this.executionCommands[idx].local);
                 }
                 catch (err)
                 {
@@ -165,7 +165,7 @@ class HitachiACDevice extends SensorDevice
             let result = null;
             try
             {
-                result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+                result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
             }
             catch (err)
             {
@@ -285,7 +285,7 @@ class HitachiACDevice extends SensorDevice
         {
             try
             {
-                await this.homey.app.tahoma.cancelExecution(this.executionCommands[idx].id);
+                await this.homey.app.cancelExecution(this.executionCommands[idx].id, this.executionCommands[idx].local);
             }
             catch (err)
             {
@@ -309,7 +309,7 @@ class HitachiACDevice extends SensorDevice
         let result = null;
         try
         {
-            result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
         }
         catch (err)
         {
@@ -442,7 +442,6 @@ class HitachiACDevice extends SensorDevice
         }
         catch (error)
         {
-            // this.setUnavailable(error.message).catch(this.error);
             this.homey.app.logInformation(this.getName(),
             {
                 message: error.message,
@@ -452,7 +451,7 @@ class HitachiACDevice extends SensorDevice
     }
 
     // look for updates in the events array
-    async syncEvents(events)
+    async syncEvents(events, local)
     {
         if (events === null)
         {

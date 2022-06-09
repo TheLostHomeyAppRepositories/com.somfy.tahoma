@@ -31,7 +31,7 @@ class TahomaAlarmDevice extends SensorDevice
     }
 
     // Update the capabilities
-    async syncEvents(events)
+    async syncEvents(events, local)
     {
         this.syncEventsList(events, CapabilitiesXRef);
     }
@@ -44,7 +44,7 @@ class TahomaAlarmDevice extends SensorDevice
             parameters: [state],
         };
 
-        const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
         if (result)
         {
             if (result.errorCode)

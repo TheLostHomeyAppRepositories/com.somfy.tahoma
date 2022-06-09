@@ -165,7 +165,7 @@ class WindowCoveringsDevice extends Device
 
                 if (value === 'idle' && (this.executionId !== null))
                 {
-                    await this.homey.app.tahoma.cancelExecution(this.executionId);
+                    await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
                     this.executionCmd = '';
                     this.executionId = null;
                 }
@@ -173,7 +173,7 @@ class WindowCoveringsDevice extends Device
                 {
                     if (this.executionId !== null)
                     {
-                        await this.homey.app.tahoma.cancelExecution(this.executionId);
+                        await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
                         this.executionCmd = '';
                         this.executionId = null;
                     }
@@ -182,7 +182,7 @@ class WindowCoveringsDevice extends Device
                         name: this.windowcoveringsActions[value],
                         parameters: [],
                     };
-                    const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+                    const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
                     if (result)
                     {
                         if (result.errorCode)
@@ -202,7 +202,7 @@ class WindowCoveringsDevice extends Device
                         else
                         {
                             this.executionCmd = action.name;
-                            this.executionId = result.execId;
+                            this.executionId = {id: result.execId, local: result.local};
                         }
                     }
                     else
@@ -274,7 +274,7 @@ class WindowCoveringsDevice extends Device
             {
                 if (this.executionId !== null)
                 {
-                    await this.homey.app.tahoma.cancelExecution(this.executionId);
+                    await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
                     this.executionCmd = '';
                     this.executionId = null;
                 }
@@ -294,7 +294,7 @@ class WindowCoveringsDevice extends Device
                     action.parameters.push('lowspeed');
                 }
 
-                const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
                 if (result)
                 {
                     if (result.errorCode)
@@ -314,7 +314,7 @@ class WindowCoveringsDevice extends Device
                     else
                     {
                         this.executionCmd = action.name;
-                        this.executionId = result.execId;
+                        this.executionId = {id: result.execId, local: result.local};
                     }
                 }
                 else
@@ -363,7 +363,7 @@ class WindowCoveringsDevice extends Device
             {
                 if (this.executionId !== null)
                 {
-                    await this.homey.app.tahoma.cancelExecution(this.executionId);
+                    await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
                     this.executionCmd = '';
                     this.executionId = null;
                 }
@@ -373,7 +373,7 @@ class WindowCoveringsDevice extends Device
                     parameters: [Math.round((1 - value) * 100)],
                 };
 
-                const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
                 if (result)
                 {
                     if (result.errorCode)
@@ -393,7 +393,7 @@ class WindowCoveringsDevice extends Device
                     else
                     {
                         this.executionCmd = action.name;
-                        this.executionId = result.execId;
+                        this.executionId = {id: result.execId, local: result.local};
                     }
                 }
                 else
@@ -448,7 +448,7 @@ class WindowCoveringsDevice extends Device
             {
                 if (this.executionId !== null)
                 {
-                    await this.homey.app.tahoma.cancelExecution(this.executionId);
+                    await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
                     this.executionCmd = '';
                     this.executionId = null;
                 }
@@ -457,7 +457,7 @@ class WindowCoveringsDevice extends Device
                     name: 'tiltPositive',
                     parameters: [3, 1],
                 };
-                const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
                 if (result)
                 {
                     if (result.errorCode)
@@ -477,7 +477,7 @@ class WindowCoveringsDevice extends Device
                     else
                     {
                         this.executionCmd = action.name;
-                        this.executionId = result.execId;
+                        this.executionId = {id: result.execId, local: result.local};
                     }
                 }
                 else
@@ -521,7 +521,7 @@ class WindowCoveringsDevice extends Device
             {
                 if (this.executionId !== null)
                 {
-                    await this.homey.app.tahoma.cancelExecution(this.executionId);
+                    await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
                     this.executionCmd = '';
                     this.executionId = null;
                 }
@@ -530,7 +530,7 @@ class WindowCoveringsDevice extends Device
                     name: 'tiltNegative',
                     parameters: [3, 1],
                 };
-                const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
                 if (result)
                 {
                     if (result.errorCode)
@@ -549,7 +549,7 @@ class WindowCoveringsDevice extends Device
                     else
                     {
                         this.executionCmd = action.name;
-                        this.executionId = result.execId;
+                        this.executionId = {id: result.execId, local: result.local};
                     }
                 }
                 else
@@ -593,14 +593,14 @@ class WindowCoveringsDevice extends Device
             {
                 if (this.executionId !== null)
                 {
-                    await this.homey.app.tahoma.cancelExecution(this.executionId);
+                    await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
                 }
 
                 const action = {
                     name: this.myCommand,
                     parameters: [],
                 };
-                const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
                 if (result)
                 {
                     if (result.errorCode)
@@ -619,7 +619,7 @@ class WindowCoveringsDevice extends Device
                     else
                     {
                         this.executionCmd = action.name;
-                        this.executionId = result.execId;
+                        this.executionId = {id: result.execId, local: result.local};
                     }
                 }
                 else
@@ -663,14 +663,14 @@ class WindowCoveringsDevice extends Device
             {
                 if (this.executionId !== null)
                 {
-                    await this.homey.app.tahoma.cancelExecution(this.executionId);
+                    await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
                 }
 
                 const action = {
                     name: 'setPedestrianPosition',
                     parameters: [],
                 };
-                const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
                 if (result)
                 {
                     if (result.errorCode)
@@ -689,7 +689,7 @@ class WindowCoveringsDevice extends Device
                     else
                     {
                         this.executionCmd = action.name;
-                        this.executionId = result.execId;
+                        this.executionId = {id: result.execId, local: result.local};
                     }
                 }
                 else
@@ -883,7 +883,6 @@ class WindowCoveringsDevice extends Device
         }
         catch (error)
         {
-            this.setUnavailable(error.message).catch(this.error);
             this.homey.app.logInformation(this.getName(),
             {
                 message: error.message,
@@ -895,7 +894,7 @@ class WindowCoveringsDevice extends Device
     /**
      * Sync the state of the devices from the TaHoma cloud with Homey
      */
-    async syncEvents(events)
+    async syncEvents(events, local)
     {
         if (events === null)
         {
@@ -1053,10 +1052,17 @@ class WindowCoveringsDevice extends Device
                     {
                         if (myURL === element.actions[x].deviceURL)
                         {
-                            if (this.executionId !== element.execId)
+                            if (!this.executionId || (this.executionId.id !== element.execId))
                             {
-                                this.executionId = element.execId;
-                                this.executionCmd = element.actions[x].commands[0].name;
+                                this.executionId = {id: element.execId, local};
+                                if (element.actions[x].commands)
+                                {
+                                    this.executionCmd = element.actions[x].commands[0].name;
+                                }
+                                else
+                                {
+                                    this.executionCmd = element.actions[x].command;
+                                }
                                 if (this.boostSync)
                                 {
                                     if (!await this.homey.app.boostSync())
@@ -1073,7 +1079,7 @@ class WindowCoveringsDevice extends Device
                 {
                     if ((element.newState === 'COMPLETED') || (element.newState === 'FAILED'))
                     {
-                        if (this.executionId === element.execId)
+                        if (this.executionId && (this.executionId.id === element.execId))
                         {
                             if (this.boostSync)
                             {
@@ -1091,7 +1097,6 @@ class WindowCoveringsDevice extends Device
         }
         catch (error)
         {
-            this.setUnavailable(error.message).catch(this.error);
             this.homey.app.logInformation(this.getName(),
             {
                 message: error.message,

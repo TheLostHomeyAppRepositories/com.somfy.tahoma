@@ -65,7 +65,6 @@ class key_go_remoteDevice extends Device
         }
         catch (error)
         {
-            this.setUnavailable(error.message).catch(this.error);
             this.homey.app.logInformation(this.getName(),
             {
                 message: error.message,
@@ -75,7 +74,7 @@ class key_go_remoteDevice extends Device
     }
 
     // look for updates in the events array
-    async syncEvents(events)
+    async syncEvents(events, local)
     {
         if (events === null)
         {

@@ -71,7 +71,7 @@ class ColorTemperatureLightControllerDevice extends LightControllerDevice
                 name: 'setHueAndSaturation',
                 parameters: [Math.round(value * 360), saturation * 100],
             };
-            const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
             if (result)
             {
                 if (result.errorCode)
@@ -91,7 +91,7 @@ class ColorTemperatureLightControllerDevice extends LightControllerDevice
                 {
                     this.commandExecuting = 'light_hue';
                     this.executionCmd = action.name;
-                    this.executionId = result.execId;
+                    this.executionId = {id: result.execId, local: result.local};
                 }
             }
             else
@@ -153,7 +153,7 @@ class ColorTemperatureLightControllerDevice extends LightControllerDevice
                 name: 'setHueAndSaturation',
                 parameters: [hue * 360, value * 100],
             };
-            const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
             if (result)
             {
                 if (result.errorCode)
@@ -173,7 +173,7 @@ class ColorTemperatureLightControllerDevice extends LightControllerDevice
                 {
                     this.commandExecuting = 'light_saturation';
                     this.executionCmd = action.name;
-                    this.executionId = result.execId;
+                    this.executionId = {id: result.execId, local: result.local};
                 }
             }
             else
@@ -229,7 +229,6 @@ class ColorTemperatureLightControllerDevice extends LightControllerDevice
         }
         catch (error)
         {
-            this.setUnavailable(error.message).catch(this.error);
             this.homey.app.logInformation(this.getName(),
             {
                 message: error.message,

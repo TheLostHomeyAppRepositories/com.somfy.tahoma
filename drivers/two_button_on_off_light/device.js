@@ -83,7 +83,7 @@ class two_button_on_offDevice extends Device
                 parameters: [],
             };
         }
-        const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
         if (result)
         {
             if (result.errorCode)
@@ -104,7 +104,7 @@ class two_button_on_offDevice extends Device
             {
                 this.commandExecuting = action.name;
                 this.executionCmd = action.name;
-                this.executionId = result.execId;
+                this.executionId = {id: result.execId, local: result.local};
             }
         }
         else
@@ -155,7 +155,7 @@ class two_button_on_offDevice extends Device
             parameters: [value],
         };
 
-        const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
         if (result)
         {
             if (result.errorCode)
@@ -176,7 +176,7 @@ class two_button_on_offDevice extends Device
             {
                 this.commandExecuting = action.name;
                 this.executionCmd = action.name;
-                this.executionId = result.execId;
+                this.executionId = {id: result.execId, local: result.local};
 
                 this.doOnTimer();
             }
@@ -211,7 +211,7 @@ class two_button_on_offDevice extends Device
     }
 
     // look for updates in the events array
-    async syncEvents(events)
+    async syncEvents(events, local)
     {
         if (events === null)
         {
@@ -230,10 +230,17 @@ class two_button_on_offDevice extends Device
                 {
                     if (myURL === element.actions[x].deviceURL)
                     {
-                        if (this.executionId !== element.execId)
+                        if (!this.executionId || (this.executionId.id !== element.execId))
                         {
-                            this.executionId = element.execId;
-                            this.executionCmd = element.actions[x].commands[0].name;
+                            this.executionId = {id: element.execId, local};
+                            if (element.actions[x].commands)
+                            {
+                                this.executionCmd = element.actions[x].commands[0].name;
+                            }
+                            else
+                            {
+                                this.executionCmd = element.actions[x].command;
+                            }
                             if (this.boostSync)
                             {
                                 if (!await this.homey.app.boostSync())
@@ -250,7 +257,7 @@ class two_button_on_offDevice extends Device
             {
                 if ((element.newState === 'COMPLETED') || (element.newState === 'FAILED'))
                 {
-                    if (this.executionId === element.execId)
+                    if (this.executionId && (this.executionId.id === element.execId))
                     {
                         if (this.boostSync)
                         {

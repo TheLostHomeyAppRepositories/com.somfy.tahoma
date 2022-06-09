@@ -30,7 +30,7 @@ class key_go_remoteDriver extends Driver
     {
         try
         {
-            const devices = await this.homey.app.tahoma.getDeviceData();
+            const devices = await this.homey.app.getDeviceData();
             if (devices)
             {
                 this.log('setup resolve');

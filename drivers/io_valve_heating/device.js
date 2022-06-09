@@ -148,7 +148,7 @@ class ValveHeatingDevice extends SensorDevice
             {
                 try
                 {
-                    await this.homey.app.tahoma.cancelExecution(this.executionCommands[idx].id);
+                    await this.homey.app.cancelExecution(this.executionCommands[idx].id, this.executionCommands[idx].local);
                 }
                 catch (err)
                 {
@@ -166,7 +166,7 @@ class ValveHeatingDevice extends SensorDevice
                 parameters: somfyValues,
             };
 
-            const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
             if (result)
             {
                 if (result.errorCode)
@@ -214,7 +214,7 @@ class ValveHeatingDevice extends SensorDevice
     }
 
     // Update the capabilities
-    async syncEvents(events)
+    async syncEvents(events, local)
     {
         this.syncEventsList(events, CapabilitiesXRef);
     }

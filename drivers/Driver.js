@@ -34,7 +34,7 @@ class Driver extends Homey.Driver
         {
             if (view === 'login_credentials')
             {
-                if (username && password && this.homey.app.loggedIn)
+                if (username && password && this.homey.app.isLoggedIn())
                 {
                     await session.nextView();
                 }
@@ -76,7 +76,7 @@ class Driver extends Homey.Driver
         // {
         //     if (view === 'login_credentials')
         //     {
-        //         if (username && password && this.homey.app.loggedIn)
+        //         if (username && password && this.homey.app.isLoggedIn())
         //         {
         //             await session.nextView();
         //         }
@@ -100,7 +100,7 @@ class Driver extends Homey.Driver
     {
         try
         {
-            const devices = await this.homey.app.tahoma.getDeviceData();
+            const devices = await this.homey.app.getDeviceData();
             if (devices)
             {
                 this.log('setup resolve');

@@ -35,7 +35,7 @@ class WaterBoilerDevice extends SensorDevice
                 parameters: [value],
             };
 
-            const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
             if (result)
             {
                 if (result.errorCode)
@@ -55,7 +55,7 @@ class WaterBoilerDevice extends SensorDevice
                 else
                 {
                     this.executionCmd = action.name;
-                    this.executionId = result.execId;
+                    this.executionId = {id: result.execId, local: result.local};
                 }
             }
             else
@@ -84,7 +84,7 @@ class WaterBoilerDevice extends SensorDevice
                 parameters: [value],
             };
 
-            const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
             if (result)
             {
                 if (result.errorCode)
@@ -104,7 +104,7 @@ class WaterBoilerDevice extends SensorDevice
                 else
                 {
                     this.executionCmd = action.name;
-                    this.executionId = result.execId;
+                    this.executionId = {id: result.execId, local: result.local};
                 }
             }
             else
@@ -161,7 +161,7 @@ class WaterBoilerDevice extends SensorDevice
                     parameters: ['on'],
                 };
             }
-            const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
             if (result)
             {
                 if (result.errorCode)
@@ -181,7 +181,7 @@ class WaterBoilerDevice extends SensorDevice
                 else
                 {
                     this.executionCmd = action.name;
-                    this.executionId = result.execId;
+                    this.executionId = {id: result.execId, local: result.local};
                 }
             }
             else
@@ -210,7 +210,7 @@ class WaterBoilerDevice extends SensorDevice
                 parameters: [value],
             };
 
-            const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
             if (result)
             {
                 if (result.errorCode)
@@ -225,7 +225,7 @@ class WaterBoilerDevice extends SensorDevice
                 else
                 {
                     this.executionCmd = action.name;
-                    this.executionId = result.execId;
+                    this.executionId = {id: result.execId, local: result.local};
                     if (this.boostSync)
                     {
                         if (!await this.homey.app.boostSync())
@@ -268,7 +268,7 @@ class WaterBoilerDevice extends SensorDevice
                     parameters: ['on'],
                 };
             }
-            const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
             if (result)
             {
                 if (result.errorCode)
@@ -288,7 +288,7 @@ class WaterBoilerDevice extends SensorDevice
                 else
                 {
                     this.executionCmd = action.name;
-                    this.executionId = result.execId;
+                    this.executionId = {id: result.execId, local: result.local};
                 }
             }
             else
@@ -372,7 +372,6 @@ class WaterBoilerDevice extends SensorDevice
         }
         catch (error)
         {
-            this.setUnavailable(error.message).catch(this.error);
             this.homey.app.logInformation(this.getName(),
             {
                 message: error.message,
@@ -382,7 +381,7 @@ class WaterBoilerDevice extends SensorDevice
     }
 
     // look for updates in the events array
-    async syncEvents(events)
+    async syncEvents(events, local)
     {
         if (events === null)
         {

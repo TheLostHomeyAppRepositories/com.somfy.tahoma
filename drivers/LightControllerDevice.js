@@ -82,7 +82,7 @@ class LightControllerDevice extends Device
                     parameters: [],
                 };
             }
-            const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
             if (result)
             {
                 if (result.errorCode)
@@ -103,7 +103,7 @@ class LightControllerDevice extends Device
                 {
                     this.commandExecuting = 'onOff';
                     this.executionCmd = action.name;
-                    this.executionId = result.execId;
+                    this.executionId = {id: result.execId, local: result.local};
                 }
             }
             else
@@ -158,7 +158,7 @@ class LightControllerDevice extends Device
                 name: 'setIntensity',
                 parameters: [Math.round(value * 100)],
             };
-            const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
             if (result)
             {
                 if (result.errorCode)
@@ -179,7 +179,7 @@ class LightControllerDevice extends Device
                 {
                     this.commandExecuting = 'dim';
                     this.executionCmd = action.name;
-                    this.executionId = result.execId;
+                    this.executionId = {id: result.execId, local: result.local};
                 }
             }
             else
@@ -240,7 +240,7 @@ class LightControllerDevice extends Device
                 name: 'setColorTemperature',
                 parameters: [Math.round(value * (maxTemperature - minTemperature) + minTemperature)],
             };
-            const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
             if (result)
             {
                 if (result.errorCode)
@@ -261,7 +261,7 @@ class LightControllerDevice extends Device
                 {
                     this.commandExecuting = 'light_temperature';
                     this.executionCmd = action.name;
-                    this.executionId = result.execId;
+                    this.executionId = {id: result.execId, local: result.local};
                 }
             }
             else
@@ -331,7 +331,6 @@ class LightControllerDevice extends Device
         }
         catch (error)
         {
-            this.setUnavailable(error.message).catch(this.error);
             this.homey.app.logInformation(this.getName(),
             {
                 message: error.message,
@@ -343,7 +342,7 @@ class LightControllerDevice extends Device
     }
 
     // look for updates in the events array
-    async syncEvents(events)
+    async syncEvents(events, local)
     {
         if (events === null)
         {
@@ -386,8 +385,15 @@ class LightControllerDevice extends Device
                 {
                     if (myURL === element.actions[x].deviceURL)
                     {
-                        this.executionId = element.execId;
-                        this.executionCmd = element.actions[x].commands[0].name;
+                        this.executionId = {id: element.execId, local};
+                        if (element.actions[x].commands)
+                        {
+                            this.executionCmd = element.actions[x].commands[0].name;
+                        }
+                        else
+                        {
+                            this.executionCmd = element.actions[x].command;
+                        }
                         if (this.boostSync)
                         {
                             await this.homey.app.boostSync();
@@ -402,7 +408,7 @@ class LightControllerDevice extends Device
             {
                 if ((element.newState === 'COMPLETED') || (element.newState === 'FAILED'))
                 {
-                    if (this.executionId === element.execId)
+                    if (this.executionId && (this.executionId.id === element.execId))
                     {
                         if (this.boostSync)
                         {
@@ -512,7 +518,7 @@ class LightControllerDevice extends Device
             parameters: [value],
         };
 
-        const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
         if (result)
         {
             if (result.errorCode)
@@ -533,7 +539,7 @@ class LightControllerDevice extends Device
             {
                 this.commandExecuting = action.name;
                 this.executionCmd = action.name;
-                this.executionId = result.execId;
+                this.executionId = {id: result.execId, local: result.local};
 
                 this.doOnTimer();
             }
