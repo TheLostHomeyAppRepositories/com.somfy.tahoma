@@ -749,17 +749,44 @@ class myApp extends Homey.App
             this.logInformation('logDevices', 'Fetching devices');
         }
 
-        const devices = [];
+        const devices = {'cloud':{}, 'local':{'ip': this.localBridgeInfo.address}};
+        let cloudDevices = null;
+        let localDevices = null;
         if (this.tahomaCloud.authenticated)
         {
-            devices.push(await this.tahomaCloud.getDeviceData());
+            cloudDevices = await this.tahomaCloud.getDeviceData();
         }
         if (this.tahomaLocal.authenticated)
         {
-            const localDevices = await this.tahomaLocal.getDeviceData();
-            const seperator = [{'localDevices': true, "ip": this.localBridgeInfo.address}];
-            devices.push(seperator);
-            devices.push(localDevices);
+            localDevices = await this.tahomaLocal.getDeviceData();
+        }
+
+        if (cloudDevices && localDevices)
+        {
+            // Filter cloud devices to remove local devices
+            const unique = cloudDevices.filter(cloud => {
+                const isDuplicate = (localDevices.findIndex(local => local.deviceURL === cloud.deviceURL) >= 0);
+
+                if (!isDuplicate) {
+                  return true;
+                }
+              
+                return false;
+            });
+
+            devices.cloud.devices = unique;
+            devices.local.devices = localDevices;
+        }
+        else
+        {
+            if (cloudDevices)
+            {
+                devices.cloud = cloudDevices;
+            }
+            if (localDevices)
+            {
+                devices.local = localDevices;
+            }
         }
 
         // Do a deep copy
