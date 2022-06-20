@@ -1463,6 +1463,7 @@
       },
       {
         "id": "set_polling_mode",
+        "deprecated": true,
         "title": {
           "en": "Turn polling on / off",
           "nl": "Polling aan/uit zetten"
@@ -1510,6 +1511,7 @@
       },
       {
         "id": "set_polling_speed",
+        "deprecated": true,
         "title": {
           "en": "Set Polling Interval",
           "nl": "Stel de update frequentie in"

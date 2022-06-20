@@ -420,7 +420,7 @@ class Device extends Homey.Device
     }
 
     // look for updates in the events array
-    async syncEventsList(events, CapabilitiesXRef)
+    async syncEventsList(events, CapabilitiesXRef, local)
     {
         if (events === null)
         {
@@ -431,6 +431,11 @@ class Device extends Homey.Device
 
         // get the url without the #1 on the end
         const myURL = this.getDeviceUrl(0);
+        if (!local && this.homey.app.isLocalDevice(myURL))
+        {
+            // This device is handled locally so ignore cloud updates
+            return;
+        }
 
         // Get the capability values for this device
         const oldCapabilityStates = this.getState();

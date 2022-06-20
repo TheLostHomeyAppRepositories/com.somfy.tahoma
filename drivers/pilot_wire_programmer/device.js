@@ -231,6 +231,11 @@ class PilotWireProgrammerDevice extends SensorDevice
         }
 
         const myURL = this.getDeviceUrl();
+        if (!local && this.homey.app.isLocalDevice(myURL))
+        {
+            // This device is handled locally so ignore cloud updates
+            return;
+        }
 
         // Process events sequentially so they are in the correct order
         for (let i = 0; i < events.length; i++)

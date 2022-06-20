@@ -1,5 +1,6 @@
 {
     "id": "set_polling_mode",
+    "deprecated": true,
     "title": {
         "en": "Turn polling on / off",
         "nl": "Polling aan/uit zetten"

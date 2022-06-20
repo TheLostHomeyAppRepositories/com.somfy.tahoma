@@ -35,7 +35,7 @@ class OpeningDetectorDevice extends SensorDevice
     // look for updates in the events array
     async syncEvents(events, local)
     {
-        this.syncEventsList(events, CapabilitiesXRef);
+        this.syncEventsList(events, CapabilitiesXRef, local);
     }
 
 }

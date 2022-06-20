@@ -35,7 +35,7 @@ class TemperatureSensorDevice extends SensorDevice
     // Update the capabilities
     async syncEvents(events, local)
     {
-        this.syncEventsList(events, CapabilitiesXRef);
+        this.syncEventsList(events, CapabilitiesXRef, local);
     }
 
 }

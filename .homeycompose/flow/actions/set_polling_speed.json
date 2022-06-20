@@ -1,5 +1,6 @@
 {
     "id": "set_polling_speed",
+    "deprecated": true,
     "title": {
         "en": "Set Polling Interval",
         "nl": "Stel de update frequentie in"

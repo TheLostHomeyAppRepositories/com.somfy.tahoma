@@ -71,25 +71,6 @@
                 <legend data-i18n="settings.logouttitle"></legend>
                 <p id="logoutText" data-i18n="settings.logout_description"></p>
                 <button id="logoutButton" class="left" style="display:block;background-color:#a5510d;color:white;margin:15px 20px 5px 5px;" data-i18n="settings.logout"></button>
-            </fieldset>
-            <fieldset id="preferences">
-                <legend data-i18n="settings.preferences"></legend>
-                <div class="field row">
-                    <label for="useLocal" data-i18n="settings.use_local"></label>
-                    <input id="useLocal" type="checkbox" value="useLocal" />
-                </div>
-                <fieldset id="polling">
-                    <div class="field row">
-                        <label for="pollingEnabled" data-i18n="settings.polling_enabled"></label>
-                        <input id="pollingEnabled" type="checkbox" value="pollingEnabled" />
-                    </div>
-                    <div class="field row">
-                        <label for="sync_speed" data-i18n="settings.sync_speed"></label>
-                        <input id="sync_speed" type="number" min="30" value="" /> &nbsp;<span data-i18n="settings.sync_tooltip"></span>
-                    </div>
-                </fieldset>
-                <button id="savePreferencesButton" class="left" style="display:block;background-color:#0f9e16;color:white;margin:5px 20px 5px 5px;" data-i18n="settings.save_preferences"></button>
-            </fieldset>
         </fieldset>
     </div>
 
@@ -194,14 +175,10 @@
         // Settings tab
         var saveButton = document.getElementById('saveButton');
         var logoutButton = document.getElementById('logoutButton');
-        var preferencesButton = document.getElementById('savePreferencesButton');
         var response = document.getElementById('response');
         var usernameEl = document.getElementById('username');
         var passwordEl = document.getElementById('password');
         var showPasswordEl = document.getElementById('showPassword');
-        var useLocalEl = document.getElementById('useLocal');
-        var pollingEnabledEl = document.getElementById('pollingEnabled');
-        var syncSpeedEl = document.getElementById('sync_speed');
         var logoutEl = document.getElementById('logoutElement');
 
         // Information log tab
@@ -299,30 +276,6 @@
                         eventLogEnabledElement.checked = enable;
                     });
                 }
-                else if (param === 'useLocal')
-                {
-                    Homey.get('useLocal', function(err, useLocal)
-                    {
-                        if (err) return Homey.alert(err);
-                        useLocalEl.checked = useLocal;
-                    });
-                }
-                else if (param === 'pollingEnabled')
-                {
-                    Homey.get('pollingEnabled', function(err, pollingEnabled)
-                    {
-                        if (err) return Homey.alert(err);
-                        pollingEnabledEl.checked = pollingEnabled;
-                    });
-                }
-                else if (param === 'syncInterval')
-                {
-                    Homey.get('syncInterval', function(err, syncInterval)
-                    {
-                        if (err) return Homey.alert(err);
-                        syncSpeedEl.value = syncInterval;
-                    });
-                }
             });
 
             Homey.get('debugMode', function(err, debugMode)
@@ -358,33 +311,6 @@
                 }
             });
 
-            Homey.get('useLocal', function(err, useLocal)
-            {
-                if (err) return Homey.alert(err);
-                useLocalEl.checked = useLocal;
-
-                if (useLocal)
-                {
-                    document.getElementById('polling').style.display = 'none';
-                }
-                else
-                {
-                    document.getElementById('polling').style.display = 'block';
-                }
-            });
-
-            Homey.get('pollingEnabled', function(err, pollingEnabled)
-            {
-                if (err) return Homey.alert(err);
-                pollingEnabledEl.checked = pollingEnabled;
-            });
-
-            Homey.get('syncInterval', function(err, interval)
-            {
-                if (err) return Homey.alert(err);
-                syncSpeedEl.value = interval;
-            });
-
             saveButton.addEventListener('click', function()
             {
                 Object.values(document.querySelectorAll('*')).forEach(element => element.style.cursor = "wait");
@@ -410,18 +336,6 @@
                     response.innerHTML = __('settings.login_success');
                     logoutEl.style.visibility = "visible";
                 });
-            });
-
-            useLocalEl.addEventListener('click', function()
-            {
-                if (useLocalEl.checked)
-                {
-                    document.getElementById('polling').style.display = 'none';
-                }
-                else
-                {
-                    document.getElementById('polling').style.display = 'block';
-                }
             });
 
             logoutButton.addEventListener('click', function()
@@ -453,36 +367,6 @@
                 {
                     passwordEl.type = "password";
                 }
-            });
-
-            preferencesButton.addEventListener('click', function()
-            {
-                Homey.set('pollingEnabled', pollingEnabledEl.checked, function(err)
-                {
-                    if (err) return Homey.alert(err);
-                });
-
-                if (syncSpeedEl.value < 30)
-                {
-                    syncSpeedEl.value = 30;
-                    return Homey.alert(__('settings.min_sync_speed'));
-                }
-                if (syncSpeedEl.value > 90)
-                {
-                    syncSpeedEl.value = 90;
-                    return Homey.alert(__('settings.max_sync_speed'));
-                }
-                Homey.set('syncInterval', syncSpeedEl.value, function(err)
-                {
-                    if (err) return Homey.alert(err);
-                });
-
-                Homey.set('useLocal', useLocalEl.checked, function(err)
-                {
-                    if (err) return Homey.alert(err);
-                });
-
-                return Homey.alert(__('settings.pref_saved'));
             });
 
             getDeviceLogElement.addEventListener('click', function(e)
