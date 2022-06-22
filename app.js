@@ -32,6 +32,7 @@ class myApp extends Homey.App
         this.unBoosting = false;
         this.commandsQueued = 0;
         this.lastSync = 0;
+        this.lastLogTime = new Date(Date.now());
 
         this.localBridgeInfo = this.homey.settings.get('localBridge');
         this.localBearer = this.homey.settings.get('localBearer');
@@ -269,7 +270,7 @@ class myApp extends Homey.App
         }
 
         this.homey.settings.set('localBridge', this.localBridgeInfo);
-        this.logInformation('Found a bridge', this.localBridgeInfo);
+        this.logInformation('mDNS Found a local bridge', {pin: '####-####-####', address: this.localBridgeInfo.address, port: this.localBridgeInfo.port});
 
         const username = this.homey.settings.get('username');
         const password = this.homey.settings.get('password');
@@ -874,10 +875,6 @@ class myApp extends Homey.App
 
             // Calculate time since last log message
             const nowTime = new Date(Date.now());
-            if (!this.lastLogTime)
-            {
-                this.lastLogTime = nowTime;
-            }
             const timeDiff = (nowTime.getTime() - this.lastLogTime.getTime()) / 1000;
             this.lastLogTime = nowTime;
 
