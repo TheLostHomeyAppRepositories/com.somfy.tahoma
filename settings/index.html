@@ -665,7 +665,7 @@
                 });
                 // Make the log text area fill the page
                 deviceLogElement.setAttribute('cols', deviceLogElement.parentElement.clientWidth / 8);
-                deviceLogElement.style.height = (window.innerHeight - 40) + 'px';
+                deviceLogElement.style.height = (window.innerHeight - deviceLogElement.offsetTop - 40) + 'px';
             }
 
             if (tabPage == 'simulator')

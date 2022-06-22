@@ -269,7 +269,7 @@ class myApp extends Homey.App
         }
 
         this.homey.settings.set('localBridge', this.localBridgeInfo);
-        this.logInformation('Found a bridge', this.varToString(this.localBridgeInfo));
+        this.logInformation('Found a bridge', this.localBridgeInfo);
 
         const username = this.homey.settings.get('username');
         const password = this.homey.settings.get('password');
@@ -808,7 +808,17 @@ class myApp extends Homey.App
         {
             // Remove personal device information
             let i = 1;
-            logData.forEach(element =>
+            logData.local.devices.forEach(element =>
+            {
+                delete element.creationTime;
+                delete element.lastUpdateTime;
+                delete element.shortcut;
+                delete element.deviceURL;
+                delete element.placeOID;
+                element.oid = `temp${i++}`;
+            });
+            
+            logData.cloud.devices.forEach(element =>
             {
                 delete element.creationTime;
                 delete element.lastUpdateTime;
@@ -861,14 +871,25 @@ class myApp extends Homey.App
             {
                 logData = [];
             }
+
+            // Calculate time since last log message
             const nowTime = new Date(Date.now());
+            if (!this.lastLogTime)
+            {
+                this.lastLogTime = nowTime;
+            }
+            const timeDiff = (nowTime.getTime() - this.lastLogTime.getTime()) / 1000;
+            this.lastLogTime = nowTime;
+
             logData.push(
             {
                 time: nowTime.toJSON(),
+                elapsed: timeDiff,
                 source,
                 data,
             },
             );
+
             if (logData && logData.length > 100)
             {
                 logData.splice(0, 1);
@@ -1310,7 +1331,7 @@ class myApp extends Homey.App
                 }
                 catch (error)
                 {
-                    this.logInformation('syncLoop', error.message);
+                    //this.logInformation('syncLoop', error.message);
                     if (error.message === 'Far Too many login attempts (blocked for 15 minutes)')
                     {
                         this.homey.clearTimeout(this.boostTimerId);

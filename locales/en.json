@@ -27,7 +27,7 @@
         "device_log": "Device log",
         "state_log": "State Log",
         "intro1": "Use this if you have a device that is not supported.",
-        "intro2": "Tap on Get Log and wait for the data to appear. Then send the log.",
+        "intro2": "Tap on Get Log and wait for the data to appear. Then tap on Send Log.",
         "intro3": "Contact @Adrian_Rockall on the community forum to describe which device is not supported.",
         "intro4": "No personal data is captured or sent so if you don't contact me I will not be able to respond.",
         "intro5": "Local tokens are used to access the Somfy hub over the local network",
