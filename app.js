@@ -3,10 +3,10 @@
 'use strict';
 
 //if (process.env.DEBUG === '1')
-{
-    // eslint-disable-next-line node/no-unsupported-features/node-builtins, global-require
-    require('inspector').open(9223, '0.0.0.0', false);
-}
+// {
+//     // eslint-disable-next-line node/no-unsupported-features/node-builtins, global-require
+//     require('inspector').open(9223, '0.0.0.0', false);
+// }
 
 const Homey = require('homey');
 const nodemailer = require('nodemailer');
@@ -104,8 +104,21 @@ class myApp extends Homey.App
             }
         });
 
+        try
+        {
+            this.homeyIP = await this.homey.cloud.getLocalAddress();
+            if (this.homeyIP)
+            {
+                this.tahomaLocal = new Tahoma(this.homey, true);
+            }
+        }
+        catch (err)
+        {
+            // Homey cloud or Bridge so no LAN access
+            this.tahomaLocal = null;
+        }
+
         this.tahomaCloud = new Tahoma(this.homey, false);
-        this.tahomaLocal = new Tahoma(this.homey, true);
 
         // Setup the flow listeners
         this.addScenarioActionListeners();
@@ -180,6 +193,8 @@ class myApp extends Homey.App
             });
 
         this.registerActionFlowCards();
+
+        this.syncTimerId = this.homey.setTimeout(() => this.initSync(), 30000);
 
         this.discoveryStrategy = this.homey.discovery.getStrategy( "somfy_tahoma" );
         this.discoveryStrategy.on( "result", discoveryResult =>
@@ -289,6 +304,11 @@ class myApp extends Homey.App
 
     async doLocalLogin(username, password)
     {
+        if (this.tahomaLocal === null)
+        {
+            return;
+        }
+
         if (username && password && this.localBridgeInfo)
         {
             if (this.infoLogEnabled)
@@ -757,7 +777,7 @@ class myApp extends Homey.App
         {
             cloudDevices = await this.tahomaCloud.getDeviceData();
         }
-        if (this.tahomaLocal.authenticated)
+        if (this.tahomaLocal && this.tahomaLocal.authenticated)
         {
             localDevices = await this.tahomaLocal.getDeviceData();
         }
@@ -809,25 +829,31 @@ class myApp extends Homey.App
         {
             // Remove personal device information
             let i = 1;
-            logData.local.devices.forEach(element =>
+            if (logData.local.devices)
             {
-                delete element.creationTime;
-                delete element.lastUpdateTime;
-                delete element.shortcut;
-                delete element.deviceURL;
-                delete element.placeOID;
-                element.oid = `temp${i++}`;
-            });
+                logData.local.devices.forEach(element =>
+                {
+                    delete element.creationTime;
+                    delete element.lastUpdateTime;
+                    delete element.shortcut;
+                    delete element.deviceURL;
+                    delete element.placeOID;
+                    element.oid = `temp${i++}`;
+                });
+            }
             
-            logData.cloud.devices.forEach(element =>
+            if (logData.cloud.devices)
             {
-                delete element.creationTime;
-                delete element.lastUpdateTime;
-                delete element.shortcut;
-                delete element.deviceURL;
-                delete element.placeOID;
-                element.oid = `temp${i++}`;
-            });
+                logData.cloud.devices.forEach(element =>
+                {
+                    delete element.creationTime;
+                    delete element.lastUpdateTime;
+                    delete element.shortcut;
+                    delete element.deviceURL;
+                    delete element.placeOID;
+                    element.oid = `temp${i++}`;
+                });
+            }
         }
 
         this.homey.settings.set('deviceLog',
@@ -1033,7 +1059,7 @@ class myApp extends Homey.App
         }
         catch (error)
         {
-            this.logInformation('initSync', 'Error');
+            this.logInformation('initSync', `Error: ${error.message}`);
 
             if (error.message === 'Far Too many login attempts (blocked for 15 minutes)')
             {
@@ -1210,7 +1236,10 @@ class myApp extends Homey.App
             this.logInformation('stopSync', 'Stopping Event Polling');
         }
         await this.tahomaCloud.eventsClearRegistered();
-        await this.tahomaLocal.eventsClearRegistered();
+        if (this.tahomaLocal)
+        {
+            await this.tahomaLocal.eventsClearRegistered();
+        }
     }
 
     async startSync()
@@ -1255,9 +1284,13 @@ class myApp extends Homey.App
         
         if (this.nextCloudInterval != 0)
         {
-            if (this.tahomaLocal.authenticated)
+            if (this.tahomaLocal && this.tahomaLocal.authenticated)
             {
                 nextInterval = await this.syncWorker(this.tahomaLocal);
+            }
+            else
+            {
+                nextInterval = LOCAL_INTERVAL * 1000;
             }
 
             if ((this.nextCloudInterval - (LOCAL_INTERVAL * 1000)) <= 0)
@@ -1297,7 +1330,14 @@ class myApp extends Homey.App
 
         if (this.infoLogEnabled)
         {
-            this.logInformation('syncLoop', `Logged in = ${tahomaConnection.authenticated}, Local = ${tahomaConnection.localLogin}, Old Sync State = ${this.syncing}, Next Interval = ${this.nextCloudInterval}`);
+            if (tahomaConnection.localLogin)
+            {
+                this.logInformation('syncLoop', `Logged in = ${tahomaConnection.authenticated}, Local = ${tahomaConnection.localLogin}, Old Sync State = ${this.syncing}, Next cloud sync in ${this.nextCloudInterval / 1000}s`);
+            }
+            else
+            {
+                this.logInformation('syncLoop', `Logged in = ${tahomaConnection.authenticated}, Local = ${tahomaConnection.localLogin}, Old Sync State = ${this.syncing}`);
+            }
         }
 
         if (!this.syncing)
@@ -1541,7 +1581,7 @@ class myApp extends Homey.App
 
     async cancelExecution(id, local)
     {
-        if (local && this.tahomaLocal.authenticated)
+        if (local && this.tahomaLocal && this.tahomaLocal.authenticated)
         {
             try
             {
@@ -1568,7 +1608,7 @@ class myApp extends Homey.App
 
     async executeDeviceAction(label, deviceURL, action)
     {
-        if (this.tahomaLocal.authenticated)
+        if (this.tahomaLocal && this.tahomaLocal.authenticated)
         {
             if (this.tahomaLocal.supportedDevices.findIndex(element => element.deviceURL === deviceURL) >= 0)
             {
@@ -1588,7 +1628,7 @@ class myApp extends Homey.App
 
     async getDeviceStates(deviceURL)
     {
-        if (this.tahomaLocal.authenticated)
+        if (this.tahomaLocal && this.tahomaLocal.authenticated)
         {
             // Check if the local connection supports the device
             if (this.tahomaLocal.supportedDevices.findIndex(element => element.deviceURL === deviceURL) >= 0)
@@ -1605,7 +1645,7 @@ class myApp extends Homey.App
     async getDeviceData()
     {
         let data = null;
-        if (this.tahomaLocal.authenticated)
+        if (this.tahomaLocal && this.tahomaLocal.authenticated)
         {
             // Always try to get local data so it populates the supported list
             data = await this.tahomaLocal.getDeviceData();
@@ -1621,7 +1661,7 @@ class myApp extends Homey.App
 
     isLocalDevice(deviceURL)
     {
-        if (this.tahomaLocal.authenticated && this.tahomaLocal.supportedDevices)
+        if (this.tahomaLocal && this.tahomaLocal.authenticated && this.tahomaLocal.supportedDevices)
         {
             // Check if the local connection supports the device
             if (this.tahomaLocal.supportedDevices.findIndex(element => element.deviceURL === deviceURL) >= 0)
@@ -1635,7 +1675,7 @@ class myApp extends Homey.App
 
     isLoggedIn()
     {
-        return (this.tahomaCloud.authenticated | this.tahomaLocal.authenticated);
+        return (this.tahomaCloud.authenticated | (this.tahomaLocal && this.tahomaLocal.authenticated));
     }
 }
 module.exports = myApp;
