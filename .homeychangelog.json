@@ -529,5 +529,8 @@
   },
   "3.0.35": {
     "en": "Added io:ExteriorVenetianBlindUnoIOComponent."
+  },
+  "4.0.0": {
+    "en": "Re-write to work with local and cloud access."
   }
 }
