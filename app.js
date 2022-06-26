@@ -715,6 +715,8 @@ class myApp extends Homey.App
         }
         catch (error)
         {
+            this.logInformation('Login', `Error: ${error.message}`);
+
             // Try other log in method
             loginMethod = !loginMethod;
         }
