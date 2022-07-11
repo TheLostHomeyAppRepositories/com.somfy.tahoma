@@ -13,7 +13,7 @@
   "description": {
     "en": "The heart of your Smart Home"
   },
-  "version": "4.0.0",
+  "version": "4.0.1",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Adrian Rockall",
