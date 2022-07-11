@@ -535,5 +535,8 @@
   },
   "4.0.1": {
     "en": "Fix for 'can’t read properties of null' when local access is not registered. Boost no longer activated for local access."
+  },
+  "4.0.2": {
+    "en": "Added alternate url for certificate validation (SNI)."
   }
 }
