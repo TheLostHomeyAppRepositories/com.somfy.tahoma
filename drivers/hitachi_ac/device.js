@@ -71,15 +71,11 @@ class HitachiACDevice extends SensorDevice
             let result = null;
             try
             {
-                result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+                result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
             }
             catch (err)
             {
                 this.homey.app.logInformation(`${this.getName()}: onCapability setMainOperation`, `Failed to send command: ${err.message}`);
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (err);
             }
 
@@ -93,10 +89,6 @@ class HitachiACDevice extends SensorDevice
                         stack: result.errorCode,
                     });
 
-                    if (this.boostSync)
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
                     throw (new Error(result.error));
                 }
                 else
@@ -117,10 +109,6 @@ class HitachiACDevice extends SensorDevice
             else
             {
                 this.homey.app.logInformation(`${this.getName()}: onCapabilityOnOff`, 'Failed to send command');
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (new Error('Failed to send command'));
             }
         }
@@ -165,15 +153,11 @@ class HitachiACDevice extends SensorDevice
             let result = null;
             try
             {
-                result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+                result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
             }
             catch (err)
             {
                 this.homey.app.logInformation(`${this.getName()}: onCapability setHolidays`, `Failed to send command: ${err.message}`);
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (err);
             }
 
@@ -187,10 +171,6 @@ class HitachiACDevice extends SensorDevice
                         stack: result.errorCode,
                     });
 
-                    if (this.boostSync)
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
                     throw (new Error(result.error));
                 }
                 else
@@ -211,10 +191,6 @@ class HitachiACDevice extends SensorDevice
             else
             {
                 this.homey.app.logInformation(`${this.getName()}: onCapabilityHolidayMode`, 'Failed to send command');
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (new Error('Failed to send command'));
             }
         }
@@ -309,15 +285,11 @@ class HitachiACDevice extends SensorDevice
         let result = null;
         try
         {
-            result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
         }
         catch (err)
         {
             this.homey.app.logInformation(`${this.getName()}: onCapability globalControl`, `Failed to send command: ${err.message}`);
-            if (this.boostSync)
-            {
-                await this.homey.app.unBoostSync();
-            }
             throw (err);
         }
 
@@ -330,11 +302,6 @@ class HitachiACDevice extends SensorDevice
                     message: result.error,
                     stack: result.errorCode,
                 });
-
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (new Error(result.error));
             }
             else
@@ -355,10 +322,6 @@ class HitachiACDevice extends SensorDevice
         else
         {
             this.homey.app.logInformation(`${this.getName()}: onCapabilityChange`, 'Failed to send command');
-            if (this.boostSync)
-            {
-                await this.homey.app.unBoostSync();
-            }
             throw (new Error('Failed to send command'));
         }
     }
@@ -547,7 +510,7 @@ class HitachiACDevice extends SensorDevice
                         {
                             // Not known so record it and boost the events interval
                             const newIdx = this.executionCommands.push({ id: element.execId, name: eventAction.commands[0].name });
-                            if (this.boostSync)
+                            if (!local && this.boostSync)
                             {
                                 if (!await this.homey.app.boostSync())
                                 {

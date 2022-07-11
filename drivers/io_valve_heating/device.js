@@ -126,14 +126,6 @@ class ValveHeatingDevice extends SensorDevice
                 return;
             }
 
-            if (this.boostSync)
-            {
-                if (!await this.homey.app.boostSync())
-                {
-                    throw (new Error('Failed to Boost Sync'));
-                }
-            }
-
             const applicableEntries = CapabilitiesXRef.filter(entry => entry.somfyNameSet[0] === capabilityXRef.somfyNameSet[0]).sort((a, b) => a.somfyArray - b.somfyArray);
 
             const somfyValues = [];
@@ -166,7 +158,7 @@ class ValveHeatingDevice extends SensorDevice
                 parameters: somfyValues,
             };
 
-            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
             if (result)
             {
                 if (result.errorCode)
@@ -176,11 +168,6 @@ class ValveHeatingDevice extends SensorDevice
                         message: result.error,
                         stack: result.errorCode,
                     });
-
-                    if (this.boostSync)
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
                     throw (new Error(result.error));
                 }
                 else
@@ -199,10 +186,6 @@ class ValveHeatingDevice extends SensorDevice
             else
             {
                 this.homey.app.logInformation(`${this.getName()}: onCapability ${capabilityXRef.somfyNameSet[0]}`, 'Failed to send command');
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (new Error('Failed to send command'));
             }
         }

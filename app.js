@@ -2,11 +2,11 @@
 
 'use strict';
 
-//if (process.env.DEBUG === '1')
-// {
-//     // eslint-disable-next-line node/no-unsupported-features/node-builtins, global-require
-//     require('inspector').open(9223, '0.0.0.0', false);
-// }
+if (process.env.DEBUG === '1')
+{
+    // eslint-disable-next-line node/no-unsupported-features/node-builtins, global-require
+    require('inspector').open(9223, '0.0.0.0', false);
+}
 
 const Homey = require('homey');
 const nodemailer = require('nodemailer');
@@ -270,6 +270,8 @@ class myApp extends Homey.App
             address: discoveryResult.address,
             url: discoveryResult.fullname,
             port: discoveryResult.port,
+            api_version: discoveryResult.txt.api_version,
+            fw_version: discoveryResult.txt.fw_version,
         };
 
         if ( !this.localBridgeInfo.pin )
@@ -285,7 +287,8 @@ class myApp extends Homey.App
         }
 
         this.homey.settings.set('localBridge', this.localBridgeInfo);
-        this.logInformation('mDNS Found a local bridge', {pin: '####-####-####', address: this.localBridgeInfo.address, port: this.localBridgeInfo.port});
+        const url = this.localBridgeInfo.url.replace(this.localBridgeInfo.pin, '####-####-####');
+        this.logInformation('mDNS Found a local bridge', {pin: '####-####-####', address: this.localBridgeInfo.address, port: this.localBridgeInfo.port, api_version: this.localBridgeInfo.api_version, fw_version: this.localBridgeInfo.fw_version});
 
         const username = this.homey.settings.get('username');
         const password = this.homey.settings.get('password');
@@ -1608,9 +1611,9 @@ class myApp extends Homey.App
         }
     }
 
-    async executeDeviceAction(label, deviceURL, action)
+    async executeDeviceAction(label, deviceURL, action, boostSync)
     {
-        if (this.tahomaLocal && this.tahomaLocal.authenticated)
+        if (this.tahomaLocal && this.tahomaLocal.authenticated && this.tahomaLocal.supportedDevices)
         {
             if (this.tahomaLocal.supportedDevices.findIndex(element => element.deviceURL === deviceURL) >= 0)
             {
@@ -1624,13 +1627,17 @@ class myApp extends Homey.App
         {
             let data = this.tahomaCloud.executeDeviceAction(label, deviceURL, action);
             data.local = false;
-            return data;
+            if (boostSync)
+            {
+                this.boostSync();
+            }
+        return data;
         }
     }
 
     async getDeviceStates(deviceURL)
     {
-        if (this.tahomaLocal && this.tahomaLocal.authenticated)
+        if (this.tahomaLocal && this.tahomaLocal.authenticated && this.tahomaLocal.supportedDevices)
         {
             // Check if the local connection supports the device
             if (this.tahomaLocal.supportedDevices.findIndex(element => element.deviceURL === deviceURL) >= 0)

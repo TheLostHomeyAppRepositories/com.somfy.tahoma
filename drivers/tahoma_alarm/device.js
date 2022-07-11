@@ -44,7 +44,7 @@ class TahomaAlarmDevice extends SensorDevice
             parameters: [state],
         };
 
-        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
         if (result)
         {
             if (result.errorCode)

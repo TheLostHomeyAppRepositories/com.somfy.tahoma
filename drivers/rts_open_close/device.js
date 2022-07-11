@@ -31,7 +31,7 @@ class OpenCloseDevice extends Device
             name: 'cycle',
             parameters: [],
         };
-        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
         if (result)
         {
             if (result.errorCode)
@@ -47,14 +47,6 @@ class OpenCloseDevice extends Device
             {
                 this.executionId = {id: result.execId, local: result.local};
                 this.executionCmd = action.name;
-                if (this.boostSync)
-                {
-                    if (!await this.homey.app.boostSync())
-                    {
-                        this.executionCmd = '';
-                        this.executionId = null;
-                    }
-                }
             }
         }
         else
@@ -109,7 +101,7 @@ class OpenCloseDevice extends Device
                                 {
                                     this.executionCmd = element.actions[x].command;
                                 }
-                                if (this.boostSync)
+                                if (!local && this.boostSync)
                                 {
                                     if (!await this.homey.app.boostSync())
                                     {
@@ -127,7 +119,7 @@ class OpenCloseDevice extends Device
                     {
                         if (this.executionId && (this.executionId.id === element.execId))
                         {
-                            if (this.boostSync)
+                            if (!local && this.boostSync)
                             {
                                 await this.homey.app.unBoostSync();
                             }

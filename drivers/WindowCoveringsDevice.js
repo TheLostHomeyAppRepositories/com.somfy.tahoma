@@ -153,14 +153,6 @@ class WindowCoveringsDevice extends Device
 
             try
             {
-                if (this.boostSync)
-                {
-                    if (!await this.homey.app.boostSync())
-                    {
-                        throw (new Error('Failed to Boost Sync'));
-                    }
-                }
-
                 const deviceData = this.getData();
 
                 if (value === 'idle' && (this.executionId !== null))
@@ -182,7 +174,7 @@ class WindowCoveringsDevice extends Device
                         name: this.windowcoveringsActions[value],
                         parameters: [],
                     };
-                    const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+                    const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
                     if (result)
                     {
                         if (result.errorCode)
@@ -193,10 +185,6 @@ class WindowCoveringsDevice extends Device
                                 message: result.error,
                                 stack: result.errorCode,
                             });
-                            if (this.boostSync)
-                            {
-                                await this.homey.app.unBoostSync();
-                            }
                             throw (new Error(result.error));
                         }
                         else
@@ -208,10 +196,6 @@ class WindowCoveringsDevice extends Device
                     else
                     {
                         this.homey.app.logInformation(`${this.getName()}: onCapabilityWindowcoveringsState`, 'Failed to send command');
-                        if (this.boostSync)
-                        {
-                            await this.homey.app.unBoostSync();
-                        }
                         throw (new Error('Failed to send command'));
                     }
                 }
@@ -220,11 +204,6 @@ class WindowCoveringsDevice extends Device
             {
                 this.setWarning(err.message).catch(this.error);
                 this.homey.app.logInformation(this.getName(), err.message);
-
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (err);
             }
             finally
@@ -260,14 +239,6 @@ class WindowCoveringsDevice extends Device
     {
         if (!opts || !opts.fromCloudSync)
         {
-            if (this.boostSync)
-            {
-                if (!await this.homey.app.boostSync())
-                {
-                    throw (new Error('Failed to Boost Sync'));
-                }
-            }
-
             const deviceData = this.getData();
 
             try
@@ -294,7 +265,7 @@ class WindowCoveringsDevice extends Device
                     action.parameters.push('lowspeed');
                 }
 
-                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
                 if (result)
                 {
                     if (result.errorCode)
@@ -305,10 +276,6 @@ class WindowCoveringsDevice extends Device
                             message: result.error,
                             stack: result.errorCode,
                         });
-                        if (this.boostSync)
-                        {
-                            await this.homey.app.unBoostSync();
-                        }
                         throw (new Error(result.error));
                     }
                     else
@@ -320,10 +287,6 @@ class WindowCoveringsDevice extends Device
                 else
                 {
                     this.homey.app.logInformation(`${this.getName()}: onCapabilityWindowcoveringsSet`, 'Failed to send command');
-                    if (this.boostSync)
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
                     throw (new Error('Failed to send command'));
                 }
             }
@@ -331,11 +294,6 @@ class WindowCoveringsDevice extends Device
             {
                 this.setWarning(err.message).catch(this.error);
                 this.homey.app.logInformation(this.getName(), err.message);
-
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (err);
             }
         }
@@ -350,14 +308,6 @@ class WindowCoveringsDevice extends Device
     {
         if (!opts || !opts.fromCloudSync)
         {
-            if (this.boostSync)
-            {
-                if (!await this.homey.app.boostSync())
-                {
-                    throw (new Error('Failed to Boost Sync'));
-                }
-            }
-
             const deviceData = this.getData();
             try
             {
@@ -373,7 +323,7 @@ class WindowCoveringsDevice extends Device
                     parameters: [Math.round((1 - value) * 100)],
                 };
 
-                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
                 if (result)
                 {
                     if (result.errorCode)
@@ -384,10 +334,6 @@ class WindowCoveringsDevice extends Device
                             message: result.error,
                             stack: result.errorCode,
                         });
-                        if (this.boostSync)
-                        {
-                            await this.homey.app.unBoostSync();
-                        }
                         throw (new Error(result.error));
                     }
                     else
@@ -399,10 +345,6 @@ class WindowCoveringsDevice extends Device
                 else
                 {
                     this.homey.app.logInformation(`${this.getName()}: onCapabilityWindowcoveringsTiltSet`, 'Failed to send command');
-                    if (this.boostSync)
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
                     throw (new Error('Failed to send command'));
                 }
             }
@@ -410,11 +352,6 @@ class WindowCoveringsDevice extends Device
             {
                 this.setWarning(err.message).catch(this.error);
                 this.homey.app.logInformation(this.getName(), err.message);
-
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (err);
             }
         }
@@ -435,14 +372,6 @@ class WindowCoveringsDevice extends Device
     {
         if (!opts || !opts.fromCloudSync)
         {
-            if (this.boostSync)
-            {
-                if (!await this.homey.app.boostSync())
-                {
-                    throw (new Error('Failed to Boost Sync'));
-                }
-            }
-
             const deviceData = this.getData();
             try
             {
@@ -457,7 +386,7 @@ class WindowCoveringsDevice extends Device
                     name: 'tiltPositive',
                     parameters: [3, 1],
                 };
-                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
                 if (result)
                 {
                     if (result.errorCode)
@@ -468,10 +397,6 @@ class WindowCoveringsDevice extends Device
                             message: result.error,
                             stack: result.errorCode,
                         });
-                        if (this.boostSync)
-                        {
-                            await this.homey.app.unBoostSync();
-                        }
                         throw (new Error(result.error));
                     }
                     else
@@ -483,10 +408,6 @@ class WindowCoveringsDevice extends Device
                 else
                 {
                     this.homey.app.logInformation(`${this.getName()}: onCapabilityWindowcoveringsTiltUp`, 'Failed to send command');
-                    if (this.boostSync)
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
                     throw (new Error('Failed to send command'));
                 }
             }
@@ -494,11 +415,6 @@ class WindowCoveringsDevice extends Device
             {
                 this.setWarning(err.message).catch(this.error);
                 this.homey.app.logInformation(this.getName(), err.message);
-
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (err);
             }
         }
@@ -508,14 +424,6 @@ class WindowCoveringsDevice extends Device
     {
         if (!opts || !opts.fromCloudSync)
         {
-            if (this.boostSync)
-            {
-                if (!await this.homey.app.boostSync())
-                {
-                    throw (new Error('Failed to Boost Sync'));
-                }
-            }
-
             const deviceData = this.getData();
             try
             {
@@ -530,7 +438,7 @@ class WindowCoveringsDevice extends Device
                     name: 'tiltNegative',
                     parameters: [3, 1],
                 };
-                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
                 if (result)
                 {
                     if (result.errorCode)
@@ -540,10 +448,6 @@ class WindowCoveringsDevice extends Device
                             message: result.error,
                             stack: result.errorCode,
                         });
-                        if (this.boostSync)
-                        {
-                            await this.homey.app.unBoostSync();
-                        }
                         throw (new Error(result.error));
                     }
                     else
@@ -555,10 +459,6 @@ class WindowCoveringsDevice extends Device
                 else
                 {
                     this.homey.app.logInformation(`${this.getName()}: onCapabilityWindowcoveringsTiltDown`, 'Failed to send command');
-                    if (this.boostSync)
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
                     throw (new Error('Failed to send command'));
                 }
             }
@@ -566,11 +466,6 @@ class WindowCoveringsDevice extends Device
             {
                 this.setWarning(err.message).catch(this.error);
                 this.homey.app.logInformation(this.getName(), err.message);
-
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (err);
             }
         }
@@ -580,14 +475,6 @@ class WindowCoveringsDevice extends Device
     {
         if (!opts || !opts.fromCloudSync)
         {
-            if (this.boostSync)
-            {
-                if (!await this.homey.app.boostSync())
-                {
-                    throw (new Error('Failed to Boost Sync'));
-                }
-            }
-
             const deviceData = this.getData();
             try
             {
@@ -600,7 +487,7 @@ class WindowCoveringsDevice extends Device
                     name: this.myCommand,
                     parameters: [],
                 };
-                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
                 if (result)
                 {
                     if (result.errorCode)
@@ -610,10 +497,6 @@ class WindowCoveringsDevice extends Device
                             message: result.error,
                             stack: result.errorCode,
                         });
-                        if (this.boostSync)
-                        {
-                            await this.homey.app.unBoostSync();
-                        }
                         throw (new Error(result.error));
                     }
                     else
@@ -625,10 +508,6 @@ class WindowCoveringsDevice extends Device
                 else
                 {
                     this.homey.app.logInformation(`${this.getName()}: onCapabilityMyPosition`, 'Failed to send command');
-                    if (this.boostSync)
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
                     throw (new Error('Failed to send command'));
                 }
             }
@@ -636,11 +515,6 @@ class WindowCoveringsDevice extends Device
             {
                 this.setWarning(err.message).catch(this.error);
                 this.homey.app.logInformation(this.getName(), err.message);
-
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (err);
             }
         }
@@ -650,14 +524,6 @@ class WindowCoveringsDevice extends Device
     {
         if (!opts || !opts.fromCloudSync)
         {
-            if (this.boostSync)
-            {
-                if (!await this.homey.app.boostSync())
-                {
-                    throw (new Error('Failed to Boost Sync'));
-                }
-            }
-
             const deviceData = this.getData();
             try
             {
@@ -670,7 +536,7 @@ class WindowCoveringsDevice extends Device
                     name: 'setPedestrianPosition',
                     parameters: [],
                 };
-                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
                 if (result)
                 {
                     if (result.errorCode)
@@ -680,10 +546,6 @@ class WindowCoveringsDevice extends Device
                             message: result.error,
                             stack: result.errorCode,
                         });
-                        if (this.boostSync)
-                        {
-                            await this.homey.app.unBoostSync();
-                        }
                         throw (new Error(result.error));
                     }
                     else
@@ -695,10 +557,6 @@ class WindowCoveringsDevice extends Device
                 else
                 {
                     this.homey.app.logInformation(`${this.getName()}: onCapabilityPedestrian`, 'Failed to send command');
-                    if (this.boostSync)
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
                     throw (new Error('Failed to send command'));
                 }
             }
@@ -706,11 +564,6 @@ class WindowCoveringsDevice extends Device
             {
                 this.setWarning(err.message).catch(this.error);
                 this.homey.app.logInformation(this.getName(), err.message);
-
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (err);
             }
         }
@@ -1068,7 +921,7 @@ class WindowCoveringsDevice extends Device
                                 {
                                     this.executionCmd = element.actions[x].command;
                                 }
-                                if (this.boostSync)
+                                if (!local && this.boostSync)
                                 {
                                     if (!await this.homey.app.boostSync())
                                     {
@@ -1086,7 +939,7 @@ class WindowCoveringsDevice extends Device
                     {
                         if (this.executionId && (this.executionId.id === element.execId))
                         {
-                            if (this.boostSync)
+                            if (!local && this.boostSync)
                             {
                                 await this.homey.app.unBoostSync();
                             }

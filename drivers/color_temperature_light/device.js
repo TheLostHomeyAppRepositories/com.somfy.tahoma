@@ -47,14 +47,6 @@ class ColorTemperatureLightControllerDevice extends LightControllerDevice
                 return;
             }
 
-            if (this.boostSync)
-            {
-                if (!await this.homey.app.boostSync())
-                {
-                    throw (new Error('Failed to Boost Sync'));
-                }
-            }
-
             const deviceData = this.getData();
             if (this.executionId !== null)
             {
@@ -71,7 +63,7 @@ class ColorTemperatureLightControllerDevice extends LightControllerDevice
                 name: 'setHueAndSaturation',
                 parameters: [Math.round(value * 360), saturation * 100],
             };
-            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
             if (result)
             {
                 if (result.errorCode)
@@ -81,10 +73,6 @@ class ColorTemperatureLightControllerDevice extends LightControllerDevice
                         message: result.error,
                         stack: result.errorCode,
                     });
-                    if (this.boostSync)
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
                     throw (new Error(result.error));
                 }
                 else
@@ -97,10 +85,6 @@ class ColorTemperatureLightControllerDevice extends LightControllerDevice
             else
             {
                 this.homey.app.logInformation(`${this.getName()}: onCapabilityLight_hue`, 'Failed to send command');
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (new Error('Failed to send command'));
             }
         }
@@ -129,14 +113,6 @@ class ColorTemperatureLightControllerDevice extends LightControllerDevice
                 return;
             }
 
-            if (this.boostSync)
-            {
-                if (!await this.homey.app.boostSync())
-                {
-                    throw (new Error('Failed to Boost Sync'));
-                }
-            }
-
             const deviceData = this.getData();
             if (this.executionId !== null)
             {
@@ -153,7 +129,7 @@ class ColorTemperatureLightControllerDevice extends LightControllerDevice
                 name: 'setHueAndSaturation',
                 parameters: [hue * 360, value * 100],
             };
-            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
             if (result)
             {
                 if (result.errorCode)
@@ -163,10 +139,6 @@ class ColorTemperatureLightControllerDevice extends LightControllerDevice
                         message: result.error,
                         stack: result.errorCode,
                     });
-                    if (this.boostSync)
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
                     throw (new Error(result.error));
                 }
                 else
@@ -179,10 +151,6 @@ class ColorTemperatureLightControllerDevice extends LightControllerDevice
             else
             {
                 this.homey.app.logInformation(`${this.getName()}: onCapabilityDim`, 'Failed to send command');
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (new Error('Failed to send command'));
             }
         }

@@ -25,14 +25,6 @@ class PilotWireProgrammerDevice extends SensorDevice
     {
         if (!opts || !opts.fromCloudSync)
         {
-            if (this.boostSync)
-            {
-                if (!await this.homey.app.boostSync())
-                {
-                    throw (new Error('Failed to Boost Sync'));
-                }
-            }
-
             const deviceData = this.getData();
             if (this.executionId !== null)
             {
@@ -59,7 +51,7 @@ class PilotWireProgrammerDevice extends SensorDevice
                     parameters: ['on'],
                 };
             }
-            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
             if (result)
             {
                 if (result.errorCode)
@@ -69,11 +61,6 @@ class PilotWireProgrammerDevice extends SensorDevice
                         message: result.error,
                         stack: result.errorCode,
                     });
-
-                    if (this.boostSync)
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
                     throw (new Error(result.error));
                 }
                 else
@@ -85,10 +72,6 @@ class PilotWireProgrammerDevice extends SensorDevice
             else
             {
                 this.homey.app.logInformation(`${this.getName()}: onCapabilityOnOff`, 'Failed to send command');
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (new Error('Failed to send command'));
             }
         }
@@ -140,7 +123,7 @@ class PilotWireProgrammerDevice extends SensorDevice
                 };
             }
 
-            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
             if (result)
             {
                 if (result.errorCode)
@@ -156,14 +139,6 @@ class PilotWireProgrammerDevice extends SensorDevice
                 {
                     this.executionCmd = action.name;
                     this.executionId = {id: result.execId, local: result.local};
-                    if (this.boostSync)
-                    {
-                        if (!await this.homey.app.boostSync())
-                        {
-                            this.executionCmd = '';
-                            this.executionId = null;
-                        }
-                    }
                 }
             }
             else

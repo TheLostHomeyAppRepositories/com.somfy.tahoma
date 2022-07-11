@@ -85,7 +85,7 @@ class rtsGateOpenerDevice extends Device
 
         try
         {
-            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
             if (result)
             {
                 if (result.errorCode)
@@ -95,11 +95,6 @@ class rtsGateOpenerDevice extends Device
                         message: result.error,
                         stack: result.errorCode,
                     });
-
-                    if (this.boostSync)
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
                     throw (new Error(result.error));
                 }
                 else
@@ -112,20 +107,12 @@ class rtsGateOpenerDevice extends Device
             else
             {
                 this.homey.app.logInformation(`${this.getName()}: sendOpenClose`, 'Failed to send command');
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (new Error('Failed to send command'));
             }
         }
         catch (err)
         {
             this.homey.app.logInformation(`${this.getName()}: sendOpenClose`, 'Failed to send command');
-            if (this.boostSync)
-            {
-                await this.homey.app.unBoostSync();
-            }
             throw (err);
         }
     }
@@ -166,7 +153,7 @@ class rtsGateOpenerDevice extends Device
                             {
                                 this.executionCmd = element.actions[x].command;
                             }
-                            if (this.boostSync)
+                            if (!local && this.boostSync)
                             {
                                 if (!await this.homey.app.boostSync())
                                 {
@@ -184,7 +171,7 @@ class rtsGateOpenerDevice extends Device
                 {
                     if (this.executionId && (this.executionId.id === element.execId))
                     {
-                        if (this.boostSync)
+                        if (!local && this.boostSync)
                         {
                             await this.homey.app.unBoostSync();
                         }

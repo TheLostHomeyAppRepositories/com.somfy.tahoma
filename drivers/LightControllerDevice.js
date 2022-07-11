@@ -46,14 +46,6 @@ class LightControllerDevice extends Device
                 return;
             }
 
-            if (this.boostSync)
-            {
-                if (!await this.homey.app.boostSync())
-                {
-                    throw (new Error('Failed to Boost Sync'));
-                }
-            }
-
             const deviceData = this.getData();
             if (this.executionId !== null)
             {
@@ -82,7 +74,7 @@ class LightControllerDevice extends Device
                     parameters: [],
                 };
             }
-            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
             if (result)
             {
                 if (result.errorCode)
@@ -93,10 +85,6 @@ class LightControllerDevice extends Device
                         stack: result.errorCode,
                     });
 
-                    if (this.boostSync)
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
                     throw (new Error(result.error));
                 }
                 else
@@ -109,10 +97,6 @@ class LightControllerDevice extends Device
             else
             {
                 this.homey.app.logInformation(`${this.getName()}: onCapabilityOnOff`, 'Failed to send command');
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (new Error('Failed to send command'));
             }
         }
@@ -130,14 +114,6 @@ class LightControllerDevice extends Device
             {
                 // This command is still processing
                 return;
-            }
-
-            if (this.boostSync)
-            {
-                if (!await this.homey.app.boostSync())
-                {
-                    throw (new Error('Failed to Boost Sync'));
-                }
             }
 
             const deviceData = this.getData();
@@ -158,7 +134,7 @@ class LightControllerDevice extends Device
                 name: 'setIntensity',
                 parameters: [Math.round(value * 100)],
             };
-            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
             if (result)
             {
                 if (result.errorCode)
@@ -169,10 +145,6 @@ class LightControllerDevice extends Device
                         stack: result.errorCode,
                     });
 
-                    if (this.boostSync)
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
                     throw (new Error(result.error));
                 }
                 else
@@ -189,10 +161,6 @@ class LightControllerDevice extends Device
                     this.homey.app.logInformation(`${this.getName()}: onCapabilityDim`, 'Failed to send command');
                 }
 
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (new Error('Failed to send command'));
             }
         }
@@ -210,14 +178,6 @@ class LightControllerDevice extends Device
             {
                 // This command is still processing
                 return;
-            }
-
-            if (this.boostSync)
-            {
-                if (!await this.homey.app.boostSync())
-                {
-                    throw (new Error('Failed to Boost Sync'));
-                }
             }
 
             const deviceData = this.getData();
@@ -240,7 +200,7 @@ class LightControllerDevice extends Device
                 name: 'setColorTemperature',
                 parameters: [Math.round(value * (maxTemperature - minTemperature) + minTemperature)],
             };
-            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
             if (result)
             {
                 if (result.errorCode)
@@ -251,10 +211,6 @@ class LightControllerDevice extends Device
                         stack: result.errorCode,
                     });
 
-                    if (this.boostSync)
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
                     throw (new Error(result.error));
                 }
                 else
@@ -267,10 +223,6 @@ class LightControllerDevice extends Device
             else
             {
                 this.homey.app.logInformation(`${this.getName()}: onCapabilityDim`, 'Failed to send command');
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (new Error('Failed to send command'));
             }
         }
@@ -399,7 +351,7 @@ class LightControllerDevice extends Device
                         {
                             this.executionCmd = element.actions[x].command;
                         }
-                        if (this.boostSync)
+                        if (!local && this.boostSync)
                         {
                             await this.homey.app.boostSync();
                             this.commandExecuting = '';
@@ -415,7 +367,7 @@ class LightControllerDevice extends Device
                 {
                     if (this.executionId && (this.executionId.id === element.execId))
                     {
-                        if (this.boostSync)
+                        if (!local && this.boostSync)
                         {
                             await this.homey.app.unBoostSync();
                         }
@@ -499,14 +451,6 @@ class LightControllerDevice extends Device
             clearTimeout(this.onTime);
         }
 
-        if (this.boostSync)
-        {
-            if (!await this.homey.app.boostSync())
-            {
-                throw (new Error('Failed to Boost Sync'));
-            }
-        }
-
         const deviceData = this.getData();
         if (this.executionId !== null)
         {
@@ -523,7 +467,7 @@ class LightControllerDevice extends Device
             parameters: [value],
         };
 
-        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync, this.boostSync);
         if (result)
         {
             if (result.errorCode)
@@ -534,10 +478,6 @@ class LightControllerDevice extends Device
                     stack: result.errorCode,
                 });
 
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (new Error(result.error));
             }
             else
@@ -552,11 +492,6 @@ class LightControllerDevice extends Device
         else
         {
             this.homey.app.logInformation(`${this.getName()}: sendOnWithTimer`, 'Failed to send command');
-            if (this.boostSync)
-            {
-                await this.homey.app.unBoostSync();
-            }
-
             this.doOnTimer();
 
             this.setCapabilityValue('on_with_timer', 0).catch(this.error);

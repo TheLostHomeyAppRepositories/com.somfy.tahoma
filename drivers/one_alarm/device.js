@@ -80,7 +80,7 @@ class OneAlarmDevice extends SensorDevice
                     parameters: [],
                 };
             }
-            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
             if (result)
             {
                 if (result.errorCode)
@@ -96,14 +96,6 @@ class OneAlarmDevice extends SensorDevice
                 {
                     this.executionCmd = action.name;
                     this.executionId = {id: result.execId, local: result.local};
-                    if (this.boostSync)
-                    {
-                        if (!await this.homey.app.boostSync())
-                        {
-                            this.executionCmd = '';
-                            this.executionId = null;
-                        }
-                    }
                 }
             }
             else

@@ -532,5 +532,8 @@
   },
   "4.0.0": {
     "en": "Re-write to work with local and cloud access."
+  },
+  "4.0.1": {
+    "en": "Fix for 'can’t read properties of null' when local access is not registered. Boost no longer activated for local access."
   }
 }

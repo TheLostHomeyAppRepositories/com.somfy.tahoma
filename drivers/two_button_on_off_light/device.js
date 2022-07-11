@@ -49,14 +49,6 @@ class two_button_on_offDevice extends Device
             this.setCapabilityValue('on_with_timer', 0).catch(this.error);
         }
 
-        if (this.boostSync)
-        {
-            if (!await this.homey.app.boostSync())
-            {
-                throw (new Error('Failed to Boost Sync'));
-            }
-        }
-
         const deviceData = this.getData();
         if (this.executionId !== null)
         {
@@ -83,7 +75,7 @@ class two_button_on_offDevice extends Device
                 parameters: [],
             };
         }
-        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
         if (result)
         {
             if (result.errorCode)
@@ -93,11 +85,6 @@ class two_button_on_offDevice extends Device
                     message: result.error,
                     stack: result.errorCode,
                 });
-
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (new Error(result.error));
             }
             else
@@ -110,10 +97,6 @@ class two_button_on_offDevice extends Device
         else
         {
             this.homey.app.logInformation(`${this.getName()}: sendOnOff`, 'Failed to send command');
-            if (this.boostSync)
-            {
-                await this.homey.app.unBoostSync();
-            }
             throw (new Error('Failed to send command'));
         }
     }
@@ -129,14 +112,6 @@ class two_button_on_offDevice extends Device
         if (this.onTime)
         {
             clearTimeout(this.onTime);
-        }
-
-        if (this.boostSync)
-        {
-            if (!await this.homey.app.boostSync())
-            {
-                throw (new Error('Failed to Boost Sync'));
-            }
         }
 
         const deviceData = this.getData();
@@ -155,7 +130,7 @@ class two_button_on_offDevice extends Device
             parameters: [value],
         };
 
-        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
+        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
         if (result)
         {
             if (result.errorCode)
@@ -165,11 +140,6 @@ class two_button_on_offDevice extends Device
                     message: result.error,
                     stack: result.errorCode,
                 });
-
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
                 throw (new Error(result.error));
             }
             else
@@ -184,11 +154,6 @@ class two_button_on_offDevice extends Device
         else
         {
             this.homey.app.logInformation(`${this.getName()}: sendOnWithTimer`, 'Failed to send command');
-            if (this.boostSync)
-            {
-                await this.homey.app.unBoostSync();
-            }
-
             this.doOnTimer();
 
             this.setCapabilityValue('on_with_timer', 0).catch(this.error);
@@ -246,7 +211,7 @@ class two_button_on_offDevice extends Device
                             {
                                 this.executionCmd = element.actions[x].command;
                             }
-                            if (this.boostSync)
+                            if (!local && this.boostSync)
                             {
                                 if (!await this.homey.app.boostSync())
                                 {
@@ -264,7 +229,7 @@ class two_button_on_offDevice extends Device
                 {
                     if (this.executionId && (this.executionId.id === element.execId))
                     {
-                        if (this.boostSync)
+                        if (!local && this.boostSync)
                         {
                             await this.homey.app.unBoostSync();
                         }
