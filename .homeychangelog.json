@@ -538,5 +538,8 @@
   },
   "4.0.2": {
     "en": "Added alternate url for certificate validation (SNI)."
+  },
+  "4.0.3": {
+    "en": "Send device log to stdout to assist adding / debugging devices on Homey."
   }
 }
