@@ -544,5 +544,8 @@
   },
   "4.0.4": {
     "en": "Send device log to stdout to assist adding / debugging devices on Homey."
+  },
+  "4.0.5": {
+    "en": "Another attemp at better debugging information for diagnostic logs on Homey."
   }
 }
