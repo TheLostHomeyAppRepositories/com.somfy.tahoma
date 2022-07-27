@@ -116,6 +116,9 @@ class myApp extends Homey.App
         {
             // Homey cloud or Bridge so no LAN access
             this.tahomaLocal = null;
+
+            // Enable logging for Homey cloud
+            this.infoLogEnabled = true;
         }
 
         this.tahomaCloud = new Tahoma(this.homey, false);

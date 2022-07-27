@@ -547,5 +547,8 @@
   },
   "4.0.5": {
     "en": "Another attemp at better debugging information for diagnostic logs on Homey."
+  },
+  "4.0.6": {
+    "en": "Enable full logging for Homey (cloud)."
   }
 }
