@@ -210,10 +210,9 @@ class myApp extends Homey.App
         } );
 
         let results = this.discoveryStrategy.getDiscoveryResults();
-        this.log( "Got mDNS result:", this.varToString(results) );
-
         for (const result in results)
         {
+            this.log( "Got mDNS result:", this.varToString(results[result]) );
             this.mDNSBridgesUpdate( results[result] );
         }
 
@@ -880,56 +879,59 @@ class myApp extends Homey.App
 
         this.error(`${source}, ${data}`);
 
-        try
+        if (this.homeyIP)
         {
-            if (error)
+            try
             {
-                if (error.stack)
+                if (error)
                 {
-                    data = {
-                        message: error.message,
-                        stack: error.stack,
-                    };
+                    if (error.stack)
+                    {
+                        data = {
+                            message: error.message,
+                            stack: error.stack,
+                        };
+                    }
+                    else if (error.message)
+                    {
+                        data = error.message;
+                    }
+                    else
+                    {
+                        data = error;
+                    }
                 }
-                else if (error.message)
+
+                let logData = this.homey.settings.get('infoLog');
+                if (!Array.isArray(logData))
                 {
-                    data = error.message;
+                    logData = [];
                 }
-                else
+
+                // Calculate time since last log message
+                const nowTime = new Date(Date.now());
+                const timeDiff = (nowTime.getTime() - this.lastLogTime.getTime()) / 1000;
+                this.lastLogTime = nowTime;
+
+                logData.push(
                 {
-                    data = error;
+                    time: nowTime.toJSON(),
+                    elapsed: timeDiff,
+                    source,
+                    data,
+                },
+                );
+
+                if (logData && logData.length > 100)
+                {
+                    logData.splice(0, 1);
                 }
+                this.homey.settings.set('infoLog', logData);
             }
-
-            let logData = this.homey.settings.get('infoLog');
-            if (!Array.isArray(logData))
+            catch (err)
             {
-                logData = [];
+                this.log(err);
             }
-
-            // Calculate time since last log message
-            const nowTime = new Date(Date.now());
-            const timeDiff = (nowTime.getTime() - this.lastLogTime.getTime()) / 1000;
-            this.lastLogTime = nowTime;
-
-            logData.push(
-            {
-                time: nowTime.toJSON(),
-                elapsed: timeDiff,
-                source,
-                data,
-            },
-            );
-
-            if (logData && logData.length > 100)
-            {
-                logData.splice(0, 1);
-            }
-            this.homey.settings.set('infoLog', logData);
-        }
-        catch (err)
-        {
-            this.log(err);
         }
     }
 
