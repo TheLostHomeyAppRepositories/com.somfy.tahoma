@@ -633,7 +633,7 @@ class WindowCoveringsDevice extends Device
                 {
                     if (!this.hasCapability('my_value'))
                     {
-                        this.addCapability('my_value').catch(this.error);
+                        await this.addCapability('my_value');
                     }
 
                     this.homey.app.logStates(`${this.getName()}: core:Memorized1PositionState = ${myPosition.value}`);
