@@ -30,8 +30,7 @@ class RollerShutterDeviceQuiet extends WindowCoveringsDevice
             this.addCapability('quick_open').catch(this.error);
         }
 
-        this.registerCapabilityListener('quiet_mode',
-            this.onCapabilityQuietMode.bind(this));
+        this.registerCapabilityListener('quiet_mode', this.onCapabilityQuietMode.bind(this));
 
         this.quietMode = this.getCapabilityValue('quiet_mode');
         if (this.quietMode)

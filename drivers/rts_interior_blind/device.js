@@ -5,7 +5,6 @@
 const WindowCoveringsDevice = require('../WindowCoveringsDevice');
 
 /**
- * Device class for exterior venetian blinds with the rts:BlindRTSComponent, rts:HorizontalAwningRTSComponent and rts:RollerShutterRTSComponent controllable name in TaHoma
  * @extends {WindowCoveringsDevice}
  */
 class InteriorBlindDevice extends WindowCoveringsDevice {
@@ -21,10 +20,26 @@ class InteriorBlindDevice extends WindowCoveringsDevice {
             this.removeCapability('windowcoverings_state.rts').catch(this.error);
             this.addCapability('windowcoverings_state').catch(this.error);
         }
-
-        if (!this.hasCapability('my_position'))
+        const dd = this.getData();
+        let controllableName = '';
+        if (dd.controllableName)
         {
-            this.addCapability('my_position').catch(this.error);
+            controllableName = dd.controllableName.toString().toLowerCase();
+        }
+
+        if (controllableName === 'ogp:blind') 
+        {
+            if (this.hasCapability('my_position'))
+            {
+                this.removeCapability('my_position').catch(this.error);
+            }
+        }
+        else
+        {
+            if (!this.hasCapability('my_position'))
+            {
+                this.addCapability('my_position').catch(this.error);
+            }
         }
 
         await super.onInit();

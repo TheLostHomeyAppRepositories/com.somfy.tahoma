@@ -550,5 +550,8 @@
   },
   "4.0.6": {
     "en": "Enable full logging for Homey (cloud)."
+  },
+  "4.0.7": {
+    "en": "Added support for ogp:Blind (RTS) to 'Blind or Shutter (RTS)' device"
   }
 }

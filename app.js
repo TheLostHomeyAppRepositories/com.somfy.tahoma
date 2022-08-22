@@ -240,13 +240,12 @@ class myApp extends Homey.App
                 } );
 
                 let results = this.discoveryStrategy.getDiscoveryResults();
-                if (this.infoLogEnabled)
-                {
-                    this.logInformation( "Got mDNS result", this.varToString(results) );
-                }
-
                 for (const result in results)
                 {
+                    if (this.infoLogEnabled)
+                    {
+                        this.logInformation( "Got mDNS result", this.varToString(results[result]) );
+                    }
                     this.mDNSBridgesUpdate( results[result] );
                 }
             }
