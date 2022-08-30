@@ -6034,6 +6034,8 @@
       },
       "capabilities": [
         "measure_temperature",
+        "measure_temperature.current_target",
+        "target_temperature.manual",
         "target_temperature.comfort_heating",
         "target_temperature.eco_heating",
         "target_temperature.away",
@@ -6050,6 +6052,14 @@
         "rssi"
       ],
       "capabilitiesOptions": {
+        "measure_temperature.current_target": {
+          "title": "Active Target"
+        },
+        "target_temperature.manual": {
+          "min": 5,
+          "max": 26,
+          "title": "Manual Temperature"
+        },
         "target_temperature.comfort_heating": {
           "min": 5,
           "max": 26,

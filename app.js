@@ -842,9 +842,7 @@ class myApp extends Homey.App
                     delete element.creationTime;
                     delete element.lastUpdateTime;
                     delete element.shortcut;
-                    delete element.deviceURL;
                     delete element.placeOID;
-                    element.oid = `temp${i++}`;
                 });
             }
             
@@ -855,9 +853,7 @@ class myApp extends Homey.App
                     delete element.creationTime;
                     delete element.lastUpdateTime;
                     delete element.shortcut;
-                    delete element.deviceURL;
                     delete element.placeOID;
-                    element.oid = `temp${i++}`;
                 });
             }
         }
@@ -1615,9 +1611,9 @@ class myApp extends Homey.App
         }
     }
 
-    async executeDeviceAction(label, deviceURL, action, boostSync)
+    async executeDeviceAction(label, deviceURL, action, boostSync, forceCloud)
     {
-        if (this.tahomaLocal && this.tahomaLocal.authenticated && this.tahomaLocal.supportedDevices)
+        if (!forceCloud && this.tahomaLocal && this.tahomaLocal.authenticated && this.tahomaLocal.supportedDevices)
         {
             if (this.tahomaLocal.supportedDevices.findIndex(element => element.deviceURL === deviceURL) >= 0)
             {
@@ -1635,8 +1631,10 @@ class myApp extends Homey.App
             {
                 this.boostSync();
             }
-        return data;
+            return data;
         }
+
+        return null;
     }
 
     async getDeviceStates(deviceURL)
@@ -1653,6 +1651,8 @@ class myApp extends Homey.App
         {
             return this.tahomaCloud.getDeviceStates(deviceURL);
         }
+
+        return null;
     }
 
     async getDeviceData()
@@ -1672,14 +1672,24 @@ class myApp extends Homey.App
         return data;
     }
 
-    isLocalDevice(deviceURL)
+    isLocalDevice(deviceURL, combineSubURLs)
     {
         if (this.tahomaLocal && this.tahomaLocal.authenticated && this.tahomaLocal.supportedDevices)
         {
             // Check if the local connection supports the device
-            if (this.tahomaLocal.supportedDevices.findIndex(element => element.deviceURL === deviceURL) >= 0)
+            if (combineSubURLs)
             {
-                return true;
+                if (this.tahomaLocal.supportedDevices.findIndex(element => element.deviceURL.startsWith(deviceURL)))
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                if (this.tahomaLocal.supportedDevices.findIndex(element => element.deviceURL === deviceURL) >= 0)
+                {
+                    return true;
+                }
             }
         }
 

@@ -9,7 +9,11 @@ const CapabilitiesXRef = [
         homeyName: 'measure_temperature',
         somfyNameGet: 'core:TemperatureState',
         somfyNameSet: [],
-        somfyArray: 0,
+    },
+    {
+        homeyName: 'measure_temperature.current_target',
+        somfyNameGet: 'core:TargetTemperatureState',
+        somfyNameSet: [],
     },
     {
         homeyName: 'target_temperature.comfort_heating',
@@ -53,6 +57,11 @@ const CapabilitiesXRef = [
         somfyNameSet: [],
     },
     {
+        homeyName: 'derogation_mode',
+        somfyNameGet: 'io:CurrentHeatingModeState',
+        somfyNameSet: [],
+    },
+    {
         homeyName: 'valve_operating_mode_state',
         somfyNameGet: 'core:OperatingModeState',
         somfyNameSet: [],
@@ -64,19 +73,30 @@ const CapabilitiesXRef = [
         somfyNameSet: [0, 'exitDerogation'],
         conversions: { 'auto (schedule)': 'auto' },
         compare: ['inactive', 'auto'],
-        parameters: [],
+        parameters: '',
         otherCapability: ['derogation_mode'],
     },
     {
         homeyName: 'derogation_mode',
         somfyNameGet: 'io:DerogationHeatingModeState',
         somfyNameSet: ['setDerogation'],
+        somfySetGroup: ['Mode'],
+        illegalSetValues: ['manual'],
+        illegalAlternative: ['target_temperature.manual'],
+        somfyArray: 0,
+    },
+    {
+        homeyName: 'target_temperature.manual',
+        somfyNameGet: 'io:ManualModeTargetTemperatureState',
+        somfyNameSet: ['setDerogation'],
+        somfySetGroup: ['Temperature'],
         somfyArray: 0,
     },
     {
         homeyName: 'derogation_type',
         somfyNameGet: 'io:DerogationTypeState',
         somfyNameSet: ['setDerogation'],
+        somfySetGroup: ['Mode', 'Temperature'],
         somfyArray: 1,
     },
     {
@@ -102,6 +122,7 @@ class ValveHeatingDevice extends SensorDevice
 
     async onInit()
     {
+        this.combineSubURLs = true;
         await super.onInit(CapabilitiesXRef);
         this.boostSync = true;
     }
@@ -126,12 +147,35 @@ class ValveHeatingDevice extends SensorDevice
                 return;
             }
 
-            const applicableEntries = CapabilitiesXRef.filter(entry => entry.somfyNameSet[0] === capabilityXRef.somfyNameSet[0]).sort((a, b) => a.somfyArray - b.somfyArray);
+            let applicableEntries = CapabilitiesXRef.filter(entry => entry.somfyNameSet[0] === capabilityXRef.somfyNameSet[0]).sort((a, b) => a.somfyArray - b.somfyArray);
+
+            if (capabilityXRef.somfySetGroup)
+            {
+                let applicableEntries2 = applicableEntries.filter(entry => (entry.somfySetGroup.indexOf(capabilityXRef.somfySetGroup[0]) >= 0));
+                applicableEntries = applicableEntries2;
+            }
 
             const somfyValues = [];
             for (const element of applicableEntries)
             {
-                somfyValues.push(element.homeyName === capabilityXRef.homeyName ? value : this.getCapabilityValue(element.homeyName));
+                let itemValue = element.homeyName === capabilityXRef.homeyName ? value : this.getCapabilityValue(element.homeyName);
+                if (element.illegalSetValues)
+                {
+                    const idx = element.illegalSetValues.indexOf(itemValue);
+                    if (idx >= 0)
+                    {
+                        // The value is not allowed to be set
+                        if (this.hasCapability(element.illegalAlternative[idx]))
+                        {
+                            itemValue = this.getCapabilityValue(element.illegalAlternative[idx]);
+                        }
+                        else
+                        {
+                            itemValue = element.illegalAlternative[idx];
+                        }
+                    }
+                }
+                somfyValues.push(itemValue);
             }
 
             const deviceData = this.getData();
@@ -158,35 +202,43 @@ class ValveHeatingDevice extends SensorDevice
                 parameters: somfyValues,
             };
 
-            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            if (result)
+            try
             {
-                if (result.errorCode)
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync, true);
+                if (result)
                 {
-                    this.homey.app.logInformation(this.getName(),
+                    if (result.errorCode)
                     {
-                        message: result.error,
-                        stack: result.errorCode,
-                    });
-                    throw (new Error(result.error));
-                }
-                else
-                {
-                    const idx = this.executionCommands.findIndex(element => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
-                    if (idx < 0)
-                    {
-                        this.executionCommands.push({ id: result.execId, name: action.name });
+                        this.homey.app.logInformation(this.getName(),
+                        {
+                            message: result.error,
+                            stack: result.errorCode,
+                        });
+                        throw (new Error(result.error));
                     }
                     else
                     {
-                        await this.homey.app.unBoostSync();
+                        const idx = this.executionCommands.findIndex(element => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
+                        if (idx < 0)
+                        {
+                            this.executionCommands.push({ id: result.execId, name: action.name, local: result.local });
+                        }
+                        else
+                        {
+                            await this.homey.app.unBoostSync();
+                        }
                     }
                 }
+                else
+                {
+                    this.homey.app.logInformation(`${this.getName()}: onCapability ${capabilityXRef.somfyNameSet[0]}`, 'Failed to send command');
+                    throw (new Error('Failed to send command'));
+                }
             }
-            else
+            catch (err)
             {
-                this.homey.app.logInformation(`${this.getName()}: onCapability ${capabilityXRef.somfyNameSet[0]}`, 'Failed to send command');
-                throw (new Error('Failed to send command'));
+                this.homey.app.logInformation(`${this.getName()}: onCapability ${capabilityXRef.somfyNameSet[0]}`, `Failed to send command (${err.message})`);
+                throw (err);
             }
         }
         else

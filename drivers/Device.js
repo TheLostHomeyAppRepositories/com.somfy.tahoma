@@ -2,6 +2,7 @@
 
 'use strict';
 
+const { isArray } = require('axios/lib/utils');
 const Homey = require('homey');
 /**
  * Base class for devices
@@ -147,7 +148,7 @@ class Device extends Homey.Device
                 }
                 else
                 {
-                    somfyValue = somfyValue === '' ? [] : [somfyValue];
+                    somfyValue = somfyValue === '' ? null : [somfyValue];
                 }
             }
 
@@ -189,10 +190,20 @@ class Device extends Homey.Device
                 return;
             }
 
-            const action = {
-                name: capabilityXRef.somfyNameSet[cmdIdx],
-                parameters: somfyValue,
-            };
+            let action;
+            if ((somfyValue === null) || (isArray(somfyValue) && somfyValue.length === 0))
+            {
+                action = {
+                    name: capabilityXRef.somfyNameSet[cmdIdx]
+                };
+            }
+            else
+            {
+                action = {
+                    name: capabilityXRef.somfyNameSet[cmdIdx],
+                    parameters: somfyValue,
+                };
+            }
 
             let action2;
             if (capabilityXRef.secondaryCommand && capabilityXRef.secondaryCommand[somfyValue])
@@ -231,7 +242,7 @@ class Device extends Homey.Device
                     if (idx < 0)
                     {
                         // Add the command reference to the executing array
-                        this.executionCommands.push({ id: result.execId, name: action.name });
+                        this.executionCommands.push({ id: result.execId, name: action.name, local: result.local });
                     }
                     else
                     {
@@ -409,9 +420,19 @@ class Device extends Homey.Device
             return;
         }
 
-        // get the url without the #1 on the end
-        const myURL = this.getDeviceUrl(0);
-        if (!local && this.homey.app.isLocalDevice(myURL))
+        // get the url including the #n on the end if there is one
+        let myURL;
+        if (this.combineSubURLs)
+        {
+            // get the url without the #1 on the end
+            myURL = this.getDeviceUrl(0);
+        }
+        else
+        {
+            myURL = this.getDeviceUrl();
+        }
+
+        if (!local && this.homey.app.isLocalDevice(myURL, this.combineSubURLs))
         {
             // This device is handled locally so ignore cloud updates
             return;
