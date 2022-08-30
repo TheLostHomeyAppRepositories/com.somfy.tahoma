@@ -872,7 +872,7 @@ class myApp extends Homey.App
             data = this.varToString(error);
         }
 
-        this.error(`${source}, ${data}`);
+        this.homey.error(`${source}, ${data}`);
 
         if (this.homeyIP)
         {
