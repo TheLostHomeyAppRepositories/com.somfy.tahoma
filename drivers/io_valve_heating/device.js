@@ -123,6 +123,15 @@ class ValveHeatingDevice extends SensorDevice
     async onInit()
     {
         this.combineSubURLs = true;
+        if (!this.hasCapability('measure_temperature.current_target'))
+        {
+            this.addCapability('measure_temperature.current_target');
+        }
+        if (!this.hasCapability('target_temperature.manual'))
+        {
+            this.addCapability('target_temperature.manual');
+        }
+
         await super.onInit(CapabilitiesXRef);
         this.boostSync = true;
     }

@@ -553,5 +553,8 @@
   },
   "4.0.7": {
     "en": "Added support for ogp:Blind (RTS) to 'Blind or Shutter (RTS)' device"
+  },
+  "4.0.8": {
+    "en": "Fix for radiator valve when using local access. Change log function for Homey compatability"
   }
 }
