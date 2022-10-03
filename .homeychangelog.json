@@ -556,5 +556,11 @@
   },
   "4.0.8": {
     "en": "Fix for radiator valve when using local access. Change log function for Homey compatibility"
+  },
+  "4.0.8": {
+    "en": "Fix for radiator valve when using local access. Change log function for Homey compatibility"
+  },
+  "4.0.9": {
+    "en": "Added Heating Mode Changed and Set Heating Mode flow cards to the Pilot Wire programmer"
   }
 }
