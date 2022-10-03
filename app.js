@@ -677,6 +677,13 @@ class myApp extends Homey.App
                 await args.device.onCapabilityHeatingModeState(args.state, null);
                 return args.device.setCapabilityValue('heating_mode', args.state);
             });
+
+            this.homey.flow.getActionCard('set_heating_level2_state')
+            .registerRunListener(async (args, state) =>
+            {
+                this.log('set_heating_level2_state');
+                return args.device.triggerCapabilityListener('heating_level2_state', args.state);
+            });
     }
 
     hashCode(s)

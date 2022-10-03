@@ -1,29 +1,22 @@
 {
     "triggers": [
         {
-            "id": "heating_mode_changed",
+            "id": "heating_level2_state_changed",
             "title": {
                 "en": "The heating mode changed"
             },
             "titleFormatted": {
-                "en": "The heating mode changed to [[heating_mode]]"
+                "en": "The heating mode changed to [[heating_level2_state]]"
             },
             "args": [
                 {
-                    "name": "heating_mode",
+                    "name": "heating_level2_state",
                     "type": "dropdown",
                     "title": {
                         "en": "Heating Mode",
                         "nl": "Verwarmingsmodus"
                     },
                     "values": [
-                        {
-                            "id": "auto",
-                            "title": {
-                                "en": "Automatic",
-                                "nl": "Automatisch"
-                            }
-                        },
                         {
                             "id": "comfort",
                             "title": {
@@ -37,16 +30,17 @@
                             }
                         },
                         {
-                            "id": "free",
+                            "id": "frostprotection",
                             "title": {
-                                "en": "Free",
-                                "nl": "Vrij"
+                                "en": "Frost Protection",
+                                "nl": "Vorstbescherming"
                             }
                         },
                         {
-                            "id": "secured",
+                            "id": "off",
                             "title": {
-                                "en": "Secured"
+                                "en": "Off",
+                                "nl": "Uit"
                             }
                         }
                     ]
@@ -56,7 +50,7 @@
     ],
     "actions": [
         {
-            "id": "set_heating_mode",
+            "id": "set_heating_level2_state",
             "title": {
                 "en": "Set the heating mode"
             },
@@ -73,13 +67,6 @@
                     },
                     "values": [
                         {
-                            "id": "auto",
-                            "title": {
-                                "en": "Automatic",
-                                "nl": "Automatisch"
-                            }
-                        },
-                        {
                             "id": "comfort",
                             "title": {
                                 "en": "Comfort"
@@ -92,16 +79,17 @@
                             }
                         },
                         {
-                            "id": "free",
+                            "id": "frostprotection",
                             "title": {
-                                "en": "Free",
-                                "nl": "Vrij"
+                                "en": "Frost Protection",
+                                "nl": "Vorstbescherming"
                             }
                         },
                         {
-                            "id": "secured",
+                            "id": "off",
                             "title": {
-                                "en": "Secured"
+                                "en": "Off",
+                                "nl": "Uit"
                             }
                         }
                     ]
