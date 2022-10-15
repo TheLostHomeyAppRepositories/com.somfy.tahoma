@@ -1256,7 +1256,11 @@ class myApp extends Homey.App
         {
             this.logInformation('stopSync', 'Stopping Event Polling');
         }
-        await this.tahomaCloud.eventsClearRegistered();
+        
+        if (this.tahomaCloud)
+        {
+            await this.tahomaCloud.eventsClearRegistered();
+        }
         if (this.tahomaLocal)
         {
             await this.tahomaLocal.eventsClearRegistered();
