@@ -699,11 +699,11 @@ class myApp extends Homey.App
     // Throws an exception if the login fails
     async newLogin(args)
     {
-        await this.newLogin_2(args.username, args.password, args.linkurl, false);
+        await this.newLogin_2(args.username, args.password, args.linkurl);
     }
 
     // Throws an exception if the login fails
-    async newLogin_2(username, password, linkurl, ignoreBlock)
+    async newLogin_2(username, password, linkurl)
     {
         // Stop the timer so periodic updates don't happen while changing login
         await this.stopSync();
@@ -730,7 +730,7 @@ class myApp extends Homey.App
         // Login with supplied credentials. An error is thrown if the login fails
         try
         {
-            await this.tahomaCloud.login(username, password, linkurl, loginMethod, ignoreBlock);
+            await this.tahomaCloud.login(username, password, linkurl, loginMethod, this.homeyIP);
         }
         catch (error)
         {
@@ -743,7 +743,7 @@ class myApp extends Homey.App
         if (!this.tahomaCloud.authenticated)
         {
             // Try once more with the alternative method but let an error break us out of here
-            await this.tahomaCloud.login(username, password, linkurl, loginMethod, ignoreBlock);
+            await this.tahomaCloud.login(username, password, linkurl, loginMethod, this.homeyIP);
         }
 
         if (this.tahomaCloud.authenticated)
@@ -1076,7 +1076,7 @@ class myApp extends Homey.App
                 this.logInformation('initSync', 'Starting');
             }
 
-            return await this.newLogin_2(username, password, 'default', false);
+            return await this.newLogin_2(username, password, 'default');
         }
         catch (error)
         {

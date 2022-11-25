@@ -13,7 +13,7 @@
   "description": {
     "en": "The heart of your Smart Home"
   },
-  "version": "4.0.11",
+  "version": "4.0.12",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Adrian Rockall",
@@ -4944,6 +4944,39 @@
             "en": "Reverse the position control.",
             "nl": "Draai de positieregeling om."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "blinds",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_exterior_venetian_blind"
@@ -5049,6 +5082,39 @@
             "en": "Reverse the position control.",
             "nl": "Draai de positieregeling om."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "blinds",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_garage_door"
@@ -5141,6 +5207,39 @@
             "en": "Reverse the Up / Down direction controls",
             "nl": "Draai de bedieningselementen omhoog/omlaag om"
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "blinds",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_garage_door_partial"
@@ -5339,6 +5438,39 @@
             "en": "Reverse the position control.",
             "nl": "Draai de positieregeling om."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "sunshade",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_horizontal_awning"
@@ -5766,6 +5898,39 @@
             "en": "Reverse the position control.",
             "nl": "Draai de positieregeling om."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "sunshade",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_pergola"
@@ -5887,6 +6052,39 @@
             "en": "Reverse the position control.",
             "nl": "Draai de positieregeling om."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "blinds",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_roller_shutter"
@@ -6009,6 +6207,39 @@
             "en": "Reverse the position control.",
             "nl": "Draai de positieregeling om."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "blinds",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_roller_shutter_quiet"
@@ -6087,6 +6318,29 @@
       "capabilities": [
         "pedestrian",
         "windowcoverings_state"
+      ],
+      "settings": [
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "other",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "other",
+              "label": "Generic class"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
+        }
       ],
       "id": "io_sliding_gate"
     },
@@ -6419,6 +6673,39 @@
             "en": "Reverse the position control.",
             "nl": "Draai de positieregeling om."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "sunshade",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_velux_interior_blind"
@@ -6539,6 +6826,39 @@
             "en": "Reverse the position control.",
             "nl": "Draai de positieregeling om."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "blinds",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_velux_roller_shutter"
@@ -6659,6 +6979,39 @@
             "en": "Reverse the position control.",
             "nl": "Draai de positieregeling om."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "windowcoverings",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_velux_roof_window"
@@ -6779,6 +7132,39 @@
             "en": "Reverse the position control.",
             "nl": "Draai de positieregeling om."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "sunshade",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_vertical_exterior_blind"
@@ -6898,6 +7284,39 @@
             "en": "Reverse the position control.",
             "nl": "Draai de positieregeling om."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "blinds",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_vertical_interior_blind"
@@ -7631,6 +8050,39 @@
               }
             }
           ]
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "other",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "rts_gate_opener"
@@ -7724,6 +8176,39 @@
             "en": "Reverse the Up / Down direction controls",
             "nl": "Draai de bedieningselementen omhoog/omlaag om"
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "sunshade",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "rts_horizontal_awning"
@@ -7816,6 +8301,39 @@
             "en": "Reverse the Up / Down direction controls",
             "nl": "Draai de bedieningselementen omhoog/omlaag om"
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "blinds",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "rts_interior_blind"
@@ -7909,6 +8427,39 @@
             "en": "Reverse the Up / Down direction controls",
             "nl": "Draai de bedieningselementen omhoog/omlaag om"
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "curtain",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "rts_interior_curtain"
@@ -8004,6 +8555,39 @@
             "en": "Reverse the Up / Down direction controls",
             "nl": "Draai de bedieningselementen omhoog/omlaag om"
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "blinds",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "rts_interior_venetian_blind"

@@ -18,6 +18,12 @@ class WindowCoveringsDevice extends Device
             this.driver.lock_state_changedTrigger = this.homey.flow.getDeviceTriggerCard('lock_state_changed');
         }
 
+        let classType = this.getSetting('classType');
+        if (classType === null)
+        {
+            this.setSetting('classType', this.getClass());
+        }
+
         this.invertPosition = this.getSetting('invertPosition');
         if (this.invertPosition === null)
         {
@@ -137,6 +143,11 @@ class WindowCoveringsDevice extends Device
         if (changedKeys.indexOf('invertPosition') >= 0)
         {
             this.invertPosition = newSettings.invertPosition;
+        }
+
+        if (changedKeys.indexOf('classType') >= 0)
+        {
+            this.setClass(newSettings.classType);
         }
     }
 

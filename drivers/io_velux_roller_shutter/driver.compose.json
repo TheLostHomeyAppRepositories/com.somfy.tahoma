@@ -48,6 +48,39 @@
         "en": "Reverse the position control.",
         "nl": "Draai de positieregeling om."
       }
+    },
+    {
+      "id": "classType",
+      "type": "dropdown",
+      "label": {
+        "en": "Device Class"
+      },
+      "value": "blinds",
+      "hint": {
+        "en": "Set the Homey class."
+      },
+      "values":[
+        {
+            "id": "windowcoverings",
+            "label": "Generic window covering"
+        },
+        {
+            "id": "blinds",
+            "label": "Blinds"
+        },
+        {
+            "id": "curtain",
+            "label": "Curtain"
+        },
+        {
+            "id": "sunshade",
+            "label": "Sunshade"
+        },
+        {
+            "id": "garagedoor",
+            "label": "Garage door"
+        }
+      ]
     }
   ],
   "$extends": ["cloudDriver"]

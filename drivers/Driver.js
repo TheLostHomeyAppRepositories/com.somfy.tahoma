@@ -45,7 +45,7 @@ class Driver extends Homey.Driver
         {
             username = data.username;
             password = data.password;
-            const credentialsAreValid = await this.homey.app.newLogin_2(username, password, linkurl, true);
+            const credentialsAreValid = await this.homey.app.newLogin_2(username, password, linkurl);
 
             // return true to continue adding the device if the login succeeded
             // return false to indicate to the user the login attempt failed
@@ -87,7 +87,7 @@ class Driver extends Homey.Driver
         {
             username = data.username;
             password = data.password;
-            const credentialsAreValid = await this.homey.app.newLogin_2(username, password, linkurl, true);
+            const credentialsAreValid = await this.homey.app.newLogin_2(username, password, linkurl);
 
             // return true to continue adding the device if the login succeeded
             // return false to indicate to the user the login attempt failed

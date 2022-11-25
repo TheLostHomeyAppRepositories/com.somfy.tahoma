@@ -565,5 +565,8 @@
   },
   "4.0.11": {
     "en": "Fixed a couple of Date issues"
+  },
+  "4.0.12": {
+    "en": "Add setting to set the class type for window covering, etc."
   }
 }

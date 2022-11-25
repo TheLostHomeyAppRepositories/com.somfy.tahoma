@@ -7,5 +7,28 @@
     "pedestrian",
     "windowcoverings_state"
   ],
+  "settings": [
+    {
+      "id": "classType",
+      "type": "dropdown",
+      "label": {
+        "en": "Device Class"
+      },
+      "value": "other",
+      "hint": {
+        "en": "Set the Homey class."
+      },
+      "values":[
+        {
+            "id": "other",
+            "label": "Generic class"
+        },
+        {
+            "id": "garagedoor",
+            "label": "Garage door"
+        }
+      ]
+    }
+  ],
   "$extends": ["cloudDriver"]
 }
