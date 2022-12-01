@@ -568,5 +568,8 @@
   },
   "4.0.12": {
     "en": "Add setting to set the class type for window covering, etc."
+  },
+  "4.0.13": {
+    "en": "Fix issue with diagnostic GetDevices when no local connection is available."
   }
 }

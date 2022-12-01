@@ -791,7 +791,7 @@ class myApp extends Homey.App
             this.logInformation('logDevices', 'Fetching devices');
         }
 
-        const devices = { 'cloud': {}, 'local': { 'ip': this.localBridgeInfo.address } };
+        const devices = { 'cloud': {}, 'local': { 'ip': this.localBridgeInfo ? this.localBridgeInfo.address : null } };
         let cloudDevices = null;
         let localDevices = null;
         if (this.tahomaCloud.authenticated)
