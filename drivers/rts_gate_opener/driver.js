@@ -13,7 +13,7 @@ class rtsGateOpenerDriver extends Driver
 
     async onInit()
     {
-        this.deviceType = ['rts:GateOpenerRTSComponent', 'rts:GarageDoorRTSComponent'];
+        this.deviceType = ['rts:GateOpenerRTSComponent', 'rts:GarageDoorRTSComponent', 'ogp:GarageDoor'];
         await super.onInit();
     }
 

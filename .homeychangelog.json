@@ -571,5 +571,8 @@
   },
   "4.0.13": {
     "en": "Fix issue with diagnostic GetDevices when no local connection is available."
+  },
+  "4.0.14": {
+    "en": "Added ogp:GarageDoor to RTS Gate / Garage door."
   }
 }
