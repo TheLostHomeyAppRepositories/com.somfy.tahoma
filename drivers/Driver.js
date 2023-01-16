@@ -101,7 +101,7 @@ class Driver extends Homey.Driver
         try
         {
             const devices = await this.homey.app.getDeviceData();
-            this.log(this.homey.app.varToString(devices));
+            this.homey.log(this.homey.app.varToString(devices));
             if (devices)
             {
                 this.log('setup resolve');
