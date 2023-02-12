@@ -577,5 +577,8 @@
   },
   "4.0.15": {
     "en": "Log device fetch when adding a device to this.homey.log to see if it will be captured by the built in diagnostic report."
+  },
+  "4.0.16": {
+    "en": "Added ogp:gate under 'Gate / Garage Door Opener (RTS)'."
   }
 }
