@@ -580,5 +580,8 @@
   },
   "4.0.16": {
     "en": "Added ogp:gate under 'Gate / Garage Door Opener (RTS)'."
+  },
+  "4.0.17": {
+    "en": "Added io:PergolaHorizontalUnoIOComponent under 'Awning / Pergola (io)'."
   }
 }
