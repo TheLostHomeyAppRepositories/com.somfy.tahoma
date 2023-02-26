@@ -13,7 +13,7 @@ class WhiteTemperatureLightControllerDriver extends Driver
 
     async onInit()
     {
-        this.deviceType = ['hue:ColorTemperatureLightBulbHUEComponent', 'hue:ColorTemperatureLightSpotHUEComponent'];
+        this.deviceType = ['hue:ColorTemperatureLightBulbHUEComponent', 'hue:ColorTemperatureLightSpotHUEComponent', 'io:DimmableColorTemperatureLightIOComponent'];
         await super.onInit();
     }
 
