@@ -585,6 +585,6 @@
     "en": "Added io:PergolaHorizontalUnoIOComponent under 'Awning / Pergola (io)'."
   },
   "4.0.18": {
-    "en": "Added io:DimmableColorTemperatureLightIOComponent under 'Tunable White light'."
+    "en": "Added io:DimmableColorTemperatureLightIOComponent under 'Tuneable White light'."
   }
 }
