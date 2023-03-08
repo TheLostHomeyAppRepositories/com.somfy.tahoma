@@ -48,8 +48,8 @@
     ]
   },
   "images": {
-    "small": "assets/images/small.png",
-    "large": "assets/images/large.png"
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png"
   },
   "category": [
     "appliances",

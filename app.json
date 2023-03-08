@@ -49,8 +49,8 @@
     ]
   },
   "images": {
-    "small": "assets/images/small.png",
-    "large": "assets/images/large.png"
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png"
   },
   "category": [
     "appliances",
@@ -9081,7 +9081,7 @@
         "small": "/drivers/white_temperature_light/assets/images/small.png"
       },
       "name": {
-        "en": "Tunable White light",
+        "en": "Tuneable White light",
         "nl": "Afstembaar wit licht"
       },
       "class": "light",
