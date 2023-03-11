@@ -191,7 +191,14 @@ class Device extends Homey.Device
             }
 
             let action;
-            if ((somfyValue === null) || (isArray(somfyValue) && somfyValue.length === 0))
+            if (capabilityXRef.ignoreValue)
+            {
+                action = {
+                    name: capabilityXRef.somfyNameSet[cmdIdx],
+                    parameters: [],
+                };
+            }
+            else if ((somfyValue === null) || (isArray(somfyValue) && somfyValue.length === 0))
             {
                 action = {
                     name: capabilityXRef.somfyNameSet[cmdIdx]
@@ -215,7 +222,7 @@ class Device extends Homey.Device
             let result = null;
             try
             {
-                result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, action2, this.boostSync);
+                result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync, action2);
             }
             catch (err)
             {

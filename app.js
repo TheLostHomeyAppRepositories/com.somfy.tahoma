@@ -36,10 +36,16 @@ class myApp extends Homey.App
 
         this.localBridgeInfo = this.homey.settings.get('localBridge');
         this.localBearer = this.homey.settings.get('localBearer');
+        this.usingDebugData = false;
 
         if (process.env.DEBUG === '1')
         {
             this.homey.settings.set('debugMode', true);
+            const simData = this.homey.settings.get('simData');
+            if (simData)
+            {
+                this.usingDebugData = true;
+            }
         }
         else
         {
@@ -100,6 +106,16 @@ class myApp extends Homey.App
             }
             else if (setting === 'simData')
             {
+                const simData = this.homey.settings.get('simData');
+                if (simData)
+                {
+                    this.usingDebugData = true;
+                }
+                else
+                {
+                    this.usingDebugData = false;
+                }
+
                 this.syncEvents(null);
             }
         });
@@ -1631,21 +1647,23 @@ class myApp extends Homey.App
         }
     }
 
-    async executeDeviceAction(label, deviceURL, action, boostSync, forceCloud)
+    async executeDeviceAction(label, deviceURL, action, boostSync, action2 = null, forceCloud = false)
     {
+        this.logInformation(`${label}: Send command ${deviceURL}`, `command: ${this.varToString(action)}`);
+
         if (!forceCloud && this.tahomaLocal && this.tahomaLocal.authenticated && this.tahomaLocal.supportedDevices)
         {
             if (this.tahomaLocal.supportedDevices.findIndex(element => element.deviceURL === deviceURL) >= 0)
             {
-                let data = await this.tahomaLocal.executeDeviceAction(label, deviceURL, action);
+                let data = await this.tahomaLocal.executeDeviceAction(label, deviceURL, action, action2);
                 data.local = true;
                 return data;
             }
         }
 
-        if (this.tahomaCloud.authenticated)
+        if (this.tahomaCloud.authenticated && !this.usingDebugData)
         {
-            let data = this.tahomaCloud.executeDeviceAction(label, deviceURL, action);
+            let data = this.tahomaCloud.executeDeviceAction(label, deviceURL, action, action2);
             data.local = false;
             if (boostSync)
             {
@@ -1667,7 +1685,7 @@ class myApp extends Homey.App
                 return this.tahomaLocal.getDeviceStates(deviceURL);
             }
         }
-        if (this.tahomaCloud.authenticated)
+        if (this.tahomaCloud.authenticated && !this.usingDebugData)
         {
             return this.tahomaCloud.getDeviceStates(deviceURL);
         }

@@ -467,7 +467,7 @@ class LightControllerDevice extends Device
             parameters: [value],
         };
 
-        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync, this.boostSync);
+        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
         if (result)
         {
             if (result.errorCode)

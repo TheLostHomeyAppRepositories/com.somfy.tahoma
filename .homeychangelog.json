@@ -586,5 +586,8 @@
   },
   "4.0.18": {
     "en": "Added io:DimmableColorTemperatureLightIOComponent under 'Tuneable White light'."
+  },
+  "4.0.19": {
+    "en": "Added io:DualRollerShutterIOComponent under 'Dual Shutters'. Fixed issue where some local device commands were sent via the cloud."
   }
 }

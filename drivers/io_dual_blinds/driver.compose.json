@@ -1,0 +1,25 @@
+{
+  "name": {
+    "en": "Dual Shutters"
+  },
+  "class": "windowcoverings",
+  "capabilities": [
+    "windowcoverings_set.upper",
+    "windowcoverings_set.lower",
+    "open_button",
+    "close_button"
+  ],
+  "capabilitiesOptions": {
+    "windowcoverings_set.upper": {
+      "title": {
+          "en": "Upper Position"
+      }
+    },
+    "windowcoverings_set.lower": {
+        "title": {
+            "en": "Lower Position"
+        }
+      }
+    },
+  "$extends": ["cloudDriver"]
+}

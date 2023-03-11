@@ -213,7 +213,7 @@ class ValveHeatingDevice extends SensorDevice
 
             try
             {
-                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync, true);
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync, null, true );
                 if (result)
                 {
                     if (result.errorCode)
