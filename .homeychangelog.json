@@ -592,5 +592,8 @@
   },
   "4.0.20": {
     "en": "Added Action Flow cards for the 'Dual Shutters'"
+  },
+  "4.0.21": {
+    "en": "Inverted direct for 'Dual Shutters'"
   }
 }

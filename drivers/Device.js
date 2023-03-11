@@ -135,6 +135,10 @@ class Device extends Homey.Device
                 }
                 else if (capabilityXRef.scale)
                 {
+                    if (capabilityXRef.invert)
+                    {
+                        somfyValue = 1 - somfyValue;
+                    }
                     somfyValue *= capabilityXRef.scale;
                 }
                 else if (capabilityXRef.compare)
@@ -374,6 +378,11 @@ class Device extends Homey.Device
                             }
                             else if (xRefEntry.scale)
                             {
+                                if (capabilityXRef.invert)
+                                {
+                                    value = 1 - value;
+                                }                
+                            
                                 value = (value / xRefEntry.scale);
                             }
 
@@ -522,6 +531,10 @@ class Device extends Homey.Device
                                 }
                                 else if (xRefEntry.scale)
                                 {
+                                    if (capabilityXRef.invert)
+                                    {
+                                        deviceValue = 1 - deviceValue;
+                                    }                
                                     newState = deviceValue ? (deviceValue / xRefEntry.scale) : 0;
                                 }
     

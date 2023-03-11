@@ -14,12 +14,14 @@ const CapabilitiesXRef = [
         somfyNameGet: 'core:UpperClosureState',
         somfyNameSet: ['setUpperClosure'],
         homeyName: 'windowcoverings_set.upper',
+        invert: true,
         scale: 100,
     },
     {
         somfyNameGet: 'core:LowerClosureState',
         somfyNameSet: ['setLowerClosure'],
         homeyName: 'windowcoverings_set.lower',
+        invert: true,
         scale: 100,
     },
     {
