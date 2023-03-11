@@ -16,6 +16,7 @@
         },
         {
             "name": "windowcoverings_set",
+            "title": "Position",
             "type": "range",
             "min": 0,
             "max": 1,
