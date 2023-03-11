@@ -589,5 +589,8 @@
   },
   "4.0.19": {
     "en": "Added io:DualRollerShutterIOComponent under 'Dual Shutters'. Fixed issue where some local device commands were sent via the cloud."
+  },
+  "4.0.20": {
+    "en": "Added Action Flow cards for the 'Dual Shutters'"
   }
 }

@@ -1,0 +1,29 @@
+{
+    "title": {
+        "en": "Set the Lower Shutter Position"
+    },
+    "titleFormatted": {
+        "en": "Set the Lower Shutter position to [[windowcoverings_set]]"
+    },
+    "hint": {
+        "en": "Sets lower shutter position"
+    },
+    "args": [
+        {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=io_dual_blinds"
+        },
+        {
+            "name": "windowcoverings_set",
+            "type": "range",
+            "min": 0,
+            "max": 1,
+            "step": 0.01,
+            "value": 0.5,
+            "label": "%",
+            "labelMultiplier": 100,
+            "labelDecimals": 0
+        }
+    ]
+}

@@ -13,7 +13,7 @@
   "description": {
     "en": "The heart of your Smart Home"
   },
-  "version": "4.0.19",
+  "version": "4.0.20",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Adrian Rockall",
@@ -1481,6 +1481,19 @@
         ]
       },
       {
+        "title": {
+          "en": "Close the shutters"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=io_dual_blinds"
+          }
+        ],
+        "id": "set_close"
+      },
+      {
         "id": "set_heat_level",
         "title": {
           "en": "Set the heat level",
@@ -1572,6 +1585,19 @@
         ]
       },
       {
+        "title": {
+          "en": "Open the shutters"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=io_dual_blinds"
+          }
+        ],
+        "id": "set_open"
+      },
+      {
         "id": "set_polling_mode",
         "deprecated": true,
         "title": {
@@ -1649,6 +1675,66 @@
             }
           }
         ]
+      },
+      {
+        "title": {
+          "en": "Set the Lower Shutter Position"
+        },
+        "titleFormatted": {
+          "en": "Set the Lower Shutter position to [[windowcoverings_set]]"
+        },
+        "hint": {
+          "en": "Sets lower shutter position"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=io_dual_blinds"
+          },
+          {
+            "name": "windowcoverings_set",
+            "type": "range",
+            "min": 0,
+            "max": 1,
+            "step": 0.01,
+            "value": 0.5,
+            "label": "%",
+            "labelMultiplier": 100,
+            "labelDecimals": 0
+          }
+        ],
+        "id": "windowcoverings_lower_set"
+      },
+      {
+        "title": {
+          "en": "Set the Upper Shutter Position"
+        },
+        "titleFormatted": {
+          "en": "Set the Upper Shutter position to [[windowcoverings_set]]"
+        },
+        "hint": {
+          "en": "Sets upper shutter position"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=io_dual_blinds"
+          },
+          {
+            "name": "windowcoverings_set",
+            "type": "range",
+            "min": 0,
+            "max": 1,
+            "step": 0.01,
+            "value": 0.5,
+            "label": "%",
+            "labelMultiplier": 100,
+            "labelDecimals": 0
+          }
+        ],
+        "id": "windowcoverings_upper_set"
       },
       {
         "id": "ac_operating_mode_set",

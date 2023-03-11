@@ -694,11 +694,39 @@ class myApp extends Homey.App
                 return args.device.setCapabilityValue('heating_mode', args.state);
             });
 
-            this.homey.flow.getActionCard('set_heating_level2_state')
+        this.homey.flow.getActionCard('set_heating_level2_state')
             .registerRunListener(async (args, state) =>
             {
                 this.log('set_heating_level2_state');
                 return args.device.triggerCapabilityListener('heating_level2_state', args.state);
+            });
+
+        this.homey.flow.getActionCard('windowcoverings_upper_set')
+            .registerRunListener(async (args, state) =>
+            {
+                this.log('windowcoverings_set.upper');
+                return args.device.triggerCapabilityListener('windowcoverings_set.upper', args.windowcoverings_set);
+            });
+
+        this.homey.flow.getActionCard('windowcoverings_lower_set')
+            .registerRunListener(async (args, state) =>
+            {
+                this.log('windowcoverings_set.lower');
+                return args.device.triggerCapabilityListener('windowcoverings_set.lower', args.windowcoverings_set);
+            });
+
+        this.homey.flow.getActionCard('set_open')
+            .registerRunListener(async (args, state) =>
+            {
+                this.log('set_open');
+                return args.device.triggerCapabilityListener('open_button');
+            });
+
+        this.homey.flow.getActionCard('set_close')
+            .registerRunListener(async (args, state) =>
+            {
+                this.log('set_open');
+                return args.device.triggerCapabilityListener('close_button');
             });
     }
 
