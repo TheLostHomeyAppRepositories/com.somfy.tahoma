@@ -167,7 +167,21 @@ class ValveHeatingDevice extends SensorDevice
             const somfyValues = [];
             for (const element of applicableEntries)
             {
-                let itemValue = element.homeyName === capabilityXRef.homeyName ? value : this.getCapabilityValue(element.homeyName);
+                let itemValue = value;
+                if (element.homeyName !== capabilityXRef.homeyName)
+                {
+                    // Entry is not the main value so check if it is the opts
+                    if (opts && opts[element.homeyName])
+                    {
+                        itemValue = opts[element.homeyName];
+                    }
+                    else
+                    {
+                        itemValue = this.getCapabilityValue(element.homeyName);
+                    }
+                }
+                // let itemValue = element.homeyName === capabilityXRef.homeyName ? value : this.getCapabilityValue(element.homeyName);
+
                 if (element.illegalSetValues)
                 {
                     const idx = element.illegalSetValues.indexOf(itemValue);

@@ -378,7 +378,7 @@ class Device extends Homey.Device
                             }
                             else if (xRefEntry.scale)
                             {
-                                if (capabilityXRef.invert)
+                                if (CapabilitiesXRef.invert)
                                 {
                                     value = 1 - value;
                                 }                
@@ -531,7 +531,7 @@ class Device extends Homey.Device
                                 }
                                 else if (xRefEntry.scale)
                                 {
-                                    if (capabilityXRef.invert)
+                                    if (CapabilitiesXRef.invert)
                                     {
                                         deviceValue = 1 - deviceValue;
                                     }                
@@ -608,11 +608,11 @@ class Device extends Homey.Device
                     if (myURL === eventAction.deviceURL)
                     {
                         // Check if this command is already in the execution array
-                        const idx = this.executionCommands.findIndex(element2 => element2.name === eventAction.commands[0].name);
+                        const idx = this.executionCommands.findIndex(element2 => element2.name === eventAction.command);
                         if (idx < 0)
                         {
                             // Not known so record it and boost the events interval
-                            const newIdx = this.executionCommands.push({ id: event.execId, name: eventAction.commands[0].name });
+                            const newIdx = this.executionCommands.push({ id: event.execId, name: eventAction.command });
                             if (!local && this.boostSync)
                             {
                                 if (!await this.homey.app.boostSync())

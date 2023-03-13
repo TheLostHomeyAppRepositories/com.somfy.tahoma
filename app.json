@@ -2705,6 +2705,236 @@
         ]
       },
       {
+        "id": "target_temperature_manual_set",
+        "highlight": true,
+        "title": {
+          "en": "Set the manual temperature until"
+        },
+        "titleFormatted": {
+          "en": "Set the manual temperature to [[target_temperature]] until [[derogation_type]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=io_valve_heating"
+          },
+          {
+            "name": "target_temperature",
+            "title": {
+              "en": "Target temperature"
+            },
+            "type": "range",
+            "min": 5,
+            "max": 40,
+            "step": 0.5,
+            "label": "°C",
+            "labelDecimals": 1
+          },
+          {
+            "name": "derogation_type",
+            "type": "dropdown",
+            "title": {
+              "en": "Until"
+            },
+            "values": [
+              {
+                "id": "further_notice",
+                "title": {
+                  "en": "Further notice",
+                  "nl": "Nadere aankondiging"
+                }
+              },
+              {
+                "id": "next_mode",
+                "title": {
+                  "en": "Next mode change",
+                  "nl": "Volgende modus"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "target_temperature_manual_set_for",
+        "highlight": true,
+        "title": {
+          "en": "Set the manual temperature for"
+        },
+        "titleFormatted": {
+          "en": "Set the manual temperature to [[target_temperature]] for [[days]], [[hours]], [[minutes]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=io_valve_heating"
+          },
+          {
+            "name": "target_temperature",
+            "title": {
+              "en": "Target temperature"
+            },
+            "type": "range",
+            "min": 5,
+            "max": 40,
+            "step": 0.5,
+            "label": "°C",
+            "labelDecimals": 1
+          },
+          {
+            "name": "days",
+            "type": "range",
+            "title": {
+              "en": "Days"
+            },
+            "min": 0,
+            "max": 14,
+            "step": 1,
+            "label": " Days",
+            "labelDecimals": 0
+          },
+          {
+            "name": "hours",
+            "type": "range",
+            "title": {
+              "en": "Hours"
+            },
+            "min": 0,
+            "max": 23,
+            "step": 1,
+            "label": " Hours",
+            "labelDecimals": 0
+          },
+          {
+            "name": "minutes",
+            "type": "range",
+            "title": {
+              "en": "Minutes"
+            },
+            "min": 0,
+            "max": 59,
+            "step": 1,
+            "label": " Minutes",
+            "labelDecimals": 0
+          }
+        ]
+      },
+      {
+        "id": "target_temperature_comfort_heating_set",
+        "highlight": true,
+        "title": {
+          "en": "Set the comfort heating temperature"
+        },
+        "titleFormatted": {
+          "en": "Set the comfort heating temperature to [[target_temperature]] °C"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=io_valve_heating"
+          },
+          {
+            "name": "target_temperature",
+            "title": {
+              "en": "Target temperature"
+            },
+            "type": "range",
+            "min": 5,
+            "max": 40,
+            "step": 0.5,
+            "label": "°C",
+            "labelDecimals": 1
+          }
+        ]
+      },
+      {
+        "id": "target_temperature_eco_heating_set",
+        "title": {
+          "en": "Set the Eco heating temperature"
+        },
+        "titleFormatted": {
+          "en": "Set the Eco heating temperature to [[target_temperature]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=io_valve_heating"
+          },
+          {
+            "name": "target_temperature",
+            "title": {
+              "en": "Target temperature"
+            },
+            "type": "range",
+            "min": 5,
+            "max": 40,
+            "step": 0.5,
+            "label": "°C",
+            "labelDecimals": 1
+          }
+        ]
+      },
+      {
+        "id": "target_temperature_away_set",
+        "title": {
+          "en": "Set the away temperature"
+        },
+        "titleFormatted": {
+          "en": "Set the away temperature to [[target_temperature]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=io_valve_heating"
+          },
+          {
+            "name": "target_temperature",
+            "title": {
+              "en": "Target temperature"
+            },
+            "type": "range",
+            "min": 5,
+            "max": 40,
+            "step": 0.5,
+            "label": "°C",
+            "labelDecimals": 1
+          }
+        ]
+      },
+      {
+        "id": "target_temperature_frost_protection_set",
+        "title": {
+          "en": "Set the frost protection temperature"
+        },
+        "titleFormatted": {
+          "en": "Set the frost protection temperature to [[target_temperature]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=io_valve_heating"
+          },
+          {
+            "name": "target_temperature",
+            "title": {
+              "en": "Target temperature"
+            },
+            "type": "range",
+            "min": 5,
+            "max": 40,
+            "step": 0.5,
+            "label": "°C",
+            "labelDecimals": 1
+          }
+        ]
+      },
+      {
         "id": "set_open_window_activation",
         "title": {
           "en": "Set the open window detection state"
@@ -2846,13 +3076,6 @@
               "en": "Until"
             },
             "values": [
-              {
-                "id": "date",
-                "title": {
-                  "en": "Date",
-                  "nl": "Datum"
-                }
-              },
               {
                 "id": "further_notice",
                 "title": {
@@ -9666,13 +9889,6 @@
         "nl": "Werkend tot"
       },
       "values": [
-        {
-          "id": "date",
-          "title": {
-            "en": "Date",
-            "nl": "Datum"
-          }
-        },
         {
           "id": "further_notice",
           "title": {

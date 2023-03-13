@@ -595,5 +595,8 @@
   },
   "4.0.21": {
     "en": "Inverted direct for 'Dual Shutters'"
+  },
+  "4.0.22": {
+    "en": "Fixed a couple of issues that could cause a crash. Added Flow Action cards for Thermostat set temperature"
   }
 }

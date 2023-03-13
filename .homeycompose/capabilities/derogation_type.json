@@ -6,13 +6,6 @@
   },
   "values": [
     {
-      "id": "date",
-      "title": {
-        "en": "Date",
-        "nl": "Datum"
-      }
-    },
-    {
       "id": "further_notice",
       "title": {
         "en": "Further Notice",

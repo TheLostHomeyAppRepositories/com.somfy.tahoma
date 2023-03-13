@@ -728,7 +728,51 @@ class myApp extends Homey.App
                 this.log('set_open');
                 return args.device.triggerCapabilityListener('close_button');
             });
-    }
+
+        this.homey.flow.getActionCard('target_temperature_manual_set')
+            .registerRunListener(async (args, state) =>
+            {
+                this.log('target_temperature_manual_set');
+                return args.device.triggerCapabilityListener('target_temperature.manual', args.target_temperature, {'derogation_type': args.derogation_type});
+            });
+
+        this.homey.flow.getActionCard('target_temperature_manual_set_for')
+            .registerRunListener(async (args, state) =>
+            {
+                this.log('target_temperature_manual_set_for');
+
+                let duration = (args.days * 86400) + (args.hours * 3600) + (args.minutes * 60);
+                return args.device.triggerCapabilityListener('target_temperature.manual', args.target_temperature, {'derogation_type': duration});
+            });
+
+        this.homey.flow.getActionCard('target_temperature_comfort_heating_set')
+            .registerRunListener(async (args, state) =>
+            {
+                this.log('target_temperature_comfort_heating_set');
+                return args.device.triggerCapabilityListener('target_temperature.comfort_heating', args.target_temperature);
+            });
+
+        this.homey.flow.getActionCard('target_temperature_eco_heating_set')
+            .registerRunListener(async (args, state) =>
+            {
+                this.log('target_temperature_eco_heating_set');
+                return args.device.triggerCapabilityListener('target_temperature.eco_heating', args.target_temperature);
+            });
+
+        this.homey.flow.getActionCard('target_temperature_away_set')
+            .registerRunListener(async (args, state) =>
+            {
+                this.log('target_temperature_away_set');
+                return args.device.triggerCapabilityListener('target_temperature.away'), args.target_temperature;
+            });
+
+        this.homey.flow.getActionCard('target_temperature_frost_protection_set')
+            .registerRunListener(async (args, state) =>
+            {
+                this.log('target_temperature_frost_protection_set');
+                return args.device.triggerCapabilityListener('target_temperature.frost_protection', args.target_temperature);
+            });
+        }
 
     hashCode(s)
     {
