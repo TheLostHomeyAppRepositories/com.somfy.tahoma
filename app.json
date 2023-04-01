@@ -13,7 +13,7 @@
   "description": {
     "en": "The heart of your Smart Home"
   },
-  "version": "4.0.22",
+  "version": "4.0.23",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Adrian Rockall",
@@ -5297,8 +5297,8 @@
         "small": "/drivers/io_exterior_venetian_blind/assets/images/small.png"
       },
       "name": {
-        "en": "Exterior Venetian Blinds (io)",
-        "nl": "Buitenjaloezieën (io)"
+        "en": "Venetian Blinds (io)",
+        "nl": "Venetiaanse jaloezieën (io)"
       },
       "class": "blinds",
       "capabilities": [
