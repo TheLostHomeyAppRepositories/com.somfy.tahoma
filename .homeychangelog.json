@@ -598,5 +598,8 @@
   },
   "4.0.22": {
     "en": "Fixed a couple of issues that could cause a crash. Added Flow Action cards for Thermostat set temperature"
+  },
+  "4.0.23": {
+    "en": "Added support for io:VenetianBlindIOComponent and renamed Exterior Venetian Blind to Venetian Blind as it covers both types."
   }
 }
