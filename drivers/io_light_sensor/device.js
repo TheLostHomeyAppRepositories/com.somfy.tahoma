@@ -29,6 +29,20 @@ class LightSensorDevice extends SensorDevice
 
     async onInit()
     {
+        const dd = this.getData();
+        let controllableName = '';
+        if (dd.controllableName)
+        {
+            controllableName = dd.controllableName.toString().toLowerCase();
+        }
+        if (controllableName === 'io:sunenergyactuatorsensor')
+        {
+            if (this.hasCapability('alarm_battery'))
+            {
+                this.removeCapability('alarm_battery').catch(this.error);
+            }
+        }
+
         await super.onInit(CapabilitiesXRef);
     }
 

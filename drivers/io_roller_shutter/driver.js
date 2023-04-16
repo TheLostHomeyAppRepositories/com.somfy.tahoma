@@ -20,7 +20,8 @@ class RollerShutterDriver extends ioWindowCoveringsDriver
             'io:MicroModuleRollerShutterSomfyIOComponent',
             'io:RollerShutterUnoIOComponent',
             'io:ScreenReceiverUnoIOComponent',
-            'io:RollerShutterWithBatterySomfyIOComponent'
+            'io:RollerShutterWithBatterySomfyIOComponent',
+            'io:DynamicRollerShutterIOComponent'
         ];
 
         await super.onInit();
