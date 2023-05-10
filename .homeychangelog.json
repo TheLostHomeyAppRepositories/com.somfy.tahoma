@@ -604,5 +604,8 @@
   },
   "4.0.24": {
     "en": "Added support for io:DynamicRollerShutterIOComponent under 'Roller shutter (io)'. Added support for io:SunEnergyActuatorSensor under 'Sunis sun sensor (io)'"
+  },
+  "4.0.25": {
+    "en": "Improved error message when no local mode detected. Added eliot:EliotElectricEnergyConsumptionSensor, eliot:RollerShutterEliotComponent, eliot:RemoteEliotComponent. Copied io:DynamicRollerShutterIOComponent to Roller shutter with quiet mode (io)."
   }
 }

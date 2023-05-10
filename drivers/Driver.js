@@ -30,7 +30,7 @@ class Driver extends Homey.Driver
         let password = this.homey.settings.get('password');
         const linkurl = 'default';
 
-        session.setHandler('showView', async view =>
+        session.setHandler('showView', async (view) =>
         {
             if (view === 'login_credentials')
             {
@@ -41,7 +41,7 @@ class Driver extends Homey.Driver
             }
         });
 
-        session.setHandler('login', async data =>
+        session.setHandler('login', async (data) =>
         {
             username = data.username;
             password = data.password;
@@ -83,7 +83,7 @@ class Driver extends Homey.Driver
         //     }
         // });
 
-        session.setHandler('login', async data =>
+        session.setHandler('login', async (data) =>
         {
             username = data.username;
             password = data.password;
@@ -105,7 +105,7 @@ class Driver extends Homey.Driver
             if (devices)
             {
                 this.log('setup resolve');
-                const homeyDevices = devices.filter(device => this.deviceType.indexOf(device.controllableName) !== -1).map(device => (
+                const homeyDevices = devices.filter((device) => this.deviceType.indexOf(device.controllableName) !== -1).map((device) => (
                 {
                     name: device.label,
                     data:
@@ -139,14 +139,14 @@ class Driver extends Homey.Driver
         if (trigger)
         {
             trigger.trigger(device, tokens, state)
-                .then(result =>
+                .then((result) =>
                 {
                     if (result)
                     {
                         this.log(result);
                     }
                 })
-                .catch(error =>
+                .catch((error) =>
                 {
                     this.homey.app.logInformation(`triggerFlow (${trigger.id})`, error);
                 });

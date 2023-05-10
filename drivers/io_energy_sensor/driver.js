@@ -15,7 +15,8 @@ class EnergySensorDriver extends Driver
 
     async onInit()
     {
-        this.deviceType = ['io:TotalElectricalEnergyConsumptionIOSystemSensor',
+        this.deviceType = [
+            'io:TotalElectricalEnergyConsumptionIOSystemSensor',
             'io:TotalElectricalEnergyConsumptionSensor',
             'io:OtherElectricalEnergyConsumptionSensor',
             'io:PlugsElectricalEnergyConsumptionSensor',
@@ -24,6 +25,7 @@ class EnergySensorDriver extends Driver
             'io:HeatingRelatedElectricalEnergyConsumptionSensor',
             'io:HeatingElectricalEnergyConsumptionSensor',
             'io:CumulatedElectricalEnergyConsumptionIOSystemDeviceSensor',
+            'eliot:EliotElectricEnergyConsumptionSensor',
         ];
     }
 

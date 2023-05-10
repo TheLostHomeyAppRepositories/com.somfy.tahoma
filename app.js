@@ -5,7 +5,7 @@
 if (process.env.DEBUG === '1')
 {
     // eslint-disable-next-line node/no-unsupported-features/node-builtins, global-require
-    require('inspector').open(9223, '0.0.0.0', false);
+    require('inspector').open(9223, '0.0.0.0', true);
 }
 
 const Homey = require('homey');
@@ -94,7 +94,7 @@ class myApp extends Homey.App
             await this.logOut(false);
         });
 
-        this.homey.settings.on('set', setting =>
+        this.homey.settings.on('set', (setting) =>
         {
             if (setting === 'infoLogEnabled')
             {
@@ -146,7 +146,7 @@ class myApp extends Homey.App
 
         /** * TEMPERATURE CONDITIONS ** */
         this._conditionTemperatureMoreThan = this.homey.flow.getConditionCard('has_temperature_more_than');
-        this._conditionTemperatureMoreThan.registerRunListener(args =>
+        this._conditionTemperatureMoreThan.registerRunListener((args) =>
         {
             const { device } = args;
             const conditionMet = device.getState().measure_temperature > args.temperature;
@@ -154,7 +154,7 @@ class myApp extends Homey.App
         });
 
         this._conditionTemperatureLessThan = this.homey.flow.getConditionCard('has_temperature_less_than');
-        this._conditionTemperatureLessThan.registerRunListener(args =>
+        this._conditionTemperatureLessThan.registerRunListener((args) =>
         {
             const { device } = args;
             const conditionMet = device.getState().measure_temperature < args.temperature;
@@ -162,7 +162,7 @@ class myApp extends Homey.App
         });
 
         this._conditionTemperatureBetween = this.homey.flow.getConditionCard('has_temperature_between');
-        this._conditionTemperatureBetween.registerRunListener(args =>
+        this._conditionTemperatureBetween.registerRunListener((args) =>
         {
             const { device } = args;
             const conditionMet = device.getState().measure_temperature > args.temperature_from && device.getState().measure_temperature < args.temperature_to;
@@ -171,7 +171,7 @@ class myApp extends Homey.App
 
         /** * LUMINANCE CONDITIONS ** */
         this._conditionLuminanceMoreThan = this.homey.flow.getConditionCard('has_luminance_more_than');
-        this._conditionLuminanceMoreThan.registerRunListener(args =>
+        this._conditionLuminanceMoreThan.registerRunListener((args) =>
         {
             const { device } = args;
             const conditionMet = device.getState().measure_luminance > args.luminance;
@@ -179,7 +179,7 @@ class myApp extends Homey.App
         });
 
         this._conditionLuminanceLessThan = this.homey.flow.getConditionCard('has_luminance_less_than');
-        this._conditionLuminanceLessThan.registerRunListener(args =>
+        this._conditionLuminanceLessThan.registerRunListener((args) =>
         {
             const { device } = args;
             const conditionMet = device.getState().measure_luminance < args.luminance;
@@ -187,7 +187,7 @@ class myApp extends Homey.App
         });
 
         this._conditionLuminanceBetween = this.homey.flow.getConditionCard('has_luminance_between');
-        this._conditionLuminanceBetween.registerRunListener(args =>
+        this._conditionLuminanceBetween.registerRunListener((args) =>
         {
             const { device } = args;
             const conditionMet = device.getState().measure_luminance > args.luminance_from && device.getState().measure_luminance < args.luminance_to;
@@ -196,7 +196,7 @@ class myApp extends Homey.App
 
         /** * IS MOVING CONDITION ** */
         this._conditionIsMoving = this.homey.flow.getConditionCard('is_moving');
-        this._conditionIsMoving.registerRunListener(args =>
+        this._conditionIsMoving.registerRunListener((args) =>
         {
             const { device } = args;
             const conditionMet = (device.executionId !== null);
@@ -215,8 +215,8 @@ class myApp extends Homey.App
 
         this.syncTimerId = this.homey.setTimeout(() => this.initSync(), 30000);
 
-        this.discoveryStrategy = this.homey.discovery.getStrategy("somfy_tahoma");
-        this.discoveryStrategy.on("result", discoveryResult =>
+        this.discoveryStrategy = this.homey.discovery.getStrategy('somfy_tahoma');
+        this.discoveryStrategy.on('result', (discoveryResult) =>
         {
             if (this.infoLogEnabled)
             {
@@ -225,11 +225,11 @@ class myApp extends Homey.App
             this.mDNSBridgesUpdate(discoveryResult);
         });
 
-        let results = this.discoveryStrategy.getDiscoveryResults();
-        for (const result in results)
+        const results = this.discoveryStrategy.getDiscoveryResults();
+        for (const result of Object.values(results))
         {
-            this.log("Got mDNS result:", this.varToString(results[result]));
-            this.mDNSBridgesUpdate(results[result]);
+            this.log('Got mDNS result:', this.varToString(result));
+            this.mDNSBridgesUpdate(result);
         }
 
         this.log(`${Homey.manifest.id} Initialised`);
@@ -245,8 +245,8 @@ class myApp extends Homey.App
 
             if (!await this.doLocalLogin(username, password))
             {
-                this.discoveryStrategy = this.homey.discovery.getStrategy("somfy_tahoma");
-                this.discoveryStrategy.on("result", discoveryResult =>
+                this.discoveryStrategy = this.homey.discovery.getStrategy('somfy_tahoma');
+                this.discoveryStrategy.on('result', (discoveryResult) =>
                 {
                     if (this.infoLogEnabled)
                     {
@@ -255,14 +255,14 @@ class myApp extends Homey.App
                     this.mDNSBridgesUpdate(discoveryResult);
                 });
 
-                let results = this.discoveryStrategy.getDiscoveryResults();
-                for (const result in results)
+                const results = this.discoveryStrategy.getDiscoveryResults();
+                for (const result of Object.values(results))
                 {
                     if (this.infoLogEnabled)
                     {
-                        this.logInformation("Got mDNS result", this.varToString(results[result]));
+                        this.logInformation('Got mDNS result', this.varToString(result));
                     }
-                    this.mDNSBridgesUpdate(results[result]);
+                    this.mDNSBridgesUpdate(result);
                 }
             }
 
@@ -304,8 +304,14 @@ class myApp extends Homey.App
         }
 
         this.homey.settings.set('localBridge', this.localBridgeInfo);
-        const url = this.localBridgeInfo.url.replace(this.localBridgeInfo.pin, '####-####-####');
-        this.logInformation('mDNS Found a local bridge', { pin: '####-####-####', address: this.localBridgeInfo.address, port: this.localBridgeInfo.port, api_version: this.localBridgeInfo.api_version, fw_version: this.localBridgeInfo.fw_version });
+        this.logInformation('mDNS Found a local bridge',
+        {
+            pin: '####-####-####',
+            address: this.localBridgeInfo.address,
+            port: this.localBridgeInfo.port,
+            api_version: this.localBridgeInfo.api_version,
+            fw_version: this.localBridgeInfo.fw_version,
+        });
 
         const username = this.homey.settings.get('username');
         const password = this.homey.settings.get('password');
@@ -326,7 +332,7 @@ class myApp extends Homey.App
     {
         if (this.tahomaLocal === null)
         {
-            return;
+            return false;
         }
 
         if (username && password && this.localBridgeInfo)
@@ -373,6 +379,12 @@ class myApp extends Homey.App
 
     async getLocalTokens()
     {
+        if (!this.localBridgeInfo)
+        {
+            throw new Error('No Somfy bridges have been detected.\n'
+                            + 'Make sure the Developer mode has been enabled on you Somfy account.\n'
+                            + 'The Somfy bridge should broadcast it\'s IP and PIN via mDNS once the option is enabled.');
+        }
         try
         {
             const tokens = await this.tahomaCloud.getLocalTokens(this.localBridgeInfo.pin);
@@ -733,7 +745,7 @@ class myApp extends Homey.App
             .registerRunListener(async (args, state) =>
             {
                 this.log('target_temperature_manual_set');
-                return args.device.triggerCapabilityListener('target_temperature.manual', args.target_temperature, {'derogation_type': args.derogation_type});
+                return args.device.triggerCapabilityListener('target_temperature.manual', args.target_temperature, { derogation_type: args.derogation_type });
             });
 
         this.homey.flow.getActionCard('target_temperature_manual_set_for')
@@ -741,8 +753,8 @@ class myApp extends Homey.App
             {
                 this.log('target_temperature_manual_set_for');
 
-                let duration = (args.days * 86400) + (args.hours * 3600) + (args.minutes * 60);
-                return args.device.triggerCapabilityListener('target_temperature.manual', args.target_temperature, {'derogation_type': duration});
+                const duration = (args.days * 86400) + (args.hours * 3600) + (args.minutes * 60);
+                return args.device.triggerCapabilityListener('target_temperature.manual', args.target_temperature, { derogation_type: duration });
             });
 
         this.homey.flow.getActionCard('target_temperature_comfort_heating_set')
@@ -763,7 +775,7 @@ class myApp extends Homey.App
             .registerRunListener(async (args, state) =>
             {
                 this.log('target_temperature_away_set');
-                return args.device.triggerCapabilityListener('target_temperature.away'), args.target_temperature;
+                return args.device.triggerCapabilityListener('target_temperature.away', args.target_temperature);
             });
 
         this.homey.flow.getActionCard('target_temperature_frost_protection_set')
@@ -772,7 +784,7 @@ class myApp extends Homey.App
                 this.log('target_temperature_frost_protection_set');
                 return args.device.triggerCapabilityListener('target_temperature.frost_protection', args.target_temperature);
             });
-        }
+    }
 
     hashCode(s)
     {
@@ -811,7 +823,7 @@ class myApp extends Homey.App
         await this.tahomaCloud.logout();
 
         // Allow a short delay before logging back in
-        await new Promise(resolve => this.homey.setTimeout(resolve, 1000));
+        await new Promise((resolve) => this.homey.setTimeout(resolve, 1000));
 
         let loginMethod = true; // Start with new method
 
@@ -879,7 +891,7 @@ class myApp extends Homey.App
             this.logInformation('logDevices', 'Fetching devices');
         }
 
-        const devices = { 'cloud': {}, 'local': { 'ip': this.localBridgeInfo ? this.localBridgeInfo.address : null } };
+        const devices = { cloud: {}, local: { ip: this.localBridgeInfo ? this.localBridgeInfo.address : null } };
         let cloudDevices = null;
         let localDevices = null;
         if (this.tahomaCloud.authenticated)
@@ -894,9 +906,9 @@ class myApp extends Homey.App
         if (cloudDevices && localDevices)
         {
             // Filter cloud devices to remove local devices
-            const unique = cloudDevices.filter(cloud =>
+            const unique = cloudDevices.filter((cloud) =>
             {
-                const isDuplicate = (localDevices.findIndex(local => local.deviceURL === cloud.deviceURL) >= 0);
+                const isDuplicate = (localDevices.findIndex((local) => local.deviceURL === cloud.deviceURL) >= 0);
 
                 if (!isDuplicate)
                 {
@@ -939,10 +951,9 @@ class myApp extends Homey.App
         else
         {
             // Remove personal device information
-            let i = 1;
             if (logData.local.devices)
             {
-                logData.local.devices.forEach(element =>
+                logData.local.devices.forEach((element) =>
                 {
                     delete element.creationTime;
                     delete element.lastUpdateTime;
@@ -953,7 +964,7 @@ class myApp extends Homey.App
 
             if (logData.cloud.devices)
             {
-                logData.cloud.devices.forEach(element =>
+                logData.cloud.devices.forEach((element) =>
                 {
                     delete element.creationTime;
                     delete element.lastUpdateTime;
@@ -1014,12 +1025,13 @@ class myApp extends Homey.App
                 this.lastLogTime = nowTime;
 
                 logData.push(
-                {
-                    time: nowTime.toJSON(),
-                    elapsed: timeDiff,
-                    source,
-                    data,
-                }, );
+                    {
+                        time: nowTime.toJSON(),
+                        elapsed: timeDiff,
+                        source,
+                        data,
+                    },
+                );
 
                 if (logData && logData.length > 100)
                 {
@@ -1053,11 +1065,11 @@ class myApp extends Homey.App
     logEvents(txt)
     {
         const nowTime = new Date(Date.now());
-        let log = this.homey.settings.get('eventLog') + nowTime.toJSON() + "\r\n" + txt + "\r\n";
+        let log = `${this.homey.settings.get('eventLog') + nowTime.toJSON()}\r\n${txt}\r\n`;
         if (log.length > 30000)
         {
             log = log.substring(log.length - 1000);
-            let n = log.indexOf("\n");
+            const n = log.indexOf('\n');
             if (n >= 0)
             {
                 // Remove up to and including the first \n so the log starts on a whole line
@@ -1079,7 +1091,7 @@ class myApp extends Homey.App
                 let text = '';
                 if (logType === 'infoLog')
                 {
-                    subject = `Tahoma Information log`;
+                    subject = 'Tahoma Information log';
                     text = this.varToString(this.homey.settings.get('infoLog'));
                 }
                 else if (logType === 'deviceLog')
@@ -1097,31 +1109,33 @@ class myApp extends Homey.App
 
                 // create reusable transporter object using the default SMTP transport
                 const transporter = nodemailer.createTransport(
-                {
-                    host: Homey.env.MAIL_HOST, // Homey.env.MAIL_HOST,
-                    port: 465,
-                    ignoreTLS: false,
-                    secure: true, // true for 465, false for other ports
-                    auth:
                     {
-                        user: Homey.env.MAIL_USER, // generated ethereal user
-                        pass: Homey.env.MAIL_SECRET, // generated ethereal password
+                        host: Homey.env.MAIL_HOST, // Homey.env.MAIL_HOST,
+                        port: 465,
+                        ignoreTLS: false,
+                        secure: true, // true for 465, false for other ports
+                        auth:
+                        {
+                            user: Homey.env.MAIL_USER, // generated ethereal user
+                            pass: Homey.env.MAIL_SECRET, // generated ethereal password
+                        },
+                        tls:
+                        {
+                            // do not fail on invalid certs
+                            rejectUnauthorized: false,
+                        },
                     },
-                    tls:
-                    {
-                        // do not fail on invalid certs
-                        rejectUnauthorized: false,
-                    },
-                }, );
+                );
 
                 // send mail with defined transport object
                 const response = await transporter.sendMail(
-                {
-                    from: `"Homey User" <${Homey.env.MAIL_USER}>`, // sender address
-                    to: Homey.env.MAIL_RECIPIENT, // list of receivers
-                    subject, // Subject line
-                    text, // plain text body
-                }, );
+                    {
+                        from: `"Homey User" <${Homey.env.MAIL_USER}>`, // sender address
+                        to: Homey.env.MAIL_RECIPIENT, // list of receivers
+                        subject, // Subject line
+                        text, // plain text body
+                    },
+                );
 
                 return {
                     error: response.err,
@@ -1164,7 +1178,8 @@ class myApp extends Homey.App
                 this.logInformation('initSync', 'Starting');
             }
 
-            return await this.newLogin_2(username, password, 'default');
+            await this.newLogin_2(username, password, 'default');
+            return;
         }
         catch (error)
         {
@@ -1344,7 +1359,7 @@ class myApp extends Homey.App
         {
             this.logInformation('stopSync', 'Stopping Event Polling');
         }
-        
+
         if (this.tahomaCloud)
         {
             await this.tahomaCloud.eventsClearRegistered();
@@ -1395,7 +1410,7 @@ class myApp extends Homey.App
 
         let nextInterval = 0;
 
-        if (this.nextCloudInterval != 0)
+        if (this.nextCloudInterval !== 0)
         {
             if (this.tahomaLocal && this.tahomaLocal.authenticated)
             {
@@ -1445,7 +1460,8 @@ class myApp extends Homey.App
         {
             if (tahomaConnection.localLogin)
             {
-                this.logInformation('syncLoop', `Logged in = ${tahomaConnection.authenticated}, Local = ${tahomaConnection.localLogin}, Old Sync State = ${this.syncing}, Next cloud sync in ${this.nextCloudInterval / 1000}s`);
+                this.logInformation('syncLoop',
+                 `Logged in = ${tahomaConnection.authenticated}, Local = ${tahomaConnection.localLogin}, Old Sync State = ${this.syncing}, Next cloud sync in ${this.nextCloudInterval / 1000}s`);
             }
             else
             {
@@ -1481,7 +1497,7 @@ class myApp extends Homey.App
                 }
                 catch (error)
                 {
-                    //this.logInformation('syncLoop', error.message);
+                    // this.logInformation('syncLoop', error.message);
                     if (error.message === 'Far Too many login attempts (blocked for 15 minutes)')
                     {
                         this.homey.clearTimeout(this.boostTimerId);
@@ -1503,11 +1519,9 @@ class myApp extends Homey.App
                 }
             }
             else
+            if (this.infoLogEnabled)
             {
-                if (this.infoLogEnabled)
-                {
-                    this.logInformation('Skipping sync: too soon');
-                }
+                this.logInformation('Skipping sync: too soon');
             }
 
             // Signal that the sync has completed
@@ -1521,11 +1535,9 @@ class myApp extends Homey.App
             }
         }
         else
+        if (this.infoLogEnabled)
         {
-            if (this.infoLogEnabled)
-            {
-                this.logInformation('Skipping sync: Previous sync active');
-            }
+            this.logInformation('Skipping sync: Previous sync active');
         }
 
         return nextInterval;
@@ -1607,13 +1619,13 @@ class myApp extends Homey.App
             {
                 return this.tahomaCloud.executeScenario(args.scenario.oid);
             })
-            .getArgument('scenario').registerAutocompleteListener(query =>
+            .getArgument('scenario').registerAutocompleteListener((query) =>
             {
-                return this.tahomaCloud.getActionGroups().then(data => data.map(({ oid, label }) => (
+                return this.tahomaCloud.getActionGroups().then((data) => data.map(({ oid, label }) => (
                 {
                     oid,
                     name: label,
-                })).filter(({ name }) => name.toLowerCase().indexOf(query.toLowerCase()) > -1)).catch(error =>
+                })).filter(({ name }) => name.toLowerCase().indexOf(query.toLowerCase()) > -1)).catch((error) =>
                 {
                     this.logInformation('addScenarioActionListeners', error.message);
                 });
@@ -1638,7 +1650,7 @@ class myApp extends Homey.App
 
     async asyncDelay(period)
     {
-        await new Promise(resolve => this.homey.setTimeout(resolve, period));
+        await new Promise((resolve) => this.homey.setTimeout(resolve, period));
     }
 
     varToString(source)
@@ -1658,7 +1670,7 @@ class myApp extends Homey.App
                 const stack = source.stack.replace('/\\n/g', '\n');
                 return `${source.message}\n${stack}`;
             }
-            if (typeof(source) === 'object')
+            if (typeof (source) === 'object')
             {
                 const getCircularReplacer = () =>
                 {
@@ -1679,7 +1691,7 @@ class myApp extends Homey.App
 
                 return JSON.stringify(source, getCircularReplacer(), 2);
             }
-            if (typeof(source) === 'string')
+            if (typeof (source) === 'string')
             {
                 return source;
             }
@@ -1725,9 +1737,9 @@ class myApp extends Homey.App
 
         if (!forceCloud && this.tahomaLocal && this.tahomaLocal.authenticated && this.tahomaLocal.supportedDevices)
         {
-            if (this.tahomaLocal.supportedDevices.findIndex(element => element.deviceURL === deviceURL) >= 0)
+            if (this.tahomaLocal.supportedDevices.findIndex((element) => element.deviceURL === deviceURL) >= 0)
             {
-                let data = await this.tahomaLocal.executeDeviceAction(label, deviceURL, action, action2);
+                const data = await this.tahomaLocal.executeDeviceAction(label, deviceURL, action, action2);
                 data.local = true;
                 return data;
             }
@@ -1735,7 +1747,7 @@ class myApp extends Homey.App
 
         if (this.tahomaCloud.authenticated && !this.usingDebugData)
         {
-            let data = this.tahomaCloud.executeDeviceAction(label, deviceURL, action, action2);
+            const data = this.tahomaCloud.executeDeviceAction(label, deviceURL, action, action2);
             data.local = false;
             if (boostSync)
             {
@@ -1752,7 +1764,7 @@ class myApp extends Homey.App
         if (this.tahomaLocal && this.tahomaLocal.authenticated && this.tahomaLocal.supportedDevices)
         {
             // Check if the local connection supports the device
-            if (this.tahomaLocal.supportedDevices.findIndex(element => element.deviceURL === deviceURL) >= 0)
+            if (this.tahomaLocal.supportedDevices.findIndex((element) => element.deviceURL === deviceURL) >= 0)
             {
                 return this.tahomaLocal.getDeviceStates(deviceURL);
             }
@@ -1789,17 +1801,15 @@ class myApp extends Homey.App
             // Check if the local connection supports the device
             if (combineSubURLs)
             {
-                if (this.tahomaLocal.supportedDevices.findIndex(element => element.deviceURL.startsWith(deviceURL)))
+                if (this.tahomaLocal.supportedDevices.findIndex((element) => element.deviceURL.startsWith(deviceURL)))
                 {
                     return true;
                 }
             }
             else
+            if (this.tahomaLocal.supportedDevices.findIndex((element) => element.deviceURL === deviceURL) >= 0)
             {
-                if (this.tahomaLocal.supportedDevices.findIndex(element => element.deviceURL === deviceURL) >= 0)
-                {
-                    return true;
-                }
+                return true;
             }
         }
 
@@ -1810,5 +1820,6 @@ class myApp extends Homey.App
     {
         return (this.tahomaCloud.authenticated | (this.tahomaLocal && this.tahomaLocal.authenticated));
     }
+
 }
 module.exports = myApp;
