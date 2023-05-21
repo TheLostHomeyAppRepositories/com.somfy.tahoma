@@ -1,3 +1,4 @@
+/* eslint-disable no-lonely-if */
 /* jslint node: true */
 
 'use strict';
@@ -21,7 +22,7 @@ class Device extends Homey.Device
 
         if (CapabilitiesXRef)
         {
-            for (let element of CapabilitiesXRef)
+            for (const element of CapabilitiesXRef)
             {
                 if (!this.hasCapability(element.homeyName))
                 {
@@ -67,7 +68,7 @@ class Device extends Homey.Device
      */
     getDeviceUrl(hashIndex)
     {
-        const deviceURL = this.getData().deviceURL;
+        const { deviceURL } = this.getData();
         if (!deviceURL)
         {
             return null;
@@ -158,7 +159,7 @@ class Device extends Homey.Device
 
             const deviceData = this.getData();
             // Check if this command is already being executed
-            const idx = this.executionCommands.findIndex(element => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
+            const idx = this.executionCommands.findIndex((element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
             if (idx >= 0)
             {
                 // Found it so cancel the current command first
@@ -205,7 +206,7 @@ class Device extends Homey.Device
             else if ((somfyValue === null) || (isArray(somfyValue) && somfyValue.length === 0))
             {
                 action = {
-                    name: capabilityXRef.somfyNameSet[cmdIdx]
+                    name: capabilityXRef.somfyNameSet[cmdIdx],
                 };
             }
             else
@@ -249,7 +250,7 @@ class Device extends Homey.Device
                 }
                 else
                 {
-                    const idx = this.executionCommands.findIndex(element => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
+                    const idx = this.executionCommands.findIndex((element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
                     if (idx < 0)
                     {
                         // Add the command reference to the executing array
@@ -270,11 +271,11 @@ class Device extends Homey.Device
         }
         else
         {
-            const homeyName = capabilityXRef.homeyName;
+            const { homeyName } = capabilityXRef;
             try
             {
                 const oldValue = this.getCapabilityValue(homeyName);
-                if (oldValue != value)
+                if (oldValue !== value)
                 {
                     this.setCapabilityValue(homeyName, value).catch(this.error);
 
@@ -323,8 +324,8 @@ class Device extends Homey.Device
                 // Look for each of the required capabilities
                 for (let i = 0; i < CapabilitiesXRef.length; i++)
                 {
-                    let xRefEntry = CapabilitiesXRef[ i ];
-                    const homeyName = xRefEntry.homeyName;
+                    let xRefEntry = CapabilitiesXRef[i];
+                    const { homeyName } = xRefEntry;
                     try
                     {
                         // Find the tahoma device state for the table entry
@@ -332,7 +333,7 @@ class Device extends Homey.Device
                         const tahomaState = tahomaStates.find((state) => (state && (state.name === somfyName)));
                         if (tahomaState)
                         {
-                            let value = tahomaState.value;
+                            let { value } = tahomaState;
                             if (typeof value === 'string')
                             {
                                 value = value.toLowerCase();
@@ -369,7 +370,7 @@ class Device extends Homey.Device
                             {
                                 if (xRefEntry.compare[1].charAt(0) === '!')
                                 {
-                                    value = (value != xRefEntry.compare[1]);
+                                    value = (value !== xRefEntry.compare[1]);
                                 }
                                 else
                                 {
@@ -381,9 +382,9 @@ class Device extends Homey.Device
                                 if (CapabilitiesXRef.invert)
                                 {
                                     value = 1 - value;
-                                }                
-                            
-                                value = (value / xRefEntry.scale);
+                                }
+
+                                value /= xRefEntry.scale;
                             }
 
                             this.triggerCapabilityListener(homeyName, value, { fromCloudSync: true }).catch(this.error);
@@ -522,7 +523,7 @@ class Device extends Homey.Device
                                 {
                                     if (xRefEntry.compare[1].charAt(0) === '!')
                                     {
-                                        newState = (deviceValue != xRefEntry.compare[1]);
+                                        newState = (deviceValue !== xRefEntry.compare[1]);
                                     }
                                     else
                                     {
@@ -534,10 +535,10 @@ class Device extends Homey.Device
                                     if (CapabilitiesXRef.invert)
                                     {
                                         deviceValue = 1 - deviceValue;
-                                    }                
+                                    }
                                     newState = deviceValue ? (deviceValue / xRefEntry.scale) : 0;
                                 }
-    
+
                                 if (typeof oldState === 'number')
                                 {
                                     newState = Number(newState);
@@ -584,7 +585,7 @@ class Device extends Homey.Device
                                             stack: { capability: xRefEntry.homeyName, state: newState },
                                         });
                                     }
-                                    const homeyName = xRefEntry.homeyName;
+                                    const { homeyName } = xRefEntry;
                                     this.triggerCapabilityListener(homeyName, newState, { fromCloudSync: true }).catch(this.error);
                                 }
                                 else if (this.homey.app.infoLogEnabled)
@@ -608,7 +609,7 @@ class Device extends Homey.Device
                     if (myURL === eventAction.deviceURL)
                     {
                         // Check if this command is already in the execution array
-                        const idx = this.executionCommands.findIndex(element2 => element2.name === eventAction.command);
+                        const idx = this.executionCommands.findIndex((element2) => element2.name === eventAction.command);
                         if (idx < 0)
                         {
                             // Not known so record it and boost the events interval
@@ -629,7 +630,7 @@ class Device extends Homey.Device
                 if ((event.newState === 'COMPLETED') || (event.newState === 'FAILED'))
                 {
                     // Check if we know about this command
-                    const idx = this.executionCommands.findIndex(element2 => element2.id === event.execId);
+                    const idx = this.executionCommands.findIndex((element2) => element2.id === event.execId);
                     if (idx >= 0)
                     {
                         // We did know so unreference our event boost
@@ -652,7 +653,7 @@ class Device extends Homey.Device
                 }
                 else if (event.newState === 'QUEUED_GATEWAY_SIDE')
                 {
-                    const idx = this.executionCommands.findIndex(element2 => element2.id === event.execId);
+                    const idx = this.executionCommands.findIndex((element2) => element2.id === event.execId);
                     if (idx >= 0)
                     {
                         this.setWarning(this.homey.__('command_queued')).catch(this.error);
@@ -682,7 +683,7 @@ class Device extends Homey.Device
                     if (!states)
                     {
                         const url0 = this.getDeviceUrl(0);
-                        if (url0 && (deviceURL != url0))
+                        if (url0 && (deviceURL !== url0))
                         {
                             // We have a sub url to check
                             states = await this.homey.app.getDeviceStates(url0);

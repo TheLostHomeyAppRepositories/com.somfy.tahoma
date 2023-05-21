@@ -91,7 +91,7 @@ class LightControllerDevice extends Device
                 {
                     this.commandExecuting = 'onOff';
                     this.executionCmd = action.name;
-                    this.executionId = {id: result.execId, local: result.local};
+                    this.executionId = { id: result.execId, local: result.local };
                 }
             }
             else
@@ -151,7 +151,7 @@ class LightControllerDevice extends Device
                 {
                     this.commandExecuting = 'dim';
                     this.executionCmd = action.name;
-                    this.executionId = {id: result.execId, local: result.local};
+                    this.executionId = { id: result.execId, local: result.local };
                 }
             }
             else
@@ -217,7 +217,7 @@ class LightControllerDevice extends Device
                 {
                     this.commandExecuting = 'light_temperature';
                     this.executionCmd = action.name;
-                    this.executionId = {id: result.execId, local: result.local};
+                    this.executionId = { id: result.execId, local: result.local };
                 }
             }
             else
@@ -239,11 +239,11 @@ class LightControllerDevice extends Device
     {
         try
         {
-            let states = await super.getStates();
+            const states = await super.getStates();
             if (states)
             {
                 // On / Off
-                const OnOffState = states.find(state => (state && (state.name === 'core:OnOffState')));
+                const OnOffState = states.find((state) => (state && (state.name === 'core:OnOffState')));
                 if (OnOffState)
                 {
                     this.homey.app.logStates(`${this.getName()}: core:OnOffState = ${OnOffState.value}`);
@@ -254,7 +254,7 @@ class LightControllerDevice extends Device
                 }
 
                 // Dim level
-                const dimState = states.find(state => (state && (state.name === 'core:LightIntensityState')));
+                const dimState = states.find((state) => (state && (state.name === 'core:LightIntensityState')));
                 if (dimState)
                 {
                     this.homey.app.logStates(`${this.getName()}: core:dimState = ${dimState.value}`);
@@ -265,7 +265,7 @@ class LightControllerDevice extends Device
                 }
 
                 // Color level
-                const colorState = states.find(state => (state && (state.name === 'core:ColorTemperatureState')));
+                const colorState = states.find((state) => (state && (state.name === 'core:ColorTemperatureState')));
                 if (colorState)
                 {
                     const minTemperature = this.getSetting('minTemperature');
@@ -298,14 +298,14 @@ class LightControllerDevice extends Device
     {
         if (events === null)
         {
-            return await this.getStates();
+            return this.getStates();
         }
 
         const myURL = this.getDeviceUrl();
         if (!local && this.homey.app.isLocalDevice(myURL))
         {
             // This device is handled locally so ignore cloud updates
-            return;
+            return myURL;
         }
 
         // Process events sequentially so they are in the correct order
@@ -342,7 +342,7 @@ class LightControllerDevice extends Device
                 {
                     if (myURL === element.actions[x].deviceURL)
                     {
-                        this.executionId = {id: element.execId, local};
+                        this.executionId = { id: element.execId, local };
                         if (element.actions[x].commands)
                         {
                             this.executionCmd = element.actions[x].commands[0].name;
@@ -484,7 +484,7 @@ class LightControllerDevice extends Device
             {
                 this.commandExecuting = action.name;
                 this.executionCmd = action.name;
-                this.executionId = {id: result.execId, local: result.local};
+                this.executionId = { id: result.execId, local: result.local };
 
                 this.doOnTimer();
             }

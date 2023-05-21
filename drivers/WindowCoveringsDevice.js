@@ -18,7 +18,7 @@ class WindowCoveringsDevice extends Device
             this.driver.lock_state_changedTrigger = this.homey.flow.getDeviceTriggerCard('lock_state_changed');
         }
 
-        let classType = this.getSetting('classType');
+        const classType = this.getSetting('classType');
         if (classType === null)
         {
             this.setSetting('classType', this.getClass());
@@ -201,7 +201,7 @@ class WindowCoveringsDevice extends Device
                         else
                         {
                             this.executionCmd = action.name;
-                            this.executionId = {id: result.execId, local: result.local};
+                            this.executionId = { id: result.execId, local: result.local };
                         }
                     }
                     else
@@ -292,7 +292,7 @@ class WindowCoveringsDevice extends Device
                     else
                     {
                         this.executionCmd = action.name;
-                        this.executionId = {id: result.execId, local: result.local};
+                        this.executionId = { id: result.execId, local: result.local };
                     }
                 }
                 else
@@ -350,7 +350,7 @@ class WindowCoveringsDevice extends Device
                     else
                     {
                         this.executionCmd = action.name;
-                        this.executionId = {id: result.execId, local: result.local};
+                        this.executionId = { id: result.execId, local: result.local };
                     }
                 }
                 else
@@ -413,7 +413,7 @@ class WindowCoveringsDevice extends Device
                     else
                     {
                         this.executionCmd = action.name;
-                        this.executionId = {id: result.execId, local: result.local};
+                        this.executionId = { id: result.execId, local: result.local };
                     }
                 }
                 else
@@ -464,7 +464,7 @@ class WindowCoveringsDevice extends Device
                     else
                     {
                         this.executionCmd = action.name;
-                        this.executionId = {id: result.execId, local: result.local};
+                        this.executionId = { id: result.execId, local: result.local };
                     }
                 }
                 else
@@ -513,7 +513,7 @@ class WindowCoveringsDevice extends Device
                     else
                     {
                         this.executionCmd = action.name;
-                        this.executionId = {id: result.execId, local: result.local};
+                        this.executionId = { id: result.execId, local: result.local };
                     }
                 }
                 else
@@ -562,7 +562,7 @@ class WindowCoveringsDevice extends Device
                     else
                     {
                         this.executionCmd = action.name;
-                        this.executionId = {id: result.execId, local: result.local};
+                        this.executionId = { id: result.execId, local: result.local };
                     }
                 }
                 else
@@ -613,7 +613,7 @@ class WindowCoveringsDevice extends Device
             {
                 if (this.hasCapability('lock_state'))
                 {
-                    const lockState = states.find(state => (state && (state.name === 'io:PriorityLockOriginatorState')));
+                    const lockState = states.find((state) => (state && (state.name === 'io:PriorityLockOriginatorState')));
                     if (lockState)
                     {
                         this.homey.app.logStates(`${this.getName()}: io:PriorityLockOriginatorState = ${lockState.value}`);
@@ -627,7 +627,7 @@ class WindowCoveringsDevice extends Device
                     }
                     else
                     {
-                        const lockStateTimer = states.find(state => (state && (state.name === 'core:PriorityLockTimerState')));
+                        const lockStateTimer = states.find((state) => (state && (state.name === 'core:PriorityLockTimerState')));
                         if (lockStateTimer)
                         {
                             this.homey.app.logStates(`${this.getName()}: core:PriorityLockTimerState = ${lockStateTimer.value}`);
@@ -639,7 +639,7 @@ class WindowCoveringsDevice extends Device
                     }
                 }
 
-                const myPosition = states.find(state => (state && (state.name === 'core:Memorized1PositionState')));
+                const myPosition = states.find((state) => (state && (state.name === 'core:Memorized1PositionState')));
                 if (myPosition)
                 {
                     if (!this.hasCapability('my_value'))
@@ -652,9 +652,9 @@ class WindowCoveringsDevice extends Device
                 }
 
                 // device exists -> let's sync the state of the device
-                const closureState = states.find(state => (state && (state.name === this.positionStateName)));
-                const openClosedState = states.find(state => (state && (state.name === this.openClosedStateName)));
-                const tiltState = states.find(state => (state && (state.name === 'core:SlateOrientationState')));
+                const closureState = states.find((state) => (state && (state.name === this.positionStateName)));
+                const openClosedState = states.find((state) => (state && (state.name === this.openClosedStateName)));
+                const tiltState = states.find((state) => (state && (state.name === 'core:SlateOrientationState')));
 
                 if (this.unavailable)
                 {
@@ -718,14 +718,14 @@ class WindowCoveringsDevice extends Device
 
                 if (this.hasCapability('measure_battery'))
                 {
-                    const batteryState = states.find(state => (state && (state.name === 'core:BatteryState')));
+                    const batteryState = states.find((state) => (state && (state.name === 'core:BatteryState')));
                     if (batteryState)
                     {
                         const batteryStates = ['verylow', 'low', 'normal', 'full'];
-                        const batteryLevel = batteryStates.findIndex(state => state === batteryState.value);
+                        const batteryLevel = batteryStates.findIndex((state) => state === batteryState.value);
                         if (batteryLevel >= 0)
                         {
-                            this.setCapabilityValue('measure_battery', batteryLevel * 100 / 3).catch(this.error);
+                            this.setCapabilityValue('measure_battery', (batteryLevel * 100) / 3).catch(this.error);
                         }
                     }
                 }
@@ -774,7 +774,7 @@ class WindowCoveringsDevice extends Device
                 // This device is handled locally so ignore cloud updates
                 return;
             }
-    
+
             let lastPosition = null;
 
             // Process events sequentially so they are in the correct order
@@ -902,10 +902,10 @@ class WindowCoveringsDevice extends Device
                                     const batteryStateValue = deviceState.value;
                                     this.homey.app.logStates(`${this.getName()}: core:BatteryState = ${batteryStateValue}`);
                                     const batteryStates = ['verylow', 'low', 'normal', 'full'];
-                                    const batteryLevel = batteryStates.findIndex(state => state === batteryStateValue);
+                                    const batteryLevel = batteryStates.findIndex((state) => state === batteryStateValue);
                                     if (batteryLevel >= 0)
                                     {
-                                        this.triggerCapabilityListener('measure_battery', (batteryLevel * 100 / 3),
+                                        this.triggerCapabilityListener('measure_battery', ((batteryLevel * 100) / 3),
                                         {
                                             fromCloudSync: true,
                                         }).catch(this.error);
@@ -923,7 +923,7 @@ class WindowCoveringsDevice extends Device
                         {
                             if (!this.executionId || (this.executionId.id !== element.execId))
                             {
-                                this.executionId = {id: element.execId, local};
+                                this.executionId = { id: element.execId, local };
                                 if (element.actions[x].commands)
                                 {
                                     this.executionCmd = element.actions[x].commands[0].name;

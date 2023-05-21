@@ -607,5 +607,8 @@
   },
   "4.0.25": {
     "en": "Improved error message when no local mode detected. Added eliot:EliotElectricEnergyConsumptionSensor, eliot:RollerShutterEliotComponent, eliot:RemoteEliotComponent. Copied io:DynamicRollerShutterIOComponent to Roller shutter with quiet mode (io)."
+  },
+  "4.0.26": {
+    "en": "Added support for zigbee:ProfaluxRollerShutterComponent under 'Roller shutter (io)'."
   }
 }

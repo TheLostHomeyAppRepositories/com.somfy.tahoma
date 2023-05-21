@@ -875,7 +875,11 @@ class myApp extends Homey.App
         }
 
         await this.stopSync();
-        await this.tahomaCloud.logout();
+        if (this.tahomaCloud)
+        {
+            await this.tahomaCloud.logout();
+        }
+
         if (ClearCredentials)
         {
             this.homey.settings.unset('username');
@@ -1733,7 +1737,10 @@ class myApp extends Homey.App
 
     async executeDeviceAction(label, deviceURL, action, boostSync, action2 = null, forceCloud = false)
     {
-        this.logInformation(`${label}: Send command ${deviceURL}`, `command: ${this.varToString(action)}`);
+        if (this.infoLogEnabled)
+        {
+            this.logInformation(`${label}: Send command ${deviceURL}`, `command: ${this.varToString(action)}`);
+        }
 
         if (!forceCloud && this.tahomaLocal && this.tahomaLocal.authenticated && this.tahomaLocal.supportedDevices)
         {
