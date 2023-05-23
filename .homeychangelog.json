@@ -612,6 +612,9 @@
     "en": "Added support for zigbee:ProfaluxRollerShutterComponent under 'Roller shutter (io)'."
   },
   "4.0.27": {
-    "en": "Fixed an issue introduced in 4.0.25 where a successful request would report a fialure."
+    "en": "Fixed an issue introduced in 4.0.25 where a successful request would report a failure."
+  },
+  "4.0.28": {
+    "en": "Fixed for Homey 2023 to resolve path to local certificate."
   }
 }
