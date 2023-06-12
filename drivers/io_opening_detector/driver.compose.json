@@ -1,19 +1,23 @@
 {
-  "name": {
-    "en": "Opening Detector (io)",
-    "nl": "Openingsmelder (io)"
-  },
-  "class": "sensor",
-  "energy": {
-    "batteries": [
-      "AA",
-      "AA"
+    "name": {
+        "en": "Opening Detector (io)",
+        "fr": "Détecteur d'ouverture (io)",
+        "de": "Öffnungsmelder (io)",
+        "nl": "Openingsmelder (io)"
+    },
+    "class": "sensor",
+    "energy": {
+        "batteries": [
+            "AA",
+            "AA"
+        ]
+    },
+    "capabilities": [
+        "alarm_contact",
+        "defect_state",
+        "alarm_battery"
+    ],
+    "$extends": [
+        "cloudDriver"
     ]
-  },
-  "capabilities": [
-    "alarm_contact",
-    "defect_state",
-    "alarm_battery"
-  ],
-  "$extends": ["cloudDriver"]
 }

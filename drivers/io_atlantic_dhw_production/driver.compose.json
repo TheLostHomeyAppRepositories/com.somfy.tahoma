@@ -1,21 +1,26 @@
 {
-  "name": {
-    "en": "Atlantic Hot Water Production"
-  },
-  "class": "heater",
-  "capabilities": [
-    "target_temperature",
-    "measure_temperature"
-  ],
-  "capabilitiesOptions": {
-    "target_temperature": {
-      "min": 30,
-      "max": 60
+    "name": {
+        "en": "Atlantic Hot Water Production",
+        "fr": "Production d'eau chaude Atlantic",
+        "de": "Atlantic Warmwasserproduktion",
+        "nl": "Atlantische Warmwaterproductie"
     },
-    "measure_temperature": {
-      "min": 30,
-      "max": 60
-    }
-  },
-  "$extends": ["cloudDriver"]
+    "class": "heater",
+    "capabilities": [
+        "target_temperature",
+        "measure_temperature"
+    ],
+    "capabilitiesOptions": {
+        "target_temperature": {
+            "min": 30,
+            "max": 60
+        },
+        "measure_temperature": {
+            "min": 30,
+            "max": 60
+        }
+    },
+    "$extends": [
+        "cloudDriver"
+    ]
 }

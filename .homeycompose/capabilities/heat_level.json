@@ -3,7 +3,9 @@
     "uiComponent": "slider",
     "title": {
         "en": "Heat Level",
-        "nl": "Warmteniveau"
+        "fr": "Niveau de chaleur",
+        "nl": "Warmteniveau",
+        "de": "Hitzelevel"
     },
     "min": 0,
     "max": 100,

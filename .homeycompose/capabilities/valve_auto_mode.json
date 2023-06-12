@@ -1,10 +1,12 @@
 {
-  "type": "boolean",
-  "getable": true,
-  "setable": true,
-  "uiComponent": "button",
-  "title": {
-    "en": "Auto (Schedule Mode)",
-    "nl": "Auto (Schemamodus)"
-  }
+    "type": "boolean",
+    "getable": true,
+    "setable": true,
+    "uiComponent": "button",
+    "title": {
+        "en": "Auto (Schedule Mode)",
+        "nl": "Auto (Schemamodus)",
+        "fr": "Auto (Mode Horaire)",
+        "de": "Auto (Zeitplan-Modus)"
+    }
 }

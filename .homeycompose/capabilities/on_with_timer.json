@@ -1,17 +1,21 @@
 {
-  "type": "number",
-  "title": {
-    "en": "On with timer",
-    "nl": "Aan met timer"
-  },
-  "uiComponent": "slider",
-  "getable": true,
-  "setable": true,
-  "units": {
-    "en": "minutes",
-    "nl": "Minuten"
-  },
-  "min": 0,
-  "max": 10,
-  "step": 1
+    "type": "number",
+    "title": {
+        "en": "On with timer",
+        "nl": "Aan met timer",
+        "fr": "Allumé avec minuterie",
+        "de": "Einschalten mit Timer"
+    },
+    "uiComponent": "slider",
+    "getable": true,
+    "setable": true,
+    "units": {
+        "en": "minutes",
+        "nl": "Minuten",
+        "fr": "minutes",
+        "de": "Minuten"
+    },
+    "min": 0,
+    "max": 10,
+    "step": 1
 }

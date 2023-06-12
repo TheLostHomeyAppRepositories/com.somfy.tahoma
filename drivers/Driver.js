@@ -28,7 +28,7 @@ class Driver extends Homey.Driver
     {
         let username = this.homey.settings.get('username');
         let password = this.homey.settings.get('password');
-        const linkurl = 'default';
+        let region = this.homey.settings.get('region');
 
         session.setHandler('showView', async (view) =>
         {
@@ -39,13 +39,34 @@ class Driver extends Homey.Driver
                     await session.nextView();
                 }
             }
+            else if (view === 'select_region')
+            {
+                if (region)
+                {
+                    await session.nextView();
+                }
+            }
+        });
+
+        session.setHandler('select_region_setup', async () =>
+        {
+            this.log('Select Region Setup');
+            const result = { region };
+            return result;
+        });
+
+        session.setHandler('select_region', async (regionObj) =>
+        {
+            this.log('Select Region', regionObj);
+            region = regionObj.region;
+            session.nextView().catch(this.error);
         });
 
         session.setHandler('login', async (data) =>
         {
             username = data.username;
             password = data.password;
-            const credentialsAreValid = await this.homey.app.newLogin_2(username, password, linkurl);
+            const credentialsAreValid = await this.homey.app.newLogin_2(username, password, region);
 
             // return true to continue adding the device if the login succeeded
             // return false to indicate to the user the login attempt failed
@@ -70,7 +91,7 @@ class Driver extends Homey.Driver
     {
         let username = this.homey.settings.get('username');
         let password = this.homey.settings.get('password');
-        const linkurl = 'default';
+        const region = this.homey.settings.get('region');
 
         // session.setHandler('showView', async view =>
         // {
@@ -87,7 +108,7 @@ class Driver extends Homey.Driver
         {
             username = data.username;
             password = data.password;
-            const credentialsAreValid = await this.homey.app.newLogin_2(username, password, linkurl);
+            const credentialsAreValid = await this.homey.app.newLogin_2(username, password, region);
 
             // return true to continue adding the device if the login succeeded
             // return false to indicate to the user the login attempt failed
@@ -101,7 +122,7 @@ class Driver extends Homey.Driver
         try
         {
             const devices = await this.homey.app.getDeviceData();
-            this.homey.log(this.homey.app.varToString(devices));
+            this.homey.app.logInformation('OnReceiveSetupData', devices);
             if (devices)
             {
                 this.log('setup resolve');

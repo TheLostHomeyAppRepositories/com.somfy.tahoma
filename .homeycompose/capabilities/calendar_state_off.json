@@ -1,11 +1,13 @@
 {
-  "type": "boolean",
-  "getable": false,
-  "setable": true,
-  "uiComponent": "button",
-  "icon": "/assets/calendar_off.svg",
-  "title": {
-    "en": "Deactivate Agenda / Timer",
-    "nl": "Agenda / Timer deactiveren"
-  }
+    "type": "boolean",
+    "getable": false,
+    "setable": true,
+    "uiComponent": "button",
+    "icon": "/assets/calendar_off.svg",
+    "title": {
+        "en": "Deactivate Agenda / Timer",
+        "fr": "Désactiver l'agenda / le minuteur",
+        "de": "Agenda / Timer deaktivieren",
+        "nl": "Agenda / Timer deactiveren"
+    }
 }

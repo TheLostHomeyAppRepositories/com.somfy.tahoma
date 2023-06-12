@@ -1,72 +1,92 @@
 {
-  "name": {
-    "en": "Slated Pergola (io)"
-  },
-  "class": "sunshade",
-  "capabilities": [
-    "windowcoverings_state",
-    "windowcoverings_set"
-  ],
-  "settings": [
-    {
-      "id": "invertUpDown",
-      "type": "checkbox",
-      "label": {
-        "en": "Invert Up / Down",
-        "nl": "Omkeren omhoog / omlaag"
-      },
-      "value": false,
-      "hint": {
-        "en": "Reverse the Up / Down direction controls",
-        "nl": "Draai de bedieningselementen omhoog/omlaag om"
-      }
+    "name": {
+        "en": "Slated Pergola (io)"
     },
-    {
-      "id": "invertPosition",
-      "type": "checkbox",
-      "label": {
-        "en": "Invert Position",
-        "nl": "Positie omkeren"
-      },
-      "value": false,
-      "hint": {
-        "en": "Reverse the position control.",
-        "nl": "Draai de positieregeling om."
-      }
-    },
-    {
-      "id": "classType",
-      "type": "dropdown",
-      "label": {
-        "en": "Device Class"
-      },
-      "value": "sunshade",
-      "hint": {
-        "en": "Set the Homey class."
-      },
-      "values":[
+    "class": "sunshade",
+    "capabilities": [
+        "windowcoverings_state",
+        "windowcoverings_set"
+    ],
+    "settings": [
         {
-            "id": "windowcoverings",
-            "label": "Generic window covering"
+            "id": "invertUpDown",
+            "type": "checkbox",
+            "label": {
+                "en": "Invert Up / Down",
+                "nl": "Omkeren omhoog / omlaag",
+                "fr": "Inverser haut / bas",
+                "de": "UpDown umdrehen",
+                "du": "Keer omhoog / omlaag"
+            },
+            "value": false,
+            "hint": {
+                "en": "Reverse the Up / Down direction controls",
+                "nl": "Draai de bedieningselementen omhoog/omlaag om",
+                "fr": "Inverser les contrôles en haut / bas",
+                "de": "Bedienung des AUF / AB umkehren",
+                "du": "Draai de bediening omhoog / omlaag om"
+            }
         },
         {
-            "id": "blinds",
-            "label": "Blinds"
+            "id": "invertPosition",
+            "type": "checkbox",
+            "label": {
+                "en": "Invert Position",
+                "nl": "Positie omkeren",
+                "fr": "Inverser la position",
+                "de": "Position umkehren",
+                "du": "Keer de positie"
+            },
+            "value": false,
+            "hint": {
+                "en": "Reverse the position control.",
+                "nl": "Draai de positieregeling om.",
+                "fr": "Inverser le contrôle de position.",
+                "de": "Die Position umkehren.",
+                "du": "Draai de positiebediening om."
+            }
         },
         {
-            "id": "curtain",
-            "label": "Curtain"
-        },
-        {
-            "id": "sunshade",
-            "label": "Sunshade"
-        },
-        {
-            "id": "garagedoor",
-            "label": "Garage door"
+            "id": "classType",
+            "type": "dropdown",
+            "label": {
+                "en": "Device Class",
+                "fr": "Classe de l'appareil",
+                "de": "Geräteklasse",
+                "du": "Apparaatklasse"
+            },
+            "value": "sunshade",
+            "hint": {
+                "en": "Set the Homey class.",
+                "fr": "Définir la classe Homey",
+                "de": "Homey-Klasse setzen",
+                "du": "Stel de Homey-klasse in."
+            },
+            "values": [
+                {
+                    "id": "windowcoverings",
+                    "label": "Generic window covering"
+                },
+                {
+                    "id": "blinds",
+                    "label": "Blinds"
+                },
+                {
+                    "id": "curtain",
+                    "label": "Curtain"
+                },
+                {
+                    "id": "sunshade",
+                    "label": "Sunshade"
+                },
+                {
+                    "id": "garagedoor",
+                    "label": "Garage door"
+                }
+            ]
         }
-      ]
-    }
-  ],
-  "$extends": ["cloudDriver"]
+    ],
+    "$extends": [
+        "cloudDriver"
+    ]
 }

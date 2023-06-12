@@ -66,7 +66,7 @@ class PilotWireProgrammerDevice extends SensorDevice
                 else
                 {
                     this.executionCmd = action.name;
-                    this.executionId = {id: result.execId, local: result.local};
+                    this.executionId = { id: result.execId, local: result.local };
                 }
             }
             else
@@ -97,28 +97,28 @@ class PilotWireProgrammerDevice extends SensorDevice
             else if (value === 'comfort')
             {
                 action = {
-                    name: 'comfort',
+                    name: 'setSetPointMode',
                     parameters: ['comfort'],
                 };
             }
             else if (value === 'eco')
             {
                 action = {
-                    name: 'comfort',
+                    name: 'setSetPointMode',
                     parameters: ['eco'],
                 };
             }
             else if (value === 'free')
             {
                 action = {
-                    name: 'comfort',
+                    name: 'setSetPointMode',
                     parameters: ['free'],
                 };
             }
             else if (value === 'secured')
             {
                 action = {
-                    name: 'comfort',
+                    name: 'setSetPointMode',
                     parameters: ['secured'],
                 };
             }
@@ -138,7 +138,7 @@ class PilotWireProgrammerDevice extends SensorDevice
                 else
                 {
                     this.executionCmd = action.name;
-                    this.executionId = {id: result.execId, local: result.local};
+                    this.executionId = { id: result.execId, local: result.local };
                 }
             }
             else
@@ -163,7 +163,7 @@ class PilotWireProgrammerDevice extends SensorDevice
             let states = await super.getStates();
             if (states)
             {
-                const onOffState = states.find(state => (state && (state.name === 'core:OnOffState')));
+                const onOffState = states.find((state) => (state && (state.name === 'core:OnOffState')));
                 if (onOffState)
                 {
                     this.homey.app.logStates(`${this.getName()}: core:OnOffState = ${onOffState.value}`);
@@ -173,7 +173,7 @@ class PilotWireProgrammerDevice extends SensorDevice
                     }).catch(this.error);
                 }
 
-                const heatingMode = states.find(state => (state && (state.name === 'ovp:HeatingTemperatureInterfaceActiveModeState')));
+                const heatingMode = states.find((state) => (state && (state.name === 'ovp:HeatingTemperatureInterfaceActiveModeState')));
                 if (heatingMode)
                 {
                     this.homey.app.logStates(`${this.getName()}: ovp:HeatingTemperatureInterfaceActiveModeState = ${heatingMode.value}`);

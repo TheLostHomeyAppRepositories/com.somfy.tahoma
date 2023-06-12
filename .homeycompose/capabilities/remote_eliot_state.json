@@ -2,7 +2,9 @@
     "type": "enum",
     "title": {
         "en": "Remote State",
-        "nl": "Externe staat:"
+        "nl": "Externe staat:",
+        "fr": "État de la télécommande",
+        "de": "Fernbedienungszustand"
     },
     "values": [
         {

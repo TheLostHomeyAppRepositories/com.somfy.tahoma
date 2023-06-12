@@ -1,10 +1,13 @@
 {
-  "type": "boolean",
-  "getable": false,
-  "setable": true,
-  "uiComponent": "button",
-  "title": {
-    "en": "Alarm 1"
-  },
-  "icon": "/drivers/siren/assets/icon.svg"
+    "type": "boolean",
+    "getable": false,
+    "setable": true,
+    "uiComponent": "button",
+    "title": {
+        "en": "Alarm 1",
+        "fr": "Alarme 1",
+        "de": "Alarm 1",
+        "nl": "Alarm 1"
+    },
+    "icon": "/drivers/siren/assets/icon.svg"
 }

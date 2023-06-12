@@ -1,20 +1,26 @@
 {
-  "type": "boolean",
-  "getable": true,
-  "setable": false,
-  "uiComponent": "sensor",
-  "title": {
-    "en": "Sensor Dirty",
-    "nl": "Sensor vuil"
-  },
-  "icon": "/assets/dirty.svg",
-  "insights": true,
-  "insightsTitleTrue": {
-    "en": "clean",
-    "nl": "Schoon"
-  },
-  "insightsTitleFalse": {
-    "en": "dirty",
-    "nl": "Vies"
-  }
+    "type": "boolean",
+    "getable": true,
+    "setable": false,
+    "uiComponent": "sensor",
+    "title": {
+        "en": "Sensor Dirty",
+        "fr": "Capteur sale",
+        "de": "Sensor verschmutzt",
+        "nl": "Sensor vuil"
+    },
+    "icon": "/assets/dirty.svg",
+    "insights": true,
+    "insightsTitleTrue": {
+        "en": "clean",
+        "fr": "Propre",
+        "de": "Sauber",
+        "nl": "Schoon"
+    },
+    "insightsTitleFalse": {
+        "en": "dirty",
+        "fr": "Sale",
+        "de": "Schmutzig",
+        "nl": "Vies"
+    }
 }

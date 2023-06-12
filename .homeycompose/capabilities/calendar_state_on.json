@@ -1,11 +1,13 @@
 {
-  "type": "boolean",
-  "getable": false,
-  "setable": true,
-  "uiComponent": "button",
-  "icon": "/assets/calendar.svg",
-  "title": {
-    "en": "Activate Agenda / Timer",
-    "nl": "Activeer Agenda / Timer"
-  }
+    "type": "boolean",
+    "getable": false,
+    "setable": true,
+    "uiComponent": "button",
+    "icon": "/assets/calendar.svg",
+    "title": {
+        "en": "Activate Agenda / Timer",
+        "nl": "Activeer Agenda / Timer",
+        "fr": "Activer l'Agenda / le Minuteur",
+        "de": "Agenda / Timer aktivieren"
+    }
 }

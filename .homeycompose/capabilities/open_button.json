@@ -1,9 +1,12 @@
 {
-  "type": "boolean",
-  "getable": false,
-  "setable": true,
-  "uiComponent": "button",
-  "title": {
-    "en": "Open"
-  }
+    "type": "boolean",
+    "getable": false,
+    "setable": true,
+    "uiComponent": "button",
+    "title": {
+        "en": "Open",
+        "fr": "Ouvrir",
+        "de": "Öffnen",
+        "nl": "Openen"
+    }
 }

@@ -1,13 +1,18 @@
 {
-  "name": {
-    "en": "Energy Meter"
-  },
-  "class": "sensor",
-  "capabilities": [
-    "meter_power"
-  ],
-  "energy": {
-    "cumulative": true
-  },
-  "$extends": ["cloudDriver"]
+    "name": {
+        "en": "Energy Meter",
+        "fr": "Compteur d'énergie",
+        "de": "Energiemesser",
+        "nl": "Energie Meter"
+    },
+    "class": "sensor",
+    "capabilities": [
+        "meter_power"
+    ],
+    "energy": {
+        "cumulative": true
+    },
+    "$extends": [
+        "cloudDriver"
+    ]
 }

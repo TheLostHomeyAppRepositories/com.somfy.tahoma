@@ -2,17 +2,23 @@
     "id": "activate_scenario",
     "title": {
         "en": "Play a scenario",
-        "nl": "Scenario afspelen"
+        "nl": "Scenario afspelen",
+        "fr": "Jouer un scénario",
+        "de": "Szenario abspielen"
     },
     "titleFormatted": {
         "en": "Play scenario [[scenario]]",
-        "nl": "Scenario afspelen [[scenario]]"
+        "nl": "Scenario afspelen [[scenario]]",
+        "fr": "Jouer le scénario [[scenario]]",
+        "de": "Szenario [[scenario]] abspielen"
     },
     "args": [
         {
             "title": {
                 "en": "Scenario Name",
-                "nl": "Scenarionaam"
+                "nl": "Scenarionaam",
+                "fr": "Nom du scénario",
+                "de": "Szenarioname"
             },
             "name": "scenario",
             "type": "autocomplete"

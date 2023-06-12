@@ -1,10 +1,13 @@
 {
-  "type": "boolean",
-  "getable": false,
-  "setable": true,
-  "uiComponent": "button",
-  "title": {
-    "en": "Ring"
-  },
-  "icon": "/drivers/siren/assets/icon.svg"
+    "type": "boolean",
+    "getable": false,
+    "setable": true,
+    "uiComponent": "button",
+    "title": {
+        "en": "Ring",
+        "fr": "Sonner",
+        "de": "Klingeln",
+        "nl": "Rinkelen"
+    },
+    "icon": "/drivers/siren/assets/icon.svg"
 }

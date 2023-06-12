@@ -1,59 +1,74 @@
 {
-  "name": {
-    "en": "Garage Door - Open and Close (io)"
-  },
-  "class": "blinds",
-  "capabilities": [
-    "windowcoverings_state",
-    "my_position"
-  ],
-  "settings": [
-    {
-      "id": "invertUpDown",
-      "type": "checkbox",
-      "label": {
-        "en": "Invert Up / Down",
-        "nl": "Omkeren omhoog / omlaag"
-      },
-      "value": false,
-      "hint": {
-        "en": "Reverse the Up / Down direction controls",
-        "nl": "Draai de bedieningselementen omhoog/omlaag om"
-      }
+    "name": {
+        "en": "Garage Door - Open and Close (io)",
+        "fr": "Porte de garage - Ouvrir et fermer (io)",
+        "de": "Garagentor - Öffnen und Schließen (io)",
+        "nl": "Garagedeur - Openen en sluiten (io)"
     },
-    {
-      "id": "classType",
-      "type": "dropdown",
-      "label": {
-        "en": "Device Class"
-      },
-      "value": "blinds",
-      "hint": {
-        "en": "Set the Homey class."
-      },
-      "values":[
+    "class": "blinds",
+    "capabilities": [
+        "windowcoverings_state",
+        "my_position"
+    ],
+    "settings": [
         {
-            "id": "windowcoverings",
-            "label": "Generic window covering"
+            "id": "invertUpDown",
+            "type": "checkbox",
+            "label": {
+                "en": "Invert Up / Down",
+                "nl": "Omkeren omhoog / omlaag",
+                "fr": "Inverser Haut / Bas",
+                "de": "Oben / Unten umkehren"
+            },
+            "value": false,
+            "hint": {
+                "en": "Reverse the Up / Down direction controls",
+                "nl": "Draai de bedieningselementen omhoog/omlaag om",
+                "fr": "Inverser les commandes Haut / Bas",
+                "de": "Die Oben / Unten-Richtung umkehren"
+            }
         },
         {
-            "id": "blinds",
-            "label": "Blinds"
-        },
-        {
-            "id": "curtain",
-            "label": "Curtain"
-        },
-        {
-            "id": "sunshade",
-            "label": "Sunshade"
-        },
-        {
-            "id": "garagedoor",
-            "label": "Garage door"
+            "id": "classType",
+            "type": "dropdown",
+            "label": {
+                "en": "Device Class",
+                "fr": "Classe de l'appareil",
+                "de": "Geräteklasse",
+                "nl": "Apparaatklasse"
+            },
+            "value": "blinds",
+            "hint": {
+                "en": "Set the Homey class.",
+                "nl": "Stel de Homey klasse in.",
+                "fr": "Définissez la classe Homey.",
+                "de": "Setze die Homey-Klasse."
+            },
+            "values": [
+                {
+                    "id": "windowcoverings",
+                    "label": "Generic window covering"
+                },
+                {
+                    "id": "blinds",
+                    "label": "Blinds"
+                },
+                {
+                    "id": "curtain",
+                    "label": "Curtain"
+                },
+                {
+                    "id": "sunshade",
+                    "label": "Sunshade"
+                },
+                {
+                    "id": "garagedoor",
+                    "label": "Garage door"
+                }
+            ]
         }
-      ]
-    }
-  ],
-  "$extends": ["cloudDriver"]
+    ],
+    "$extends": [
+        "cloudDriver"
+    ]
 }

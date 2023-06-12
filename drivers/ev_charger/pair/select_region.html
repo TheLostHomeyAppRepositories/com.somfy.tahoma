@@ -1,0 +1,41 @@
+</br>
+<p class="homey-subtitle" data-i18n="pair.select_region.intro"></p>
+
+<form class="homey-form" id="form" name="form" onsubmit="return getForm()" action="javascript:void(0);" method="post" style="text-align:left;">
+        <label class="homey-form-label" for="region" data-i18n="pair.select_region.region"></label>
+        <select class="homey-form-select" name="region" id="region">
+            <option value="europe" data-i18n="pair.select_region.europe"></option>
+            <option value="use" data-i18n="pair.select_region.usa"></option>
+            <option value="oceana" data-i18n="pair.select_region.oceana"></option>
+        </select>
+    </br>
+    <input class="homey-button-primary-full" type="submit" id="submit" value="Next"/>
+    </br>
+</div>
+</form>
+
+
+<script type="text/javascript">
+    Homey.setTitle(__('pair.select_region.title'));
+
+    Homey.emit('select_region_setup', {},
+        function(err, result)
+        {
+            if (result)
+            {
+                if (result.region)
+                {
+                    document.getElementById('region').value = result.region;
+                }
+            }
+        }
+    );
+
+    function getForm()
+    {
+        Homey.emit('select_region',
+            {
+                region: document.forms["form"]["region"].value,
+            });
+    }
+</script>

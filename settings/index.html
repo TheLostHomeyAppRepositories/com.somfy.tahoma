@@ -64,6 +64,15 @@
                     <p></p>
                 </div>
                 <div class="field row">
+                    <label for="region" data-i18n="settings.region"></label>
+                    <select class="homey-form-select" name="region" id="region">
+                        <option value="europe" data-i18n="settings.europe"></option>
+                        <option value="usa" data-i18n="settings.usa"></option>
+                        <option value="oceana" data-i18n="settings.oceana"></option>
+                    </select>
+                    <p></p>
+                </div>
+                <div class="field row">
                     <button id="saveButton" class="left" style="display:block;background-color:#0f9e16;color:white;margin:15px 20px 5px 5px;" data-i18n="settings.save"></button>
                 </div>
             </fieldset>
@@ -179,6 +188,7 @@
         var usernameEl = document.getElementById('username');
         var passwordEl = document.getElementById('password');
         var showPasswordEl = document.getElementById('showPassword');
+        var regionE1 = document.getElementById('region');
         var logoutEl = document.getElementById('logoutElement');
 
         // Information log tab
@@ -311,18 +321,25 @@
                 }
             });
 
+            Homey.get('region', function(err, region)
+            {
+                if (err) return Homey.alert(err);
+                console.log('region: ', region);
+                regionE1.value = region;
+            });
+
             saveButton.addEventListener('click', function()
             {
                 Object.values(document.querySelectorAll('*')).forEach(element => element.style.cursor = "wait");
                 response.innerHTML = __('settings.save_verifying');
                 var username = usernameEl.value;
                 var password = passwordEl.value;
-                var linkurl = 'default';
+                var region = regionE1.value;
                 Homey.api('POST', '/login/',
                 {
                     "username": username,
                     "password": password,
-                    "linkurl": linkurl,
+                    "region": region,
                 }, function(err, result)
                 {
                     Object.values(document.querySelectorAll('*')).forEach(element => element.style.cursor = "default");

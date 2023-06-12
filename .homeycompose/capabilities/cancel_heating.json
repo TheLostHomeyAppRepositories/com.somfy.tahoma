@@ -1,10 +1,12 @@
 {
-  "type": "boolean",
-  "getable": false,
-  "setable": true,
-  "uiComponent": "button",
-  "title": {
-    "en": "Cancel Heating level",
-    "nl": "Annuleren Verwarmingsniveau"
-  }
+    "type": "boolean",
+    "getable": false,
+    "setable": true,
+    "uiComponent": "button",
+    "title": {
+        "en": "Cancel Heating level",
+        "fr": "Annuler le niveau de chauffage",
+        "de": "Heizstufe abbrechen",
+        "nl": "Annuleren Verwarmingsniveau"
+    }
 }

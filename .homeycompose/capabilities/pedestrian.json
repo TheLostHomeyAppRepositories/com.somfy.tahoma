@@ -1,10 +1,12 @@
 {
-  "type": "boolean",
-  "getable": true,
-  "setable": true,
-  "uiComponent": "button",
-  "title": {
-    "en": "Pedestrian",
-    "nl": "Voetganger"
-  }
+    "type": "boolean",
+    "getable": true,
+    "setable": true,
+    "uiComponent": "button",
+    "title": {
+        "en": "Pedestrian",
+        "nl": "Voetganger",
+        "fr": "Piéton",
+        "de": "Fußgänger"
+    }
 }

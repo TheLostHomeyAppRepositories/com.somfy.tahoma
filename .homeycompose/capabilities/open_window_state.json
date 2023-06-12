@@ -1,20 +1,26 @@
 {
-  "type": "boolean",
-  "getable": true,
-  "setable": false,
-  "uiComponent": "sensor",
-  "title": {
-    "en": "Window Open",
-    "nl": "Venster open"
-  },
-  "insights": true,
-  "insightsTitleTrue": {
-    "en": "Window openned",
-    "nl": "Venster geopend"
-  },
-  "insightsTitleFalse": {
-    "en": "Window closed",
-    "nl": "Venster gesloten"
-  },
-  "icon": "/assets/open_windows.svg"
+    "type": "boolean",
+    "getable": true,
+    "setable": false,
+    "uiComponent": "sensor",
+    "title": {
+        "en": "Window Open",
+        "nl": "Venster open",
+        "fr": "Fenêtre ouverte",
+        "de": "Fenster geöffnet"
+    },
+    "insights": true,
+    "insightsTitleTrue": {
+        "en": "Window opened",
+        "nl": "Venster geopend",
+        "fr": "Fenêtre ouverte",
+        "de": "Fenster geöffnet"
+    },
+    "insightsTitleFalse": {
+        "en": "Window closed",
+        "nl": "Venster gesloten",
+        "fr": "Fenêtre fermée",
+        "de": "Fenster geschlossen"
+    },
+    "icon": "/assets/open_windows.svg"
 }

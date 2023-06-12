@@ -3,10 +3,16 @@
         {
             "id": "heating_level2_state_changed",
             "title": {
-                "en": "The heating mode changed"
+                "en": "The heating mode changed",
+                "fr": "Le mode de chauffage a changé",
+                "de": "Der Heizmodus hat sich geändert",
+                "nl": "De verwarmingsmodus is gewijzigd"
             },
             "titleFormatted": {
-                "en": "The heating mode changed to [[heating_level2_state]]"
+                "en": "The heating mode changed to [[heating_level2_state]]",
+                "fr": "Le mode de chauffage a changé en [[heating_level2_state]]",
+                "de": "Der Heizmodus hat sich zu [[heating_level2_state]] geändert",
+                "nl": "De verwarmingsmodus is gewijzigd naar [[heating_level2_state]]"
             },
             "args": [
                 {
@@ -14,25 +20,35 @@
                     "type": "dropdown",
                     "title": {
                         "en": "Heating Mode",
+                        "fr": "Mode de chauffage",
+                        "de": "Heizmodus",
                         "nl": "Verwarmingsmodus"
                     },
                     "values": [
                         {
                             "id": "comfort",
                             "title": {
-                                "en": "Comfort"
+                                "en": "Comfort",
+                                "fr": "Confort",
+                                "de": "Komfort",
+                                "nl": "Comfort"
                             }
                         },
                         {
                             "id": "eco",
                             "title": {
-                                "en": "Eco"
+                                "en": "Eco",
+                                "fr": "Economique",
+                                "de": "Eco",
+                                "nl": "Eco"
                             }
                         },
                         {
                             "id": "frostprotection",
                             "title": {
                                 "en": "Frost Protection",
+                                "fr": "Protection contre le gel",
+                                "de": "Frostschutz",
                                 "nl": "Vorstbescherming"
                             }
                         },
@@ -40,6 +56,8 @@
                             "id": "off",
                             "title": {
                                 "en": "Off",
+                                "fr": "Éteint",
+                                "de": "Aus",
                                 "nl": "Uit"
                             }
                         }
@@ -52,10 +70,16 @@
         {
             "id": "set_heating_level2_state",
             "title": {
-                "en": "Set the heating mode"
+                "en": "Set the heating mode",
+                "fr": "Définir le mode de chauffage",
+                "de": "Heizmodus setzen",
+                "nl": "Verwarmingsmodus instellen"
             },
             "titleFormatted": {
-                "en": "Set the heating mode to [[state]]"
+                "en": "Set the heating mode to [[state]]",
+                "fr": "Définir le mode de chauffage à [[state]]",
+                "de": "Heizmodus auf [[state]] setzen",
+                "nl": "Verwarmingsmodus instellen op [[state]]"
             },
             "args": [
                 {
@@ -63,25 +87,35 @@
                     "type": "dropdown",
                     "title": {
                         "en": "Heating Mode",
+                        "fr": "Mode de chauffage",
+                        "de": "Heizmodus",
                         "nl": "Verwarmingsmodus"
                     },
                     "values": [
                         {
                             "id": "comfort",
                             "title": {
-                                "en": "Comfort"
+                                "en": "Comfort",
+                                "fr": "Confort",
+                                "de": "Komfort",
+                                "nl": "Comfort"
                             }
                         },
                         {
                             "id": "eco",
                             "title": {
-                                "en": "Eco"
+                                "en": "Eco",
+                                "fr": "Economique",
+                                "de": "Eco",
+                                "nl": "Eco"
                             }
                         },
                         {
                             "id": "frostprotection",
                             "title": {
                                 "en": "Frost Protection",
+                                "fr": "Protection contre le gel",
+                                "de": "Frostschutz",
                                 "nl": "Vorstbescherming"
                             }
                         },
@@ -89,6 +123,8 @@
                             "id": "off",
                             "title": {
                                 "en": "Off",
+                                "fr": "Éteint",
+                                "de": "Aus",
                                 "nl": "Uit"
                             }
                         }

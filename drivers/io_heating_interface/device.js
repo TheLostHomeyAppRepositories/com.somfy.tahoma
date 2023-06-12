@@ -9,7 +9,7 @@ const CapabilitiesXRef = [
         homeyName: 'heating_level2_state',
         somfyNameGet: 'io:TargetHeatingLevelState',
         somfyNameSet: ['setHeatingLevel'],
-    }
+    },
 ];
 class IOHeaterDevice extends SensorDevice
 {
@@ -17,8 +17,6 @@ class IOHeaterDevice extends SensorDevice
     async onInit()
     {
         await super.onInit(CapabilitiesXRef);
-        const dd = this.getData();
-
         this.boostSync = true;
     }
 

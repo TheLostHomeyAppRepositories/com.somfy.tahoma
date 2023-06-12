@@ -1,10 +1,12 @@
 {
-  "type": "boolean",
-  "getable": true,
-  "setable": true,
-  "uiComponent": "toggle",
-  "title": {
-    "en": "Quiet Mode",
-    "nl": "Stille modus"
-  }
+    "type": "boolean",
+    "getable": true,
+    "setable": true,
+    "uiComponent": "toggle",
+    "title": {
+        "en": "Quiet Mode",
+        "fr": "Mode silencieux",
+        "de": "Ruhe-Modus",
+        "nl": "Stille modus"
+    }
 }

@@ -3,15 +3,21 @@
     "deprecated": true,
     "title": {
         "en": "Turn polling on / off",
-        "nl": "Polling aan/uit zetten"
+        "nl": "Polling aan/uit zetten",
+        "fr": "Activer / désactiver le sondage",
+        "de": "Polling ein- / ausschalten"
     },
     "titleFormatted": {
         "en": "Turn polling [[newPollingMode]]",
-        "nl": "Zet polling [[newPollingMode]]"
+        "nl": "Zet polling [[newPollingMode]]",
+        "fr": "Activer / désactiver le sondage [[newPollingMode]]",
+        "de": "Polling [[newPollingMode]] schalten"
     },
     "hint": {
-      "en": "Switch the API polling on / off, or poll once to get the latest status",
-      "nl": "Schakel de API-polling aan / uit, of poll één keer om de laatste status te krijgen"
+        "en": "Switch the API polling on / off, or poll once to get the latest status",
+        "nl": "Schakel de API-polling aan / uit, of poll één keer om de laatste status te krijgen",
+        "fr": "Activez / désactivez le sondage de l'API ou interrogez une fois pour obtenir le statut le plus récent",
+        "de": "Schalten Sie die API-Polling ein / aus oder fragen Sie einmal ab, um den neuesten Status zu erhalten"
     },
     "args": [
         {
@@ -25,21 +31,27 @@
                     "id": "on",
                     "label": {
                         "en": "On",
-                        "nl": "aan"
+                        "nl": "aan",
+                        "fr": "Activé",
+                        "de": "Eingeschaltet"
                     }
                 },
                 {
                     "id": "off",
                     "label": {
                         "en": "Off",
-                        "nl": "uit"
+                        "nl": "uit",
+                        "fr": "Désactivé",
+                        "de": "Ausgeschaltet"
                     }
                 },
                 {
                     "id": "once",
                     "label": {
                         "en": "Once",
-                        "nl": "eenmaal"
+                        "nl": "eenmaal",
+                        "fr": "Une fois",
+                        "de": "Einmal"
                     }
                 }
             ]

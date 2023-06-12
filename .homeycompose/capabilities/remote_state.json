@@ -1,38 +1,48 @@
 {
-  "type": "enum",
-  "title": {
-    "en": "Remote State",
-    "nl": "Externe staat:"
-  },
-  "values": [
-    {
-      "id": "up",
-      "title": {
-        "en": "Up",
-        "nl": "Omhoog"
-      }
+    "type": "enum",
+    "title": {
+        "en": "Remote State",
+        "nl": "Externe staat:",
+        "fr": "État de la télécommande",
+        "de": "Fernzustand"
     },
-    {
-      "id": "down",
-      "title": {
-        "en": "Down",
-        "nl": "Omlaag"
-      }
-    },
-    {
-      "id": "stop",
-      "title": {
-        "en": "Stop",
-        "nl": "Hou op"
-      }
-    },
-    {
-      "id": "prog",
-      "title": {
-        "en": "Prog"
-      }
-    }
-  ],
-  "getable": true,
-  "setable": false
+    "values": [
+        {
+            "id": "up",
+            "title": {
+                "en": "Up",
+                "nl": "Omhoog",
+                "fr": "Haut",
+                "de": "Aufwärts"
+            }
+        },
+        {
+            "id": "down",
+            "title": {
+                "en": "Down",
+                "nl": "Omlaag",
+                "fr": "Bas",
+                "de": "Abwärts"
+            }
+        },
+        {
+            "id": "stop",
+            "title": {
+                "en": "Stop",
+                "nl": "Hou op",
+                "fr": "Stop",
+                "de": "Stoppen"
+            }
+        },
+        {
+            "id": "prog",
+            "title": {
+                "en": "Prog",
+                "fr": "Prog",
+                "de": "Prog"
+            }
+        }
+    ],
+    "getable": true,
+    "setable": false
 }

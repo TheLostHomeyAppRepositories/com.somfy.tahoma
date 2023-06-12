@@ -1,89 +1,109 @@
 {
-  "name": {
-    "en": "Roller shutter with quiet mode (io)",
-    "nl": "Rolluik met stille modus (io)"
-  },
-  "class": "blinds",
-  "capabilities": [
-    "windowcoverings_state",
-    "windowcoverings_set",
-    "my_position",
-    "quiet_mode",
-    "quick_open"
-  ],
-  "settings": [
-    {
-      "id": "invertUpDown",
-      "type": "checkbox",
-      "label": {
-        "en": "Invert Up / Down",
-        "nl": "Omkeren omhoog / omlaag"
-      },
-      "value": false,
-      "hint": {
-        "en": "Reverse the Up / Down direction controls",
-        "nl": "Draai de bedieningselementen omhoog/omlaag om"
-      }
+    "name": {
+        "en": "Roller shutter with quiet mode (io)",
+        "nl": "Rollluik met stille modus (io)",
+        "fr": "Volet roulant avec mode silencieux (io)",
+        "de": "Rolladen mit leisem Modus (io)"
     },
-    {
-      "id": "invertTile",
-      "type": "checkbox",
-      "label": {
-        "en": "Invert Tile Action",
-        "nl": "Tegelactie omkeren"
-      },
-      "value": false,
-      "hint": {
-        "en": "Reverse the Open / Close state of the Tile",
-        "nl": "Keer de Open / Sluit-status van de tegel om"
-      }
-    },
-    {
-      "id": "invertPosition",
-      "type": "checkbox",
-      "label": {
-        "en": "Invert Position",
-        "nl": "Positie omkeren"
-      },
-      "value": false,
-      "hint": {
-        "en": "Reverse the position control.",
-        "nl": "Draai de positieregeling om."
-      }
-    },
-    {
-      "id": "classType",
-      "type": "dropdown",
-      "label": {
-        "en": "Device Class"
-      },
-      "value": "blinds",
-      "hint": {
-        "en": "Set the Homey class."
-      },
-      "values":[
+    "class": "blinds",
+    "capabilities": [
+        "windowcoverings_state",
+        "windowcoverings_set",
+        "my_position",
+        "quiet_mode",
+        "quick_open"
+    ],
+    "settings": [
         {
-            "id": "windowcoverings",
-            "label": "Generic window covering"
+            "id": "invertUpDown",
+            "type": "checkbox",
+            "label": {
+                "en": "Invert Up / Down",
+                "nl": "Omkeren omhoog / omlaag",
+                "fr": "Inverser Haut/Bas",
+                "de": "Nach oben / unten umkehren"
+            },
+            "value": false,
+            "hint": {
+                "en": "Reverse the Up / Down direction controls",
+                "nl": "Draai de bedieningselementen omhoog/omlaag om",
+                "fr": "Inverser les commandes de direction Haut/Bas",
+                "de": "Kontrollen für die Richtung 'Nach oben / unten umkehren'"
+            }
         },
         {
-            "id": "blinds",
-            "label": "Blinds"
+            "id": "invertTile",
+            "type": "checkbox",
+            "label": {
+                "en": "Invert Tile Action",
+                "nl": "Tegelactie omkeren",
+                "fr": "Inverser les actions de tuile",
+                "de": "Kippen ausrichtung umkehren"
+            },
+            "value": false,
+            "hint": {
+                "en": "Reverse the Open / Close state of the Tile",
+                "nl": "Keer de Open / Sluit-status van de tegel om",
+                "fr": "Inverser l'état Ouvert / Fermé de la tuile",
+                "de": "Kippen ausrichtung umkehren"
+            }
         },
         {
-            "id": "curtain",
-            "label": "Curtain"
+            "id": "invertPosition",
+            "type": "checkbox",
+            "label": {
+                "en": "Invert Position",
+                "nl": "Positie omkeren",
+                "fr": "Inverser la position",
+                "de": "Position umkehren"
+            },
+            "value": false,
+            "hint": {
+                "en": "Reverse the position control.",
+                "nl": "Draai de positieregeling om.",
+                "fr": "Inverser le contrôle de position",
+                "de": "Kontrolle der Position umkehren."
+            }
         },
         {
-            "id": "sunshade",
-            "label": "Sunshade"
-        },
-        {
-            "id": "garagedoor",
-            "label": "Garage door"
+            "id": "classType",
+            "type": "dropdown",
+            "label": {
+                "en": "Device Class",
+                "fr": "Catégorie d'appareil",
+                "de": "Geräteklasse"
+            },
+            "value": "blinds",
+            "hint": {
+                "en": "Set the Homey class.",
+                "fr": "Définissez la classe Homey.",
+                "de": "Setzen Sie die Homey-Klasse."
+            },
+            "values": [
+                {
+                    "id": "windowcoverings",
+                    "label": "Generic window covering"
+                },
+                {
+                    "id": "blinds",
+                    "label": "Blinds"
+                },
+                {
+                    "id": "curtain",
+                    "label": "Curtain"
+                },
+                {
+                    "id": "sunshade",
+                    "label": "Sunshade"
+                },
+                {
+                    "id": "garagedoor",
+                    "label": "Garage door"
+                }
+            ]
         }
-      ]
-    }
-  ],
-  "$extends": ["cloudDriver"]
+    ],
+    "$extends": [
+        "cloudDriver"
+    ]
 }

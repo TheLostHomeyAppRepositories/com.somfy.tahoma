@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* jslint node: true */
 
 'use strict';
@@ -132,6 +133,7 @@ class myApp extends Homey.App
         {
             // Homey cloud or Bridge so no LAN access
             this.tahomaLocal = null;
+            this.homeyIP = null;
 
             // Enable logging for Homey cloud
             this.infoLogEnabled = true;
@@ -242,8 +244,9 @@ class myApp extends Homey.App
             await this.logOut(false);
             const username = this.homey.settings.get('username');
             const password = this.homey.settings.get('password');
+            const region = this.homey.settings.get('region');
 
-            if (!await this.doLocalLogin(username, password))
+            if (!await this.doLocalLogin(username, password, region))
             {
                 this.discoveryStrategy = this.homey.discovery.getStrategy('somfy_tahoma');
                 this.discoveryStrategy.on('result', (discoveryResult) =>
@@ -315,10 +318,16 @@ class myApp extends Homey.App
 
         const username = this.homey.settings.get('username');
         const password = this.homey.settings.get('password');
+        let region = this.homey.settings.get('region');
+        if (!region && username && password)
+        {
+            region = 'europe';
+            this.homey.settings.set('region', region);
+        }
 
         try
         {
-            await this.doLocalLogin(username, password);
+            await this.doLocalLogin(username, password, region);
         }
         catch (err)
         {
@@ -328,7 +337,7 @@ class myApp extends Homey.App
         this.syncTimerId = this.homey.setTimeout(() => this.initSync(), 5000);
     }
 
-    async doLocalLogin(username, password)
+    async doLocalLogin(username, password, region)
     {
         if (this.tahomaLocal === null)
         {
@@ -342,18 +351,27 @@ class myApp extends Homey.App
                 this.logInformation('Doing local login');
             }
 
-            this.localBearer = await this.tahomaLocal.getLocalAuthCode(username, password, this.localBridgeInfo.pin, this.localBridgeInfo.port, this.localBearer, await this.homey.cloud.getHomeyId());
+            this.localBearer = await this.tahomaLocal.getLocalAuthCode(username, password, region, this.localBridgeInfo.pin, this.localBridgeInfo.port, this.localBearer, await this.homey.cloud.getHomeyId());
         }
         else
         {
-            this.logInformation('Local login', 'Missing credentials or no local bridge detected yet');
+            if (this.localBridgeInfo)
+            {
+                this.logInformation('Local login', 'Missing credentials');
+            }
+            else
+            {
+                this.logInformation('Local login', 'No local bridge detected yet');
+            }
             return false;
         }
 
         if (this.localBearer)
         {
+            // Login was successful
             this.homey.settings.set('username', username);
             this.homey.settings.set('password', password);
+            this.homey.settings.set('region', region);
             this.homey.settings.set('localBearer', this.localBearer);
 
             try
@@ -365,9 +383,16 @@ class myApp extends Homey.App
                 }
                 await this.tahomaLocal.getDeviceData();
             }
-            catch (err)
+            catch (error)
             {
-                this.logInformation('Local login', err.message);
+                if (error.message)
+                {
+                    this.logInformation('Local login', `Error: ${error.message}`);
+                }
+                else
+                {
+                    this.logInformation('Local login', error);
+                }
             }
 
             return true;
@@ -727,6 +752,13 @@ class myApp extends Homey.App
                 return args.device.triggerCapabilityListener('windowcoverings_set.lower', args.windowcoverings_set);
             });
 
+        this.homey.flow.getActionCard('set_pedestrian')
+            .registerRunListener(async (args, state) =>
+            {
+                this.log('set_open');
+                return args.device.triggerCapabilityListener('pedestrian');
+            });
+
         this.homey.flow.getActionCard('set_open')
             .registerRunListener(async (args, state) =>
             {
@@ -799,11 +831,11 @@ class myApp extends Homey.App
     // Throws an exception if the login fails
     async newLogin(args)
     {
-        await this.newLogin_2(args.username, args.password, args.linkurl);
+        await this.newLogin_2(args.username, args.password, args.region);
     }
 
     // Throws an exception if the login fails
-    async newLogin_2(username, password, linkurl)
+    async newLogin_2(username, password, region)
     {
         // Stop the timer so periodic updates don't happen while changing login
         await this.stopSync();
@@ -815,8 +847,22 @@ class myApp extends Homey.App
 
         if (this.localBridgeInfo && this.localBridgeInfo.pin)
         {
-            // Need to get a local bearer token
-            await this.doLocalLogin(username, password);
+            try
+            {
+                // Need to get a local bearer token
+                await this.doLocalLogin(username, password, region);
+            }
+            catch (error)
+            {
+                if (error.message)
+                {
+                    this.logInformation('Login doLocal', `Error: ${error.message}`);
+                }
+                else
+                {
+                    this.logInformation('Login doLocal', error);
+                }
+            }
         }
 
         // make sure we logout from old method first
@@ -830,11 +876,18 @@ class myApp extends Homey.App
         // Login with supplied credentials. An error is thrown if the login fails
         try
         {
-            await this.tahomaCloud.login(username, password, linkurl, loginMethod, this.homeyIP);
+            await this.tahomaCloud.login(username, password, region, loginMethod, this.homeyIP);
         }
         catch (error)
         {
-            this.logInformation('Login', `Error: ${error.message}`);
+            if (error.message)
+            {
+                this.logInformation('Login OAuth', `Error: ${error.message}`);
+            }
+            else
+            {
+                this.logInformation('Login OAuth', error);
+            }
 
             // Try other log in method
             loginMethod = !loginMethod;
@@ -843,7 +896,7 @@ class myApp extends Homey.App
         if (!this.tahomaCloud.authenticated)
         {
             // Try once more with the alternative method but let an error break us out of here
-            await this.tahomaCloud.login(username, password, linkurl, loginMethod, this.homeyIP);
+            await this.tahomaCloud.login(username, password, region, loginMethod, this.homeyIP);
         }
 
         if (this.tahomaCloud.authenticated)
@@ -851,6 +904,7 @@ class myApp extends Homey.App
             // All good so save the credentials
             this.homey.settings.set('username', username);
             this.homey.settings.set('password', password);
+            this.homey.settings.set('region', region);
 
             const setupInfo = await this.tahomaCloud.getSetupOID();
             this.somfySetupOID = setupInfo.result;
@@ -1037,7 +1091,7 @@ class myApp extends Homey.App
                     },
                 );
 
-                if (logData && logData.length > 100)
+                if (logData && logData.length > 500)
                 {
                     logData.splice(0, 1);
                 }
@@ -1168,7 +1222,8 @@ class myApp extends Homey.App
     {
         const username = this.homey.settings.get('username');
         const password = this.homey.settings.get('password');
-        if (!username || !password)
+        const region = this.homey.settings.get('region');
+       if (!username || !password)
         {
             return;
         }
@@ -1182,26 +1237,33 @@ class myApp extends Homey.App
                 this.logInformation('initSync', 'Starting');
             }
 
-            await this.newLogin_2(username, password, 'default');
+            await this.newLogin_2(username, password, region);
             return;
         }
         catch (error)
         {
-            this.logInformation('initSync', `Error: ${error.message}`);
+            if (error.message)
+            {
+                this.logInformation('initSync', `Error: ${error.message}`);
 
-            if (error.message === 'Far Too many login attempts (blocked for 15 minutes)')
-            {
-                this.homey.clearTimeout(this.boostTimerId);
-                this.boostTimerId = null;
-                this.commandsQueued = 0;
-                timeout = 900000;
+                if (error.message.indexOf('Far Too many') >= 0)
+                {
+                    this.homey.clearTimeout(this.boostTimerId);
+                    this.boostTimerId = null;
+                    this.commandsQueued = 0;
+                    timeout = this.homeyIP ? 910000 : 86410000;
+                }
+                else if (error.message === 'Please leave 1 minutes between login attempts')
+                {
+                    this.homey.clearTimeout(this.boostTimerId);
+                    this.boostTimerId = null;
+                    this.commandsQueued = 0;
+                    timeout = 61000;
+                }
             }
-            else if (error.message === 'Too many login attempts (blocked for 60 seconds)')
+            else
             {
-                this.homey.clearTimeout(this.boostTimerId);
-                this.boostTimerId = null;
-                this.commandsQueued = 0;
-                timeout = 60000;
+                this.logInformation('initSync', error);
             }
         }
 

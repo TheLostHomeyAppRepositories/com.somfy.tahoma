@@ -1,88 +1,110 @@
 {
-  "name": {
-    "en": "Venetian Blinds (io)",
-    "nl": "Venetiaanse jaloezieën (io)"
-  },
-  "class": "blinds",
-  "capabilities": [
-    "windowcoverings_state",
-    "windowcoverings_set",
-    "windowcoverings_tilt_set",
-    "quick_open"
-  ],
-  "settings": [
-    {
-      "id": "invertUpDown",
-      "type": "checkbox",
-      "label": {
-        "en": "Invert Up / Down",
-        "nl": "Omkeren omhoog / omlaag"
-      },
-      "value": false,
-      "hint": {
-        "en": "Reverse the Up / Down direction controls",
-        "nl": "Draai de bedieningselementen omhoog/omlaag om"
-      }
+    "name": {
+        "en": "Venetian Blinds (io)",
+        "nl": "Venetiaanse jaloezieën (io)",
+        "fr": "Stores vénitiens (io)",
+        "de": "Jalousien (io)"
     },
-    {
-      "id": "invertTile",
-      "type": "checkbox",
-      "label": {
-        "en": "Invert Tile Action",
-        "nl": "Tegelactie omkeren"
-      },
-      "value": false,
-      "hint": {
-        "en": "Reverse the Open / Close state of the Tile",
-        "nl": "Keer de Open / Sluit-status van de tegel om"
-      }
-    },
-    {
-      "id": "invertPosition",
-      "type": "checkbox",
-      "label": {
-        "en": "Invert Position",
-        "nl": "Positie omkeren"
-      },
-      "value": false,
-      "hint": {
-        "en": "Reverse the position control.",
-        "nl": "Draai de positieregeling om."
-      }
-    },
-    {
-      "id": "classType",
-      "type": "dropdown",
-      "label": {
-        "en": "Device Class"
-      },
-      "value": "blinds",
-      "hint": {
-        "en": "Set the Homey class."
-      },
-      "values":[
+    "class": "blinds",
+    "capabilities": [
+        "windowcoverings_state",
+        "windowcoverings_set",
+        "windowcoverings_tilt_set",
+        "quick_open"
+    ],
+    "settings": [
         {
-            "id": "windowcoverings",
-            "label": "Generic window covering"
+            "id": "invertUpDown",
+            "type": "checkbox",
+            "label": {
+                "en": "Invert Up / Down",
+                "nl": "Omkeren omhoog / omlaag",
+                "fr": "Inverser haut/bas",
+                "de": "Oben/Unten umkehren"
+            },
+            "value": false,
+            "hint": {
+                "en": "Reverse the Up / Down direction controls",
+                "nl": "Draai de bedieningselementen omhoog / omlaag om",
+                "fr": "Renverser les contrôles de direction Haut / Bas",
+                "de": "Umschalten der Steuerelemente für die Richtung nach oben / nach unten"
+            }
         },
         {
-            "id": "blinds",
-            "label": "Blinds"
+            "id": "invertTile",
+            "type": "checkbox",
+            "label": {
+                "en": "Invert Tile Action",
+                "nl": "Tegelactie omkeren",
+                "fr": "Inverser l'action de la tuile",
+                "de": "Kachelaktion umkehren"
+            },
+            "value": false,
+            "hint": {
+                "en": "Reverse the Open / Close state of the Tile",
+                "nl": "Keer de Open / Sluit-status van de tegel om",
+                "fr": "Renversez l'état d'Ouverture / Fermeture de la Tuile",
+                "de": "Umschalten des Öffnungs- / Schließzustands des Kachelofens"
+            }
         },
         {
-            "id": "curtain",
-            "label": "Curtain"
+            "id": "invertPosition",
+            "type": "checkbox",
+            "label": {
+                "en": "Invert Position",
+                "nl": "Positie omkeren",
+                "fr": "Inverser la position",
+                "de": "Position umkehren"
+            },
+            "value": false,
+            "hint": {
+                "en": "Reverse the position control.",
+                "nl": "Draai de positieregeling om.",
+                "fr": "Inverser le contrôle de position.",
+                "de": "Umschalten der Positionssteuerung."
+            }
         },
         {
-            "id": "sunshade",
-            "label": "Sunshade"
-        },
-        {
-            "id": "garagedoor",
-            "label": "Garage door"
+            "id": "classType",
+            "type": "dropdown",
+            "label": {
+                "en": "Device Class",
+                "nl": "Apparaatklasse",
+                "fr": "Catégorie d'appareil",
+                "de": "Geräteklasse"
+            },
+            "value": "blinds",
+            "hint": {
+                "en": "Set the Homey class.",
+                "nl": "Stel de Homey-klasse in.",
+                "fr": "Définir la catégorie d'appareil Homey.",
+                "de": "Einstellen der Homey-Klasse."
+            },
+            "values": [
+                {
+                    "id": "windowcoverings",
+                    "label": "Generic window covering"
+                },
+                {
+                    "id": "blinds",
+                    "label": "Blinds"
+                },
+                {
+                    "id": "curtain",
+                    "label": "Curtain"
+                },
+                {
+                    "id": "sunshade",
+                    "label": "Sunshade"
+                },
+                {
+                    "id": "garagedoor",
+                    "label": "Garage door"
+                }
+            ]
         }
-      ]
-    }
-  ],
-  "$extends": ["cloudDriver"]
+    ],
+    "$extends": [
+        "cloudDriver"
+    ]
 }

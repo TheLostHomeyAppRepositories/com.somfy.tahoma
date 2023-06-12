@@ -1,12 +1,21 @@
 {
     "title": {
-        "en": "Set the Lower Shutter Position"
+        "en": "Set the Lower Shutter Position",
+        "fr": "Définir la position inférieure du volet",
+        "de": "Untere Jalousie-Position einstellen",
+        "nl": "Stel de onderste shutterpositie in"
     },
     "titleFormatted": {
-        "en": "Set the Lower Shutter position to [[windowcoverings_set]]"
+        "en": "Set the Lower Shutter position to [[windowcoverings_set]]",
+        "fr": "Définir la position inférieure du volet à [[windowcoverings_set]]",
+        "de": "Untere Jalousie-Position auf [[windowcoverings_set]] setzen",
+        "nl": "Stel de onderste shutterpositie in op [[windowcoverings_set]]"
     },
     "hint": {
-        "en": "Sets lower shutter position"
+        "en": "Sets lower shutter position",
+        "fr": "Définit la position inférieure du volet",
+        "de": "Stellt die untere Jalousie-Position ein",
+        "nl": "Stelt de onderste shutterpositie in"
     },
     "args": [
         {
@@ -16,7 +25,12 @@
         },
         {
             "name": "windowcoverings_set",
-            "title": "Position",
+            "title": {
+                "en": "Position",
+                "fr": "Position",
+                "de": "Position",
+                "nl": "Positie"
+            },
             "type": "range",
             "min": 0,
             "max": 1,

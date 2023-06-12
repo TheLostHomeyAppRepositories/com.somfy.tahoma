@@ -1,43 +1,63 @@
 {
-  "name": {
-    "en": "Atlantic Electric Heater"
-  },
-  "class": "heater",
-  "capabilities": [
-    "onoff",
-    "target_temperature",
-    "target_temperature.comfort_heating",
-    "target_temperature.eco_heating",
-    "target_temperature.derogated",
-    "cancel_heating",
-    "regulation_mode_state",
-    "power_state",
-    "native_function_level_state",
-    "heating_level_state",
-    "occupancy_activation",
-    "open_window_activation",
-    "eh_operating_mode"
-  ],
-  "capabilitiesOptions": {
-    "target_temperature": {
-      "min": 0,
-      "max": 28
+    "name": {
+        "en": "Atlantic Electric Heater",
+        "fr": "Radiateur électrique Atlantic",
+        "de": "Atlantic Elektroheizer",
+        "nl": "Atlantic Elektrische Kachel"
     },
-    "target_temperature.comfort_heating": {
-      "min": 0,
-      "max": 28,
-      "title": "Comfort Heating Temperature"
+    "class": "heater",
+    "capabilities": [
+        "onoff",
+        "target_temperature",
+        "target_temperature.comfort_heating",
+        "target_temperature.eco_heating",
+        "target_temperature.derogated",
+        "cancel_heating",
+        "regulation_mode_state",
+        "power_state",
+        "native_function_level_state",
+        "heating_level_state",
+        "occupancy_activation",
+        "open_window_activation",
+        "eh_operating_mode"
+    ],
+    "capabilitiesOptions": {
+        "target_temperature": {
+            "min": 0,
+            "max": 28
+        },
+        "target_temperature.comfort_heating": {
+            "min": 0,
+            "max": 28,
+            "title": {
+                "en": "Comfort Heating Temperature",
+                "fr": "Température de chauffage confort",
+                "de": "Komfort-Heiztemperatur",
+                "nl": "Comfortverwarmings temperatuur"
+            }
+        },
+        "target_temperature.eco_heating": {
+            "min": 0,
+            "max": 28,
+            "title": {
+                "en": "Eco Heating Temperature",
+                "fr": "Température de chauffage économe en énergie",
+                "de": "Energiesparende Heiztemperatur",
+                "nl": "Energiezuinige verwarmingstemperatuur"
+            }
+        },
+        "target_temperature.derogated": {
+            "min": 0,
+            "max": 28,
+            "title": {
+                "en": "Derogated Temperature",
+                "fr": "Température dérogée",
+                "de": "Abweichende Temperatur",
+                "nl": "Afwijkende temperatuur"
+            }
+        }
     },
-    "target_temperature.eco_heating": {
-      "min": 0,
-      "max": 28,
-      "title": "Eco Heating Temperature"
-    },
-    "target_temperature.derogated": {
-      "min": 0,
-      "max": 28,
-      "title": "Derogated Temperature"
-    }
-  },
-  "$extends": ["cloudDriver"]
+    "$extends": [
+        "cloudDriver"
+    ]
 }

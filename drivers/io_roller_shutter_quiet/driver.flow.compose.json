@@ -4,10 +4,14 @@
             "id": "set_quiet_mode",
             "title": {
                 "en": "Set quiet mode",
+                "fr": "Activer le mode silencieux",
+                "de": "Ruhezustand einstellen",
                 "nl": "Stille modus instellen"
             },
             "titleFormatted": {
                 "en": "Set quiet mode to [[newQuietMode]]",
+                "fr": "Mettre le mode silencieux à [[newQuietMode]]",
+                "de": "Setzen Sie den Ruhezustand auf [[newQuietMode]]",
                 "nl": "Zet stille modus op [[newQuietMode]]"
             },
             "args": [
@@ -15,13 +19,18 @@
                     "name": "newQuietMode",
                     "type": "dropdown",
                     "title": {
-                        "en": "Quiet Mode"
+                        "en": "Quiet Mode",
+                        "fr": "Mode silencieux",
+                        "de": "Ruhezustand",
+                        "nl": "Stille modus"
                     },
                     "values": [
                         {
                             "id": "on",
                             "label": {
                                 "en": "On",
+                                "fr": "Activé",
+                                "de": "Ein",
                                 "nl": "aan"
                             }
                         },
@@ -29,6 +38,8 @@
                             "id": "off",
                             "label": {
                                 "en": "Off",
+                                "fr": "Désactivé",
+                                "de": "Aus",
                                 "nl": "uit"
                             }
                         }

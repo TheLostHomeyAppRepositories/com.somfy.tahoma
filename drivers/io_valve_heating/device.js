@@ -156,11 +156,11 @@ class ValveHeatingDevice extends SensorDevice
                 return;
             }
 
-            let applicableEntries = CapabilitiesXRef.filter(entry => entry.somfyNameSet[0] === capabilityXRef.somfyNameSet[0]).sort((a, b) => a.somfyArray - b.somfyArray);
+            let applicableEntries = CapabilitiesXRef.filter((entry) => entry.somfyNameSet[0] === capabilityXRef.somfyNameSet[0]).sort((a, b) => a.somfyArray - b.somfyArray);
 
             if (capabilityXRef.somfySetGroup)
             {
-                let applicableEntries2 = applicableEntries.filter(entry => (entry.somfySetGroup.indexOf(capabilityXRef.somfySetGroup[0]) >= 0));
+                const applicableEntries2 = applicableEntries.filter((entry) => (entry.somfySetGroup.indexOf(capabilityXRef.somfySetGroup[0]) >= 0));
                 applicableEntries = applicableEntries2;
             }
 
@@ -202,7 +202,7 @@ class ValveHeatingDevice extends SensorDevice
             }
 
             const deviceData = this.getData();
-            const idx = this.executionCommands.findIndex(element => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
+            const idx = this.executionCommands.findIndex((element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
             if (idx >= 0)
             {
                 try
@@ -227,7 +227,7 @@ class ValveHeatingDevice extends SensorDevice
 
             try
             {
-                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync, null, true );
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync, null, true);
                 if (result)
                 {
                     if (result.errorCode)
@@ -241,7 +241,7 @@ class ValveHeatingDevice extends SensorDevice
                     }
                     else
                     {
-                        const idx = this.executionCommands.findIndex(element => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
+                        const idx = this.executionCommands.findIndex((element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
                         if (idx < 0)
                         {
                             this.executionCommands.push({ id: result.execId, name: action.name, local: result.local });

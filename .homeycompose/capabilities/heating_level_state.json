@@ -1,62 +1,80 @@
 {
-  "type": "enum",
-  "title": {
-    "en": "Heating Level",
-    "nl": "Verwarmingsniveau"
-  },
-  "values": [
-    {
-      "id": "boost",
-      "title": {
-        "en": "Boost"
-      }
+    "type": "enum",
+    "title": {
+        "en": "Heating Level",
+        "nl": "Verwarmingsniveau",
+        "fr": "Niveau de chauffage",
+        "de": "Heizstufe"
     },
-    {
-      "id": "comfort",
-      "title": {
-        "en": "Comfort"
-      }
-    },
-    {
-      "id": "comfort_1",
-      "title": {
-        "en": "Comfort 1"
-      }
-    },
-    {
-      "id": "comfort_2",
-      "title": {
-        "en": "Comfort 2"
-      }
-    },
-    {
-      "id": "eco",
-      "title": {
-        "en": "Eco"
-      }
-    },
-    {
-      "id": "frostprotection",
-      "title": {
-        "en": "Frost Protection",
-        "nl": "Vorstbescherming"
-      }
-    },
-    {
-      "id": "off",
-      "title": {
-        "en": "Off",
-        "nl": "Uit"
-      }
-    },
-    {
-      "id": "secured",
-      "title": {
-        "en": "Secured",
-        "nl": "Beveiligd"
-      }
-    }
-  ],
-  "getable": true,
-  "setable": true
+    "values": [
+        {
+            "id": "boost",
+            "title": {
+                "en": "Boost",
+                "fr": "Booster",
+                "de": "Boost"
+            }
+        },
+        {
+            "id": "comfort",
+            "title": {
+                "en": "Comfort",
+                "fr": "Confort",
+                "de": "Komfort"
+            }
+        },
+        {
+            "id": "comfort_1",
+            "title": {
+                "en": "Comfort 1",
+                "fr": "Confort 1",
+                "de": "Komfort 1"
+            }
+        },
+        {
+            "id": "comfort_2",
+            "title": {
+                "en": "Comfort 2",
+                "fr": "Confort 2",
+                "de": "Komfort 2"
+            }
+        },
+        {
+            "id": "eco",
+            "title": {
+                "en": "Eco",
+                "fr": "Eco",
+                "de": "Eco"
+            }
+        },
+        {
+            "id": "frostprotection",
+            "title": {
+                "en": "Frost Protection",
+                "nl": "Vorstbescherming",
+                "fr": "Protection du gel",
+                "de": "Frostschutz"
+            }
+        },
+        {
+            "id": "off",
+            "title": {
+                "en": "Off",
+                "nl": "Uit",
+                "fr": "Éteint",
+                "de": "Aus"
+            }
+        },
+        {
+            "id": "secured",
+            "title": {
+                "en": "Secured",
+                "nl": "Beveiligd",
+                "fr": "Sécurisé",
+                "de": "Gesichert"
+            }
+        }
+    ],
+    "getable": true,
+    "setable": true
 }

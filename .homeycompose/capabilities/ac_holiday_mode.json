@@ -1,9 +1,12 @@
 {
-  "type": "boolean",
-  "getable": true,
-  "setable": true,
-  "uiComponent": "button",
-  "title": {
-    "en": "Holiday Mode"
-  }
+    "type": "boolean",
+    "getable": true,
+    "setable": true,
+    "uiComponent": "button",
+    "title": {
+        "en": "Holiday Mode",
+        "fr": "Mode Vacances",
+        "de": "Urlaubsmodus",
+        "nl": "Vakantiemodus"
+    }
 }

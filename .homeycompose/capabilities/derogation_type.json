@@ -1,25 +1,31 @@
 {
-  "type": "enum",
-  "title": {
-    "en": "Operating Until",
-    "nl": "Werkend tot"
-  },
-  "values": [
-    {
-      "id": "further_notice",
-      "title": {
-        "en": "Further Notice",
-        "nl": "Nadere aankondiging"
-      }
+    "type": "enum",
+    "title": {
+        "en": "Operating Until",
+        "fr": "Fonctionnant jusqu'à",
+        "de": "Betrieb bis",
+        "nl": "Werkend tot"
     },
-    {
-      "id": "next_mode",
-      "title": {
-        "en": "Next Mode Change",
-        "nl": "Volgende modus"
-      }
-    }
-  ],
-  "getable": true,
-  "setable": true
+    "values": [
+        {
+            "id": "further_notice",
+            "title": {
+                "en": "Further Notice",
+                "fr": "Avis ultérieur",
+                "de": "Weitere Benachrichtigung",
+                "nl": "Nadere aankondiging"
+            }
+        },
+        {
+            "id": "next_mode",
+            "title": {
+                "en": "Next Mode Change",
+                "fr": "Prochaine modification de mode",
+                "de": "Nächste Modusänderung",
+                "nl": "Volgende modus"
+            }
+        }
+    ],
+    "getable": true,
+    "setable": true
 }

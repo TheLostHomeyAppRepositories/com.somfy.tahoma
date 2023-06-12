@@ -1,49 +1,61 @@
 {
-  "name": {
-    "en": "RGBW Light",
-    "nl": "RGBW-licht"
-  },
-  "class": "light",
-  "capabilities": [
-    "onoff",
-    "dim",
-    "light_hue",
-    "light_saturation",
-    "light_mode",
-    "light_temperature"
-  ],
-  "capabilitiesOptions": {
-    "onoff": {
-      "setOnDim": false
-    }
-  },
-  "settings": [
-    {
-      "id": "minTemperature",
-      "type": "number",
-      "label": {
-        "en": "Min Colour Temperature (K)",
-        "nl": "Minimale kleurtemperatuur (K)"
-      },
-      "value": 2200,
-      "hint": {
-        "en": "Min colour temperature of the light",
-        "nl": "Min kleurtemperatuur van het licht"
-      }
+    "name": {
+        "en": "RGBW Light",
+        "nl": "RGBW-licht",
+        "fr": "Lumière RGBW",
+        "de": "RGBW-Licht"
     },
-    {
-      "id": "maxTemperature",
-      "type": "number",
-      "label": {
-        "en": "Max Colour Temperature (K)",
-        "nl": "Maximale kleurtemperatuur (K)"
-      },
-      "value": 6500,
-      "hint": {
-        "en": "Max colour temperature of the light",
-        "nl": "Max kleurtemperatuur van het licht"
-      }
-    }
-  ],
-  "$extends": ["cloudDriver"]
+    "class": "light",
+    "capabilities": [
+        "onoff",
+        "dim",
+        "light_hue",
+        "light_saturation",
+        "light_mode",
+        "light_temperature"
+    ],
+    "capabilitiesOptions": {
+        "onoff": {
+            "setOnDim": false
+        }
+    },
+    "settings": [
+        {
+            "id": "minTemperature",
+            "type": "number",
+            "label": {
+                "en": "Min Colour Temperature (K)",
+                "nl": "Minimale kleurtemperatuur (K)",
+                "fr": "Température de couleur minimale (K)",
+                "de": "Minimale Farbtemperatur (K)"
+            },
+            "value": 2200,
+            "hint": {
+                "en": "Min colour temperature of the light",
+                "nl": "Min kleurtemperatuur van het licht",
+                "fr": "Température de couleur minimale de la lumière",
+                "de": "Minimale Farbtemperatur des Lichts"
+            }
+        },
+        {
+            "id": "maxTemperature",
+            "type": "number",
+            "label": {
+                "en": "Max Colour Temperature (K)",
+                "nl": "Maximale kleurtemperatuur (K)",
+                "fr": "Température de couleur maximale (K)",
+                "de": "Maximale Farbtemperatur (K)"
+            },
+            "value": 6500,
+            "hint": {
+                "en": "Max colour temperature of the light",
+                "nl": "Max kleurtemperatuur van het licht",
+                "fr": "Température de couleur maximale de la lumière",
+                "de": "Maximale Farbtemperatur des Lichts"
+            }
+        }
+    ],
+    "$extends": [
+        "cloudDriver"
+    ]
 }

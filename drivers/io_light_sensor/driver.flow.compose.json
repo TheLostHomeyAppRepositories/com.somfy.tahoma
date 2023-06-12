@@ -4,21 +4,31 @@
             "id": "change_luminance_more_than",
             "title": {
                 "en": "The luminance is more than",
-                "nl": "De lichtsterkte is meer dan"
+                "nl": "De lichtsterkte is meer dan",
+                "fr": "La luminance est supérieure à",
+                "de": "Die Helligkeit ist mehr als"
             },
             "titleFormatted": {
                 "en": "The luminance is more than [[luminance]]",
-                "nl": "De lichtsterkte is meer dan [[luminance]]"
+                "nl": "De lichtsterkte is meer dan [[luminance]]",
+                "fr": "La luminance est supérieure à [[luminance]]",
+                "de": "Die Helligkeit ist mehr als [[luminance]]"
             },
             "args": [
                 {
                     "name": "luminance",
                     "type": "number",
                     "title": {
-                        "en": "Luminance"
+                        "en": "Luminance",
+                        "fr": "Luminance",
+                        "de": "Helligkeit",
+                        "nl": "Lichtsterkte"
                     },
                     "placeholder": {
-                        "en": "in Lux"
+                        "en": "in Lux",
+                        "fr": "en Lux",
+                        "de": "in Lux",
+                        "nl": "in Lux"
                     }
                 }
             ]
@@ -27,21 +37,31 @@
             "id": "change_luminance_less_than",
             "title": {
                 "en": "The luminance is less than",
-                "nl": "De lichtsterkte is minder dan"
+                "nl": "De lichtsterkte is minder dan",
+                "fr": "La luminance est inférieure à",
+                "de": "Die Helligkeit ist weniger als"
             },
             "titleFormatted": {
                 "en": "The luminance is less than [[luminance]]",
-                "nl": "De lichtsterkte is minder dan [[luminance]]"
+                "nl": "De lichtsterkte is minder dan [[luminance]]",
+                "fr": "La luminance est inférieure à [[luminance]]",
+                "de": "Die Helligkeit ist weniger als [[luminance]]"
             },
             "args": [
                 {
                     "name": "luminance",
                     "type": "number",
                     "title": {
-                        "en": "Luminance"
+                        "en": "Luminance",
+                        "fr": "Luminance",
+                        "de": "Helligkeit",
+                        "nl": "Lichtsterkte"
                     },
                     "placeholder": {
-                        "en": "in Lux"
+                        "en": "in Lux",
+                        "fr": "en Lux",
+                        "de": "in Lux",
+                        "nl": "in Lux"
                     }
                 }
             ]
@@ -50,31 +70,47 @@
             "id": "change_luminance_between",
             "title": {
                 "en": "The luminance is between",
-                "nl": "De lichtsterkte is tussen"
+                "nl": "De lichtsterkte is tussen",
+                "fr": "La luminance est comprise entre",
+                "de": "Die Helligkeit liegt zwischen"
             },
             "titleFormatted": {
                 "en": "The luminance is between [[luminance_from]] and [[luminance_to]]",
-                "nl": "De lichtsterkte is tussen [[luminance_from]] en [[luminance_to]]"
+                "nl": "De lichtsterkte is tussen [[luminance_from]] en [[luminance_to]]",
+                "fr": "La luminance est comprise entre [[luminance_from]] et [[luminance_to]]",
+                "de": "Die Helligkeit liegt zwischen [[luminance_from]] und [[luminance_to]]"
             },
             "args": [
                 {
                     "name": "luminance_from",
                     "type": "number",
                     "title": {
-                        "en": "Luminance From"
+                        "en": "Luminance From",
+                        "fr": "Luminance De",
+                        "de": "Helligkeit von",
+                        "nl": "Lichtsterkte vanaf"
                     },
                     "placeholder": {
-                        "en": "in Lux"
+                        "en": "in Lux",
+                        "fr": "en Lux",
+                        "de": "in Lux",
+                        "nl": "in Lux"
                     }
                 },
                 {
                     "name": "luminance_to",
                     "type": "number",
                     "title": {
-                        "en": "Luminance Tp"
+                        "en": "Luminance To",
+                        "fr": "Luminance À",
+                        "de": "Helligkeit bis",
+                        "nl": "Lichtsterkte tot"
                     },
                     "placeholder": {
-                        "en": "in Lux"
+                        "en": "in Lux",
+                        "fr": "en Lux",
+                        "de": "in Lux",
+                        "nl": "in Lux"
                     }
                 }
             ]
@@ -85,21 +121,31 @@
             "id": "has_luminance_more_than",
             "title": {
                 "en": "The luminance !{{is|isn't}} more than",
-                "nl": "De lichtsterkte !{{is|is niet}} meer dan"
+                "nl": "De lichtsterkte !{{is|is niet}} meer dan",
+                "fr": "La luminance {{n'est pas|est}} supérieure à",
+                "de": "Die Helligkeit {{nicht|ist}} mehr als"
             },
             "titleFormatted": {
                 "en": "The luminance !{{is|isn't}} more than [[luminance]]",
-                "nl": "De lichtsterkte !{{is|is niet}} meer dan [[luminance]]"
+                "nl": "De lichtsterkte !{{is|is niet}} meer dan [[luminance]]",
+                "fr": "La luminance {{n'est pas|est}} supérieure à [[luminance]]",
+                "de": "Die Helligkeit {{nicht|ist}} mehr als [[luminance]]"
             },
             "args": [
                 {
                     "name": "luminance",
                     "type": "number",
                     "title": {
-                        "en": "Luminance"
+                        "en": "Luminance",
+                        "fr": "Luminance",
+                        "de": "Helligkeit",
+                        "nl": "Lichtsterkte"
                     },
                     "placeholder": {
-                        "en": "in Lux"
+                        "en": "in Lux",
+                        "fr": "en Lux",
+                        "de": "in Lux",
+                        "nl": "in Lux"
                     }
                 }
             ]
@@ -108,21 +154,31 @@
             "id": "has_luminance_less_than",
             "title": {
                 "en": "The luminance !{{is|isn't}} less than",
-                "nl": "De lichtsterkte !{{is|is niet}} minder dan"
+                "nl": "De lichtsterkte !{{is|is niet}} minder dan",
+                "fr": "La luminance {{n'est pas|est}} inférieure à",
+                "de": "Die Helligkeit {{nicht|ist}} weniger als"
             },
             "titleFormatted": {
                 "en": "The luminance !{{is|isn't}} less than [[luminance]]",
-                "nl": "De lichtsterkte !{{is|is niet}} minder dan [[luminance]]"
+                "nl": "De lichtsterkte !{{is|is niet}} minder dan [[luminance]]",
+                "fr": "La luminance {{n'est pas|est}} inférieure à [[luminance]]",
+                "de": "Die Helligkeit {{nicht|ist}} weniger als [[luminance]]"
             },
             "args": [
                 {
                     "name": "luminance",
                     "type": "number",
                     "title": {
-                        "en": "Luminance"
+                        "en": "Luminance",
+                        "fr": "Luminance",
+                        "de": "Helligkeit",
+                        "nl": "Lichtsterkte"
                     },
                     "placeholder": {
-                        "en": "in Lux"
+                        "en": "in Lux",
+                        "fr": "en Lux",
+                        "de": "in Lux",
+                        "nl": "in Lux"
                     }
                 }
             ]
@@ -131,31 +187,47 @@
             "id": "has_luminance_between",
             "title": {
                 "en": "The luminance !{{is|isn't}} between",
-                "nl": "De lichtsterkte !{{is|is niet}} tussen"
+                "nl": "De lichtsterkte !{{is|is niet}} tussen",
+                "fr": "La luminance {{n'est pas|est}} comprise entre",
+                "de": "Die Helligkeit {{nicht|ist}} zwischen"
             },
             "titleFormatted": {
                 "en": "The luminance !{{is|isn't}} between [[luminance_from]] and [[luminance_to]]",
-                "nl": "De lichtsterkte !{{is|is niet}} tussen [[luminance_from]] en [[luminance_to]]"
+                "nl": "De lichtsterkte !{{is|is niet}} tussen [[luminance_from]] en [[luminance_to]]",
+                "fr": "La luminance {{n'est pas|est}} comprise entre [[luminance_from]] et [[luminance_to]]",
+                "de": "Die Helligkeit {{nicht|ist}} zwischen [[luminance_from]] und [[luminance_to]]"
             },
             "args": [
                 {
                     "name": "luminance_from",
                     "type": "number",
                     "title": {
-                        "en": "Luminance From"
+                        "en": "Luminance From",
+                        "fr": "Luminance De",
+                        "de": "Helligkeit von",
+                        "nl": "Lichtsterkte vanaf"
                     },
                     "placeholder": {
-                        "en": "in Lux"
+                        "en": "in Lux",
+                        "fr": "en Lux",
+                        "de": "in Lux",
+                        "nl": "in Lux"
                     }
                 },
                 {
                     "name": "luminance_to",
                     "type": "number",
                     "title": {
-                        "en": "Luminance To"
+                        "en": "Luminance To",
+                        "fr": "Luminance À",
+                        "de": "Helligkeit bis",
+                        "nl": "Lichtsterkte tot"
                     },
                     "placeholder": {
-                        "en": "in Lux"
+                        "en": "in Lux",
+                        "fr": "en Lux",
+                        "de": "in Lux",
+                        "nl": "in Lux"
                     }
                 }
             ]

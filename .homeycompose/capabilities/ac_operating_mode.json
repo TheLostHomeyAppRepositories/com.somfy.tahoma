@@ -1,7 +1,10 @@
 {
     "type": "enum",
     "title": {
-        "en": "Operating Mode"
+        "en": "Operating Mode",
+        "fr": "Mode de fonctionnement",
+        "de": "Betriebsart",
+        "nl": "Bedieningsmodus"
     },
     "getable": true,
     "setable": true,
@@ -10,43 +13,64 @@
         {
             "id": "auto cooling",
             "title": {
-                "en": "Auto Cooling"
+                "en": "Auto Cooling",
+                "fr": "Refroidissement automatique",
+                "de": "Automatische Kühlung",
+                "nl": "Automatisch koelen"
             }
         },
         {
             "id": "auto heating",
             "title": {
-                "en": "Auto Heating"
+                "en": "Auto Heating",
+                "fr": "Chauffage automatique",
+                "de": "Automatische Heizung",
+                "nl": "Automatisch verwarmen"
             }
         },
         {
             "id": "circulator",
             "title": {
-                "en": "Circulator"
+                "en": "Circulator",
+                "fr": "Circulateur",
+                "de": "Umlaufpumpe",
+                "nl": "Circulator"
             }
         },
         {
             "id": "dehumidify",
             "title": {
-                "en": "Dehumidify"
+                "en": "Dehumidify",
+                "fr": "Déshumidifier",
+                "de": "Entfeuchten",
+                "nl": "Ontvochtigen"
             }
         },
         {
             "id": "fan",
             "title": {
-                "en": "Fan"
+                "en": "Fan",
+                "fr": "Ventilateur",
+                "de": "Ventilator",
+                "nl": "Ventilator"
             }
         },
         {
             "id": "heating",
             "title": {
-                "en": "Heating"
+                "en": "Heating",
+                "fr": "Chauffage",
+                "de": "Heizung",
+                "nl": "Verwarmen"
             }
         },
         {
             "id": "cooling",
             "title": {
-                "en": "Cooling"
+                "en": "Cooling",
+                "fr": "Refroidissement",
+                "de": "Kühlung",
+                "nl": "Koelen"
             }
         }
     ]

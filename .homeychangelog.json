@@ -616,5 +616,20 @@
   },
   "4.0.28": {
     "en": "Fixed for Homey 2023 to resolve path to local certificate."
+  },
+  "4.0.29": {
+    "en": "Added 'profalux868:Profalux868RollerShutter' to 'Blind or Shutter (RTS)'."
+  },
+  "4.0.30": {
+    "en": "Added flow action card to set pedestrian position for sliding gate. Fix command for Pilot Wire Programmer operating mode."
+  },
+  "4.0.31": {
+    "en": "Changed login backoff routine to try an fix cloud IP block."
+  },
+  "4.0.32": {
+    "en": "Added option to select the Somfy server region to support Australian users."
+  },
+  "4.0.33": {
+    "en": "Fix translations. Fix issue in error handler."
   }
 }

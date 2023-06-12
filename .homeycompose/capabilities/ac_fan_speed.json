@@ -1,42 +1,59 @@
 {
-  "type": "enum",
-  "title": {
-    "en": "Fan Speed"
-  },
-  "getable": true,
-  "setable": true,
-  "uiComponent": "picker",
-  "values": [
-    {
-      "id": "auto",
-      "title": {
-        "en": "Automatic",
-        "nl": "Automatisch"
-      }
+    "type": "enum",
+    "title": {
+        "en": "Fan Speed",
+        "fr": "Vitesse du ventilateur",
+        "de": "Lüftergeschwindigkeit",
+        "nl": "Ventilatorsnelheid"
     },
-    {
-      "id": "hi",
-      "title": {
-        "en": "Hi Speed"
-      }
-    },
-    {
-      "id": "lo",
-      "title": {
-        "en": "Low Speed"
-      }
-    },
-    {
-      "id": "med",
-      "title": {
-        "en": "Medium Speed"
-      }
-    },
-    {
-      "id": "silent",
-      "title": {
-        "en": "Silent"
-      }
-    }
-  ]
+    "getable": true,
+    "setable": true,
+    "uiComponent": "picker",
+    "values": [
+        {
+            "id": "auto",
+            "title": {
+                "en": "Automatic",
+                "fr": "Automatique",
+                "de": "Automatisch",
+                "nl": "Automatisch"
+            }
+        },
+        {
+            "id": "hi",
+            "title": {
+                "en": "Hi Speed",
+                "fr": "Vitesse élevée",
+                "de": "Hohe Geschwindigkeit",
+                "nl": "Hoge snelheid"
+            }
+        },
+        {
+            "id": "lo",
+            "title": {
+                "en": "Low Speed",
+                "fr": "Vitesse basse",
+                "de": "Niedrige Geschwindigkeit",
+                "nl": "Lage snelheid"
+            }
+        },
+        {
+            "id": "med",
+            "title": {
+                "en": "Medium Speed",
+                "fr": "Vitesse moyenne",
+                "de": "Mittlere Geschwindigkeit",
+                "nl": "Gemiddelde snelheid"
+            }
+        },
+        {
+            "id": "silent",
+            "title": {
+                "en": "Silent",
+                "fr": "Silencieux",
+                "de": "Leise",
+                "nl": "Stil"
+            }
+        }
+    ]
 }

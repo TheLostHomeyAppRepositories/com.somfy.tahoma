@@ -8,21 +8,36 @@
     ],
     "pair": [
         {
+            "id": "select_region"
+        },
+        {
             "id": "login_credentials",
             "template": "login_credentials",
             "options": {
                 "logo": "logo.png",
                 "usernameLabel": {
-                    "en": "E-mail address"
+                    "en": "E-mail address",
+                    "fr": "Adresse e-mail",
+                    "de": "E-Mail-Adresse",
+                    "nl": "E-mailadres"
                 },
                 "usernamePlaceholder": {
-                    "en": "john@doe.com"
+                    "en": "john@doe.com",
+                    "fr": "jean@dupont.com",
+                    "de": "max.mustermann@mustermail.de",
+                    "nl": "jansen@holland.nl"
                 },
                 "passwordLabel": {
-                    "en": "Password"
+                    "en": "Password",
+                    "fr": "Mot de passe",
+                    "de": "Passwort",
+                    "nl": "Wachtwoord"
                 },
                 "passwordPlaceholder": {
-                    "en": "Password"
+                    "en": "Password",
+                    "fr": "Mot de passe",
+                    "de": "Passwort",
+                    "nl": "Wachtwoord"
                 }
             }
         },
@@ -30,8 +45,7 @@
             "id": "list_my_devices",
             "template": "list_devices",
             "navigation": {
-                "next": "add_my_devices",
-                "prev": "login_credentials"
+                "next": "add_my_devices"
             }
         },
         {
@@ -46,16 +60,28 @@
             "options": {
                 "logo": "logo.png",
                 "usernameLabel": {
-                    "en": "E-mail address"
+                    "en": "E-mail address",
+                    "fr": "Adresse e-mail",
+                    "de": "E-Mail-Adresse",
+                    "nl": "E-mailadres"
                 },
                 "usernamePlaceholder": {
-                    "en": "john@doe.com"
+                    "en": "john@doe.com",
+                    "fr": "jean@dupont.com",
+                    "de": "max.mustermann@mustermail.de",
+                    "nl": "jansen@holland.nl"
                 },
                 "passwordLabel": {
-                    "en": "Password"
+                    "en": "Password",
+                    "fr": "Mot de passe",
+                    "de": "Passwort",
+                    "nl": "Wachtwoord"
                 },
                 "passwordPlaceholder": {
-                    "en": "Password"
+                    "en": "Password",
+                    "fr": "Mot de passe",
+                    "de": "Passwort",
+                    "nl": "Wachtwoord"
                 }
             }
         }

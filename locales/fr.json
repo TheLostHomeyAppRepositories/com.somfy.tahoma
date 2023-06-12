@@ -1,0 +1,70 @@
+{
+    "settings": {
+        "title": "Paramètres TaHoma / Connexoon",
+        "intro": "Pour permettre à Homey de contrôler TaHoma / Connexoon, veuillez autoriser Homey en fournissant vos identifiants de connexion TaHoma / Connexoon.",
+        "logintitle": "Identifiants de connexion TaHoma / Connexoon",
+        "username": "Nom d'utilisateur",
+        "password": "Mot de passe",
+        "save": "Enregistrer les identifiants",
+        "login_success": "Connexion réussie.",
+        "login_failure": "Échec de la connexion.",
+        "logouttitle": "Révoquer l'accès pour Homey",
+        "logout": "Se déconnecter",
+        "logout_success": "Déconnexion réussie.",
+        "logout_failure": "Échec de la déconnexion.",
+        "preferences": "Préférences",
+        "sync_speed": "Intervalle de mise à jour",
+        "sync_tooltip": "(secondes)",
+        "save_preferences": "Enregistrer les préférences",
+        "linkurl": "URL de connexion (par défaut, généralement adaptée à Tahoma et Connexoon)",
+        "save_verifying": "Tentative de connexion. Veuillez patienter...",
+        "logout_description": "Cela vous déconnectera de TaHoma et supprimera vos identifiants de l'application.",
+        "min_sync_speed": "La valeur minimale de l'intervalle de synchronisation est de 30 secondes",
+        "max_sync_speed": "La valeur maximale de l'intervalle de synchronisation est de 90 secondes",
+        "pref_saved": "Les préférences ont été enregistrées",
+        "settings": "Paramètres",
+        "information_log": "Journal d'informations",
+        "device_log": "Journal des appareils",
+        "state_log": "Journal d'état",
+        "oauth_method": "Utiliser la nouvelle méthode de connexion OAuth",
+        "intro1": "Utilisez ceci si vous avez un appareil qui n'est pas pris en charge.",
+        "intro2": "Appuyez sur Obtenir le journal et attendez que les données apparaissent. Ensuite, envoyez le journal.",
+        "intro3": "Contactez @Adrian_Rockall sur le forum de la communauté pour décrire l'appareil qui n'est pas pris en charge.",
+        "intro4": "Aucune donnée personnelle n'est collectée ou envoyée, donc si vous ne me contactez pas, je ne pourrai pas répondre.",
+        "get": "Obtenir le journal",
+        "clear": "Effacer le journal",
+        "send": "Envoyer le journal",
+        "log_enabled": "Journal activé",
+        "polling_enabled": "Interroger les mises à jour de statut",
+        "show_password": "Afficher le mot de passe",
+        "pref_intro1": "L'application peut interroger les mises à jour pour maintenir la synchronisation entre Homey et les appareils.",
+        "pref_intro2": "Cela met une charge sur les serveurs Somfy, donc gardez-le désactivé autant que possible.",
+        "pref_intro3": "Si vous avez besoin de mises à jour pour les capteurs, gardez l'intervalle aussi élevé que possible.",
+        "event_log": "Journal des événements"
+    },
+    "errors": {
+        "on_pair_login_failure": "Impossible de se connecter. Veuillez accéder à l'écran des paramètres et autoriser l'accès à TaHoma pour Homey."
+    },
+    "valve_heating_mode_state": {
+        "away": "Absent",
+        "comfort": "Maison",
+        "eco": "Nuit",
+        "frostprotection": "Protection antigel",
+        "geofencingmode": "Géolocalisation",
+        "manual": "Manuel",
+        "suddendropmode": "Fenêtre ouverte"
+    },
+    "defect_state": {
+        "dead": "Défaillance",
+        "lowbattery": "Batterie faible",
+        "maintenancerequired": "Maintenance requise",
+        "nodefect": "Aucun défaut"
+    },
+    "valve_operating_mode_state": {
+        "auto": "Automatique (Planification)",
+        "manual": "Manuel"
+    },
+    "my_position_token": "Ma position",
+    "command_queued": "Commande en attente, veuillez attendre que l'appareil se réactive",
+    "command_failed": "Échec de la commande"
+}

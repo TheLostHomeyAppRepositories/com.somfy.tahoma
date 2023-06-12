@@ -42,7 +42,22 @@
         "local_tokens": "Local Tokens",
         "get_tokens": "Get Tokens",
         "delete_token": "Delete Token",
-        "token_id": "Token uuid:"
+        "token_id": "Token uuid:",
+        "region": "Region",
+        "europe": "Europe",
+        "usa": "USA",
+        "oceana": "Oceana"
+    },
+    "pair": {
+        "select_region": {
+            "title": "Select Region",
+            "intro": "Select the server region that hosts your Somfy account",
+            "region": "Somfy Server Region",
+            "europe": "Europe",
+            "usa": "USA",
+            "oceana": "Oceana",
+            "next": "Next"
+        }
     },
     "errors":
     {

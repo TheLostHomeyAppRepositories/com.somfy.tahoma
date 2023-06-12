@@ -1,11 +1,13 @@
 {
-  "type": "string",
-  "title": {
-    "en": "Heating Mode",
-    "nl": "Verwarmingsmodus:"
-  },
-  "getable": true,
-  "setable": false,
-  "insights": true,
-  "icon": "/assets/dark_mode.svg"
+    "type": "string",
+    "title": {
+        "en": "Heating Mode",
+        "nl": "Verwarmingsmodus:",
+        "fr": "Mode de chauffage",
+        "de": "Heizung-Modus"
+    },
+    "getable": true,
+    "setable": false,
+    "insights": true,
+    "icon": "/assets/dark_mode.svg"
 }

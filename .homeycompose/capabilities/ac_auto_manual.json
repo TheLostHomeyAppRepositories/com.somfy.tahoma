@@ -1,25 +1,32 @@
 {
-  "type": "enum",
-  "title": {
-    "en": "Auto / Manual"
-  },
-  "getable": true,
-  "setable": true,
-  "uiComponent": "picker",
-  "values": [
-    {
-      "id": "auto",
-      "title": {
-        "en": "Automatic",
-        "nl": "Automatisch"
-      }
+    "type": "enum",
+    "title": {
+        "en": "Auto / Manual",
+        "fr": "Automatique / Manuel",
+        "de": "Automatisch / Manuell",
+        "nl": "Automatisch / Handmatig"
     },
-    {
-      "id": "manu",
-      "title": {
-        "en": "Manual",
-        "nl": "Handmatig"
-      }
-    }
-  ]
+    "getable": true,
+    "setable": true,
+    "uiComponent": "picker",
+    "values": [
+        {
+            "id": "auto",
+            "title": {
+                "en": "Automatic",
+                "fr": "Automatique",
+                "de": "Automatisch",
+                "nl": "Automatisch"
+            }
+        },
+        {
+            "id": "manu",
+            "title": {
+                "en": "Manual",
+                "fr": "Manuel",
+                "de": "Manuell",
+                "nl": "Handmatig"
+            }
+        }
+    ]
 }

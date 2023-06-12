@@ -1,11 +1,13 @@
 {
-  "type": "string",
-  "title": {
-    "en": "Operating Mode",
-    "nl": "Bedrijfsmodus"
-  },
-  "getable": true,
-  "setable": false,
-  "insights": true,
-  "icon": "/assets/dark_mode.svg"
+    "type": "string",
+    "title": {
+        "en": "Operating Mode",
+        "fr": "Mode de fonctionnement",
+        "de": "Betriebsart",
+        "nl": "Bedrijfsmodus"
+    },
+    "getable": true,
+    "setable": false,
+    "insights": true,
+    "icon": "/assets/dark_mode.svg"
 }

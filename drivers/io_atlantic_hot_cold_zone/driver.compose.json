@@ -1,61 +1,116 @@
 {
-  "name": {
-    "en": "Atlantic Heating And Cooling System"
-  },
-  "class": "heater",
-  "capabilities": [
-    "target_temperature.comfort_cooling",
-    "target_temperature.comfort_heating",
-    "target_temperature.eco_cooling",
-    "target_temperature.eco_heating",
-    "target_temperature.derogated",
-    "boost.cooling",
-    "boost.heating",
-    "boost.derogated",
-    "heat_cool_mode.cool",
-    "heat_cool_mode.heat"
-  ],
-  "capabilitiesOptions": {
-    "target_temperature.comfort_cooling": {
-      "min": 4,
-      "max": 35,
-      "title": "Comfort Cooling Temperature"
+    "name": {
+        "en": "Atlantic Heating And Cooling System",
+        "fr": "Système de chauffage et de climatisation Atlantic",
+        "de": "Atlantic Heizungs- und Kühlsystem",
+        "nl": "Atlantic verwarming en koelsysteem"
     },
-    "target_temperature.comfort_heating": {
-      "min": 4,
-      "max": 35,
-      "title": "Comfort Heating Temperature"
+    "class": "heater",
+    "capabilities": [
+        "target_temperature.comfort_cooling",
+        "target_temperature.comfort_heating",
+        "target_temperature.eco_cooling",
+        "target_temperature.eco_heating",
+        "target_temperature.derogated",
+        "boost.cooling",
+        "boost.heating",
+        "boost.derogated",
+        "heat_cool_mode.cool",
+        "heat_cool_mode.heat"
+    ],
+    "capabilitiesOptions": {
+        "target_temperature.comfort_cooling": {
+            "min": 4,
+            "max": 35,
+            "title": {
+                "en": "Comfort Cooling Temperature",
+                "fr": "Température de refroidissement confortable",
+                "de": "Komfortkühltemperatur",
+                "nl": "Comfortkoelingstemperatuur"
+            }
+        },
+        "target_temperature.comfort_heating": {
+            "min": 4,
+            "max": 35,
+            "title": {
+                "en": "Comfort Heating Temperature",
+                "fr": "Température de chauffage confortable",
+                "de": "Komfort-Heiztemperatur",
+                "nl": "Comfort verwarmingstemperatuur"
+            }
+        },
+        "target_temperature.eco_cooling": {
+            "min": 4,
+            "max": 35,
+            "title": {
+                "en": "Eco Cooling Temperature",
+                "fr": "Température de refroidissement écologique",
+                "de": "Öko-Kühltemperatur",
+                "nl": "Eco-koelingstemperatuur"
+            }
+        },
+        "target_temperature.eco_heating": {
+            "min": 4,
+            "max": 35,
+            "title": {
+                "en": "Eco Heating Temperature",
+                "fr": "Température de chauffage écologique",
+                "de": "Öko-Heiztemperatur",
+                "nl": "Eco-verwarmingstemperatuur"
+            }
+        },
+        "target_temperature.derogated": {
+            "min": 4,
+            "max": 35,
+            "title": {
+                "en": "Derogated Temperature",
+                "fr": "Température dérogée",
+                "de": "Abrogationstemperatur",
+                "nl": "Ongeldige temperatuur"
+            }
+        },
+        "boost.heating": {
+            "title": {
+                "en": "Heating",
+                "fr": "Chauffage",
+                "de": "Heizung",
+                "nl": "Verwarming"
+            }
+        },
+        "boost.cooling": {
+            "title": {
+                "en": "Cooling",
+                "fr": "Refroidissement",
+                "de": "Kühlung",
+                "nl": "Koeling"
+            }
+        },
+        "boost.derogated": {
+            "title": {
+                "en": "Derogated",
+                "fr": "Dérogatoire",
+                "de": "Abrogation",
+                "nl": "Ongeldig"
+            }
+        },
+        "heat_cool_mode.cool": {
+            "title": {
+                "en": "Cooling Mode",
+                "fr": "Mode de refroidissement",
+                "de": "Kühlmodus",
+                "nl": "Koelmodus"
+            }
+        },
+        "heat_cool_mode.heat": {
+            "title": {
+                "en": "Heating Mode",
+                "fr": "Mode de chauffage",
+                "de": "Heizmodus",
+                "nl": "Verwarmingsmodus"
+            }
+        }
     },
-    "target_temperature.eco_cooling": {
-      "min": 4,
-      "max": 35,
-      "title": "Eco Cooling Temperature"
-    },
-    "target_temperature.eco_heating": {
-      "min": 4,
-      "max": 35,
-      "title": "Eco Heating Temperature"
-    },
-    "target_temperature.derogated": {
-      "min": 4,
-      "max": 35,
-      "title": "Derogated Temperature"
-    },
-    "boost.heating": {
-      "title": "Heating"
-    },
-    "boost.cooling": {
-      "title": "Cooling"
-    },
-    "boost.derogated": {
-      "title": "Derogated"
-    },
-    "heat_cool_mode.cool": {
-      "title": "Cooling Mode"
-    },
-    "heat_cool_mode.heat": {
-      "title": "Heating Mode"
-    }
-  },
-  "$extends": ["cloudDriver"]
+    "$extends": [
+        "cloudDriver"
+    ]
 }
