@@ -634,5 +634,8 @@
   },
   "4.0.34": {
     "en": "Added support for io:HorizontalAwningUnoIOComponent."
+  },
+  "4.0.35": {
+    "en": "Fix bug introduced in last version."
   }
 }
