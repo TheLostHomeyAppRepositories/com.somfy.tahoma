@@ -631,5 +631,8 @@
   },
   "4.0.33": {
     "en": "Fix translations. Fix issue in error handler."
+  },
+  "4.0.34": {
+    "en": "Added support for io:HorizontalAwningUnoIOComponent."
   }
 }

@@ -5,7 +5,7 @@
 const Device = require('../Device');
 
 /**
- * Device class for the remote controller with the "io:IORemoteController" or "io:IzymoController" controllable name in TaHoma
+ * Device class for the remote controller with the "io:KeygoController" or "io:IzymoController" controllable name in TaHoma
  * @extends {Device}
  */
 
@@ -53,7 +53,7 @@ class key_go_remoteDevice extends Device
             let states = await super.getStates();
             if (states)
             {
-                const remoteState = states.find(state => (state && (state.name === 'io:OneWayStoppableButtonState')));
+                const remoteState = states.find((state) => (state && (state.name === 'io:OneWayStoppableButtonState')));
                 if (remoteState)
                 {
                     this.homey.app.logStates(`${this.getName()}: io:OneWayStoppableButtonState = ${remoteState.value}`);

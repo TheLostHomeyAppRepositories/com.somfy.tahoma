@@ -5,7 +5,7 @@
 const Driver = require('../Driver');
 
 /**
- * Driver class for the remote controller with the "io:IORemoteController" or "io:IzymoController" controllable name in TaHoma
+ * Driver class for the remote controller with the "io:KeygoController" or "io:IzymoController" controllable name in TaHoma
  * @extends {Driver}
  */
 // eslint-disable-next-line camelcase
@@ -34,7 +34,7 @@ class key_go_remoteDriver extends Driver
             if (devices)
             {
                 this.log('setup resolve');
-                const homeyDevices = devices.filter(device => this.deviceType.indexOf(device.controllableName) !== -1).map(device => (
+                const homeyDevices = devices.filter((device) => this.deviceType.indexOf(device.controllableName) !== -1).map((device) => (
                 {
                     name: `${device.label}: ${device.attributes[0].name === 'core:GroupIndex' ? device.attributes[0].value : device.attributes[1].value}`,
                     data:
@@ -53,6 +53,8 @@ class key_go_remoteDriver extends Driver
             this.homey.app.logInformation('OnReceiveSetupData', error);
             throw new Error(error.message);
         }
+
+        return null;
     }
 
     triggerRemoteSateChange(device, tokens, state)
