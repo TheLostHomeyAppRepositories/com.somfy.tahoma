@@ -1564,19 +1564,29 @@ class myApp extends Homey.App
                 catch (error)
                 {
                     // this.logInformation('syncLoop', error.message);
-                    if (error.message === 'Far Too many login attempts (blocked for 15 minutes)')
+                    if (error.message.indexOf('Far Too many') >= 0)
                     {
                         this.homey.clearTimeout(this.boostTimerId);
                         this.boostTimerId = null;
                         this.commandsQueued = 0;
-                        nextInterval = 900000;
+                        if (error.message.indexOf('15 minutes') >= 0)
+                        {
+                            nextInterval = 900000;
+                            this.logInformation('syncLoop', 'Postponed for 15 minutes');
+                        }
+                        else
+                        {
+                            nextInterval = 86400000;
+                            this.logInformation('syncLoop', 'Postponed for 24 hours');
+                        }
                     }
-                    else if (error.message === 'Too many login attempts (blocked for 60 seconds)')
+                    else if (error.message === 'Please leave 1 minutes between login attempts')
                     {
                         this.homey.clearTimeout(this.boostTimerId);
                         this.boostTimerId = null;
                         this.commandsQueued = 0;
-                        nextInterval = 60000;
+                        this.logInformation('syncLoop', 'Postponed for 1 minute');
+                        nextInterval = 61000;
                     }
                     else if (tahomaConnection.local && error.message === 'Request failed with status code 400')
                     {
@@ -1584,8 +1594,7 @@ class myApp extends Homey.App
                     }
                 }
             }
-            else
-            if (this.infoLogEnabled)
+            else if (this.infoLogEnabled)
             {
                 this.logInformation('Skipping sync: too soon');
             }
@@ -1600,8 +1609,7 @@ class myApp extends Homey.App
                 this.logInformation('Skipping sync: Not logged in');
             }
         }
-        else
-        if (this.infoLogEnabled)
+        else if (this.infoLogEnabled)
         {
             this.logInformation('Skipping sync: Previous sync active');
         }

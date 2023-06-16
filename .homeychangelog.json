@@ -637,5 +637,8 @@
   },
   "4.0.35": {
     "en": "Fix bug introduced in last version."
+  },
+  "4.0.36": {
+    "en": "Fix annomolies that were left over from old login rate limitation method."
   }
 }
