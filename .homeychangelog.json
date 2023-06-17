@@ -640,5 +640,8 @@
   },
   "4.0.36": {
     "en": "Fix annomolies that were left over from old login rate limitation method."
+  },
+  "4.0.37": {
+    "en": "Fix annomolies that were left over from old login rate limitation method."
   }
 }

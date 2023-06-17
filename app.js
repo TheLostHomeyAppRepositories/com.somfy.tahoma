@@ -1564,33 +1564,40 @@ class myApp extends Homey.App
                 catch (error)
                 {
                     // this.logInformation('syncLoop', error.message);
-                    if (error.message.indexOf('Far Too many') >= 0)
+                    if (error.message)
                     {
-                        this.homey.clearTimeout(this.boostTimerId);
-                        this.boostTimerId = null;
-                        this.commandsQueued = 0;
-                        if (error.message.indexOf('15 minutes') >= 0)
+                        if (error.message.indexOf('Far Too many') >= 0)
                         {
-                            nextInterval = 900000;
-                            this.logInformation('syncLoop', 'Postponed for 15 minutes');
+                            this.homey.clearTimeout(this.boostTimerId);
+                            this.boostTimerId = null;
+                            this.commandsQueued = 0;
+                            if (error.message.indexOf('15 minutes') >= 0)
+                            {
+                                nextInterval = 900000;
+                                this.logInformation('syncLoop', 'Postponed for 15 minutes');
+                            }
+                            else
+                            {
+                                nextInterval = 86400000;
+                                this.logInformation('syncLoop', 'Postponed for 24 hours');
+                            }
                         }
-                        else
+                        else if (error.message === 'Please leave 1 minutes between login attempts')
                         {
-                            nextInterval = 86400000;
-                            this.logInformation('syncLoop', 'Postponed for 24 hours');
+                            this.homey.clearTimeout(this.boostTimerId);
+                            this.boostTimerId = null;
+                            this.commandsQueued = 0;
+                            this.logInformation('syncLoop', 'Postponed for 1 minute');
+                            nextInterval = 61000;
+                        }
+                        else if (tahomaConnection.local && error.message === 'Request failed with status code 400')
+                        {
+                            await this.syncEvents(null, true);
                         }
                     }
-                    else if (error.message === 'Please leave 1 minutes between login attempts')
+                    else
                     {
-                        this.homey.clearTimeout(this.boostTimerId);
-                        this.boostTimerId = null;
-                        this.commandsQueued = 0;
-                        this.logInformation('syncLoop', 'Postponed for 1 minute');
-                        nextInterval = 61000;
-                    }
-                    else if (tahomaConnection.local && error.message === 'Request failed with status code 400')
-                    {
-                        await this.syncEvents(null, true);
+                        this.logInformation('syncLoop', error);
                     }
                 }
             }
