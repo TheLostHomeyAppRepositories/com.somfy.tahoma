@@ -24,7 +24,21 @@ class InteriorCurtainDevice extends WindowCoveringsDevice
             this.addCapability('windowcoverings_state').catch(this.error);
         }
 
-        if (!this.hasCapability('my_position'))
+        const dd = this.getData();
+        let controllableName = '';
+        if (dd.controllableName)
+        {
+            controllableName = dd.controllableName.toString().toLowerCase();
+        }
+
+        if (controllableName === 'ogp:curtain')
+        {
+            if (this.hasCapability('my_position'))
+            {
+                this.removeCapability('my_position').catch(this.error);
+            }
+        }
+        else if (!this.hasCapability('my_position'))
         {
             this.addCapability('my_position').catch(this.error);
         }

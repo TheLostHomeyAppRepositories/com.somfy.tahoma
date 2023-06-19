@@ -13,7 +13,7 @@ class InteriorCurtainDriver extends Driver
 
     async onInit()
     {
-        this.deviceType = ['rts:DualCurtainRTSComponent', 'rts:CurtainRTSComponent'];
+        this.deviceType = ['rts:DualCurtainRTSComponent', 'rts:CurtainRTSComponent', 'ogp:Curtain'];
     }
 
 }

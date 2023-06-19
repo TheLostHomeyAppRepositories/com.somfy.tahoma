@@ -643,5 +643,8 @@
   },
   "4.0.37": {
     "en": "Fix annomolies that were left over from old login rate limitation method."
+  },
+  "4.0.38": {
+    "en": "Added support for ogp:Curtain to 'Interior Curtain (RTS)'."
   }
 }
