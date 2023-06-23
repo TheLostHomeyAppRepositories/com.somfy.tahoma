@@ -13,7 +13,7 @@
   "description": {
     "en": "The heart of your Smart Home"
   },
-  "version": "4.0.38",
+  "version": "4.0.39",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Adrian Rockall",
@@ -6919,7 +6919,7 @@
         "de": "Garagentor mit Positionssteuerung (io)",
         "nl": "Garagedeur met positiecontrole (io)"
       },
-      "class": "blinds",
+      "class": "garagedoor",
       "capabilities": [
         "windowcoverings_state",
         "windowcoverings_set"
@@ -7100,7 +7100,7 @@
         "de": "Garagentor - Öffnen und Schließen (io)",
         "nl": "Garagedeur - Openen en sluiten (io)"
       },
-      "class": "blinds",
+      "class": "garagedoor",
       "capabilities": [
         "windowcoverings_state",
         "my_position"

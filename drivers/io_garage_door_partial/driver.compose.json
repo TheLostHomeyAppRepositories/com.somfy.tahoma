@@ -5,7 +5,7 @@
         "de": "Garagentor - Öffnen und Schließen (io)",
         "nl": "Garagedeur - Openen en sluiten (io)"
     },
-    "class": "blinds",
+    "class": "garagedoor",
     "capabilities": [
         "windowcoverings_state",
         "my_position"

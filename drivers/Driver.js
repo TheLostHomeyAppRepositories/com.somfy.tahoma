@@ -124,11 +124,22 @@ class Driver extends Homey.Driver
             let devices = await this.homey.app.getDeviceData();
             if (devices.devices && devices.devices.cloud)
             {
-                const cloudDevices = devices.devices.cloud.devices;
-                const localDevices = devices.devices.local.devices;
+                const cloudDevices = devices.devices.cloud;
+                const localDevices = devices.devices.local;
 
                 // Merge the arrays into one
-                devices = cloudDevices.concat(localDevices);
+                if (cloudDevices && localDevices)
+                {
+                    devices = cloudDevices.concat(localDevices);
+                }
+                else if (cloudDevices)
+                {
+                    devices = cloudDevices;
+                }
+                else if (localDevices)
+                {
+                    devices = localDevices;
+                }
             }
 
             this.homey.app.logInformation('OnReceiveSetupData', devices);

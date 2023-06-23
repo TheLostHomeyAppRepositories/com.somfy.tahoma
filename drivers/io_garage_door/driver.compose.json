@@ -5,7 +5,7 @@
         "de": "Garagentor mit Positionssteuerung (io)",
         "nl": "Garagedeur met positiecontrole (io)"
     },
-    "class": "blinds",
+    "class": "garagedoor",
     "capabilities": [
         "windowcoverings_state",
         "windowcoverings_set"

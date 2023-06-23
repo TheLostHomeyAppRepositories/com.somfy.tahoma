@@ -646,5 +646,8 @@
   },
   "4.0.38": {
     "en": "Added support for ogp:Curtain to 'Interior Curtain (RTS)'."
+  },
+  "4.0.39": {
+    "en": "Added support for io:DiscreteGarageOpenerIOComponent to 'Garage Door - Open and Close (io)'."
   }
 }
