@@ -13,7 +13,7 @@
   "description": {
     "en": "The heart of your Smart Home"
   },
-  "version": "4.0.39",
+  "version": "4.0.40",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Adrian Rockall",
@@ -1555,14 +1555,14 @@
         "title": {
           "en": "The temperature !{{is|isn't}} more than",
           "nl": "De temperatuur !{{is|niet}} meer dan",
-          "fr": "La température n'est !{{pas|}} supérieure à",
-          "de": "Die Temperatur ist !{{nicht|}} höher als"
+          "fr": "La température !{{pas|n'est}} supérieure à",
+          "de": "Die Temperatur !{{ist|nicht}} höher als"
         },
         "titleFormatted": {
           "en": "The temperature !{{is|isn't}} more than [[temperature]]",
           "nl": "De temperatuur !{{is|niet}} meer dan [[temperature]]",
-          "fr": "La température n'est !{{pas|}} supérieure à [[temperature]]",
-          "de": "Die Temperatur ist !{{nicht|}} höher als [[temperature]]"
+          "fr": "La température !{{pas|n'est}} supérieure à [[temperature]]",
+          "de": "Die Temperatur !{{ist|nicht}} höher als [[temperature]]"
         },
         "args": [
           {
@@ -1593,14 +1593,14 @@
         "title": {
           "en": "The temperature !{{is|isn't}} less than",
           "nl": "De temperatuur !{{is|niet}} minder dan",
-          "fr": "La température n'est !{{pas|}} inférieure à",
-          "de": "Die Temperatur ist !{{nicht|}} niedriger als"
+          "fr": "La température !{{est|n'est pas}} inférieure à",
+          "de": "Die Temperatur !{{ist|nicht}} niedriger als"
         },
         "titleFormatted": {
           "en": "The temperature !{{is|isn't}} less than [[temperature]]",
           "nl": "De temperatuur !{{is|niet}} minder dan [[temperature]]",
-          "fr": "La température n'est !{{pas|}} inférieure à [[temperature]]",
-          "de": "Die Temperatur ist !{{nicht|}} niedriger als [[temperature]]"
+          "fr": "La température !{{est|n'est pas}} inférieure à [[temperature]]",
+          "de": "Die Temperatur !{{ist|ist nicht}} kleiner als [[temperature]]"
         },
         "args": [
           {
@@ -1631,14 +1631,14 @@
         "title": {
           "en": "The temperature !{{is|isn't}} between",
           "nl": "De temperatuur !{{is|niet}} tussen",
-          "fr": "La température n'est !{{pas|}} comprise entre",
-          "de": "Die Temperatur liegt !{{nicht|}} zwischen"
+          "fr": "La température !{{est|n'est pas}} comprise entre",
+          "de": "Die Temperatur !{{ist|ist nicht}} dazwischen"
         },
         "titleFormatted": {
           "en": "The temperature !{{is|isn't}} between [[temperature_from]] and [[temperature_to]]",
           "nl": "De temperatuur !{{is|niet}} tussen [[temperature_from]] en [[temperature_to]]",
           "fr": "La température n'est !{{pas|}} comprise entre [[temperature_from]] et [[temperature_to]]",
-          "de": "Die Temperatur liegt !{{nicht|}} zwischen [[temperature_from]] und [[temperature_to]]"
+          "de": "Die Temperatur !{{is|isn't}} zwischen [[temperature_from]] und [[temperature_to]]"
         },
         "args": [
           {

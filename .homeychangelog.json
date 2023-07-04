@@ -649,5 +649,8 @@
   },
   "4.0.39": {
     "en": "Added support for io:DiscreteGarageOpenerIOComponent to 'Garage Door - Open and Close (io)'."
+  },
+  "4.0.40": {
+    "en": "Fixed some German translations."
   }
 }
