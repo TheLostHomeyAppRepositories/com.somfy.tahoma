@@ -13,7 +13,7 @@ class HorizontalAwningDriver extends ioWindowCoveringsDriver
 
     async onInit()
     {
-        this.deviceType = ['io:VerticalInteriorBlindGenericIOComponent'];
+        this.deviceType = ['io:VerticalInteriorBlindGenericIOComponent', 'ogp:Blind'];
 
         await super.onInit();
     }

@@ -24,6 +24,29 @@ class VerticalExteriorBlindDevice extends WindowCoveringsDevice
         {
             this.addCapability('quick_open').catch(this.error);
         }
+
+        const dd = this.getData();
+
+        this.controllableName = '';
+        if (dd.controllableName)
+        {
+            this.controllableName = dd.controllableName.toString().toLowerCase();
+        }
+
+        if (this.controllableName !== 'io:verticalexteriorawningiocomponent')
+        {
+            if (!this.hasCapability('my_position'))
+            {
+                this.addCapability('my_position').catch(this.error);
+            }
+        }
+        else
+        {
+            if (this.hasCapability('my_position'))
+            {
+                this.removeCapability('my_position').catch(this.error);
+            }
+        }
     }
 
 }
