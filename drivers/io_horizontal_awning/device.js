@@ -105,6 +105,8 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
     {
         if (changedKeys.indexOf('invertUpDown') >= 0)
         {
+            this.invertUpDown = newSettings.invertUpDown;
+
             if (this.controllableName === 'ogp:awning')
             {
                 if (this.invertUpDown)
@@ -138,8 +140,6 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
             }
             else
             {
-                this.invertUpDown = newSettings.invertUpDown;
-
                 if (this.invertUpDown)
                 {
                     this.windowcoveringsActions = {

@@ -652,5 +652,8 @@
   },
   "4.0.40": {
     "en": "Fixed some German translations."
+  },
+  "4.0.40": {
+    "en": "Added support for 'rts:SlidingGateOpenerRTSComponent'."
   }
 }
