@@ -4,10 +4,10 @@
     "setable": true,
     "uiComponent": "sensor",
     "title": {
-        "en": "Tilted State",
-        "nl": "Gekantelde staat",
-        "fr": "État incliné",
-        "de": "Gekippter Staat"
+        "en": "Window Tilted",
+        "nl": "Venster gekanteld",
+        "fr": "Fenêtre inclinée",
+        "de": "Fenster gekippt"
     },
     "titleTrue": {
         "en": "Tilted",
@@ -21,7 +21,6 @@
         "fr": "fermée",
         "de": "geschlossen"
     },
-    "icon": "/assets/valve.svg",
     "insights": true,
     "insightsTitleTrue": {
         "en": "Tilted",
@@ -34,5 +33,6 @@
         "nl": "gesloten",
         "fr": "fermée",
         "de": "geschlossen"
-    }
+    },
+    "icon": "/assets/window_tilt.svg"
 }

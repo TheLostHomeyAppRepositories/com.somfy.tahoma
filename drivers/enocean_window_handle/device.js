@@ -129,7 +129,7 @@ class WindowHandleDevice extends SensorDevice
                 if (openState)
                 {
                     this.homey.app.logStates(`${this.getName()}: core:OpenClosedState = ${openState.value}`);
-                    this.triggerCapabilityListener('open_window_state', openState.value).catch(this.error);
+                    this.triggerCapabilityListener('open_window_state', openState.value !== 'closed').catch(this.error);
                 }
 
                 states = null;
