@@ -1,0 +1,29 @@
+{
+    "id": "window_open_has_changed",
+    "title": {
+        "en": "The state of the window has changed",
+        "nl": "De status van het venster is gewijzigd",
+        "fr": "L'état de la fenêtre a changé",
+        "de": "Der Zustand des Fensters hat sich geändert"
+    },
+    "tokens": [
+        {
+            "name": "isWindowOpen",
+            "type": "boolean",
+            "title": {
+                "en": "is open?",
+                "nl": "is geopend?",
+                "fr": "est ouvert?",
+                "de": "ist offen?"
+            },
+            "example": "open"
+        }
+    ],
+    "args": [
+        {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=enocean_window_handle"
+        }
+    ]
+}

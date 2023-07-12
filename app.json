@@ -13,7 +13,7 @@
   "description": {
     "en": "The heart of your Smart Home"
   },
-  "version": "4.0.42",
+  "version": "4.0.43",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Adrian Rockall",
@@ -282,6 +282,64 @@
             "name": "device",
             "type": "device",
             "filter": "driver_id=io_horizontal_awning|io_vertical_exterior_blind|io_velux_roof_window"
+          }
+        ]
+      },
+      {
+        "id": "tilt_has_changed",
+        "title": {
+          "en": "The state of the tilt has changed",
+          "nl": "De staat van de kanteling is gewijzigd",
+          "fr": "L'état de l'inclinaison a changé",
+          "de": "Der Zustand der Neigung hat sich geändert"
+        },
+        "tokens": [
+          {
+            "name": "isTilted",
+            "type": "boolean",
+            "title": {
+              "en": "is tilted?",
+              "nl": "is gekanteld?",
+              "fr": "est incliné ?",
+              "de": "ist geneigt?"
+            },
+            "example": "tilted"
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=enocean_window_handle"
+          }
+        ]
+      },
+      {
+        "id": "window_open_has_changed",
+        "title": {
+          "en": "The state of the window has changed",
+          "nl": "De status van het venster is gewijzigd",
+          "fr": "L'état de la fenêtre a changé",
+          "de": "Der Zustand des Fensters hat sich geändert"
+        },
+        "tokens": [
+          {
+            "name": "isWindowOpen",
+            "type": "boolean",
+            "title": {
+              "en": "is open?",
+              "nl": "is geopend?",
+              "fr": "est ouvert?",
+              "de": "ist offen?"
+            },
+            "example": "open"
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=enocean_window_handle"
           }
         ]
       },
@@ -4757,7 +4815,9 @@
       },
       "class": "sensor",
       "capabilities": [
-        "alarm_contact"
+        "alarm_contact",
+        "tilted_state",
+        "open_window_state"
       ],
       "id": "enocean_window_handle"
     },
@@ -13487,6 +13547,18 @@
         "fr": "Fenêtre ouverte",
         "de": "Fenster geöffnet"
       },
+      "titleTrue": {
+        "en": "Window opened",
+        "nl": "Venster geopend",
+        "fr": "Fenêtre ouverte",
+        "de": "Fenster geöffnet"
+      },
+      "titleFalse": {
+        "en": "Window closed",
+        "nl": "Venster gesloten",
+        "fr": "Fenêtre fermée",
+        "de": "Fenster geschlossen"
+      },
       "insights": true,
       "insightsTitleTrue": {
         "en": "Window opened",
@@ -13908,6 +13980,44 @@
       },
       "getable": true,
       "setable": false
+    },
+    "tilted_state": {
+      "type": "boolean",
+      "getable": true,
+      "setable": true,
+      "uiComponent": "sensor",
+      "title": {
+        "en": "Tilted State",
+        "nl": "Gekantelde staat",
+        "fr": "État incliné",
+        "de": "Gekippter Staat"
+      },
+      "titleTrue": {
+        "en": "Tilted",
+        "nl": "Gekanteld",
+        "fr": "Incliné",
+        "de": "Gekippt"
+      },
+      "titleFalse": {
+        "en": "Closed",
+        "nl": "gesloten",
+        "fr": "fermée",
+        "de": "geschlossen"
+      },
+      "icon": "/assets/valve.svg",
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Tilted",
+        "nl": "Gekanteld",
+        "fr": "Incliné",
+        "de": "Gekippt"
+      },
+      "insightsTitleFalse": {
+        "en": "Closed",
+        "nl": "gesloten",
+        "fr": "fermée",
+        "de": "geschlossen"
+      }
     },
     "valve_auto_mode": {
       "type": "boolean",

@@ -16,6 +16,8 @@ class WindowHandleDriver extends Driver
 
         /** * CONTACT TRIGGERS ** */
         this._triggerContactChange = this.homey.flow.getDeviceTriggerCard('contact_has_changed');
+        this._triggerTiltedStateChange = this.homey.flow.getDeviceTriggerCard('tilt_has_changed');
+        this._triggerOpenWindowStateChange = this.homey.flow.getDeviceTriggerCard('window_open_has_changed');
     }
 
     /**
@@ -30,6 +32,17 @@ class WindowHandleDriver extends Driver
         return this;
     }
 
+    triggerTiltedStateChange(device, tokens, state)
+    {
+        this.triggerFlow(this._triggerTiltedStateChange, device, tokens, state);
+        return this;
+    }
+
+    triggerOpenWindowStateChange(device, tokens, state)
+    {
+        this.triggerFlow(this._triggerOpenWindowStateChange, device, tokens, state);
+        return this;
+    }
 }
 
 module.exports = WindowHandleDriver;

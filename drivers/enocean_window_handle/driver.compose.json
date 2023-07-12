@@ -7,7 +7,9 @@
     },
     "class": "sensor",
     "capabilities": [
-        "alarm_contact"
+        "alarm_contact",
+        "tilted_state",
+        "open_window_state"
     ],
     "$extends": [
         "cloudDriver"

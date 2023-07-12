@@ -9,6 +9,18 @@
         "fr": "Fenêtre ouverte",
         "de": "Fenster geöffnet"
     },
+    "titleTrue": {
+        "en": "Window opened",
+        "nl": "Venster geopend",
+        "fr": "Fenêtre ouverte",
+        "de": "Fenster geöffnet"
+    },
+    "titleFalse": {
+        "en": "Window closed",
+        "nl": "Venster gesloten",
+        "fr": "Fenêtre fermée",
+        "de": "Fenster geschlossen"
+    },
     "insights": true,
     "insightsTitleTrue": {
         "en": "Window opened",

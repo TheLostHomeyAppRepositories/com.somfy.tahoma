@@ -658,5 +658,8 @@
   },
   "4.0.42": {
     "en": "Added MY button to 'Exterior blind (io)'.Added 'ogp:blind' 'Exterior blind (io)'."
+  },
+  "4.0.43": {
+    "en": "Add Tilted and Openned capabilities to enocean window handle."
   }
 }

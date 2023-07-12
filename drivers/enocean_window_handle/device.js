@@ -13,7 +13,19 @@ class WindowHandleDevice extends SensorDevice
 
     async onInit()
     {
+        if (!this.hasCapability('tilted_state'))
+        {
+            this.addCapability('tilted_state');
+        }
+        
+        if (!this.hasCapability('open_window_state'))
+        {
+            this.addCapability('open_window_state');
+        }
+
         this.registerCapabilityListener('alarm_contact', this.onCapabilityAlarmContact.bind(this));
+        this.registerCapabilityListener('tilted_state', this.onCapabilityTiltedState.bind(this));
+        this.registerCapabilityListener('open_window_state', this.onCapabilityOpenWindowState.bind(this));
 
         await super.onInit();
     }
@@ -41,6 +53,53 @@ class WindowHandleDevice extends SensorDevice
         return Promise.resolve();
     }
 
+    onCapabilityTiltedState(value)
+    {
+        const oldTiltedState = this.getState().tilted_state;
+        if (oldTiltedState !== value)
+        {
+            this.setCapabilityValue('tilted_state', value).catch(this.error);
+
+            const device = this;
+            const tokens = {
+                isTilted: value,
+            };
+
+            const state = {
+                tilted_state: value,
+            };
+
+            // trigger flows
+            return this.driver.triggerTiltedStateChange(device, tokens, state);
+        }
+
+        return Promise.resolve();
+    }
+
+    onCapabilityOpenWindowState(value)
+    {
+        const oldOpenWindowState = this.getState().open_window_state;
+        if (oldOpenWindowState !== value)
+        {
+            this.setCapabilityValue('open_window_state', value).catch(this.error);
+
+            const device = this;
+            const tokens = {
+                isWindowOpen: value,
+            };
+
+            const state = {
+                open_window_state: value,
+            };
+
+            // trigger flows
+            return this.driver.triggerOpenWindowStateChange(device, tokens, state);
+        }
+
+        return Promise.resolve();
+    }
+
+    
     /**
      * Gets the sensor data from the TaHoma cloud
      * @param {Array} data - device data from all the devices in the TaHoma cloud
@@ -52,11 +111,25 @@ class WindowHandleDevice extends SensorDevice
             let states = await super.getStates();
             if (states)
             {
-                const contactState = states.find(state => (state && (state.name === 'core:ThreeWayHandleDirectionState')));
-                if (contactState)
+                const handleState = states.find(state => (state && (state.name === 'core:ThreeWayHandleDirectionState')));
+                if (handleState)
                 {
-                    this.homey.app.logStates(`${this.getName()}: core:ThreeWayHandleDirectionState = ${contactState.value}`);
-                    this.triggerCapabilityListener('alarm_contact', contactState.value !== 'closed').catch(this.error);
+                    this.homey.app.logStates(`${this.getName()}: core:ThreeWayHandleDirectionState = ${handleState.value}`);
+                    this.triggerCapabilityListener('alarm_contact', handleState.value !== 'closed').catch(this.error);
+                }
+
+                const tiltedState = states.find(state => (state && (state.name === 'core:TiltedState')));
+                if (tiltedState)
+                {
+                    this.homey.app.logStates(`${this.getName()}: core:TiltedState = ${tiltedState.value}`);
+                    this.triggerCapabilityListener('tilted_state', tiltedState.value).catch(this.error);
+                }
+
+                const openState = states.find(state => (state && (state.name === 'core:OpenClosedState')));
+                if (openState)
+                {
+                    this.homey.app.logStates(`${this.getName()}: core:OpenClosedState = ${openState.value}`);
+                    this.triggerCapabilityListener('open_window_state', openState.value).catch(this.error);
                 }
 
                 states = null;
@@ -116,6 +189,28 @@ class WindowHandleDevice extends SensorDevice
                             if (oldState !== newState)
                             {
                                 this.triggerCapabilityListener('alarm_contact', newState).catch(this.error);
+                            }
+                        }
+
+                        if (deviceState.name === 'core:TiltedState')
+                        {
+                            this.homey.app.logStates(`${this.getName()}: core:TiltedState = ${deviceState.value}`);
+                            const oldState = this.getState().tilted_state;
+                            const newState = deviceState.value;
+                            if (oldState !== newState)
+                            {
+                                this.triggerCapabilityListener('tilted_state', newState).catch(this.error);
+                            }
+                        }
+
+                        if (deviceState.name === 'core:OpenClosedState')
+                        {
+                            this.homey.app.logStates(`${this.getName()}: core:OpenClosedState = ${deviceState.value}`);
+                            const oldState = this.getState().tilted_state;
+                            const newState = deviceState.value;
+                            if (oldState !== newState)
+                            {
+                                this.triggerCapabilityListener('open_window_state', newState).catch(this.error);
                             }
                         }
                     }
