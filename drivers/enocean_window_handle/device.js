@@ -207,7 +207,7 @@ class WindowHandleDevice extends SensorDevice
                         {
                             this.homey.app.logStates(`${this.getName()}: core:OpenClosedState = ${deviceState.value}`);
                             const oldState = this.getState().tilted_state;
-                            const newState = deviceState.value;
+                            const newState = (deviceState.value !== 'closed');
                             if (oldState !== newState)
                             {
                                 this.triggerCapabilityListener('open_window_state', newState).catch(this.error);

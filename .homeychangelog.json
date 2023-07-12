@@ -664,5 +664,8 @@
   },
   "4.0.44": {
     "en": "Fixes for Tilted and Openned capabilities in enocean window handle."
+  },
+  "4.0.44": {
+    "en": "Fix for Openned capabilities in enocean window handle."
   }
 }
