@@ -199,6 +199,14 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
             if (lockState)
             {
                 this.setCapabilityValue('lock_state', lockState.value).catch(this.error);
+                if (this.driver.triggerLockStateChange)
+                {
+                    const tokens = {
+                        lock_state: '',
+                    };
+                    this.driver.triggerLockStateChange(this, tokens);
+                }
+
                 clearTimeout(this.checkLockStateTimer);
                 this.checkLockStateTimer = this.homey.setTimeout(this.checkLockSate, (60 * 1000));
             }
@@ -210,7 +218,15 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
                     if (lockStateTimer.value === 0)
                     {
                         this.setCapabilityValue('lock_state', '').catch(this.error);
-                    }
+
+                        if (this.driver.triggerLockStateChange)
+                        {
+                            const tokens = {
+                                lock_state: '',
+                            };
+                            this.driver.triggerLockStateChange(this, tokens);
+                        }
+    }
                     else
                     {
                         clearTimeout(this.checkLockStateTimer);

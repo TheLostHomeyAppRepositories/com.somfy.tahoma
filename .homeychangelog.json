@@ -670,5 +670,8 @@
   },
   "4.0.46": {
     "en": "Enabled Lock State for all 'Awning / Pergola (io)' devices ."
+  },
+  "4.0.47": {
+    "en": "Fix for Lock State trigger."
   }
 }

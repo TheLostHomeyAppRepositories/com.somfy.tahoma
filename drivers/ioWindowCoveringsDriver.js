@@ -12,6 +12,15 @@ class ioWindowCoveringsDriver extends Driver
         super.onInit();
     }
 
+    triggerLockStateChange(device, tokens, state)
+    {
+        if (this.lock_state_changedTrigger)
+        {
+            this.triggerFlow(this.lock_state_changedTrigger, device, tokens, state);
+        }
+        return this;
+    }
+
 }
 
 module.exports = ioWindowCoveringsDriver;

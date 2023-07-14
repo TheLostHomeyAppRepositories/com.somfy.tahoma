@@ -618,6 +618,13 @@ class WindowCoveringsDevice extends Device
                     {
                         this.homey.app.logStates(`${this.getName()}: io:PriorityLockOriginatorState = ${lockState.value}`);
                         this.setCapabilityValue('lock_state', lockState.value).catch(this.error);
+                        if (this.driver.triggerLockStateChange)
+                        {
+                            const tokens = {
+                                lock_state: lockState.value,
+                            };
+                            this.driver.triggerLockStateChange(this, tokens);
+                        }
 
                         if (this.checkLockSate)
                         {
@@ -634,6 +641,13 @@ class WindowCoveringsDevice extends Device
                             if (lockStateTimer.value === 0)
                             {
                                 this.setCapabilityValue('lock_state', '').catch(this.error);
+                                if (this.driver.triggerLockStateChange)
+                                {
+                                    const tokens = {
+                                        lock_state: '',
+                                    };
+                                    this.driver.triggerLockStateChange(this, tokens);
+                                }        
                             }
                         }
                     }
@@ -812,11 +826,36 @@ class WindowCoveringsDevice extends Device
                                 {
                                     this.homey.app.logStates(`${this.getName()}: io:PriorityLockOriginatorState = ${deviceState.value}`);
                                     this.setCapabilityValue('lock_state', deviceState.value).catch(this.error);
+                                    if (this.driver.triggerLockStateChange)
+                                    {
+                                        const tokens = {
+                                            lock_state: deviceState.value,
+                                        };
+                                        this.driver.triggerLockStateChange(this, tokens);
+                                    }
                                     if (this.checkLockSate)
                                     {
                                         // Setup timer to call a function to check if it can be cleared
                                         clearTimeout(this.checkLockStateTimer);
                                         this.checkLockStateTimer = this.homey.setTimeout(this.checkLockSate, (60 * 1000));
+                                    }
+                                }
+                            }
+                            else if (deviceState.name === 'io:PriorityLockTimerState')
+                            {
+                                if (this.hasCapability('lock_state') && (deviceState.value))
+                                {
+                                    this.homey.app.logStates(`${this.getName()}: io:PriorityLockTimerState = ${deviceState.value}`);
+                                    if (deviceState.value == 0)
+                                    {
+                                        this.setCapabilityValue('lock_state', '').catch(this.error);
+                                        if (this.driver.triggerLockStateChange)
+                                        {
+                                            const tokens = {
+                                                lock_state: '',
+                                            };
+                                            this.driver.triggerLockStateChange(this, tokens);
+                                        }
                                     }
                                 }
                             }
