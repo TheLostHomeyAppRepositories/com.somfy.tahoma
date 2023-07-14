@@ -667,5 +667,8 @@
   },
   "4.0.45": {
     "en": "Fix for Openned capabilities in enocean window handle."
+  },
+  "4.0.46": {
+    "en": "Enabled Lock State for all 'Awning / Pergola (io)' devices ."
   }
 }

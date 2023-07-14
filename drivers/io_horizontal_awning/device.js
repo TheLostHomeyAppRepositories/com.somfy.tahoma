@@ -19,20 +19,20 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
             this.controllableName = dd.controllableName.toString().toLowerCase();
         }
 
-        if (this.controllableName !== 'ogp:awning')
+        // if (this.controllableName !== 'ogp:awning')
         {
             if (!this.hasCapability('lock_state'))
             {
                 this.addCapability('lock_state').catch(this.error);
             }
         }
-        else
-        {
-            if (this.hasCapability('lock_state'))
-            {
-                this.removeCapability('lock_state').catch(this.error);
-            }
-        }
+        // else
+        // {
+        //     if (this.hasCapability('lock_state'))
+        //     {
+        //         this.removeCapability('lock_state').catch(this.error);
+        //     }
+        // }
 
         await super.onInit();
 
