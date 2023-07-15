@@ -783,11 +783,11 @@ class WindowCoveringsDevice extends Device
         try
         {
             const myURL = this.getDeviceUrl();
-            if (!local && this.homey.app.isLocalDevice(myURL))
-            {
-                // This device is handled locally so ignore cloud updates
-                return;
-            }
+            // if (!local && this.homey.app.isLocalDevice(myURL))
+            // {
+            //     // This device is handled locally so ignore cloud updates
+            //     return;
+            // }
 
             let lastPosition = null;
 

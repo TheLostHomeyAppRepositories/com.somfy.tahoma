@@ -673,5 +673,8 @@
   },
   "4.0.47": {
     "en": "Fix for Lock State trigger."
+  },
+  "4.0.48": {
+    "en": "Process cloud events even when device is local."
   }
 }
