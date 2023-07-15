@@ -676,5 +676,8 @@
   },
   "4.0.48": {
     "en": "Process cloud events even when device is local."
+  },
+  "4.0.49": {
+    "en": "Compare lockstate timer as a string."
   }
 }
