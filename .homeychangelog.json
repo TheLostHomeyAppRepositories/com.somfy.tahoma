@@ -679,5 +679,8 @@
   },
   "4.0.49": {
     "en": "Compare lockstate timer as a string."
+  },
+  "4.0.50": {
+    "en": "Fix typo for 'io:PriorityLockTimerState' that should be 'core:PriorityLockTimerState'."
   }
 }

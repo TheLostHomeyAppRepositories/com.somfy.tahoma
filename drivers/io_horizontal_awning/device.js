@@ -215,7 +215,7 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
                 const lockStateTimer = tahomaStates.find((state) => (state && (state.name === 'core:PriorityLockTimerState')));
                 if (lockStateTimer)
                 {
-                    if (lockStateTimer.value === '0')
+                    if (lockStateTimer.value == '0')
                     {
                         this.setCapabilityValue('lock_state', '').catch(this.error);
 
