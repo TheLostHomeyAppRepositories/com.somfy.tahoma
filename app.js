@@ -1454,7 +1454,7 @@ class myApp extends Homey.App
 
         if (this.infoLogEnabled)
         {
-            this.logInformation(`Restart sync in: ${CLOUD_INTERVAL} seconds`);
+            this.logInformation(`Restart local sync in: ${LOCAL_INTERVAL} seconds, cloud sync in: ${CLOUD_INTERVAL} seconds`);
         }
 
         this.nextCloudInterval = CLOUD_INTERVAL * 1000;
@@ -1526,12 +1526,12 @@ class myApp extends Homey.App
         {
             if (tahomaConnection.localLogin)
             {
-                this.logInformation('syncLoop',
+                this.logInformation('Local syncLoop',
                  `Logged in = ${tahomaConnection.authenticated}, Local = ${tahomaConnection.localLogin}, Old Sync State = ${this.syncing}, Next cloud sync in ${this.nextCloudInterval / 1000}s`);
             }
             else
             {
-                this.logInformation('syncLoop', `Logged in = ${tahomaConnection.authenticated}, Local = ${tahomaConnection.localLogin}, Old Sync State = ${this.syncing}`);
+                this.logInformation('Cloud syncLoop', `Logged in = ${tahomaConnection.authenticated}, Local = ${tahomaConnection.localLogin}, Old Sync State = ${this.syncing}`);
             }
         }
 
@@ -1902,7 +1902,7 @@ class myApp extends Homey.App
 
     isLoggedIn()
     {
-        return (this.tahomaCloud.authenticated | (this.tahomaLocal && this.tahomaLocal.authenticated));
+        return (this.tahomaCloud.authenticated || (this.tahomaLocal && this.tahomaLocal.authenticated));
     }
 
 }

@@ -724,10 +724,11 @@ class Device extends Homey.Device
         }
         catch (error)
         {
+            let stack = error.response ? error.response.data : error;
             this.homey.app.logInformation('Device initial sync.',
             {
                 message: this.getName(),
-                stack: error,
+                stack: stack,
             });
         }
         return null;
