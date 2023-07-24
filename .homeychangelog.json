@@ -682,5 +682,8 @@
   },
   "4.0.50": {
     "en": "Fix typo for 'io:PriorityLockTimerState' that should be 'core:PriorityLockTimerState'."
+  },
+  "4.0.51": {
+    "en": "Update logging information to help track down occasional log in problem."
   }
 }

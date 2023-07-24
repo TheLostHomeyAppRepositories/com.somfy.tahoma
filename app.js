@@ -379,7 +379,7 @@ class myApp extends Homey.App
                 if (this.infoLogEnabled)
                 {
                     const apiVer = await this.tahomaLocal.getLocalAPIVersion();
-                    this.logInformation('Local login', apiVer);
+                    this.logInformation('Local login Successful', apiVer);
                 }
                 await this.tahomaLocal.getDeviceData();
             }
@@ -845,7 +845,7 @@ class myApp extends Homey.App
             this.loginTimerId = null;
         }
 
-        if (this.localBridgeInfo && this.localBridgeInfo.pin)
+        if (this.localBridgeInfo && this.localBridgeInfo.pin && !this.tahomaLocal.authenticated)
         {
             try
             {
@@ -908,9 +908,9 @@ class myApp extends Homey.App
 
             const setupInfo = await this.tahomaCloud.getSetupOID();
             this.somfySetupOID = setupInfo.result;
-
-            this.startSync();
         }
+
+        this.startSync();
         return this.tahomaCloud.authenticated;
     }
 
@@ -1401,16 +1401,15 @@ class myApp extends Homey.App
 
     async stopSync()
     {
-        if (this.infoLogEnabled)
-        {
-            this.logInformation('Stop sync requested');
-        }
-
         if (this.commandsQueued > 0)
         {
             this.commandsQueued = 0;
             this.homey.clearTimeout(this.boostTimerId);
             this.boostTimerId = null;
+            if (this.infoLogEnabled)
+            {
+                this.logInformation('stopSync', 'Cleared commandsQueued');
+            }
         }
 
         this.nextCloudInterval = 0;
@@ -1419,19 +1418,28 @@ class myApp extends Homey.App
         {
             this.homey.clearTimeout(this.syncTimerId);
             this.syncTimerId = null;
-        }
-
-        if (this.infoLogEnabled)
-        {
-            this.logInformation('stopSync', 'Stopping Event Polling');
+            if (this.infoLogEnabled)
+            {
+                this.logInformation('stopSync', 'Stopped sync timer');
+            }
         }
 
         if (this.tahomaCloud)
         {
+            if (this.infoLogEnabled)
+            {
+                this.logInformation('stopSync', 'Stopping Local Event Polling');
+            }
+    
             await this.tahomaCloud.eventsClearRegistered();
         }
         if (this.tahomaLocal)
         {
+            if (this.infoLogEnabled)
+            {
+                this.logInformation('stopSync', 'Stopping Cloud Event Polling');
+            }
+    
             await this.tahomaLocal.eventsClearRegistered();
         }
     }
@@ -1633,12 +1641,12 @@ class myApp extends Homey.App
             {
                 if (this.infoLogEnabled)
                 {
-                    this.logInformation('Device status update', 'Refreshing');
+                    this.logInformation('Device status update', 'Checking events');
                 }
             }
             else if (this.infoLogEnabled)
             {
-                this.logInformation('Device status update', 'Renewing');
+                this.logInformation('Device status update', 'Initialising');
             }
 
             let drivers = this.homey.drivers.getDrivers();
