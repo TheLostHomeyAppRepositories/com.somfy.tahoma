@@ -1858,12 +1858,26 @@ class myApp extends Homey.App
             // Check if the local connection supports the device
             if (this.tahomaLocal.supportedDevices.findIndex((element) => element.deviceURL === deviceURL) >= 0)
             {
-                return this.tahomaLocal.getDeviceStates(deviceURL);
+                const states = await this.tahomaLocal.getDeviceStates(deviceURL);
+                if (states)
+                {
+                    if (this.infoLogEnabled)
+                    {
+                        this.logInformation('Device local states', states);
+                    }
+        
+                    return states;
+                }
             }
         }
         if (this.tahomaCloud.authenticated && !this.usingDebugData)
         {
-            return this.tahomaCloud.getDeviceStates(deviceURL);
+            const states = await this.tahomaCloud.getDeviceStates(deviceURL);
+            if (this.infoLogEnabled)
+            {
+                this.logInformation('Device cloud states', states);
+            }
+            return states;
         }
 
         return null;

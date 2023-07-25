@@ -39,7 +39,7 @@ class Device extends Homey.Device
                 this.registerCapabilityListener(element.homeyName, this.onCapability.bind(this, element));
             }
 
-            this.syncEventsList(null, CapabilitiesXRef);
+//            this.syncEventsList(null, CapabilitiesXRef);
         }
         this.log('Device init:', this.getName(), 'class:', this.getClass());
     }
@@ -415,6 +415,13 @@ class Device extends Homey.Device
                 }
 
                 tahomaStates = null;
+            }
+            else
+            {
+                this.homey.app.logInformation(this.getName(),
+                {
+                    message: "No states returned from Tahoma"
+                });    
             }
         }
         catch (error)

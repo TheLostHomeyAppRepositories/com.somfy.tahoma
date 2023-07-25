@@ -45,6 +45,12 @@ class LightSensorDevice extends SensorDevice
 
         await super.onInit(CapabilitiesXRef);
     }
+    
+    onAdded()
+    {
+        this.log('device added');
+        this.getStates();
+    }
 
     // Update the capabilities
     async syncEvents(events, local)

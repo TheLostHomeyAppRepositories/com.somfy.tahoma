@@ -26,7 +26,6 @@ class evChargerDevice extends LightControllerDevice
         //this.setCapabilityValue('on_with_timer', 0).catch(this.error);
 
         await super.onInit();
-        this.getStates();
     }
 
 }
