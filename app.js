@@ -1831,9 +1831,16 @@ class myApp extends Homey.App
         {
             if (this.tahomaLocal.supportedDevices.findIndex((element) => element.deviceURL === deviceURL) >= 0)
             {
-                const data = await this.tahomaLocal.executeDeviceAction(label, deviceURL, action, action2);
-                data.local = true;
-                return data;
+                try
+                {
+                    const data = await this.tahomaLocal.executeDeviceAction(label, deviceURL, action, action2);
+                    data.local = true;
+                    return data;
+                }
+                catch (err)
+                {
+                    this.logInformation(`${label}: Local command failed (will try cloud)`, `command: ${this.varToString(action)}`);
+                }
             }
         }
 

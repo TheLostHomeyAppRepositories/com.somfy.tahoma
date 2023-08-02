@@ -123,7 +123,18 @@ class PilotWireProgrammerDevice extends SensorDevice
                 };
             }
 
-            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+            // Send the command
+            let result = null;
+            try
+            {
+                result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+            }
+            catch (err)
+            {
+                this.homey.app.logInformation(`${this.getName()}: onCapabilityHeatingModeState`, `Failed to send command: ${err.message}, command = ${JSON.stringify(action)}`);
+                throw (err);
+            }
+
             if (result)
             {
                 if (result.errorCode)
@@ -143,7 +154,7 @@ class PilotWireProgrammerDevice extends SensorDevice
             }
             else
             {
-                this.homey.app.logInformation(`${this.getName()}: onCapabilityAlarmArmedState`, 'Failed to send command');
+                this.homey.app.logInformation(`${this.getName()}: onCapabilityHeatingModeState`, `Failed to send command: ${JSON.stringify(action)}, error = ${result.error} (${result.errorCode})`);
                 throw (new Error('Failed to send command'));
             }
         }
@@ -177,7 +188,7 @@ class PilotWireProgrammerDevice extends SensorDevice
                 if (heatingMode)
                 {
                     this.homey.app.logStates(`${this.getName()}: ovp:HeatingTemperatureInterfaceActiveModeState = ${heatingMode.value}`);
-                    this.triggerCapabilityListener('heatingMode', heatingMode.value,
+                    this.triggerCapabilityListener('heating_mode', heatingMode.value,
                     {
                         fromCloudSync: true,
                     }).catch(this.error);
@@ -245,11 +256,11 @@ class PilotWireProgrammerDevice extends SensorDevice
                         else if (deviceState.name === 'ovp:HeatingTemperatureInterfaceActiveModeState')
                         {
                             this.homey.app.logStates(`${this.getName()}: ovp:HeatingTemperatureInterfaceActiveModeState = ${deviceState.value}`);
-                            const oldState = this.getState().heatingMode;
+                            const oldState = this.getState().heating_mode;
                             const newState = deviceState.value;
                             if (oldState !== newState)
                             {
-                                this.triggerCapabilityListener('heatingMode', newState,
+                                this.triggerCapabilityListener('heating_mode', newState,
                                 {
                                     fromCloudSync: true,
                                 }).catch(this.error);

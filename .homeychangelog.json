@@ -685,5 +685,8 @@
   },
   "4.0.51": {
     "en": "Update logging information to help track down occasional log in problem."
+  },
+  "4.0.52": {
+    "en": "Fixed an issue with the Pilot Wire Programmer device. Attempt to send commands via the cloud if local fails"
   }
 }

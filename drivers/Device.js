@@ -231,7 +231,7 @@ class Device extends Homey.Device
             }
             catch (err)
             {
-                this.homey.app.logInformation(`${this.getName()}: onCapability ${capabilityXRef.somfyNameSet[cmdIdx]}`, `Failed to send command: ${err.message}`);
+                this.homey.app.logInformation(`${this.getName()}: onCapability ${capabilityXRef.somfyNameSet[cmdIdx]}`, `Failed to send command: ${err.message}, command = ${JSON.stringify(action)}`);
                 throw (err);
             }
 
@@ -240,6 +240,7 @@ class Device extends Homey.Device
                 if (result.errorCode)
                 {
                     // Report the error
+                    this.homey.app.logInformation(`${this.getName()}: onCapability ${capabilityXRef.somfyNameSet[cmdIdx]}`, `Failed to send command: ${JSON.stringify(action)}, error = ${result.error} (${result.errorCode})`);
                     this.homey.app.logInformation(this.getName(),
                     {
                         message: result.error,
@@ -265,7 +266,7 @@ class Device extends Homey.Device
             }
             else
             {
-                this.homey.app.logInformation(`${this.getName()}: onCapability ${capabilityXRef.somfyNameSet[cmdIdx]}`, 'Failed to send command');
+                this.homey.app.logInformation(`${this.getName()}: onCapability ${capabilityXRef.somfyNameSet[cmdIdx]}`, `Failed to send command: ${JSON.stringify(action)}`);
                 throw (new Error('Failed to send command'));
             }
         }
