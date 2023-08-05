@@ -159,13 +159,13 @@ class Device extends Homey.Device
 
             const deviceData = this.getData();
             // Check if this command is already being executed
-            const idx = this.executionCommands.findIndex((element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
-            if (idx >= 0)
+            const existingCommandIdx = this.executionCommands.findIndex((element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
+            if (existingCommandIdx >= 0)
             {
                 // Found it so cancel the current command first
                 try
                 {
-                    await this.homey.app.cancelExecution(this.executionCommands[idx].id, this.executionCommands[idx].local);
+                    await this.homey.app.cancelExecution(this.executionCommands[existingCommandIdx].id, this.executionCommands[existingCommandIdx].local);
                 }
                 catch (err)
                 {
@@ -176,7 +176,7 @@ class Device extends Homey.Device
                     });
                 }
                 // Remove the command from the array
-                this.executionCommands.splice(idx, 1);
+                this.executionCommands.splice(existingCommandIdx, 1);
             }
 
             let cmdIdx = 0;
@@ -225,49 +225,17 @@ class Device extends Homey.Device
 
             // Send the command
             let result = null;
-            try
+            result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync, action2);
+            const idx = this.executionCommands.findIndex((element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
+            if (idx < 0)
             {
-                result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync, action2);
-            }
-            catch (err)
-            {
-                this.homey.app.logInformation(`${this.getName()}: onCapability ${capabilityXRef.somfyNameSet[cmdIdx]}`, `Failed to send command: ${err.message}, command = ${JSON.stringify(action)}`);
-                throw (err);
-            }
-
-            if (result)
-            {
-                if (result.errorCode)
-                {
-                    // Report the error
-                    this.homey.app.logInformation(`${this.getName()}: onCapability ${capabilityXRef.somfyNameSet[cmdIdx]}`, `Failed to send command: ${JSON.stringify(action)}, error = ${result.error} (${result.errorCode})`);
-                    this.homey.app.logInformation(this.getName(),
-                    {
-                        message: result.error,
-                        stack: result.errorCode,
-                    });
-
-                    throw (new Error(result.error));
-                }
-                else
-                {
-                    const idx = this.executionCommands.findIndex((element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
-                    if (idx < 0)
-                    {
-                        // Add the command reference to the executing array
-                        this.executionCommands.push({ id: result.execId, name: action.name, local: result.local });
-                    }
-                    else
-                    {
-                        // The command must have been added by the event handler so cancel this boost request so we don't have two
-                        await this.homey.app.unBoostSync();
-                    }
-                }
+                // Add the command reference to the executing array
+                this.executionCommands.push({ id: result.execId, name: action.name, local: result.local });
             }
             else
             {
-                this.homey.app.logInformation(`${this.getName()}: onCapability ${capabilityXRef.somfyNameSet[cmdIdx]}`, `Failed to send command: ${JSON.stringify(action)}`);
-                throw (new Error('Failed to send command'));
+                // The command must have been added by the event handler so cancel this boost request so we don't have two
+                await this.homey.app.unBoostSync();
             }
         }
         else

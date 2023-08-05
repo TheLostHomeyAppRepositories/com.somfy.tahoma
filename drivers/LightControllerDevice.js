@@ -75,30 +75,9 @@ class LightControllerDevice extends Device
                 };
             }
             const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            if (result)
-            {
-                if (result.errorCode)
-                {
-                    this.homey.app.logInformation(this.getName(),
-                    {
-                        message: result.error,
-                        stack: result.errorCode,
-                    });
-
-                    throw (new Error(result.error));
-                }
-                else
-                {
-                    this.commandExecuting = 'onOff';
-                    this.executionCmd = action.name;
-                    this.executionId = { id: result.execId, local: result.local };
-                }
-            }
-            else
-            {
-                this.homey.app.logInformation(`${this.getName()}: onCapabilityOnOff`, 'Failed to send command');
-                throw (new Error('Failed to send command'));
-            }
+            this.commandExecuting = 'onOff';
+            this.executionCmd = action.name;
+            this.executionId = { id: result.execId, local: result.local };
         }
         else
         {
@@ -135,34 +114,9 @@ class LightControllerDevice extends Device
                 parameters: [Math.round(value * 100)],
             };
             const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            if (result)
-            {
-                if (result.errorCode)
-                {
-                    this.homey.app.logInformation(this.getName(),
-                    {
-                        message: result.error,
-                        stack: result.errorCode,
-                    });
-
-                    throw (new Error(result.error));
-                }
-                else
-                {
-                    this.commandExecuting = 'dim';
-                    this.executionCmd = action.name;
-                    this.executionId = { id: result.execId, local: result.local };
-                }
-            }
-            else
-            {
-                if (this.homey.app.infoLogEnabled)
-                {
-                    this.homey.app.logInformation(`${this.getName()}: onCapabilityDim`, 'Failed to send command');
-                }
-
-                throw (new Error('Failed to send command'));
-            }
+            this.commandExecuting = 'dim';
+            this.executionCmd = action.name;
+            this.executionId = { id: result.execId, local: result.local };
         }
         else
         {
@@ -201,30 +155,9 @@ class LightControllerDevice extends Device
                 parameters: [Math.round(value * (maxTemperature - minTemperature) + minTemperature)],
             };
             const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            if (result)
-            {
-                if (result.errorCode)
-                {
-                    this.homey.app.logInformation(this.getName(),
-                    {
-                        message: result.error,
-                        stack: result.errorCode,
-                    });
-
-                    throw (new Error(result.error));
-                }
-                else
-                {
-                    this.commandExecuting = 'light_temperature';
-                    this.executionCmd = action.name;
-                    this.executionId = { id: result.execId, local: result.local };
-                }
-            }
-            else
-            {
-                this.homey.app.logInformation(`${this.getName()}: onCapabilityDim`, 'Failed to send command');
-                throw (new Error('Failed to send command'));
-            }
+            this.commandExecuting = 'light_temperature';
+            this.executionCmd = action.name;
+            this.executionId = { id: result.execId, local: result.local };
         }
         else
         {
@@ -468,35 +401,11 @@ class LightControllerDevice extends Device
         };
 
         const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-        if (result)
-        {
-            if (result.errorCode)
-            {
-                this.homey.app.logInformation(this.getName(),
-                {
-                    message: result.error,
-                    stack: result.errorCode,
-                });
+        this.commandExecuting = action.name;
+        this.executionCmd = action.name;
+        this.executionId = { id: result.execId, local: result.local };
 
-                throw (new Error(result.error));
-            }
-            else
-            {
-                this.commandExecuting = action.name;
-                this.executionCmd = action.name;
-                this.executionId = { id: result.execId, local: result.local };
-
-                this.doOnTimer();
-            }
-        }
-        else
-        {
-            this.homey.app.logInformation(`${this.getName()}: sendOnWithTimer`, 'Failed to send command');
-            this.doOnTimer();
-
-            this.setCapabilityValue('on_with_timer', 0).catch(this.error);
-            throw (new Error('Failed to send command'));
-        }
+        this.doOnTimer();
     }
 
     doOnTimer()

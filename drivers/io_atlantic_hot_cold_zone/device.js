@@ -42,28 +42,8 @@ class HotColdZoneDevice extends SensorDevice
             };
 
             const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            if (result)
-            {
-                if (result.errorCode)
-                {
-                    this.homey.app.logInformation(this.getName(),
-                    {
-                        message: result.error,
-                        stack: result.errorCode,
-                    });
-                    throw (new Error(result.error));
-                }
-                else
-                {
-                    this.executionCmd = action.name;
-                    this.executionId = {id: result.execId, local: result.local};
-                }
-            }
-            else
-            {
-                this.homey.app.logInformation(`${this.getName()}: onCapabilityTargetTemperature ${capability}`, 'Failed to send command');
-                throw (new Error('Failed to send command'));
-            }
+            this.executionCmd = action.name;
+            this.executionId = {id: result.execId, local: result.local};
         }
         else
         {
@@ -127,28 +107,8 @@ class HotColdZoneDevice extends SensorDevice
                 };
             }
             const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            if (result)
-            {
-                if (result.errorCode)
-                {
-                    this.homey.app.logInformation(this.getName(),
-                    {
-                        message: result.error,
-                        stack: result.errorCode,
-                    });
-                    throw (new Error(result.error));
-                }
-                else
-                {
-                    this.executionCmd = action.name;
-                    this.executionId = {id: result.execId, local: result.local};
-                }
-            }
-            else
-            {
-                this.homey.app.logInformation(`${this.getName()}: onCapabilityOnOff ${capability}`, 'Failed to send command');
-                throw (new Error('Failed to send command'));
-            }
+            this.executionCmd = action.name;
+            this.executionId = {id: result.execId, local: result.local};
         }
         else
         {
@@ -182,28 +142,8 @@ class HotColdZoneDevice extends SensorDevice
             };
 
             const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            if (result)
-            {
-                if (result.errorCode)
-                {
-                    this.homey.app.logInformation(this.getName(),
-                    {
-                        message: result.error,
-                        stack: result.errorCode,
-                    });
-                    throw (new Error(result.error));
-                }
-                else
-                {
-                    this.executionCmd = action.name;
-                    this.executionId = {id: result.execId, local: result.local};
-                }
-            }
-            else
-            {
-                this.homey.app.logInformation(`${this.getName()}: onCapability ${capability}`, 'Failed to send command');
-                throw (new Error('Failed to send command'));
-            }
+            this.executionCmd = action.name;
+            this.executionId = {id: result.execId, local: result.local};
         }
         else
         {

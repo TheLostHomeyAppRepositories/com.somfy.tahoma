@@ -966,7 +966,7 @@ class myApp extends Homey.App
             // Filter cloud devices to remove local devices
             const unique = cloudDevices.filter((cloud) =>
             {
-                const isDuplicate = (localDevices.findIndex((local) => local.deviceURL === cloud.deviceURL) >= 0);
+                const isDuplicate = (localDevices.findIndex((local) => (local.deviceURL === cloud.deviceURL) && (local.controllableName === cloud.controllableName)) >= 0);
 
                 if (!isDuplicate)
                 {
@@ -1834,28 +1834,49 @@ class myApp extends Homey.App
                 try
                 {
                     const data = await this.tahomaLocal.executeDeviceAction(label, deviceURL, action, action2);
+                    if (data.errorCode)
+                    {
+                        this.homey.app.logInformation(`${this.getName()}: onCapabilityHeatingModeState`, `Failed to send command: ${JSON.stringify(action)}, error = ${data.error} (${data.errorCode})`);
+                        throw (new Error(data.error));
+                    }
+                    
                     data.local = true;
                     return data;
                 }
                 catch (err)
                 {
-                    this.logInformation(`${label}: Local command failed (will try cloud)`, `command: ${this.varToString(action)}`);
+                    this.logInformation(`${label}: Local command failed (will try cloud)`, `command: ${this.varToString(action)}, error = ${result.error} (${result.errorCode})`);
                 }
             }
         }
 
         if (this.tahomaCloud.authenticated && !this.usingDebugData)
         {
-            const data = this.tahomaCloud.executeDeviceAction(label, deviceURL, action, action2);
-            data.local = false;
-            if (boostSync)
+            try
             {
-                this.boostSync();
+                const data = this.tahomaCloud.executeDeviceAction(label, deviceURL, action, action2);
+                if (data.errorCode)
+                {
+                    this.homey.app.logInformation(`${this.getName()}: onCapabilityHeatingModeState`, `Failed to send command: ${JSON.stringify(action)}, error = ${data.error} (${data.errorCode})`);
+                    throw (new Error(data.error));
+                }
+
+                data.local = false;
+                if (boostSync)
+                {
+                    this.boostSync();
+                }
+                return data;
             }
-            return data;
+            catch (err)
+            {
+                this.logInformation(`${label}: Cloud command failed`, `command: ${this.varToString(action)}, error = ${result.error} (${result.errorCode})`);
+                throw(err);
+            }
         }
 
-        return null;
+        this.logInformation(`${label}: Command failed, no valid connections`, `command: ${this.varToString(action)}`);
+        throw (new Error('Failed to send command, no valid connections'));
     }
 
     async getDeviceStates(deviceURL)

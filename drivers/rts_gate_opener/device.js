@@ -83,38 +83,10 @@ class rtsGateOpenerDevice extends Device
             };
         }
 
-        try
-        {
-            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            if (result)
-            {
-                if (result.errorCode)
-                {
-                    this.homey.app.logInformation(this.getName(),
-                    {
-                        message: result.error,
-                        stack: result.errorCode,
-                    });
-                    throw (new Error(result.error));
-                }
-                else
-                {
-                    this.commandExecuting = action.name;
-                    this.executionCmd = action.name;
-                    this.executionId = {id: result.execId, local: result.local};
-                }
-            }
-            else
-            {
-                this.homey.app.logInformation(`${this.getName()}: sendOpenClose`, 'Failed to send command');
-                throw (new Error('Failed to send command'));
-            }
-        }
-        catch (err)
-        {
-            this.homey.app.logInformation(`${this.getName()}: sendOpenClose`, 'Failed to send command');
-            throw (err);
-        }
+        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+        this.commandExecuting = action.name;
+        this.executionCmd = action.name;
+        this.executionId = {id: result.execId, local: result.local};
     }
 
     // look for updates in the events array

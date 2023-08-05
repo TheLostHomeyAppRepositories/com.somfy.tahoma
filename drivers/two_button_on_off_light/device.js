@@ -76,29 +76,9 @@ class two_button_on_offDevice extends Device
             };
         }
         const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-        if (result)
-        {
-            if (result.errorCode)
-            {
-                this.homey.app.logInformation(this.getName(),
-                {
-                    message: result.error,
-                    stack: result.errorCode,
-                });
-                throw (new Error(result.error));
-            }
-            else
-            {
-                this.commandExecuting = action.name;
-                this.executionCmd = action.name;
-                this.executionId = {id: result.execId, local: result.local};
-            }
-        }
-        else
-        {
-            this.homey.app.logInformation(`${this.getName()}: sendOnOff`, 'Failed to send command');
-            throw (new Error('Failed to send command'));
-        }
+        this.commandExecuting = action.name;
+        this.executionCmd = action.name;
+        this.executionId = {id: result.execId, local: result.local};
     }
 
     async sendOnWithTimer(value)
@@ -131,34 +111,11 @@ class two_button_on_offDevice extends Device
         };
 
         const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-        if (result)
-        {
-            if (result.errorCode)
-            {
-                this.homey.app.logInformation(this.getName(),
-                {
-                    message: result.error,
-                    stack: result.errorCode,
-                });
-                throw (new Error(result.error));
-            }
-            else
-            {
-                this.commandExecuting = action.name;
-                this.executionCmd = action.name;
-                this.executionId = {id: result.execId, local: result.local};
+        this.commandExecuting = action.name;
+        this.executionCmd = action.name;
+        this.executionId = {id: result.execId, local: result.local};
 
-                this.doOnTimer();
-            }
-        }
-        else
-        {
-            this.homey.app.logInformation(`${this.getName()}: sendOnWithTimer`, 'Failed to send command');
-            this.doOnTimer();
-
-            this.setCapabilityValue('on_with_timer', 0).catch(this.error);
-            throw (new Error('Failed to send command'));
-        }
+        this.doOnTimer();
     }
 
     doOnTimer()

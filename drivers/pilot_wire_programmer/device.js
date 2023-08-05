@@ -52,28 +52,8 @@ class PilotWireProgrammerDevice extends SensorDevice
                 };
             }
             const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            if (result)
-            {
-                if (result.errorCode)
-                {
-                    this.homey.app.logInformation(this.getName(),
-                    {
-                        message: result.error,
-                        stack: result.errorCode,
-                    });
-                    throw (new Error(result.error));
-                }
-                else
-                {
-                    this.executionCmd = action.name;
-                    this.executionId = { id: result.execId, local: result.local };
-                }
-            }
-            else
-            {
-                this.homey.app.logInformation(`${this.getName()}: onCapabilityOnOff`, 'Failed to send command');
-                throw (new Error('Failed to send command'));
-            }
+            this.executionCmd = action.name;
+            this.executionId = { id: result.execId, local: result.local };
         }
         else
         {
@@ -123,40 +103,11 @@ class PilotWireProgrammerDevice extends SensorDevice
                 };
             }
 
-            // Send the command
+            // Send the command. Throws an error if it fails
             let result = null;
-            try
-            {
-                result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            }
-            catch (err)
-            {
-                this.homey.app.logInformation(`${this.getName()}: onCapabilityHeatingModeState`, `Failed to send command: ${err.message}, command = ${JSON.stringify(action)}`);
-                throw (err);
-            }
-
-            if (result)
-            {
-                if (result.errorCode)
-                {
-                    this.homey.app.logInformation(this.getName(),
-                    {
-                        message: result.error,
-                        stack: result.errorCode,
-                    });
-                    throw (new Error(result.error));
-                }
-                else
-                {
-                    this.executionCmd = action.name;
-                    this.executionId = { id: result.execId, local: result.local };
-                }
-            }
-            else
-            {
-                this.homey.app.logInformation(`${this.getName()}: onCapabilityHeatingModeState`, `Failed to send command: ${JSON.stringify(action)}, error = ${result.error} (${result.errorCode})`);
-                throw (new Error('Failed to send command'));
-            }
+            result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+            this.executionCmd = action.name;
+            this.executionId = { id: result.execId, local: result.local };
         }
         else
         {

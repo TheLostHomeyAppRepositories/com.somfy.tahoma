@@ -202,12 +202,12 @@ class ValveHeatingDevice extends SensorDevice
             }
 
             const deviceData = this.getData();
-            const idx = this.executionCommands.findIndex((element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
-            if (idx >= 0)
+            const oldIdx = this.executionCommands.findIndex((element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
+            if (oldIdx >= 0)
             {
                 try
                 {
-                    await this.homey.app.cancelExecution(this.executionCommands[idx].id, this.executionCommands[idx].local);
+                    await this.homey.app.cancelExecution(this.executionCommands[oldIdx].id, this.executionCommands[oldIdx].local);
                 }
                 catch (err)
                 {
@@ -217,7 +217,7 @@ class ValveHeatingDevice extends SensorDevice
                         stack: err.stack,
                     });
                 }
-                this.executionCommands.splice(idx, 1);
+                this.executionCommands.splice(oldIdx, 1);
             }
 
             const action = {
@@ -225,43 +225,15 @@ class ValveHeatingDevice extends SensorDevice
                 parameters: somfyValues,
             };
 
-            try
+            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync, null, true);
+            const idx = this.executionCommands.findIndex((element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
+            if (idx < 0)
             {
-                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync, null, true);
-                if (result)
-                {
-                    if (result.errorCode)
-                    {
-                        this.homey.app.logInformation(this.getName(),
-                        {
-                            message: result.error,
-                            stack: result.errorCode,
-                        });
-                        throw (new Error(result.error));
-                    }
-                    else
-                    {
-                        const idx = this.executionCommands.findIndex((element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
-                        if (idx < 0)
-                        {
-                            this.executionCommands.push({ id: result.execId, name: action.name, local: result.local });
-                        }
-                        else
-                        {
-                            await this.homey.app.unBoostSync();
-                        }
-                    }
-                }
-                else
-                {
-                    this.homey.app.logInformation(`${this.getName()}: onCapability ${capabilityXRef.somfyNameSet[0]}`, 'Failed to send command');
-                    throw (new Error('Failed to send command'));
-                }
+                this.executionCommands.push({ id: result.execId, name: action.name, local: result.local });
             }
-            catch (err)
+            else
             {
-                this.homey.app.logInformation(`${this.getName()}: onCapability ${capabilityXRef.somfyNameSet[0]}`, `Failed to send command (${err.message})`);
-                throw (err);
+                await this.homey.app.unBoostSync();
             }
         }
         else

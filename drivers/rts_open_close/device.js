@@ -32,28 +32,8 @@ class OpenCloseDevice extends Device
             parameters: [],
         };
         const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-        if (result)
-        {
-            if (result.errorCode)
-            {
-                this.homey.app.logInformation(this.getName(),
-                {
-                    message: result.error,
-                    stack: result.errorCode,
-                });
-                throw (new Error(result.error));
-            }
-            else
-            {
-                this.executionId = {id: result.execId, local: result.local};
-                this.executionCmd = action.name;
-            }
-        }
-        else
-        {
-            this.homey.app.logInformation(`${this.getName()}: onCapabilityOnOff`, 'Failed to send command');
-            throw (new Error('Failed to send command'));
-        }
+        this.executionId = {id: result.execId, local: result.local};
+        this.executionCmd = action.name;
     }
 
     /**

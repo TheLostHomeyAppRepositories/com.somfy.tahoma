@@ -16,6 +16,8 @@ class InteriorBlindDriver extends Driver
             'rts:SwingingShutterRTSComponent',
             'ogp:Blind',
             'profalux868:Profalux868RollerShutter',
+            'rts:BottomUpBlindRTSComponent',
+            'rts:TopDownBlindRTSComponent',
         ];
     }
 

@@ -44,12 +44,12 @@ class HitachiACDevice extends SensorDevice
             const deviceData = this.getData();
 
             // Cancel the current command
-            const idx = this.executionCommands.findIndex(element => element.name === 'setMainOperation');
-            if (idx >= 0)
+            const oldIdx = this.executionCommands.findIndex(element => element.name === 'setMainOperation');
+            if (oldIdx >= 0)
             {
                 try
                 {
-                    await this.homey.app.cancelExecution(this.executionCommands[idx].id, this.executionCommands[idx].local);
+                    await this.homey.app.cancelExecution(this.executionCommands[oldIdx].id, this.executionCommands[oldIdx].local);
                 }
                 catch (err)
                 {
@@ -60,7 +60,7 @@ class HitachiACDevice extends SensorDevice
                     });
                 }
                 // Remove from the command from the array
-                this.executionCommands.splice(idx, 1);
+                this.executionCommands.splice(oldIdx, 1);
             }
 
             const action = {
@@ -69,47 +69,17 @@ class HitachiACDevice extends SensorDevice
             };
 
             let result = null;
-            try
+            result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+            const idx = this.executionCommands.findIndex(element => element.name === 'setMainOperation');
+            if (idx < 0)
             {
-                result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            }
-            catch (err)
-            {
-                this.homey.app.logInformation(`${this.getName()}: onCapability setMainOperation`, `Failed to send command: ${err.message}`);
-                throw (err);
-            }
-
-            if (result)
-            {
-                if (result.errorCode)
-                {
-                    this.homey.app.logInformation(this.getName(),
-                    {
-                        message: result.error,
-                        stack: result.errorCode,
-                    });
-
-                    throw (new Error(result.error));
-                }
-                else
-                {
-                    const idx = this.executionCommands.findIndex(element => element.name === 'setMainOperation');
-                    if (idx < 0)
-                    {
-                        // Add the command reference to the executing array
-                        this.executionCommands.push({ id: result.execId, name: action.name });
-                    }
-                    else
-                    {
-                        // The command must have been added by the event handler so cancel this boost request so we don't have two
-                        await this.homey.app.unBoostSync();
-                    }
-                }
+                // Add the command reference to the executing array
+                this.executionCommands.push({ id: result.execId, name: action.name });
             }
             else
             {
-                this.homey.app.logInformation(`${this.getName()}: onCapabilityOnOff`, 'Failed to send command');
-                throw (new Error('Failed to send command'));
+                // The command must have been added by the event handler so cancel this boost request so we don't have two
+                await this.homey.app.unBoostSync();
             }
         }
         else
@@ -126,12 +96,12 @@ class HitachiACDevice extends SensorDevice
             const deviceData = this.getData();
 
             // Cancel the current command
-            const idx = this.executionCommands.findIndex(element => element.name === 'setHolidays');
+            const oldIdx = this.executionCommands.findIndex(element => element.name === 'setHolidays');
             if (idx >= 0)
             {
                 try
                 {
-                    await this.homey.app.cancelExecution(this.executionCommands[idx].id, this.executionCommands[idx].local);
+                    await this.homey.app.cancelExecution(this.executionCommands[oldIdx].id, this.executionCommands[oldIdx].local);
                 }
                 catch (err)
                 {
@@ -142,7 +112,7 @@ class HitachiACDevice extends SensorDevice
                     });
                 }
                 // Remove from the command from the array
-                this.executionCommands.splice(idx, 1);
+                this.executionCommands.splice(oldIdx, 1);
             }
 
             const action = {
@@ -151,47 +121,17 @@ class HitachiACDevice extends SensorDevice
             };
 
             let result = null;
-            try
+            result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+            const idx = this.executionCommands.findIndex(element => element.name === 'setHolidays');
+            if (idx < 0)
             {
-                result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            }
-            catch (err)
-            {
-                this.homey.app.logInformation(`${this.getName()}: onCapability setHolidays`, `Failed to send command: ${err.message}`);
-                throw (err);
-            }
-
-            if (result)
-            {
-                if (result.errorCode)
-                {
-                    this.homey.app.logInformation(this.getName(),
-                    {
-                        message: result.error,
-                        stack: result.errorCode,
-                    });
-
-                    throw (new Error(result.error));
-                }
-                else
-                {
-                    const idx = this.executionCommands.findIndex(element => element.name === 'setHolidays');
-                    if (idx < 0)
-                    {
-                        // Add the command reference to the executing array
-                        this.executionCommands.push({ id: result.execId, name: action.name });
-                    }
-                    else
-                    {
-                        // The command must have been added by the event handler so cancel this boost request so we don't have two
-                        await this.homey.app.unBoostSync();
-                    }
-                }
+                // Add the command reference to the executing array
+                this.executionCommands.push({ id: result.execId, name: action.name });
             }
             else
             {
-                this.homey.app.logInformation(`${this.getName()}: onCapabilityHolidayMode`, 'Failed to send command');
-                throw (new Error('Failed to send command'));
+                // The command must have been added by the event handler so cancel this boost request so we don't have two
+                await this.homey.app.unBoostSync();
             }
         }
         else
@@ -256,12 +196,12 @@ class HitachiACDevice extends SensorDevice
         }
 
         // Cancel the current command
-        const idx = this.executionCommands.findIndex(element => element.name === 'globalControl');
-        if (idx >= 0)
+        const oldIdx = this.executionCommands.findIndex(element => element.name === 'globalControl');
+        if (oldIdx >= 0)
         {
             try
             {
-                await this.homey.app.cancelExecution(this.executionCommands[idx].id, this.executionCommands[idx].local);
+                await this.homey.app.cancelExecution(this.executionCommands[oldIdx].id, this.executionCommands[oldIdx].local);
             }
             catch (err)
             {
@@ -272,7 +212,7 @@ class HitachiACDevice extends SensorDevice
                 });
             }
             // Remove from the command from the array
-            this.executionCommands.splice(idx, 1);
+            this.executionCommands.splice(oldIdx, 1);
         }
 
         // Send the command
@@ -283,46 +223,17 @@ class HitachiACDevice extends SensorDevice
         };
 
         let result = null;
-        try
+        result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+        const idx = this.executionCommands.findIndex(element => element.name === 'globalControl');
+        if (idx < 0)
         {
-            result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-        }
-        catch (err)
-        {
-            this.homey.app.logInformation(`${this.getName()}: onCapability globalControl`, `Failed to send command: ${err.message}`);
-            throw (err);
-        }
-
-        if (result)
-        {
-            if (result.errorCode)
-            {
-                this.homey.app.logInformation(this.getName(),
-                {
-                    message: result.error,
-                    stack: result.errorCode,
-                });
-                throw (new Error(result.error));
-            }
-            else
-            {
-                const idx = this.executionCommands.findIndex(element => element.name === 'globalControl');
-                if (idx < 0)
-                {
-                    // Add the command reference to the executing array
-                    this.executionCommands.push({ id: result.execId, name: action.name });
-                }
-                else
-                {
-                    // The command must have been added by the event handler so cancel this boost request so we don't have two
-                    await this.homey.app.unBoostSync();
-                }
-            }
+            // Add the command reference to the executing array
+            this.executionCommands.push({ id: result.execId, name: action.name });
         }
         else
         {
-            this.homey.app.logInformation(`${this.getName()}: onCapabilityChange`, 'Failed to send command');
-            throw (new Error('Failed to send command'));
+            // The command must have been added by the event handler so cancel this boost request so we don't have two
+            await this.homey.app.unBoostSync();
         }
     }
 

@@ -186,35 +186,13 @@ class WindowCoveringsDevice extends Device
                         parameters: [],
                     };
                     const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-                    if (result)
-                    {
-                        if (result.errorCode)
-                        {
-                            this.setWarning(result.errorCode + result.error).catch(this.error);
-                            this.homey.app.logInformation(this.getName(),
-                            {
-                                message: result.error,
-                                stack: result.errorCode,
-                            });
-                            throw (new Error(result.error));
-                        }
-                        else
-                        {
-                            this.executionCmd = action.name;
-                            this.executionId = { id: result.execId, local: result.local };
-                        }
-                    }
-                    else
-                    {
-                        this.homey.app.logInformation(`${this.getName()}: onCapabilityWindowcoveringsState`, 'Failed to send command');
-                        throw (new Error('Failed to send command'));
-                    }
+                    this.executionCmd = action.name;
+                    this.executionId = { id: result.execId, local: result.local };
                 }
             }
             catch (err)
             {
                 this.setWarning(err.message).catch(this.error);
-                this.homey.app.logInformation(this.getName(), err.message);
                 throw (err);
             }
             finally
@@ -277,34 +255,12 @@ class WindowCoveringsDevice extends Device
                 }
 
                 const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-                if (result)
-                {
-                    if (result.errorCode)
-                    {
-                        this.setWarning(result.errorCode + result.error).catch(this.error);
-                        this.homey.app.logInformation(this.getName(),
-                        {
-                            message: result.error,
-                            stack: result.errorCode,
-                        });
-                        throw (new Error(result.error));
-                    }
-                    else
-                    {
-                        this.executionCmd = action.name;
-                        this.executionId = { id: result.execId, local: result.local };
-                    }
-                }
-                else
-                {
-                    this.homey.app.logInformation(`${this.getName()}: onCapabilityWindowcoveringsSet`, 'Failed to send command');
-                    throw (new Error('Failed to send command'));
-                }
+                this.executionCmd = action.name;
+                this.executionId = { id: result.execId, local: result.local };
             }
             catch (err)
             {
                 this.setWarning(err.message).catch(this.error);
-                this.homey.app.logInformation(this.getName(), err.message);
                 throw (err);
             }
         }
@@ -335,34 +291,12 @@ class WindowCoveringsDevice extends Device
                 };
 
                 const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-                if (result)
-                {
-                    if (result.errorCode)
-                    {
-                        this.setWarning(result.errorCode + result.error).catch(this.error);
-                        this.homey.app.logInformation(this.getName(),
-                        {
-                            message: result.error,
-                            stack: result.errorCode,
-                        });
-                        throw (new Error(result.error));
-                    }
-                    else
-                    {
-                        this.executionCmd = action.name;
-                        this.executionId = { id: result.execId, local: result.local };
-                    }
-                }
-                else
-                {
-                    this.homey.app.logInformation(`${this.getName()}: onCapabilityWindowcoveringsTiltSet`, 'Failed to send command');
-                    throw (new Error('Failed to send command'));
-                }
+                this.executionCmd = action.name;
+                this.executionId = { id: result.execId, local: result.local };
             }
             catch (err)
             {
                 this.setWarning(err.message).catch(this.error);
-                this.homey.app.logInformation(this.getName(), err.message);
                 throw (err);
             }
         }
@@ -398,34 +332,12 @@ class WindowCoveringsDevice extends Device
                     parameters: [3, 1],
                 };
                 const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-                if (result)
-                {
-                    if (result.errorCode)
-                    {
-                        this.setWarning(result.errorCode + result.error).catch(this.error);
-                        this.homey.app.logInformation(this.getName(),
-                        {
-                            message: result.error,
-                            stack: result.errorCode,
-                        });
-                        throw (new Error(result.error));
-                    }
-                    else
-                    {
-                        this.executionCmd = action.name;
-                        this.executionId = { id: result.execId, local: result.local };
-                    }
-                }
-                else
-                {
-                    this.homey.app.logInformation(`${this.getName()}: onCapabilityWindowcoveringsTiltUp`, 'Failed to send command');
-                    throw (new Error('Failed to send command'));
-                }
+                this.executionCmd = action.name;
+                this.executionId = { id: result.execId, local: result.local };
             }
             catch (err)
             {
                 this.setWarning(err.message).catch(this.error);
-                this.homey.app.logInformation(this.getName(), err.message);
                 throw (err);
             }
         }
@@ -450,33 +362,12 @@ class WindowCoveringsDevice extends Device
                     parameters: [3, 1],
                 };
                 const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-                if (result)
-                {
-                    if (result.errorCode)
-                    {
-                        this.homey.app.logInformation(this.getName(),
-                        {
-                            message: result.error,
-                            stack: result.errorCode,
-                        });
-                        throw (new Error(result.error));
-                    }
-                    else
-                    {
-                        this.executionCmd = action.name;
-                        this.executionId = { id: result.execId, local: result.local };
-                    }
-                }
-                else
-                {
-                    this.homey.app.logInformation(`${this.getName()}: onCapabilityWindowcoveringsTiltDown`, 'Failed to send command');
-                    throw (new Error('Failed to send command'));
-                }
+                this.executionCmd = action.name;
+                this.executionId = { id: result.execId, local: result.local };
             }
             catch (err)
             {
                 this.setWarning(err.message).catch(this.error);
-                this.homey.app.logInformation(this.getName(), err.message);
                 throw (err);
             }
         }
@@ -499,33 +390,12 @@ class WindowCoveringsDevice extends Device
                     parameters: [],
                 };
                 const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-                if (result)
-                {
-                    if (result.errorCode)
-                    {
-                        this.homey.app.logInformation(this.getName(),
-                        {
-                            message: result.error,
-                            stack: result.errorCode,
-                        });
-                        throw (new Error(result.error));
-                    }
-                    else
-                    {
-                        this.executionCmd = action.name;
-                        this.executionId = { id: result.execId, local: result.local };
-                    }
-                }
-                else
-                {
-                    this.homey.app.logInformation(`${this.getName()}: onCapabilityMyPosition`, 'Failed to send command');
-                    throw (new Error('Failed to send command'));
-                }
+                this.executionCmd = action.name;
+                this.executionId = { id: result.execId, local: result.local };
             }
             catch (err)
             {
                 this.setWarning(err.message).catch(this.error);
-                this.homey.app.logInformation(this.getName(), err.message);
                 throw (err);
             }
         }
@@ -548,33 +418,12 @@ class WindowCoveringsDevice extends Device
                     parameters: [],
                 };
                 const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-                if (result)
-                {
-                    if (result.errorCode)
-                    {
-                        this.homey.app.logInformation(this.getName(),
-                        {
-                            message: result.error,
-                            stack: result.errorCode,
-                        });
-                        throw (new Error(result.error));
-                    }
-                    else
-                    {
-                        this.executionCmd = action.name;
-                        this.executionId = { id: result.execId, local: result.local };
-                    }
-                }
-                else
-                {
-                    this.homey.app.logInformation(`${this.getName()}: onCapabilityPedestrian`, 'Failed to send command');
-                    throw (new Error('Failed to send command'));
-                }
+                this.executionCmd = action.name;
+                this.executionId = { id: result.execId, local: result.local };
             }
             catch (err)
             {
                 this.setWarning(err.message).catch(this.error);
-                this.homey.app.logInformation(this.getName(), err.message);
                 throw (err);
             }
         }

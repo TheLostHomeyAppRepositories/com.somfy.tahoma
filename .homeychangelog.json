@@ -688,5 +688,8 @@
   },
   "4.0.52": {
     "en": "Fixed an issue with the Pilot Wire Programmer device. Attempt to send commands via the cloud if local fails"
+  },
+  "4.0.53": {
+    "en": "Centralised information logging for more consistent logging. Added support for 'rts:BottomUpBlindRTSComponent' and 'rts:TopDownBlindRTSComponent' to 'Blind or Shutter (RTS)'."
   }
 }
