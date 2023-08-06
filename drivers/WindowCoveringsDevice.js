@@ -478,7 +478,7 @@ class WindowCoveringsDevice extends Device
                         if (this.checkLockSate)
                         {
                             clearTimeout(this.checkLockStateTimer);
-                            this.checkLockStateTimer = this.homey.setTimeout(this.checkLockSate, 60 * 1000);
+                            this.checkLockStateTimer = this.homey.setTimeout(this.checkLockSate, 60 * 30000);
                         }
                     }
                     else
@@ -487,7 +487,7 @@ class WindowCoveringsDevice extends Device
                         if (lockStateTimer)
                         {
                             this.homey.app.logStates(`${this.getName()}: core:PriorityLockTimerState = ${lockStateTimer.value}`);
-                            if (lockStateTimer.value == '0')
+                            if (lockStateTimer.value === '0')
                             {
                                 this.setCapabilityValue('lock_state', '').catch(this.error);
                                 if (this.driver.triggerLockStateChange)
@@ -496,7 +496,12 @@ class WindowCoveringsDevice extends Device
                                         lock_state: '',
                                     };
                                     this.driver.triggerLockStateChange(this, tokens);
-                                }        
+                                }
+                            }
+                            else
+                            {
+                                clearTimeout(this.checkLockStateTimer);
+                                this.checkLockStateTimer = this.homey.setTimeout(this.checkLockSate, (60 * parseInt(lockStateTimer.value, 10)));
                             }
                         }
                     }
@@ -686,7 +691,7 @@ class WindowCoveringsDevice extends Device
                                     {
                                         // Setup timer to call a function to check if it can be cleared
                                         clearTimeout(this.checkLockStateTimer);
-                                        this.checkLockStateTimer = this.homey.setTimeout(this.checkLockSate, (60 * 1000));
+                                        this.checkLockStateTimer = this.homey.setTimeout(this.checkLockSate, (60 * 30000));
                                     }
                                 }
                             }
@@ -695,7 +700,7 @@ class WindowCoveringsDevice extends Device
                                 if (this.hasCapability('lock_state') && (deviceState.value))
                                 {
                                     this.homey.app.logStates(`${this.getName()}: core:PriorityLockTimerState = ${deviceState.value}`);
-                                    if (deviceState.value == '0')
+                                    if (deviceState.value === '0')
                                     {
                                         this.setCapabilityValue('lock_state', '').catch(this.error);
                                         if (this.driver.triggerLockStateChange)
@@ -705,6 +710,11 @@ class WindowCoveringsDevice extends Device
                                             };
                                             this.driver.triggerLockStateChange(this, tokens);
                                         }
+                                    }
+                                    else
+                                    {
+                                        clearTimeout(this.checkLockStateTimer);
+                                        this.checkLockStateTimer = this.homey.setTimeout(this.checkLockSate, (60 * parseInt(deviceState.value, 10)));
                                     }
                                 }
                             }

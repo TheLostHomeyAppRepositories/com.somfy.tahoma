@@ -3,6 +3,7 @@
 'use strict';
 
 const WindowCoveringsDevice = require('../WindowCoveringsDevice');
+
 class HorizontalAwningDevice extends WindowCoveringsDevice
 {
 
@@ -19,20 +20,10 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
             this.controllableName = dd.controllableName.toString().toLowerCase();
         }
 
-        // if (this.controllableName !== 'ogp:awning')
+        if (!this.hasCapability('lock_state'))
         {
-            if (!this.hasCapability('lock_state'))
-            {
-                this.addCapability('lock_state').catch(this.error);
-            }
+            this.addCapability('lock_state').catch(this.error);
         }
-        // else
-        // {
-        //     if (this.hasCapability('lock_state'))
-        //     {
-        //         this.removeCapability('lock_state').catch(this.error);
-        //     }
-        // }
 
         await super.onInit();
 
@@ -53,7 +44,7 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
                     idle: 'stop',
                     down: 'deploy',
                 };
-        
+
                 // Somfy state to Homey capability map
                 this.windowcoveringsStatesMap = {
                     deployed: 'down',
@@ -67,14 +58,14 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
                     idle: 'stop',
                     down: 'undeploy',
                 };
-        
+
                 this.windowcoveringsStatesMap = {
                     deployed: 'up',
                     undeployed: 'down',
                 };
             }
         }
-        
+
         if (this.controllableName !== 'io:awningvalanceiocomponent')
         {
             // From Anders pull request
@@ -97,7 +88,7 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
             if (this.hasCapability('my_position'))
             {
                 this.removeCapability('my_position').catch(this.error);
-            }    
+            }
         }
     }
 
@@ -117,7 +108,7 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
                         idle: 'stop',
                         down: 'deploy',
                     };
-            
+
                     // Somfy state to Homey capability map
                     this.windowcoveringsStatesMap = {
                         deployed: 'down',
@@ -131,16 +122,15 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
                         idle: 'stop',
                         down: 'undeploy',
                     };
-            
+
                     this.windowcoveringsStatesMap = {
                         deployed: 'up',
                         undeployed: 'down',
                     };
-                }    
+                }
             }
             else
-            {
-                if (this.invertUpDown)
+            if (this.invertUpDown)
                 {
                     this.windowcoveringsActions = {
                         up: 'close',
@@ -168,7 +158,6 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
                         unknown: 'idle',
                     };
                 }
-            }
         }
 
         if (changedKeys.indexOf('invertTile') >= 0)
@@ -208,14 +197,14 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
                 }
 
                 clearTimeout(this.checkLockStateTimer);
-                this.checkLockStateTimer = this.homey.setTimeout(this.checkLockSate, (60 * 1000));
+                this.checkLockStateTimer = this.homey.setTimeout(this.checkLockSate, (60 * 30000));
             }
             else
             {
                 const lockStateTimer = tahomaStates.find((state) => (state && (state.name === 'core:PriorityLockTimerState')));
                 if (lockStateTimer)
                 {
-                    if (lockStateTimer.value == '0')
+                    if (lockStateTimer.value === '0')
                     {
                         this.setCapabilityValue('lock_state', '').catch(this.error);
 
@@ -230,7 +219,7 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
                     else
                     {
                         clearTimeout(this.checkLockStateTimer);
-                        this.checkLockStateTimer = this.homey.setTimeout(this.checkLockSate, (60 * 1000));
+                        this.checkLockStateTimer = this.homey.setTimeout(this.checkLockSate, (60 * parseInt(lockStateTimer.value, 10)));
                     }
                 }
             }
