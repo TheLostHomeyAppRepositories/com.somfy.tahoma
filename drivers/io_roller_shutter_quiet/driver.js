@@ -16,7 +16,7 @@ class RollerShutterQuietDriver extends ioWindowCoveringsDriver
         // Added 'io:DynamicRollerShutterIOComponent' here as it supports the quiet mode, but I have left it in io_roller_shutter for backward compatibility
         this.deviceType = [
             'io:RollerShutterWithLowSpeedManagementIOComponent',
-            'io:DynamicRollerShutterIOComponent'
+            'io:DynamicRollerShutterIOComponent',
         ];
 
         await super.onInit();

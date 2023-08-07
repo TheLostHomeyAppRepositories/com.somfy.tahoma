@@ -16,7 +16,7 @@ const CapabilitiesXRef = [
         somfyNameGet: 'core:SensorDefectState',
         somfyNameSet: [],
         allowNull: true,
-        compare: ['nodefect', 'lowbattery']
+        compare: ['nodefect', 'lowbattery'],
     },
     {
         homeyName: 'measure_temperature',

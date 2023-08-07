@@ -3,8 +3,8 @@
 
 'use strict';
 
-const { isArray } = require('axios/lib/utils');
 const Homey = require('homey');
+const { isArray } = require('axios/lib/utils');
 /**
  * Base class for devices
  * @extends {Homey.Device}
@@ -389,8 +389,8 @@ class Device extends Homey.Device
             {
                 this.homey.app.logInformation(this.getName(),
                 {
-                    message: "No states returned from Tahoma"
-                });    
+                    message: 'No states returned from Tahoma',
+                });
             }
         }
         catch (error)
@@ -700,11 +700,11 @@ class Device extends Homey.Device
         }
         catch (error)
         {
-            let stack = error.response ? error.response.data : error;
+            const stack = error.response ? error.response.data : error;
             this.homey.app.logInformation('Device initial sync.',
             {
                 message: this.getName(),
-                stack: stack,
+                stack,
             });
         }
         return null;

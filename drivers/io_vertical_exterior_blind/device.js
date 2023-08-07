@@ -41,12 +41,10 @@ class VerticalExteriorBlindDevice extends WindowCoveringsDevice
             }
         }
         else
-        {
-            if (this.hasCapability('my_position'))
+        if (this.hasCapability('my_position'))
             {
                 this.removeCapability('my_position').catch(this.error);
             }
-        }
     }
 
 }

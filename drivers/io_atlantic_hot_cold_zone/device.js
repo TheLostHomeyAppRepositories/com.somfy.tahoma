@@ -43,7 +43,7 @@ class HotColdZoneDevice extends SensorDevice
 
             const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
             this.executionCmd = action.name;
-            this.executionId = {id: result.execId, local: result.local};
+            this.executionId = { id: result.execId, local: result.local };
         }
         else
         {
@@ -108,7 +108,7 @@ class HotColdZoneDevice extends SensorDevice
             }
             const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
             this.executionCmd = action.name;
-            this.executionId = {id: result.execId, local: result.local};
+            this.executionId = { id: result.execId, local: result.local };
         }
         else
         {
@@ -143,7 +143,7 @@ class HotColdZoneDevice extends SensorDevice
 
             const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
             this.executionCmd = action.name;
-            this.executionId = {id: result.execId, local: result.local};
+            this.executionId = { id: result.execId, local: result.local };
         }
         else
         {
@@ -171,7 +171,7 @@ class HotColdZoneDevice extends SensorDevice
             let states = await super.getStates();
             if (states)
             {
-                const onOffStateCooling = states.find(state => (state && (state.name === 'core:CoolingOnOffState')));
+                const onOffStateCooling = states.find((state) => (state && (state.name === 'core:CoolingOnOffState')));
                 if (onOffStateCooling)
                 {
                     this.homey.app.logStates(`${this.getName()}: core:CoolingOnOffState = ${onOffStateCooling.value}`);
@@ -181,7 +181,7 @@ class HotColdZoneDevice extends SensorDevice
                     }).catch(this.error);
                 }
 
-                const onOffStateHeating = states.find(state => (state && (state.name === 'core:HeatingOnOffState')));
+                const onOffStateHeating = states.find((state) => (state && (state.name === 'core:HeatingOnOffState')));
                 if (onOffStateHeating)
                 {
                     this.homey.app.logStates(`${this.getName()}: core:HeatingOnOffState = ${onOffStateHeating.value}`);
@@ -191,7 +191,7 @@ class HotColdZoneDevice extends SensorDevice
                     }).catch(this.error);
                 }
 
-                const onOffStateDerogated = states.find(state => (state && (state.name === 'core:DerogationOnOffState')));
+                const onOffStateDerogated = states.find((state) => (state && (state.name === 'core:DerogationOnOffState')));
                 if (onOffStateDerogated)
                 {
                     this.homey.app.logStates(`${this.getName()}: core:DerogationOnOffState = ${onOffStateDerogated.value}`);
@@ -201,7 +201,7 @@ class HotColdZoneDevice extends SensorDevice
                     }).catch(this.error);
                 }
 
-                const coolingMode = states.find(state => (state && (state.name === 'io:PassAPCCoolingModeState')));
+                const coolingMode = states.find((state) => (state && (state.name === 'io:PassAPCCoolingModeState')));
                 if (coolingMode)
                 {
                     this.homey.app.logStates(`${this.getName()}: io:PassAPCCoolingModeState = ${coolingMode.value}`);
@@ -211,7 +211,7 @@ class HotColdZoneDevice extends SensorDevice
                     }).catch(this.error);
                 }
 
-                const heatingMode = states.find(state => (state && (state.name === 'io:PassAPCHeatingModeState')));
+                const heatingMode = states.find((state) => (state && (state.name === 'io:PassAPCHeatingModeState')));
                 if (heatingMode)
                 {
                     this.homey.app.logStates(`${this.getName()}: io:PassAPCHeatingModeState = ${heatingMode.value}`);
@@ -221,7 +221,7 @@ class HotColdZoneDevice extends SensorDevice
                     }).catch(this.error);
                 }
 
-                const comfortCoolingTemp = states.find(state => (state && (state.name === 'core:ComfortCoolingTargetTemperatureState')));
+                const comfortCoolingTemp = states.find((state) => (state && (state.name === 'core:ComfortCoolingTargetTemperatureState')));
                 if (comfortCoolingTemp)
                 {
                     this.homey.app.logStates(`${this.getName()}: core:ComfortCoolingTargetTemperatureState = ${comfortCoolingTemp.value}`);
@@ -230,7 +230,7 @@ class HotColdZoneDevice extends SensorDevice
                         fromCloudSync: true,
                     }).catch(this.error);
                 }
-                const comfortHeatingTemp = states.find(state => (state && (state.name === 'core:ComfortHeatingTargetTemperatureState')));
+                const comfortHeatingTemp = states.find((state) => (state && (state.name === 'core:ComfortHeatingTargetTemperatureState')));
                 if (comfortHeatingTemp)
                 {
                     this.homey.app.logStates(`${this.getName()}: core:ComfortHeatingTargetTemperatureState = ${comfortHeatingTemp.value}`);
@@ -240,7 +240,7 @@ class HotColdZoneDevice extends SensorDevice
                     }).catch(this.error);
                 }
 
-                const ecoCoolingTemp = states.find(state => (state && (state.name === 'core:EcoCoolingTargetTemperatureState')));
+                const ecoCoolingTemp = states.find((state) => (state && (state.name === 'core:EcoCoolingTargetTemperatureState')));
                 if (ecoCoolingTemp)
                 {
                     this.homey.app.logStates(`${this.getName()}: core:ComfortCoolingTargetTemperatureState = ${ecoCoolingTemp.value}`);
@@ -250,7 +250,7 @@ class HotColdZoneDevice extends SensorDevice
                     }).catch(this.error);
                 }
 
-                const ecoHeatingTemp = states.find(state => (state && (state.name === 'core:EcoHeatingTargetTemperatureState')));
+                const ecoHeatingTemp = states.find((state) => (state && (state.name === 'core:EcoHeatingTargetTemperatureState')));
                 if (ecoHeatingTemp)
                 {
                     this.homey.app.logStates(`${this.getName()}: core:EcoHeatingTargetTemperatureState = ${ecoHeatingTemp.value}`);
@@ -260,7 +260,7 @@ class HotColdZoneDevice extends SensorDevice
                     }).catch(this.error);
                 }
 
-                const DerogatedHeatingTemp = states.find(state => (state && (state.name === 'core:DerogatedHeatingTargetTemperatureState')));
+                const DerogatedHeatingTemp = states.find((state) => (state && (state.name === 'core:DerogatedHeatingTargetTemperatureState')));
                 if (DerogatedHeatingTemp)
                 {
                     this.homey.app.logStates(`${this.getName()}: core:DerogatedHeatingTargetTemperatureState = ${DerogatedHeatingTemp.value}`);

@@ -53,7 +53,7 @@ class io_open_close_remoteDevice extends Device
             let states = await super.getStates();
             if (states)
             {
-                const remoteState = states.find(state => (state && (state.name === 'io:OneWayControllerButtonState')));
+                const remoteState = states.find((state) => (state && (state.name === 'io:OneWayControllerButtonState')));
                 if (remoteState)
                 {
                     this.homey.app.logStates(`${this.getName()}: io:OneWayControllerButtonState = ${remoteState.value}`);

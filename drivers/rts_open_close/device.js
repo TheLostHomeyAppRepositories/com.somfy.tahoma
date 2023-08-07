@@ -32,7 +32,7 @@ class OpenCloseDevice extends Device
             parameters: [],
         };
         const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-        this.executionId = {id: result.execId, local: result.local};
+        this.executionId = { id: result.execId, local: result.local };
         this.executionCmd = action.name;
     }
 
@@ -59,7 +59,7 @@ class OpenCloseDevice extends Device
                 // This device is handled locally so ignore cloud updates
                 return;
             }
-    
+
             // Process events sequentially so they are in the correct order
             for (let i = 0; i < events.length; i++)
             {
@@ -72,7 +72,7 @@ class OpenCloseDevice extends Device
                         {
                             if (!this.executionId || (this.executionId.id !== element.execId))
                             {
-                                this.executionId = {id: element.execId, local};
+                                this.executionId = { id: element.execId, local };
                                 if (element.actions[x].commands)
                                 {
                                     this.executionCmd = element.actions[x].commands[0].name;

@@ -78,7 +78,7 @@ class AtlanticZoneControllerDevice extends SensorDevice
 
     async onInit()
     {
-        CapabilitiesXRef.forEach(element =>
+        CapabilitiesXRef.forEach((element) =>
         {
             this.registerCapabilityListener(element.homeyName, this.onCapability.bind(this, element));
         });

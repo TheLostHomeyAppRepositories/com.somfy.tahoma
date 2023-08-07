@@ -9,7 +9,7 @@ const SensorDevice = require('../SensorDevice');
  * @extends {SensorDevice}
  */
 
-const fanSpeedAlternatives = {'high': 'hi', 'low': 'lo'};
+const fanSpeedAlternatives = { high: 'hi', low: 'lo' };
 class HitachiACDevice extends SensorDevice
 {
 
@@ -44,7 +44,7 @@ class HitachiACDevice extends SensorDevice
             const deviceData = this.getData();
 
             // Cancel the current command
-            const oldIdx = this.executionCommands.findIndex(element => element.name === 'setMainOperation');
+            const oldIdx = this.executionCommands.findIndex((element) => element.name === 'setMainOperation');
             if (oldIdx >= 0)
             {
                 try
@@ -70,7 +70,7 @@ class HitachiACDevice extends SensorDevice
 
             let result = null;
             result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            const idx = this.executionCommands.findIndex(element => element.name === 'setMainOperation');
+            const idx = this.executionCommands.findIndex((element) => element.name === 'setMainOperation');
             if (idx < 0)
             {
                 // Add the command reference to the executing array
@@ -88,7 +88,6 @@ class HitachiACDevice extends SensorDevice
         }
     }
 
-
     async onCapabilityHolidayMode(value, opts)
     {
         if (!opts || !opts.fromCloudSync)
@@ -96,8 +95,8 @@ class HitachiACDevice extends SensorDevice
             const deviceData = this.getData();
 
             // Cancel the current command
-            const oldIdx = this.executionCommands.findIndex(element => element.name === 'setHolidays');
-            if (idx >= 0)
+            const oldIdx = this.executionCommands.findIndex((element) => element.name === 'setHolidays');
+            if (oldIdx >= 0)
             {
                 try
                 {
@@ -122,7 +121,7 @@ class HitachiACDevice extends SensorDevice
 
             let result = null;
             result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            const idx = this.executionCommands.findIndex(element => element.name === 'setHolidays');
+            const idx = this.executionCommands.findIndex((element) => element.name === 'setHolidays');
             if (idx < 0)
             {
                 // Add the command reference to the executing array
@@ -174,8 +173,8 @@ class HitachiACDevice extends SensorDevice
         }
         else
         {
-            const baseHeatMode = heatMode.replace( 'auto ', '');
-            if (baseHeatMode != heatMode)
+            const baseHeatMode = heatMode.replace('auto ', '');
+            if (baseHeatMode !== heatMode)
             {
                 heatMode = baseHeatMode;
                 mode = 'auto';
@@ -196,7 +195,7 @@ class HitachiACDevice extends SensorDevice
         }
 
         // Cancel the current command
-        const oldIdx = this.executionCommands.findIndex(element => element.name === 'globalControl');
+        const oldIdx = this.executionCommands.findIndex((element) => element.name === 'globalControl');
         if (oldIdx >= 0)
         {
             try
@@ -224,7 +223,7 @@ class HitachiACDevice extends SensorDevice
 
         let result = null;
         result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-        const idx = this.executionCommands.findIndex(element => element.name === 'globalControl');
+        const idx = this.executionCommands.findIndex((element) => element.name === 'globalControl');
         if (idx < 0)
         {
             // Add the command reference to the executing array
@@ -254,14 +253,14 @@ class HitachiACDevice extends SensorDevice
                 //     this.setCapabilityValue('ac_auto_manual', coolHeatingState.value).catch(this.error);
                 // }
 
-                const targetTemperatureState = states.find(state => (state && (state.name === 'core:TargetTemperatureState')));
+                const targetTemperatureState = states.find((state) => (state && (state.name === 'core:TargetTemperatureState')));
                 if (targetTemperatureState)
                 {
                     this.homey.app.logStates(`${this.getName()}: core:TargetTemperatureState = ${targetTemperatureState.value}`);
                     this.setCapabilityValue('target_temperature', targetTemperatureState.value).catch(this.error);
                 }
 
-                const fanSpeedState = states.find(state => (state && (state.name === 'ovp:FanSpeedState')));
+                const fanSpeedState = states.find((state) => (state && (state.name === 'ovp:FanSpeedState')));
                 if (fanSpeedState)
                 {
                     const fanState = fanSpeedAlternatives[fanSpeedState.value] ? fanSpeedAlternatives[fanSpeedState.value] : fanSpeedState.value;
@@ -269,42 +268,42 @@ class HitachiACDevice extends SensorDevice
                     this.setCapabilityValue('ac_fan_speed', fanState).catch(this.error);
                 }
 
-                const onOffMode = states.find(state => (state && (state.name === 'ovp:MainOperationState')));
+                const onOffMode = states.find((state) => (state && (state.name === 'ovp:MainOperationState')));
                 if (onOffMode)
                 {
                     this.homey.app.logStates(`${this.getName()}: ovp:MainOperationState = ${onOffMode.value}`);
                     this.setCapabilityValue('onoff', onOffMode.value === 'on').catch(this.error);
                 }
 
-                const holidayMode = states.find(state => (state && (state.name === 'core:HolidaysModeState')));
+                const holidayMode = states.find((state) => (state && (state.name === 'core:HolidaysModeState')));
                 if (holidayMode)
                 {
                     this.homey.app.logStates(`${this.getName()}: core:HolidaysModeState = ${holidayMode.value}`);
                     this.setCapabilityValue('ac_holiday_mode', holidayMode.value === 'on').catch(this.error);
                 }
 
-                const heatingMode = states.find(state => (state && (state.name === 'ovp:ModeChangeState')));
+                const heatingMode = states.find((state) => (state && (state.name === 'ovp:ModeChangeState')));
                 if (heatingMode)
                 {
                     this.homey.app.logStates(`${this.getName()}: ovp:ModeChangeState = ${heatingMode.value}`);
                     this.setCapabilityValue('ac_operating_mode', heatingMode.value.toLowerCase()).catch(this.error);
                 }
 
-                const currentTemp = states.find(state => (state && (state.name === 'ovp:RoomTemperatureState')));
+                const currentTemp = states.find((state) => (state && (state.name === 'ovp:RoomTemperatureState')));
                 if (currentTemp)
                 {
                     this.homey.app.logStates(`${this.getName()}: ovp:RoomTemperatureState = ${currentTemp.value}`);
                     this.setCapabilityValue('measure_temperature', currentTemp.value).catch(this.error);
                 }
 
-                const currentTempOutside = states.find(state => (state && (state.name === 'ovp:OutdoorTemperatureState')));
+                const currentTempOutside = states.find((state) => (state && (state.name === 'ovp:OutdoorTemperatureState')));
                 if (currentTempOutside)
                 {
                     this.homey.app.logStates(`${this.getName()}: ovp:OutdoorTemperatureState = ${currentTempOutside.value}`);
                     this.setCapabilityValue('measure_temperature.outside', currentTempOutside.value).catch(this.error);
                 }
 
-                const filterAlarm = states.find(state => (state && (state.name === 'ovp:FilterConditionState')));
+                const filterAlarm = states.find((state) => (state && (state.name === 'ovp:FilterConditionState')));
                 if (filterAlarm)
                 {
                     this.homey.app.logStates(`${this.getName()}: ovp:FilterConditionState = ${filterAlarm.value}`);
@@ -416,7 +415,7 @@ class HitachiACDevice extends SensorDevice
                     if (myURL === eventAction.deviceURL)
                     {
                         // Check if this command is already in the execution array
-                        const idx = this.executionCommands.findIndex(element2 => element2.name === eventAction.commands[0].name);
+                        const idx = this.executionCommands.findIndex((element2) => element2.name === eventAction.commands[0].name);
                         if (idx < 0)
                         {
                             // Not known so record it and boost the events interval
@@ -437,7 +436,7 @@ class HitachiACDevice extends SensorDevice
                 if ((element.newState === 'COMPLETED') || (element.newState === 'FAILED'))
                 {
                     // Check if we know about this command
-                    const idx = this.executionCommands.findIndex(element2 => element2.id === element.execId);
+                    const idx = this.executionCommands.findIndex((element2) => element2.id === element.execId);
                     if (idx >= 0)
                     {
                         // We did know so unreference our event boost
@@ -460,7 +459,7 @@ class HitachiACDevice extends SensorDevice
                 }
                 else if (element.newState === 'QUEUED_GATEWAY_SIDE')
                 {
-                    const idx = this.executionCommands.findIndex(element2 => element2.id === element.execId);
+                    const idx = this.executionCommands.findIndex((element2) => element2.id === element.execId);
                     if (idx >= 0)
                     {
                         this.setWarning(this.homey.__('command_queued')).catch(this.error);

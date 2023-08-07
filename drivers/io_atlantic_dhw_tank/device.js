@@ -43,7 +43,7 @@ class WaterTankDevice extends SensorDevice
             }
             const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
             this.executionCmd = action.name;
-            this.executionId = {id: result.execId, local: result.local};
+            this.executionId = { id: result.execId, local: result.local };
         }
         else
         {
@@ -61,7 +61,7 @@ class WaterTankDevice extends SensorDevice
             let states = await super.getStates();
             if (states)
             {
-                const onOffState = states.find(state => (state && (state.name === 'core:ForceHeatingState')));
+                const onOffState = states.find((state) => (state && (state.name === 'core:ForceHeatingState')));
                 if (onOffState)
                 {
                     this.homey.app.logStates(`${this.getName()}: core:ForceHeatingState = ${onOffState.value}`);

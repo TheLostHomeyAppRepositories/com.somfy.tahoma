@@ -3,6 +3,7 @@
 'use strict';
 
 const WindowCoveringsDevice = require('../WindowCoveringsDevice');
+
 class VeluxInteriorBlindDevice extends WindowCoveringsDevice {
 
     async onInit() {

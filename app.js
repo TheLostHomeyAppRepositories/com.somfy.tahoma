@@ -378,6 +378,7 @@ class myApp extends Homey.App
             {
                 if (this.infoLogEnabled)
                 {
+                    this.logInformation('Local login: Getting local API version');
                     const apiVer = await this.tahomaLocal.getLocalAPIVersion();
                     this.logInformation('Local login Successful', apiVer);
                 }
@@ -388,11 +389,19 @@ class myApp extends Homey.App
                 if (error.message)
                 {
                     this.logInformation('Local login', `Error: ${error.message}`);
+                    if (error.message.indexOf('ECONNREFUSED ') !== -1)
+                    {
+                        this.homey.settings.unset('localBearer');
+                        this.localBearer = null;
+                        this.tahomaLocal.authenticated = false;
+                    }
                 }
                 else
                 {
                     this.logInformation('Local login', error);
                 }
+
+                return false;
             }
 
             return true;
@@ -1430,7 +1439,7 @@ class myApp extends Homey.App
             {
                 this.logInformation('stopSync', 'Stopping Local Event Polling');
             }
-    
+
             await this.tahomaCloud.eventsClearRegistered();
         }
         if (this.tahomaLocal)
@@ -1439,7 +1448,7 @@ class myApp extends Homey.App
             {
                 this.logInformation('stopSync', 'Stopping Cloud Event Polling');
             }
-    
+
             await this.tahomaLocal.eventsClearRegistered();
         }
     }
@@ -1839,13 +1848,13 @@ class myApp extends Homey.App
                         this.homey.app.logInformation(`${this.getName()}: onCapabilityHeatingModeState`, `Failed to send command: ${JSON.stringify(action)}, error = ${data.error} (${data.errorCode})`);
                         throw (new Error(data.error));
                     }
-                    
+
                     data.local = true;
                     return data;
                 }
                 catch (err)
                 {
-                    this.logInformation(`${label}: Local command failed (will try cloud)`, `command: ${this.varToString(action)}, error = ${result.error} (${result.errorCode})`);
+                    this.logInformation(`${label}: Local command failed (will try cloud)`, `command: ${this.varToString(action)}, error = ${this.varToString(err)})`);
                 }
             }
         }
@@ -1870,8 +1879,8 @@ class myApp extends Homey.App
             }
             catch (err)
             {
-                this.logInformation(`${label}: Cloud command failed`, `command: ${this.varToString(action)}, error = ${result.error} (${result.errorCode})`);
-                throw(err);
+                this.logInformation(`${label}: Cloud command failed`, `command: ${this.varToString(action)}, error = ${this.varToString(err)})`);
+                throw (err);
             }
         }
 
@@ -1893,7 +1902,7 @@ class myApp extends Homey.App
                     {
                         this.logInformation('Device local states', states);
                     }
-        
+
                     return states;
                 }
             }

@@ -16,6 +16,7 @@ class IOHeaterDriver extends Driver
         this.deviceType = ['io:AtlanticElectricalHeaterIOComponent'];
         this.heating_level2_state_changed = this.homey.flow.getDeviceTriggerCard('heating_level2_state_changed');
     }
+
 }
 
 module.exports = IOHeaterDriver;

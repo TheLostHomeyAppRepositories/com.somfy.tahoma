@@ -16,13 +16,13 @@ const CapabilitiesXRef = [
     somfyNameGet: 'core:SensorDefectState',
     somfyNameSet: [],
     allowNull: true,
-    compare: ['nodefect', 'lowbattery']
+    compare: ['nodefect', 'lowbattery'],
 },
 {
     homeyName: 'measure_luminance',
     somfyNameGet: 'core:LuminanceState',
     somfyNameSet: [],
-}, ];
+}];
 
 class LightSensorDevice extends SensorDevice
 {
@@ -45,7 +45,7 @@ class LightSensorDevice extends SensorDevice
 
         await super.onInit(CapabilitiesXRef);
     }
-    
+
     onAdded()
     {
         this.log('device added');

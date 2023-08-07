@@ -24,7 +24,6 @@ class ElectricHeaterDevice extends SensorDevice
     async onInit()
     {
         await super.onInit(CapabilitiesXRef);
-        const dd = this.getData();
         this.boostSync = true;
     }
 

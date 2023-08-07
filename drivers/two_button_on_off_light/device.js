@@ -78,7 +78,7 @@ class two_button_on_offDevice extends Device
         const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
         this.commandExecuting = action.name;
         this.executionCmd = action.name;
-        this.executionId = {id: result.execId, local: result.local};
+        this.executionId = { id: result.execId, local: result.local };
     }
 
     async sendOnWithTimer(value)
@@ -113,7 +113,7 @@ class two_button_on_offDevice extends Device
         const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
         this.commandExecuting = action.name;
         this.executionCmd = action.name;
-        this.executionId = {id: result.execId, local: result.local};
+        this.executionId = { id: result.execId, local: result.local };
 
         this.doOnTimer();
     }
@@ -144,7 +144,7 @@ class two_button_on_offDevice extends Device
         if (!local && this.homey.app.isLocalDevice(myURL))
         {
             // This device is handled locally so ignore cloud updates
-            return;
+            return myURL;
         }
 
         // Process events sequentially so they are in the correct order
@@ -159,7 +159,7 @@ class two_button_on_offDevice extends Device
                     {
                         if (!this.executionId || (this.executionId.id !== element.execId))
                         {
-                            this.executionId = {id: element.execId, local};
+                            this.executionId = { id: element.execId, local };
                             if (element.actions[x].commands)
                             {
                                 this.executionCmd = element.actions[x].commands[0].name;

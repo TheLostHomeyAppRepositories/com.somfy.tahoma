@@ -17,7 +17,7 @@ class WindowHandleDevice extends SensorDevice
         {
             this.addCapability('tilted_state');
         }
-        
+
         if (!this.hasCapability('open_window_state'))
         {
             this.addCapability('open_window_state');
@@ -99,7 +99,6 @@ class WindowHandleDevice extends SensorDevice
         return Promise.resolve();
     }
 
-    
     /**
      * Gets the sensor data from the TaHoma cloud
      * @param {Array} data - device data from all the devices in the TaHoma cloud
@@ -111,21 +110,21 @@ class WindowHandleDevice extends SensorDevice
             let states = await super.getStates();
             if (states)
             {
-                const handleState = states.find(state => (state && (state.name === 'core:ThreeWayHandleDirectionState')));
+                const handleState = states.find((state) => (state && (state.name === 'core:ThreeWayHandleDirectionState')));
                 if (handleState)
                 {
                     this.homey.app.logStates(`${this.getName()}: core:ThreeWayHandleDirectionState = ${handleState.value}`);
                     this.triggerCapabilityListener('alarm_contact', handleState.value !== 'closed').catch(this.error);
                 }
 
-                const tiltedState = states.find(state => (state && (state.name === 'core:TiltedState')));
+                const tiltedState = states.find((state) => (state && (state.name === 'core:TiltedState')));
                 if (tiltedState)
                 {
                     this.homey.app.logStates(`${this.getName()}: core:TiltedState = ${tiltedState.value}`);
                     this.triggerCapabilityListener('tilted_state', tiltedState.value).catch(this.error);
                 }
 
-                const openState = states.find(state => (state && (state.name === 'core:OpenClosedState')));
+                const openState = states.find((state) => (state && (state.name === 'core:OpenClosedState')));
                 if (openState)
                 {
                     this.homey.app.logStates(`${this.getName()}: core:OpenClosedState = ${openState.value}`);

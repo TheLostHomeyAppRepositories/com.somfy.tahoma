@@ -691,5 +691,11 @@
   },
   "4.0.53": {
     "en": "Centralised information logging for more consistent logging. Added support for 'rts:BottomUpBlindRTSComponent' and 'rts:TopDownBlindRTSComponent' to 'Blind or Shutter (RTS)'."
+  },
+  "4.0.54": {
+    "en": "Fix for Lock State timing out after 1 mimute."
+  },
+  "4.0.55": {
+    "en": "Fix call to missing lock state function."
   }
 }
