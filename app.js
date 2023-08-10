@@ -327,14 +327,20 @@ class myApp extends Homey.App
 
         try
         {
-            await this.doLocalLogin(username, password, region);
+            if (await this.doLocalLogin(username, password, region))
+            {
+                // Start sync in 5 seconds
+                this.syncTimerId = this.homey.setTimeout(() => this.startSync(), 5000);
+                return;
+            }
         }
         catch (err)
         {
             this.logInformation('Local login failed', err.message);
         }
 
-        this.syncTimerId = this.homey.setTimeout(() => this.initSync(), 5000);
+        // Retry sync in 60 seconds
+        this.syncTimerId = this.homey.setTimeout(() => this.startSync(), 60000);
     }
 
     async doLocalLogin(username, password, region)
@@ -840,11 +846,11 @@ class myApp extends Homey.App
     // Throws an exception if the login fails
     async newLogin(args)
     {
-        await this.newLogin_2(args.username, args.password, args.region);
+        await this.newLogin_2(args.username, args.password, args.region, true);
     }
 
     // Throws an exception if the login fails
-    async newLogin_2(username, password, region)
+    async newLogin_2(username, password, region, forceLogin = false)
     {
         // Stop the timer so periodic updates don't happen while changing login
         await this.stopSync();
@@ -854,7 +860,7 @@ class myApp extends Homey.App
             this.loginTimerId = null;
         }
 
-        if (this.localBridgeInfo && this.localBridgeInfo.pin && !this.tahomaLocal.authenticated)
+        if (this.localBridgeInfo && this.localBridgeInfo.pin && (!this.tahomaLocal.authenticated || forceLogin))
         {
             try
             {
@@ -874,49 +880,52 @@ class myApp extends Homey.App
             }
         }
 
-        // make sure we logout from old method first
-        await this.tahomaCloud.logout();
-
-        // Allow a short delay before logging back in
-        await new Promise((resolve) => this.homey.setTimeout(resolve, 1000));
-
-        let loginMethod = true; // Start with new method
-
-        // Login with supplied credentials. An error is thrown if the login fails
-        try
+        if (this.tahomaCloud && (!this.tahomaCloud.authenticated || forceLogin))
         {
-            await this.tahomaCloud.login(username, password, region, loginMethod, this.homeyIP);
-        }
-        catch (error)
-        {
-            if (error.message)
+            // make sure we logout from old method first
+            await this.tahomaCloud.logout();
+
+            // Allow a short delay before logging back in
+            await new Promise((resolve) => this.homey.setTimeout(resolve, 1000));
+
+            let loginMethod = true; // Start with new method
+
+            // Login with supplied credentials. An error is thrown if the login fails
+            try
             {
-                this.logInformation('Login OAuth', `Error: ${error.message}`);
+                await this.tahomaCloud.login(username, password, region, loginMethod, this.homeyIP);
             }
-            else
+            catch (error)
             {
-                this.logInformation('Login OAuth', error);
+                if (error.message)
+                {
+                    this.logInformation('Login OAuth', `Error: ${error.message}`);
+                }
+                else
+                {
+                    this.logInformation('Login OAuth', error);
+                }
+
+                // Try other log in method
+                loginMethod = !loginMethod;
             }
 
-            // Try other log in method
-            loginMethod = !loginMethod;
-        }
+            if (!this.tahomaCloud.authenticated)
+            {
+                // Try once more with the alternative method but let an error break us out of here
+                await this.tahomaCloud.login(username, password, region, loginMethod, this.homeyIP);
+            }
 
-        if (!this.tahomaCloud.authenticated)
-        {
-            // Try once more with the alternative method but let an error break us out of here
-            await this.tahomaCloud.login(username, password, region, loginMethod, this.homeyIP);
-        }
+            if (this.tahomaCloud.authenticated)
+            {
+                // All good so save the credentials
+                this.homey.settings.set('username', username);
+                this.homey.settings.set('password', password);
+                this.homey.settings.set('region', region);
 
-        if (this.tahomaCloud.authenticated)
-        {
-            // All good so save the credentials
-            this.homey.settings.set('username', username);
-            this.homey.settings.set('password', password);
-            this.homey.settings.set('region', region);
-
-            const setupInfo = await this.tahomaCloud.getSetupOID();
-            this.somfySetupOID = setupInfo.result;
+                const setupInfo = await this.tahomaCloud.getSetupOID();
+                this.somfySetupOID = setupInfo.result;
+            }
         }
 
         this.startSync();
@@ -1052,7 +1061,27 @@ class myApp extends Homey.App
         let data = '';
         if (error)
         {
-            data = this.varToString(error);
+            if (error.stack)
+            {
+                data = {
+                    message: error.message,
+                    stack: error.stack,
+                };
+            }
+            else if (error.message)
+            {
+                data = error.message;
+            }
+            else if (error.data)
+            {
+                data = error.data;
+            }
+            else
+            {
+                data = error;
+            }
+
+            data = this.varToString(data);
         }
 
         this.homey.error(`${source}, ${data}`);
@@ -1061,25 +1090,6 @@ class myApp extends Homey.App
         {
             try
             {
-                if (error)
-                {
-                    if (error.stack)
-                    {
-                        data = {
-                            message: error.message,
-                            stack: error.stack,
-                        };
-                    }
-                    else if (error.message)
-                    {
-                        data = error.message;
-                    }
-                    else
-                    {
-                        data = error;
-                    }
-                }
-
                 let logData = this.homey.settings.get('infoLog');
                 if (!Array.isArray(logData))
                 {

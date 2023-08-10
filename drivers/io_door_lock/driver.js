@@ -13,7 +13,7 @@ class DoorLockDriver extends Driver
 
     async onInit()
     {
-        this.deviceType = ['io:LockUnlockDoorLockWithUnknownPositionIOComponent'];
+        this.deviceType = ['io:LockUnlockDoorLockWithUnknownPositionIOComponent', 'opendoors:OpenDoorsSmartLockComponent'];
     }
 
 }
