@@ -697,5 +697,8 @@
   },
   "4.0.55": {
     "en": "Fix call to missing lock state function."
+  },
+  "4.0.56": {
+    "en": "Added opendoors:OpenDoorsSmartLockComponent to Door Lock (io)."
   }
 }
