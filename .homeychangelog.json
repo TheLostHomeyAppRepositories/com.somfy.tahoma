@@ -700,5 +700,14 @@
   },
   "4.0.56": {
     "en": "Added opendoors:OpenDoorsSmartLockComponent to Door Lock (io)."
+  },
+  "4.0.57": {
+    "en": "Fix for Openned capability in enocean window handle."
+  },
+  "4.0.58": {
+    "en": "Fix for Openned capability in enocean window handle for events."
+  },
+  "4.0.59": {
+    "en": "Fix 2 for Openned capability in enocean window handle for events."
   }
 }

@@ -115,20 +115,8 @@ class WindowHandleDevice extends SensorDevice
                 {
                     this.homey.app.logStates(`${this.getName()}: core:ThreeWayHandleDirectionState = ${handleState.value}`);
                     this.triggerCapabilityListener('alarm_contact', handleState.value !== 'closed').catch(this.error);
-                }
-
-                const tiltedState = states.find((state) => (state && (state.name === 'core:TiltedState')));
-                if (tiltedState)
-                {
-                    this.homey.app.logStates(`${this.getName()}: core:TiltedState = ${tiltedState.value}`);
-                    this.triggerCapabilityListener('tilted_state', tiltedState.value).catch(this.error);
-                }
-
-                const openState = states.find((state) => (state && (state.name === 'core:OpenClosedState')));
-                if (openState)
-                {
-                    this.homey.app.logStates(`${this.getName()}: core:OpenClosedState = ${openState.value}`);
-                    this.triggerCapabilityListener('open_window_state', openState.value !== 'closed').catch(this.error);
+                    this.triggerCapabilityListener('tilted_state', handleState.value === 'tilt').catch(this.error);
+                    this.triggerCapabilityListener('open_window_state', handleState.value === 'open').catch(this.error);
                 }
 
                 states = null;
@@ -183,30 +171,23 @@ class WindowHandleDevice extends SensorDevice
                         if (deviceState.name === 'core:ThreeWayHandleDirectionState')
                         {
                             this.homey.app.logStates(`${this.getName()}: core:ThreeWayHandleDirectionState = ${deviceState.value}`);
-                            const oldState = this.getState().alarm_contact;
-                            const newState = (deviceState.value !== 'closed');
+
+                            let oldState = this.getState().alarm_contact;
+                            let newState = (deviceState.value !== 'closed');
                             if (oldState !== newState)
                             {
                                 this.triggerCapabilityListener('alarm_contact', newState).catch(this.error);
                             }
-                        }
 
-                        if (deviceState.name === 'core:TiltedState')
-                        {
-                            this.homey.app.logStates(`${this.getName()}: core:TiltedState = ${deviceState.value}`);
-                            const oldState = this.getState().tilted_state;
-                            const newState = deviceState.value;
+                            oldState = this.getState().tilted_state;
+                            newState = (deviceState.value === 'tilt');
                             if (oldState !== newState)
                             {
                                 this.triggerCapabilityListener('tilted_state', newState).catch(this.error);
                             }
-                        }
 
-                        if (deviceState.name === 'core:OpenClosedState')
-                        {
-                            this.homey.app.logStates(`${this.getName()}: core:OpenClosedState = ${deviceState.value}`);
-                            const oldState = this.getState().tilted_state;
-                            const newState = (deviceState.value !== 'closed');
+                            oldState = this.getState().open_window_state;
+                            newState = (deviceState.value === 'open');
                             if (oldState !== newState)
                             {
                                 this.triggerCapabilityListener('open_window_state', newState).catch(this.error);
