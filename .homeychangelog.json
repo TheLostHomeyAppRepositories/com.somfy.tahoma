@@ -709,5 +709,8 @@
   },
   "4.0.59": {
     "en": "Fix 2 for Openned capability in enocean window handle for events."
+  },
+  "4.0.60": {
+    "en": "Added Protexial Alarm. Fixed Mt button for Exterior blind (io)"
   }
 }

@@ -33,18 +33,10 @@ class VerticalExteriorBlindDevice extends WindowCoveringsDevice
             this.controllableName = dd.controllableName.toString().toLowerCase();
         }
 
-        if (this.controllableName !== 'io:verticalexteriorawningiocomponent')
+        if (!this.hasCapability('my_position'))
         {
-            if (!this.hasCapability('my_position'))
-            {
-                this.addCapability('my_position').catch(this.error);
-            }
+            this.addCapability('my_position').catch(this.error);
         }
-        else
-        if (this.hasCapability('my_position'))
-            {
-                this.removeCapability('my_position').catch(this.error);
-            }
     }
 
 }

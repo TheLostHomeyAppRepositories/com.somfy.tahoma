@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* jslint node: true */
 
 'use strict';
@@ -124,8 +125,8 @@ class Driver extends Homey.Driver
             let devices = await this.homey.app.getDeviceData();
             if (devices.devices && devices.devices.cloud)
             {
-                const cloudDevices = devices.devices.cloud;
-                const localDevices = devices.devices.local;
+                const cloudDevices = ((devices.devices.cloud ? (devices.devices.cloud.devices ? devices.devices.cloud.device : devices.devices.cloud) : null));
+                const localDevices = (devices.devices.local ? (devices.devices.local.devices ? devices.devices.local.devices : devices.devices.local) : null);
 
                 // Merge the arrays into one
                 if (cloudDevices && localDevices)

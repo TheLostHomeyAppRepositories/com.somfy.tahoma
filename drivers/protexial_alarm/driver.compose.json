@@ -1,0 +1,36 @@
+{
+  "name": {
+    "en": "Protexial IO Alarm"
+  },
+  "class": "homealarm",
+  "capabilities": [
+    "off_button",
+    "on_button",
+    "zone_button.a",
+    "zone_button.b",
+    "zone_button.c"
+  ],
+  "capabilitiesOptions": {
+    "on_button": {
+        "title": {
+            "en": "All Zones On"
+        }
+    },
+    "zone_button.a": {
+        "title": {
+            "en": "Zone A"
+        }
+    },
+    "zone_button.b": {
+        "title": {
+            "en": "Zone B"
+        }
+    },
+    "zone_button.c": {
+        "title": {
+            "en": "Zone C"
+        }
+    }
+},
+"$extends": ["cloudDriver"]
+}

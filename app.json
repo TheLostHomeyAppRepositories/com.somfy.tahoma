@@ -13,11 +13,11 @@
   "description": {
     "en": "The heart of your Smart Home"
   },
-  "version": "4.0.59",
+  "version": "4.0.60",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Adrian Rockall",
-    "email": "ady@rockall.plus.com"
+    "email": "ady@rockalls.uk"
   },
   "contributing": {
     "donate": {
@@ -10662,6 +10662,134 @@
           }
         }
       ],
+      "icon": "/drivers/protexial_alarm/assets/icon.svg",
+      "images": {
+        "large": "/drivers/protexial_alarm/assets/images/large.png",
+        "small": "/drivers/protexial_alarm/assets/images/small.png"
+      },
+      "name": {
+        "en": "Protexial IO Alarm"
+      },
+      "class": "homealarm",
+      "capabilities": [
+        "off_button",
+        "on_button",
+        "zone_button.a",
+        "zone_button.b",
+        "zone_button.c"
+      ],
+      "capabilitiesOptions": {
+        "on_button": {
+          "title": {
+            "en": "All Zones On"
+          }
+        },
+        "zone_button.a": {
+          "title": {
+            "en": "Zone A"
+          }
+        },
+        "zone_button.b": {
+          "title": {
+            "en": "Zone B"
+          }
+        },
+        "zone_button.c": {
+          "title": {
+            "en": "Zone C"
+          }
+        }
+      },
+      "id": "protexial_alarm"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
+        {
+          "id": "select_region"
+        },
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "fr": "Adresse e-mail",
+              "de": "E-Mail-Adresse",
+              "nl": "E-mailadres"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "fr": "jean@dupont.com",
+              "de": "max.mustermann@mustermail.de",
+              "nl": "jansen@holland.nl"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "fr": "Mot de passe",
+              "de": "Passwort",
+              "nl": "Wachtwoord"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "fr": "Mot de passe",
+              "de": "Passwort",
+              "nl": "Wachtwoord"
+            }
+          }
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "fr": "Adresse e-mail",
+              "de": "E-Mail-Adresse",
+              "nl": "E-mailadres"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "fr": "jean@dupont.com",
+              "de": "max.mustermann@mustermail.de",
+              "nl": "jansen@holland.nl"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "fr": "Mot de passe",
+              "de": "Passwort",
+              "nl": "Wachtwoord"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "fr": "Mot de passe",
+              "de": "Passwort",
+              "nl": "Wachtwoord"
+            }
+          }
+        }
+      ],
       "icon": "/drivers/remote_eliot/assets/icon.svg",
       "images": {
         "large": "/drivers/remote_eliot/assets/images/large.png",
@@ -14081,6 +14209,15 @@
         "nl": "Klep gesloten",
         "fr": "Vanne fermée",
         "de": "Ventil geschlossen"
+      }
+    },
+    "zone_button": {
+      "type": "boolean",
+      "getable": true,
+      "setable": true,
+      "uiComponent": "button",
+      "title": {
+        "en": "Zone"
       }
     }
   },
