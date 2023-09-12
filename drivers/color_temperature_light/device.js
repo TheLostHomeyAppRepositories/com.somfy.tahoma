@@ -120,6 +120,23 @@ class ColorTemperatureLightControllerDevice extends LightControllerDevice
         }
     }
 
+    onCapabilityLight_mode(value, opts)
+    {
+        if (!opts || !opts.fromCloudSync)
+        {
+            const deviceData = this.getData();
+            const action = {
+                name: 'setMode',
+                parameters: [value],
+            };
+            this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+        }
+        else
+        {
+            this.setCapabilityValue('light_mode', value).catch(this.error);
+        }
+    }
+
     /**
      * Gets the data from the TaHoma cloud
      */

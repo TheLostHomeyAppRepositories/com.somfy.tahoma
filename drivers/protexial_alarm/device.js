@@ -14,11 +14,10 @@ class OneAlarmDevice extends SensorDevice
 
     async onInit()
     {
+        this.retries = 0;
         this.registerCapabilityListener('off_button', this.onCapabilityAlarmOff.bind(this));
         this.registerCapabilityListener('on_button', this.onCapabilityAlarmOn.bind(this));
-        this.registerCapabilityListener('zone_button.a', this.onCapabilityZone.bind(this, 'A'));
-        this.registerCapabilityListener('zone_button.b', this.onCapabilityZone.bind(this, 'B'));
-        this.registerCapabilityListener('zone_button.c', this.onCapabilityZone.bind(this, 'C'));
+        this.registerMultipleCapabilityListener(['zone_button.a', 'zone_button.b', 'zone_button.c'], this.onCapabilityZone.bind(this), 1000);
 
         await super.onInit();
         this.boostSync = true;
@@ -29,17 +28,39 @@ class OneAlarmDevice extends SensorDevice
         const deviceData = this.getData();
         if (!opts || !opts.fromCloudSync)
         {
-            let action;
-            if (value === true)
+            try
             {
-                action = {
-                    name: 'alarmOn',
-                    parameters: [],
-                };
+                if (this.executionCmd)
+                {
+                    // Already executing a command so check if it is the same
+                    if (this.executionCmd === 'alarmOn')
+                    {
+                        // Already executing this command so ignore
+                        return;
+                    }
+
+                    await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
+                    this.executionCmd = '';
+                    this.executionId = null;
+                }
+
+                let action;
+                if (value === true)
+                {
+                    action = {
+                        name: 'alarmOn',
+                        parameters: [],
+                    };
+                }
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+                this.executionCmd = action.name;
+                this.executionId = { id: result.execId, local: result.local };
             }
-            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            this.executionCmd = action.name;
-            this.executionId = { id: result.execId, local: result.local };
+            catch (error)
+            {
+                this.setWarning(error.message).catch(this.error);
+                throw (error);
+            }
         }
         else
         {
@@ -52,17 +73,39 @@ class OneAlarmDevice extends SensorDevice
         const deviceData = this.getData();
         if (!opts || !opts.fromCloudSync)
         {
-            let action;
-            if (value === true)
+            try
             {
-                action = {
-                    name: 'alarmOff',
-                    parameters: [],
-                };
+                if (this.executionCmd)
+                {
+                    // Already executing a command so check if it is the same
+                    if (this.executionCmd === 'alarmOff')
+                    {
+                        // Already executing this command so ignore
+                        return;
+                    }
+
+                    await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
+                    this.executionCmd = '';
+                    this.executionId = null;
+                }
+
+                let action;
+                if (value === true)
+                {
+                    action = {
+                        name: 'alarmOff',
+                        parameters: [],
+                    };
+                }
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+                this.executionCmd = action.name;
+                this.executionId = { id: result.execId, local: result.local };
             }
-            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            this.executionCmd = action.name;
-            this.executionId = { id: result.execId, local: result.local };
+            catch (error)
+            {
+                this.setWarning(error.message).catch(this.error);
+                throw (error);
+            }
         }
         else
         {
@@ -70,25 +113,64 @@ class OneAlarmDevice extends SensorDevice
         }
     }
 
-    async onCapabilityZone(zone, value, opts)
+    async onCapabilityZone(capabilityValues, opts)
     {
         const deviceData = this.getData();
-        const capabilityZone = zone.toLowerCase();
-        zone = zone.toUpperCase();
         if (!opts || !opts.fromCloudSync)
         {
             let action;
-            if (value === true)
+            let value = (capabilityValues['zone_button.a'] ? 'A,' : '') + (capabilityValues['zone_button.b'] ? 'B,' : '') + (capabilityValues['zone_button.c'] ? 'C' : '');
+            // Remove the last comma
+            value = value.replace(/,\s*$/, '');
+
+            if (value)
             {
-                action = {
-                    name: 'core:alarmZoneOn',
-                    parameters: [zone],
-                };
-                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-                this.executionCmd = action.name;
-                this.executionId = { id: result.execId, local: result.local };
+                try
+                {
+                    if (this.executionCmd)
+                    {
+                        // Already executing a command so check if it is the same
+                        if (this.executionCmd === 'alarmZoneOn')
+                        {
+                            if (this.executionZone !== value && this.retries < 4)
+                            {
+                                // Already executing this command for another zone so try again later
+                                this.homey.setTimeout(() =>
+                                {
+                                    this.retries++;
+                                    this.onCapabilityZone(capabilityValues).catch(this.error);
+                                }, 5000);
+                                return;
+                            }
+
+                            // Already executing this command so ignore
+                            return;
+                        }
+
+                        await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
+
+                        this.retries = 0;
+                        this.executionCmd = '';
+                        this.executionId = null;
+                    }
+
+                    action = {
+                        name: 'alarmZoneOn',
+                        parameters: [value],
+                    };
+                    const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+                    this.executionCmd = action.name;
+                    this.executionZone = value;
+                    this.executionId = { id: result.execId, local: result.local };
+                }
+                catch (error)
+                {
+                    this.setWarning(error.message).catch(this.error);
+                    throw (error);
+                }
             }
-            else
+
+            if ((capabilityValues['zone_button.a'] === false) || (capabilityValues['zone_button.b'] === false) || (capabilityValues['zone_button.c'] === false))
             {
                 // The zones can only be switched on so use the Off button to turn them off
                 this.setWarning('Use the Off button to switch off the zones').catch(this.error);
@@ -96,13 +178,35 @@ class OneAlarmDevice extends SensorDevice
                 // Turn the button on again on immediately
                 setImmediate(() =>
                 {
-                    this.setCapabilityValue(`zone_button.${capabilityZone}`, true, { fromCloud: true }).catch(this.error);
+                    if (capabilityValues['zone_button.a'] === false)
+                    {
+                        this.setCapabilityValue('zone_button.a', true, { fromCloud: true }).catch(this.error);
+                    }
+                    if (capabilityValues['zone_button.b'] === false)
+                    {
+                        this.setCapabilityValue('zone_button.b', true, { fromCloud: true }).catch(this.error);
+                    }
+                    if (capabilityValues['zone_button.c'] === false)
+                    {
+                        this.setCapabilityValue('zone_button.c', true, { fromCloud: true }).catch(this.error);
+                    }
                 });
             }
         }
         else
         {
-            this.setCapabilityValue(`zone_button.${capabilityZone}`, value).catch(this.error);
+            if (capabilityValues['zone_button.a'])
+            {
+                this.setCapabilityValue('zone_button.a', capabilityValues['zone_button.a']).catch(this.error);
+            }
+            if (capabilityValues['zone_button.b'])
+            {
+                this.setCapabilityValue('zone_button.b', capabilityValues['zone_button.b']).catch(this.error);
+            }
+            if (capabilityValues['zone_button.c'])
+            {
+                this.setCapabilityValue('zone_button.c', capabilityValues['zone_button.c']).catch(this.error);
+            }
         }
     }
 
@@ -178,19 +282,89 @@ class OneAlarmDevice extends SensorDevice
                     // Got what we need to update the device so lets find it
                     for (let x = 0; x < element.deviceStates.length; x++)
                     {
-                        const deviceState = element.deviceStates[x];
-                        if (deviceState.name === 'core:ActiveZonesState')
+                        try
                         {
-                            this.homey.app.logStates(`${this.getName()}: core:ActiveZonesState = ${deviceState.value}`);
+                            const deviceState = element.deviceStates[x];
+                            if (deviceState.name === 'core:ActiveZonesState')
+                            {
+                                this.homey.app.logStates(`${this.getName()}: core:ActiveZonesState = ${deviceState.value}`);
 
-                            this.triggerCapabilityListener('zone_button.a', (deviceState.value.indexOf('A') > -1), { fromCloudSync: true }).catch(this.error);
+                                this.triggerCapabilityListener('zone_button.a', (deviceState.value.indexOf('A') > -1), { fromCloudSync: true }).catch(this.error);
 
-                            // Check if the deviceState contains a B
-                            this.triggerCapabilityListener('zone_button.b', (deviceState.value.indexOf('B') > -1), { fromCloudSync: true }).catch(this.error);
+                                // Check if the deviceState contains a B
+                                this.triggerCapabilityListener('zone_button.b', (deviceState.value.indexOf('B') > -1), { fromCloudSync: true }).catch(this.error);
 
-                            // Check if the deviceState contains a C
-                            this.triggerCapabilityListener('zone_button.c', (deviceState.value.indexOf('C') > -1), { fromCloudSync: true }).catch(this.error);
+                                // Check if the deviceState contains a C
+                                this.triggerCapabilityListener('zone_button.c', (deviceState.value.indexOf('C') > -1), { fromCloudSync: true }).catch(this.error);
+                            }
                         }
+                        catch (error)
+                        {
+                            this.homey.app.logInformation(this.getName(),
+                            {
+                                message: error.message,
+                                stack: error.stack,
+                            });
+                        }
+                    }
+                }
+            }
+            else if (element.name === 'ExecutionRegisteredEvent')
+            {
+                for (let x = 0; x < element.actions.length; x++)
+                {
+                    try
+                    {
+                        if (myURL === element.actions[x].deviceURL)
+                        {
+                            if (!this.executionId || (this.executionId.id !== element.execId))
+                            {
+                                this.executionId = { id: element.execId, local };
+                                if (element.actions[x].commands)
+                                {
+                                    this.executionCmd = element.actions[x].commands[0].name;
+                                }
+                                else
+                                {
+                                    this.executionCmd = element.actions[x].command;
+                                }
+                                if (!local && this.boostSync)
+                                {
+                                    if (!await this.homey.app.boostSync())
+                                    {
+                                        this.retries = 0;
+                                        this.executionId = null;
+                                        this.executionCmd = '';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch (error)
+                    {
+                        this.homey.app.logInformation(this.getName(),
+                        {
+                            message: error.message,
+                            stack: error.stack,
+                        });
+                    }
+                }
+            }
+            else if (element.name === 'ExecutionStateChangedEvent')
+            {
+                if ((element.newState === 'COMPLETED') || (element.newState === 'FAILED'))
+                {
+                    if (this.executionId && (this.executionId.id === element.execId))
+                    {
+                        if (!local && this.boostSync)
+                        {
+                            await this.homey.app.unBoostSync();
+                        }
+
+                        this.homey.app.triggerCommandComplete(this, this.executionCmd, (element.newState === 'COMPLETED'));
+                        this.driver.triggerDeviceCommandComplete(this, this.executionCmd, (element.newState === 'COMPLETED'));
+                        this.executionId = null;
+                        this.executionCmd = '';
                     }
                 }
             }
