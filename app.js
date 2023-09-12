@@ -831,7 +831,30 @@ class myApp extends Homey.App
                 this.log('target_temperature_frost_protection_set');
                 return args.device.triggerCapabilityListener('target_temperature.frost_protection', args.target_temperature);
             });
-    }
+
+        this.homey.flow.getActionCard('set_zone')
+            .registerRunListener(async (args, state) =>
+            {
+                this.log('set_zone');
+                const promises = [];
+                if (args.zone_button_a === '1')
+                {
+                    promises.push(args.device.triggerCapabilityListener('zone_button.a', true, null));
+                }
+
+                if (args.zone_button_b === '1')
+                {
+                    promises.push(args.device.triggerCapabilityListener('zone_button.b', true, null));
+                }
+
+                if (args.zone_button_c === '1')
+                {
+                    promises.push(args.device.triggerCapabilityListener('zone_button.c', true, null));
+                }
+
+                return Promise.all(promises);
+            });
+}
 
     hashCode(s)
     {

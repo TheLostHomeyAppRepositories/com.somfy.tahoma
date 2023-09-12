@@ -712,5 +712,11 @@
   },
   "4.0.60": {
     "en": "Added Protexial Alarm. Fixed Mt button for Exterior blind (io)"
+  },
+  "4.0.61": {
+    "en": "Change Protexial Alarm zone command method"
+  },
+  "4.0.62": {
+    "en": "Fix 2 for Protexial Alarm zone command. Added Flow actions for Protexial Alarm"
   }
 }

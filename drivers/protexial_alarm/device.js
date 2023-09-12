@@ -195,15 +195,24 @@ class OneAlarmDevice extends SensorDevice
         }
         else
         {
-            if (capabilityValues['zone_button.a'])
+            if (this.homey.app.infoLogEnabled)
+            {
+                this.homey.app.logInformation(this.getName(),
+                {
+                    message: 'onCapabilityZone',
+                    stack: capabilityValues,
+                });
+            }
+
+            if (capabilityValues['zone_button.a'] !== undefined)
             {
                 this.setCapabilityValue('zone_button.a', capabilityValues['zone_button.a']).catch(this.error);
             }
-            if (capabilityValues['zone_button.b'])
+            if (capabilityValues['zone_button.b'] !== undefined)
             {
                 this.setCapabilityValue('zone_button.b', capabilityValues['zone_button.b']).catch(this.error);
             }
-            if (capabilityValues['zone_button.c'])
+            if (capabilityValues['zone_button.c'] !== undefined)
             {
                 this.setCapabilityValue('zone_button.c', capabilityValues['zone_button.c']).catch(this.error);
             }
@@ -226,13 +235,13 @@ class OneAlarmDevice extends SensorDevice
                     this.homey.app.logStates(`${this.getName()}: core:ActiveZonesState = ${zoneState.value}`);
 
                     // Check if the zonestate contains a A
-                    this.triggerCapabilityListener('zone_button.a', (zoneState.value.indexOf('A') > -1), { fromCloud: true }).catch(this.error);
+                    this.triggerCapabilityListener('zone_button.a', (zoneState.value.indexOf('A') > -1), { fromCloudSync: true }).catch(this.error);
 
                     // Check if the zonestate contains a B
-                    this.triggerCapabilityListener('zone_button.b', (zoneState.value.indexOf('B') > -1), { fromCloud: true }).catch(this.error);
+                    this.triggerCapabilityListener('zone_button.b', (zoneState.value.indexOf('B') > -1), { fromCloudSync: true }).catch(this.error);
 
                     // Check if the zonestate contains a C
-                    this.triggerCapabilityListener('zone_button.c', (zoneState.value.indexOf('C') > -1), { fromCloud: true }).catch(this.error);
+                    this.triggerCapabilityListener('zone_button.c', (zoneState.value.indexOf('C') > -1), { fromCloudSync: true }).catch(this.error);
                 }
                 states = null;
             }

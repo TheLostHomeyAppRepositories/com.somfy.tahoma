@@ -10,7 +10,7 @@
         {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=heater_variable"
+            "filter": "driver_id=heater_variable|protexial_alarm"
         }
     ]
 }
