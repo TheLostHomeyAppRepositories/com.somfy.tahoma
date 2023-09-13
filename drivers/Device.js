@@ -677,7 +677,10 @@ class Device extends Homey.Device
                             states = states.concat(states2);
                         }
                     }
-                    return states;
+                    if (states)
+                    {
+                        return states;
+                    }
                 }
 
                 if (this.homey.settings.get('debugMode'))
