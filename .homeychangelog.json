@@ -718,5 +718,8 @@
   },
   "4.0.62": {
     "en": "Fix 2 for Protexial Alarm zone command. Added Flow actions for Protexial Alarm"
+  },
+  "4.0.63": {
+    "en": "Trying to turn off zones in the Protexial Alarm now shows an error message."
   }
 }

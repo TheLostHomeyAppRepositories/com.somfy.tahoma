@@ -125,72 +125,46 @@ class OneAlarmDevice extends SensorDevice
 
             if (value)
             {
-                try
+                if (this.executionCmd)
                 {
-                    if (this.executionCmd)
+                    // Already executing a command so check if it is the same
+                    if (this.executionCmd === 'alarmZoneOn')
                     {
-                        // Already executing a command so check if it is the same
-                        if (this.executionCmd === 'alarmZoneOn')
+                        if (this.executionZone !== value && this.retries < 4)
                         {
-                            if (this.executionZone !== value && this.retries < 4)
+                            // Already executing this command for another zone so try again later
+                            this.homey.setTimeout(() =>
                             {
-                                // Already executing this command for another zone so try again later
-                                this.homey.setTimeout(() =>
-                                {
-                                    this.retries++;
-                                    this.onCapabilityZone(capabilityValues).catch(this.error);
-                                }, 5000);
-                                return;
-                            }
-
-                            // Already executing this command so ignore
+                                this.retries++;
+                                this.onCapabilityZone(capabilityValues).catch(this.error);
+                            }, 5000);
                             return;
                         }
 
-                        await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
-
-                        this.retries = 0;
-                        this.executionCmd = '';
-                        this.executionId = null;
+                        // Already executing this command so ignore
+                        return;
                     }
 
-                    action = {
-                        name: 'alarmZoneOn',
-                        parameters: [value],
-                    };
-                    const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-                    this.executionCmd = action.name;
-                    this.executionZone = value;
-                    this.executionId = { id: result.execId, local: result.local };
+                    await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
+
+                    this.retries = 0;
+                    this.executionCmd = '';
+                    this.executionId = null;
                 }
-                catch (error)
-                {
-                    this.setWarning(error.message).catch(this.error);
-                    throw (error);
-                }
+
+                action = {
+                    name: 'alarmZoneOn',
+                    parameters: [value],
+                };
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+                this.executionCmd = action.name;
+                this.executionZone = value;
+                this.executionId = { id: result.execId, local: result.local };
             }
 
             if ((capabilityValues['zone_button.a'] === false) || (capabilityValues['zone_button.b'] === false) || (capabilityValues['zone_button.c'] === false))
             {
-                // The zones can only be switched on so use the Off button to turn them off
-                this.setWarning('Use the Off button to switch off the zones').catch(this.error);
-
-                // Turn the button on again on immediately
-                setImmediate(() =>
-                {
-                    if (capabilityValues['zone_button.a'] === false)
-                    {
-                        this.setCapabilityValue('zone_button.a', true, { fromCloud: true }).catch(this.error);
-                    }
-                    if (capabilityValues['zone_button.b'] === false)
-                    {
-                        this.setCapabilityValue('zone_button.b', true, { fromCloud: true }).catch(this.error);
-                    }
-                    if (capabilityValues['zone_button.c'] === false)
-                    {
-                        this.setCapabilityValue('zone_button.c', true, { fromCloud: true }).catch(this.error);
-                    }
-                });
+                throw new Error('Cannot switch off zones');
             }
         }
         else
