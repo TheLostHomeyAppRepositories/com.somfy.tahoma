@@ -258,6 +258,15 @@ class myApp extends Homey.App
                     this.mDNSBridgesUpdate(discoveryResult);
                 });
 
+                this.discoveryStrategy.on('addressChanged', (discoveryResult) =>
+                {
+                    if (this.infoLogEnabled)
+                    {
+                        this.logInformation(`Got mDNS address changed:${this.varToString(discoveryResult)}`);
+                    }
+                    this.mDNSBridgesUpdate(discoveryResult);
+                });
+
                 const results = this.discoveryStrategy.getDiscoveryResults();
                 for (const result of Object.values(results))
                 {

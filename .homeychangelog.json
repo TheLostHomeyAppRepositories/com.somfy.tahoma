@@ -721,5 +721,8 @@
   },
   "4.0.63": {
     "en": "Trying to turn off zones in the Protexial Alarm now shows an error message."
+  },
+  "4.0.64": {
+    "en": "Add My position to 'Exterior blind (io)'. Add missing Address change callback for mDNS."
   }
 }
