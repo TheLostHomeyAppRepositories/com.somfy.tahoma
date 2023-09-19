@@ -116,7 +116,25 @@ class OneAlarmDevice extends SensorDevice
     async onCapabilityZone(capabilityValues, opts)
     {
         const deviceData = this.getData();
-        if (!opts || !opts['zone_button.a'].fromCloudSync || !opts['zone_button.b'].fromCloudSync || !opts['zone_button.c'].fromCloudSync)
+        let cloudSync = false;
+        if (!opts)
+        {
+            cloudSync = true;
+        }
+        else if (opts['zone_button.a'] && opts['zone_button.a'].fromCloudSync)
+        {
+            cloudSync = true;
+        }
+        else if (opts['zone_button.b'] && opts['zone_button.b'].fromCloudSync)
+        {
+            cloudSync = true;
+        }
+        else if (opts['zone_button.c'] && opts['zone_button.c'].fromCloudSync)
+        {
+            cloudSync = true;
+        }
+
+        if (!cloudSync)
         {
             let action;
             let value = (capabilityValues['zone_button.a'] ? 'A,' : '') + (capabilityValues['zone_button.b'] ? 'B,' : '') + (capabilityValues['zone_button.c'] ? 'C' : '');

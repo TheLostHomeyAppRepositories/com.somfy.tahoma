@@ -724,5 +724,8 @@
   },
   "4.0.64": {
     "en": "Add My position to 'Exterior blind (io)'. Add missing Address change callback for mDNS."
+  },
+  "4.0.65": {
+    "en": "Fix 3 for Protexial Alarm zone command."
   }
 }
