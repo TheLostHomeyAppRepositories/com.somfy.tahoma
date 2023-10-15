@@ -1,9 +1,9 @@
 {
     "name": {
-        "en": "Roller shutter (io)",
-        "nl": "Rolluik (io)",
-        "fr": "Volet roulant (io)",
-        "de": "Rolladen (io)"
+        "en": "Roller shutter (io & ZigBee)",
+        "nl": "Rolluik (io & ZigBee)",
+        "fr": "Volet roulant (io & ZigBee)",
+        "de": "Rolladen (io & ZigBee)"
     },
     "class": "blinds",
     "capabilities": [

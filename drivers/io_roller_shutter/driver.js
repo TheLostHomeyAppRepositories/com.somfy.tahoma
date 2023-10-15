@@ -25,6 +25,7 @@ class RollerShutterDriver extends ioWindowCoveringsDriver
             'io:DynamicRollerShutterIOComponent',
             'eliot:RollerShutterEliotComponent',
             'zigbee:ProfaluxRollerShutterComponent',
+            'zigbee:RollerShutterGenericComponent',
         ];
 
         await super.onInit();

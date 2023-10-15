@@ -13,7 +13,7 @@
   "description": {
     "en": "The heart of your Smart Home"
   },
-  "version": "4.0.65",
+  "version": "4.0.66",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Adrian Rockall",
@@ -8326,10 +8326,10 @@
         "small": "/drivers/io_roller_shutter/assets/images/small.png"
       },
       "name": {
-        "en": "Roller shutter (io)",
-        "nl": "Rolluik (io)",
-        "fr": "Volet roulant (io)",
-        "de": "Rolladen (io)"
+        "en": "Roller shutter (io & ZigBee)",
+        "nl": "Rolluik (io & ZigBee)",
+        "fr": "Volet roulant (io & ZigBee)",
+        "de": "Rolladen (io & ZigBee)"
       },
       "class": "blinds",
       "capabilities": [

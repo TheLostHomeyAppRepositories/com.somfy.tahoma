@@ -727,5 +727,8 @@
   },
   "4.0.65": {
     "en": "Fix 3 for Protexial Alarm zone command."
+  },
+  "4.0.66": {
+    "en": "Clean up settings pages. More diagnostics for login errors. Fire login in sync loop if not logged in. Added zigbee:RollerShutterGenericComponent to 'Roller shutter (io)'"
   }
 }

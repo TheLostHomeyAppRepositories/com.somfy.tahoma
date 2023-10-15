@@ -2,7 +2,6 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="lwsa.css">
     <link rel="stylesheet" type="text/css" href="busy_indicator.css" />
 
     <style type="text/css">
@@ -24,6 +23,7 @@
 
     <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
     <script type="text/javascript" src="busy_indicator.js"></script>
+    <link rel="stylesheet" type="text/css" href="lwsa.css">
 </head>
 
 <body>
@@ -40,31 +40,34 @@
         <button class="tablinks" onclick="setPage(event, 'stateLog')"><span data-i18n="settings.state_log"></span></button>
         <button class="tablinks" onclick="setPage(event, 'eventLog')"><span data-i18n="settings.event_log"></span></button>
         <button class="tablinks" onclick="setPage(event, 'localTokens')"><span data-i18n="settings.local_tokens"></span></button>
-        <button class="tablinks" onclick="setPage(event, 'simulator')" id="simLogTab" style="visibility:hidden">Simulation Data</button>
+        <button class="tablinks" onclick="setPage(event, 'simulator')" id="simLogTab" style="display:none">Simulation Data</button>
     </div>
 
     <!-- SETTINGS PAGE -->
     <div id="settings" class="tabcontent">
-        <fieldset>
+        <fieldset class="homey-form-fieldset">
             <h1 data-i18n="settings.title"></h1>
             <p id="introText" data-i18n="settings.intro"></p>
             <p id="response"></p>
-            <fieldset>
-                <legend data-i18n="settings.logintitle"></legend>
+            <fieldset class="homey-form-fieldset">
+                <legend class="homey-form-legend" data-i18n="settings.logintitle"></legend>
                 <span id="response"></span>
                 <div class="field row">
-                    <label for="username" data-i18n="settings.username"></label>
-                    <input id="username" type="text" value="" />
+                    <label class="homey-form-label" for="username" data-i18n="settings.username"></label>
+                    <input class="homey-form-input" id="username" type="text" value="" />
                 </div>
                 <div class="field row">
-                    <label for="password" data-i18n="settings.password"></label>
-                    <input id="password" type="password" value="" />
-                    <label for="showPassword" data-i18n="settings.show_password"></label>
-                    <input id="showPassword" type="checkbox" value="showPassword" />
+                    <label class="homey-form-label" for="password" data-i18n="settings.password"></label>
+                    <input class="homey-form-input" id="password" type="password" value="" />
+                    <label class="homey-form-checkbox">
+                        <input class="homey-form-checkbox-input" id="showPassword" type="checkbox" value="showPassword" />
+                        <span class="homey-form-checkbox-checkmark"></span>
+                        <span class="homey-form-checkbox-text"><span data-i18n="settings.show_password"></span></span>
+                    </label>
                     <p></p>
                 </div>
                 <div class="field row">
-                    <label for="region" data-i18n="settings.region"></label>
+                    <label class="homey-form-label" for="region" data-i18n="settings.region"></label>
                     <select class="homey-form-select" name="region" id="region">
                         <option value="europe" data-i18n="settings.europe"></option>
                         <option value="usa" data-i18n="settings.usa"></option>
@@ -73,35 +76,38 @@
                     <p></p>
                 </div>
                 <div class="field row">
-                    <button id="saveButton" class="left" style="display:block;background-color:#0f9e16;color:white;margin:15px 20px 5px 5px;" data-i18n="settings.save"></button>
+                    <button class="homey-button-primary-full" id="saveButton" data-i18n="settings.save"></button>
                 </div>
             </fieldset>
-            <fieldset id="logoutElement" style="display: none;">
-                <legend data-i18n="settings.logouttitle"></legend>
+            <fieldset class="homey-form-fieldset" id="logoutElement" style="display: none;">
+                <legend class="homey-form-legend" data-i18n="settings.logouttitle"></legend>
                 <p id="logoutText" data-i18n="settings.logout_description"></p>
-                <button id="logoutButton" class="left" style="display:block;background-color:#a5510d;color:white;margin:15px 20px 5px 5px;" data-i18n="settings.logout"></button>
+                <button id="logoutButton" class="homey-button-danger-shadow" data-i18n="settings.logout"></button>
         </fieldset>
     </div>
 
     <!-- Information LOG PAGE -->
     <div id="infoLog" class="tabcontent">
-        <fieldset>
+        <fieldset class="homey-form-fieldset">
             <p data-i18n="settings.intro4"></p>
             <div class="field row">
-                <label for="InfoLogEnabled" data-i18n="settings.log_enabled"></label>
-                <input id="InfoLogEnabled" type="checkbox" value="logEnabled" />
+                <label class="homey-form-checkbox">
+                    <input class="homey-form-checkbox-input" id="InfoLogEnabled" type="checkbox" value="logEnabled" />
+                    <span class="homey-form-checkbox-checkmark"></span>
+                    <span class="homey-form-checkbox-text"><span data-i18n="settings.log_enabled"></span></span>
+                </label>
             </div>
             <button id="clearInfoLog" style="background-color:#a5510d;color:white;margin:5px 20px 5px 5px;" data-i18n="settings.clear"></button>
             <button id="sendInfoLog" style="background-color:#0f9e16;color:white;margin:5px 20px 5px 5px;" data-i18n="settings.send"></button>
             <div class="field row">
-                <textarea id="infoLogData"></textarea>
+                <textarea id="infoLogData" style="white-space: nowrap;"></textarea>
             </div>
         </fieldset>
     </div>
 
     <!-- DEVICE LOG PAGE -->
     <div id="deviceLogTab" class="tabcontent">
-        <fieldset>
+        <fieldset class="homey-form-fieldset">
             <p data-i18n="settings.intro1"></p>
             <p data-i18n="settings.intro2"></p>
             <p data-i18n="settings.intro3"></p>
@@ -112,66 +118,72 @@
                 <button id="sendDeviceLog" style="background-color:#0f9e16;color:white;margin:10px 20px 5px 5px;" data-i18n="settings.send"></button>
             </p>
             <div class="field row">
-                <textarea id="deviceLog"></textarea>
+                <textarea id="deviceLog" style="white-space: nowrap;"></textarea>
             </div>
         </fieldset>
     </div>
 
     <!--SIMULATION PAGE -->
     <div id="simulator" class="tabcontent">
-        <fieldset>
+        <fieldset class="homey-form-fieldset">
             <h1>For debug use only</h1>
             <p><button id="useSim" style="background-color:#0f9e16;color:white;margin:5px 20px 5px 5px;">Activate</button><button id="clearSim" style="background-color:#a5510d;color:white;margin:5px 20px 5px 5px;">Clear Sim</button></p>
             <div class="field row">
-                <textarea id="simData"></textarea>
+                <textarea id="simData" style="white-space: nowrap;"></textarea>
             </div>
         </fieldset>
     </div>
 
     <!--STATE LOG PAGE -->
     <div id="stateLog" class="tabcontent">
-        <fieldset>
+        <fieldset class="homey-form-fieldset">
             <div class="field row">
-                <label for="stateLogEnabled" data-i18n="settings.log_enabled"></label>
-                <input id="stateLogEnabled" type="checkbox" value="logEnabled" />
+                <label class="homey-form-checkbox">
+                    <input class="homey-form-checkbox-input" id="stateLogEnabled" type="checkbox" value="logEnabled" />
+                    <span class="homey-form-checkbox-checkmark"></span>
+                    <span class="homey-form-checkbox-text"><span data-i18n="settings.log_enabled"></span></span>
+                </label>
             </div>
             <button id="clearStateLog" style="background-color:#a5510d;color:white;margin:10px 20px 5px 5px;" data-i18n="settings.clear"></button>
             <div class="field row">
-                <textarea id="stateLogData"></textarea>
+                <textarea id="stateLogData" style="white-space: nowrap;"></textarea>
             </div>
         </fieldset>
     </div>
 
     <!--EVENT LOG PAGE -->
     <div id="eventLog" class="tabcontent">
-        <fieldset>
+        <fieldset class="homey-form-fieldset">
             <p data-i18n="settings.intro4"></p>
             <div class="field row">
-                <label for="eventLogEnabled" data-i18n="settings.log_enabled"></label>
-                <input id="eventLogEnabled" type="checkbox" value="logEnabled" />
+                <label class="homey-form-checkbox">
+                    <input class="homey-form-checkbox-input" id="eventLogEnabled" type="checkbox" value="logEnabled" />
+                    <span class="homey-form-checkbox-checkmark"></span>
+                    <span class="homey-form-checkbox-text"><span data-i18n="settings.log_enabled"></span></span>
+                </label>
             </div>
             <button id="clearEventLog" style="background-color:#a5510d;color:white;margin:10px 20px 5px 5px;" data-i18n="settings.clear"></button>
             <button id="sendEventLog" style="background-color:#0f9e16;color:white;margin:5px 20px 5px 5px;" data-i18n="settings.send"></button>
             <div class="field row">
-                <textarea id="eventLogData"></textarea>
+                <textarea id="eventLogData" style="white-space: nowrap;"></textarea>
             </div>
         </fieldset>
     </div>
 
     <!--LOCAL TOKENS PAGE -->
     <div id="localTokens" class="tabcontent">
-        <fieldset>
+        <div class="homey-form-fieldset">
             <p data-i18n="settings.intro5"></p>
-            <fieldset id="preferences">
+            <div class="homey-form-group">
                 <div class="field row">
-                    <label for="localTokenUUIDElement" data-i18n="settings.token_id"></label>
-                    <input id="localTokenUUIDElement" type="text" value="" />
+                    <label class="homey-form-label" for="localTokenUUIDElement" data-i18n="settings.token_id"></label>
+                    <input class="homey-form-input" id="localTokenUUIDElement" type="text" value="" />
                 </div>
                 <button id="deleteLocalToken" style="background-color:#0f9e16;color:white;margin:5px 20px 5px 5px;" data-i18n="settings.delete_token"></button>
-            </fieldset>
+            </div>
             <button id="getLocalTokens" style="background-color:#0f9e16;color:white;margin:5px 20px 5px 5px;" data-i18n="settings.get_tokens"></button>
             <div class="field row">
-                <textarea id="localTokensData"></textarea>
+                <textarea id="localTokensData" style="white-space: nowrap;"></textarea>
             </div>
         </fieldset>
     </div>
@@ -235,7 +247,9 @@
                     Homey.get('infoLog', function(err, infoLog)
                     {
                         if (err) return Homey.alert(err);
-                        infoLogElement.value = JSON.stringify(infoLog, null, 2).replace(/\\n/g, '\n            ');
+                        let logData = infoLog ? JSON.stringify(infoLog, null, 2) : "";
+                        logData = logData.replace(/\\n/g, '\n             ').replace(/\\"/g, '"');
+                        infoLogElement.value = logData;
                     });
                 }
                 else if (param === 'infoLogEnabled')
@@ -293,7 +307,7 @@
                 if (err) return Homey.alert(err);
                 if (debugMode)
                 {
-                    document.getElementById("simLogTab").style.visibility = 'visible';
+                    document.getElementById("simLogTab").style.display = 'block';
                 }
             });
 
@@ -456,7 +470,7 @@
                             }
                             else
                             {
-                                Homey.alert("Log sent successfully");
+                                Homey.alert(`Log sent successfully. Please contact @Adrian_Rockall on the forum with the log ID: ${result.message} and explain the issue`);
                             }
                             waitCursor(false);
                         });
@@ -487,7 +501,7 @@
                             }
                             else
                             {
-                                Homey.alert("Log sent successfully");
+                                Homey.alert(`Log sent successfully. Please contact @Adrian_Rockall on the forum with the log ID: ${result.message} and explain the issue`);
                             }
                             waitCursor(false);
                         });
@@ -543,6 +557,11 @@
 
             deletelocalTokenElement.addEventListener('click', function(e)
             {
+                if (LocalTokenUUIDElement.value.length < 15)
+                {
+                    return Homey.alert("Enter a Token uuid to delete");
+                }
+
                 waitCursor(true);
                 Homey.api('POST', '/DeleteLocalToken/', { uuid: LocalTokenUUIDElement.value }, function(err, result)
                 {
@@ -660,7 +679,9 @@
                 Homey.get('infoLog', function(err, infoLog)
                 {
                     if (err) return Homey.alert(err);
-                    infoLogElement.value = infoLog ? JSON.stringify(infoLog, null, 2).replace(/\\n/g, '\n            ') : "";
+                    let logData = infoLog ? JSON.stringify(infoLog, null, 2) : "";
+                    logData = logData.replace(/\\n/g, '\n             ').replace(/\\"/g, '"');
+                    infoLogElement.value = logData;
                 });
                 Homey.get('infoLogEnabled', function(err, enable)
                 {
@@ -733,6 +754,18 @@
 
             if (tabPage == 'localTokens')
             {
+                Homey.api('POST', '/GetLocalTokens/', {}, function(err, result)
+                {
+                    waitCursor(false);
+
+                    if (err)
+                    {
+                        localTokensElement.value = err;
+                        return;
+                    }
+                    localTokensElement.value = result;
+                });
+
                 // Make the text box fill the page
                 localTokensElement.setAttribute('cols', localTokensElement.parentElement.clientWidth / 8);
                 localTokensElement.style.height = (window.innerHeight - localTokensElement.offsetTop - 40) + 'px';

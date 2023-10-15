@@ -34,5 +34,5 @@ module.exports = {
     async DeleteLocalToken({ homey, body })
     {
         return homey.app.deleteLocalToken(body.uuid);
-    }
+    },
 };

@@ -237,55 +237,6 @@ class myApp extends Homey.App
         this.log(`${Homey.manifest.id} Initialised`);
     }
 
-    async restartLogin()
-    {
-        try
-        {
-            await this.logOut(false);
-            const username = this.homey.settings.get('username');
-            const password = this.homey.settings.get('password');
-            const region = this.homey.settings.get('region');
-
-            if (!await this.doLocalLogin(username, password, region))
-            {
-                this.discoveryStrategy = this.homey.discovery.getStrategy('somfy_tahoma');
-                this.discoveryStrategy.on('result', (discoveryResult) =>
-                {
-                    if (this.infoLogEnabled)
-                    {
-                        this.logInformation('mDNS: Got mDNS result', this.varToString(discoveryResult));
-                    }
-                    this.mDNSBridgesUpdate(discoveryResult);
-                });
-
-                this.discoveryStrategy.on('addressChanged', (discoveryResult) =>
-                {
-                    if (this.infoLogEnabled)
-                    {
-                        this.logInformation(`Got mDNS address changed:${this.varToString(discoveryResult)}`);
-                    }
-                    this.mDNSBridgesUpdate(discoveryResult);
-                });
-
-                const results = this.discoveryStrategy.getDiscoveryResults();
-                for (const result of Object.values(results))
-                {
-                    if (this.infoLogEnabled)
-                    {
-                        this.logInformation('Got mDNS result', this.varToString(result));
-                    }
-                    this.mDNSBridgesUpdate(result);
-                }
-            }
-
-            this.syncTimerId = this.homey.setTimeout(() => this.initSync(), 10000);
-        }
-        catch (err)
-        {
-            this.logInformation('Restart login failed', err.message);
-        }
-    }
-
     async mDNSBridgesUpdate(discoveryResult)
     {
         if (!discoveryResult.txt)
@@ -1214,6 +1165,9 @@ class myApp extends Homey.App
                     text = this.varToString(this.homey.settings.get('eventLog'));
                 }
 
+                text = text.replace(/\\n/g, '\n              ');
+                text = text.replace(/\\"/g, '"');
+
                 subject += `(${this.homeyHash} : ${Homey.manifest.version})`;
 
                 // create reusable transporter object using the default SMTP transport
@@ -1248,7 +1202,7 @@ class myApp extends Homey.App
 
                 return {
                     error: response.err,
-                    message: response.err ? null : 'OK',
+                    message: response.err ? null : `${this.homeyHash}`,
                 };
             }
             catch (err)
@@ -1271,6 +1225,12 @@ class myApp extends Homey.App
      */
     async initSync()
     {
+        if (this.loginTimerId)
+        {
+            this.homey.clearTimeout(this.loginTimerId);
+            this.loginTimerId = null;
+        }
+
         const username = this.homey.settings.get('username');
         const password = this.homey.settings.get('password');
         const region = this.homey.settings.get('region');
@@ -1581,6 +1541,25 @@ class myApp extends Homey.App
             nextInterval = LOCAL_INTERVAL * 1000;
         }
 
+        if (!tahomaConnection.authenticated)
+        {
+            if (this.infoLogEnabled)
+            {
+                this.logInformation(`Skipping ${tahomaConnection.localLogin ? 'local' : 'cloud'} sync: Not logged in`);
+                if (tahomaConnection.lastLoginIssue)
+                {
+                    this.logInformation('Last login issue', tahomaConnection.lastLoginIssue);
+                }
+            }
+
+            if (!this.loginTimerId)
+            {
+                this.loginTimerId = this.homey.setTimeout(() => this.initSync(), 10000);
+            }
+
+            return nextInterval;
+        }
+
         if (this.infoLogEnabled)
         {
             if (tahomaConnection.localLogin)
@@ -1590,7 +1569,8 @@ class myApp extends Homey.App
             }
             else
             {
-                this.logInformation('Cloud syncLoop', `Logged in = ${tahomaConnection.authenticated}, Local = ${tahomaConnection.localLogin}, Old Sync State = ${this.syncing}`);
+                this.logInformation('Cloud syncLoop',
+                 `Logged in = ${tahomaConnection.authenticated}, Local = ${tahomaConnection.localLogin}, Old Sync State = ${this.syncing}`);
             }
         }
 
@@ -1667,13 +1647,6 @@ class myApp extends Homey.App
 
             // Signal that the sync has completed
             this.syncing = false;
-        }
-        else if (!tahomaConnection.authenticated)
-        {
-            if (this.infoLogEnabled)
-            {
-                this.logInformation('Skipping sync: Not logged in');
-            }
         }
         else if (this.infoLogEnabled)
         {
