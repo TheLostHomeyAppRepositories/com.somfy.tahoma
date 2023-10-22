@@ -730,5 +730,8 @@
   },
   "4.0.66": {
     "en": "Clean up settings pages. More diagnostics for login errors. Fire login in sync loop if not logged in. Added zigbee:RollerShutterGenericComponent to 'Roller shutter (io)'"
+  },
+  "4.0.67": {
+    "en": "Added 'rts:CellularBlindRTSComponent' to 'Blind or Shutter (RTS)'"
   }
 }
