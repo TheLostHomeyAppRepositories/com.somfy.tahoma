@@ -73,6 +73,7 @@ class WindowCoveringsDevice extends Device
             };
         }
 
+        this.clearStateTimer = null;
         this.positionStateName = 'core:ClosureState'; // Name of state to get the current position
         this.setPositionActionName = 'setClosure'; // Name of the command to set the current position
         this.openClosedStateName = 'core:OpenClosedState'; // Name of the state to get open / closed state
@@ -174,24 +175,36 @@ class WindowCoveringsDevice extends Device
                 }
                 else
                 {
-                    if (this.executionId !== null)
+                    if (this.executionCmd !== null)
                     {
-                        await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
-                        this.executionCmd = '';
-                        this.executionId = null;
+                        if (this.executionCmd === this.windowcoveringsActions[value])
+                        {
+                            // Already executing this command so ignore it
+                            this.homey.app.logInformation(`${this.getName()}: onCapabilityWindowcoveringsState`, `command ${this.executionCmd} already executing`);
+                            return;
+                        }
+
+                        if (this.executionId !== null)
+                        {
+                            await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
+                            this.executionCmd = '';
+                            this.executionId = null;
+                        }
                     }
+                    this.executionCmd = this.windowcoveringsActions[value];
 
                     const action = {
-                        name: this.windowcoveringsActions[value],
+                        name: this.executionCmd,
                         parameters: [],
                     };
+
                     const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-                    this.executionCmd = action.name;
                     this.executionId = { id: result.execId, local: result.local };
                 }
             }
             catch (err)
             {
+                this.executionCmd = '';
                 this.setWarning(err.message).catch(this.error);
                 throw (err);
             }
@@ -199,16 +212,23 @@ class WindowCoveringsDevice extends Device
             {
                 if (!this.openClosedStateName)
                 {
-                    this.homey.setTimeout(() =>
+                    this.clearStateTimer = this.homey.setTimeout(() =>
                     {
+                        this.clearStateTimer = null;
                         this.setCapabilityValue('windowcoverings_state', null).catch(this.error);
-                    }, 500);
+                    }, 40000);
                 }
             }
         }
         else
         {
             // New value from Tahoma
+            if (this.homey.app.infoLogEnabled)
+            {
+                const oldValue = this.getCapabilityValue('windowcoverings_state');
+                this.homey.app.logInformation(`${this.getName()}: onCapabilityWindowcoveringsState`, `Old Value: ${oldValue}, New Value: ${value}`);
+            }
+
             this.setCapabilityValue('windowcoverings_state', value).catch(this.error);
             if (this.hasCapability('quick_open'))
             {
@@ -232,12 +252,23 @@ class WindowCoveringsDevice extends Device
 
             try
             {
-                if (this.executionId !== null)
+                if (this.executionCmd !== null)
                 {
-                    await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
-                    this.executionCmd = '';
-                    this.executionId = null;
+                    if (this.executionCmd === `${this.setPositionActionName}, ${value}`)
+                    {
+                        // Already executing this command so ignore it
+                        this.homey.app.logInformation(`${this.getName()}: onCapabilityWindowcoveringsSet`, `command ${this.executionCmd} already executing`);
+                        return;
+                    }
+
+                    if (this.executionId !== null)
+                    {
+                        await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
+                        this.executionCmd = '';
+                        this.executionId = null;
+                    }
                 }
+                this.executionCmd = `${this.setPositionActionName}, ${value}`;
 
                 if (this.invertPosition)
                 {
@@ -255,11 +286,11 @@ class WindowCoveringsDevice extends Device
                 }
 
                 const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-                this.executionCmd = action.name;
                 this.executionId = { id: result.execId, local: result.local };
             }
             catch (err)
             {
+                this.executionCmd = '';
                 this.setWarning(err.message).catch(this.error);
                 throw (err);
             }
@@ -267,6 +298,12 @@ class WindowCoveringsDevice extends Device
         else
         {
             // New value from Tahoma
+            if (this.homey.app.infoLogEnabled)
+            {
+                const oldValue = this.getCapabilityValue('windowcoverings_set');
+                this.homey.app.logInformation(`${this.getName()}: onCapabilityWindowcoveringsSet`, `Old Value ${oldValue}, New Value: ${value}`);
+            }
+
             this.setCapabilityValue('windowcoverings_set', value).catch(this.error);
         }
     }
@@ -853,6 +890,13 @@ class WindowCoveringsDevice extends Device
                                 await this.homey.app.unBoostSync();
                             }
 
+                            if (this.clearStateTimer && ((this.executionCmd === 'up') || (this.executionCmd === 'down') || (this.executionCmd === 'idle') || (this.executionCmd === 'close') || (this.executionCmd === 'open')) && !this.openClosedStateName)
+                            {
+                                clearTimeout(this.clearStateTimer);
+                                this.clearStateTimer = null;
+                                this.setCapabilityValue('windowcoverings_state', null).catch(this.error);
+                            }
+            
                             this.homey.app.triggerCommandComplete(this, this.executionCmd, (element.newState === 'COMPLETED'));
                             this.driver.triggerDeviceCommandComplete(this, this.executionCmd, (element.newState === 'COMPLETED'));
                             this.executionId = null;

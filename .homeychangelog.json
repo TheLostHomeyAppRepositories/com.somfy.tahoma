@@ -733,5 +733,11 @@
   },
   "4.0.67": {
     "en": "Added 'rts:CellularBlindRTSComponent' to 'Blind or Shutter (RTS)'"
+  },
+  "4.0.68": {
+    "en": "Check for duplicate commands sooner in the process to prevent duplicate commands being sent. RTS Open / Close commands now cleared when the command complete event is received. Reduced number of Information log entries"
+  },
+  "4.0.69": {
+    "en": "Added External Heater 'rts:ExteriorHeatingRTSComponent' to 'Light / Heater with timer (RTS)'"
   }
 }

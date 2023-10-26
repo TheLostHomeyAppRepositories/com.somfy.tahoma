@@ -1093,9 +1093,9 @@ class myApp extends Homey.App
                     },
                 );
 
-                if (logData && logData.length > 500)
+                if (logData && logData.length > 200)
                 {
-                    logData.splice(0, 1);
+                    logData.splice(0, logData.length - 200);
                 }
                 this.homey.settings.set('infoLog', logData);
             }

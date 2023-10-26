@@ -13,7 +13,7 @@
   "description": {
     "en": "The heart of your Smart Home"
   },
-  "version": "4.0.67",
+  "version": "4.0.69",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Adrian Rockall",
@@ -12316,8 +12316,8 @@
         "small": "/drivers/two_button_on_off_light/assets/images/small.png"
       },
       "name": {
-        "en": "Light with Timer (RTS)",
-        "nl": "Licht met timer (RTS)"
+        "en": "Light / Heater with Timer (RTS)",
+        "nl": "Licht / Verwarming met timer (RTS)"
       },
       "class": "button",
       "capabilities": [
