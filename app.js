@@ -235,6 +235,12 @@ class myApp extends Homey.App
         }
 
         this.log(`${Homey.manifest.id} Initialised`);
+
+        this.discoveryStrategy.on('addressChanged', (discoveryResult) =>
+        {
+            this.logInformation(`Got mDNS address changed:${this.varToString(discoveryResult)}`);
+            this.mDNSBridgesUpdate(discoveryResult);
+        });
     }
 
     async mDNSBridgesUpdate(discoveryResult)

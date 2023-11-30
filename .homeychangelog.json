@@ -739,5 +739,8 @@
   },
   "4.0.69": {
     "en": "Added External Heater 'rts:ExteriorHeatingRTSComponent' to 'Light / Heater with timer (RTS)'"
+  },
+  "4.0.70": {
+    "en": "Added External Heater 'io:VerticalExteriorAwningWithBatteryIOComponent' to 'Exterior blind (io)'"
   }
 }

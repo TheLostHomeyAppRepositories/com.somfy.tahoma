@@ -11,7 +11,7 @@ const Driver = require('../Driver');
 class VerticalExteriorBlindDriver extends Driver {
 
   async onInit() {
-    this.deviceType = ['io:VerticalExteriorAwningIOComponent', 'io:VerticalExteriorAwningVeluxIOComponent'];
+    this.deviceType = ['io:VerticalExteriorAwningIOComponent', 'io:VerticalExteriorAwningVeluxIOComponent', 'io:VerticalExteriorAwningWithBatteryIOComponent'];
   }
 
 }
