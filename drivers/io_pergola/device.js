@@ -17,15 +17,30 @@ class PergolaDevice extends WindowCoveringsDevice {
 
         await super.onInit();
 
-        this.windowcoveringsActions = {
-            up: 'openSlats',
-            idle: null,
-            down: 'closeSlats',
-        };
+        if (this.controllableName === 'ogp:awning')
+        {
+            this.windowcoveringsActions = {
+                up: 'open',
+                idle: 'stop',
+                down: 'close',
+            };
 
-        this.positionStateName = 'core:SlatsOrientationState';
-        this.setPositionActionName = 'setOrientation';
-        this.openClosedStateName = 'core:SlatsOpenClosedState';
+            this.positionStateName = 'core:ClosureState';
+            this.setPositionActionName = 'setClosure';
+            this.openClosedStateName = 'core:OpenClosedState';
+        }
+        else
+        {
+            this.windowcoveringsActions = {
+                up: 'openSlats',
+                idle: null,
+                down: 'closeSlats',
+            };
+
+            this.positionStateName = 'core:SlatsOrientationState';
+            this.setPositionActionName = 'setOrientation';
+            this.openClosedStateName = 'core:SlatsOpenClosedState';
+        }
     }
 
 }
