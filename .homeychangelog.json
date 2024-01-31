@@ -748,5 +748,8 @@
     },
     "4.0.72": {
         "en": "Fix detection of ogp:Pergola"
+    },
+    "4.0.73": {
+        "en": "Fix 2 for detection of ogp:Pergola"
     }
 }

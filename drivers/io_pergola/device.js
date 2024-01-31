@@ -16,6 +16,8 @@ class PergolaDevice extends WindowCoveringsDevice {
         }
 
         await super.onInit();
+
+        const dd = this.getData();
         this.controllableName = '';
         if (dd.controllableName)
         {
