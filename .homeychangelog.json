@@ -745,5 +745,8 @@
     },
     "4.0.71": {
         "en": "Added 'ogp:Pergola' to 'Pergola (io)'"
+    },
+    "4.0.72": {
+        "en": "Fix detection of ogp:Pergola"
     }
 }

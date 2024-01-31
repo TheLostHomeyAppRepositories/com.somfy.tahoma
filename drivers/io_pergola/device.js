@@ -16,8 +16,13 @@ class PergolaDevice extends WindowCoveringsDevice {
         }
 
         await super.onInit();
+        this.controllableName = '';
+        if (dd.controllableName)
+        {
+            this.controllableName = dd.controllableName.toString().toLowerCase();
+        }
 
-        if (this.controllableName === 'ogp:awning')
+        if (this.controllableName === 'ogp:pergola')
         {
             this.windowcoveringsActions = {
                 up: 'open',
