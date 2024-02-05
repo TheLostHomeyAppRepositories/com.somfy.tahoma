@@ -25,7 +25,7 @@ class rtsGateOpenerDevice extends Device
             return;
         }
 
-        this.sendOpenCloseStop('open');
+        await this.sendOpenCloseStop('open');
     }
 
     async onCapabilityClose(value)
@@ -36,7 +36,7 @@ class rtsGateOpenerDevice extends Device
             return;
         }
 
-        this.sendOpenCloseStop('close');
+        await this.sendOpenCloseStop('close');
     }
 
     async onCapabilityStop(value)
@@ -47,7 +47,7 @@ class rtsGateOpenerDevice extends Device
             return;
         }
 
-        this.sendOpenCloseStop('stop');
+        await this.sendOpenCloseStop('stop');
     }
 
     async sendOpenCloseStop(value)
