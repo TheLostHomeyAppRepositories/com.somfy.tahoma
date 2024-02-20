@@ -751,5 +751,8 @@
     },
     "4.0.73": {
         "en": "Fix 2 for detection of ogp:Pergola"
+    },
+    "4.0.74": {
+        "en": "Added io:SlidingDiscreteFullyPedestriableGateOpenerIOComponent to Sliding gate (io)"
     }
 }
