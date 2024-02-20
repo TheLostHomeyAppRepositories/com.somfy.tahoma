@@ -753,6 +753,9 @@
         "en": "Fix 2 for detection of ogp:Pergola"
     },
     "4.0.74": {
+        "en": "Possible fix for multiple zone triggers being sent for multiple contact sensors that are operated simultaneously."
+    },
+    "4.0.75": {
         "en": "Added io:SlidingDiscreteFullyPedestriableGateOpenerIOComponent to Sliding gate (io)"
     }
 }
