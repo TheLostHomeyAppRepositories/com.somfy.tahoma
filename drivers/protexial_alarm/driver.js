@@ -14,6 +14,13 @@ class OneAlarmDriver extends Driver
     async onInit()
     {
         this.deviceType = ['io:AlarmIOComponent'];
+        this._triggerStateChange = this.homey.flow.getDeviceTriggerCard('alarm_zone_state_changed');
+    }
+
+    async triggerAlarmStateChanged(device, tokens, state)
+    {
+        this.triggerFlow(this._triggerStateChange, device, tokens, state);
+        return this;
     }
 
 }

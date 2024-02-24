@@ -131,6 +131,46 @@
   "flow": {
     "triggers": [
       {
+        "title": {
+          "en": "The alarm zone state changed",
+          "nl": "De alarmzone is veranderd"
+        },
+        "tokens": [
+          {
+            "name": "zoneA",
+            "type": "boolean",
+            "title": {
+              "en": "Alarm zone A state"
+            },
+            "example": "true"
+          },
+          {
+            "name": "zoneB",
+            "type": "boolean",
+            "title": {
+              "en": "Alarm zone B state"
+            },
+            "example": "true"
+          },
+          {
+            "name": "zoneC",
+            "type": "boolean",
+            "title": {
+              "en": "Alarm zone C state"
+            },
+            "example": "true"
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=protexial_alarm"
+          }
+        ],
+        "id": "alarm_zone_state_changed"
+      },
+      {
         "id": "command_complete",
         "deprecated": true,
         "title": {

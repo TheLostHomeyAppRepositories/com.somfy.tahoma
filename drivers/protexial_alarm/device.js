@@ -134,12 +134,13 @@ class OneAlarmDevice extends SensorDevice
             cloudSync = true;
         }
 
+        let value = (capabilityValues['zone_button.a'] ? 'A,' : '') + (capabilityValues['zone_button.b'] ? 'B,' : '') + (capabilityValues['zone_button.c'] ? 'C' : '');
+        // Remove the last comma
+        value = value.replace(/,\s*$/, '');
+
         if (!cloudSync)
         {
             let action;
-            let value = (capabilityValues['zone_button.a'] ? 'A,' : '') + (capabilityValues['zone_button.b'] ? 'B,' : '') + (capabilityValues['zone_button.c'] ? 'C' : '');
-            // Remove the last comma
-            value = value.replace(/,\s*$/, '');
 
             if (value)
             {
@@ -196,18 +197,38 @@ class OneAlarmDevice extends SensorDevice
                 });
             }
 
+            const tokens = {
+                zoneA: false,
+                zoneB: false,
+                zoneC: false,
+            };
+
+            const state = {
+                zoneA: false,
+                zoneB: false,
+                zoneC: false,
+            };
+
             if (capabilityValues['zone_button.a'] !== undefined)
             {
                 this.setCapabilityValue('zone_button.a', capabilityValues['zone_button.a']).catch(this.error);
+                tokens.zoneA = capabilityValues['zone_button.a'];
+                state.zoneA = capabilityValues['zone_button.a'];
             }
             if (capabilityValues['zone_button.b'] !== undefined)
             {
                 this.setCapabilityValue('zone_button.b', capabilityValues['zone_button.b']).catch(this.error);
+                tokens.zoneB = capabilityValues['zone_button.b'];
+                state.zoneB = capabilityValues['zone_button.b'];
             }
             if (capabilityValues['zone_button.c'] !== undefined)
             {
                 this.setCapabilityValue('zone_button.c', capabilityValues['zone_button.c']).catch(this.error);
+                tokens.zoneC = capabilityValues['zone_button.c'];
+                state.zoneC = capabilityValues['zone_button.c'];
             }
+
+            this.driver.triggerAlarmStateChanged(this, tokens, state).catch(this.error);
         }
     }
 

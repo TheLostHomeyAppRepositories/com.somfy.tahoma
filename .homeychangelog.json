@@ -757,5 +757,8 @@
     },
     "4.0.75": {
         "en": "Added io:SlidingDiscreteFullyPedestriableGateOpenerIOComponent to Sliding gate (io)"
+    },
+    "4.0.76": {
+        "en": "Added Trigger card for Protexial Alarm state change."
     }
 }
