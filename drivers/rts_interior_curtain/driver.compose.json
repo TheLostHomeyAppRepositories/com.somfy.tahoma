@@ -1,60 +1,62 @@
 {
-  "name": {
-	"en": "Interior Curtain (RTS)",
-	"nl": "Binnengordijn (RTS)"
-  },
-  "class": "curtain",
-  "capabilities": [
-	"windowcoverings_state",
-	"my_position"
-  ],
-  "settings": [
-	{
-	  "id": "invertUpDown",
-	  "type": "checkbox",
-	  "label": {
-		"en": "Invert Up / Down",
-		"nl": "Omkeren omhoog / omlaag"
-	  },
-	  "value": false,
-	  "hint": {
-		"en": "Reverse the Up / Down direction controls",
-		"nl": "Draai de bedieningselementen omhoog/omlaag om"
-	  }
+	"name": {
+		"en": "Interior Curtain (RTS)",
+		"nl": "Binnengordijn (RTS)"
 	},
-	{
-	  "id": "classType",
-	  "type": "dropdown",
-	  "label": {
-		"en": "Device Class"
-	  },
-	  "value": "curtain",
-	  "hint": {
-		"en": "Set the Homey class."
-	  },
-	  "values":[
+	"class": "curtain",
+	"capabilities": [
+		"windowcoverings_state",
+		"my_position"
+	],
+	"settings": [
 		{
-			"id": "windowcoverings",
-			"label": "Generic window covering"
+			"id": "invertUpDown",
+			"type": "checkbox",
+			"label": {
+				"en": "Invert Up / Down",
+				"nl": "Omkeren omhoog / omlaag"
+			},
+			"value": false,
+			"hint": {
+				"en": "Reverse the Up / Down direction controls",
+				"nl": "Draai de bedieningselementen omhoog/omlaag om"
+			}
 		},
 		{
-			"id": "blinds",
-			"label": "Blinds"
-		},
-		{
-			"id": "curtain",
-			"label": "Curtain"
-		},
-		{
-			"id": "sunshade",
-			"label": "Sunshade"
-		},
-		{
-			"id": "garagedoor",
-			"label": "Garage door"
+			"id": "classType",
+			"type": "dropdown",
+			"label": {
+				"en": "Device Class"
+			},
+			"value": "curtain",
+			"hint": {
+				"en": "Set the Homey class."
+			},
+			"values": [
+				{
+					"id": "windowcoverings",
+					"label": "Generic window covering"
+				},
+				{
+					"id": "blinds",
+					"label": "Blinds"
+				},
+				{
+					"id": "curtain",
+					"label": "Curtain"
+				},
+				{
+					"id": "sunshade",
+					"label": "Sunshade"
+				},
+				{
+					"id": "garagedoor",
+					"label": "Garage door"
+				}
+			]
 		}
-	  ]
-	}
-  ],
-  "$extends": ["cloudDriver"]
+	],
+	"$extends": [
+		"cloudDriver"
+	]
 }

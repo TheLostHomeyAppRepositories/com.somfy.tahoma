@@ -1,12 +1,14 @@
 {
-  "name": {
-	"en": "Socket (RTS & io)",
-	"nl": "Stopcontact (RTS & io)"
-  },
-  "class": "socket",
-  "capabilities": [
-	"onoff",
-	"on_with_timer"
-  ],
-  "$extends": ["cloudDriver"]
+	"name": {
+		"en": "Socket (RTS & io)",
+		"nl": "Stopcontact (RTS & io)"
+	},
+	"class": "socket",
+	"capabilities": [
+		"onoff",
+		"on_with_timer"
+	],
+	"$extends": [
+		"cloudDriver"
+	]
 }

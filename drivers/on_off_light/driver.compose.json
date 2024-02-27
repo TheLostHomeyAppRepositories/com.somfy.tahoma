@@ -1,11 +1,13 @@
 {
-  "name": {
-	"en": "On/Off Light",
-	"nl": "Aan/Uit Licht"
-  },
-  "class": "light",
-  "capabilities": [
-	"onoff"
-  ],
-  "$extends": ["cloudDriver"]
+	"name": {
+		"en": "On/Off Light",
+		"nl": "Aan/Uit Licht"
+	},
+	"class": "light",
+	"capabilities": [
+		"onoff"
+	],
+	"$extends": [
+		"cloudDriver"
+	]
 }

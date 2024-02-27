@@ -1,21 +1,23 @@
 {
-  "name": {
-	"en": "Siren (io)",
-	"nl": "Sirene (io)"
-  },
-  "class": "homealarm",
-  "energy": {
-	"batteries": [
-	  "AA",
-	  "AA"
+	"name": {
+		"en": "Siren (io)",
+		"nl": "Sirene (io)"
+	},
+	"class": "homealarm",
+	"energy": {
+		"batteries": [
+			"AA",
+			"AA"
+		]
+	},
+	"capabilities": [
+		"ring_button",
+		"stop_button",
+		"soundAlarm_1_button",
+		"alarm_siren",
+		"alarm_battery"
+	],
+	"$extends": [
+		"cloudDriver"
 	]
-  },
-  "capabilities": [
-	"ring_button",
-	"stop_button",
-	"soundAlarm_1_button",
-	"alarm_siren",
-	"alarm_battery"
-  ],
-  "$extends": ["cloudDriver"]
 }

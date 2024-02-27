@@ -1,11 +1,13 @@
 {
-  "name": {
-	"en": "KeyGo Remote Control",
-	"nl": "KeyGo-afstandsbediening"
-  },
-  "class": "remote",
-  "capabilities": [
-	"key_go_remote_state"
-  ],
-  "$extends": ["cloudDriver"]
+	"name": {
+		"en": "KeyGo Remote Control",
+		"nl": "KeyGo-afstandsbediening"
+	},
+	"class": "remote",
+	"capabilities": [
+		"key_go_remote_state"
+	],
+	"$extends": [
+		"cloudDriver"
+	]
 }

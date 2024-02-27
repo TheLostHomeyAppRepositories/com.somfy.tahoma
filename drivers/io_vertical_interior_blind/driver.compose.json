@@ -1,87 +1,89 @@
 {
-  "name": {
-	"en": "Interior Blind (io)"
-  },
-  "class": "blinds",
-  "capabilities": [
-	"windowcoverings_state",
-	"windowcoverings_set",
-	"quick_open",
-	"my_position"
-  ],
-  "settings": [
-	{
-	  "id": "invertUpDown",
-	  "type": "checkbox",
-	  "label": {
-		"en": "Invert Up / Down",
-		"nl": "Omkeren omhoog / omlaag"
-	  },
-	  "value": false,
-	  "hint": {
-		"en": "Reverse the Up / Down direction controls",
-		"nl": "Draai de bedieningselementen omhoog/omlaag om"
-	  }
+	"name": {
+		"en": "Interior Blind (io)"
 	},
-	{
-	  "id": "invertTile",
-	  "type": "checkbox",
-	  "label": {
-		"en": "Invert Tile Action",
-		"nl": "Tegelactie omkeren"
-	  },
-	  "value": false,
-	  "hint": {
-		"en": "Reverse the Open / Close state of the Tile",
-		"nl": "Keer de Open / Sluit-status van de tegel om"
-	  }
-	},
-	{
-	  "id": "invertPosition",
-	  "type": "checkbox",
-	  "label": {
-		"en": "Invert Position",
-		"nl": "Positie omkeren"
-	  },
-	  "value": false,
-	  "hint": {
-		"en": "Reverse the position control.",
-		"nl": "Draai de positieregeling om."
-	  }
-	},
-	{
-	  "id": "classType",
-	  "type": "dropdown",
-	  "label": {
-		"en": "Device Class"
-	  },
-	  "value": "blinds",
-	  "hint": {
-		"en": "Set the Homey class."
-	  },
-	  "values":[
+	"class": "blinds",
+	"capabilities": [
+		"windowcoverings_state",
+		"windowcoverings_set",
+		"quick_open",
+		"my_position"
+	],
+	"settings": [
 		{
-			"id": "windowcoverings",
-			"label": "Generic window covering"
+			"id": "invertUpDown",
+			"type": "checkbox",
+			"label": {
+				"en": "Invert Up / Down",
+				"nl": "Omkeren omhoog / omlaag"
+			},
+			"value": false,
+			"hint": {
+				"en": "Reverse the Up / Down direction controls",
+				"nl": "Draai de bedieningselementen omhoog/omlaag om"
+			}
 		},
 		{
-			"id": "blinds",
-			"label": "Blinds"
+			"id": "invertTile",
+			"type": "checkbox",
+			"label": {
+				"en": "Invert Tile Action",
+				"nl": "Tegelactie omkeren"
+			},
+			"value": false,
+			"hint": {
+				"en": "Reverse the Open / Close state of the Tile",
+				"nl": "Keer de Open / Sluit-status van de tegel om"
+			}
 		},
 		{
-			"id": "curtain",
-			"label": "Curtain"
+			"id": "invertPosition",
+			"type": "checkbox",
+			"label": {
+				"en": "Invert Position",
+				"nl": "Positie omkeren"
+			},
+			"value": false,
+			"hint": {
+				"en": "Reverse the position control.",
+				"nl": "Draai de positieregeling om."
+			}
 		},
 		{
-			"id": "sunshade",
-			"label": "Sunshade"
-		},
-		{
-			"id": "garagedoor",
-			"label": "Garage door"
+			"id": "classType",
+			"type": "dropdown",
+			"label": {
+				"en": "Device Class"
+			},
+			"value": "blinds",
+			"hint": {
+				"en": "Set the Homey class."
+			},
+			"values": [
+				{
+					"id": "windowcoverings",
+					"label": "Generic window covering"
+				},
+				{
+					"id": "blinds",
+					"label": "Blinds"
+				},
+				{
+					"id": "curtain",
+					"label": "Curtain"
+				},
+				{
+					"id": "sunshade",
+					"label": "Sunshade"
+				},
+				{
+					"id": "garagedoor",
+					"label": "Garage door"
+				}
+			]
 		}
-	  ]
-	}
-  ],
-  "$extends": ["cloudDriver"]
+	],
+	"$extends": [
+		"cloudDriver"
+	]
 }
