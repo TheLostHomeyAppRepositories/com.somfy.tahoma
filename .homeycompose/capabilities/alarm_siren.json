@@ -1,26 +1,26 @@
 {
-    "type": "boolean",
-    "getable": true,
-    "setable": false,
-    "uiComponent": "sensor",
-    "title": {
-        "en": "Siren Active",
-        "fr": "Sirène activée",
-        "de": "Sirene aktiviert",
-        "nl": "Sirene actief"
-    },
-    "icon": "/drivers/siren/assets/icon.svg",
-    "insights": true,
-    "insightsTitleTrue": {
-        "en": "Active",
-        "fr": "Activée",
-        "de": "Aktiviert",
-        "nl": "Actief"
-    },
-    "insightsTitleFalse": {
-        "en": "Silent",
-        "fr": "Silencieuse",
-        "de": "Stumm",
-        "nl": "Stil"
-    }
+	"type": "boolean",
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"title": {
+		"en": "Siren Active",
+		"fr": "Sirène activée",
+		"de": "Sirene aktiviert",
+		"nl": "Sirene actief"
+	},
+	"icon": "/drivers/siren/assets/icon.svg",
+	"insights": true,
+	"insightsTitleTrue": {
+		"en": "Active",
+		"fr": "Activée",
+		"de": "Aktiviert",
+		"nl": "Actief"
+	},
+	"insightsTitleFalse": {
+		"en": "Silent",
+		"fr": "Silencieuse",
+		"de": "Stumm",
+		"nl": "Stil"
+	}
 }

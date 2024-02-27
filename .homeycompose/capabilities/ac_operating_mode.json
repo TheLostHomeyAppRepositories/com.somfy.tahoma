@@ -1,77 +1,77 @@
 {
-    "type": "enum",
-    "title": {
-        "en": "Operating Mode",
-        "fr": "Mode de fonctionnement",
-        "de": "Betriebsart",
-        "nl": "Bedieningsmodus"
-    },
-    "getable": true,
-    "setable": true,
-    "uiComponent": "picker",
-    "values": [
-        {
-            "id": "auto cooling",
-            "title": {
-                "en": "Auto Cooling",
-                "fr": "Refroidissement automatique",
-                "de": "Automatische Kühlung",
-                "nl": "Automatisch koelen"
-            }
-        },
-        {
-            "id": "auto heating",
-            "title": {
-                "en": "Auto Heating",
-                "fr": "Chauffage automatique",
-                "de": "Automatische Heizung",
-                "nl": "Automatisch verwarmen"
-            }
-        },
-        {
-            "id": "circulator",
-            "title": {
-                "en": "Circulator",
-                "fr": "Circulateur",
-                "de": "Umlaufpumpe",
-                "nl": "Circulator"
-            }
-        },
-        {
-            "id": "dehumidify",
-            "title": {
-                "en": "Dehumidify",
-                "fr": "Déshumidifier",
-                "de": "Entfeuchten",
-                "nl": "Ontvochtigen"
-            }
-        },
-        {
-            "id": "fan",
-            "title": {
-                "en": "Fan",
-                "fr": "Ventilateur",
-                "de": "Ventilator",
-                "nl": "Ventilator"
-            }
-        },
-        {
-            "id": "heating",
-            "title": {
-                "en": "Heating",
-                "fr": "Chauffage",
-                "de": "Heizung",
-                "nl": "Verwarmen"
-            }
-        },
-        {
-            "id": "cooling",
-            "title": {
-                "en": "Cooling",
-                "fr": "Refroidissement",
-                "de": "Kühlung",
-                "nl": "Koelen"
-            }
-        }
-    ]
+	"type": "enum",
+	"title": {
+		"en": "Operating Mode",
+		"fr": "Mode de fonctionnement",
+		"de": "Betriebsart",
+		"nl": "Bedieningsmodus"
+	},
+	"getable": true,
+	"setable": true,
+	"uiComponent": "picker",
+	"values": [
+		{
+			"id": "auto cooling",
+			"title": {
+				"en": "Auto Cooling",
+				"fr": "Refroidissement automatique",
+				"de": "Automatische Kühlung",
+				"nl": "Automatisch koelen"
+			}
+		},
+		{
+			"id": "auto heating",
+			"title": {
+				"en": "Auto Heating",
+				"fr": "Chauffage automatique",
+				"de": "Automatische Heizung",
+				"nl": "Automatisch verwarmen"
+			}
+		},
+		{
+			"id": "circulator",
+			"title": {
+				"en": "Circulator",
+				"fr": "Circulateur",
+				"de": "Umlaufpumpe",
+				"nl": "Circulator"
+			}
+		},
+		{
+			"id": "dehumidify",
+			"title": {
+				"en": "Dehumidify",
+				"fr": "Déshumidifier",
+				"de": "Entfeuchten",
+				"nl": "Ontvochtigen"
+			}
+		},
+		{
+			"id": "fan",
+			"title": {
+				"en": "Fan",
+				"fr": "Ventilateur",
+				"de": "Ventilator",
+				"nl": "Ventilator"
+			}
+		},
+		{
+			"id": "heating",
+			"title": {
+				"en": "Heating",
+				"fr": "Chauffage",
+				"de": "Heizung",
+				"nl": "Verwarmen"
+			}
+		},
+		{
+			"id": "cooling",
+			"title": {
+				"en": "Cooling",
+				"fr": "Refroidissement",
+				"de": "Kühlung",
+				"nl": "Koelen"
+			}
+		}
+	]
 }

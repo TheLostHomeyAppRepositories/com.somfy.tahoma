@@ -43,6 +43,7 @@ class WindowHandleDriver extends Driver
         this.triggerFlow(this._triggerOpenWindowStateChange, device, tokens, state);
         return this;
     }
+
 }
 
 module.exports = WindowHandleDriver;
