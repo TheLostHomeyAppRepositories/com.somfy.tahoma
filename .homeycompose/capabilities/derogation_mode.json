@@ -1,58 +1,58 @@
 {
-    "type": "enum",
-    "title": {
-        "en": "Operating Mode",
-        "nl": "Bedrijfsmodus",
-        "fr": "Mode de fonctionnement",
-        "de": "Betriebsart"
-    },
-    "values": [
-        {
-            "id": "comfort",
-            "title": {
-                "en": "At home",
-                "nl": "Thuis",
-                "fr": "A la maison",
-                "de": "Zuhause"
-            }
-        },
-        {
-            "id": "away",
-            "title": {
-                "en": "Away",
-                "nl": "Weg",
-                "fr": "Absent",
-                "de": "Abwesend"
-            }
-        },
-        {
-            "id": "eco",
-            "title": {
-                "en": "Night",
-                "nl": "Nacht",
-                "fr": "Nuit",
-                "de": "Nacht"
-            }
-        },
-        {
-            "id": "manual",
-            "title": {
-                "en": "Manual",
-                "nl": "Handmatig",
-                "fr": "Manuel",
-                "de": "Manuell"
-            }
-        },
-        {
-            "id": "frostprotection",
-            "title": {
-                "en": "Frost protection",
-                "nl": "Vorstbescherming",
-                "fr": "Protection contre le gel",
-                "de": "Frostschutz"
-            }
-        }
-    ],
-    "getable": true,
-    "setable": true
+	"type": "enum",
+	"title": {
+		"en": "Operating Mode",
+		"nl": "Bedrijfsmodus",
+		"fr": "Mode de fonctionnement",
+		"de": "Betriebsart"
+	},
+	"values": [
+		{
+			"id": "comfort",
+			"title": {
+				"en": "At home",
+				"nl": "Thuis",
+				"fr": "A la maison",
+				"de": "Zuhause"
+			}
+		},
+		{
+			"id": "away",
+			"title": {
+				"en": "Away",
+				"nl": "Weg",
+				"fr": "Absent",
+				"de": "Abwesend"
+			}
+		},
+		{
+			"id": "eco",
+			"title": {
+				"en": "Night",
+				"nl": "Nacht",
+				"fr": "Nuit",
+				"de": "Nacht"
+			}
+		},
+		{
+			"id": "manual",
+			"title": {
+				"en": "Manual",
+				"nl": "Handmatig",
+				"fr": "Manuel",
+				"de": "Manuell"
+			}
+		},
+		{
+			"id": "frostprotection",
+			"title": {
+				"en": "Frost protection",
+				"nl": "Vorstbescherming",
+				"fr": "Protection contre le gel",
+				"de": "Frostschutz"
+			}
+		}
+	],
+	"getable": true,
+	"setable": true
 }

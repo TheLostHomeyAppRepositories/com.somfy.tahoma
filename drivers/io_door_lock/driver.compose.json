@@ -1,16 +1,16 @@
 {
-    "name": {
-        "en": "Door Lock (io)",
-        "fr": "Serrure de porte (io)",
-        "de": "Türschloss (io)",
-        "nl": "Deurslot (io)"
-    },
-    "class": "lock",
-    "capabilities": [
-        "onoff",
-        "locked"
-    ],
-    "$extends": [
-        "cloudDriver"
-    ]
+	"name": {
+		"en": "Door Lock (io)",
+		"fr": "Serrure de porte (io)",
+		"de": "Türschloss (io)",
+		"nl": "Deurslot (io)"
+	},
+	"class": "lock",
+	"capabilities": [
+		"onoff",
+		"locked"
+	],
+	"$extends": [
+		"cloudDriver"
+	]
 }

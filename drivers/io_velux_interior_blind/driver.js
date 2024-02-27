@@ -11,9 +11,9 @@ const ioWindowCoveringsDriver = require('../ioWindowCoveringsDriver');
 class VeluxInteriorBlindDriver extends ioWindowCoveringsDriver {
 
   async onInit() {
-    this.deviceType = ['io:VerticalInteriorBlindVeluxIOComponent', 'ogp:Blind'];
+	this.deviceType = ['io:VerticalInteriorBlindVeluxIOComponent', 'ogp:Blind'];
 
-    await super.onInit();
+	await super.onInit();
   }
 
 }

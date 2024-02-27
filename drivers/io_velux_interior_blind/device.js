@@ -6,17 +6,17 @@ const WindowCoveringsDevice = require('../WindowCoveringsDevice');
 
 class VeluxInteriorBlindDevice extends WindowCoveringsDevice {
 
-    async onInit() {
-        if (this.hasCapability('lock_state')) {
-            this.removeCapability('lock_state').catch(this.error);
-        }
+	async onInit() {
+		if (this.hasCapability('lock_state')) {
+			this.removeCapability('lock_state').catch(this.error);
+		}
 
-        await super.onInit();
+		await super.onInit();
 
-        if (!this.hasCapability('quick_open')) {
-            this.addCapability('quick_open').catch(this.error);
-        }
-    }
+		if (!this.hasCapability('quick_open')) {
+			this.addCapability('quick_open').catch(this.error);
+		}
+	}
 
 }
 

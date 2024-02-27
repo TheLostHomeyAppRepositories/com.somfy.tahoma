@@ -1,85 +1,85 @@
 {
-    "type": "enum",
-    "title": {
-        "en": "Hot Water Mode",
-        "nl": "Heetwatermodus",
-        "de": "Heißwassermodus",
-        "fr": "Mode Eau Chaude"
-    },
-    "values": [
-        {
-            "id": "comfort",
-            "title": {
-                "en": "Comfort",
-                "nl": "Comfort",
-                "de": "Komfort",
-                "fr": "Confort"
-            }
-        },
-        {
-            "id": "eco",
-            "title": {
-                "en": "Eco",
-                "nl": "Eco",
-                "de": "Eco",
-                "fr": "Économique"
-            }
-        },
-        {
-            "id": "externalScheduling",
-            "title": {
-                "en": "External Scheduling",
-                "nl": "Externe planning",
-                "de": "Externe Planung",
-                "fr": "Planification Externe"
-            }
-        },
-        {
-            "id": "internalScheduling",
-            "title": {
-                "en": "Internal Scheduling",
-                "nl": "Interne planning",
-                "de": "Interne Planung",
-                "fr": "Planification interne"
-            }
-        },
-        {
-            "id": "manu",
-            "title": {
-                "en": "Manual",
-                "nl": "Handmatig",
-                "de": "Manuell",
-                "fr": "Manuel"
-            }
-        },
-        {
-            "id": "peakAndOffPeakScheduling",
-            "title": {
-                "en": "Peak And Off Peak Scheduling",
-                "nl": "Piek- en dalurenplanning",
-                "de": "Spitzen- und Nebenzeitenplanung",
-                "fr": "Planification des heures de pointe et des heures creuses"
-            }
-        },
-        {
-            "id": "peakAndOffPeakTimes",
-            "title": {
-                "en": "Peak And Off Peak Times",
-                "nl": "Piek- en daluren",
-                "de": "Spitzen- und Nebenzeiten",
-                "fr": "Heures de pointe et heures creuses"
-            }
-        },
-        {
-            "id": "stop",
-            "title": {
-                "en": "Stop",
-                "nl": "Hou op",
-                "de": "Stopp",
-                "fr": "Arrêt"
-            }
-        }
-    ],
-    "getable": true,
-    "setable": true
+	"type": "enum",
+	"title": {
+		"en": "Hot Water Mode",
+		"nl": "Heetwatermodus",
+		"de": "Heißwassermodus",
+		"fr": "Mode Eau Chaude"
+	},
+	"values": [
+		{
+			"id": "comfort",
+			"title": {
+				"en": "Comfort",
+				"nl": "Comfort",
+				"de": "Komfort",
+				"fr": "Confort"
+			}
+		},
+		{
+			"id": "eco",
+			"title": {
+				"en": "Eco",
+				"nl": "Eco",
+				"de": "Eco",
+				"fr": "Économique"
+			}
+		},
+		{
+			"id": "externalScheduling",
+			"title": {
+				"en": "External Scheduling",
+				"nl": "Externe planning",
+				"de": "Externe Planung",
+				"fr": "Planification Externe"
+			}
+		},
+		{
+			"id": "internalScheduling",
+			"title": {
+				"en": "Internal Scheduling",
+				"nl": "Interne planning",
+				"de": "Interne Planung",
+				"fr": "Planification interne"
+			}
+		},
+		{
+			"id": "manu",
+			"title": {
+				"en": "Manual",
+				"nl": "Handmatig",
+				"de": "Manuell",
+				"fr": "Manuel"
+			}
+		},
+		{
+			"id": "peakAndOffPeakScheduling",
+			"title": {
+				"en": "Peak And Off Peak Scheduling",
+				"nl": "Piek- en dalurenplanning",
+				"de": "Spitzen- und Nebenzeitenplanung",
+				"fr": "Planification des heures de pointe et des heures creuses"
+			}
+		},
+		{
+			"id": "peakAndOffPeakTimes",
+			"title": {
+				"en": "Peak And Off Peak Times",
+				"nl": "Piek- en daluren",
+				"de": "Spitzen- und Nebenzeiten",
+				"fr": "Heures de pointe et heures creuses"
+			}
+		},
+		{
+			"id": "stop",
+			"title": {
+				"en": "Stop",
+				"nl": "Hou op",
+				"de": "Stopp",
+				"fr": "Arrêt"
+			}
+		}
+	],
+	"getable": true,
+	"setable": true
 }

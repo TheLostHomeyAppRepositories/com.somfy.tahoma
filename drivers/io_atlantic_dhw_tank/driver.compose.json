@@ -1,20 +1,20 @@
 {
-    "name": {
-        "en": "Atlantic Water Tank Heater",
-        "fr": "Chauffe-eau Atlantic Tank",
-        "de": "Atlantic Wasserbehälterheizung",
-        "nl": "Atlantic Watertankverwarmer"
-    },
-    "class": "heater",
-    "capabilities": [
-        "onoff"
-    ],
-    "capabilitiesOptions": {
-        "onoff": {
-            "title": "Force Heating"
-        }
-    },
-    "$extends": [
-        "cloudDriver"
-    ]
+	"name": {
+		"en": "Atlantic Water Tank Heater",
+		"fr": "Chauffe-eau Atlantic Tank",
+		"de": "Atlantic Wasserbehälterheizung",
+		"nl": "Atlantic Watertankverwarmer"
+	},
+	"class": "heater",
+	"capabilities": [
+		"onoff"
+	],
+	"capabilitiesOptions": {
+		"onoff": {
+			"title": "Force Heating"
+		}
+	},
+	"$extends": [
+		"cloudDriver"
+	]
 }

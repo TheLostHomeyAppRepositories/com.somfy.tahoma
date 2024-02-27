@@ -1,27 +1,27 @@
 {
-    "name": {
-        "en": "Danfoss Icon Thermostat",
-        "fr": "Thermostat Danfoss Icon",
-        "de": "Danfoss Icon Thermostat",
-        "nl": "Danfoss Icon Thermostaat"
-    },
-    "class": "heater",
-    "capabilities": [
-        "target_temperature",
-        "measure_temperature",
-        "ac_holiday_mode"
-    ],
-    "capabilitiesOptions": {
-        "target_temperature": {
-            "min": 5,
-            "max": 35
-        },
-        "measure_temperature": {
-            "min": 5,
-            "max": 35
-        }
-    },
-    "$extends": [
-        "cloudDriver"
-    ]
+	"name": {
+		"en": "Danfoss Icon Thermostat",
+		"fr": "Thermostat Danfoss Icon",
+		"de": "Danfoss Icon Thermostat",
+		"nl": "Danfoss Icon Thermostaat"
+	},
+	"class": "heater",
+	"capabilities": [
+		"target_temperature",
+		"measure_temperature",
+		"ac_holiday_mode"
+	],
+	"capabilitiesOptions": {
+		"target_temperature": {
+			"min": 5,
+			"max": 35
+		},
+		"measure_temperature": {
+			"min": 5,
+			"max": 35
+		}
+	},
+	"$extends": [
+		"cloudDriver"
+	]
 }

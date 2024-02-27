@@ -11,49 +11,49 @@ const WindowCoveringsDevice = require('../WindowCoveringsDevice');
 class InteriorCurtainDevice extends WindowCoveringsDevice
 {
 
-    async onInit()
-    {
-        if (this.hasCapability('lock_state'))
-        {
-            this.removeCapability('lock_state').catch(this.error);
-        }
+	async onInit()
+	{
+		if (this.hasCapability('lock_state'))
+		{
+			this.removeCapability('lock_state').catch(this.error);
+		}
 
-        if (this.hasCapability('windowcoverings_state.rts'))
-        {
-            this.removeCapability('windowcoverings_state.rts').catch(this.error);
-            this.addCapability('windowcoverings_state').catch(this.error);
-        }
+		if (this.hasCapability('windowcoverings_state.rts'))
+		{
+			this.removeCapability('windowcoverings_state.rts').catch(this.error);
+			this.addCapability('windowcoverings_state').catch(this.error);
+		}
 
-        const dd = this.getData();
-        let controllableName = '';
-        if (dd.controllableName)
-        {
-            controllableName = dd.controllableName.toString().toLowerCase();
-        }
+		const dd = this.getData();
+		let controllableName = '';
+		if (dd.controllableName)
+		{
+			controllableName = dd.controllableName.toString().toLowerCase();
+		}
 
-        if (controllableName === 'ogp:curtain')
-        {
-            if (this.hasCapability('my_position'))
-            {
-                this.removeCapability('my_position').catch(this.error);
-            }
-        }
-        else if (!this.hasCapability('my_position'))
-        {
-            this.addCapability('my_position').catch(this.error);
-        }
+		if (controllableName === 'ogp:curtain')
+		{
+			if (this.hasCapability('my_position'))
+			{
+				this.removeCapability('my_position').catch(this.error);
+			}
+		}
+		else if (!this.hasCapability('my_position'))
+		{
+			this.addCapability('my_position').catch(this.error);
+		}
 
-        await super.onInit();
+		await super.onInit();
 
-        this.positionStateName = '';
-        this.openClosedStateName = '';
-        this.boostSync = true;
-    }
+		this.positionStateName = '';
+		this.openClosedStateName = '';
+		this.boostSync = true;
+	}
 
-    async sync()
-    {
-        // No states are available so no need to call anything
-    }
+	async sync()
+	{
+		// No states are available so no need to call anything
+	}
 
 }
 

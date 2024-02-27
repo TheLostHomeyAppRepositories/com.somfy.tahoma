@@ -1,27 +1,27 @@
 {
-    "triggers": [
-        {
-            "id": "motion_has_changed",
-            "title": {
-                "en": "The state of the motion detector has changed",
-                "fr": "L'état du détecteur de mouvement a changé",
-                "de": "Der Zustand des Bewegungsmelders hat sich geändert",
-                "nl": "De status van de bewegingssensor is veranderd"
-            },
-            "tokens": [
-                {
-                    "name": "isMotion",
-                    "type": "boolean",
-                    "title": {
-                        "en": "is motion?",
-                        "fr": "est-ce que c'est un mouvement ?",
-                        "de": "ist es Bewegung?",
-                        "nl": "is het beweging?"
-                    },
-                    "example": "motion"
-                }
-            ],
-            "args": []
-        }
-    ]
+	"triggers": [
+		{
+			"id": "motion_has_changed",
+			"title": {
+				"en": "The state of the motion detector has changed",
+				"fr": "L'état du détecteur de mouvement a changé",
+				"de": "Der Zustand des Bewegungsmelders hat sich geändert",
+				"nl": "De status van de bewegingssensor is veranderd"
+			},
+			"tokens": [
+				{
+					"name": "isMotion",
+					"type": "boolean",
+					"title": {
+						"en": "is motion?",
+						"fr": "est-ce que c'est un mouvement ?",
+						"de": "ist es Bewegung?",
+						"nl": "is het beweging?"
+					},
+					"example": "motion"
+				}
+			],
+			"args": []
+		}
+	]
 }

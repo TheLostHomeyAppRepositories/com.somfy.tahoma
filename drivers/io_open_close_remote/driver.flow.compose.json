@@ -1,91 +1,91 @@
 {
-    "triggers": [
-        {
-            "id": "remote_state_changed",
-            "title": {
-                "en": "The remote state changed",
-                "fr": "L'état à distance a changé",
-                "de": "Der Remotezustand hat sich geändert",
-                "nl": "De externe status is veranderd"
-            },
-            "tokens": [
-                {
-                    "name": "remote_state",
-                    "type": "string",
-                    "title": {
-                        "en": "New State",
-                        "fr": "Nouvel état",
-                        "de": "Neuer Zustand",
-                        "nl": "Nieuwe status"
-                    },
-                    "example": "up"
-                }
-            ],
-            "args": []
-        },
-        {
-            "id": "remote_state_changed_to",
-            "title": {
-                "en": "The remote state changed to",
-                "fr": "L'état à distance a changé pour",
-                "de": "Der Remotezustand hat sich geändert in",
-                "nl": "De externe status is veranderd naar"
-            },
-            "titleFormatted": {
-                "en": "The remote state changed to [[expected_state]]",
-                "fr": "L'état à distance a changé pour [[expected_state]]",
-                "de": "Der Remotezustand hat sich geändert in [[expected_state]]",
-                "nl": "De externe status is veranderd naar [[expected_state]]"
-            },
-            "args": [
-                {
-                    "type": "dropdown",
-                    "name": "expected_state",
-                    "title": {
-                        "en": "Expected State",
-                        "fr": "L'état attendu",
-                        "de": "Erwarteter Zustand",
-                        "nl": "Verwachte status"
-                    },
-                    "values": [
-                        {
-                            "id": "up",
-                            "label": {
-                                "en": "Up",
-                                "fr": "Haut",
-                                "de": "Oben",
-                                "nl": "Omhoog"
-                            }
-                        },
-                        {
-                            "id": "down",
-                            "label": {
-                                "en": "Down",
-                                "fr": "Bas",
-                                "de": "Unten",
-                                "nl": "Omlaag"
-                            }
-                        },
-                        {
-                            "id": "stop",
-                            "label": {
-                                "en": "Stop",
-                                "fr": "Arrêter",
-                                "de": "Anhalten",
-                                "nl": "Hou op"
-                            }
-                        },
-                        {
-                            "id": "prog",
-                            "label": {
-                                "en": "Prog",
-                                "fr": "Prog",
-                                "de": "Prog"
-                            }
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
+	"triggers": [
+		{
+			"id": "remote_state_changed",
+			"title": {
+				"en": "The remote state changed",
+				"fr": "L'état à distance a changé",
+				"de": "Der Remotezustand hat sich geändert",
+				"nl": "De externe status is veranderd"
+			},
+			"tokens": [
+				{
+					"name": "remote_state",
+					"type": "string",
+					"title": {
+						"en": "New State",
+						"fr": "Nouvel état",
+						"de": "Neuer Zustand",
+						"nl": "Nieuwe status"
+					},
+					"example": "up"
+				}
+			],
+			"args": []
+		},
+		{
+			"id": "remote_state_changed_to",
+			"title": {
+				"en": "The remote state changed to",
+				"fr": "L'état à distance a changé pour",
+				"de": "Der Remotezustand hat sich geändert in",
+				"nl": "De externe status is veranderd naar"
+			},
+			"titleFormatted": {
+				"en": "The remote state changed to [[expected_state]]",
+				"fr": "L'état à distance a changé pour [[expected_state]]",
+				"de": "Der Remotezustand hat sich geändert in [[expected_state]]",
+				"nl": "De externe status is veranderd naar [[expected_state]]"
+			},
+			"args": [
+				{
+					"type": "dropdown",
+					"name": "expected_state",
+					"title": {
+						"en": "Expected State",
+						"fr": "L'état attendu",
+						"de": "Erwarteter Zustand",
+						"nl": "Verwachte status"
+					},
+					"values": [
+						{
+							"id": "up",
+							"label": {
+								"en": "Up",
+								"fr": "Haut",
+								"de": "Oben",
+								"nl": "Omhoog"
+							}
+						},
+						{
+							"id": "down",
+							"label": {
+								"en": "Down",
+								"fr": "Bas",
+								"de": "Unten",
+								"nl": "Omlaag"
+							}
+						},
+						{
+							"id": "stop",
+							"label": {
+								"en": "Stop",
+								"fr": "Arrêter",
+								"de": "Anhalten",
+								"nl": "Hou op"
+							}
+						},
+						{
+							"id": "prog",
+							"label": {
+								"en": "Prog",
+								"fr": "Prog",
+								"de": "Prog"
+							}
+						}
+					]
+				}
+			]
+		}
+	]
 }

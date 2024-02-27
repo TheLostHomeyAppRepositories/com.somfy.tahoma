@@ -12,37 +12,37 @@ const LightControllerDevice = require('../LightControllerDevice');
 class DimmableLightControllerDevice extends LightControllerDevice
 {
 
-    async onInit()
-    {
-        const dd = this.getData();
-        let controllableName = '';
-        if (dd.controllableName)
-        {
-            controllableName = dd.controllableName.toString().toLowerCase();
-        }
+	async onInit()
+	{
+		const dd = this.getData();
+		let controllableName = '';
+		if (dd.controllableName)
+		{
+			controllableName = dd.controllableName.toString().toLowerCase();
+		}
 
-        if (controllableName === 'ogp:light')
-        {
-            if (this.hasCapability('onoff'))
-            {
-                this.removeCapability('onoff');
-            }
-        }
+		if (controllableName === 'ogp:light')
+		{
+			if (this.hasCapability('onoff'))
+			{
+				this.removeCapability('onoff');
+			}
+		}
 
-        if (controllableName !== 'io:dimmablelightmicromodulesomfyiocomponent')
-        {
-            if (this.hasCapability('on_with_timer'))
-            {
-                this.removeCapability('on_with_timer');
-            }
-        }
-        else
-        {
-            this.registerCapabilityListener('on_with_timer', this.sendOnWithTimer.bind(this));
-            this.setCapabilityValue('on_with_timer', 0).catch(this.error);
-        }
-        await super.onInit();
-    }
+		if (controllableName !== 'io:dimmablelightmicromodulesomfyiocomponent')
+		{
+			if (this.hasCapability('on_with_timer'))
+			{
+				this.removeCapability('on_with_timer');
+			}
+		}
+		else
+		{
+			this.registerCapabilityListener('on_with_timer', this.sendOnWithTimer.bind(this));
+			this.setCapabilityValue('on_with_timer', 0).catch(this.error);
+		}
+		await super.onInit();
+	}
 
  }
 

@@ -1,16 +1,16 @@
 {
-    "type": "number",
-    "getable": true,
-    "setable": false,
-    "uiComponent": "sensor",
-    "title": {
-        "en": "MY Position",
-        "nl": "MY Positie",
-        "fr": "Ma Position",
-        "de": "Meine Position"
-    },
-    "units": {
-        "en": "%"
-    },
-    "icon": "/assets/my.svg"
+	"type": "number",
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"title": {
+		"en": "MY Position",
+		"nl": "MY Positie",
+		"fr": "Ma Position",
+		"de": "Meine Position"
+	},
+	"units": {
+		"en": "%"
+	},
+	"icon": "/assets/my.svg"
 }

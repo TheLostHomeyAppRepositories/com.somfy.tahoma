@@ -1,22 +1,22 @@
 {
-    "name": {
-        "en": "Dimmable light",
-        "nl": "Dimbaar licht",
-        "fr": "Lumière dimmable",
-        "de": "Dimmbares Licht"
-    },
-    "class": "light",
-    "capabilities": [
-        "onoff",
-        "dim",
-        "on_with_timer"
-    ],
-    "capabilitiesOptions": {
-        "onoff": {
-            "setOnDim": false
-        }
-    },
-    "$extends": [
-        "cloudDriver"
-    ]
+	"name": {
+		"en": "Dimmable light",
+		"nl": "Dimbaar licht",
+		"fr": "Lumière dimmable",
+		"de": "Dimmbares Licht"
+	},
+	"class": "light",
+	"capabilities": [
+		"onoff",
+		"dim",
+		"on_with_timer"
+	],
+	"capabilitiesOptions": {
+		"onoff": {
+			"setOnDim": false
+		}
+	},
+	"$extends": [
+		"cloudDriver"
+	]
 }

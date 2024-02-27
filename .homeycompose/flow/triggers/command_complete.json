@@ -1,58 +1,58 @@
 {
-    "id": "command_complete",
-    "deprecated": true,
-    "title": {
-        "en": "A command completed",
-        "nl": "Een opdracht voltooid",
-        "fr": "Une commande terminée",
-        "de": "Eine Befehlsausführung wurde abgeschlossen"
-    },
-    "titleFormatted": {
-        "en": "A command completed on device [[device]]",
-        "nl": "Een opdracht voltooid op apparaat [[device]]",
-        "fr": "Une commande a été exécutée sur l'appareil [[device]]",
-        "de": "Eine Befehlsausführung wurde auf [[device]] abgeschlossen"
-    },
-    "platforms": [
-        "local",
-        "cloud"
-    ],
-    "connectivity": [
-        "cloud"
-    ],
-    "tokens": [
-        {
-            "name": "state",
-            "type": "boolean",
-            "title": {
-                "en": "Successful",
-                "nl": "Succesvol",
-                "fr": "Réussi",
-                "de": "Erfolgreich"
-            },
-            "example": "true"
-        },
-        {
-            "name": "name",
-            "type": "string",
-            "title": {
-                "en": "Command Name",
-                "nl": "Opdrachtnaam",
-                "fr": "Nom de la commande",
-                "de": "Befehlsname"
-            }
-        }
-    ],
-    "args": [
-        {
-            "name": "device",
-            "type": "device",
-            "title": {
-                "en": "Device",
-                "nl": "Apparaat",
-                "fr": "Appareil",
-                "de": "Gerät"
-            }
-        }
-    ]
+	"id": "command_complete",
+	"deprecated": true,
+	"title": {
+		"en": "A command completed",
+		"nl": "Een opdracht voltooid",
+		"fr": "Une commande terminée",
+		"de": "Eine Befehlsausführung wurde abgeschlossen"
+	},
+	"titleFormatted": {
+		"en": "A command completed on device [[device]]",
+		"nl": "Een opdracht voltooid op apparaat [[device]]",
+		"fr": "Une commande a été exécutée sur l'appareil [[device]]",
+		"de": "Eine Befehlsausführung wurde auf [[device]] abgeschlossen"
+	},
+	"platforms": [
+		"local",
+		"cloud"
+	],
+	"connectivity": [
+		"cloud"
+	],
+	"tokens": [
+		{
+			"name": "state",
+			"type": "boolean",
+			"title": {
+				"en": "Successful",
+				"nl": "Succesvol",
+				"fr": "Réussi",
+				"de": "Erfolgreich"
+			},
+			"example": "true"
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"title": {
+				"en": "Command Name",
+				"nl": "Opdrachtnaam",
+				"fr": "Nom de la commande",
+				"de": "Befehlsname"
+			}
+		}
+	],
+	"args": [
+		{
+			"name": "device",
+			"type": "device",
+			"title": {
+				"en": "Device",
+				"nl": "Apparaat",
+				"fr": "Appareil",
+				"de": "Gerät"
+			}
+		}
+	]
 }

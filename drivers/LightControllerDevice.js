@@ -12,415 +12,415 @@ const Device = require('./Device');
 class LightControllerDevice extends Device
 {
 
-    async onInit()
-    {
-        this.commandExecuting = '';
+	async onInit()
+	{
+		this.commandExecuting = '';
 
-        this.lightState = {
-            off: false,
-            on: true,
-        };
+		this.lightState = {
+			off: false,
+			on: true,
+		};
 
-        this.registerCapabilityListener('onoff', this.onCapabilityOnOff.bind(this));
-        this.registerCapabilityListener('dim', this.onCapabilityDim.bind(this));
-        this.registerCapabilityListener('light_temperature', this.onCapabilityLight_temperature.bind(this));
+		this.registerCapabilityListener('onoff', this.onCapabilityOnOff.bind(this));
+		this.registerCapabilityListener('dim', this.onCapabilityDim.bind(this));
+		this.registerCapabilityListener('light_temperature', this.onCapabilityLight_temperature.bind(this));
 
-        await super.onInit();
+		await super.onInit();
 
-        this.boostSync = true;
-    }
+		this.boostSync = true;
+	}
 
-    onAdded()
-    {
-        this.log('device added');
-        this.getStates();
-    }
+	onAdded()
+	{
+		this.log('device added');
+		this.getStates();
+	}
 
-    async onCapabilityOnOff(value, opts)
-    {
-        if (!opts || !opts.fromCloudSync)
-        {
-            if (this.commandExecuting === 'onOff')
-            {
-                // This command is still processing
-                return;
-            }
+	async onCapabilityOnOff(value, opts)
+	{
+		if (!opts || !opts.fromCloudSync)
+		{
+			if (this.commandExecuting === 'onOff')
+			{
+				// This command is still processing
+				return;
+			}
 
-            const deviceData = this.getData();
-            if (this.executionId !== null)
-            {
-                // Wait for previous command to complete
-                let retries = 20;
-                while ((this.executionId !== null) && (retries-- > 0))
-                {
-                    await this.homey.app.asyncDelay(500);
-                }
-                this.executionCmd = '';
-                this.executionId = null;
-            }
+			const deviceData = this.getData();
+			if (this.executionId !== null)
+			{
+				// Wait for previous command to complete
+				let retries = 20;
+				while ((this.executionId !== null) && (retries-- > 0))
+				{
+					await this.homey.app.asyncDelay(500);
+				}
+				this.executionCmd = '';
+				this.executionId = null;
+			}
 
-            let action;
-            if (value === false)
-            {
-                action = {
-                    name: 'off',
-                    parameters: [],
-                };
-            }
-            else
-            {
-                action = {
-                    name: 'on',
-                    parameters: [],
-                };
-            }
-            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            this.commandExecuting = 'onOff';
-            this.executionCmd = action.name;
-            this.executionId = { id: result.execId, local: result.local };
-        }
-        else
-        {
-            this.setCapabilityValue('onoff', (value === true)).catch(this.error);
-        }
-    }
+			let action;
+			if (value === false)
+			{
+				action = {
+					name: 'off',
+					parameters: [],
+				};
+			}
+			else
+			{
+				action = {
+					name: 'on',
+					parameters: [],
+				};
+			}
+			const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+			this.commandExecuting = 'onOff';
+			this.executionCmd = action.name;
+			this.executionId = { id: result.execId, local: result.local };
+		}
+		else
+		{
+			this.setCapabilityValue('onoff', (value === true)).catch(this.error);
+		}
+	}
 
-    async onCapabilityDim(value, opts)
-    {
-        if (!opts || !opts.fromCloudSync)
-        {
-            if (this.commandExecuting === 'dim')
-            {
-                // This command is still processing
-                return;
-            }
+	async onCapabilityDim(value, opts)
+	{
+		if (!opts || !opts.fromCloudSync)
+		{
+			if (this.commandExecuting === 'dim')
+			{
+				// This command is still processing
+				return;
+			}
 
-            const deviceData = this.getData();
-            if (this.executionId !== null)
-            {
-                // Wait for previous command to complete
-                let retries = 30;
-                while ((this.executionId !== null) && (retries-- > 0))
-                {
-                    await this.homey.app.asyncDelay(500);
-                }
+			const deviceData = this.getData();
+			if (this.executionId !== null)
+			{
+				// Wait for previous command to complete
+				let retries = 30;
+				while ((this.executionId !== null) && (retries-- > 0))
+				{
+					await this.homey.app.asyncDelay(500);
+				}
 
-                this.executionCmd = '';
-                this.executionId = null;
-            }
+				this.executionCmd = '';
+				this.executionId = null;
+			}
 
-            const action = {
-                name: 'setIntensity',
-                parameters: [Math.round(value * 100)],
-            };
-            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            this.commandExecuting = 'dim';
-            this.executionCmd = action.name;
-            this.executionId = { id: result.execId, local: result.local };
-        }
-        else
-        {
-            this.setCapabilityValue('dim', value).catch(this.error);
-        }
-    }
+			const action = {
+				name: 'setIntensity',
+				parameters: [Math.round(value * 100)],
+			};
+			const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+			this.commandExecuting = 'dim';
+			this.executionCmd = action.name;
+			this.executionId = { id: result.execId, local: result.local };
+		}
+		else
+		{
+			this.setCapabilityValue('dim', value).catch(this.error);
+		}
+	}
 
-    async onCapabilityLight_temperature(value, opts)
-    {
-        if (!opts || !opts.fromCloudSync)
-        {
-            if (this.commandExecuting === 'light_temperature')
-            {
-                // This command is still processing
-                return;
-            }
+	async onCapabilityLight_temperature(value, opts)
+	{
+		if (!opts || !opts.fromCloudSync)
+		{
+			if (this.commandExecuting === 'light_temperature')
+			{
+				// This command is still processing
+				return;
+			}
 
-            const deviceData = this.getData();
-            if (this.executionId !== null)
-            {
-                // Wait for previous command to complete
-                let retries = 20;
-                while ((this.executionId !== null) && (retries-- > 0))
-                {
-                    await this.homey.app.asyncDelay();
-                }
+			const deviceData = this.getData();
+			if (this.executionId !== null)
+			{
+				// Wait for previous command to complete
+				let retries = 20;
+				while ((this.executionId !== null) && (retries-- > 0))
+				{
+					await this.homey.app.asyncDelay();
+				}
 
-                this.executionCmd = '';
-                this.executionId = null;
-            }
+				this.executionCmd = '';
+				this.executionId = null;
+			}
 
-            const minTemperature = this.getSetting('minTemperature');
-            const maxTemperature = this.getSetting('maxTemperature');
-            const action = {
-                name: 'setColorTemperature',
-                parameters: [Math.round(value * (maxTemperature - minTemperature) + minTemperature)],
-            };
-            const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-            this.commandExecuting = 'light_temperature';
-            this.executionCmd = action.name;
-            this.executionId = { id: result.execId, local: result.local };
-        }
-        else
-        {
-            this.setCapabilityValue('light_temperature', value).catch(this.error);
-        }
-    }
+			const minTemperature = this.getSetting('minTemperature');
+			const maxTemperature = this.getSetting('maxTemperature');
+			const action = {
+				name: 'setColorTemperature',
+				parameters: [Math.round(value * (maxTemperature - minTemperature) + minTemperature)],
+			};
+			const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+			this.commandExecuting = 'light_temperature';
+			this.executionCmd = action.name;
+			this.executionId = { id: result.execId, local: result.local };
+		}
+		else
+		{
+			this.setCapabilityValue('light_temperature', value).catch(this.error);
+		}
+	}
 
-    /**
-     * Gets the data from the TaHoma cloud
-     */
-    async getStates()
-    {
-        try
-        {
-            const states = await super.getStates();
-            if (states)
-            {
-                // On / Off
-                const OnOffState = states.find((state) => (state && (state.name === 'core:OnOffState')));
-                if (OnOffState)
-                {
-                    this.homey.app.logStates(`${this.getName()}: core:OnOffState = ${OnOffState.value}`);
-                    this.triggerCapabilityListener('onoff', (OnOffState.value === 'on'),
-                    {
-                        fromCloudSync: true,
-                    }).catch(this.error);
-                }
+	/**
+	 * Gets the data from the TaHoma cloud
+	 */
+	async getStates()
+	{
+		try
+		{
+			const states = await super.getStates();
+			if (states)
+			{
+				// On / Off
+				const OnOffState = states.find((state) => (state && (state.name === 'core:OnOffState')));
+				if (OnOffState)
+				{
+					this.homey.app.logStates(`${this.getName()}: core:OnOffState = ${OnOffState.value}`);
+					this.triggerCapabilityListener('onoff', (OnOffState.value === 'on'),
+					{
+						fromCloudSync: true,
+					}).catch(this.error);
+				}
 
-                // Dim level
-                const dimState = states.find((state) => (state && (state.name === 'core:LightIntensityState')));
-                if (dimState)
-                {
-                    this.homey.app.logStates(`${this.getName()}: core:dimState = ${dimState.value}`);
-                    this.triggerCapabilityListener('dim', (dimState.value / 100),
-                    {
-                        fromCloudSync: true,
-                    }).catch(this.error);
-                }
+				// Dim level
+				const dimState = states.find((state) => (state && (state.name === 'core:LightIntensityState')));
+				if (dimState)
+				{
+					this.homey.app.logStates(`${this.getName()}: core:dimState = ${dimState.value}`);
+					this.triggerCapabilityListener('dim', (dimState.value / 100),
+					{
+						fromCloudSync: true,
+					}).catch(this.error);
+				}
 
-                // Color level
-                const colorState = states.find((state) => (state && (state.name === 'core:ColorTemperatureState')));
-                if (colorState)
-                {
-                    const minTemperature = this.getSetting('minTemperature');
-                    const maxTemperature = this.getSetting('maxTemperature');
+				// Color level
+				const colorState = states.find((state) => (state && (state.name === 'core:ColorTemperatureState')));
+				if (colorState)
+				{
+					const minTemperature = this.getSetting('minTemperature');
+					const maxTemperature = this.getSetting('maxTemperature');
 
-                    this.homey.app.logStates(`${this.getName()}: core:ColorTemperatureState = ${colorState.value}`);
-                    this.triggerCapabilityListener('light_temperature', ((colorState.value - minTemperature) / (maxTemperature - minTemperature)),
-                    {
-                        fromCloudSync: true,
-                    }).catch(this.error);
-                }
-            }
+					this.homey.app.logStates(`${this.getName()}: core:ColorTemperatureState = ${colorState.value}`);
+					this.triggerCapabilityListener('light_temperature', ((colorState.value - minTemperature) / (maxTemperature - minTemperature)),
+					{
+						fromCloudSync: true,
+					}).catch(this.error);
+				}
+			}
 
-            return states;
-        }
-        catch (error)
-        {
-            this.homey.app.logInformation(this.getName(),
-            {
-                message: error.message,
-                stack: error.stack,
-            });
-        }
+			return states;
+		}
+		catch (error)
+		{
+			this.homey.app.logInformation(this.getName(),
+			{
+				message: error.message,
+				stack: error.stack,
+			});
+		}
 
-        return null;
-    }
+		return null;
+	}
 
-    // look for updates in the events array
-    async syncEvents(events, local)
-    {
-        if (events === null)
-        {
-            return this.getStates();
-        }
+	// look for updates in the events array
+	async syncEvents(events, local)
+	{
+		if (events === null)
+		{
+			return this.getStates();
+		}
 
-        const myURL = this.getDeviceUrl();
-        if (!local && this.homey.app.isLocalDevice(myURL))
-        {
-            // This device is handled locally so ignore cloud updates
-            return myURL;
-        }
+		const myURL = this.getDeviceUrl();
+		if (!local && this.homey.app.isLocalDevice(myURL))
+		{
+			// This device is handled locally so ignore cloud updates
+			return myURL;
+		}
 
-        // Process events sequentially so they are in the correct order
-        for (let i = 0; i < events.length; i++)
-        {
-            const element = events[i];
-            if (element.name === 'DeviceStateChangedEvent')
-            {
-                if ((element.deviceURL === myURL) && element.deviceStates)
-                {
-                    if (this.homey.app.infoLogEnabled)
-                    {
-                        this.homey.app.logInformation(this.getName(),
-                        {
-                            message: 'Processing device state change event',
-                            stack: element,
-                        });
-                    }
-                    // Got what we need to update the device so lets find it
-                    for (let x = 0; x < element.deviceStates.length; x++)
-                    {
-                        const deviceState = element.deviceStates[x];
-                        if (this.checkForDuplicatesEvents(events, i, x + 1, myURL, deviceState.name))
-                        {
-                            break;
-                        }
-                        await this.processEventState(deviceState);
-                    }
-                }
-            }
-            else if (element.name === 'ExecutionRegisteredEvent')
-            {
-                for (let x = 0; x < element.actions.length; x++)
-                {
-                    if (myURL === element.actions[x].deviceURL)
-                    {
-                        this.executionId = { id: element.execId, local };
-                        if (element.actions[x].commands)
-                        {
-                            this.executionCmd = element.actions[x].commands[0].name;
-                        }
-                        else
-                        {
-                            this.executionCmd = element.actions[x].command;
-                        }
-                        if (!local && this.boostSync)
-                        {
-                            await this.homey.app.boostSync();
-                            this.commandExecuting = '';
-                            this.executionId = null;
-                            this.executionCmd = '';
-                        }
-                    }
-                }
-            }
-            else if (element.name === 'ExecutionStateChangedEvent')
-            {
-                if ((element.newState === 'COMPLETED') || (element.newState === 'FAILED'))
-                {
-                    if (this.executionId && (this.executionId.id === element.execId))
-                    {
-                        if (!local && this.boostSync)
-                        {
-                            await this.homey.app.unBoostSync();
-                        }
+		// Process events sequentially so they are in the correct order
+		for (let i = 0; i < events.length; i++)
+		{
+			const element = events[i];
+			if (element.name === 'DeviceStateChangedEvent')
+			{
+				if ((element.deviceURL === myURL) && element.deviceStates)
+				{
+					if (this.homey.app.infoLogEnabled)
+					{
+						this.homey.app.logInformation(this.getName(),
+						{
+							message: 'Processing device state change event',
+							stack: element,
+						});
+					}
+					// Got what we need to update the device so lets find it
+					for (let x = 0; x < element.deviceStates.length; x++)
+					{
+						const deviceState = element.deviceStates[x];
+						if (this.checkForDuplicatesEvents(events, i, x + 1, myURL, deviceState.name))
+						{
+							break;
+						}
+						await this.processEventState(deviceState);
+					}
+				}
+			}
+			else if (element.name === 'ExecutionRegisteredEvent')
+			{
+				for (let x = 0; x < element.actions.length; x++)
+				{
+					if (myURL === element.actions[x].deviceURL)
+					{
+						this.executionId = { id: element.execId, local };
+						if (element.actions[x].commands)
+						{
+							this.executionCmd = element.actions[x].commands[0].name;
+						}
+						else
+						{
+							this.executionCmd = element.actions[x].command;
+						}
+						if (!local && this.boostSync)
+						{
+							await this.homey.app.boostSync();
+							this.commandExecuting = '';
+							this.executionId = null;
+							this.executionCmd = '';
+						}
+					}
+				}
+			}
+			else if (element.name === 'ExecutionStateChangedEvent')
+			{
+				if ((element.newState === 'COMPLETED') || (element.newState === 'FAILED'))
+				{
+					if (this.executionId && (this.executionId.id === element.execId))
+					{
+						if (!local && this.boostSync)
+						{
+							await this.homey.app.unBoostSync();
+						}
 
-                        this.homey.app.triggerCommandComplete(this, this.executionCmd, (element.newState === 'COMPLETED'));
-                        this.commandExecuting = '';
-                        this.executionId = null;
-                        this.executionCmd = '';
-                    }
-                }
-            }
-        }
+						this.homey.app.triggerCommandComplete(this, this.executionCmd, (element.newState === 'COMPLETED'));
+						this.commandExecuting = '';
+						this.executionId = null;
+						this.executionCmd = '';
+					}
+				}
+			}
+		}
 
-        return myURL;
-    }
+		return myURL;
+	}
 
-    // Process the device sate
-    async processEventState(deviceState)
-    {
-        if (deviceState.name === 'core:OnOffState')
-        {
-            this.homey.app.logStates(`${this.getName()}: core:OnOffState = ${deviceState.value}`);
-            const oldState = this.getState().onoff;
-            const newSate = (deviceState.value === 'on');
-            if (oldState !== newSate)
-            {
-                this.triggerCapabilityListener('onoff', newSate,
-                {
-                    fromCloudSync: true,
-                }).catch(this.error);
-            }
-            return true;
-        }
+	// Process the device sate
+	async processEventState(deviceState)
+	{
+		if (deviceState.name === 'core:OnOffState')
+		{
+			this.homey.app.logStates(`${this.getName()}: core:OnOffState = ${deviceState.value}`);
+			const oldState = this.getState().onoff;
+			const newSate = (deviceState.value === 'on');
+			if (oldState !== newSate)
+			{
+				this.triggerCapabilityListener('onoff', newSate,
+				{
+					fromCloudSync: true,
+				}).catch(this.error);
+			}
+			return true;
+		}
 
-        if (deviceState.name === 'core:LightIntensityState')
-        {
-            this.homey.app.logStates(`${this.getName()}: core:LightIntensityState = ${deviceState.value}`);
-            const oldState = this.getState().dim;
-            const newSate = parseInt(deviceState.value, 10) / 100;
-            if (oldState !== newSate)
-            {
-                this.triggerCapabilityListener('dim', newSate,
-                {
-                    fromCloudSync: true,
-                }).catch(this.error);
-            }
-            return true;
-        }
+		if (deviceState.name === 'core:LightIntensityState')
+		{
+			this.homey.app.logStates(`${this.getName()}: core:LightIntensityState = ${deviceState.value}`);
+			const oldState = this.getState().dim;
+			const newSate = parseInt(deviceState.value, 10) / 100;
+			if (oldState !== newSate)
+			{
+				this.triggerCapabilityListener('dim', newSate,
+				{
+					fromCloudSync: true,
+				}).catch(this.error);
+			}
+			return true;
+		}
 
-        if (deviceState.name === 'core:ColorTemperatureState')
-        {
-            const minTemperature = this.getSetting('minTemperature');
-            const maxTemperature = this.getSetting('maxTemperature');
+		if (deviceState.name === 'core:ColorTemperatureState')
+		{
+			const minTemperature = this.getSetting('minTemperature');
+			const maxTemperature = this.getSetting('maxTemperature');
 
-            this.homey.app.logStates(`${this.getName()}: core:ColorTemperatureState = ${deviceState.value}`);
-            const oldState = this.getState().light_temperature;
-            const newSate = ((parseInt(deviceState.value, 10) - minTemperature) / (maxTemperature - minTemperature));
-            if (oldState !== newSate)
-            {
-                this.triggerCapabilityListener('light_temperature', newSate,
-                {
-                    fromCloudSync: true,
-                }).catch(this.error);
-            }
-            return true;
-        }
+			this.homey.app.logStates(`${this.getName()}: core:ColorTemperatureState = ${deviceState.value}`);
+			const oldState = this.getState().light_temperature;
+			const newSate = ((parseInt(deviceState.value, 10) - minTemperature) / (maxTemperature - minTemperature));
+			if (oldState !== newSate)
+			{
+				this.triggerCapabilityListener('light_temperature', newSate,
+				{
+					fromCloudSync: true,
+				}).catch(this.error);
+			}
+			return true;
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    async sendOnWithTimer(value)
-    {
-        if (value === 0)
-        {
-            this.onCapabilityOff(false);
-            return;
-        }
+	async sendOnWithTimer(value)
+	{
+		if (value === 0)
+		{
+			this.onCapabilityOff(false);
+			return;
+		}
 
-        if (this.onTime)
-        {
-            clearTimeout(this.onTime);
-        }
+		if (this.onTime)
+		{
+			clearTimeout(this.onTime);
+		}
 
-        const deviceData = this.getData();
-        if (this.executionId !== null)
-        {
-            // Wait for previous command to complete
-            let retries = 20;
-            while ((this.executionId !== null) && (retries-- > 0))
-            {
-                await this.homey.app.asyncDelay(500);
-            }
-        }
+		const deviceData = this.getData();
+		if (this.executionId !== null)
+		{
+			// Wait for previous command to complete
+			let retries = 20;
+			while ((this.executionId !== null) && (retries-- > 0))
+			{
+				await this.homey.app.asyncDelay(500);
+			}
+		}
 
-        const action = {
-            name: 'onWithTimer',
-            parameters: [value],
-        };
+		const action = {
+			name: 'onWithTimer',
+			parameters: [value],
+		};
 
-        const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-        this.commandExecuting = action.name;
-        this.executionCmd = action.name;
-        this.executionId = { id: result.execId, local: result.local };
+		const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+		this.commandExecuting = action.name;
+		this.executionCmd = action.name;
+		this.executionId = { id: result.execId, local: result.local };
 
-        this.doOnTimer();
-    }
+		this.doOnTimer();
+	}
 
-    doOnTimer()
-    {
-        this.onTime = this.homey.setTimeout(() =>
-        {
-            const timeRemaining = this.getCapabilityValue('on_with_timer');
+	doOnTimer()
+	{
+		this.onTime = this.homey.setTimeout(() =>
+		{
+			const timeRemaining = this.getCapabilityValue('on_with_timer');
 
-            if (timeRemaining > 0)
-            {
-                this.setCapabilityValue('on_with_timer', timeRemaining - 1).catch(this.error);
-                this.doOnTimer();
-            }
-        }, 60000);
-    }
+			if (timeRemaining > 0)
+			{
+				this.setCapabilityValue('on_with_timer', timeRemaining - 1).catch(this.error);
+				this.doOnTimer();
+			}
+		}, 60000);
+	}
 
 }
 

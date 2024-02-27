@@ -1,26 +1,26 @@
 {
-    "type": "boolean",
-    "getable": true,
-    "setable": true,
-    "uiComponent": "sensor",
-    "title": {
-        "en": "Valve Open",
-        "nl": "Klep open",
-        "fr": "Vanne ouverte",
-        "de": "Ventil geöffnet"
-    },
-    "icon": "/assets/valve.svg",
-    "insights": true,
-    "insightsTitleTrue": {
-        "en": "Valve Opened",
-        "nl": "Klep geopend",
-        "fr": "Vanne ouverte",
-        "de": "Ventil geöffnet"
-    },
-    "insightsTitleFalse": {
-        "en": "Valve Closed",
-        "nl": "Klep gesloten",
-        "fr": "Vanne fermée",
-        "de": "Ventil geschlossen"
-    }
+	"type": "boolean",
+	"getable": true,
+	"setable": true,
+	"uiComponent": "sensor",
+	"title": {
+		"en": "Valve Open",
+		"nl": "Klep open",
+		"fr": "Vanne ouverte",
+		"de": "Ventil geöffnet"
+	},
+	"icon": "/assets/valve.svg",
+	"insights": true,
+	"insightsTitleTrue": {
+		"en": "Valve Opened",
+		"nl": "Klep geopend",
+		"fr": "Vanne ouverte",
+		"de": "Ventil geöffnet"
+	},
+	"insightsTitleFalse": {
+		"en": "Valve Closed",
+		"nl": "Klep gesloten",
+		"fr": "Vanne fermée",
+		"de": "Ventil geschlossen"
+	}
 }

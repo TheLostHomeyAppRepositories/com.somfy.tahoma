@@ -11,10 +11,10 @@ const Driver = require('../Driver');
 class OpenCloseDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['rts:GarageDoor4TRTSComponent', 'rts:SlidingGateOpener4TRTSComponent', 'io:CyclicGarageOpenerIOComponent', 'io:CyclicSlidingGateOpenerIOComponent'];
-    }
+	async onInit()
+	{
+		this.deviceType = ['rts:GarageDoor4TRTSComponent', 'rts:SlidingGateOpener4TRTSComponent', 'io:CyclicGarageOpenerIOComponent', 'io:CyclicSlidingGateOpenerIOComponent'];
+	}
 
 }
 

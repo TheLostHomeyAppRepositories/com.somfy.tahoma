@@ -1,13 +1,13 @@
 {
   "name": {
-    "en": "Light / Heater with Timer (RTS)",
-    "nl": "Licht / Verwarming met timer (RTS)"
+	"en": "Light / Heater with Timer (RTS)",
+	"nl": "Licht / Verwarming met timer (RTS)"
   },
   "class": "button",
   "capabilities": [
-    "on_button",
-    "off_button",
-    "on_with_timer"
+	"on_button",
+	"off_button",
+	"on_with_timer"
   ],
   "$extends": ["cloudDriver"]
 }

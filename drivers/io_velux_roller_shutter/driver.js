@@ -11,9 +11,9 @@ const ioWindowCoveringsDriver = require('../ioWindowCoveringsDriver');
 class VeluxRollerShutterDriver extends ioWindowCoveringsDriver {
 
   async onInit() {
-    this.deviceType = ['io:RollerShutterVeluxIOComponent', 'ogp:Shutter'];
+	this.deviceType = ['io:RollerShutterVeluxIOComponent', 'ogp:Shutter'];
 
-    await super.onInit();
+	await super.onInit();
   }
 
 }

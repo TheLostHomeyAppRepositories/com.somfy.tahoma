@@ -1,505 +1,505 @@
 {
-    "actions": [
-        {
-            "id": "heat_mode_set",
-            "title": {
-                "en": "Set the Heat Mode",
-                "fr": "Définir le mode de chauffage",
-                "de": "Heizmodus einstellen",
-                "nl": "Verwarmingsmodus instellen"
-            },
-            "titleFormatted": {
-                "en": "Set the Heat Mode to [[state]]",
-                "fr": "Définir le mode de chauffage sur [[state]]",
-                "de": "Heizmodus auf [[state]] einstellen",
-                "nl": "Verwarmingsmodus instellen op [[state]]"
-            },
-            "args": [
-                {
-                    "name": "state",
-                    "type": "dropdown",
-                    "title": {
-                        "en": "Heat Mode",
-                        "fr": "Mode de chauffage",
-                        "de": "Heizmodus",
-                        "nl": "Verwarmingsmodus"
-                    },
-                    "values": [
-                        {
-                            "id": "absence",
-                            "label": {
-                                "en": "Absent",
-                                "fr": "Absent",
-                                "de": "Abwesend",
-                                "nl": "Afwezig"
-                            }
-                        },
-                        {
-                            "id": "auto",
-                            "label": {
-                                "en": "Automatic",
-                                "fr": "Automatique",
-                                "de": "Automatisch",
-                                "nl": "Automatisch"
-                            }
-                        },
-                        {
-                            "id": "comfort",
-                            "label": {
-                                "en": "Comfort",
-                                "fr": "Confort",
-                                "de": "Komfort",
-                                "nl": "Comfort"
-                            }
-                        },
-                        {
-                            "id": "eco",
-                            "label": {
-                                "en": "Eco",
-                                "fr": "Économie",
-                                "de": "Eco",
-                                "nl": "Eco"
-                            }
-                        },
-                        {
-                            "id": "externalScheduling",
-                            "label": {
-                                "en": "External Scheduling",
-                                "fr": "Planification externe",
-                                "de": "Externe Planung",
-                                "nl": "Externe planning"
-                            }
-                        },
-                        {
-                            "id": "internalScheduling",
-                            "label": {
-                                "en": "Internal Scheduling",
-                                "fr": "Planification interne",
-                                "de": "Interne Planung",
-                                "nl": "Interne planning"
-                            }
-                        },
-                        {
-                            "id": "manu",
-                            "label": {
-                                "en": "Manual",
-                                "fr": "Manuel",
-                                "de": "Manuell",
-                                "nl": "Handmatig"
-                            }
-                        },
-                        {
-                            "id": "stop",
-                            "label": {
-                                "en": "Stop",
-                                "fr": "Arrêter",
-                                "de": "Stopp",
-                                "nl": "Stop"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "cool_mode_set",
-            "title": {
-                "en": "Set the Cooling Mode",
-                "fr": "Définir le mode de refroidissement",
-                "de": "Kühlmodus einstellen",
-                "nl": "Koelmodus instellen"
-            },
-            "titleFormatted": {
-                "en": "Set the Cooling Mode to [[state]]",
-                "fr": "Définir le mode de refroidissement sur [[state]]",
-                "de": "Kühlmodus auf [[state]] einstellen",
-                "nl": "Koelmodus instellen op [[state]]"
-            },
-            "args": [
-                {
-                    "name": "state",
-                    "type": "dropdown",
-                    "title": {
-                        "en": "Cooling Mode",
-                        "fr": "Mode de refroidissement",
-                        "de": "Kühlmodus",
-                        "nl": "Koelmodus"
-                    },
-                    "values": [
-                        {
-                            "id": "absence",
-                            "label": {
-                                "en": "Absent",
-                                "fr": "Absent",
-                                "de": "Abwesend",
-                                "nl": "Afwezig"
-                            }
-                        },
-                        {
-                            "id": "auto",
-                            "label": {
-                                "en": "Automatic",
-                                "fr": "Automatique",
-                                "de": "Automatisch",
-                                "nl": "Automatisch"
-                            }
-                        },
-                        {
-                            "id": "comfort",
-                            "label": {
-                                "en": "Comfort",
-                                "fr": "Confort",
-                                "de": "Komfort",
-                                "nl": "Comfort"
-                            }
-                        },
-                        {
-                            "id": "eco",
-                            "label": {
-                                "en": "Eco",
-                                "fr": "Économie",
-                                "de": "Eco",
-                                "nl": "Eco"
-                            }
-                        },
-                        {
-                            "id": "externalScheduling",
-                            "label": {
-                                "en": "External Scheduling",
-                                "fr": "Planification externe",
-                                "de": "Externe Planung",
-                                "nl": "Externe planning"
-                            }
-                        },
-                        {
-                            "id": "internalScheduling",
-                            "label": {
-                                "en": "Internal Scheduling",
-                                "fr": "Planification interne",
-                                "de": "Interne Planung",
-                                "nl": "Interne planning"
-                            }
-                        },
-                        {
-                            "id": "manu",
-                            "label": {
-                                "en": "Manual",
-                                "fr": "Manuel",
-                                "de": "Manuell",
-                                "nl": "Handmatig"
-                            }
-                        },
-                        {
-                            "id": "stop",
-                            "label": {
-                                "en": "Stop",
-                                "fr": "Arrêter",
-                                "de": "Stopp",
-                                "nl": "Stop"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "cooling_on_off",
-            "title": {
-                "en": "Switch Cooling Mode On / Off",
-                "fr": "Activer / Désactiver le mode de refroidissement",
-                "de": "Kühlmodus ein- / ausschalten",
-                "nl": "Koelmodus in-/uitschakelen"
-            },
-            "titleFormatted": {
-                "en": "Switch Cooling Mode [[state]]",
-                "fr": "Activer / Désactiver le mode de refroidissement [[state]]",
-                "de": "Kühlmodus [[state]]",
-                "nl": "Koelmodus [[state]]"
-            },
-            "args": [
-                {
-                    "name": "state",
-                    "type": "dropdown",
-                    "title": {
-                        "en": "Cooling Mode",
-                        "fr": "Mode de refroidissement",
-                        "de": "Kühlmodus",
-                        "nl": "Koelmodus"
-                    },
-                    "values": [
-                        {
-                            "id": "on",
-                            "label": {
-                                "en": "On",
-                                "fr": "Activé",
-                                "de": "Ein",
-                                "nl": "Aan"
-                            }
-                        },
-                        {
-                            "id": "off",
-                            "label": {
-                                "en": "Off",
-                                "fr": "Désactivé",
-                                "de": "Aus",
-                                "nl": "Uit"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "heating_on_off",
-            "title": {
-                "en": "Switch Heating Mode On / Off",
-                "fr": "Activer / Désactiver le mode de chauffage",
-                "de": "Heizmodus ein- / ausschalten",
-                "nl": "Verwarmingsmodus in-/uitschakelen"
-            },
-            "titleFormatted": {
-                "en": "Switch Heating Mode [[state]]",
-                "fr": "Activer / Désactiver le mode de chauffage [[state]]",
-                "de": "Heizmodus [[state]]",
-                "nl": "Verwarmingsmodus [[state]]"
-            },
-            "args": [
-                {
-                    "name": "state",
-                    "type": "dropdown",
-                    "title": {
-                        "en": "Heating Mode",
-                        "fr": "Mode de chauffage",
-                        "de": "Heizmodus",
-                        "nl": "Verwarmingsmodus"
-                    },
-                    "values": [
-                        {
-                            "id": "on",
-                            "label": {
-                                "en": "On",
-                                "fr": "Activé",
-                                "de": "Ein",
-                                "nl": "Aan"
-                            }
-                        },
-                        {
-                            "id": "off",
-                            "label": {
-                                "en": "Off",
-                                "fr": "Désactivé",
-                                "de": "Aus",
-                                "nl": "Uit"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "derogation_on_off",
-            "title": {
-                "en": "Switch Derogation Mode On / Off",
-                "fr": "Activer / Désactiver le mode de dérogation",
-                "de": "Derogationsmodus ein- / ausschalten",
-                "nl": "Derogatiemodus in-/uitschakelen"
-            },
-            "titleFormatted": {
-                "en": "Switch Derogation Mode [[state]]",
-                "fr": "Activer / Désactiver le mode de dérogation [[state]]",
-                "de": "Derogationsmodus [[state]]",
-                "nl": "Derogatiemodus [[state]]"
-            },
-            "args": [
-                {
-                    "name": "state",
-                    "type": "dropdown",
-                    "title": {
-                        "en": "Derogation Mode",
-                        "fr": "Mode de dérogation",
-                        "de": "Derogationsmodus",
-                        "nl": "Derogatiemodus"
-                    },
-                    "values": [
-                        {
-                            "id": "on",
-                            "label": {
-                                "en": "On",
-                                "fr": "Activé",
-                                "de": "Ein",
-                                "nl": "Aan"
-                            }
-                        },
-                        {
-                            "id": "off",
-                            "label": {
-                                "en": "Off",
-                                "fr": "Désactivé",
-                                "de": "Aus",
-                                "nl": "Uit"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "eco_cooling_temperature_set","title": {"en": "Set the Eco Cooling temperature",
-            "fr": "Définir la température de refroidissement éco",
-            "de": "Eco-Kühltemperatur einstellen",
-            "nl": "Stel de Eco Koeltemperatuur in"
-        },
-        "titleFormatted": {
-            "en": "Set the Eco Cooling to [[target_temperature]]",
-            "fr": "Définir la température de refroidissement éco à [[target_temperature]]",
-            "de": "Eco-Kühltemperatur auf [[target_temperature]] einstellen",
-            "nl": "Stel de Eco Koeltemperatuur in op [[target_temperature]]"
-        },
-        "args": [
-            {
-                "name": "target_temperature",
-                "type": "range",
-                "title": {
-                    "en": "Target Temperature",
-                    "fr": "Température cible",
-                    "de": "Zieltemperatur",
-                    "nl": "Doeltemperatuur"
-                },
-                "min": 4,
-                "max": 35,
-                "step": 1,
-                "label": "°C",
-                "labelDecimals": 0
-            }
-        ]
-    },
-    {
-        "id": "eco_heating_temperature_set",
-        "title": {
-            "en": "Set the Eco Heating temperature",
-            "fr": "Définir la température de chauffage éco",
-            "de": "Eco-Heiztemperatur einstellen",
-            "nl": "Stel de Eco Verwarmings temperatuur in"
-        },
-        "titleFormatted": {
-            "en": "Set the Eco Heating to [[target_temperature]]",
-            "fr": "Définir la température de chauffage éco à [[target_temperature]]",
-            "de": "Eco-Heiztemperatur auf [[target_temperature]] einstellen",
-            "nl": "Stel de Eco Verwarmings temperatuur in op [[target_temperature]]"
-        },
-        "args": [
-            {
-                "name": "target_temperature",
-                "type": "range",
-                "title": {
-                    "en": "Target Temperature",
-                    "fr": "Température cible",
-                    "de": "Zieltemperatur",
-                    "nl": "Doeltemperatuur"
-                },
-                "min": 4,
-                "max": 35,
-                "step": 1,
-                "label": "°C",
-                "labelDecimals": 0
-            }
-        ]
-    },
-    {
-        "id": "comfort_cooling_temperature_set",
-        "title": {
-            "en": "Set the Comfort Cooling temperature",
-            "fr": "Définir la température de refroidissement confort",
-            "de": "Komfort-Kühltemperatur einstellen",
-            "nl": "Stel de Comfort Koeltemperatuur in"
-        },
-        "titleFormatted": {
-            "en": "Set the Comfort Cooling to [[target_temperature]]",
-            "fr": "Définir la température de refroidissement confort à [[target_temperature]]",
-            "de": "Komfort-Kühltemperatur auf [[target_temperature]] einstellen",
-            "nl": "Stel de Comfort Koeltemperatuur in op [[target_temperature]]"
-        },
-        "args": [
-            {
-                "name": "target_temperature",
-                "type": "range",
-                "title": {
-                    "en": "Target Temperature",
-                    "fr": "Température cible",
-                    "de": "Zieltemperatur",
-                    "nl": "Doeltemperatuur"
-                },
-                "min": 4,
-                "max": 35,
-                "step": 1,
-                "label": "°C",
-                "labelDecimals": 0
-            }
-        ]
-    },
-    {
-        "id": "comfort_heating_temperature_set",
-        "title": {
-            "en": "Set the Comfort Heating temperature",
-            "fr": "Définir la température de chauffage confort",
-            "de": "Komfort-Heiztemperatur einstellen",
-            "nl": "Stel de Comfort Verwarmings temperatuur in"
-        },
-        "titleFormatted": {
-            "en": "Set the Comfort Heating to [[target_temperature]]",
-            "fr": "Définir la température de chauffage confort à [[target_temperature]]",
-            "de": "Komfort-Heiztemperatur auf [[target_temperature]] einstellen",
-            "nl": "Stel de Comfort Verwarmings temperatuur in op [[target_temperature]]"
-        },
-        "args": [
-            {
-                "name": "target_temperature",
-                "type": "range",
-                "title": {
-                    "en": "Target Temperature",
-                    "fr": "Température cible",
-                    "de": "Zieltemperatur",
-                    "nl": "Doeltemperatuur"
-                },
-                "min": 4,
-                "max": 35,
-                "step": 1,
-                "label": "°C",
-                "labelDecimals": 0
-            }
-        ]
-    },
-    {
-        "id": "derogation_temperature_set",
-        "title": {
-            "en": "Set the Derogation temperature",
-            "fr": "Définir la température de dérogation",
-            "de": "Derogations-Temperatur einstellen",
-            "nl": "Stel de Derogatie temperatuur in"
-        },
-        "titleFormatted": {
-            "en": "Set the Derogation to [[target_temperature]]",
-            "fr": "Définir la température de dérogation à [[target_temperature]]",
-            "de": "Derogations-Temperatur auf [[target_temperature]] einstellen",
-            "nl": "Stel de Derogatie temperatuur in op [[target_temperature]]"
-        },
-        "args": [
-            {
-                "name": "target_temperature",
-                "type": "range",
-                "title": {
-                    "en": "Target Temperature",
-                    "fr": "Température cible",
-                    "de": "Zieltemperatur",
-                    "nl": "Doeltemperatuur"
-                },
-                "min": 4,
-                "max": 35,
-                "step": 1,
-                "label": "°C",
-                "labelDecimals": 0
-            }
-        ]
-    }
+	"actions": [
+		{
+			"id": "heat_mode_set",
+			"title": {
+				"en": "Set the Heat Mode",
+				"fr": "Définir le mode de chauffage",
+				"de": "Heizmodus einstellen",
+				"nl": "Verwarmingsmodus instellen"
+			},
+			"titleFormatted": {
+				"en": "Set the Heat Mode to [[state]]",
+				"fr": "Définir le mode de chauffage sur [[state]]",
+				"de": "Heizmodus auf [[state]] einstellen",
+				"nl": "Verwarmingsmodus instellen op [[state]]"
+			},
+			"args": [
+				{
+					"name": "state",
+					"type": "dropdown",
+					"title": {
+						"en": "Heat Mode",
+						"fr": "Mode de chauffage",
+						"de": "Heizmodus",
+						"nl": "Verwarmingsmodus"
+					},
+					"values": [
+						{
+							"id": "absence",
+							"label": {
+								"en": "Absent",
+								"fr": "Absent",
+								"de": "Abwesend",
+								"nl": "Afwezig"
+							}
+						},
+						{
+							"id": "auto",
+							"label": {
+								"en": "Automatic",
+								"fr": "Automatique",
+								"de": "Automatisch",
+								"nl": "Automatisch"
+							}
+						},
+						{
+							"id": "comfort",
+							"label": {
+								"en": "Comfort",
+								"fr": "Confort",
+								"de": "Komfort",
+								"nl": "Comfort"
+							}
+						},
+						{
+							"id": "eco",
+							"label": {
+								"en": "Eco",
+								"fr": "Économie",
+								"de": "Eco",
+								"nl": "Eco"
+							}
+						},
+						{
+							"id": "externalScheduling",
+							"label": {
+								"en": "External Scheduling",
+								"fr": "Planification externe",
+								"de": "Externe Planung",
+								"nl": "Externe planning"
+							}
+						},
+						{
+							"id": "internalScheduling",
+							"label": {
+								"en": "Internal Scheduling",
+								"fr": "Planification interne",
+								"de": "Interne Planung",
+								"nl": "Interne planning"
+							}
+						},
+						{
+							"id": "manu",
+							"label": {
+								"en": "Manual",
+								"fr": "Manuel",
+								"de": "Manuell",
+								"nl": "Handmatig"
+							}
+						},
+						{
+							"id": "stop",
+							"label": {
+								"en": "Stop",
+								"fr": "Arrêter",
+								"de": "Stopp",
+								"nl": "Stop"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "cool_mode_set",
+			"title": {
+				"en": "Set the Cooling Mode",
+				"fr": "Définir le mode de refroidissement",
+				"de": "Kühlmodus einstellen",
+				"nl": "Koelmodus instellen"
+			},
+			"titleFormatted": {
+				"en": "Set the Cooling Mode to [[state]]",
+				"fr": "Définir le mode de refroidissement sur [[state]]",
+				"de": "Kühlmodus auf [[state]] einstellen",
+				"nl": "Koelmodus instellen op [[state]]"
+			},
+			"args": [
+				{
+					"name": "state",
+					"type": "dropdown",
+					"title": {
+						"en": "Cooling Mode",
+						"fr": "Mode de refroidissement",
+						"de": "Kühlmodus",
+						"nl": "Koelmodus"
+					},
+					"values": [
+						{
+							"id": "absence",
+							"label": {
+								"en": "Absent",
+								"fr": "Absent",
+								"de": "Abwesend",
+								"nl": "Afwezig"
+							}
+						},
+						{
+							"id": "auto",
+							"label": {
+								"en": "Automatic",
+								"fr": "Automatique",
+								"de": "Automatisch",
+								"nl": "Automatisch"
+							}
+						},
+						{
+							"id": "comfort",
+							"label": {
+								"en": "Comfort",
+								"fr": "Confort",
+								"de": "Komfort",
+								"nl": "Comfort"
+							}
+						},
+						{
+							"id": "eco",
+							"label": {
+								"en": "Eco",
+								"fr": "Économie",
+								"de": "Eco",
+								"nl": "Eco"
+							}
+						},
+						{
+							"id": "externalScheduling",
+							"label": {
+								"en": "External Scheduling",
+								"fr": "Planification externe",
+								"de": "Externe Planung",
+								"nl": "Externe planning"
+							}
+						},
+						{
+							"id": "internalScheduling",
+							"label": {
+								"en": "Internal Scheduling",
+								"fr": "Planification interne",
+								"de": "Interne Planung",
+								"nl": "Interne planning"
+							}
+						},
+						{
+							"id": "manu",
+							"label": {
+								"en": "Manual",
+								"fr": "Manuel",
+								"de": "Manuell",
+								"nl": "Handmatig"
+							}
+						},
+						{
+							"id": "stop",
+							"label": {
+								"en": "Stop",
+								"fr": "Arrêter",
+								"de": "Stopp",
+								"nl": "Stop"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "cooling_on_off",
+			"title": {
+				"en": "Switch Cooling Mode On / Off",
+				"fr": "Activer / Désactiver le mode de refroidissement",
+				"de": "Kühlmodus ein- / ausschalten",
+				"nl": "Koelmodus in-/uitschakelen"
+			},
+			"titleFormatted": {
+				"en": "Switch Cooling Mode [[state]]",
+				"fr": "Activer / Désactiver le mode de refroidissement [[state]]",
+				"de": "Kühlmodus [[state]]",
+				"nl": "Koelmodus [[state]]"
+			},
+			"args": [
+				{
+					"name": "state",
+					"type": "dropdown",
+					"title": {
+						"en": "Cooling Mode",
+						"fr": "Mode de refroidissement",
+						"de": "Kühlmodus",
+						"nl": "Koelmodus"
+					},
+					"values": [
+						{
+							"id": "on",
+							"label": {
+								"en": "On",
+								"fr": "Activé",
+								"de": "Ein",
+								"nl": "Aan"
+							}
+						},
+						{
+							"id": "off",
+							"label": {
+								"en": "Off",
+								"fr": "Désactivé",
+								"de": "Aus",
+								"nl": "Uit"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "heating_on_off",
+			"title": {
+				"en": "Switch Heating Mode On / Off",
+				"fr": "Activer / Désactiver le mode de chauffage",
+				"de": "Heizmodus ein- / ausschalten",
+				"nl": "Verwarmingsmodus in-/uitschakelen"
+			},
+			"titleFormatted": {
+				"en": "Switch Heating Mode [[state]]",
+				"fr": "Activer / Désactiver le mode de chauffage [[state]]",
+				"de": "Heizmodus [[state]]",
+				"nl": "Verwarmingsmodus [[state]]"
+			},
+			"args": [
+				{
+					"name": "state",
+					"type": "dropdown",
+					"title": {
+						"en": "Heating Mode",
+						"fr": "Mode de chauffage",
+						"de": "Heizmodus",
+						"nl": "Verwarmingsmodus"
+					},
+					"values": [
+						{
+							"id": "on",
+							"label": {
+								"en": "On",
+								"fr": "Activé",
+								"de": "Ein",
+								"nl": "Aan"
+							}
+						},
+						{
+							"id": "off",
+							"label": {
+								"en": "Off",
+								"fr": "Désactivé",
+								"de": "Aus",
+								"nl": "Uit"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "derogation_on_off",
+			"title": {
+				"en": "Switch Derogation Mode On / Off",
+				"fr": "Activer / Désactiver le mode de dérogation",
+				"de": "Derogationsmodus ein- / ausschalten",
+				"nl": "Derogatiemodus in-/uitschakelen"
+			},
+			"titleFormatted": {
+				"en": "Switch Derogation Mode [[state]]",
+				"fr": "Activer / Désactiver le mode de dérogation [[state]]",
+				"de": "Derogationsmodus [[state]]",
+				"nl": "Derogatiemodus [[state]]"
+			},
+			"args": [
+				{
+					"name": "state",
+					"type": "dropdown",
+					"title": {
+						"en": "Derogation Mode",
+						"fr": "Mode de dérogation",
+						"de": "Derogationsmodus",
+						"nl": "Derogatiemodus"
+					},
+					"values": [
+						{
+							"id": "on",
+							"label": {
+								"en": "On",
+								"fr": "Activé",
+								"de": "Ein",
+								"nl": "Aan"
+							}
+						},
+						{
+							"id": "off",
+							"label": {
+								"en": "Off",
+								"fr": "Désactivé",
+								"de": "Aus",
+								"nl": "Uit"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "eco_cooling_temperature_set","title": {"en": "Set the Eco Cooling temperature",
+			"fr": "Définir la température de refroidissement éco",
+			"de": "Eco-Kühltemperatur einstellen",
+			"nl": "Stel de Eco Koeltemperatuur in"
+		},
+		"titleFormatted": {
+			"en": "Set the Eco Cooling to [[target_temperature]]",
+			"fr": "Définir la température de refroidissement éco à [[target_temperature]]",
+			"de": "Eco-Kühltemperatur auf [[target_temperature]] einstellen",
+			"nl": "Stel de Eco Koeltemperatuur in op [[target_temperature]]"
+		},
+		"args": [
+			{
+				"name": "target_temperature",
+				"type": "range",
+				"title": {
+					"en": "Target Temperature",
+					"fr": "Température cible",
+					"de": "Zieltemperatur",
+					"nl": "Doeltemperatuur"
+				},
+				"min": 4,
+				"max": 35,
+				"step": 1,
+				"label": "°C",
+				"labelDecimals": 0
+			}
+		]
+	},
+	{
+		"id": "eco_heating_temperature_set",
+		"title": {
+			"en": "Set the Eco Heating temperature",
+			"fr": "Définir la température de chauffage éco",
+			"de": "Eco-Heiztemperatur einstellen",
+			"nl": "Stel de Eco Verwarmings temperatuur in"
+		},
+		"titleFormatted": {
+			"en": "Set the Eco Heating to [[target_temperature]]",
+			"fr": "Définir la température de chauffage éco à [[target_temperature]]",
+			"de": "Eco-Heiztemperatur auf [[target_temperature]] einstellen",
+			"nl": "Stel de Eco Verwarmings temperatuur in op [[target_temperature]]"
+		},
+		"args": [
+			{
+				"name": "target_temperature",
+				"type": "range",
+				"title": {
+					"en": "Target Temperature",
+					"fr": "Température cible",
+					"de": "Zieltemperatur",
+					"nl": "Doeltemperatuur"
+				},
+				"min": 4,
+				"max": 35,
+				"step": 1,
+				"label": "°C",
+				"labelDecimals": 0
+			}
+		]
+	},
+	{
+		"id": "comfort_cooling_temperature_set",
+		"title": {
+			"en": "Set the Comfort Cooling temperature",
+			"fr": "Définir la température de refroidissement confort",
+			"de": "Komfort-Kühltemperatur einstellen",
+			"nl": "Stel de Comfort Koeltemperatuur in"
+		},
+		"titleFormatted": {
+			"en": "Set the Comfort Cooling to [[target_temperature]]",
+			"fr": "Définir la température de refroidissement confort à [[target_temperature]]",
+			"de": "Komfort-Kühltemperatur auf [[target_temperature]] einstellen",
+			"nl": "Stel de Comfort Koeltemperatuur in op [[target_temperature]]"
+		},
+		"args": [
+			{
+				"name": "target_temperature",
+				"type": "range",
+				"title": {
+					"en": "Target Temperature",
+					"fr": "Température cible",
+					"de": "Zieltemperatur",
+					"nl": "Doeltemperatuur"
+				},
+				"min": 4,
+				"max": 35,
+				"step": 1,
+				"label": "°C",
+				"labelDecimals": 0
+			}
+		]
+	},
+	{
+		"id": "comfort_heating_temperature_set",
+		"title": {
+			"en": "Set the Comfort Heating temperature",
+			"fr": "Définir la température de chauffage confort",
+			"de": "Komfort-Heiztemperatur einstellen",
+			"nl": "Stel de Comfort Verwarmings temperatuur in"
+		},
+		"titleFormatted": {
+			"en": "Set the Comfort Heating to [[target_temperature]]",
+			"fr": "Définir la température de chauffage confort à [[target_temperature]]",
+			"de": "Komfort-Heiztemperatur auf [[target_temperature]] einstellen",
+			"nl": "Stel de Comfort Verwarmings temperatuur in op [[target_temperature]]"
+		},
+		"args": [
+			{
+				"name": "target_temperature",
+				"type": "range",
+				"title": {
+					"en": "Target Temperature",
+					"fr": "Température cible",
+					"de": "Zieltemperatur",
+					"nl": "Doeltemperatuur"
+				},
+				"min": 4,
+				"max": 35,
+				"step": 1,
+				"label": "°C",
+				"labelDecimals": 0
+			}
+		]
+	},
+	{
+		"id": "derogation_temperature_set",
+		"title": {
+			"en": "Set the Derogation temperature",
+			"fr": "Définir la température de dérogation",
+			"de": "Derogations-Temperatur einstellen",
+			"nl": "Stel de Derogatie temperatuur in"
+		},
+		"titleFormatted": {
+			"en": "Set the Derogation to [[target_temperature]]",
+			"fr": "Définir la température de dérogation à [[target_temperature]]",
+			"de": "Derogations-Temperatur auf [[target_temperature]] einstellen",
+			"nl": "Stel de Derogatie temperatuur in op [[target_temperature]]"
+		},
+		"args": [
+			{
+				"name": "target_temperature",
+				"type": "range",
+				"title": {
+					"en": "Target Temperature",
+					"fr": "Température cible",
+					"de": "Zieltemperatur",
+					"nl": "Doeltemperatuur"
+				},
+				"min": 4,
+				"max": 35,
+				"step": 1,
+				"label": "°C",
+				"labelDecimals": 0
+			}
+		]
+	}
 ]
 }

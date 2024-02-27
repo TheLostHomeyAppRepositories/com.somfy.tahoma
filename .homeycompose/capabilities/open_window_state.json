@@ -1,38 +1,38 @@
 {
-    "type": "boolean",
-    "getable": true,
-    "setable": false,
-    "uiComponent": "sensor",
-    "title": {
-        "en": "Window Open",
-        "nl": "Venster open",
-        "fr": "Fenêtre ouverte",
-        "de": "Fenster geöffnet"
-    },
-    "titleTrue": {
-        "en": "Window opened",
-        "nl": "Venster geopend",
-        "fr": "Fenêtre ouverte",
-        "de": "Fenster geöffnet"
-    },
-    "titleFalse": {
-        "en": "Window closed",
-        "nl": "Venster gesloten",
-        "fr": "Fenêtre fermée",
-        "de": "Fenster geschlossen"
-    },
-    "insights": true,
-    "insightsTitleTrue": {
-        "en": "Window opened",
-        "nl": "Venster geopend",
-        "fr": "Fenêtre ouverte",
-        "de": "Fenster geöffnet"
-    },
-    "insightsTitleFalse": {
-        "en": "Window closed",
-        "nl": "Venster gesloten",
-        "fr": "Fenêtre fermée",
-        "de": "Fenster geschlossen"
-    },
-    "icon": "/assets/open_windows.svg"
+	"type": "boolean",
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"title": {
+		"en": "Window Open",
+		"nl": "Venster open",
+		"fr": "Fenêtre ouverte",
+		"de": "Fenster geöffnet"
+	},
+	"titleTrue": {
+		"en": "Window opened",
+		"nl": "Venster geopend",
+		"fr": "Fenêtre ouverte",
+		"de": "Fenster geöffnet"
+	},
+	"titleFalse": {
+		"en": "Window closed",
+		"nl": "Venster gesloten",
+		"fr": "Fenêtre fermée",
+		"de": "Fenster geschlossen"
+	},
+	"insights": true,
+	"insightsTitleTrue": {
+		"en": "Window opened",
+		"nl": "Venster geopend",
+		"fr": "Fenêtre ouverte",
+		"de": "Fenster geöffnet"
+	},
+	"insightsTitleFalse": {
+		"en": "Window closed",
+		"nl": "Venster gesloten",
+		"fr": "Fenêtre fermée",
+		"de": "Fenster geschlossen"
+	},
+	"icon": "/assets/open_windows.svg"
 }

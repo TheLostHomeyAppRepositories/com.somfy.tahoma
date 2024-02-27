@@ -1,12 +1,12 @@
 {
-    "type": "string",
-    "title": {
-        "en": "Lock State",
-        "nl": "Vergrendelingsstatus",
-        "fr": "État de verrouillage",
-        "de": "Schließzustand"
-    },
-    "getable": true,
-    "setable": false,
-    "icon": "/assets/security.svg"
+	"type": "string",
+	"title": {
+		"en": "Lock State",
+		"nl": "Vergrendelingsstatus",
+		"fr": "État de verrouillage",
+		"de": "Schließzustand"
+	},
+	"getable": true,
+	"setable": false,
+	"icon": "/assets/security.svg"
 }

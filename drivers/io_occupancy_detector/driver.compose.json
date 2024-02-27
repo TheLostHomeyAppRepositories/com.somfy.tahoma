@@ -1,15 +1,15 @@
 {
-    "name": {
-        "en": "Occupancy Detector (io)",
-        "fr": "Détecteur d'occupation (io)",
-        "de": "Besetzungsdetektor (io)",
-        "nl": "Bezettingdetector (io)"
-    },
-    "class": "sensor",
-    "capabilities": [
-        "alarm_motion"
-    ],
-    "$extends": [
-        "cloudDriver"
-    ]
+	"name": {
+		"en": "Occupancy Detector (io)",
+		"fr": "Détecteur d'occupation (io)",
+		"de": "Besetzungsdetektor (io)",
+		"nl": "Bezettingdetector (io)"
+	},
+	"class": "sensor",
+	"capabilities": [
+		"alarm_motion"
+	],
+	"$extends": [
+		"cloudDriver"
+	]
 }

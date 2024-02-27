@@ -1,26 +1,26 @@
 {
-    "triggers": [
-        {
-            "id": "pedestrian_changed",
-            "title": {
-                "en": "The pedestrian state changed",
-                "fr": "L'état du piéton a changé",
-                "de": "Der Fußgängerzustand hat sich geändert",
-                "nl": "De status van de voetganger is veranderd"
-            },
-            "tokens": [
-                {
-                    "name": "pedestrian",
-                    "type": "boolean",
-                    "title": {
-                        "en": "At Pedestrian Position",
-                        "fr": "À la position de piéton",
-                        "de": "Am Fußgängerstandort",
-                        "nl": "Op voetgangerspositie"
-                    }
-                }
-            ],
-            "args": []
-        }
-    ]
+	"triggers": [
+		{
+			"id": "pedestrian_changed",
+			"title": {
+				"en": "The pedestrian state changed",
+				"fr": "L'état du piéton a changé",
+				"de": "Der Fußgängerzustand hat sich geändert",
+				"nl": "De status van de voetganger is veranderd"
+			},
+			"tokens": [
+				{
+					"name": "pedestrian",
+					"type": "boolean",
+					"title": {
+						"en": "At Pedestrian Position",
+						"fr": "À la position de piéton",
+						"de": "Am Fußgängerstandort",
+						"nl": "Op voetgangerspositie"
+					}
+				}
+			],
+			"args": []
+		}
+	]
 }

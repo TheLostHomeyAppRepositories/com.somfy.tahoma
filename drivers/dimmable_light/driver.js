@@ -11,11 +11,11 @@ const Driver = require('../Driver');
 class DimmableLightControllerDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['io:DimmableLightIOComponent', 'hue:HueLuxHUEComponent', 'hue:GenericDimmableLightHUEComponent', 'ogp:Light', 'io:DimmableLightMicroModuleSomfyIOComponent', 'eliot:DimmerLightEliotComponent', 'zwave:DimmableOnOffZWaveComponent'];
-        await super.onInit();
-    }
+	async onInit()
+	{
+		this.deviceType = ['io:DimmableLightIOComponent', 'hue:HueLuxHUEComponent', 'hue:GenericDimmableLightHUEComponent', 'ogp:Light', 'io:DimmableLightMicroModuleSomfyIOComponent', 'eliot:DimmerLightEliotComponent', 'zwave:DimmableOnOffZWaveComponent'];
+		await super.onInit();
+	}
 
 }
 

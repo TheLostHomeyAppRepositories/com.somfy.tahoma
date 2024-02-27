@@ -11,50 +11,50 @@ const WindowCoveringsDevice = require('../WindowCoveringsDevice');
 class SlidingGateDevice extends WindowCoveringsDevice {
 
   async onInit() {
-    if (this.hasCapability('lock_state')) {
-      this.removeCapability('lock_state').catch(this.error);
-    }
+	if (this.hasCapability('lock_state')) {
+	  this.removeCapability('lock_state').catch(this.error);
+	}
 
-    this.registerCapabilityListener('pedestrian', this.onCapabilityPedestrian.bind(this));
+	this.registerCapabilityListener('pedestrian', this.onCapabilityPedestrian.bind(this));
 
-    await super.onInit();
+	await super.onInit();
 
-    this.positionStateName = ''; // Device is not positionable
-    this.setPositionActionName = ''; // Device is not positionable
+	this.positionStateName = ''; // Device is not positionable
+	this.setPositionActionName = ''; // Device is not positionable
 
-    this.openClosedStateName = 'core:OpenClosedPedestrianState';
-    this.myCommand = 'setPedestrianPosition'; // Name of the command to set the My position
+	this.openClosedStateName = 'core:OpenClosedPedestrianState';
+	this.myCommand = 'setPedestrianPosition'; // Name of the command to set the My position
 
-    if (this.invertUpDown)
-    {
-        // Homey capability to Somfy command map
-        this.windowcoveringsActions = {
-            up: 'close',
-            idle: 'stop',
-            down: 'open',
-        };
+	if (this.invertUpDown)
+	{
+		// Homey capability to Somfy command map
+		this.windowcoveringsActions = {
+			up: 'close',
+			idle: 'stop',
+			down: 'open',
+		};
 
-        // Somfy state to Homey capability map
-        this.windowcoveringsStatesMap = {
-            open: 'down',
-            closed: 'up',
-            pedestrian: 'idle',
-        };
-    }
-    else
-    {
-        this.windowcoveringsActions = {
-            up: 'open',
-            idle: 'stop',
-            down: 'close',
-        };
+		// Somfy state to Homey capability map
+		this.windowcoveringsStatesMap = {
+			open: 'down',
+			closed: 'up',
+			pedestrian: 'idle',
+		};
+	}
+	else
+	{
+		this.windowcoveringsActions = {
+			up: 'open',
+			idle: 'stop',
+			down: 'close',
+		};
 
-        this.windowcoveringsStatesMap = {
-            open: 'up',
-            closed: 'down',
-            pedestrian: 'idle',
-        };
-    }
+		this.windowcoveringsStatesMap = {
+			open: 'up',
+			closed: 'down',
+			pedestrian: 'idle',
+		};
+	}
   }
 
 }

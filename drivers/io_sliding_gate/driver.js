@@ -11,17 +11,17 @@ const ioWindowCoveringsDriver = require('../ioWindowCoveringsDriver');
 class SlidingGateDriver extends ioWindowCoveringsDriver {
 
   async onInit() {
-    this.deviceType = ['io:SlidingDiscreteGateOpenerIOComponent', 'io:DiscreteGateOpenerIOComponent', 'io:SlidingDiscreteFullyPedestriableGateOpenerIOComponent'];
+	this.deviceType = ['io:SlidingDiscreteGateOpenerIOComponent', 'io:DiscreteGateOpenerIOComponent', 'io:SlidingDiscreteFullyPedestriableGateOpenerIOComponent'];
 
-      this.pedestrian_changedTrigger = this.homey.flow.getDeviceTriggerCard('pedestrian_changed');
+	  this.pedestrian_changedTrigger = this.homey.flow.getDeviceTriggerCard('pedestrian_changed');
 
-    await super.onInit();
+	await super.onInit();
   }
 
   triggerPedestrianChange(device, tokens, state)
   {
-      this.triggerFlow(this.pedestrian_changedTrigger, device, tokens, state);
-      return this;
+	  this.triggerFlow(this.pedestrian_changedTrigger, device, tokens, state);
+	  return this;
   }
 
 }

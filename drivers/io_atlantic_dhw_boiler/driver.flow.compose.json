@@ -1,216 +1,216 @@
 {
-    "actions": [
-        {
-            "id": "eco_temperature_set",
-            "title": {
-                "en": "Set the Eco temperature",
-                "fr": "Définir la température Eco",
-                "de": "Stellen Sie die Eco-Temperatur ein",
-                "nl": "Stel de Eco-temperatuur in"
-            },
-            "titleFormatted": {
-                "en": "Set the Eco temperature to [[target_temperature]]",
-                "fr": "Définir la température Eco à [[target_temperature]]",
-                "de": "Stellen Sie die Eco-Temperatur auf [[target_temperature]] ein",
-                "nl": "Stel de Eco-temperatuur in op [[target_temperature]]"
-            },
-            "args": [
-                {
-                    "name": "target_temperature",
-                    "type": "range",
-                    "title": {
-                        "en": "Target Temperature",
-                        "fr": "Température cible",
-                        "de": "Zieltemperatur",
-                        "nl": "Doeltemperatuur"
-                    },
-                    "min": 30,
-                    "max": 60,
-                    "step": 1,
-                    "label": "°C",
-                    "labelDecimals": 0
-                }
-            ]
-        },
-        {
-            "id": "comfort_temperature_set",
-            "title": {
-                "en": "Set the Comfort temperature",
-                "fr": "Définir la température Comfort",
-                "de": "Stellen Sie die Komforttemperatur ein",
-                "nl": "Stel de Comfort-temperatuur in"
-            },
-            "titleFormatted": {
-                "en": "Set the comfort temperature to [[target_temperature]]",
-                "fr": "Définir la température de confort à [[target_temperature]]",
-                "de": "Stellen Sie die Komforttemperatur auf [[target_temperature]] ein",
-                "nl": "Stel de Comfort-temperatuur in op [[target_temperature]]"
-            },
-            "args": [
-                {
-                    "name": "target_temperature",
-                    "type": "range",
-                    "title": {
-                        "en": "Target Temperature",
-                        "fr": "Température cible",
-                        "de": "Zieltemperatur",
-                        "nl": "Doeltemperatuur"
-                    },
-                    "min": 30,
-                    "max": 60,
-                    "step": 1,
-                    "label": "°C",
-                    "labelDecimals": 0
-                }
-            ]
-        },
-        {
-            "id": "boiler_mode_set",
-            "title": {
-                "en": "Set the boiler mode",
-                "fr": "Définir le mode de la chaudière",
-                "de": "Stellen Sie den Heizkesselmodus ein",
-                "nl": "Stel de ketelmodus in"
-            },
-            "titleFormatted": {
-                "en": "Set the boiler mode to [[state]]",
-                "fr": "Définir le mode de la chaudière sur [[state]]",
-                "de": "Stellen Sie den Heizkesselmodus auf [[state]] ein",
-                "nl": "Stel de ketelmodus in op [[state]]"
-            },
-            "args": [
-                {
-                    "name": "state",
-                    "type": "dropdown",
-                    "title": {
-                        "en": "Mode",
-                        "fr": "Mode",
-                        "de": "Modus",
-                        "nl": "Modus"
-                    },
-                    "values": [
-                        {
-                            "id": "comfort",
-                            "label": {
-                                "en": "Comfort",
-                                "fr": "Confort",
-                                "de": "Komfort",
-                                "nl": "Comfort"
-                            }
-                        },
-                        {
-                            "id": "eco",
-                            "label": {
-                                "en": "Eco",
-                                "fr": "Eco",
-                                "de": "Eco",
-                                "nl": "Eco"
-                            }
-                        },
-                        {
-                            "id": "externalScheduling",
-                            "label": {
-                                "en": "External Scheduling",
-                                "fr": "Planification externe",
-                                "de": "Externe Zeitplanung",
-                                "nl": "Externe planning"
-                            }
-                        },
-                        {
-                            "id": "internalScheduling",
-                            "label": {
-                                "en": "Internal Scheduling",
-                                "fr": "Planification interne",
-                                "de": "Interne Zeitplanung",
-                                "nl": "Interne planning"
-                            }
-                        },
-                        {
-                            "id": "manu",
-                            "label": {
-                                "en": "Manual",
-                                "fr": "Manuel",
-                                "de": "Manuell",
-                                "nl": "Handmatig"
-                            }
-                        },
-                        {
-                            "id": "peakAndOffPeakScheduling",
-                            "label": {
-                                "en": "Peak And Off Peak Scheduling",
-                                "fr": "Planification des périodes de pointe et hors pointe",
-                                "de": "Spitzen- und Nebenzeitplanung",
-                                "nl": "Pieken en dalen planning"
-                            }
-                        },
-                        {
-                            "id": "peakAndOffPeakTimes",
-                            "label": {
-                                "en": "Peak And Off Peak Times",
-                                "fr": "Périodes de pointe et hors pointe",
-                                "de": "Spitzen- und Nebenzeit",
-                                "nl": "Pieken en dalen tijden"
-                            }
-                        },
-                        {
-                            "id": "stop",
-                            "label": {
-                                "en": "Stop",
-                                "fr": "Arrêter",
-                                "de": "Anhalten",
-                                "nl": "Stoppen"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "boost_on_off",
-            "title": {
-                "en": "Turn boost On / Off",
-                "fr": "Activer / désactiver le boost",
-                "de": "Boost ein- / ausschalten",
-                "nl": "Schakel de boost in / uit"
-            },
-            "titleFormatted": {
-                "en": "Turn boost [[state]]",
-                "fr": "Activer / désactiver le boost [[state]]",
-                "de": "Boost ein- / ausschalten [[state]]",
-                "nl": "Schakel de boost [[state]]"
-            },
-            "args": [
-                {
-                    "name": "state",
-                    "type": "dropdown",
-                    "title": {
-                        "en": "State",
-                        "fr": "État",
-                        "de": "Status",
-                        "nl": "Status"
-                    },
-                    "values": [
-                        {
-                            "id": "on",
-                            "label": {
-                                "en": "On",
-                                "fr": "On",
-                                "de": "An",
-                                "nl": "Aan"
-                            }
-                        },
-                        {
-                            "id": "off",
-                            "label": {
-                                "en": "Off",
-                                "fr": "Off",
-                                "de": "Aus",
-                                "nl": "Uit"
-                            }
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
+	"actions": [
+		{
+			"id": "eco_temperature_set",
+			"title": {
+				"en": "Set the Eco temperature",
+				"fr": "Définir la température Eco",
+				"de": "Stellen Sie die Eco-Temperatur ein",
+				"nl": "Stel de Eco-temperatuur in"
+			},
+			"titleFormatted": {
+				"en": "Set the Eco temperature to [[target_temperature]]",
+				"fr": "Définir la température Eco à [[target_temperature]]",
+				"de": "Stellen Sie die Eco-Temperatur auf [[target_temperature]] ein",
+				"nl": "Stel de Eco-temperatuur in op [[target_temperature]]"
+			},
+			"args": [
+				{
+					"name": "target_temperature",
+					"type": "range",
+					"title": {
+						"en": "Target Temperature",
+						"fr": "Température cible",
+						"de": "Zieltemperatur",
+						"nl": "Doeltemperatuur"
+					},
+					"min": 30,
+					"max": 60,
+					"step": 1,
+					"label": "°C",
+					"labelDecimals": 0
+				}
+			]
+		},
+		{
+			"id": "comfort_temperature_set",
+			"title": {
+				"en": "Set the Comfort temperature",
+				"fr": "Définir la température Comfort",
+				"de": "Stellen Sie die Komforttemperatur ein",
+				"nl": "Stel de Comfort-temperatuur in"
+			},
+			"titleFormatted": {
+				"en": "Set the comfort temperature to [[target_temperature]]",
+				"fr": "Définir la température de confort à [[target_temperature]]",
+				"de": "Stellen Sie die Komforttemperatur auf [[target_temperature]] ein",
+				"nl": "Stel de Comfort-temperatuur in op [[target_temperature]]"
+			},
+			"args": [
+				{
+					"name": "target_temperature",
+					"type": "range",
+					"title": {
+						"en": "Target Temperature",
+						"fr": "Température cible",
+						"de": "Zieltemperatur",
+						"nl": "Doeltemperatuur"
+					},
+					"min": 30,
+					"max": 60,
+					"step": 1,
+					"label": "°C",
+					"labelDecimals": 0
+				}
+			]
+		},
+		{
+			"id": "boiler_mode_set",
+			"title": {
+				"en": "Set the boiler mode",
+				"fr": "Définir le mode de la chaudière",
+				"de": "Stellen Sie den Heizkesselmodus ein",
+				"nl": "Stel de ketelmodus in"
+			},
+			"titleFormatted": {
+				"en": "Set the boiler mode to [[state]]",
+				"fr": "Définir le mode de la chaudière sur [[state]]",
+				"de": "Stellen Sie den Heizkesselmodus auf [[state]] ein",
+				"nl": "Stel de ketelmodus in op [[state]]"
+			},
+			"args": [
+				{
+					"name": "state",
+					"type": "dropdown",
+					"title": {
+						"en": "Mode",
+						"fr": "Mode",
+						"de": "Modus",
+						"nl": "Modus"
+					},
+					"values": [
+						{
+							"id": "comfort",
+							"label": {
+								"en": "Comfort",
+								"fr": "Confort",
+								"de": "Komfort",
+								"nl": "Comfort"
+							}
+						},
+						{
+							"id": "eco",
+							"label": {
+								"en": "Eco",
+								"fr": "Eco",
+								"de": "Eco",
+								"nl": "Eco"
+							}
+						},
+						{
+							"id": "externalScheduling",
+							"label": {
+								"en": "External Scheduling",
+								"fr": "Planification externe",
+								"de": "Externe Zeitplanung",
+								"nl": "Externe planning"
+							}
+						},
+						{
+							"id": "internalScheduling",
+							"label": {
+								"en": "Internal Scheduling",
+								"fr": "Planification interne",
+								"de": "Interne Zeitplanung",
+								"nl": "Interne planning"
+							}
+						},
+						{
+							"id": "manu",
+							"label": {
+								"en": "Manual",
+								"fr": "Manuel",
+								"de": "Manuell",
+								"nl": "Handmatig"
+							}
+						},
+						{
+							"id": "peakAndOffPeakScheduling",
+							"label": {
+								"en": "Peak And Off Peak Scheduling",
+								"fr": "Planification des périodes de pointe et hors pointe",
+								"de": "Spitzen- und Nebenzeitplanung",
+								"nl": "Pieken en dalen planning"
+							}
+						},
+						{
+							"id": "peakAndOffPeakTimes",
+							"label": {
+								"en": "Peak And Off Peak Times",
+								"fr": "Périodes de pointe et hors pointe",
+								"de": "Spitzen- und Nebenzeit",
+								"nl": "Pieken en dalen tijden"
+							}
+						},
+						{
+							"id": "stop",
+							"label": {
+								"en": "Stop",
+								"fr": "Arrêter",
+								"de": "Anhalten",
+								"nl": "Stoppen"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "boost_on_off",
+			"title": {
+				"en": "Turn boost On / Off",
+				"fr": "Activer / désactiver le boost",
+				"de": "Boost ein- / ausschalten",
+				"nl": "Schakel de boost in / uit"
+			},
+			"titleFormatted": {
+				"en": "Turn boost [[state]]",
+				"fr": "Activer / désactiver le boost [[state]]",
+				"de": "Boost ein- / ausschalten [[state]]",
+				"nl": "Schakel de boost [[state]]"
+			},
+			"args": [
+				{
+					"name": "state",
+					"type": "dropdown",
+					"title": {
+						"en": "State",
+						"fr": "État",
+						"de": "Status",
+						"nl": "Status"
+					},
+					"values": [
+						{
+							"id": "on",
+							"label": {
+								"en": "On",
+								"fr": "On",
+								"de": "An",
+								"nl": "Aan"
+							}
+						},
+						{
+							"id": "off",
+							"label": {
+								"en": "Off",
+								"fr": "Off",
+								"de": "Aus",
+								"nl": "Uit"
+							}
+						}
+					]
+				}
+			]
+		}
+	]
 }

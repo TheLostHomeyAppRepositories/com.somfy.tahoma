@@ -11,10 +11,10 @@ const Driver = require('../Driver');
 class HotColdZoneDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['io:AtlanticPassAPCHeatingAndCoolingZoneComponent', 'io:AtlanticPassAPCZoneControlZoneComponent'];
-    }
+	async onInit()
+	{
+		this.deviceType = ['io:AtlanticPassAPCHeatingAndCoolingZoneComponent', 'io:AtlanticPassAPCZoneControlZoneComponent'];
+	}
 
 }
 

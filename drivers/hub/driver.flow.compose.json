@@ -1,24 +1,24 @@
 {
-    "actions": [
-        {
-            "id": "calendar_state_on",
-            "title": {
-                "en": "Activate Agenda / Timer",
-                "fr": "Activer Agenda / Minuteur",
-                "de": "Agenda / Timer aktivieren",
-                "nl": "Agenda / Timer activeren"
-            },
-            "args": []
-        },
-        {
-            "id": "calendar_state_off",
-            "title": {
-                "en": "Deactivate Agenda / Timer",
-                "fr": "Désactiver Agenda / Minuteur",
-                "de": "Agenda / Timer deaktivieren",
-                "nl": "Agenda / Timer deactiveren"
-            },
-            "args": []
-        }
-    ]
+	"actions": [
+		{
+			"id": "calendar_state_on",
+			"title": {
+				"en": "Activate Agenda / Timer",
+				"fr": "Activer Agenda / Minuteur",
+				"de": "Agenda / Timer aktivieren",
+				"nl": "Agenda / Timer activeren"
+			},
+			"args": []
+		},
+		{
+			"id": "calendar_state_off",
+			"title": {
+				"en": "Deactivate Agenda / Timer",
+				"fr": "Désactiver Agenda / Minuteur",
+				"de": "Agenda / Timer deaktivieren",
+				"nl": "Agenda / Timer deactiveren"
+			},
+			"args": []
+		}
+	]
 }

@@ -1,12 +1,12 @@
 {
-    "type": "boolean",
-    "getable": false,
-    "setable": true,
-    "uiComponent": "button",
-    "title": {
-        "en": "Close",
-        "fr": "Fermer",
-        "de": "Schließen",
-        "nl": "Dichtbij"
-    }
+	"type": "boolean",
+	"getable": false,
+	"setable": true,
+	"uiComponent": "button",
+	"title": {
+		"en": "Close",
+		"fr": "Fermer",
+		"de": "Schließen",
+		"nl": "Dichtbij"
+	}
 }

@@ -1,13 +1,13 @@
 {
-    "type": "boolean",
-    "getable": true,
-    "setable": true,
-    "uiComponent": "button",
-    "title": {
-        "en": "Occupancy Activation",
-        "nl": "Bezettingsactivering",
-        "fr": "Activation de l'occupation",
-        "de": "Besetzung aktivierung"
-    },
-    "icon": "/assets/occupancy.svg"
+	"type": "boolean",
+	"getable": true,
+	"setable": true,
+	"uiComponent": "button",
+	"title": {
+		"en": "Occupancy Activation",
+		"nl": "Bezettingsactivering",
+		"fr": "Activation de l'occupation",
+		"de": "Besetzung aktivierung"
+	},
+	"icon": "/assets/occupancy.svg"
 }

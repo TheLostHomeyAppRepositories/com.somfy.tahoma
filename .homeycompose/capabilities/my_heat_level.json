@@ -1,12 +1,12 @@
 {
-    "type": "boolean",
-    "getable": false,
-    "setable": true,
-    "uiComponent": "button",
-    "title": {
-        "en": "MY heat level",
-        "fr": "Mon niveau de chaleur",
-        "de": "Mein Hitzelevel",
-        "nl": "Mijn warmteniveau"
-    }
+	"type": "boolean",
+	"getable": false,
+	"setable": true,
+	"uiComponent": "button",
+	"title": {
+		"en": "MY heat level",
+		"fr": "Mon niveau de chaleur",
+		"de": "Mein Hitzelevel",
+		"nl": "Mijn warmteniveau"
+	}
 }

@@ -1,13 +1,13 @@
 {
-    "type": "boolean",
-    "getable": false,
-    "setable": true,
-    "uiComponent": "button",
-    "title": {
-        "en": "Test Alarm",
-        "nl": "Testalarm:",
-        "fr": "Alarme de test",
-        "de": "Testalarm",
-        "du": "Testalarm"
-    }
+	"type": "boolean",
+	"getable": false,
+	"setable": true,
+	"uiComponent": "button",
+	"title": {
+		"en": "Test Alarm",
+		"nl": "Testalarm:",
+		"fr": "Alarme de test",
+		"de": "Testalarm",
+		"du": "Testalarm"
+	}
 }

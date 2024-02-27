@@ -1,94 +1,94 @@
 {
-    "platforms": [
-        "local",
-        "cloud"
-    ],
-    "connectivity": [
-        "cloud"
-    ],
-    "pair": [
-        {
-            "id": "select_region"
-        },
-        {
-            "id": "login_credentials",
-            "template": "login_credentials",
-            "options": {
-                "logo": "logo.png",
-                "usernameLabel": {
-                    "en": "E-mail address",
-                    "fr": "Adresse e-mail",
-                    "de": "E-Mail-Adresse",
-                    "nl": "E-mailadres"
-                },
-                "usernamePlaceholder": {
-                    "en": "john@doe.com",
-                    "fr": "jean@dupont.com",
-                    "de": "max.mustermann@mustermail.de",
-                    "nl": "jansen@holland.nl"
-                },
-                "passwordLabel": {
-                    "en": "Password",
-                    "fr": "Mot de passe",
-                    "de": "Passwort",
-                    "nl": "Wachtwoord"
-                },
-                "passwordPlaceholder": {
-                    "en": "Password",
-                    "fr": "Mot de passe",
-                    "de": "Passwort",
-                    "nl": "Wachtwoord"
-                }
-            }
-        },
-        {
-            "id": "list_my_devices",
-            "template": "list_devices",
-            "navigation": {
-                "next": "add_my_devices"
-            }
-        },
-        {
-            "id": "add_my_devices",
-            "template": "add_devices"
-        }
-    ],
-    "repair": [
-        {
-            "id": "login_credentials",
-            "template": "login_credentials",
-            "options": {
-                "logo": "logo.png",
-                "usernameLabel": {
-                    "en": "E-mail address",
-                    "fr": "Adresse e-mail",
-                    "de": "E-Mail-Adresse",
-                    "nl": "E-mailadres"
-                },
-                "usernamePlaceholder": {
-                    "en": "john@doe.com",
-                    "fr": "jean@dupont.com",
-                    "de": "max.mustermann@mustermail.de",
-                    "nl": "jansen@holland.nl"
-                },
-                "passwordLabel": {
-                    "en": "Password",
-                    "fr": "Mot de passe",
-                    "de": "Passwort",
-                    "nl": "Wachtwoord"
-                },
-                "passwordPlaceholder": {
-                    "en": "Password",
-                    "fr": "Mot de passe",
-                    "de": "Passwort",
-                    "nl": "Wachtwoord"
-                }
-            }
-        }
-    ],
-    "icon": "{{driverAssetsPath}}/icon.svg",
-    "images": {
-        "large": "{{driverAssetsPath}}/images/large.png",
-        "small": "{{driverAssetsPath}}/images/small.png"
-    }
+	"platforms": [
+		"local",
+		"cloud"
+	],
+	"connectivity": [
+		"cloud"
+	],
+	"pair": [
+		{
+			"id": "select_region"
+		},
+		{
+			"id": "login_credentials",
+			"template": "login_credentials",
+			"options": {
+				"logo": "logo.png",
+				"usernameLabel": {
+					"en": "E-mail address",
+					"fr": "Adresse e-mail",
+					"de": "E-Mail-Adresse",
+					"nl": "E-mailadres"
+				},
+				"usernamePlaceholder": {
+					"en": "john@doe.com",
+					"fr": "jean@dupont.com",
+					"de": "max.mustermann@mustermail.de",
+					"nl": "jansen@holland.nl"
+				},
+				"passwordLabel": {
+					"en": "Password",
+					"fr": "Mot de passe",
+					"de": "Passwort",
+					"nl": "Wachtwoord"
+				},
+				"passwordPlaceholder": {
+					"en": "Password",
+					"fr": "Mot de passe",
+					"de": "Passwort",
+					"nl": "Wachtwoord"
+				}
+			}
+		},
+		{
+			"id": "list_my_devices",
+			"template": "list_devices",
+			"navigation": {
+				"next": "add_my_devices"
+			}
+		},
+		{
+			"id": "add_my_devices",
+			"template": "add_devices"
+		}
+	],
+	"repair": [
+		{
+			"id": "login_credentials",
+			"template": "login_credentials",
+			"options": {
+				"logo": "logo.png",
+				"usernameLabel": {
+					"en": "E-mail address",
+					"fr": "Adresse e-mail",
+					"de": "E-Mail-Adresse",
+					"nl": "E-mailadres"
+				},
+				"usernamePlaceholder": {
+					"en": "john@doe.com",
+					"fr": "jean@dupont.com",
+					"de": "max.mustermann@mustermail.de",
+					"nl": "jansen@holland.nl"
+				},
+				"passwordLabel": {
+					"en": "Password",
+					"fr": "Mot de passe",
+					"de": "Passwort",
+					"nl": "Wachtwoord"
+				},
+				"passwordPlaceholder": {
+					"en": "Password",
+					"fr": "Mot de passe",
+					"de": "Passwort",
+					"nl": "Wachtwoord"
+				}
+			}
+		}
+	],
+	"icon": "{{driverAssetsPath}}/icon.svg",
+	"images": {
+		"large": "{{driverAssetsPath}}/images/large.png",
+		"small": "{{driverAssetsPath}}/images/small.png"
+	}
 }

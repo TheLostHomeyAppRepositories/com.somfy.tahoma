@@ -1,91 +1,91 @@
 {
-    "name": {
-        "en": "Garage Door with Position Control (io)",
-        "fr": "Porte de garage avec contrôle de position (io)",
-        "de": "Garagentor mit Positionssteuerung (io)",
-        "nl": "Garagedeur met positiecontrole (io)"
-    },
-    "class": "garagedoor",
-    "capabilities": [
-        "windowcoverings_state",
-        "windowcoverings_set"
-    ],
-    "settings": [
-        {
-            "id": "invertUpDown",
-            "type": "checkbox",
-            "label": {
-                "en": "Invert Up / Down",
-                "nl": "Omkeren omhoog / omlaag",
-                "fr": "Inverser haut / bas",
-                "de": "Invertieren Sie Oben / Unten"
-            },
-            "value": false,
-            "hint": {
-                "en": "Reverse the Up / Down direction controls",
-                "nl": "Draai de bedieningselementen omhoog/omlaag om",
-                "fr": "Inverser les commandes Haut / Bas",
-                "de": "Drehen Sie die Steuerelemente für Oben / Unten um"
-            }
-        },
-        {
-            "id": "invertPosition",
-            "type": "checkbox",
-            "label": {
-                "en": "Invert Position",
-                "nl": "Positie omkeren",
-                "fr": "Inverser la position",
-                "de": "Position umkehren"
-            },
-            "value": false,
-            "hint": {
-                "en": "Reverse the position control.",
-                "nl": "Draai de positieregeling om.",
-                "fr": "Inverser le contrôle de position.",
-                "de": "Drehen Sie die Positionssteuerung um."
-            }
-        },
-        {
-            "id": "classType",
-            "type": "dropdown",
-            "label": {
-                "en": "Device Class",
-                "nl": "Apparaatklasse",
-                "fr": "Classe de l'appareil",
-                "de": "Geräteklasse"
-            },
-            "value": "blinds",
-            "hint": {
-                "en": "Set the Homey class.",
-                "nl": "Stel de Homey-klasse in.",
-                "fr": "Définir la classe Homey.",
-                "de": "Legen Sie die Homey-Klasse fest."
-            },
-            "values": [
-                {
-                    "id": "windowcoverings",
-                    "label": "Generic window covering"
-                },
-                {
-                    "id": "blinds",
-                    "label": "Blinds"
-                },
-                {
-                    "id": "curtain",
-                    "label": "Curtain"
-                },
-                {
-                    "id": "sunshade",
-                    "label": "Sunshade"
-                },
-                {
-                    "id": "garagedoor",
-                    "label": "Garage door"
-                }
-            ]
-        }
-    ],
-    "$extends": [
-        "cloudDriver"
-    ]
+	"name": {
+		"en": "Garage Door with Position Control (io)",
+		"fr": "Porte de garage avec contrôle de position (io)",
+		"de": "Garagentor mit Positionssteuerung (io)",
+		"nl": "Garagedeur met positiecontrole (io)"
+	},
+	"class": "garagedoor",
+	"capabilities": [
+		"windowcoverings_state",
+		"windowcoverings_set"
+	],
+	"settings": [
+		{
+			"id": "invertUpDown",
+			"type": "checkbox",
+			"label": {
+				"en": "Invert Up / Down",
+				"nl": "Omkeren omhoog / omlaag",
+				"fr": "Inverser haut / bas",
+				"de": "Invertieren Sie Oben / Unten"
+			},
+			"value": false,
+			"hint": {
+				"en": "Reverse the Up / Down direction controls",
+				"nl": "Draai de bedieningselementen omhoog/omlaag om",
+				"fr": "Inverser les commandes Haut / Bas",
+				"de": "Drehen Sie die Steuerelemente für Oben / Unten um"
+			}
+		},
+		{
+			"id": "invertPosition",
+			"type": "checkbox",
+			"label": {
+				"en": "Invert Position",
+				"nl": "Positie omkeren",
+				"fr": "Inverser la position",
+				"de": "Position umkehren"
+			},
+			"value": false,
+			"hint": {
+				"en": "Reverse the position control.",
+				"nl": "Draai de positieregeling om.",
+				"fr": "Inverser le contrôle de position.",
+				"de": "Drehen Sie die Positionssteuerung um."
+			}
+		},
+		{
+			"id": "classType",
+			"type": "dropdown",
+			"label": {
+				"en": "Device Class",
+				"nl": "Apparaatklasse",
+				"fr": "Classe de l'appareil",
+				"de": "Geräteklasse"
+			},
+			"value": "blinds",
+			"hint": {
+				"en": "Set the Homey class.",
+				"nl": "Stel de Homey-klasse in.",
+				"fr": "Définir la classe Homey.",
+				"de": "Legen Sie die Homey-Klasse fest."
+			},
+			"values": [
+				{
+					"id": "windowcoverings",
+					"label": "Generic window covering"
+				},
+				{
+					"id": "blinds",
+					"label": "Blinds"
+				},
+				{
+					"id": "curtain",
+					"label": "Curtain"
+				},
+				{
+					"id": "sunshade",
+					"label": "Sunshade"
+				},
+				{
+					"id": "garagedoor",
+					"label": "Garage door"
+				}
+			]
+		}
+	],
+	"$extends": [
+		"cloudDriver"
+	]
 }

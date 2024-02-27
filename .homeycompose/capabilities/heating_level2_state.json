@@ -1,49 +1,49 @@
 {
-    "type": "enum",
-    "title": {
-        "en": "Heating Level",
-        "nl": "Verwarmingsniveau",
-        "fr": "Niveau de chauffage",
-        "de": "Heizstufe"
-    },
-    "values": [
-        {
-            "id": "comfort",
-            "title": {
-                "en": "Comfort",
-                "nl": "Comfort",
-                "fr": "Confort",
-                "de": "Komfort"
-            }
-        },
-        {
-            "id": "eco",
-            "title": {
-                "en": "Eco",
-                "nl": "Eco",
-                "fr": "Eco",
-                "de": "Eco"
-            }
-        },
-        {
-            "id": "frostprotection",
-            "title": {
-                "en": "Frost Protection",
-                "nl": "Vorstbescherming",
-                "fr": "Protection contre le gel",
-                "de": "Frostschutz"
-            }
-        },
-        {
-            "id": "off",
-            "title": {
-                "en": "Off",
-                "nl": "Uit",
-                "fr": "Désactivé",
-                "de": "Aus"
-            }
-        }
-    ],
-    "getable": true,
-    "setable": true
+	"type": "enum",
+	"title": {
+		"en": "Heating Level",
+		"nl": "Verwarmingsniveau",
+		"fr": "Niveau de chauffage",
+		"de": "Heizstufe"
+	},
+	"values": [
+		{
+			"id": "comfort",
+			"title": {
+				"en": "Comfort",
+				"nl": "Comfort",
+				"fr": "Confort",
+				"de": "Komfort"
+			}
+		},
+		{
+			"id": "eco",
+			"title": {
+				"en": "Eco",
+				"nl": "Eco",
+				"fr": "Eco",
+				"de": "Eco"
+			}
+		},
+		{
+			"id": "frostprotection",
+			"title": {
+				"en": "Frost Protection",
+				"nl": "Vorstbescherming",
+				"fr": "Protection contre le gel",
+				"de": "Frostschutz"
+			}
+		},
+		{
+			"id": "off",
+			"title": {
+				"en": "Off",
+				"nl": "Uit",
+				"fr": "Désactivé",
+				"de": "Aus"
+			}
+		}
+	],
+	"getable": true,
+	"setable": true
 }

@@ -12,24 +12,24 @@ const ioWindowCoveringsDriver = require('../ioWindowCoveringsDriver');
 class RollerShutterDriver extends ioWindowCoveringsDriver
 {
 
-    async onInit()
-    {
-        // 'io:DynamicRollerShutterIOComponent' supports the quiet mode, so copied it to io_roller_shutter_quiet, but I have left it here for backward compatibility
-        this.deviceType = [
-            'io:RollerShutterGenericIOComponent',
-            'io:Re3js3W69CrGF8kKXvvmYtT4zNGqicXRjvuAnmmbvPZXnt',
-            'io:MicroModuleRollerShutterSomfyIOComponent',
-            'io:RollerShutterUnoIOComponent',
-            'io:ScreenReceiverUnoIOComponent',
-            'io:RollerShutterWithBatterySomfyIOComponent',
-            'io:DynamicRollerShutterIOComponent',
-            'eliot:RollerShutterEliotComponent',
-            'zigbee:ProfaluxRollerShutterComponent',
-            'zigbee:RollerShutterGenericComponent',
-        ];
+	async onInit()
+	{
+		// 'io:DynamicRollerShutterIOComponent' supports the quiet mode, so copied it to io_roller_shutter_quiet, but I have left it here for backward compatibility
+		this.deviceType = [
+			'io:RollerShutterGenericIOComponent',
+			'io:Re3js3W69CrGF8kKXvvmYtT4zNGqicXRjvuAnmmbvPZXnt',
+			'io:MicroModuleRollerShutterSomfyIOComponent',
+			'io:RollerShutterUnoIOComponent',
+			'io:ScreenReceiverUnoIOComponent',
+			'io:RollerShutterWithBatterySomfyIOComponent',
+			'io:DynamicRollerShutterIOComponent',
+			'eliot:RollerShutterEliotComponent',
+			'zigbee:ProfaluxRollerShutterComponent',
+			'zigbee:RollerShutterGenericComponent',
+		];
 
-        await super.onInit();
-    }
+		await super.onInit();
+	}
 
 }
 

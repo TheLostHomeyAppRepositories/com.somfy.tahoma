@@ -1,23 +1,23 @@
 {
-    "name": {
-        "en": "Temperature Sensor (io)",
-        "nl": "Thermis WireFree sensor (io)",
-        "fr": "Capteur de température (io)",
-        "de": "Temperatursensor (io)"
-    },
-    "class": "sensor",
-    "energy": {
-        "batteries": [
-            "AA",
-            "AA"
-        ]
-    },
-    "capabilities": [
-        "measure_temperature",
-        "defect_state",
-        "alarm_battery"
-    ],
-    "$extends": [
-        "cloudDriver"
-    ]
+	"name": {
+		"en": "Temperature Sensor (io)",
+		"nl": "Thermis WireFree sensor (io)",
+		"fr": "Capteur de température (io)",
+		"de": "Temperatursensor (io)"
+	},
+	"class": "sensor",
+	"energy": {
+		"batteries": [
+			"AA",
+			"AA"
+		]
+	},
+	"capabilities": [
+		"measure_temperature",
+		"defect_state",
+		"alarm_battery"
+	],
+	"$extends": [
+		"cloudDriver"
+	]
 }

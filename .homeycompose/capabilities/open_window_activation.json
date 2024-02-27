@@ -1,26 +1,26 @@
 {
-    "type": "boolean",
-    "getable": true,
-    "setable": true,
-    "uiComponent": "button",
-    "title": {
-        "en": "Open Window Activation",
-        "nl": "Open Venster Activering",
-        "fr": "Activation de la fenêtre ouverte",
-        "de": "Öffnen von Fenstern aktivieren"
-    },
-    "insights": true,
-    "insightsTitleTrue": {
-        "en": "Open Windows detection turned on",
-        "nl": "Open Windows-detectie ingeschakeld",
-        "fr": "Détection des fenêtres ouvertes activée",
-        "de": "Öffnungserkennung von Fenstern eingeschaltet"
-    },
-    "insightsTitleFalse": {
-        "en": "Open Windows detection turned off",
-        "nl": "Open Windows-detectie uitgeschakeld",
-        "fr": "Détection des fenêtres ouvertes désactivée",
-        "de": "Öffnungserkennung von Fenstern ausgeschaltet"
-    },
-    "icon": "/assets/open_windows.svg"
+	"type": "boolean",
+	"getable": true,
+	"setable": true,
+	"uiComponent": "button",
+	"title": {
+		"en": "Open Window Activation",
+		"nl": "Open Venster Activering",
+		"fr": "Activation de la fenêtre ouverte",
+		"de": "Öffnen von Fenstern aktivieren"
+	},
+	"insights": true,
+	"insightsTitleTrue": {
+		"en": "Open Windows detection turned on",
+		"nl": "Open Windows-detectie ingeschakeld",
+		"fr": "Détection des fenêtres ouvertes activée",
+		"de": "Öffnungserkennung von Fenstern eingeschaltet"
+	},
+	"insightsTitleFalse": {
+		"en": "Open Windows detection turned off",
+		"nl": "Open Windows-detectie uitgeschakeld",
+		"fr": "Détection des fenêtres ouvertes désactivée",
+		"de": "Öffnungserkennung von Fenstern ausgeschaltet"
+	},
+	"icon": "/assets/open_windows.svg"
 }

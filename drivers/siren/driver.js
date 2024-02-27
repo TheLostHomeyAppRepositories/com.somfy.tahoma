@@ -11,10 +11,10 @@ const Driver = require('../Driver');
 class SirenDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['io:SomfyIndoorSimpleSirenIOComponent'];
-    }
+	async onInit()
+	{
+		this.deviceType = ['io:SomfyIndoorSimpleSirenIOComponent'];
+	}
 
 }
 

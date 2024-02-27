@@ -1,11 +1,11 @@
 {
-    "type": "string",
-    "title": {
-        "en": "Product Type",
-        "fr": "Type de produit",
-        "de": "Produkttyp",
-        "nl": "Productsoort"
-    },
-    "getable": true,
-    "setable": false
+	"type": "string",
+	"title": {
+		"en": "Product Type",
+		"fr": "Type de produit",
+		"de": "Produkttyp",
+		"nl": "Productsoort"
+	},
+	"getable": true,
+	"setable": false
 }

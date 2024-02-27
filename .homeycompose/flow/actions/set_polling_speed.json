@@ -1,39 +1,39 @@
 {
-    "id": "set_polling_speed",
-    "deprecated": true,
-    "title": {
-        "en": "Set Polling Interval",
-        "nl": "Stel de update frequentie in",
-        "fr": "Définir l'intervalle de sondage",
-        "de": "Pollen-Intervall festlegen"
-    },
-    "titleFormatted": {
-        "en": "Set Polling Interval to [[syncSpeed]]",
-        "nl": "Update frequentie naar [[syncSpeed]]",
-        "fr": "Définir l'intervalle de sondage à [[syncSpeed]]",
-        "de": "Pollen-Intervall auf [[syncSpeed]] setzen"
-    },
-    "hint": {
-        "en": "Sets interval between polling the API for updates (minimum and recommended setting is 30 seconds, maximum is 90 seconds)",
-        "nl": "Stelt het interval in tussen het pollen van de API voor updates (minimale en aanbevolen instelling is 30 seconden, maximum is 90 seconden)",
-        "fr": "Définit l'intervalle entre les sondages de l'API pour les mises à jour (paramètre recommandé et minimum : 30 secondes, maximum : 90 secondes)",
-        "de": "Legt das Intervall zwischen dem Pochen der API für Updates fest (die minimale und empfohlene Einstellung beträgt 30 Sekunden, das Maximum beträgt 90 Sekunden)"
-    },
-    "args": [
-        {
-            "name": "syncSpeed",
-            "type": "number",
-            "title": {
-                "en": "Interval",
-                "fr": "Intervalle",
-                "de": "Intervall"
-            },
-            "min": 30,
-            "max": 90,
-            "placeholder": {
-                "en": "Seconds",
-                "nl": "Seconden"
-            }
-        }
-    ]
+	"id": "set_polling_speed",
+	"deprecated": true,
+	"title": {
+		"en": "Set Polling Interval",
+		"nl": "Stel de update frequentie in",
+		"fr": "Définir l'intervalle de sondage",
+		"de": "Pollen-Intervall festlegen"
+	},
+	"titleFormatted": {
+		"en": "Set Polling Interval to [[syncSpeed]]",
+		"nl": "Update frequentie naar [[syncSpeed]]",
+		"fr": "Définir l'intervalle de sondage à [[syncSpeed]]",
+		"de": "Pollen-Intervall auf [[syncSpeed]] setzen"
+	},
+	"hint": {
+		"en": "Sets interval between polling the API for updates (minimum and recommended setting is 30 seconds, maximum is 90 seconds)",
+		"nl": "Stelt het interval in tussen het pollen van de API voor updates (minimale en aanbevolen instelling is 30 seconden, maximum is 90 seconden)",
+		"fr": "Définit l'intervalle entre les sondages de l'API pour les mises à jour (paramètre recommandé et minimum : 30 secondes, maximum : 90 secondes)",
+		"de": "Legt das Intervall zwischen dem Pochen der API für Updates fest (die minimale und empfohlene Einstellung beträgt 30 Sekunden, das Maximum beträgt 90 Sekunden)"
+	},
+	"args": [
+		{
+			"name": "syncSpeed",
+			"type": "number",
+			"title": {
+				"en": "Interval",
+				"fr": "Intervalle",
+				"de": "Intervall"
+			},
+			"min": 30,
+			"max": 90,
+			"placeholder": {
+				"en": "Seconds",
+				"nl": "Seconden"
+			}
+		}
+	]
 }

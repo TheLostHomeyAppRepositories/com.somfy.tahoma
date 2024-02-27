@@ -1,49 +1,49 @@
 {
-    "type": "enum",
-    "title": {
-        "en": "Operating Mode",
-        "nl": "Bedrijfsmodus",
-        "fr": "Mode de fonctionnement",
-        "de": "Betriebsart"
-    },
-    "values": [
-        {
-            "id": "cooling",
-            "title": {
-                "en": "Cooling",
-                "nl": "Koeling",
-                "fr": "Refroidissement",
-                "de": "Kühlung"
-            }
-        },
-        {
-            "id": "drying",
-            "title": {
-                "en": "Drying",
-                "nl": "Drogen",
-                "fr": "Séchage",
-                "de": "Trocknung"
-            }
-        },
-        {
-            "id": "heating",
-            "title": {
-                "en": "Heating",
-                "nl": "Verwarming",
-                "fr": "Chauffage",
-                "de": "Heizung"
-            }
-        },
-        {
-            "id": "stop",
-            "title": {
-                "en": "Stop",
-                "nl": "Hou op",
-                "fr": "Arrêt",
-                "de": "Stopp"
-            }
-        }
-    ],
-    "getable": true,
-    "setable": true
+	"type": "enum",
+	"title": {
+		"en": "Operating Mode",
+		"nl": "Bedrijfsmodus",
+		"fr": "Mode de fonctionnement",
+		"de": "Betriebsart"
+	},
+	"values": [
+		{
+			"id": "cooling",
+			"title": {
+				"en": "Cooling",
+				"nl": "Koeling",
+				"fr": "Refroidissement",
+				"de": "Kühlung"
+			}
+		},
+		{
+			"id": "drying",
+			"title": {
+				"en": "Drying",
+				"nl": "Drogen",
+				"fr": "Séchage",
+				"de": "Trocknung"
+			}
+		},
+		{
+			"id": "heating",
+			"title": {
+				"en": "Heating",
+				"nl": "Verwarming",
+				"fr": "Chauffage",
+				"de": "Heizung"
+			}
+		},
+		{
+			"id": "stop",
+			"title": {
+				"en": "Stop",
+				"nl": "Hou op",
+				"fr": "Arrêt",
+				"de": "Stopp"
+			}
+		}
+	],
+	"getable": true,
+	"setable": true
 }

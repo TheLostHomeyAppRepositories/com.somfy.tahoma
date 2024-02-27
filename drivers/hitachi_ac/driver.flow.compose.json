@@ -1,98 +1,98 @@
 {
-    "actions": [
-        {
-            "id": "ac_operating_mode_set",
-            "title": {
-                "en": "Set the Heat / Cool mode",
-                "fr": "Définir le mode chaleur/froid",
-                "de": "Heiz- / Kühlmodus einstellen",
-                "nl": "Stel de warmte-/koelmodus in"
-            },
-            "titleFormatted": {
-                "en": "Set the Mode to [[state]]",
-                "fr": "Définir le mode à [[state]]",
-                "de": "Setzen Sie den Modus auf [[state]]",
-                "nl": "Stel de modus in op [[state]]"
-            },
-            "args": [
-                {
-                    "name": "state",
-                    "type": "dropdown",
-                    "title": {
-                        "en": "Heat / Cool Mode",
-                        "fr": "Mode chauffage/climatisation",
-                        "de": "Heiz- / Kühlmodus",
-                        "nl": "Warmte-/koelmodus"
-                    },
-                    "values": [
-                        {
-                            "id": "heating",
-                            "label": {
-                                "en": "Heating",
-                                "fr": "Chauffage",
-                                "de": "Heizung",
-                                "nl": "Verwarming"
-                            }
-                        },
-                        {
-                            "id": "cooling",
-                            "label": {
-                                "en": "Cooling",
-                                "fr": "Climatisation",
-                                "de": "Kühlung",
-                                "nl": "Koeling"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "ac_auto_manual_set",
-            "title": {
-                "en": "Set the Auto / Manual Mode",
-                "fr": "Définir le mode automatique/manuel",
-                "de": "Auto / Manueller Modus einstellen",
-                "nl": "Stel de automatische/handmatige modus in"
-            },
-            "titleFormatted": {
-                "en": "Set the Mode to [[state]]",
-                "fr": "Définir le mode à [[state]]",
-                "de": "Setzen Sie den Modus auf [[state]]",
-                "nl": "Stel de modus in op [[state]]"
-            },
-            "args": [
-                {
-                    "name": "state",
-                    "type": "dropdown",
-                    "title": {
-                        "en": "Auto / Manual Mode",
-                        "fr": "Mode automatique / manuel",
-                        "de": "Automatischer / manueller Modus",
-                        "nl": "Automatische / handmatige modus"
-                    },
-                    "values": [
-                        {
-                            "id": "auto",
-                            "label": {
-                                "en": "Automatic",
-                                "fr": "Automatique",
-                                "de": "Automatisch",
-                                "nl": "Automatisch"
-                            }
-                        },
-                        {
-                            "id": "manu",
-                            "label": {
-                                "en": "Manual",
-                                "fr": "Manuel",
-                                "de": "Manuell",
-                                "nl": "Handmatig"
-                            }
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
+	"actions": [
+		{
+			"id": "ac_operating_mode_set",
+			"title": {
+				"en": "Set the Heat / Cool mode",
+				"fr": "Définir le mode chaleur/froid",
+				"de": "Heiz- / Kühlmodus einstellen",
+				"nl": "Stel de warmte-/koelmodus in"
+			},
+			"titleFormatted": {
+				"en": "Set the Mode to [[state]]",
+				"fr": "Définir le mode à [[state]]",
+				"de": "Setzen Sie den Modus auf [[state]]",
+				"nl": "Stel de modus in op [[state]]"
+			},
+			"args": [
+				{
+					"name": "state",
+					"type": "dropdown",
+					"title": {
+						"en": "Heat / Cool Mode",
+						"fr": "Mode chauffage/climatisation",
+						"de": "Heiz- / Kühlmodus",
+						"nl": "Warmte-/koelmodus"
+					},
+					"values": [
+						{
+							"id": "heating",
+							"label": {
+								"en": "Heating",
+								"fr": "Chauffage",
+								"de": "Heizung",
+								"nl": "Verwarming"
+							}
+						},
+						{
+							"id": "cooling",
+							"label": {
+								"en": "Cooling",
+								"fr": "Climatisation",
+								"de": "Kühlung",
+								"nl": "Koeling"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "ac_auto_manual_set",
+			"title": {
+				"en": "Set the Auto / Manual Mode",
+				"fr": "Définir le mode automatique/manuel",
+				"de": "Auto / Manueller Modus einstellen",
+				"nl": "Stel de automatische/handmatige modus in"
+			},
+			"titleFormatted": {
+				"en": "Set the Mode to [[state]]",
+				"fr": "Définir le mode à [[state]]",
+				"de": "Setzen Sie den Modus auf [[state]]",
+				"nl": "Stel de modus in op [[state]]"
+			},
+			"args": [
+				{
+					"name": "state",
+					"type": "dropdown",
+					"title": {
+						"en": "Auto / Manual Mode",
+						"fr": "Mode automatique / manuel",
+						"de": "Automatischer / manueller Modus",
+						"nl": "Automatische / handmatige modus"
+					},
+					"values": [
+						{
+							"id": "auto",
+							"label": {
+								"en": "Automatic",
+								"fr": "Automatique",
+								"de": "Automatisch",
+								"nl": "Automatisch"
+							}
+						},
+						{
+							"id": "manu",
+							"label": {
+								"en": "Manual",
+								"fr": "Manuel",
+								"de": "Manuell",
+								"nl": "Handmatig"
+							}
+						}
+					]
+				}
+			]
+		}
+	]
 }

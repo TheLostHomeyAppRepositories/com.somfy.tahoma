@@ -1,59 +1,59 @@
 {
   "name": {
-    "en": "Blind or Shutter (RTS)"
+	"en": "Blind or Shutter (RTS)"
   },
   "class": "blinds",
   "capabilities": [
-    "windowcoverings_state",
-    "my_position"
+	"windowcoverings_state",
+	"my_position"
   ],
   "settings": [
-    {
-      "id": "invertUpDown",
-      "type": "checkbox",
-      "label": {
-        "en": "Invert Up / Down",
-        "nl": "Omkeren omhoog / omlaag"
-      },
-      "value": false,
-      "hint": {
-        "en": "Reverse the Up / Down direction controls",
-        "nl": "Draai de bedieningselementen omhoog/omlaag om"
-      }
-    },
-    {
-      "id": "classType",
-      "type": "dropdown",
-      "label": {
-        "en": "Device Class"
-      },
-      "value": "blinds",
-      "hint": {
-        "en": "Set the Homey class."
-      },
-      "values":[
-        {
-            "id": "windowcoverings",
-            "label": "Generic window covering"
-        },
-        {
-            "id": "blinds",
-            "label": "Blinds"
-        },
-        {
-            "id": "curtain",
-            "label": "Curtain"
-        },
-        {
-            "id": "sunshade",
-            "label": "Sunshade"
-        },
-        {
-            "id": "garagedoor",
-            "label": "Garage door"
-        }
-      ]
-    }
+	{
+	  "id": "invertUpDown",
+	  "type": "checkbox",
+	  "label": {
+		"en": "Invert Up / Down",
+		"nl": "Omkeren omhoog / omlaag"
+	  },
+	  "value": false,
+	  "hint": {
+		"en": "Reverse the Up / Down direction controls",
+		"nl": "Draai de bedieningselementen omhoog/omlaag om"
+	  }
+	},
+	{
+	  "id": "classType",
+	  "type": "dropdown",
+	  "label": {
+		"en": "Device Class"
+	  },
+	  "value": "blinds",
+	  "hint": {
+		"en": "Set the Homey class."
+	  },
+	  "values":[
+		{
+			"id": "windowcoverings",
+			"label": "Generic window covering"
+		},
+		{
+			"id": "blinds",
+			"label": "Blinds"
+		},
+		{
+			"id": "curtain",
+			"label": "Curtain"
+		},
+		{
+			"id": "sunshade",
+			"label": "Sunshade"
+		},
+		{
+			"id": "garagedoor",
+			"label": "Garage door"
+		}
+	  ]
+	}
   ],
   "$extends": ["cloudDriver"]
 }

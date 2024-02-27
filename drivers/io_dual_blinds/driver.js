@@ -11,10 +11,10 @@ const Driver = require('../Driver');
 class DualBlindDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['io:DualRollerShutterIOComponent'];
-    }
+	async onInit()
+	{
+		this.deviceType = ['io:DualRollerShutterIOComponent'];
+	}
 
 }
 

@@ -13,69 +13,69 @@ const WindowCoveringsDevice = require('../WindowCoveringsDevice');
 class RollerShutterDevice extends WindowCoveringsDevice
 {
 
-    async onInit()
-    {
-        if (this.hasCapability('lock_state'))
-        {
-            this.removeCapability('lock_state').catch(this.error);
-        }
+	async onInit()
+	{
+		if (this.hasCapability('lock_state'))
+		{
+			this.removeCapability('lock_state').catch(this.error);
+		}
 
-        const dd = this.getData();
-        let controllableName = '';
-        if (dd.controllableName)
-        {
-            controllableName = dd.controllableName.toString().toLowerCase();
-        }
+		const dd = this.getData();
+		let controllableName = '';
+		if (dd.controllableName)
+		{
+			controllableName = dd.controllableName.toString().toLowerCase();
+		}
 
-        if (controllableName === 'eliot:rollershuttereliotcomponent')
-        {
-            if (this.hasCapability('windowcoverings_set'))
-            {
-                this.removeCapability('windowcoverings_set').catch(this.error);
-            }
-        }
+		if (controllableName === 'eliot:rollershuttereliotcomponent')
+		{
+			if (this.hasCapability('windowcoverings_set'))
+			{
+				this.removeCapability('windowcoverings_set').catch(this.error);
+			}
+		}
 
-        if ((controllableName === 'io:rollershuttergenericiocomponent')
-            || (controllableName === 'io:rollershutterunoiocomponent')
-            || (controllableName === 'io:screenreceiverunoiocomponent')
-            || (controllableName === 'io:rollershutterwithbatterysomfyiocomponent')
-            || (controllableName === 'io:dynamicrollershutteriocomponent'))
-        {
-            if (!this.hasCapability('my_position'))
-            {
-                this.addCapability('my_position').catch(this.error);
-            }
-        }
-        else if (this.hasCapability('my_position'))
-        {
-            this.removeCapability('my_position').catch(this.error);
-        }
+		if ((controllableName === 'io:rollershuttergenericiocomponent')
+			|| (controllableName === 'io:rollershutterunoiocomponent')
+			|| (controllableName === 'io:screenreceiverunoiocomponent')
+			|| (controllableName === 'io:rollershutterwithbatterysomfyiocomponent')
+			|| (controllableName === 'io:dynamicrollershutteriocomponent'))
+		{
+			if (!this.hasCapability('my_position'))
+			{
+				this.addCapability('my_position').catch(this.error);
+			}
+		}
+		else if (this.hasCapability('my_position'))
+		{
+			this.removeCapability('my_position').catch(this.error);
+		}
 
-        if ((controllableName === 'io:rollershutterwithbatterysomfyiocomponent')
-            || (controllableName === 'io:dynamicrollershutteriocomponent'))
-        {
-            if (!this.hasCapability('measure_battery'))
-            {
-                this.addCapability('measure_battery').catch(this.error);
-            }
-        }
+		if ((controllableName === 'io:rollershutterwithbatterysomfyiocomponent')
+			|| (controllableName === 'io:dynamicrollershutteriocomponent'))
+		{
+			if (!this.hasCapability('measure_battery'))
+			{
+				this.addCapability('measure_battery').catch(this.error);
+			}
+		}
 
-        await super.onInit();
+		await super.onInit();
 
-        if (!this.hasCapability('quick_open'))
-        {
-            this.addCapability('quick_open').catch(this.error);
-        }
+		if (!this.hasCapability('quick_open'))
+		{
+			this.addCapability('quick_open').catch(this.error);
+		}
 
-        if (controllableName === 'io:screenreceiverunoiocomponent')
-        {
-            // No feedback from this device
-            this.positionStateName = 'core:TargetClosureState';
-            this.openClosedStateName = '';
+		if (controllableName === 'io:screenreceiverunoiocomponent')
+		{
+			// No feedback from this device
+			this.positionStateName = 'core:TargetClosureState';
+			this.openClosedStateName = '';
 
-            this.setPositionActionName = 'setPosition';
-        }
-    }
+			this.setPositionActionName = 'setPosition';
+		}
+	}
 
 }
 

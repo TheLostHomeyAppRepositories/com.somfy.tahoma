@@ -11,10 +11,10 @@ const Driver = require('../Driver');
 class ElectricHeaterDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['io:AtlanticElectricalHeaterWithAdjustableTemperatureSetpointIOComponent'];
-    }
+	async onInit()
+	{
+		this.deviceType = ['io:AtlanticElectricalHeaterWithAdjustableTemperatureSetpointIOComponent'];
+	}
 
 }
 

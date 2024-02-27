@@ -11,22 +11,22 @@ const Driver = require('../Driver');
 class SmokeDetectorDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['rtds:RTDSSmokeSensor', 'io:SomfySmokeIOSystemSensor'];
+	async onInit()
+	{
+		this.deviceType = ['rtds:RTDSSmokeSensor', 'io:SomfySmokeIOSystemSensor'];
 
-        /** * ALARM SMOKE TRIGGERS ** */
-        this._triggerSmokeChange = this.homey.flow.getDeviceTriggerCard('smoke_has_changed');
-    }
+		/** * ALARM SMOKE TRIGGERS ** */
+		this._triggerSmokeChange = this.homey.flow.getDeviceTriggerCard('smoke_has_changed');
+	}
 
-    triggerFlows(device, capability, value)
-    {
-        const tokens = {
-            isSmoke: value,
-        };
+	triggerFlows(device, capability, value)
+	{
+		const tokens = {
+			isSmoke: value,
+		};
 
-        this.triggerFlow(this._triggerSmokeChange, device, tokens);
-    }
+		this.triggerFlow(this._triggerSmokeChange, device, tokens);
+	}
 
 }
 

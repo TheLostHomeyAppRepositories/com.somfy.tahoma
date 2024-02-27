@@ -1,69 +1,69 @@
 {
-    "triggers": [
-        {
-            "id": "windowcoverings_tilt_changed",
-            "title": {
-                "en": "The tilt changed",
-                "fr": "L'inclinaison a changé",
-                "de": "Die Neigung hat sich geändert",
-                "nl": "De kanteling is veranderd"
-            },
-            "tokens": [
-                {
-                    "name": "windowcoverings_tilt",
-                    "type": "number",
-                    "title": {
-                        "en": "Tilt",
-                        "fr": "Inclinaison",
-                        "de": "Neigung",
-                        "nl": "Kanteling"
-                    },
-                    "example": 0.5
-                }
-            ],
-            "args": []
-        }
-    ],
-    "actions": [
-        {
-            "id": "windowcoverings_tilt",
-            "title": {
-                "en": "Set the tilt to",
-                "fr": "Définir l'inclinaison sur",
-                "de": "Neigung einstellen auf",
-                "nl": "Stel de kanteling in op"
-            },
-            "titleFormatted": {
-                "en": "Set the tilt to [[windowcoverings_set]]",
-                "fr": "Définir l'inclinaison sur [[windowcoverings_set]]",
-                "de": "Neigung einstellen auf [[windowcoverings_set]]",
-                "nl": "Stel de kanteling in op [[windowcoverings_set]]"
-            },
-            "hint": {
-                "en": "Change the tilt position to a value between 0 and 100 (50 is horizontal).",
-                "fr": "Changer la position d'inclinaison sur une valeur comprise entre 0 et 100 (50 est horizontal).",
-                "de": "Ändern Sie die Neigung auf einen Wert zwischen 0 und 100 (50 ist horizontal).",
-                "nl": "Verander de kantelpositie naar een waarde tussen 0 en 100 (50 is horizontaal)."
-            },
-            "args": [
-                {
-                    "name": "windowcoverings_set",
-                    "type": "range",
-                    "title": {
-                        "en": "Tilt level",
-                        "fr": "Niveau d'inclinaison",
-                        "de": "Neigungsgrad",
-                        "nl": "Kantelniveau"
-                    },
-                    "min": 0,
-                    "max": 1,
-                    "step": 0.01,
-                    "value": 0.5,
-                    "label": "%",
-                    "labelMultiplier": 100,
-                    "labelDecimals": 0
-                }
-            ]
-        }
-    ]
+	"triggers": [
+		{
+			"id": "windowcoverings_tilt_changed",
+			"title": {
+				"en": "The tilt changed",
+				"fr": "L'inclinaison a changé",
+				"de": "Die Neigung hat sich geändert",
+				"nl": "De kanteling is veranderd"
+			},
+			"tokens": [
+				{
+					"name": "windowcoverings_tilt",
+					"type": "number",
+					"title": {
+						"en": "Tilt",
+						"fr": "Inclinaison",
+						"de": "Neigung",
+						"nl": "Kanteling"
+					},
+					"example": 0.5
+				}
+			],
+			"args": []
+		}
+	],
+	"actions": [
+		{
+			"id": "windowcoverings_tilt",
+			"title": {
+				"en": "Set the tilt to",
+				"fr": "Définir l'inclinaison sur",
+				"de": "Neigung einstellen auf",
+				"nl": "Stel de kanteling in op"
+			},
+			"titleFormatted": {
+				"en": "Set the tilt to [[windowcoverings_set]]",
+				"fr": "Définir l'inclinaison sur [[windowcoverings_set]]",
+				"de": "Neigung einstellen auf [[windowcoverings_set]]",
+				"nl": "Stel de kanteling in op [[windowcoverings_set]]"
+			},
+			"hint": {
+				"en": "Change the tilt position to a value between 0 and 100 (50 is horizontal).",
+				"fr": "Changer la position d'inclinaison sur une valeur comprise entre 0 et 100 (50 est horizontal).",
+				"de": "Ändern Sie die Neigung auf einen Wert zwischen 0 und 100 (50 ist horizontal).",
+				"nl": "Verander de kantelpositie naar een waarde tussen 0 en 100 (50 is horizontaal)."
+			},
+			"args": [
+				{
+					"name": "windowcoverings_set",
+					"type": "range",
+					"title": {
+						"en": "Tilt level",
+						"fr": "Niveau d'inclinaison",
+						"de": "Neigungsgrad",
+						"nl": "Kantelniveau"
+					},
+					"min": 0,
+					"max": 1,
+					"step": 0.01,
+					"value": 0.5,
+					"label": "%",
+					"labelMultiplier": 100,
+					"labelDecimals": 0
+				}
+			]
+		}
+	]
 }

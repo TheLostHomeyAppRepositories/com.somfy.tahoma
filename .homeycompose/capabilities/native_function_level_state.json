@@ -1,40 +1,40 @@
 {
-    "type": "enum",
-    "title": {
-        "en": "Native Function Level",
-        "fr": "Niveau de fonction native",
-        "de": "Nativer Funktionslevel",
-        "nl": "Native functieniveau"
-    },
-    "values": [
-        {
-            "id": "base",
-            "title": {
-                "en": "Base",
-                "fr": "Base",
-                "de": "Basis",
-                "nl": "Basis"
-            }
-        },
-        {
-            "id": "medium",
-            "title": {
-                "en": "Medium",
-                "fr": "Moyen",
-                "de": "Mittel",
-                "nl": "Gemiddeld"
-            }
-        },
-        {
-            "id": "top",
-            "title": {
-                "en": "Top",
-                "fr": "Top",
-                "de": "Spitze",
-                "nl": "Top"
-            }
-        }
-    ],
-    "getable": true,
-    "setable": true
+	"type": "enum",
+	"title": {
+		"en": "Native Function Level",
+		"fr": "Niveau de fonction native",
+		"de": "Nativer Funktionslevel",
+		"nl": "Native functieniveau"
+	},
+	"values": [
+		{
+			"id": "base",
+			"title": {
+				"en": "Base",
+				"fr": "Base",
+				"de": "Basis",
+				"nl": "Basis"
+			}
+		},
+		{
+			"id": "medium",
+			"title": {
+				"en": "Medium",
+				"fr": "Moyen",
+				"de": "Mittel",
+				"nl": "Gemiddeld"
+			}
+		},
+		{
+			"id": "top",
+			"title": {
+				"en": "Top",
+				"fr": "Top",
+				"de": "Spitze",
+				"nl": "Top"
+			}
+		}
+	],
+	"getable": true,
+	"setable": true
 }

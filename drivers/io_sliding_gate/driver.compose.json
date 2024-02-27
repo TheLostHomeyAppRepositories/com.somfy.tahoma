@@ -1,55 +1,55 @@
 {
-    "name": {
-        "en": "Sliding gate (io)",
-        "fr": "Portail coulissant (I/O)",
-        "de": "Schiebetor (IO)",
-        "nl": "Schuifpoort (IO)"
-    },
-    "class": "other",
-    "capabilities": [
-        "pedestrian",
-        "windowcoverings_state"
-    ],
-    "settings": [
-        {
-            "id": "classType",
-            "type": "dropdown",
-            "label": {
-                "en": "Device Class",
-                "fr": "Classe de périphérique",
-                "de": "Geräteklasse",
-                "nl": "Apparaatklassen"
-            },
-            "value": "other",
-            "hint": {
-                "en": "Set the Homey class.",
-                "fr": "Définissez la classe Homey.",
-                "de": "Setzen Sie die Homey-Klasse.",
-                "nl": "Stel de Homey-klasse in."
-            },
-            "values": [
-                {
-                    "id": "other",
-                    "label": {
-                        "en": "Generic class",
-                        "fr": "Classe générique",
-                        "de": "Generische Klasse",
-                        "nl": "Generieke klasse"
-                    }
-                },
-                {
-                    "id": "garagedoor",
-                    "label": {
-                        "en": "Garage door",
-                        "fr": "Porte de garage",
-                        "de": "Garagentor",
-                        "nl": "Garagedeur"
-                    }
-                }
-            ]
-        }
-    ],
-    "$extends": [
-        "cloudDriver"
-    ]
+	"name": {
+		"en": "Sliding gate (io)",
+		"fr": "Portail coulissant (I/O)",
+		"de": "Schiebetor (IO)",
+		"nl": "Schuifpoort (IO)"
+	},
+	"class": "other",
+	"capabilities": [
+		"pedestrian",
+		"windowcoverings_state"
+	],
+	"settings": [
+		{
+			"id": "classType",
+			"type": "dropdown",
+			"label": {
+				"en": "Device Class",
+				"fr": "Classe de périphérique",
+				"de": "Geräteklasse",
+				"nl": "Apparaatklassen"
+			},
+			"value": "other",
+			"hint": {
+				"en": "Set the Homey class.",
+				"fr": "Définissez la classe Homey.",
+				"de": "Setzen Sie die Homey-Klasse.",
+				"nl": "Stel de Homey-klasse in."
+			},
+			"values": [
+				{
+					"id": "other",
+					"label": {
+						"en": "Generic class",
+						"fr": "Classe générique",
+						"de": "Generische Klasse",
+						"nl": "Generieke klasse"
+					}
+				},
+				{
+					"id": "garagedoor",
+					"label": {
+						"en": "Garage door",
+						"fr": "Porte de garage",
+						"de": "Garagentor",
+						"nl": "Garagedeur"
+					}
+				}
+			]
+		}
+	],
+	"$extends": [
+		"cloudDriver"
+	]
 }

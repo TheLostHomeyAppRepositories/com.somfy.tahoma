@@ -10,38 +10,38 @@ const SensorDevice = require('../SensorDevice');
  */
 
 const CapabilitiesXRef = [
-    {
-        somfyNameGet: 'core:TargetTemperatureState',
-        somfyNameSet: ['setTargetTemperature'],
-        homeyName: 'target_temperature',
-    },
-    {
-        somfyNameGet: 'core:RoomTemperatureState',
-        somfyNameSet: [],
-        homeyName: 'measure_temperature',
-    },
-    {
-        somfyNameGet: 'zigbee:DanfossScheduleTypeUsedState',
-        somfyNameSet: ['setDanfossScheduleTypeUsed'],
-        homeyName: 'ac_holiday_mode',
-        compare: ['regular', 'vacation'],
-    },
+	{
+		somfyNameGet: 'core:TargetTemperatureState',
+		somfyNameSet: ['setTargetTemperature'],
+		homeyName: 'target_temperature',
+	},
+	{
+		somfyNameGet: 'core:RoomTemperatureState',
+		somfyNameSet: [],
+		homeyName: 'measure_temperature',
+	},
+	{
+		somfyNameGet: 'zigbee:DanfossScheduleTypeUsedState',
+		somfyNameSet: ['setDanfossScheduleTypeUsed'],
+		homeyName: 'ac_holiday_mode',
+		compare: ['regular', 'vacation'],
+	},
 ];
 
 class DanfossIconThermostatDevice extends SensorDevice
 {
 
-    async onInit()
-    {
-        await super.onInit(CapabilitiesXRef);
-        this.boostSync = true;
-    }
+	async onInit()
+	{
+		await super.onInit(CapabilitiesXRef);
+		this.boostSync = true;
+	}
 
-    // Update the capabilities
-    async syncEvents(events, local)
-    {
-        this.syncEventsList(events, CapabilitiesXRef, local);
-    }
+	// Update the capabilities
+	async syncEvents(events, local)
+	{
+		this.syncEventsList(events, CapabilitiesXRef, local);
+	}
 
 }
 

@@ -1,56 +1,56 @@
 {
-    "type": "enum",
-    "title": {
-        "en": "Heating Mode",
-        "nl": "Verwarmingsmodus",
-        "fr": "Mode de chauffage",
-        "de": "Heizmodus"
-    },
-    "getable": true,
-    "setable": true,
-    "uiComponent": "picker",
-    "values": [
-        {
-            "id": "auto",
-            "title": {
-                "en": "Automatic",
-                "nl": "Automatisch",
-                "fr": "Automatique",
-                "de": "Automatisch"
-            }
-        },
-        {
-            "id": "comfort",
-            "title": {
-                "en": "Comfort",
-                "fr": "Confort",
-                "de": "Komfort"
-            }
-        },
-        {
-            "id": "eco",
-            "title": {
-                "en": "Eco",
-                "fr": "Économique",
-                "de": "Eco"
-            }
-        },
-        {
-            "id": "free",
-            "title": {
-                "en": "Free",
-                "nl": "Vrij",
-                "fr": "Libre",
-                "de": "Frei"
-            }
-        },
-        {
-            "id": "secured",
-            "title": {
-                "en": "Secured",
-                "fr": "Sécurisé",
-                "de": "Gesichert"
-            }
-        }
-    ]
+	"type": "enum",
+	"title": {
+		"en": "Heating Mode",
+		"nl": "Verwarmingsmodus",
+		"fr": "Mode de chauffage",
+		"de": "Heizmodus"
+	},
+	"getable": true,
+	"setable": true,
+	"uiComponent": "picker",
+	"values": [
+		{
+			"id": "auto",
+			"title": {
+				"en": "Automatic",
+				"nl": "Automatisch",
+				"fr": "Automatique",
+				"de": "Automatisch"
+			}
+		},
+		{
+			"id": "comfort",
+			"title": {
+				"en": "Comfort",
+				"fr": "Confort",
+				"de": "Komfort"
+			}
+		},
+		{
+			"id": "eco",
+			"title": {
+				"en": "Eco",
+				"fr": "Économique",
+				"de": "Eco"
+			}
+		},
+		{
+			"id": "free",
+			"title": {
+				"en": "Free",
+				"nl": "Vrij",
+				"fr": "Libre",
+				"de": "Frei"
+			}
+		},
+		{
+			"id": "secured",
+			"title": {
+				"en": "Secured",
+				"fr": "Sécurisé",
+				"de": "Gesichert"
+			}
+		}
+	]
 }

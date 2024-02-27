@@ -11,10 +11,10 @@ const Driver = require('../Driver');
 class WaterTankDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['io:DomesticHotWaterTankComponent'];
-    }
+	async onInit()
+	{
+		this.deviceType = ['io:DomesticHotWaterTankComponent'];
+	}
 
 }
 

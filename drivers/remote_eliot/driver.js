@@ -12,32 +12,32 @@ const Driver = require('../Driver');
 class eliot_remoteDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['eliot:RemoteEliotComponent'];
-        await super.onInit();
+	async onInit()
+	{
+		this.deviceType = ['eliot:RemoteEliotComponent'];
+		await super.onInit();
 
-        this._remoteStateChangedTrigger = this.homey.flow.getDeviceTriggerCard('eliot_remote_state_changed');
+		this._remoteStateChangedTrigger = this.homey.flow.getDeviceTriggerCard('eliot_remote_state_changed');
 
-        this._remoteStateChangedTriggerTo = this.homey.flow.getDeviceTriggerCard('eliot_remote_state_changed_to')
-            .registerRunListener((args, state) =>
-            {
-                // If true, this flow should run
-                return Promise.resolve(args.expected_state === state.expected_state);
-            });
-    }
+		this._remoteStateChangedTriggerTo = this.homey.flow.getDeviceTriggerCard('eliot_remote_state_changed_to')
+			.registerRunListener((args, state) =>
+			{
+				// If true, this flow should run
+				return Promise.resolve(args.expected_state === state.expected_state);
+			});
+	}
 
-    triggerRemoteStateChange(device, tokens, state)
-    {
-        this.triggerFlow(this._remoteStateChangedTrigger, device, tokens, state);
-        return this;
-    }
+	triggerRemoteStateChange(device, tokens, state)
+	{
+		this.triggerFlow(this._remoteStateChangedTrigger, device, tokens, state);
+		return this;
+	}
 
-    triggerRemoteStateChangeTo(device, tokens, state)
-    {
-        this.triggerFlow(this._remoteStateChangedTriggerTo, device, tokens, state);
-        return this;
-    }
+	triggerRemoteStateChangeTo(device, tokens, state)
+	{
+		this.triggerFlow(this._remoteStateChangedTriggerTo, device, tokens, state);
+		return this;
+	}
 
 }
 

@@ -1,12 +1,12 @@
 {
-    "type": "number",
-    "title": {
-        "en": "Signal Strength",
-        "fr": "Force du signal",
-        "de": "Signalstärke",
-        "nl": "De signaalsterkte"
-    },
-    "getable": true,
-    "setable": false,
-    "icon": "/assets/signal_strength.svg"
+	"type": "number",
+	"title": {
+		"en": "Signal Strength",
+		"fr": "Force du signal",
+		"de": "Signalstärke",
+		"nl": "De signaalsterkte"
+	},
+	"getable": true,
+	"setable": false,
+	"icon": "/assets/signal_strength.svg"
 }

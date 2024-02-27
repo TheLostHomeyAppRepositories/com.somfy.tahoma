@@ -1,109 +1,109 @@
 {
-    "name": {
-        "en": "Awning / Pergola (io)",
-        "nl": "Buitenzonwering / Pergola (io)",
-        "fr": "Store / Pergola (io)",
-        "de": "Markise / Pergola (io)"
-    },
-    "class": "sunshade",
-    "capabilities": [
-        "windowcoverings_state",
-        "windowcoverings_set",
-        "my_position",
-        "quick_open",
-        "lock_state"
-    ],
-    "settings": [
-        {
-            "id": "invertUpDown",
-            "type": "checkbox",
-            "label": {
-                "en": "Invert Up / Down",
-                "nl": "Omkeren omhoog / omlaag",
-                "fr": "Inverser haut / bas",
-                "de": "Oben / unten umkehren"
-            },
-            "value": true,
-            "hint": {
-                "en": "Reverse the Up / Down direction controls",
-                "nl": "Draai de bedieningselementen omhoog/omlaag om",
-                "fr": "Inverser les commandes de direction Haut / Bas",
-                "de": "Die Steuerelemente für die Richtung Oben / Unten umkehren"
-            }
-        },
-        {
-            "id": "invertTile",
-            "type": "checkbox",
-            "label": {
-                "en": "Invert Tile Action",
-                "nl": "Tegelactie omkeren",
-                "fr": "Inverser l'action des tuiles",
-                "de": "Kachelaktion umkehren"
-            },
-            "value": true,
-            "hint": {
-                "en": "Reverse the Open / Close state of the Tile",
-                "nl": "Keer de Open / Sluit-status van de tegel om",
-                "fr": "Inverser l'état Ouvert / Fermé de la tuile",
-                "de": "Den Öffnungs- / Schließzustand der Kachel umkehren"
-            }
-        },
-        {
-            "id": "invertPosition",
-            "type": "checkbox",
-            "label": {
-                "en": "Invert Position",
-                "nl": "Positie omkeren",
-                "fr": "Inverser la position",
-                "de": "Position umkehren"
-            },
-            "value": true,
-            "hint": {
-                "en": "Reverse the position control.",
-                "nl": "Draai de positieregeling om.",
-                "fr": "Inverser le contrôle de position",
-                "de": "Die Positionskontrolle umkehren"
-            }
-        },
-        {
-            "id": "classType",
-            "type": "dropdown",
-            "label": {
-                "en": "Device Class",
-                "fr": "Classe de l'appareil",
-                "de": "Geräteklasse"
-            },
-            "value": "sunshade",
-            "hint": {
-                "en": "Set the Homey class.",
-                "fr": "Définir la classe Homey.",
-                "de": "Setzen Sie die Homey-Klasse."
-            },
-            "values": [
-                {
-                    "id": "windowcoverings",
-                    "label": "Generic window covering"
-                },
-                {
-                    "id": "blinds",
-                    "label": "Blinds"
-                },
-                {
-                    "id": "curtain",
-                    "label": "Curtain"
-                },
-                {
-                    "id": "sunshade",
-                    "label": "Sunshade"
-                },
-                {
-                    "id": "garagedoor",
-                    "label": "Garage door"
-                }
-            ]
-        }
-    ],
-    "$extends": [
-        "cloudDriver"
-    ]
+	"name": {
+		"en": "Awning / Pergola (io)",
+		"nl": "Buitenzonwering / Pergola (io)",
+		"fr": "Store / Pergola (io)",
+		"de": "Markise / Pergola (io)"
+	},
+	"class": "sunshade",
+	"capabilities": [
+		"windowcoverings_state",
+		"windowcoverings_set",
+		"my_position",
+		"quick_open",
+		"lock_state"
+	],
+	"settings": [
+		{
+			"id": "invertUpDown",
+			"type": "checkbox",
+			"label": {
+				"en": "Invert Up / Down",
+				"nl": "Omkeren omhoog / omlaag",
+				"fr": "Inverser haut / bas",
+				"de": "Oben / unten umkehren"
+			},
+			"value": true,
+			"hint": {
+				"en": "Reverse the Up / Down direction controls",
+				"nl": "Draai de bedieningselementen omhoog/omlaag om",
+				"fr": "Inverser les commandes de direction Haut / Bas",
+				"de": "Die Steuerelemente für die Richtung Oben / Unten umkehren"
+			}
+		},
+		{
+			"id": "invertTile",
+			"type": "checkbox",
+			"label": {
+				"en": "Invert Tile Action",
+				"nl": "Tegelactie omkeren",
+				"fr": "Inverser l'action des tuiles",
+				"de": "Kachelaktion umkehren"
+			},
+			"value": true,
+			"hint": {
+				"en": "Reverse the Open / Close state of the Tile",
+				"nl": "Keer de Open / Sluit-status van de tegel om",
+				"fr": "Inverser l'état Ouvert / Fermé de la tuile",
+				"de": "Den Öffnungs- / Schließzustand der Kachel umkehren"
+			}
+		},
+		{
+			"id": "invertPosition",
+			"type": "checkbox",
+			"label": {
+				"en": "Invert Position",
+				"nl": "Positie omkeren",
+				"fr": "Inverser la position",
+				"de": "Position umkehren"
+			},
+			"value": true,
+			"hint": {
+				"en": "Reverse the position control.",
+				"nl": "Draai de positieregeling om.",
+				"fr": "Inverser le contrôle de position",
+				"de": "Die Positionskontrolle umkehren"
+			}
+		},
+		{
+			"id": "classType",
+			"type": "dropdown",
+			"label": {
+				"en": "Device Class",
+				"fr": "Classe de l'appareil",
+				"de": "Geräteklasse"
+			},
+			"value": "sunshade",
+			"hint": {
+				"en": "Set the Homey class.",
+				"fr": "Définir la classe Homey.",
+				"de": "Setzen Sie die Homey-Klasse."
+			},
+			"values": [
+				{
+					"id": "windowcoverings",
+					"label": "Generic window covering"
+				},
+				{
+					"id": "blinds",
+					"label": "Blinds"
+				},
+				{
+					"id": "curtain",
+					"label": "Curtain"
+				},
+				{
+					"id": "sunshade",
+					"label": "Sunshade"
+				},
+				{
+					"id": "garagedoor",
+					"label": "Garage door"
+				}
+			]
+		}
+	],
+	"$extends": [
+		"cloudDriver"
+	]
 }

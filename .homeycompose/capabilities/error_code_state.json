@@ -1,12 +1,12 @@
 {
-    "type": "number",
-    "title": {
-        "en": "Error Code State",
-        "nl": "Foutcodestatus",
-        "fr": "État du code d'erreur",
-        "de": "Fehlercode-Status"
-    },
-    "getable": true,
-    "setable": false,
-    "icon": "/assets/security.svg"
+	"type": "number",
+	"title": {
+		"en": "Error Code State",
+		"nl": "Foutcodestatus",
+		"fr": "État du code d'erreur",
+		"de": "Fehlercode-Status"
+	},
+	"getable": true,
+	"setable": false,
+	"icon": "/assets/security.svg"
 }

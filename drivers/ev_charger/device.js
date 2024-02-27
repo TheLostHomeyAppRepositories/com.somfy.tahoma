@@ -12,12 +12,12 @@ const LightControllerDevice = require('../LightControllerDevice');
 class evChargerDevice extends LightControllerDevice
 {
 
-    async onInit()
-    {
-        this.registerCapabilityListener('on_with_timer', this.sendOnWithTimer.bind(this));
+	async onInit()
+	{
+		this.registerCapabilityListener('on_with_timer', this.sendOnWithTimer.bind(this));
 
-        await super.onInit();
-    }
+		await super.onInit();
+	}
 
 }
 

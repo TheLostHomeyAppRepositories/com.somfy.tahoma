@@ -1,16 +1,16 @@
 {
-    "name": {
-        "en": "Atlantic Basic Electric Heater",
-        "fr": "Chauffage électrique de base Atlantic",
-        "de": "Atlantic Basis-Elektroheizung",
-        "nl": "Atlantic basis elektrische kachel"
-    },
-    "class": "heater",
-    "capabilities": [
-        "onoff",
-        "heating_level_state"
-    ],
-    "$extends": [
-        "cloudDriver"
-    ]
+	"name": {
+		"en": "Atlantic Basic Electric Heater",
+		"fr": "Chauffage électrique de base Atlantic",
+		"de": "Atlantic Basis-Elektroheizung",
+		"nl": "Atlantic basis elektrische kachel"
+	},
+	"class": "heater",
+	"capabilities": [
+		"onoff",
+		"heating_level_state"
+	],
+	"$extends": [
+		"cloudDriver"
+	]
 }

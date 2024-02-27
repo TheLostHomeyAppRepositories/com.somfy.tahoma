@@ -1,17 +1,17 @@
 {
-    "name": {
-        "en": "EV Charger",
-        "nl": "EV-oplader",
-        "fr": "Chargeur de voiture électrique",
-        "de": "Elektroauto-Ladestation",
-        "du": "EV-Lader"
-    },
-    "class": "socket",
-    "capabilities": [
-        "onoff",
-        "on_with_timer"
-    ],
-    "$extends": [
-        "cloudDriver"
-    ]
+	"name": {
+		"en": "EV Charger",
+		"nl": "EV-oplader",
+		"fr": "Chargeur de voiture électrique",
+		"de": "Elektroauto-Ladestation",
+		"du": "EV-Lader"
+	},
+	"class": "socket",
+	"capabilities": [
+		"onoff",
+		"on_with_timer"
+	],
+	"$extends": [
+		"cloudDriver"
+	]
 }

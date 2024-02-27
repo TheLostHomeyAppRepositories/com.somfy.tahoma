@@ -1,125 +1,125 @@
 {
-    "type": "enum",
-    "title": {
-        "en": "Operating Mode",
-        "nl": "Bedrijfsmodus:",
-        "fr": "Mode de fonctionnement:",
-        "de": "Betriebsmodus:"
-    },
-    "values": [
-        {
-            "id": "antifreeze",
-            "title": {
-                "en": "Antifreeze",
-                "nl": "Antivries",
-                "fr": "Antigel",
-                "de": "Frostschutz"
-            }
-        },
-        {
-            "id": "auto",
-            "title": {
-                "en": "Automatic",
-                "nl": "Automatisch",
-                "fr": "Automatique",
-                "de": "Automatisch"
-            }
-        },
-        {
-            "id": "away",
-            "title": {
-                "en": "Away",
-                "nl": "Weg",
-                "fr": "Absent",
-                "de": "Abwesend"
-            }
-        },
-        {
-            "id": "boost",
-            "title": {
-                "en": "Boost",
-                "fr": "Booster",
-                "de": "Boost"
-            }
-        },
-        {
-            "id": "eco",
-            "title": {
-                "en": "Eco",
-                "fr": "Écologique",
-                "de": "Eco"
-            }
-        },
-        {
-            "id": "frostprotection",
-            "title": {
-                "en": "Frost Protection",
-                "nl": "Vorstbescherming",
-                "fr": "Protection antigel",
-                "de": "Frostschutz"
-            }
-        },
-        {
-            "id": "manual",
-            "title": {
-                "en": "Manual",
-                "nl": "Handmatig",
-                "fr": "Manuel",
-                "de": "Manuell"
-            }
-        },
-        {
-            "id": "max",
-            "title": {
-                "en": "Maximum",
-                "nl": "Maximaal",
-                "fr": "Maximum",
-                "de": "Maximal"
-            }
-        },
-        {
-            "id": "normal",
-            "title": {
-                "en": "Normal",
-                "nl": "Normaal",
-                "fr": "Normal",
-                "de": "Normal"
-            }
-        },
-        {
-            "id": "off",
-            "title": {
-                "en": "Off",
-                "nl": "Uit",
-                "fr": "Éteint",
-                "de": "Aus"
-            }
-        },
-        {
-            "id": "on",
-            "title": {
-                "en": "On",
-                "nl": "Op",
-                "fr": "Allumé",
-                "de": "Ein"
-            }
-        },
-        {
-            "id": "prog",
-            "title": {
-                "en": "Prog"
-            }
-        },
-        {
-            "id": "program",
-            "title": {
-                "en": "Program",
-                "nl": "Programma",
-                "fr": "Programme",
-                "de": "Programm"
-            }
-        }
-    ],
-    "getable": true,
-    "setable": true
+	"type": "enum",
+	"title": {
+		"en": "Operating Mode",
+		"nl": "Bedrijfsmodus:",
+		"fr": "Mode de fonctionnement:",
+		"de": "Betriebsmodus:"
+	},
+	"values": [
+		{
+			"id": "antifreeze",
+			"title": {
+				"en": "Antifreeze",
+				"nl": "Antivries",
+				"fr": "Antigel",
+				"de": "Frostschutz"
+			}
+		},
+		{
+			"id": "auto",
+			"title": {
+				"en": "Automatic",
+				"nl": "Automatisch",
+				"fr": "Automatique",
+				"de": "Automatisch"
+			}
+		},
+		{
+			"id": "away",
+			"title": {
+				"en": "Away",
+				"nl": "Weg",
+				"fr": "Absent",
+				"de": "Abwesend"
+			}
+		},
+		{
+			"id": "boost",
+			"title": {
+				"en": "Boost",
+				"fr": "Booster",
+				"de": "Boost"
+			}
+		},
+		{
+			"id": "eco",
+			"title": {
+				"en": "Eco",
+				"fr": "Écologique",
+				"de": "Eco"
+			}
+		},
+		{
+			"id": "frostprotection",
+			"title": {
+				"en": "Frost Protection",
+				"nl": "Vorstbescherming",
+				"fr": "Protection antigel",
+				"de": "Frostschutz"
+			}
+		},
+		{
+			"id": "manual",
+			"title": {
+				"en": "Manual",
+				"nl": "Handmatig",
+				"fr": "Manuel",
+				"de": "Manuell"
+			}
+		},
+		{
+			"id": "max",
+			"title": {
+				"en": "Maximum",
+				"nl": "Maximaal",
+				"fr": "Maximum",
+				"de": "Maximal"
+			}
+		},
+		{
+			"id": "normal",
+			"title": {
+				"en": "Normal",
+				"nl": "Normaal",
+				"fr": "Normal",
+				"de": "Normal"
+			}
+		},
+		{
+			"id": "off",
+			"title": {
+				"en": "Off",
+				"nl": "Uit",
+				"fr": "Éteint",
+				"de": "Aus"
+			}
+		},
+		{
+			"id": "on",
+			"title": {
+				"en": "On",
+				"nl": "Op",
+				"fr": "Allumé",
+				"de": "Ein"
+			}
+		},
+		{
+			"id": "prog",
+			"title": {
+				"en": "Prog"
+			}
+		},
+		{
+			"id": "program",
+			"title": {
+				"en": "Program",
+				"nl": "Programma",
+				"fr": "Programme",
+				"de": "Programm"
+			}
+		}
+	],
+	"getable": true,
+	"setable": true
 }

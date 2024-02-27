@@ -1,40 +1,40 @@
 {
-    "type": "enum",
-    "title": {
-        "en": "Remote State",
-        "nl": "Externe staat",
-        "fr": "Etat à distance",
-        "de": "Fernstatus"
-    },
-    "values": [
-        {
-            "id": "pressed",
-            "title": {
-                "en": "Pressed",
-                "nl": "ingedrukt",
-                "fr": "Appuyé",
-                "de": "Gedrückt"
-            }
-        },
-        {
-            "id": "released",
-            "title": {
-                "en": "Released",
-                "nl": "Vrijgelaten",
-                "fr": "Relâché",
-                "de": "Freigegeben"
-            }
-        },
-        {
-            "id": "stop",
-            "title": {
-                "en": "Stop",
-                "nl": "Hou op",
-                "fr": "Stop",
-                "de": "Stop"
-            }
-        }
-    ],
-    "getable": true,
-    "setable": false
+	"type": "enum",
+	"title": {
+		"en": "Remote State",
+		"nl": "Externe staat",
+		"fr": "Etat à distance",
+		"de": "Fernstatus"
+	},
+	"values": [
+		{
+			"id": "pressed",
+			"title": {
+				"en": "Pressed",
+				"nl": "ingedrukt",
+				"fr": "Appuyé",
+				"de": "Gedrückt"
+			}
+		},
+		{
+			"id": "released",
+			"title": {
+				"en": "Released",
+				"nl": "Vrijgelaten",
+				"fr": "Relâché",
+				"de": "Freigegeben"
+			}
+		},
+		{
+			"id": "stop",
+			"title": {
+				"en": "Stop",
+				"nl": "Hou op",
+				"fr": "Stop",
+				"de": "Stop"
+			}
+		}
+	],
+	"getable": true,
+	"setable": false
 }

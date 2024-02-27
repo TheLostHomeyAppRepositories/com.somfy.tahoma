@@ -11,10 +11,10 @@ const Driver = require('../Driver');
 class HeaterOnOffDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['io:DiscreteExteriorHeatingIOComponent'];
-    }
+	async onInit()
+	{
+		this.deviceType = ['io:DiscreteExteriorHeatingIOComponent'];
+	}
 
 }
 

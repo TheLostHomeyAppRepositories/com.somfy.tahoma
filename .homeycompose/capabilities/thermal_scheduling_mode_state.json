@@ -1,11 +1,11 @@
 {
-    "type": "string",
-    "title": {
-        "en": "Thermal Scheduling Mode",
-        "nl": "Thermische planningsmodus",
-        "fr": "Mode de planification thermique",
-        "de": "Thermischer Zeitplanungsmodus"
-    },
-    "getable": true,
-    "setable": false
+	"type": "string",
+	"title": {
+		"en": "Thermal Scheduling Mode",
+		"nl": "Thermische planningsmodus",
+		"fr": "Mode de planification thermique",
+		"de": "Thermischer Zeitplanungsmodus"
+	},
+	"getable": true,
+	"setable": false
 }

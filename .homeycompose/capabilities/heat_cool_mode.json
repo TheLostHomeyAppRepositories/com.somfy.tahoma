@@ -1,83 +1,83 @@
 {
-    "type": "enum",
-    "title": {
-        "en": "Heat / Cool Mode",
-        "fr": "Mode chauffage / climatisation",
-        "de": "Heiz- / Kühlmodus",
-        "nl": "Warmte / Koel-modus"
-    },
-    "values": [
-        {
-            "id": "absence",
-            "title": {
-                "en": "Absent",
-                "nl": "Afwezig",
-                "fr": "Absent",
-                "de": "Abwesend"
-            }
-        },
-        {
-            "id": "auto",
-            "title": {
-                "en": "Automatic",
-                "nl": "Automatisch",
-                "fr": "Automatique",
-                "de": "Automatisch"
-            }
-        },
-        {
-            "id": "comfort",
-            "title": {
-                "en": "Comfort",
-                "fr": "Confort",
-                "de": "Komfort"
-            }
-        },
-        {
-            "id": "eco",
-            "title": {
-                "en": "Eco",
-                "fr": "Eco",
-                "de": "Öko"
-            }
-        },
-        {
-            "id": "externalScheduling",
-            "title": {
-                "en": "External Scheduling",
-                "nl": "Externe planning",
-                "fr": "Planification externe",
-                "de": "Externe Planung"
-            }
-        },
-        {
-            "id": "internalScheduling",
-            "title": {
-                "en": "Internal Scheduling",
-                "nl": "Interne planning",
-                "fr": "Planification interne",
-                "de": "Interne Planung"
-            }
-        },
-        {
-            "id": "manu",
-            "title": {
-                "en": "Manual",
-                "nl": "Handmatig",
-                "fr": "Manuel",
-                "de": "Manuell"
-            }
-        },
-        {
-            "id": "stop",
-            "title": {
-                "en": "Stop",
-                "nl": "Hou op",
-                "fr": "Arrêt",
-                "de": "Stop"
-            }
-        }
-    ],
-    "getable": true,
-    "setable": true
+	"type": "enum",
+	"title": {
+		"en": "Heat / Cool Mode",
+		"fr": "Mode chauffage / climatisation",
+		"de": "Heiz- / Kühlmodus",
+		"nl": "Warmte / Koel-modus"
+	},
+	"values": [
+		{
+			"id": "absence",
+			"title": {
+				"en": "Absent",
+				"nl": "Afwezig",
+				"fr": "Absent",
+				"de": "Abwesend"
+			}
+		},
+		{
+			"id": "auto",
+			"title": {
+				"en": "Automatic",
+				"nl": "Automatisch",
+				"fr": "Automatique",
+				"de": "Automatisch"
+			}
+		},
+		{
+			"id": "comfort",
+			"title": {
+				"en": "Comfort",
+				"fr": "Confort",
+				"de": "Komfort"
+			}
+		},
+		{
+			"id": "eco",
+			"title": {
+				"en": "Eco",
+				"fr": "Eco",
+				"de": "Öko"
+			}
+		},
+		{
+			"id": "externalScheduling",
+			"title": {
+				"en": "External Scheduling",
+				"nl": "Externe planning",
+				"fr": "Planification externe",
+				"de": "Externe Planung"
+			}
+		},
+		{
+			"id": "internalScheduling",
+			"title": {
+				"en": "Internal Scheduling",
+				"nl": "Interne planning",
+				"fr": "Planification interne",
+				"de": "Interne Planung"
+			}
+		},
+		{
+			"id": "manu",
+			"title": {
+				"en": "Manual",
+				"nl": "Handmatig",
+				"fr": "Manuel",
+				"de": "Manuell"
+			}
+		},
+		{
+			"id": "stop",
+			"title": {
+				"en": "Stop",
+				"nl": "Hou op",
+				"fr": "Arrêt",
+				"de": "Stop"
+			}
+		}
+	],
+	"getable": true,
+	"setable": true
 }

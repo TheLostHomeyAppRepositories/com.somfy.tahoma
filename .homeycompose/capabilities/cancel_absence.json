@@ -1,12 +1,12 @@
 {
-    "type": "boolean",
-    "getable": false,
-    "setable": true,
-    "uiComponent": "button",
-    "title": {
-        "en": "Cancel Absence",
-        "fr": "Annuler l'absence",
-        "de": "Abwesenheit stornieren",
-        "nl": "Afwezigheid annuleren"
-    }
+	"type": "boolean",
+	"getable": false,
+	"setable": true,
+	"uiComponent": "button",
+	"title": {
+		"en": "Cancel Absence",
+		"fr": "Annuler l'absence",
+		"de": "Abwesenheit stornieren",
+		"nl": "Afwezigheid annuleren"
+	}
 }

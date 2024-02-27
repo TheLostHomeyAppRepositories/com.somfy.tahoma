@@ -1,18 +1,18 @@
 {
-    "name": {
-        "en": "Heater - Variable Power",
-        "nl": "Verwarming - variabel vermogen",
-        "fr": "Radiateur - Puissance variable",
-        "de": "Heizung - Variabler Leistungspegel"
-    },
-    "class": "heater",
-    "capabilities": [
-        "on_button",
-        "off_button",
-        "my_heat_level",
-        "heat_level"
-    ],
-    "$extends": [
-        "cloudDriver"
-    ]
+	"name": {
+		"en": "Heater - Variable Power",
+		"nl": "Verwarming - variabel vermogen",
+		"fr": "Radiateur - Puissance variable",
+		"de": "Heizung - Variabler Leistungspegel"
+	},
+	"class": "heater",
+	"capabilities": [
+		"on_button",
+		"off_button",
+		"my_heat_level",
+		"heat_level"
+	],
+	"$extends": [
+		"cloudDriver"
+	]
 }

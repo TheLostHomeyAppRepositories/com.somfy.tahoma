@@ -11,10 +11,10 @@ const Driver = require('../Driver');
 class DanfossIconThermostatDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['zigbee:DanfossHeatingFloorComponent'];
-    }
+	async onInit()
+	{
+		this.deviceType = ['zigbee:DanfossHeatingFloorComponent'];
+	}
 
 }
 

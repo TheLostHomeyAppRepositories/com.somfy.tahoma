@@ -1,17 +1,17 @@
 {
-    "name": {
-        "en": "Window Handle (SecuSignal)",
-        "nl": "Raamkruk (SecuSignal)",
-        "fr": "Poignée de fenêtre (SecuSignal)",
-        "de": "Fenstergriff (SecuSignal)"
-    },
-    "class": "sensor",
-    "capabilities": [
-        "alarm_contact",
-        "tilted_state",
-        "open_window_state"
-    ],
-    "$extends": [
-        "cloudDriver"
-    ]
+	"name": {
+		"en": "Window Handle (SecuSignal)",
+		"nl": "Raamkruk (SecuSignal)",
+		"fr": "Poignée de fenêtre (SecuSignal)",
+		"de": "Fenstergriff (SecuSignal)"
+	},
+	"class": "sensor",
+	"capabilities": [
+		"alarm_contact",
+		"tilted_state",
+		"open_window_state"
+	],
+	"$extends": [
+		"cloudDriver"
+	]
 }

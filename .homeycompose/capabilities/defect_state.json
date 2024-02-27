@@ -1,13 +1,13 @@
 {
-    "type": "string",
-    "getable": true,
-    "setable": false,
-    "uiComponent": "sensor",
-    "title": {
-        "en": "Sensor Defect State",
-        "nl": "Status sensor defect",
-        "fr": "État de défaut de capteur",
-        "de": "Sensor-Defektzustand"
-    },
-    "icon": "/assets/wrench.svg"
+	"type": "string",
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"title": {
+		"en": "Sensor Defect State",
+		"nl": "Status sensor defect",
+		"fr": "État de défaut de capteur",
+		"de": "Sensor-Defektzustand"
+	},
+	"icon": "/assets/wrench.svg"
 }

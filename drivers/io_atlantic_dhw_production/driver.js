@@ -11,10 +11,10 @@ const Driver = require('../Driver');
 class WaterBoilerProductionDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['io:AtlanticDomesticHotWaterProductionV2_AEX_IOComponent'];
-    }
+	async onInit()
+	{
+		this.deviceType = ['io:AtlanticDomesticHotWaterProductionV2_AEX_IOComponent'];
+	}
 
 }
 

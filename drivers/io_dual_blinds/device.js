@@ -10,48 +10,48 @@ const SensorDevice = require('../SensorDevice');
  */
 
 const CapabilitiesXRef = [
-    {
-        somfyNameGet: 'core:UpperClosureState',
-        somfyNameSet: ['setUpperClosure'],
-        homeyName: 'windowcoverings_set.upper',
-        invert: true,
-        scale: 100,
-    },
-    {
-        somfyNameGet: 'core:LowerClosureState',
-        somfyNameSet: ['setLowerClosure'],
-        homeyName: 'windowcoverings_set.lower',
-        invert: true,
-        scale: 100,
-    },
-    {
-        somfyNameGet: '',
-        somfyNameSet: ['open'],
-        homeyName: 'open_button',
-        ignoreValue: true,
-    },
-    {
-        somfyNameGet: '',
-        somfyNameSet: ['close'],
-        homeyName: 'close_button',
-        ignoreValue: true,
-    },
+	{
+		somfyNameGet: 'core:UpperClosureState',
+		somfyNameSet: ['setUpperClosure'],
+		homeyName: 'windowcoverings_set.upper',
+		invert: true,
+		scale: 100,
+	},
+	{
+		somfyNameGet: 'core:LowerClosureState',
+		somfyNameSet: ['setLowerClosure'],
+		homeyName: 'windowcoverings_set.lower',
+		invert: true,
+		scale: 100,
+	},
+	{
+		somfyNameGet: '',
+		somfyNameSet: ['open'],
+		homeyName: 'open_button',
+		ignoreValue: true,
+	},
+	{
+		somfyNameGet: '',
+		somfyNameSet: ['close'],
+		homeyName: 'close_button',
+		ignoreValue: true,
+	},
 ];
 
 class DualBlindsDevice extends SensorDevice
 {
 
-    async onInit()
-    {
-        await super.onInit(CapabilitiesXRef);
-        this.boostSync = true;
-    }
+	async onInit()
+	{
+		await super.onInit(CapabilitiesXRef);
+		this.boostSync = true;
+	}
 
-    // Update the capabilities
-    async syncEvents(events, local)
-    {
-        this.syncEventsList(events, CapabilitiesXRef, local);
-    }
+	// Update the capabilities
+	async syncEvents(events, local)
+	{
+		this.syncEventsList(events, CapabilitiesXRef, local);
+	}
 
 }
 

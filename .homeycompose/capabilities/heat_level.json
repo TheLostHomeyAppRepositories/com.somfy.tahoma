@@ -1,15 +1,15 @@
 {
-    "type": "number",
-    "uiComponent": "slider",
-    "title": {
-        "en": "Heat Level",
-        "fr": "Niveau de chaleur",
-        "nl": "Warmteniveau",
-        "de": "Hitzelevel"
-    },
-    "min": 0,
-    "max": 100,
-    "getable": true,
-    "setable": true,
-    "icon": "/assets/power.svg"
+	"type": "number",
+	"uiComponent": "slider",
+	"title": {
+		"en": "Heat Level",
+		"fr": "Niveau de chaleur",
+		"nl": "Warmteniveau",
+		"de": "Hitzelevel"
+	},
+	"min": 0,
+	"max": 100,
+	"getable": true,
+	"setable": true,
+	"icon": "/assets/power.svg"
 }

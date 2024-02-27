@@ -1,13 +1,13 @@
 {
-    "type": "boolean",
-    "uiQuickAction": true,
-    "getable": true,
-    "setable": true,
-    "uiComponent": null,
-    "title": {
-        "en": "Open",
-        "fr": "Ouvrir",
-        "de": "Öffnen",
-        "nl": "Openen"
-    }
+	"type": "boolean",
+	"uiQuickAction": true,
+	"getable": true,
+	"setable": true,
+	"uiComponent": null,
+	"title": {
+		"en": "Open",
+		"fr": "Ouvrir",
+		"de": "Öffnen",
+		"nl": "Openen"
+	}
 }

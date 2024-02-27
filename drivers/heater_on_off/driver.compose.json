@@ -1,15 +1,15 @@
 {
-    "name": {
-        "en": "Heater - On / Off",
-        "nl": "Verwarming - Aan / Uit",
-        "fr": "Chauffage - Marche / Arrêt",
-        "de": "Heizung - Ein / Aus"
-    },
-    "class": "heater",
-    "capabilities": [
-        "onoff"
-    ],
-    "$extends": [
-        "cloudDriver"
-    ]
+	"name": {
+		"en": "Heater - On / Off",
+		"nl": "Verwarming - Aan / Uit",
+		"fr": "Chauffage - Marche / Arrêt",
+		"de": "Heizung - Ein / Aus"
+	},
+	"class": "heater",
+	"capabilities": [
+		"onoff"
+	],
+	"$extends": [
+		"cloudDriver"
+	]
 }

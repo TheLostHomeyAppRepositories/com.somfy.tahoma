@@ -1,23 +1,23 @@
 {
-    "name": {
-        "en": "Sunis sun sensor (io)",
-        "nl": "Sunis zonsensor (io)",
-        "fr": "Capteur solaire Sunis (io)",
-        "de": "Sunis Sonnenlichtsensor (io)"
-    },
-    "class": "sensor",
-    "energy": {
-        "batteries": [
-            "AA",
-            "AA"
-        ]
-    },
-    "capabilities": [
-        "measure_luminance",
-        "defect_state",
-        "alarm_battery"
-    ],
-    "$extends": [
-        "cloudDriver"
-    ]
+	"name": {
+		"en": "Sunis sun sensor (io)",
+		"nl": "Sunis zonsensor (io)",
+		"fr": "Capteur solaire Sunis (io)",
+		"de": "Sunis Sonnenlichtsensor (io)"
+	},
+	"class": "sensor",
+	"energy": {
+		"batteries": [
+			"AA",
+			"AA"
+		]
+	},
+	"capabilities": [
+		"measure_luminance",
+		"defect_state",
+		"alarm_battery"
+	],
+	"$extends": [
+		"cloudDriver"
+	]
 }

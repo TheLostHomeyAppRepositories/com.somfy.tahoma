@@ -1,12 +1,12 @@
 {
-    "type": "number",
-    "title": {
-        "en": "Power State",
-        "nl": "Vermogensstatus",
-        "fr": "État de l'alimentation",
-        "de": "Stromzustand"
-    },
-    "getable": true,
-    "setable": false,
-    "icon": "/assets/power.svg"
+	"type": "number",
+	"title": {
+		"en": "Power State",
+		"nl": "Vermogensstatus",
+		"fr": "État de l'alimentation",
+		"de": "Stromzustand"
+	},
+	"getable": true,
+	"setable": false,
+	"icon": "/assets/power.svg"
 }
