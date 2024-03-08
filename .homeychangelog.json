@@ -760,5 +760,8 @@
 	},
 	"4.0.76": {
 		"en": "Added Trigger card for Protexial Alarm state change."
+	},
+	"4.0.77": {
+		"en": "Added 'ogp:Shutter' to 'Blind or Shutter (RTS)'"
 	}
 }
