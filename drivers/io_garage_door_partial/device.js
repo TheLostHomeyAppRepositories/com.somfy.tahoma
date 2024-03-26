@@ -31,13 +31,21 @@ class GarageDoorPartialIODevice extends WindowCoveringsDevice
 			this.controllableName = dd.controllableName.toString().toLowerCase();
 		}
 
-		if (this.controllableName === 'io:discretegarageopeneriocomponent')
+		if ((this.controllableName === 'io:discretegarageopeneriocomponent') || (this.controllableName === 'ogp:garagedoor'))
 		{
 			if (this.hasCapability('my_position'))
 			{
 				this.removeCapability('my_position').catch(this.error);
 			}
-			this.openClosedStateName = 'core:OpenClosedUnknownState';
+
+			if (this.controllableName === 'ogp:garagedoor')
+			{
+				this.openClosedStateName = 'core:OpenClosedState';
+			}
+			else
+			{
+				this.openClosedStateName = 'core:OpenClosedUnknownState';
+			}
 		}
 		else
 		{

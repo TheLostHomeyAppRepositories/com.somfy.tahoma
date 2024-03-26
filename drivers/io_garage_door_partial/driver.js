@@ -11,7 +11,7 @@ const ioWindowCoveringsDriver = require('../ioWindowCoveringsDriver');
 class GarageDoorPartialIOdDriver extends ioWindowCoveringsDriver {
 
   async onInit() {
-	this.deviceType = ['io:DiscreteGarageOpenerWithPartialPositionIOComponent', 'io:DiscreteGarageOpenerIOComponent'];
+	this.deviceType = ['io:DiscreteGarageOpenerWithPartialPositionIOComponent', 'io:DiscreteGarageOpenerIOComponent', 'ogp:GarageDoor'];
 
 	await super.onInit();
   }

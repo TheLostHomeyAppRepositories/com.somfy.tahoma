@@ -1171,7 +1171,7 @@ class myApp extends Homey.App
 					text = this.varToString(this.homey.settings.get('eventLog'));
 				}
 
-				text = text.replace(/\\n/g, '\n			  ');
+				text = text.replace(/\\n/g, '\n              ');
 				text = text.replace(/\\"/g, '"');
 
 				subject += `(${this.homeyHash} : ${Homey.manifest.version})`;
@@ -1240,7 +1240,7 @@ class myApp extends Homey.App
 		const username = this.homey.settings.get('username');
 		const password = this.homey.settings.get('password');
 		const region = this.homey.settings.get('region');
-	   if (!username || !password)
+		if (!username || !password)
 		{
 			return;
 		}
@@ -1503,7 +1503,7 @@ class myApp extends Homey.App
 
 		if (this.nextCloudInterval !== 0)
 		{
-			if (this.tahomaLocal && this.tahomaLocal.authenticated)
+			if (this.tahomaLocal /* && this.tahomaLocal.authenticated */)
 			{
 				nextInterval = await this.syncWorker(this.tahomaLocal);
 			}
@@ -1571,12 +1571,12 @@ class myApp extends Homey.App
 			if (tahomaConnection.localLogin)
 			{
 				this.logInformation('Local syncLoop',
-				 `Logged in = ${tahomaConnection.authenticated}, Local = ${tahomaConnection.localLogin}, Old Sync State = ${this.syncing}, Next cloud sync in ${this.nextCloudInterval / 1000}s`);
+				`Logged in = ${tahomaConnection.authenticated}, Local = ${tahomaConnection.localLogin}, Old Sync State = ${this.syncing}, Next cloud sync in ${this.nextCloudInterval / 1000}s`);
 			}
 			else
 			{
 				this.logInformation('Cloud syncLoop',
-				 `Logged in = ${tahomaConnection.authenticated}, Local = ${tahomaConnection.localLogin}, Old Sync State = ${this.syncing}`);
+				`Logged in = ${tahomaConnection.authenticated}, Local = ${tahomaConnection.localLogin}, Old Sync State = ${this.syncing}`);
 			}
 		}
 

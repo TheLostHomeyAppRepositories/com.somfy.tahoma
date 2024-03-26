@@ -763,5 +763,8 @@
 	},
 	"4.0.77": {
 		"en": "Added 'ogp:Shutter' to 'Blind or Shutter (RTS)'"
+	},
+	"4.0.78": {
+		"en": "Retry failed local login. Added 'ogp:GarageDoor' to 'Garage Door - Open and Close (io)'"
 	}
 }
