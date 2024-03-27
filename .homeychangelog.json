@@ -766,5 +766,8 @@
 	},
 	"4.0.78": {
 		"en": "Retry failed local login. Added 'ogp:GarageDoor' to 'Garage Door - Open and Close (io)'"
+	},
+	"4.0.79": {
+		"en": "Fix issue with getting a new local token. Fix issue from last update that tried to do a local login when no bridge was detected."
 	}
 }

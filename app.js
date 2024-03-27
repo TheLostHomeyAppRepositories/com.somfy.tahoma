@@ -1503,7 +1503,7 @@ class myApp extends Homey.App
 
 		if (this.nextCloudInterval !== 0)
 		{
-			if (this.tahomaLocal /* && this.tahomaLocal.authenticated */)
+			if (this.tahomaLocal && this.localBridgeInfo && this.localBridgeInfo.pin)
 			{
 				nextInterval = await this.syncWorker(this.tahomaLocal);
 			}
