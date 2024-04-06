@@ -55,6 +55,8 @@ class OneAlarmDevice extends SensorDevice
 				const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
 				this.executionCmd = action.name;
 				this.executionId = { id: result.execId, local: result.local };
+
+				this.setWarning(null).catch(this.error);
 			}
 			catch (error)
 			{
@@ -100,6 +102,8 @@ class OneAlarmDevice extends SensorDevice
 				const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
 				this.executionCmd = action.name;
 				this.executionId = { id: result.execId, local: result.local };
+
+				this.setWarning(null).catch(this.error);
 			}
 			catch (error)
 			{

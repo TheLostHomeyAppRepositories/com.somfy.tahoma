@@ -22,10 +22,10 @@ class io_open_close_remoteDevice extends Device
 
 	onCapabilityRemoteState(value)
 	{
-		const oldState = this.getState().remote_state;
-		if (oldState !== value)
-		{
-			this.setCapabilityValue('remote_state', value).catch(this.error);
+		// const oldState = this.getState().remote_state;
+		// if (oldState !== value)
+		// {
+			this.setCapabilityValue('remote_state', null).catch(this.error);
 
 			const device = this;
 			const tokens = {
@@ -38,7 +38,7 @@ class io_open_close_remoteDevice extends Device
 			// trigger flows
 			this.driver.triggerRemoteSateChange(device, tokens, state);
 			this.driver.triggerRemoteSateChangeTo(device, tokens, state);
-		}
+		// }
 
 		return Promise.resolve();
 	}
@@ -48,29 +48,7 @@ class io_open_close_remoteDevice extends Device
 	 */
 	async sync()
 	{
-		try
-		{
-			let states = await super.getStates();
-			if (states)
-			{
-				const remoteState = states.find((state) => (state && (state.name === 'io:OneWayControllerButtonState')));
-				if (remoteState)
-				{
-					this.homey.app.logStates(`${this.getName()}: io:OneWayControllerButtonState = ${remoteState.value}`);
-					this.triggerCapabilityListener('remote_state', remoteState.value).catch(this.error);
-				}
-
-				states = null;
-			}
-		}
-		catch (error)
-		{
-			this.homey.app.logInformation(this.getName(),
-			{
-				message: error.message,
-				stack: error.stack,
-			});
-		}
+		// Nothing to do here
 	}
 
 	// look for updates in the events array
@@ -112,12 +90,12 @@ class io_open_close_remoteDevice extends Device
 						if (deviceState.name === 'io:OneWayControllerButtonState')
 						{
 							this.homey.app.logStates(`${this.getName()}: io:OneWayControllerButtonState = ${deviceState.value}`);
-							const oldState = this.getState().remote_state;
 							const newSate = deviceState.value;
-							if (oldState !== newSate)
+							this.triggerCapabilityListener('remote_state', newSate).catch(this.error);
+							this.homey.setTimeout(() =>
 							{
-								this.triggerCapabilityListener('remote_state', newSate).catch(this.error);
-							}
+								this.setCapabilityValue('remote_state', null).catch(this.error);
+							}, 500);
 						}
 					}
 				}

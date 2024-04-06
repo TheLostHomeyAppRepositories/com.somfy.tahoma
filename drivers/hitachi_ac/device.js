@@ -246,13 +246,6 @@ class HitachiACDevice extends SensorDevice
 			let states = await super.getStates();
 			if (states)
 			{
-				// const coolHeatingState = states.find(state => (state && (state.name === 'core:AutoManuModeState')));
-				// if (coolHeatingState)
-				// {
-				//	 this.homey.app.logStates(`${this.getName()}: core:AutoManuModeState = ${coolHeatingState.value}`);
-				//	 this.setCapabilityValue('ac_auto_manual', coolHeatingState.value).catch(this.error);
-				// }
-
 				const targetTemperatureState = states.find((state) => (state && (state.name === 'core:TargetTemperatureState')));
 				if (targetTemperatureState)
 				{
@@ -359,11 +352,6 @@ class HitachiACDevice extends SensorDevice
 					for (let x = 0; x < element.deviceStates.length; x++)
 					{
 						const deviceState = element.deviceStates[x];
-						// if (deviceState.name === 'core:AutoManuModeState')
-						// {
-						//	 this.homey.app.logStates(`${this.getName()}: core:AutoManuModeState = ${deviceState.value}`);
-						//	 this.setCapabilityValue('ac_auto_manual', deviceState.value).catch(this.error);
-						// }
 						if (deviceState.name === 'core:TargetTemperatureState')
 						{
 							this.homey.app.logStates(`${this.getName()}: core:TargetTemperatureState = ${deviceState.value}`);

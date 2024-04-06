@@ -201,6 +201,8 @@ class WindowCoveringsDevice extends Device
 					const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
 					this.executionId = { id: result.execId, local: result.local };
 				}
+
+				this.setWarning(null).catch(this.error);
 			}
 			catch (err)
 			{
@@ -287,6 +289,8 @@ class WindowCoveringsDevice extends Device
 
 				const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
 				this.executionId = { id: result.execId, local: result.local };
+
+				this.setWarning(null).catch(this.error);
 			}
 			catch (err)
 			{
@@ -330,6 +334,8 @@ class WindowCoveringsDevice extends Device
 				const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
 				this.executionCmd = action.name;
 				this.executionId = { id: result.execId, local: result.local };
+
+				this.setWarning(null).catch(this.error);
 			}
 			catch (err)
 			{
@@ -371,6 +377,8 @@ class WindowCoveringsDevice extends Device
 				const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
 				this.executionCmd = action.name;
 				this.executionId = { id: result.execId, local: result.local };
+
+				this.setWarning(null).catch(this.error);
 			}
 			catch (err)
 			{
@@ -401,6 +409,8 @@ class WindowCoveringsDevice extends Device
 				const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
 				this.executionCmd = action.name;
 				this.executionId = { id: result.execId, local: result.local };
+
+				this.setWarning(null).catch(this.error);
 			}
 			catch (err)
 			{
@@ -429,6 +439,8 @@ class WindowCoveringsDevice extends Device
 				const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
 				this.executionCmd = action.name;
 				this.executionId = { id: result.execId, local: result.local };
+
+				this.setWarning(null).catch(this.error);
 			}
 			catch (err)
 			{
@@ -457,12 +469,16 @@ class WindowCoveringsDevice extends Device
 				const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
 				this.executionCmd = action.name;
 				this.executionId = { id: result.execId, local: result.local };
+
+				this.setWarning(null).catch(this.error);
 			}
 			catch (err)
 			{
 				this.setWarning(err.message).catch(this.error);
 				throw (err);
 			}
+
+			this.setWarning(null).catch(this.error);
 		}
 		else
 		{
@@ -674,11 +690,6 @@ class WindowCoveringsDevice extends Device
 		try
 		{
 			const myURL = this.getDeviceUrl();
-			// if (!local && this.homey.app.isLocalDevice(myURL))
-			// {
-			//	 // This device is handled locally so ignore cloud updates
-			//	 return;
-			// }
 
 			let lastPosition = null;
 
