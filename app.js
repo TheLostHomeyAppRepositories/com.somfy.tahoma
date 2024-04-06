@@ -80,16 +80,6 @@ class myApp extends Homey.App
 			this.homey.settings.set('eventLogEnabled', this.eventLogEnabled);
 		}
 
-		process.on('unhandledRejection', (reason, promise) =>
-		{
-			this.log('Unhandled Rejection at:', promise, 'reason:', reason);
-			this.logInformation('Unhandled Rejection',
-			{
-				message: promise,
-				stack: reason,
-			});
-		});
-
 		this.homey.on('unload', async () =>
 		{
 			await this.logOut(false);
