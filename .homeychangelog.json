@@ -772,5 +772,8 @@
 	},
 	"4.0.80": {
 		"en": "Clear warning after successful transaction."
+	},
+	"4.0.81": {
+		"en": "Added 'zigbee:SomfyRollerShadeComponent' to 'Roller shutter (io & ZigBee)'"
 	}
 }

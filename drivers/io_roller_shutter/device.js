@@ -75,6 +75,13 @@ class RollerShutterDevice extends WindowCoveringsDevice
 
 			this.setPositionActionName = 'setPosition';
 		}
+
+		if (controllableName === 'zigbee:somfyrollershadecomponent')
+		{
+			this.openClosedStateName = '';
+
+			this.setPositionActionName = 'setPosition';
+		}
 	}
 
 }
