@@ -775,5 +775,8 @@
 	},
 	"4.0.81": {
 		"en": "Added 'zigbee:SomfyRollerShadeComponent' to 'Roller shutter (io & ZigBee)'"
+	},
+	"4.0.82": {
+		"en": "Added 'io:SlidingGateOpenerIOComponent' to 'Sliding gate (io)'"
 	}
 }
