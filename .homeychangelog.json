@@ -778,5 +778,8 @@
 	},
 	"4.0.82": {
 		"en": "Added 'io:SlidingGateOpenerIOComponent' to 'Sliding gate (io)'"
+	},
+	"4.0.83": {
+		"en": "Added Nudge Flow action for RTS blinds. Added Position capability to io:SlidingGateOpenerIOComponent."
 	}
 }

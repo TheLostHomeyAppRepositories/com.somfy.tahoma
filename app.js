@@ -810,6 +810,17 @@ class myApp extends Homey.App
 
 				return Promise.all(promises);
 			});
+
+		this.homey.flow.getActionCard('nudge_windowcoverings_tilt')
+			.registerRunListener(async (args, state) =>
+			{
+				this.log('nudge_windowcoverings_tilt');
+				if (args.direction === 'down')
+				{
+					return args.device.triggerCapabilityListener('windowcoverings_tilt_down');
+				}
+				return args.device.triggerCapabilityListener('windowcoverings_tilt_up');
+			});
 }
 
 	hashCode(s)

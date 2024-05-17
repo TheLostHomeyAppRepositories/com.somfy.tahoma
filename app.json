@@ -13,7 +13,7 @@
   "description": {
     "en": "The heart of your Smart Home"
   },
-  "version": "4.0.82",
+  "version": "4.0.83",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Adrian Rockall",
@@ -1902,6 +1902,46 @@
             "type": "autocomplete"
           }
         ]
+      },
+      {
+        "title": {
+          "en": "Nudge the blind slates"
+        },
+        "titleFormatted": {
+          "en": "Nudge the blind slates [[direction]]"
+        },
+        "hint": {
+          "en": "Nudge the blind slates up or down a small amount"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=rts_interior_venetian_blind&capabilities=windowcoverings_tilt_up"
+          },
+          {
+            "name": "direction",
+            "type": "dropdown",
+            "title": {
+              "en": "Direction"
+            },
+            "values": [
+              {
+                "id": "up",
+                "label": {
+                  "en": "Up"
+                }
+              },
+              {
+                "id": "down",
+                "label": {
+                  "en": "Down"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "nudge_windowcoverings_tilt"
       },
       {
         "title": {
@@ -8771,7 +8811,8 @@
       "class": "other",
       "capabilities": [
         "pedestrian",
-        "windowcoverings_state"
+        "windowcoverings_state",
+        "windowcoverings_set"
       ],
       "settings": [
         {
