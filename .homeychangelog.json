@@ -781,5 +781,8 @@
 	},
 	"4.0.83": {
 		"en": "Added Nudge Flow action for RTS blinds. Added Position capability to io:SlidingGateOpenerIOComponent."
+	},
+	"4.0.84": {
+		"en": "Added 'io:GateOpenerIOComponent' to new 'Positionable Gate (io)'"
 	}
 }

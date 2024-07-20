@@ -13,7 +13,7 @@
   "description": {
     "en": "The heart of your Smart Home"
   },
-  "version": "4.0.83",
+  "version": "4.0.84",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Adrian Rockall",
@@ -324,6 +324,34 @@
             "filter": "driver_id=io_horizontal_awning|io_vertical_exterior_blind|io_velux_roof_window"
           }
         ]
+      },
+      {
+        "title": {
+          "en": "The pedestrian state changed",
+          "fr": "L'état du piéton a changé",
+          "de": "Der Fußgängerzustand hat sich geändert",
+          "nl": "De status van de voetganger is veranderd"
+        },
+        "tokens": [
+          {
+            "name": "pedestrian",
+            "type": "boolean",
+            "title": {
+              "en": "At Pedestrian Position",
+              "fr": "À la position de piéton",
+              "de": "Am Fußgängerstandort",
+              "nl": "Op voetgangerspositie"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=i0_gate|io_sliding_gate"
+          }
+        ],
+        "id": "pedestrian_changed"
       },
       {
         "id": "tilt_has_changed",
@@ -736,34 +764,6 @@
                 }
               }
             ]
-          }
-        ]
-      },
-      {
-        "id": "pedestrian_changed",
-        "title": {
-          "en": "The pedestrian state changed",
-          "fr": "L'état du piéton a changé",
-          "de": "Der Fußgängerzustand hat sich geändert",
-          "nl": "De status van de voetganger is veranderd"
-        },
-        "tokens": [
-          {
-            "name": "pedestrian",
-            "type": "boolean",
-            "title": {
-              "en": "At Pedestrian Position",
-              "fr": "À la position de piéton",
-              "de": "Am Fußgängerstandort",
-              "nl": "Op voetgangerspositie"
-            }
-          }
-        ],
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=io_sliding_gate"
           }
         ]
       },
@@ -7389,6 +7389,152 @@
         }
       ],
       "id": "io_garage_door_partial"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
+        {
+          "id": "select_region"
+        },
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "fr": "Adresse e-mail",
+              "de": "E-Mail-Adresse",
+              "nl": "E-mailadres"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "fr": "jean@dupont.com",
+              "de": "max.mustermann@mustermail.de",
+              "nl": "jansen@holland.nl"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "fr": "Mot de passe",
+              "de": "Passwort",
+              "nl": "Wachtwoord"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "fr": "Mot de passe",
+              "de": "Passwort",
+              "nl": "Wachtwoord"
+            }
+          }
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "fr": "Adresse e-mail",
+              "de": "E-Mail-Adresse",
+              "nl": "E-mailadres"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "fr": "jean@dupont.com",
+              "de": "max.mustermann@mustermail.de",
+              "nl": "jansen@holland.nl"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "fr": "Mot de passe",
+              "de": "Passwort",
+              "nl": "Wachtwoord"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "fr": "Mot de passe",
+              "de": "Passwort",
+              "nl": "Wachtwoord"
+            }
+          }
+        }
+      ],
+      "icon": "/drivers/io_gate/assets/icon.svg",
+      "images": {
+        "large": "/drivers/io_gate/assets/images/large.png",
+        "small": "/drivers/io_gate/assets/images/small.png"
+      },
+      "name": {
+        "en": "Positionable Gate (io)",
+        "fr": "Portail positionnable (IO)",
+        "de": "Positionierbares Tor (IO)",
+        "nl": "Positioneerbare poort (IO)"
+      },
+      "class": "other",
+      "capabilities": [
+        "pedestrian",
+        "windowcoverings_state",
+        "windowcoverings_set"
+      ],
+      "settings": [
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class",
+            "fr": "Classe de périphérique",
+            "de": "Geräteklasse",
+            "nl": "Apparaatklassen"
+          },
+          "value": "other",
+          "hint": {
+            "en": "Set the Homey class.",
+            "fr": "Définissez la classe Homey.",
+            "de": "Setzen Sie die Homey-Klasse.",
+            "nl": "Stel de Homey-klasse in."
+          },
+          "values": [
+            {
+              "id": "other",
+              "label": {
+                "en": "Generic class",
+                "fr": "Classe générique",
+                "de": "Generische Klasse",
+                "nl": "Generieke klasse"
+              }
+            },
+            {
+              "id": "garagedoor",
+              "label": {
+                "en": "Garage door",
+                "fr": "Porte de garage",
+                "de": "Garagentor",
+                "nl": "Garagedeur"
+              }
+            }
+          ]
+        }
+      ],
+      "id": "io_gate"
     },
     {
       "platforms": [
