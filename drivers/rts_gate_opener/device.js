@@ -14,6 +14,33 @@ class rtsGateOpenerDevice extends Device
 		this.registerCapabilityListener('close_button', this.onCapabilityClose.bind(this));
 		this.registerCapabilityListener('stop_button', this.onCapabilityStop.bind(this));
 
+		const dd = this.getData();
+
+		this.controllableName = '';
+		if (dd.controllableName)
+		{
+			this.controllableName = dd.controllableName.toString().toLowerCase();
+		}
+
+		if (this.controllableName === 'rts:garagedoorwithventilationpositionrtscomponent')
+		{
+			if (!this.hasCapability('my_position'))
+			{
+				this.addCapability('my_position')
+				.then(this.registerCapabilityListener('my_position', this.onCapabilityMyPosition.bind(this)))
+				.catch(this.error);
+			}
+			else
+			{
+				this.registerCapabilityListener('my_position', this.onCapabilityMyPosition.bind(this));
+			}
+		}
+		else if (this.hasCapability('my_position'))
+		{
+			this.removeCapability('my_position')
+			.catch(this.error);
+		}
+
 		this.boostSync = true;
 	}
 
@@ -48,6 +75,17 @@ class rtsGateOpenerDevice extends Device
 		}
 
 		await this.sendOpenCloseStop('stop');
+	}
+
+	async onCapabilityMyPosition(value)
+	{
+		if (this.commandExecuting === 'my')
+		{
+			// This command is still processing
+			return;
+		}
+
+		await this.sendOpenCloseStop('my');
 	}
 
 	async sendOpenCloseStop(value)

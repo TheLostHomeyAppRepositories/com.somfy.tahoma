@@ -784,5 +784,9 @@
 	},
 	"4.0.84": {
 		"en": "Added 'io:GateOpenerIOComponent' to new 'Positionable Gate (io)'"
+	},
+	"4.0.85": {
+		"en": "Added 'rts:GarageDoorWithVentilationPositionRTSComponent' to 'Gate / Garage Door Opener (RTS)"
 	}
+	
 }

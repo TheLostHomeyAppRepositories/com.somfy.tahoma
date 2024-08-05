@@ -13,7 +13,7 @@
   "description": {
     "en": "The heart of your Smart Home"
   },
-  "version": "4.0.84",
+  "version": "4.0.85",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Adrian Rockall",
@@ -11320,7 +11320,8 @@
       "capabilities": [
         "open_button",
         "close_button",
-        "stop_button"
+        "stop_button",
+        "my_position"
       ],
       "settings": [
         {
