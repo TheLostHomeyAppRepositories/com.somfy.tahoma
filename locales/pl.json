@@ -1,0 +1,70 @@
+{
+  "settings": {
+    "title": "Ustawienia TaHoma / Connexoon",
+    "intro": "Aby Homey mógł kontrolować TaHoma / Connexoon, prosimy o autoryzację Homey, wpisując dane logowania TaHoma / Connexoon.",
+    "logintitle": "Dane logowania TaHoma / Connexoon",
+    "username": "Nazwa użytkownika",
+    "password": "Hasło",
+    "save": "Zapisz dane",
+    "login_success": "Pomyślnie zalogowano.",
+    "login_failure": "Nie udało się zalogować.",
+    "logouttitle": "Cofnij dostęp dla Homey",
+    "logout": "Wyloguj",
+    "logout_success": "Pomyślnie wylogowano.",
+    "logout_failure": "Nie udało się wylogować.",
+    "preferences": "Preferencje",
+    "sync_speed": "Interwał aktualizacji",
+    "sync_tooltip": "(sekundy)",
+    "save_preferences": "Zapisz preferencje",
+    "linkurl": "URL połączenia (Domyślnie zwykle dobry dla Tahoma i Connexoon)",
+    "save_verifying": "Próba logowania. Proszę czekać...",
+    "logout_description": "To spowoduje wylogowanie z Tahoma i usunięcie Twoich danych z aplikacji.",
+    "min_sync_speed": "Minimalna wartość Synchronizacji to 30 sekund",
+    "max_sync_speed": "Maksymalna wartość Synchronizacji to 90 sekund",
+    "pref_saved": "Preferencje zostały zapisane",
+    "settings": "Ustawienia",
+    "information_log": "Dziennik informacji",
+    "device_log": "Dziennik urządzeń",
+    "state_log": "Dziennik stanów",
+    "oauth_method": "Użyj nowej metody logowania OAuth",
+    "intro1": "Użyj tego jeżeli masz urządzenie, które nie jest obsługiwane.",
+    "intro2": "Kliknij Pobierz Dziennik i poczekaj na pojawienie się danych. Następnie wyślij dziennik.",
+    "intro3": "Skontaktuj się z @Adrian_Rockall na forum społeczności, aby opisać, które urządzenie nie jest obsługiwane.",
+    "intro4": "Żadne dane osobowe nie są zbierane ani wysyłane, więc jeśli się nie skontaktujesz, nie będę w stanie odpowiedzieć.",
+    "get": "Pobierz Dziennik",
+    "clear": "Wyczyść Dziennik",
+    "send": "Wyślij Dziennik",
+    "log_enabled": "Logowanie włączone",
+    "polling_enabled": "Zapytaj o aktualizacje statusu",
+    "show_password": "Pokaż Hasło",
+    "pref_intro1": "Aplikacja może zapytać o aktualizacje, aby Homey był zsynchronizowany z urządzeniami.",
+    "pref_intro2": "To obciąża serwery Somfy, więc utrzymuj to wyłączone, jeśli to możliwe.",
+    "pref_intro3": "Jeżeli potrzebujesz aktualizacji dla sensorów, utrzymuj interwał tak wysoki, jak to możliwe.",
+    "event_log": "Dziennik zdarzeń"
+  },
+  "errors": {
+    "on_pair_login_failure": "Nie udało się zalogować. Proszę przejść do ekranu ustawień i udzielić dostępu do TaHoma dla Homey."
+  },
+  "valve_heating_mode_state": {
+    "away": "Poza domem",
+    "comfort": "Dom",
+    "eco": "Noc",
+    "frostprotection": "Ochrona przed mrozem",
+    "geofencingmode": "Geofencing",
+    "manual": "Ręczny",
+    "suddendropmode": "Otwarte okno"
+  },
+  "defect_state": {
+    "dead": "Niedziałający",
+    "lowbattery": "Niski poziom baterii",
+    "maintenancerequired": "Wymagana konserwacja",
+    "nodefect": "Brak usterki"
+  },
+  "valve_operating_mode_state": {
+    "auto": "Auto (Harmonogram)",
+    "manual": "Ręczny"
+  },
+  "my_position_token": "Moja Pozycja",
+  "command_queued": "Polecenie w kolejce, czekaj na obudzenie urządzenia",
+  "command_failed": "Polecenie nie powiodło się"
+}

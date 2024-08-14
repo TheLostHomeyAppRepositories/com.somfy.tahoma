@@ -9,7 +9,10 @@
     "sv": "Hemlarmsstatus",
     "no": "Hjemmealarmstatus",
     "es": "Estado de la alarma doméstica",
-    "da": "Hjemmealarmstatus"
+    "da": "Hjemmealarmstatus",
+    "pl": "Stan alarmu domowego",
+    "ru": "Состояние домашней сигнализации",
+    "ko": "홈 알람 상태"
   },
   "values": [
     {
@@ -23,7 +26,10 @@
         "sv": "Avlarmat",
         "no": "Deaktivert",
         "es": "Desactivada",
-        "da": "Deaktiveret"
+        "da": "Deaktiveret",
+        "pl": "Rozbrojony",
+        "ru": "Разоружено",
+        "ko": "해제됨"
       }
     },
     {
@@ -37,7 +43,10 @@
         "sv": "Delvis larmat (1)",
         "no": "Delvis aktivert (1)",
         "es": "Parcialmente activada (1)",
-        "da": "Delvist aktiveret (1)"
+        "da": "Delvist aktiveret (1)",
+        "pl": "Częściowo uzbrojony (1)",
+        "ru": "Частично вооружено (1)",
+        "ko": "부분적으로 무장됨 (1)"
       }
     },
     {
@@ -51,7 +60,10 @@
         "sv": "Delvis larmat (2)",
         "no": "Delvis aktivert (2)",
         "es": "Parcialmente activada (2)",
-        "da": "Delvist aktiveret (2)"
+        "da": "Delvist aktiveret (2)",
+        "pl": "Częściowo uzbrojony (2)",
+        "ru": "Частично вооружено (2)",
+        "ko": "부분적으로 무장됨 (2)"
       }
     },
     {
@@ -65,13 +77,19 @@
         "sv": "Larmat",
         "no": "Aktivert",
         "es": "Activada",
-        "da": "Aktiveret"
+        "da": "Aktiveret",
+        "pl": "Uzbrojony",
+        "ru": "Вооружено",
+        "ko": "무장됨"
       }
     },
     {
       "id": "sos",
       "title": {
-        "en": "SOS"
+        "en": "SOS",
+        "pl": "SOS",
+        "ru": "SOS",
+        "ko": "SOS"
       }
     }
   ],

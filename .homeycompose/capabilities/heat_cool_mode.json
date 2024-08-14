@@ -2,61 +2,151 @@
   "type": "enum",
   "title": {
     "en": "Heat / Cool Mode",
-    "nl": "Warmte / Koel-modus"
+    "nl": "Warmte / Koel-modus",
+    "da": "Varme / Køleindstilling",
+    "de": "Heiz- / Kühlmodus",
+    "es": "Modo Calor / Frío",
+    "fr": "Mode Chauffage / Refroidissement",
+    "it": "Modalità Caldo / Freddo",
+    "no": "Varme / Kjølemodus",
+    "sv": "Värme / Kyl-läge",
+    "pl": "Tryb Grzania / Chłodzenia",
+    "ru": "Режим Тепло / Холод",
+    "ko": "난방 / 냉방 모드"
   },
   "values": [
     {
       "id": "absence",
       "title": {
         "en": "Absent",
-        "nl": "Afwezig"
+        "nl": "Afwezig",
+        "da": "Fraværende",
+        "de": "Abwesend",
+        "es": "Ausente",
+        "fr": "Absent",
+        "it": "Assente",
+        "no": "Fraværende",
+        "sv": "Frånvarande",
+        "pl": "Nieobecny",
+        "ru": "Отсутствует",
+        "ko": "부재중"
       }
     },
     {
       "id": "auto",
       "title": {
         "en": "Automatic",
-        "nl": "Automatisch"
+        "nl": "Automatisch",
+        "da": "Automatisk",
+        "de": "Automatisch",
+        "es": "Automático",
+        "fr": "Automatique",
+        "it": "Automatico",
+        "no": "Automatisk",
+        "sv": "Automatisk",
+        "pl": "Automatyczny",
+        "ru": "Автоматический",
+        "ko": "자동"
       }
     },
     {
       "id": "comfort",
       "title": {
-        "en": "Comfort"
+        "en": "Comfort",
+        "da": "Komfort",
+        "de": "Komfort",
+        "es": "Confort",
+        "fr": "Confort",
+        "it": "Comfort",
+        "no": "Komfort",
+        "sv": "Komfort",
+        "pl": "Komfort",
+        "ru": "Комфорт",
+        "ko": "편안"
       }
     },
     {
       "id": "eco",
       "title": {
-        "en": "Eco"
+        "en": "Eco",
+        "da": "Øko",
+        "de": "Öko",
+        "es": "Económico",
+        "fr": "Éco",
+        "it": "Eco",
+        "no": "Øko",
+        "sv": "Eco",
+        "pl": "Eco",
+        "ru": "Эко",
+        "ko": "에코"
       }
     },
     {
       "id": "externalScheduling",
       "title": {
         "en": "External Scheduling",
-        "nl": "Externe planning"
+        "nl": "Externe planning",
+        "da": "Ekstern planlægning",
+        "de": "Externe Terminplanung",
+        "es": "Programación Externa",
+        "fr": "Planification Externe",
+        "it": "Pianificazione Esterna",
+        "no": "Ekstern planlegging",
+        "sv": "Extern schemaläggning",
+        "pl": "Zewnętrzne planowanie",
+        "ru": "Внешнее планирование",
+        "ko": "외부 일정"
       }
     },
     {
       "id": "internalScheduling",
       "title": {
         "en": "Internal Scheduling",
-        "nl": "Interne planning"
+        "nl": "Interne planning",
+        "da": "Intern planlægning",
+        "de": "Interne Terminplanung",
+        "es": "Programación Interna",
+        "fr": "Planification Interne",
+        "it": "Pianificazione Interna",
+        "no": "Intern planlegging",
+        "sv": "Intern schemaläggning",
+        "pl": "Wewnętrzne planowanie",
+        "ru": "Внутреннее планирование",
+        "ko": "내부 일정"
       }
     },
     {
       "id": "manu",
       "title": {
         "en": "Manual",
-        "nl": "Handmatig"
+        "nl": "Handmatig",
+        "da": "Manuel",
+        "de": "Manuell",
+        "es": "Manual",
+        "fr": "Manuel",
+        "it": "Manuale",
+        "no": "Manuell",
+        "sv": "Manuell",
+        "pl": "Ręczny",
+        "ru": "Ручной",
+        "ko": "수동"
       }
     },
     {
       "id": "stop",
       "title": {
         "en": "Stop",
-        "nl": "Hou op"
+        "nl": "Hou op",
+        "da": "Stop",
+        "de": "Stopp",
+        "es": "Parar",
+        "fr": "Arrêter",
+        "it": "Ferma",
+        "no": "Stopp",
+        "sv": "Stopp",
+        "pl": "Stop",
+        "ru": "Стоп",
+        "ko": "중지"
       }
     }
   ],

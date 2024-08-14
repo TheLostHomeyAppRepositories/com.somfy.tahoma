@@ -3,14 +3,36 @@
     {
       "id": "smoke_has_changed",
       "title": {
-        "en": "The smoke alarm state has changed"
+        "en": "The smoke alarm state has changed",
+        "nl": "De rookalarmstatus is veranderd",
+        "da": "Røgalarmtilstanden er ændret",
+        "de": "Der Rauchmelderstatus hat sich geändert",
+        "es": "El estado de la alarma de humo ha cambiado",
+        "fr": "L'état de l'alarme de fumée a changé",
+        "it": "Lo stato dell'allarme fumo è cambiato",
+        "no": "Røykvarslerens status har endret seg",
+        "sv": "Rökdetektorns tillstånd har ändrats",
+        "pl": "Stan alarmu dymu zmienił się",
+        "ru": "Состояние датчика дыма изменилось",
+        "ko": "연기 경보 상태가 변경되었습니다"
       },
       "tokens": [
         {
           "name": "isSmoke",
           "type": "boolean",
           "title": {
-            "en": "is smoke?"
+            "en": "is smoke?",
+            "nl": "is er rook?",
+            "da": "er der røg?",
+            "de": "ist Rauch da?",
+            "es": "¿hay humo?",
+            "fr": "y a-t-il de la fumée?",
+            "it": "c'è fumo?",
+            "no": "er det røyk?",
+            "sv": "är det rök?",
+            "pl": "czy jest dym?",
+            "ru": "есть ли дым?",
+            "ko": "연기가 있습니까?"
           },
           "example": "smoke"
         }
@@ -20,42 +42,108 @@
     {
       "id": "alarm_battery_radio_true",
       "title": {
-        "en": "The radio battery alarm turned on"
+        "en": "The radio battery alarm turned on",
+        "nl": "Het batterij alarm van de radio is ingeschakeld",
+        "da": "Batterialarmen for radioen er tændt",
+        "de": "Der Batteriealarm des Radios ist eingeschaltet",
+        "es": "La alarma de batería de la radio se encendió",
+        "fr": "L'alarme de batterie de la radio s'est allumée",
+        "it": "L'allarme batteria della radio è attivato",
+        "no": "Radioens batterialarm er slått på",
+        "sv": "Radio batterilarm är på",
+        "pl": "Włączył się alarm baterii radia",
+        "ru": "Включился сигнал батареи радио",
+        "ko": "라디오 배터리 경보가 켜졌습니다"
       },
       "args": []
     },
     {
       "id": "alarm_battery_radio_false",
       "title": {
-        "en": "The radio battery alarm turned off"
+        "en": "The radio battery alarm turned off",
+        "nl": "Het batterij alarm van de radio is uitgeschakeld",
+        "da": "Batterialarmen for radioen er slukket",
+        "de": "Der Batteriealarm des Radios ist ausgeschaltet",
+        "es": "La alarma de batería de la radio se apagó",
+        "fr": "L'alarme de batterie de la radio est éteinte",
+        "it": "L'allarme batteria della radio è disattivato",
+        "no": "Radioens batterialarm er slått av",
+        "sv": "Radio batterilarm är avstängd",
+        "pl": "Wyłączył się alarm baterii radia",
+        "ru": "Отключился сигнал батареи радио",
+        "ko": "라디오 배터리 경보가 꺼졌습니다"
       },
       "args": []
     },
     {
       "id": "alarm_battery_sensor_true",
       "title": {
-        "en": "The sensor battery alarm turned on"
+        "en": "The sensor battery alarm turned on",
+        "nl": "Het batterij alarm van de sensor is ingeschakeld",
+        "da": "Batterialarmen for sensoren er tændt",
+        "de": "Der Batteriealarm des Sensors ist eingeschaltet",
+        "es": "La alarma de batería del sensor se encendió",
+        "fr": "L'alarme de batterie du capteur s'est allumée",
+        "it": "L'allarme batteria del sensore è attivata",
+        "no": "Sensorens batterialarm er slått på",
+        "sv": "Sensor batterilarm är på",
+        "pl": "Włączył się alarm baterii czujnika",
+        "ru": "Включился сигнал батареи сенсора",
+        "ko": "센서 배터리 경보가 켜졌습니다"
       },
       "args": []
     },
     {
       "id": "alarm_battery_sensor_false",
       "title": {
-        "en": "The sensor battery alarm turned off"
+        "en": "The sensor battery alarm turned off",
+        "nl": "Het batterij alarm van de sensor is uitgeschakeld",
+        "da": "Batterialarmen for sensoren er slukket",
+        "de": "Der Batteriealarm des Sensors ist ausgeschaltet",
+        "es": "La alarma de batería del sensor se apagó",
+        "fr": "L'alarme de batterie du capteur s'est éteinte",
+        "it": "L'allarme batteria del sensore è disattivata",
+        "no": "Sensorens batterialarm er slått av",
+        "sv": "Sensor batterilarm är avstängd",
+        "pl": "Wyłączył się alarm baterii czujnika",
+        "ru": "Отключился сигнал батареи сенсора",
+        "ko": "센서 배터리 경보가 꺼졌습니다"
       },
       "args": []
     },
     {
       "id": "alarm_room_state_true",
       "title": {
-        "en": "The dirty sensor alarm turned on"
+        "en": "The dirty sensor alarm turned on",
+        "nl": "Het vuile sensor alarm is ingeschakeld",
+        "da": "Alarmen for beskidt sensor er tændt",
+        "de": "Der Alarm für verschmutzte Sensoren ist eingeschaltet",
+        "es": "La alarma de sensor sucio se activó",
+        "fr": "L'alarme de capteur sale s'est allumée",
+        "it": "L'allarme sensore sporco è attivo",
+        "no": "Alarmen for skitten sensor er slått på",
+        "sv": "Smutsig sensorlarm är på",
+        "pl": "Włączył się alarm brudnego czujnika",
+        "ru": "Включился сигнал грязного сенсора",
+        "ko": "더러운 센서 경보가 켜졌습니다"
       },
       "args": []
     },
     {
       "id": "alarm_room_state_false",
       "title": {
-        "en": "The dirty sensor alarm turned off"
+        "en": "The dirty sensor alarm turned off",
+        "nl": "Het vuile sensor alarm is uitgeschakeld",
+        "da": "Alarmen for beskidt sensor er slukket",
+        "de": "Der Alarm für verschmutzte Sensoren ist ausgeschaltet",
+        "es": "La alarma de sensor sucio se desactivó",
+        "fr": "L'alarme de capteur sale s'est éteinte",
+        "it": "L'allarme sensore sporco è disattivato",
+        "no": "Alarmen for skitten sensor er slått av",
+        "sv": "Smutsig sensorlarm är avstängd",
+        "pl": "Wyłączył się alarm brudnego czujnika",
+        "ru": "Отключился сигнал грязного сенсора",
+        "ko": "더러운 센서 경보가 꺼졌습니다"
       },
       "args": []
     }

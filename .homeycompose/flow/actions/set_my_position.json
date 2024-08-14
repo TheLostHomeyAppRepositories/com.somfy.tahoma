@@ -2,7 +2,17 @@
   "id": "set_my_position",
   "title": {
     "en": "Move to MY position",
-    "nl": "Zet de positie naar MY"
+    "nl": "Zet de positie naar MY",
+    "da": "Flyt til MIN position",
+    "de": "Bewege dich zu MEINER Position",
+    "es": "Mueve a MI posición",
+    "fr": "Déplace-toi à MA position",
+    "it": "Sposta in posizione MIA",
+    "no": "Flytt til MIN posisjon",
+    "sv": "Flytta till MIN position",
+    "pl": "Przesuń się na MOJĄ pozycję",
+    "ru": "Переместись в МОЮ позицию",
+    "ko": "MY 위치로 이동"
   },
   "args": [
     {

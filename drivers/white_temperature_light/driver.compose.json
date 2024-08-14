@@ -1,7 +1,17 @@
 {
   "name": {
     "en": "Tunable White light",
-    "nl": "Afstembaar wit licht"
+    "nl": "Afstembaar wit licht",
+    "da": "Justerbart hvidt lys",
+    "de": "Einstellbares weißes Licht",
+    "es": "Luz blanca regulable",
+    "fr": "Lumière blanche réglable",
+    "it": "Luce bianca regolabile",
+    "no": "Justerbart hvitt lys",
+    "sv": "Justerbart vitt ljus",
+    "pl": "Regulowane białe światło",
+    "ru": "Настраиваемый белый свет",
+    "ko": "조절 가능한 백색광"
   },
   "class": "light",
   "capabilities": [
@@ -20,12 +30,32 @@
       "type": "number",
       "label": {
         "en": "Min Colour Temperature (K)",
-        "nl": "Minimale kleurtemperatuur (K)"
+        "nl": "Minimale kleurtemperatuur (K)",
+        "da": "Min. farvetemperatur (K)",
+        "de": "Min. Farbtemperatur (K)",
+        "es": "Temperatura de color mínima (K)",
+        "fr": "Température de couleur min (K)",
+        "it": "Temperatura del colore min (K)",
+        "no": "Min. fargetemperatur (K)",
+        "sv": "Min. färgtemperatur (K)",
+        "pl": "Minimalna temperatura barw (K)",
+        "ru": "Мин. температура цвета (K)",
+        "ko": "최소 색온도 (K)"
       },
       "value": 2200,
       "hint": {
         "en": "Min colour temperature of the light",
-        "nl": "Min kleurtemperatuur van het licht"
+        "nl": "Min kleurtemperatuur van het licht",
+        "da": "Min. farvetemperatur på lyset",
+        "de": "Min. Farbtemperatur des Lichts",
+        "es": "Temperatura de color mínima de la luz",
+        "fr": "Température de couleur min de la lumière",
+        "it": "Temperatura del colore min della luce",
+        "no": "Min. fargetemperatur på lyset",
+        "sv": "Min. färgtemperatur för ljuset",
+        "pl": "Minimalna temperatura barw światła",
+        "ru": "Мин. температура света",
+        "ko": "조명의 최소 색온도"
       }
     },
     {
@@ -33,14 +63,36 @@
       "type": "number",
       "label": {
         "en": "Max Colour Temperature (K)",
-        "nl": "Maximale kleurtemperatuur (K)"
+        "nl": "Maximale kleurtemperatuur (K)",
+        "da": "Max. farvetemperatur (K)",
+        "de": "Max. Farbtemperatur (K)",
+        "es": "Temperatura de color máxima (K)",
+        "fr": "Température de couleur max (K)",
+        "it": "Temperatura del colore max (K)",
+        "no": "Maks. fargetemperatur (K)",
+        "sv": "Max. färgtemperatur (K)",
+        "pl": "Maksymalna temperatura barw (K)",
+        "ru": "Макс. температура цвета (K)",
+        "ko": "최대 색온도 (K)"
       },
       "value": 6500,
       "hint": {
         "en": "Max colour temperature of the light",
-        "nl": "Max kleurtemperatuur van het licht"
+        "nl": "Max kleurtemperatuur van het licht",
+        "da": "Max. farvetemperatur på lyset",
+        "de": "Max. Farbtemperatur des Lichts",
+        "es": "Temperatura de color máxima de la luz",
+        "fr": "Température de couleur max de la lumière",
+        "it": "Temperatura del colore max della luce",
+        "no": "Maks. fargetemperatur på lyset",
+        "sv": "Max. färgtemperatur för ljuset",
+        "pl": "Maksymalna temperatura barw światła",
+        "ru": "Макс. температура света",
+        "ko": "조명의 최대 색온도"
       }
     }
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

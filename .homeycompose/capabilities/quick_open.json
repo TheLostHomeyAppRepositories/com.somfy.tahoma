@@ -5,6 +5,17 @@
   "setable": true,
   "uiComponent": null,
   "title": {
-    "en": "Open"
+    "en": "Open",
+    "nl": "Open",
+    "da": "Åben",
+    "de": "Offen",
+    "es": "Abierto",
+    "fr": "Ouvert",
+    "it": "Aperto",
+    "no": "Åpen",
+    "sv": "Öppen",
+    "pl": "Otwarty",
+    "ru": "Открыть",
+    "ko": "열기"
   }
 }

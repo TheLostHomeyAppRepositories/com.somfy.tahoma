@@ -1,11 +1,24 @@
 {
   "name": {
-    "en": "Door Lock (io)"
+    "en": "Door Lock (io)",
+    "nl": "Deurslot (io)",
+    "da": "Dørlås (io)",
+    "de": "Türschloss (io)",
+    "es": "Cerradura de puerta (io)",
+    "fr": "Serrure de porte (io)",
+    "it": "Serratura della porta (io)",
+    "no": "Dørlås (io)",
+    "sv": "Dörrlås (io)",
+    "pl": "Zamek do drzwi (io)",
+    "ru": "Дверной замок (io)",
+    "ko": "문 잠금 장치 (io)"
   },
   "class": "lock",
   "capabilities": [
     "onoff",
     "locked"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

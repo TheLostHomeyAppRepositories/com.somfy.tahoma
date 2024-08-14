@@ -1,0 +1,70 @@
+{
+  "settings": {
+    "title": "Configuración de TaHoma / Connexoon",
+    "intro": "Para permitir que Homey controle TaHoma / Connexoon, autoriza a Homey llenando las credenciales de inicio de sesión de TaHoma / Connexoon.",
+    "logintitle": "Credenciales de inicio de sesión de TaHoma / Connexoon",
+    "username": "Nombre de usuario",
+    "password": "Contraseña",
+    "save": "Guardar credenciales",
+    "login_success": "Inicio de sesión exitoso.",
+    "login_failure": "Error al iniciar sesión.",
+    "logouttitle": "Revocar acceso para Homey",
+    "logout": "Cerrar sesión",
+    "logout_success": "Cierre de sesión exitoso.",
+    "logout_failure": "Error al cerrar sesión.",
+    "preferences": "Preferencias",
+    "sync_speed": "Intervalo de actualización",
+    "sync_tooltip": "(segundos)",
+    "save_preferences": "Guardar preferencias",
+    "linkurl": "URL de conexión (Por lo general, el predeterminado es bueno para Tahoma y Connexoon)",
+    "save_verifying": "Intentando iniciar sesión. Por favor, espera...",
+    "logout_description": "Esto cerrará la sesión de Tahoma y eliminará tus credenciales de la app.",
+    "min_sync_speed": "El valor mínimo de velocidad de sincronización es de 30 segundos",
+    "max_sync_speed": "El valor máximo de velocidad de sincronización es de 90 segundos",
+    "pref_saved": "Las preferencias han sido guardadas",
+    "settings": "Configuración",
+    "information_log": "Registro de información",
+    "device_log": "Registro de dispositivos",
+    "state_log": "Registro de estados",
+    "oauth_method": "Usar nuevo método de inicio de sesión OAuth",
+    "intro1": "Usa esto si tienes un dispositivo que no está soportado.",
+    "intro2": "Toca en Obtener Registro y espera a que aparezcan los datos. Luego envía el registro.",
+    "intro3": "Contacta con @Adrian_Rockall en el foro de la comunidad para describir qué dispositivo no está soportado.",
+    "intro4": "No se captura ni envía información personal, así que si no te pones en contacto, no podré responder.",
+    "get": "Obtener Registro",
+    "clear": "Borrar Registro",
+    "send": "Enviar Registro",
+    "log_enabled": "Registro Activado",
+    "polling_enabled": "Consultar actualizaciones de estado",
+    "show_password": "Mostrar Contraseña",
+    "pref_intro1": "La app puede consultar actualizaciones para mantener Homey sincronizado con los dispositivos.",
+    "pref_intro2": "Esto genera una carga en los servidores de Somfy, así que mantenlo desactivado si es posible.",
+    "pref_intro3": "Si necesitas actualizaciones para sensores, mantén el intervalo lo más alto que puedas.",
+    "event_log": "Registro de eventos"
+  },
+  "errors": {
+    "on_pair_login_failure": "No se puede iniciar sesión. Por favor, ve a la pantalla de configuración y proporciona acceso a TaHoma para Homey."
+  },
+  "valve_heating_mode_state": {
+    "away": "Fuera",
+    "comfort": "Casa",
+    "eco": "Noche",
+    "frostprotection": "Protección contra heladas",
+    "geofencingmode": "Geovallado",
+    "manual": "Manual",
+    "suddendropmode": "Ventana Abierta"
+  },
+  "defect_state": {
+    "dead": "Muerto",
+    "lowbattery": "Batería baja",
+    "maintenancerequired": "Mantenimiento requerido",
+    "nodefect": "Sin defecto"
+  },
+  "valve_operating_mode_state": {
+    "auto": "Auto (Programar)",
+    "manual": "Manual"
+  },
+  "my_position_token": "Mi Posición",
+  "command_queued": "Comando en cola, espera a que el dispositivo se despierte",
+  "command_failed": "Error en el comando"
+}

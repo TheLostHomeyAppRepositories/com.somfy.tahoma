@@ -5,6 +5,16 @@
   "uiComponent": "button",
   "title": {
     "en": "Automatic Heating / Cooling",
-    "nl": "Automatisch verwarmen / koelen"
+    "nl": "Automatisch verwarmen / koelen",
+    "da": "Automatisk opvarmning / afkøling",
+    "de": "Automatische Heizung / Kühlung",
+    "es": "Calefacción / Enfriamiento Automático",
+    "fr": "Chauffage / Climatisation Automatique",
+    "it": "Riscaldamento / Raffreddamento Automatico",
+    "no": "Automatisk oppvarming / kjøling",
+    "sv": "Automatisk uppvärmning / kylning",
+    "pl": "Automatyczne ogrzewanie / chłodzenie",
+    "ru": "Автоматическое отопление / охлаждение",
+    "ko": "자동 난방 / 냉방"
   }
 }

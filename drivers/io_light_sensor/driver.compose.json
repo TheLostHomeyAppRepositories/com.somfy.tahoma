@@ -1,7 +1,17 @@
 {
   "name": {
     "en": "Sunis sun sensor (io)",
-    "nl": "Sunis zonsensor (io)"
+    "nl": "Sunis zonsensor (io)",
+    "da": "Sunis solsensensor (io)",
+    "de": "Sunis Sonnensensor (io)",
+    "es": "Sensor de sol Sunis (io)",
+    "fr": "Capteur solaire Sunis (io)",
+    "it": "Sensore solare Sunis (io)",
+    "no": "Sunis solsensor (io)",
+    "sv": "Sunis solsensor (io)",
+    "pl": "Czujnik słońca Sunis (io)",
+    "ru": "Солнечный датчик Sunis (io)",
+    "ko": "Sunis 태양 감지기 (io)"
   },
   "class": "sensor",
   "energy": {
@@ -15,5 +25,7 @@
     "defect_state",
     "alarm_battery"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

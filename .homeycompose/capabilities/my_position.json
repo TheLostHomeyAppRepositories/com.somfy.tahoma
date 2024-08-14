@@ -5,6 +5,16 @@
   "uiComponent": "button",
   "title": {
     "en": "MY Position",
-    "nl": "MY Positie"
+    "nl": "MY Positie",
+    "da": "MIN Position",
+    "de": "MEINE Position",
+    "es": "MI Posición",
+    "fr": "MA Position",
+    "it": "MIA Posizione",
+    "no": "MIN Posisjon",
+    "sv": "MIN Position",
+    "pl": "MOJA Pozycja",
+    "ru": "МОЯ Позиция",
+    "ko": "내 위치"
   }
 }

@@ -1,136 +1,326 @@
 {
-    "actions": [
+  "actions": [
+    {
+      "id": "absence_cooling_temperature_set",
+      "title": {
+        "en": "Set the absence cooling temperature",
+        "da": "Indstil fraværskøletemperaturen",
+        "de": "Stelle die Kühltemperatur für die Abwesenheit ein",
+        "es": "Establecer la temperatura de enfriamiento para la ausencia",
+        "fr": "Régler la température de refroidissement en absence",
+        "it": "Imposta la temperatura di raffreddamento di assenza",
+        "no": "Sett fraværskjølingstemperaturen",
+        "sv": "Ställ in frånvarokyltemperaturen",
+        "pl": "Ustaw temperaturę chłodzenia podczas nieobecności",
+        "ru": "Установите температуру охлаждения при отсутствии",
+        "ko": "부재 냉방 온도를 설정하십시오"
+      },
+      "titleFormatted": {
+        "en": "Set the Absence Cooling Temperature to [[target_temperature]]",
+        "da": "Indstil fraværskøletemperaturen til [[target_temperature]]",
+        "de": "Stelle die Kühltemperatur für die Abwesenheit auf [[target_temperature]] ein",
+        "es": "Establecer la temperatura de enfriamiento para la ausencia a [[target_temperature]]",
+        "fr": "Régler la température de refroidissement en absence à [[target_temperature]]",
+        "it": "Imposta la temperatura di raffreddamento di assenza a [[target_temperature]]",
+        "no": "Sett fraværskjølingstemperaturen til [[target_temperature]]",
+        "sv": "Ställ in frånvarokyltemperaturen till [[target_temperature]]",
+        "pl": "Ustaw temperaturę chłodzenia podczas nieobecności na [[target_temperature]]",
+        "ru": "Установите температуру охлаждения при отсутствии на [[target_temperature]]",
+        "ko": "[[target_temperature]]로 부재 냉방 온도를 설정하십시오"
+      },
+      "args": [
         {
-            "id": "absence_cooling_temperature_set",
-            "title": {
-                "en": "Set the absence cooling temperature"
-            },
-            "titleFormatted": {
-                "en": "Set the Absence Cooling Temperature to [[target_temperature]]"
-            },
-            "args": [
-                {
-                    "name": "target_temperature",
-                    "type": "range",
-                    "title": {
-                        "en": "Target Temperature"
-                    },
-                    "min": 0,
-                    "max": 40,
-                    "step": 1,
-                    "label": "°C",
-                    "labelDecimals": 0
-                }
-            ]
-        },
-        {
-            "id": "absence_heating_temperature_set",
-            "title": {
-                "en": "Set the absence heating temperature"
-            },
-            "titleFormatted": {
-                "en": "Set the Absence Heating Temperature to [[target_temperature]]"
-            },
-            "args": [
-                {
-                    "name": "target_temperature",
-                    "type": "range",
-                    "title": {
-                        "en": "Target Temperature"
-                    },
-                    "min": 0,
-                    "max": 40,
-                    "step": 1,
-                    "label": "°C",
-                    "labelDecimals": 0
-                }
-            ]
-        },
-        {
-            "id": "cancel_absence_set",
-            "title": {
-                "en": "Cancel Absence"
-            },
-            "args": []
-        },
-        {
-            "id": "set_auto_heat_cool",
-            "title": {
-                "en": "Turn Auto Heat Cool On / Off"
-            },
-            "titleFormatted": {
-                "en": "Turn [[state]] auto heat / cool"
-            },
-            "args": [
-                {
-                    "name": "state",
-                    "type": "dropdown",
-                    "title": {
-                        "en": "State"
-                    },
-                    "values": [
-                        {
-                            "id": "on",
-                            "label": {
-                                "en": "On",
-                                "nl": "aan"
-                            }
-                        },
-                        {
-                            "id": "off",
-                            "label": {
-                                "en": "Off",
-                                "nl": "uit"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "set_pac_operating_mode",
-            "title": {
-                "en": "Set APC operating mode"
-            },
-            "titleFormatted": {
-                "en": "Set APC operating mode to [[state]]"
-            },
-            "args": [
-                {
-                    "name": "state",
-                    "type": "dropdown",
-                    "title": {
-                        "en": "Operating Mode"
-                    },
-                    "values": [
-                        {
-                            "id": "cooling",
-                            "label": {
-                                "en": "Cooling"
-                            }
-                        },
-                        {
-                            "id": "drying",
-                            "label": {
-                                "en": "drying"
-                            }
-                        },
-                        {
-                            "id": "heating",
-                            "label": {
-                                "en": "Heating"
-                            }
-                        },
-                        {
-                            "id": "stop",
-                            "label": {
-                                "en": "Stop",
-                                "nl": "Hou op"
-                            }
-                        }
-                    ]
-                }
-            ]
+          "name": "target_temperature",
+          "type": "range",
+          "title": {
+            "en": "Target Temperature",
+            "da": "Mål Temperatur",
+            "de": "Zieltemperatur",
+            "es": "Temperatura Objetivo",
+            "fr": "Température Cible",
+            "it": "Temperatura Obiettivo",
+            "no": "Mål Temperatur",
+            "sv": "Mål Temperatur",
+            "pl": "Temperatura docelowa",
+            "ru": "Целевая температура",
+            "ko": "목표 온도"
+          },
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "label": "°C",
+          "labelDecimals": 0
         }
-    ]
+      ]
+    },
+    {
+      "id": "absence_heating_temperature_set",
+      "title": {
+        "en": "Set the absence heating temperature",
+        "da": "Indstil fraværsvarme temperaturen",
+        "de": "Stelle die Heiztemperatur für die Abwesenheit ein",
+        "es": "Establecer la temperatura de calefacción para la ausencia",
+        "fr": "Régler la température de chauffage en absence",
+        "it": "Imposta la temperatura di riscaldamento di assenza",
+        "no": "Sett fraværsoppvarmingstemperaturen",
+        "sv": "Ställ in frånvarovärme temperaturen",
+        "pl": "Ustaw temperaturę ogrzewania podczas nieobecności",
+        "ru": "Установите температуру отопления при отсутствии",
+        "ko": "부재 중 난방 온도를 설정하십시오"
+      },
+      "titleFormatted": {
+        "en": "Set the Absence Heating Temperature to [[target_temperature]]",
+        "da": "Indstil fraværsvarme temperaturen til [[target_temperature]]",
+        "de": "Stelle die Heiztemperatur für die Abwesenheit auf [[target_temperature]] ein",
+        "es": "Establecer la temperatura de calefacción para la ausencia a [[target_temperature]]",
+        "fr": "Régler la température de chauffage en absence à [[target_temperature]]",
+        "it": "Imposta la temperatura di riscaldamento di assenza a [[target_temperature]]",
+        "no": "Sett fraværsoppvarmingstemperaturen til [[target_temperature]]",
+        "sv": "Ställ in frånvarovärme temperaturen till [[target_temperature]]",
+        "pl": "Ustaw temperaturę ogrzewania podczas nieobecności na [[target_temperature]]",
+        "ru": "Установите температуру отопления при отсутствии на [[target_temperature]]",
+        "ko": "[[target_temperature]]로 부재 중 난방 온도를 설정하십시오"
+      },
+      "args": [
+        {
+          "name": "target_temperature",
+          "type": "range",
+          "title": {
+            "en": "Target Temperature",
+            "da": "Mål Temperatur",
+            "de": "Zieltemperatur",
+            "es": "Temperatura Objetivo",
+            "fr": "Température Cible",
+            "it": "Temperatura Obiettivo",
+            "no": "Mål Temperatur",
+            "sv": "Mål Temperatur",
+            "pl": "Temperatura docelowa",
+            "ru": "Целевая температура",
+            "ko": "목표 온도"
+          },
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "label": "°C",
+          "labelDecimals": 0
+        }
+      ]
+    },
+    {
+      "id": "cancel_absence_set",
+      "title": {
+        "en": "Cancel Absence",
+        "da": "Annuller Fravær",
+        "de": "Abwesenheit abbrechen",
+        "es": "Cancelar la ausencia",
+        "fr": "Annuler l'absence",
+        "it": "Annulla assenza",
+        "no": "Avbryt fravær",
+        "sv": "Avbryt frånvaro",
+        "pl": "Anuluj nieobecność",
+        "ru": "Отменить отсутствие",
+        "ko": "부재 취소"
+      },
+      "args": []
+    },
+    {
+      "id": "set_auto_heat_cool",
+      "title": {
+        "en": "Turn Auto Heat Cool On / Off",
+        "da": "Tænd / sluk automatisk varme / køling",
+        "de": "Auto Heizen Kühlen Ein / Aus schalten",
+        "es": "Activar / Desactivar Calor Frío Automático",
+        "fr": "Activer / Désactiver Chauffage / Refroidissement Automatique",
+        "it": "Accendi / Spegni Riscaldamento / Raffreddamento Automatico",
+        "no": "Slå automatisk varme / kjøling på / av",
+        "sv": "Slå på / av automatisk värme / kyla",
+        "pl": "Włącz / Wyłącz automatyczne grzanie / chłodzenie",
+        "ru": "Включить / выключить автоматический режим обогрева / охлаждения",
+        "ko": "자동 난방 냉방 켜기 / 끄기"
+      },
+      "titleFormatted": {
+        "en": "Turn [[state]] auto heat / cool",
+        "da": "Tænd [[state]] automatisk varme / køling",
+        "de": "Schalten [[state]] Auto Heizen / Kühlen",
+        "es": "Activa [[state]] calor / frío automático",
+        "fr": "Activer [[state]] chauffage / refroidissement automatique",
+        "it": "Accendi [[state]] riscaldamento / raffreddamento automatico",
+        "no": "Slå [[state]] automatisk varme / kjøling",
+        "sv": "Slå på [[state]] automatiskt värme / kyla",
+        "pl": "Włącz [[state]] automatyczne grzanie / chłodzenie",
+        "ru": "Включить [[state]] автоматический обогрев / охлаждение",
+        "ko": "[[state]] 자동 난방 / 냉방 켜기"
+      },
+      "args": [
+        {
+          "name": "state",
+          "type": "dropdown",
+          "title": {
+            "en": "State",
+            "da": "Tilstand",
+            "de": "Zustand",
+            "es": "Estado",
+            "fr": "État",
+            "it": "Stato",
+            "no": "Tilstand",
+            "sv": "Tillstånd",
+            "pl": "Stan",
+            "ru": "Состояние",
+            "ko": "상태"
+          },
+          "values": [
+            {
+              "id": "on",
+              "label": {
+                "en": "On",
+                "nl": "aan",
+                "da": "Tænd",
+                "de": "Ein",
+                "es": "Encendido",
+                "fr": "Allumé",
+                "it": "Acceso",
+                "no": "På",
+                "sv": "På",
+                "pl": "Włączony",
+                "ru": "Включено",
+                "ko": "켜짐"
+              }
+            },
+            {
+              "id": "off",
+              "label": {
+                "en": "Off",
+                "nl": "uit",
+                "da": "Slukket",
+                "de": "Aus",
+                "es": "Apagado",
+                "fr": "Éteint",
+                "it": "Spento",
+                "no": "Av",
+                "sv": "Av",
+                "pl": "Wyłączony",
+                "ru": "Выключено",
+                "ko": "꺼짐"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "set_pac_operating_mode",
+      "title": {
+        "en": "Set APC operating mode",
+        "da": "Indstil APC driftsfunktion",
+        "de": "Stelle den Betriebsmodus des APC ein",
+        "es": "Configurar el modo de operación de APC",
+        "fr": "Régler le mode de fonctionnement de l'APC",
+        "it": "Imposta la modalità operativa APC",
+        "no": "Still inn APC driftsmodus",
+        "sv": "Ställ in APC-driftläge",
+        "pl": "Ustaw tryb pracy APC",
+        "ru": "Установите режим работы APC",
+        "ko": "APC 작동 모드 설정"
+      },
+      "titleFormatted": {
+        "en": "Set APC operating mode to [[state]]",
+        "da": "Indstil APC driftsfunktion til [[state]]",
+        "de": "Stelle den APC-Betriebsmodus auf [[state]] ein",
+        "es": "Establecer el modo de operación de APC a [[state]]",
+        "fr": "Régler le mode de fonctionnement de l'APC à [[state]]",
+        "it": "Imposta la modalità operativa APC su [[state]]",
+        "no": "Still inn APC driftsmodus til [[state]]",
+        "sv": "Ställ in APC-driftläge till [[state]]",
+        "pl": "Ustaw tryb pracy APC na [[state]]",
+        "ru": "Установите режим работы APC на [[state]]",
+        "ko": "APC 작동 모드를 [[state]]로 설정하십시오"
+      },
+      "args": [
+        {
+          "name": "state",
+          "type": "dropdown",
+          "title": {
+            "en": "Operating Mode",
+            "da": "Driftsfunktion",
+            "de": "Betriebsmodus",
+            "es": "Modo de Operación",
+            "fr": "Mode de Fonctionnement",
+            "it": "Modalità Operativa",
+            "no": "Driftsmodus",
+            "sv": "Driftläge",
+            "pl": "Tryb Działania",
+            "ru": "Режим работы",
+            "ko": "작동 모드"
+          },
+          "values": [
+            {
+              "id": "cooling",
+              "label": {
+                "en": "Cooling",
+                "da": "Køling",
+                "de": "Kühlung",
+                "es": "Enfriando",
+                "fr": "Refroidissement",
+                "it": "Raffreddamento",
+                "no": "Kjøling",
+                "sv": "Kylning",
+                "pl": "Chłodzenie",
+                "ru": "Охлаждение",
+                "ko": "냉각"
+              }
+            },
+            {
+              "id": "drying",
+              "label": {
+                "en": "drying",
+                "da": "tørring",
+                "de": "trocknen",
+                "es": "secando",
+                "fr": "séchage",
+                "it": "asciugatura",
+                "no": "tørking",
+                "sv": "torkning",
+                "pl": "suszenie",
+                "ru": "сушка",
+                "ko": "건조"
+              }
+            },
+            {
+              "id": "heating",
+              "label": {
+                "en": "Heating",
+                "da": "Opvarmning",
+                "de": "Heizen",
+                "es": "Calentando",
+                "fr": "Chauffage",
+                "it": "Riscaldamento",
+                "no": "Oppvarming",
+                "sv": "Uppvärmning",
+                "pl": "Ogrzewanie",
+                "ru": "Отопление",
+                "ko": "난방"
+              }
+            },
+            {
+              "id": "stop",
+              "label": {
+                "en": "Stop",
+                "nl": "Hou op",
+                "da": "Stop",
+                "de": "Stopp",
+                "es": "Detener",
+                "fr": "Arrêt",
+                "it": "Ferma",
+                "no": "Stopp",
+                "sv": "Stopp",
+                "pl": "Stop",
+                "ru": "Стоп",
+                "ko": "정지"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

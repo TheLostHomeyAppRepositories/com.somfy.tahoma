@@ -5,6 +5,16 @@
   "uiComponent": "button",
   "title": {
     "en": "MY heat level",
-    "nl": "MY warmteniveau"
+    "nl": "MY warmteniveau",
+    "da": "MY varmeniveau",
+    "de": "MY Wärmestufe",
+    "es": "MY nivel de calor",
+    "fr": "MY niveau de chaleur",
+    "it": "MY livello di calore",
+    "no": "MY varmenivå",
+    "sv": "MY värmenivå",
+    "pl": "MY poziom ciepła",
+    "ru": "MY уровень тепла",
+    "ko": "MY 열 수준"
   }
 }

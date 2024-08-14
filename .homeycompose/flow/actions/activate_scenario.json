@@ -1,21 +1,51 @@
 {
-    "id": "activate_scenario",
-    "title": {
-        "en": "Play a scenario",
-        "nl": "Scenario afspelen"
-    },
-    "titleFormatted": {
-        "en": "Play scenario [[scenario]]",
-        "nl": "Scenario afspelen [[scenario]]"
-    },
-    "args": [
-        {
-            "title": {
-                "en": "Scenario Name",
-                "nl": "Scenarionaam"
-            },
-            "name": "scenario",
-            "type": "autocomplete"
-        }
-    ]
+  "id": "activate_scenario",
+  "title": {
+    "en": "Play a scenario",
+    "nl": "Scenario afspelen",
+    "da": "Spil et scenarie",
+    "de": "Ein Szenario spielen",
+    "es": "Reproducir un escenario",
+    "fr": "Jouer un scénario",
+    "it": "Esegui uno scenario",
+    "no": "Spill et scenario",
+    "sv": "Spela ett scenario",
+    "pl": "Zagraj w scenariusz",
+    "ru": "Запустить сценарий",
+    "ko": "시나리오 재생"
+  },
+  "titleFormatted": {
+    "en": "Play scenario [[scenario]]",
+    "nl": "Scenario afspelen [[scenario]]",
+    "da": "Spil scenarie [[scenario]]",
+    "de": "Spiele Szenario [[scenario]]",
+    "es": "Reproducir escenario [[scenario]]",
+    "fr": "Jouer le scénario [[scenario]]",
+    "it": "Esegui scenario [[scenario]]",
+    "no": "Spill scenario [[scenario]]",
+    "sv": "Spela scenario [[scenario]]",
+    "pl": "Zagraj w scenariusz [[scenario]]",
+    "ru": "Запустить сценарий [[scenario]]",
+    "ko": "시나리오 재생 [[scenario]]"
+  },
+  "args": [
+    {
+      "title": {
+        "en": "Scenario Name",
+        "nl": "Scenarionaam",
+        "da": "Scenarienavn",
+        "de": "Szenarioname",
+        "es": "Nombre del escenario",
+        "fr": "Nom du scénario",
+        "it": "Nome dello scenario",
+        "no": "Scenarienavn",
+        "sv": "Scenarionamn",
+        "pl": "Nazwa scenariusza",
+        "ru": "Название сценария",
+        "ko": "시나리오 이름"
+      },
+      "name": "scenario",
+      "type": "autocomplete"
+    }
+  ]
 }

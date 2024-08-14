@@ -1,11 +1,24 @@
 {
   "name": {
-    "en": "Atlantic Basic Electric Heater"
+    "en": "Atlantic Basic Electric Heater",
+    "nl": "Atlantische Basis Elektrische Verwarming",
+    "da": "Atlanterhavets Basiselektriske Varmer",
+    "de": "Atlantik Basis Elektroheizung",
+    "es": "Calefactor Eléctrico Básico Atlántico",
+    "fr": "Radiateur Électrique Basique Atlantique",
+    "it": "Riscaldatore Elettrico Base Atlantico",
+    "no": "Atlantisk Grunnleggende Elektrisk Varmekilde",
+    "sv": "Atlantisk Grundläggande Elektrisk Värmare",
+    "pl": "Podstawowy Elektryczny Grzejnik Atlantycki",
+    "ru": "Атлантический Базовый Электрический Обогреватель",
+    "ko": "대서양 기본 전기 히터"
   },
   "class": "heater",
   "capabilities": [
     "onoff",
     "heating_level_state"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

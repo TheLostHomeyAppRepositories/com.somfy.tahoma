@@ -1,40 +1,90 @@
 {
-    "actions": [
+  "actions": [
+    {
+      "id": "set_quiet_mode",
+      "title": {
+        "en": "Set quiet mode",
+        "nl": "Stille modus instellen",
+        "da": "Indstil lydløs tilstand",
+        "de": "Ruhemodus einstellen",
+        "es": "Establecer modo silencioso",
+        "fr": "Définir le mode silencieux",
+        "it": "Imposta modalità silenziosa",
+        "no": "Sett stillemodus",
+        "sv": "Aktivera tyst läge",
+        "pl": "Ustaw tryb cichy",
+        "ru": "Установить тихий режим",
+        "ko": "조용한 모드 설정"
+      },
+      "titleFormatted": {
+        "en": "Set quiet mode to [[newQuietMode]]",
+        "nl": "Zet stille modus op [[newQuietMode]]",
+        "da": "Indstil lydløs tilstand til [[newQuietMode]]",
+        "de": "Ruhemodus einstellen auf [[newQuietMode]]",
+        "es": "Establecer modo silencioso a [[newQuietMode]]",
+        "fr": "Définir le mode silencieux sur [[newQuietMode]]",
+        "it": "Imposta modalità silenziosa su [[newQuietMode]]",
+        "no": "Sett stillemodus til [[newQuietMode]]",
+        "sv": "Aktivera tyst läge till [[newQuietMode]]",
+        "pl": "Ustaw tryb cichy na [[newQuietMode]]",
+        "ru": "Установить тихий режим на [[newQuietMode]]",
+        "ko": "[[newQuietMode]]으로 조용한 모드 설정"
+      },
+      "args": [
         {
-            "id": "set_quiet_mode",
-            "title": {
-                "en": "Set quiet mode",
-                "nl": "Stille modus instellen"
+          "name": "newQuietMode",
+          "type": "dropdown",
+          "title": {
+            "en": "Quiet Mode",
+            "da": "Lydløs tilstand",
+            "de": "Ruhemodus",
+            "es": "Modo silencioso",
+            "fr": "Mode silencieux",
+            "it": "Modalità silenziosa",
+            "no": "Stillemodus",
+            "sv": "Tyst läge",
+            "pl": "Tryb cichy",
+            "ru": "Тихий режим",
+            "ko": "조용한 모드"
+          },
+          "values": [
+            {
+              "id": "on",
+              "label": {
+                "en": "On",
+                "nl": "aan",
+                "da": "Tændt",
+                "de": "Ein",
+                "es": "Encendido",
+                "fr": "Allumé",
+                "it": "Acceso",
+                "no": "På",
+                "sv": "På",
+                "pl": "Włączone",
+                "ru": "Вкл",
+                "ko": "켜짐"
+              }
             },
-            "titleFormatted": {
-                "en": "Set quiet mode to [[newQuietMode]]",
-                "nl": "Zet stille modus op [[newQuietMode]]"
-            },
-            "args": [
-                {
-                    "name": "newQuietMode",
-                    "type": "dropdown",
-                    "title": {
-                        "en": "Quiet Mode"
-                    },
-                    "values": [
-                        {
-                            "id": "on",
-                            "label": {
-                                "en": "On",
-                                "nl": "aan"
-                            }
-                        },
-                        {
-                            "id": "off",
-                            "label": {
-                                "en": "Off",
-                                "nl": "uit"
-                            }
-                        }
-                    ]
-                }
-            ]
+            {
+              "id": "off",
+              "label": {
+                "en": "Off",
+                "nl": "uit",
+                "da": "Slukket",
+                "de": "Aus",
+                "es": "Apagado",
+                "fr": "Éteint",
+                "it": "Spento",
+                "no": "Av",
+                "sv": "Av",
+                "pl": "Wyłączone",
+                "ru": "Выкл",
+                "ko": "꺼짐"
+              }
+            }
+          ]
         }
-    ]
+      ]
+    }
+  ]
 }

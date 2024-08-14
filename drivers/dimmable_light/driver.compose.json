@@ -1,7 +1,17 @@
 {
   "name": {
     "en": "Dimmable light",
-    "nl": "Dimbaar licht"
+    "nl": "Dimbaar licht",
+    "da": "Dæmpbart lys",
+    "de": "Dimmbares Licht",
+    "es": "Luz regulable",
+    "fr": "Lumière dimmable",
+    "it": "Luce dimmerabile",
+    "no": "Dimbar lys",
+    "sv": "Dimbar ljus",
+    "pl": "Światło ściemniane",
+    "ru": "Регулируемый свет",
+    "ko": "조광 가능한 빛"
   },
   "class": "light",
   "capabilities": [
@@ -14,5 +24,7 @@
       "setOnDim": false
     }
   },
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

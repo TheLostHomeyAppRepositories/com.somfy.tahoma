@@ -5,7 +5,17 @@
   "uiComponent": "sensor",
   "title": {
     "en": "Sensor Defect State",
-    "nl": "Status sensor defect"
+    "nl": "Status sensor defect",
+    "da": "Sensor fejltilstand",
+    "de": "Sensorfehlerzustand",
+    "es": "Estado de defecto del sensor",
+    "fr": "État de défaut du capteur",
+    "it": "Stato difetto sensore",
+    "no": "Sensorfeil tilstand",
+    "sv": "Sensorfelstatus",
+    "pl": "Stan defektu czujnika",
+    "ru": "Состояние дефекта датчика",
+    "ko": "센서 결함 상태"
   },
   "icon": "/assets/wrench.svg"
 }

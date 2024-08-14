@@ -4,6 +4,17 @@
   "setable": true,
   "uiComponent": "button",
   "title": {
-    "en": "Open"
+    "en": "Open",
+    "nl": "Open",
+    "da": "Åben",
+    "de": "Öffnen",
+    "es": "Abrir",
+    "fr": "Ouvrir",
+    "it": "Apri",
+    "no": "Åpne",
+    "sv": "Öppna",
+    "pl": "Otwórz",
+    "ru": "Открыть",
+    "ko": "열기"
   }
 }

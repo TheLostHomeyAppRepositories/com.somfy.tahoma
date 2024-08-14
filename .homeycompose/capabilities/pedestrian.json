@@ -5,6 +5,16 @@
   "uiComponent": "button",
   "title": {
     "en": "Pedestrian",
-    "nl": "Voetganger"
+    "nl": "Voetganger",
+    "da": "Fodgænger",
+    "de": "Fußgänger",
+    "es": "Peatón",
+    "fr": "Piéton",
+    "it": "Pedone",
+    "no": "Fotgjenger",
+    "sv": "Gångtrafikant",
+    "pl": "Pieszy",
+    "ru": "Пешеход",
+    "ko": "보행자"
   }
 }

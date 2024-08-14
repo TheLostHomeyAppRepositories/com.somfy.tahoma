@@ -2,7 +2,17 @@
   "type": "string",
   "title": {
     "en": "Thermal Scheduling Mode",
-    "nl": "Thermische planningsmodus"
+    "nl": "Thermische planningsmodus",
+    "da": "Termisk planlægningsmodus",
+    "de": "Thermischer Planungsmodus",
+    "es": "Modo de Programación Térmica",
+    "fr": "Mode de Planification Thermique",
+    "it": "Modalità di Pianificazione Termica",
+    "no": "Termisk planleggingsmodus",
+    "sv": "Termisk Schemaläggningsläge",
+    "pl": "Tryb planowania cieplnego",
+    "ru": "Режим Термического Планирования",
+    "ko": "열 스케줄링 모드"
   },
   "getable": true,
   "setable": false

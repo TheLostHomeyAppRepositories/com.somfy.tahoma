@@ -1,7 +1,17 @@
 {
   "name": {
     "en": "Venetian blind (RTS)",
-    "nl": "Jaloezie (RTS)"
+    "nl": "Jaloezie (RTS)",
+    "da": "Venetiansk persienne (RTS)",
+    "de": "Jalousie (RTS)",
+    "es": "Persiana veneciana (RTS)",
+    "fr": "Store vénitien (RTS)",
+    "it": "Tenda veneziana (RTS)",
+    "no": "Persienne (RTS)",
+    "sv": "Persienn (RTS)",
+    "pl": "Żaluzja (RTS)",
+    "ru": "Жалюзи (RTS)",
+    "ko": "베네치안 블라인드 (RTS)"
   },
   "class": "blinds",
   "capabilities": [
@@ -16,14 +26,36 @@
       "type": "checkbox",
       "label": {
         "en": "Invert Up / Down",
-        "nl": "Omkeren omhoog / omlaag"
+        "nl": "Omkeren omhoog / omlaag",
+        "da": "Byt Omvendt Op / Ned",
+        "de": "Invertieren Auf / Ab",
+        "es": "Invertir Arriba / Abajo",
+        "fr": "Inverser Haut / Bas",
+        "it": "Inverti Su / Giù",
+        "no": "Inverter Opp / Ned",
+        "sv": "Invertera Upp / Ner",
+        "pl": "Odwróć góra / dół",
+        "ru": "Перевернуть Вверх / Вниз",
+        "ko": "위 / 아래 반전"
       },
       "value": false,
       "hint": {
         "en": "Reverse the Up / Down direction controls",
-        "nl": "Draai de bedieningselementen omhoog/omlaag om"
+        "nl": "Draai de bedieningselementen omhoog/omlaag om",
+        "da": "Vend retning for Op / Ned kontrol",
+        "de": "Richtung für Auf / Ab umkehren",
+        "es": "Invertir los controles de dirección Arriba / Abajo",
+        "fr": "Inversez les commandes de direction Haut / Bas",
+        "it": "Inverti i controlli per Su / Giù",
+        "no": "Vend retning for Opp / Ned kontroll",
+        "sv": "Vänd riktning för upp / ner kontroll",
+        "pl": "Odwróć kierunki góra / dół sterowania",
+        "ru": "Перевернуть управление Вверх / Вниз",
+        "ko": "위 / 아래 방향 제어 반전"
       }
     }
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

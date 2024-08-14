@@ -5,6 +5,16 @@
   "uiComponent": "button",
   "title": {
     "en": "Close",
-    "nl": "Dichtbij"
+    "nl": "Dichtbij",
+    "da": "Luk",
+    "de": "Schließen",
+    "es": "Cerrar",
+    "fr": "Fermer",
+    "it": "Chiudi",
+    "no": "Lukk",
+    "sv": "Stäng",
+    "pl": "Zamknij",
+    "ru": "Закрыть",
+    "ko": "닫기"
   }
 }

@@ -1,6 +1,17 @@
 {
   "name": {
-    "en": "Slated Pergola (io)"
+    "en": "Slated Pergola (io)",
+    "nl": "Lamel Pergola (io)",
+    "da": "Skifer Pergola (io)",
+    "de": "Schiefer Pergola (io)",
+    "es": "Pérgola de Lamas (io)",
+    "fr": "Pergola Lattée (io)",
+    "it": "Pergola Lamellare (io)",
+    "no": "Skjelett Pergola (io)",
+    "sv": "Skiffer Pergola (io)",
+    "pl": "Pergola Łupkowa (io)",
+    "ru": "Шиферная Пергола (io)",
+    "ko": "슬레이트 퍼골라 (io)"
   },
   "class": "sunshade",
   "capabilities": [
@@ -13,12 +24,32 @@
       "type": "checkbox",
       "label": {
         "en": "Invert Up / Down",
-        "nl": "Omkeren omhoog / omlaag"
+        "nl": "Omkeren omhoog / omlaag",
+        "da": "Vend Op / Ned",
+        "de": "Umkehren Hoch / Runter",
+        "es": "Invertir Arriba / Abajo",
+        "fr": "Inverser Haut / Bas",
+        "it": "Inverti Su / Giù",
+        "no": "Vend opp / ned",
+        "sv": "Vänd upp / ner",
+        "pl": "Odwróć góra / dół",
+        "ru": "Инвертировать Вверх / Вниз",
+        "ko": "위 / 아래 반전"
       },
       "value": false,
       "hint": {
         "en": "Reverse the Up / Down direction controls",
-        "nl": "Draai de bedieningselementen omhoog/omlaag om"
+        "nl": "Draai de bedieningselementen omhoog/omlaag om",
+        "da": "Vend retningen for Op / Ned kontrol",
+        "de": "Umkehren der Hoch / Runter Richtungssteuerung",
+        "es": "Invertir los controles de dirección Arriba / Abajo",
+        "fr": "Inverser les commandes de direction Haut / Bas",
+        "it": "Inverti i controlli della direzione Su / Giù",
+        "no": "Vend retningen for opp / ned kontrollene",
+        "sv": "Vänd riktning för upp / ner kontrollerna",
+        "pl": "Odwróć kierunek sterowania góra / dół",
+        "ru": "Инвертировать управление направлением Вверх / Вниз",
+        "ko": "위 / 아래 방향 제어 반전"
       }
     },
     {
@@ -26,14 +57,36 @@
       "type": "checkbox",
       "label": {
         "en": "Invert Position",
-        "nl": "Positie omkeren"
+        "nl": "Positie omkeren",
+        "da": "Vend Position",
+        "de": "Position Umkehren",
+        "es": "Invertir Posición",
+        "fr": "Inverser la Position",
+        "it": "Inverti la Posizione",
+        "no": "Vend Posisjon",
+        "sv": "Vänd Position",
+        "pl": "Odwróć Pozycję",
+        "ru": "Инвертировать Позицию",
+        "ko": "위치 반전"
       },
       "value": false,
       "hint": {
         "en": "Reverse the position control.",
-        "nl": "Draai de positieregeling om."
+        "nl": "Draai de positieregeling om.",
+        "da": "Vend positionskontrollen.",
+        "de": "Umkehren der Positionssteuerung.",
+        "es": "Invertir el control de posición.",
+        "fr": "Inverser la commande de position.",
+        "it": "Inverti il controllo della posizione.",
+        "no": "Vend posisjonskontrollen.",
+        "sv": "Vänd positionskontrollen.",
+        "pl": "Odwróć sterowanie pozycją.",
+        "ru": "Инвертировать управление положением.",
+        "ko": "위치 제어 반전."
       }
     }
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

@@ -1,6 +1,17 @@
 {
   "name": {
-    "en": "Atlantic Heating And Cooling System"
+    "en": "Atlantic Heating And Cooling System",
+    "nl": "Atlantisch Verwarmings- en Koelsysteem",
+    "da": "Atlantisk Opvarmning og Kølesystem",
+    "de": "Atlantisches Heiz- und Kühlsystem",
+    "es": "Sistema Atlántico de Calefacción y Refrigeración",
+    "fr": "Système de Chauffage et de Refroidissement Atlantique",
+    "it": "Sistema di Riscaldamento e Raffreddamento Atlantico",
+    "no": "Atlantisk Oppvarmings- og Kjølesystem",
+    "sv": "Atlantiskt Uppvärmnings- och Kylsystem",
+    "pl": "Atlantyczny System Ogrzewania i Chłodzenia",
+    "ru": "Атлантическая Система Отопления и Охлаждения",
+    "ko": "애틀랜틱 난방 및 냉방 시스템"
   },
   "class": "heater",
   "capabilities": [
@@ -19,43 +30,175 @@
     "target_temperature.comfort_cooling": {
       "min": 4,
       "max": 35,
-      "title": "Comfort Cooling Temperature"
+      "title": {
+        "en": "Comfort Cooling Temperature",
+        "nl": "Comfort Koeltemperatuur",
+        "da": "Komfortkølingstemperatur",
+        "de": "Komfort-Kühltemperatur",
+        "es": "Temperatura de refrigeración cómoda",
+        "fr": "Température de refroidissement confort",
+        "it": "Temperatura di raffreddamento comfort",
+        "no": "Komfortkjølingstemperatur",
+        "sv": "Komfortkylningstemperatur",
+        "pl": "Temperatura Chłodzenia Komfortowego",
+        "ru": "Комфортная Температура Охлаждения",
+        "ko": "편안한 냉방 온도"
+      }
     },
     "target_temperature.comfort_heating": {
       "min": 4,
       "max": 35,
-      "title": "Comfort Heating Temperature"
+      "title": {
+        "en": "Comfort Heating Temperature",
+        "nl": "Comfort Verwarmingstemperatuur",
+        "da": "Komfortopvarmningstemperatur",
+        "de": "Komfort-Heiztemperatur",
+        "es": "Temperatura de calefacción cómoda",
+        "fr": "Température de chauffage confort",
+        "it": "Temperatura di riscaldamento comfort",
+        "no": "Komfortoppvarmingstemperatur",
+        "sv": "Komfortvärmetemperatur",
+        "pl": "Temperatura Ogrzewania Komfortowego",
+        "ru": "Комфортная Температура Обогрева",
+        "ko": "편안한 난방 온도"
+      }
     },
     "target_temperature.eco_cooling": {
       "min": 4,
       "max": 35,
-      "title": "Eco Cooling Temperature"
+      "title": {
+        "en": "Eco Cooling Temperature",
+        "nl": "Eco Koeltemperatuur",
+        "da": "Økokølingstemperatur",
+        "de": "Öko-Kühltemperatur",
+        "es": "Temperatura de refrigeración ecológica",
+        "fr": "Température de refroidissement éco",
+        "it": "Temperatura di raffreddamento eco",
+        "no": "Økokjølingstemperatur",
+        "sv": "Ekonomikylningstemperatur",
+        "pl": "Temperatura Chłodzenia Eko",
+        "ru": "Эко Температура Охлаждения",
+        "ko": "에코 냉방 온도"
+      }
     },
     "target_temperature.eco_heating": {
       "min": 4,
       "max": 35,
-      "title": "Eco Heating Temperature"
+      "title": {
+        "en": "Eco Heating Temperature",
+        "nl": "Eco Verwarmingstemperatuur",
+        "da": "Økoopvarmningstemperatur",
+        "de": "Öko-Heiztemperatur",
+        "es": "Temperatura de calefacción ecológica",
+        "fr": "Température de chauffage éco",
+        "it": "Temperatura di riscaldamento eco",
+        "no": "Økooppvarmingstemperatur",
+        "sv": "Ekonomivärmetemperatur",
+        "pl": "Temperatura Ogrzewania Eko",
+        "ru": "Эко Температура Обогрева",
+        "ko": "에코 난방 온도"
+      }
     },
     "target_temperature.derogated": {
       "min": 4,
       "max": 35,
-      "title": "Derogated Temperature"
+      "title": {
+        "en": "Derogated Temperature",
+        "nl": "Afwijkende Temperatuur",
+        "da": "Fraviget Temperatur",
+        "de": "Abgewichene Temperatur",
+        "es": "Temperatura Derogada",
+        "fr": "Température Dérogée",
+        "it": "Temperatura Derogata",
+        "no": "Fraviket Temperatur",
+        "sv": "Avvikande Temperatur",
+        "pl": "Temperatura Odstępna",
+        "ru": "Отступленная Температура",
+        "ko": "예외 온도"
+      }
     },
     "boost.heating": {
-      "title": "Heating"
+      "title": {
+        "en": "Heating",
+        "nl": "Verwarming",
+        "da": "Opvarmning",
+        "de": "Heizung",
+        "es": "Calefacción",
+        "fr": "Chauffage",
+        "it": "Riscaldamento",
+        "no": "Oppvarming",
+        "sv": "Uppvärmning",
+        "pl": "Ogrzewanie",
+        "ru": "Отопление",
+        "ko": "난방"
+      }
     },
     "boost.cooling": {
-      "title": "Cooling"
+      "title": {
+        "en": "Cooling",
+        "nl": "Koeling",
+        "da": "Køling",
+        "de": "Kühlung",
+        "es": "Refrigeración",
+        "fr": "Refroidissement",
+        "it": "Raffreddamento",
+        "no": "Kjøling",
+        "sv": "Kylning",
+        "pl": "Chłodzenie",
+        "ru": "Охлаждение",
+        "ko": "냉방"
+      }
     },
     "boost.derogated": {
-      "title": "Derogated"
+      "title": {
+        "en": "Derogated",
+        "nl": "Afwijkend",
+        "da": "Fraviget",
+        "de": "Abgewichen",
+        "es": "Derogado",
+        "fr": "Dérogé",
+        "it": "Derogato",
+        "no": "Fravikende",
+        "sv": "Avvikande",
+        "pl": "Odstępne",
+        "ru": "Отступленное",
+        "ko": "예외"
+      }
     },
     "heat_cool_mode.cool": {
-      "title": "Cooling Mode"
+      "title": {
+        "en": "Cooling Mode",
+        "nl": "Koelmodus",
+        "da": "Køletilstand",
+        "de": "Kühlmodus",
+        "es": "Modo de refrigeración",
+        "fr": "Mode de refroidissement",
+        "it": "Modalità di raffreddamento",
+        "no": "Kjølemodus",
+        "sv": "Kylningsläge",
+        "pl": "Tryb Chłodzenia",
+        "ru": "Режим Охлаждения",
+        "ko": "냉방 모드"
+      }
     },
     "heat_cool_mode.heat": {
-      "title": "Heating Mode"
+      "title": {
+        "en": "Heating Mode",
+        "nl": "Verwarmingsmodus",
+        "da": "Opvarmningstilstand",
+        "de": "Heizmodus",
+        "es": "Modo de calefacción",
+        "fr": "Mode de chauffage",
+        "it": "Modalità di riscaldamento",
+        "no": "Oppvarmingsmodus",
+        "sv": "Värmeläge",
+        "pl": "Tryb Ogrzewania",
+        "ru": "Режим Отопления",
+        "ko": "난방 모드"
+      }
     }
   },
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

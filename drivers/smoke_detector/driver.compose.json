@@ -1,37 +1,67 @@
 {
-    "name": {
-        "en": "Smoke Detector",
-        "nl": "Rookmelder"
+  "name": {
+    "en": "Smoke Detector",
+    "nl": "Rookmelder",
+    "da": "Røgalarm",
+    "de": "Rauchmelder",
+    "es": "Detector de humo",
+    "fr": "Détecteur de fumée",
+    "it": "Rilevatore di fumo",
+    "no": "Røykvarsler",
+    "sv": "Rökdetektor",
+    "pl": "Czujnik dymu",
+    "ru": "Датчик дыма",
+    "ko": "연기 감지기"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "alarm_smoke",
+    "alarm_battery.radio",
+    "alarm_battery.sensor",
+    "alarm_room_state",
+    "test_smoke"
+  ],
+  "capabilitiesOptions": {
+    "alarm_battery.radio": {
+      "title": {
+        "en": "Radio Battery",
+        "nl": "Radiobatterij",
+        "da": "Radio Batteri",
+        "de": "Radio Batterie",
+        "es": "Batería de radio",
+        "fr": "Batterie radio",
+        "it": "Batteria radio",
+        "no": "Radio Batteri",
+        "sv": "Radiobatteri",
+        "pl": "Radio Bateria",
+        "ru": "Радио Батарея",
+        "ko": "라디오 배터리"
+      }
     },
-    "class": "sensor",
-    "capabilities": [
-        "alarm_smoke",
-        "alarm_battery.radio",
-        "alarm_battery.sensor",
-        "alarm_room_state",
-        "test_smoke"
-    ],
-    "capabilitiesOptions": {
-        "alarm_battery.radio": {
-            "title": {
-                "en": "Radio Battery",
-                "nl": "Radiobatterij"
-            }
-        },
-        "alarm_battery.sensor": {
-            "title": {
-                "en": "Sensor Battery",
-                "nl": "Sensorbatterij"
-            }
-        }
-    },
-    "energy": {
-        "batteries": [
-            "AA",
-            "AA"
-        ]
-    },
-    "$extends": [
-        "cloudDriver"
+    "alarm_battery.sensor": {
+      "title": {
+        "en": "Sensor Battery",
+        "nl": "Sensorbatterij",
+        "da": "Sensor Batteri",
+        "de": "Sensor Batterie",
+        "es": "Batería de sensor",
+        "fr": "Batterie capteur",
+        "it": "Batteria del sensore",
+        "no": "Sensor Batteri",
+        "sv": "Sensorbatteri",
+        "pl": "Bateria Czujnika",
+        "ru": "Батарея Датчика",
+        "ko": "센서 배터리"
+      }
+    }
+  },
+  "energy": {
+    "batteries": [
+      "AA",
+      "AA"
     ]
+  },
+  "$extends": [
+    "cloudDriver"
+  ]
 }

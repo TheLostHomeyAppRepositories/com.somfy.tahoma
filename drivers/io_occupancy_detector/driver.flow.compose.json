@@ -3,14 +3,36 @@
     {
       "id": "motion_has_changed",
       "title": {
-        "en": "The state of the motion detector has changed"
+        "en": "The state of the motion detector has changed",
+        "nl": "De status van de bewegingsdetector is veranderd",
+        "da": "Tilstanden af bevægelsesdetektoren har ændret sig",
+        "de": "Der Status des Bewegungsmelders hat sich geändert",
+        "es": "El estado del detector de movimiento ha cambiado",
+        "fr": "L'état du détecteur de mouvement a changé",
+        "it": "Lo stato del rilevatore di movimento è cambiato",
+        "no": "Tilstanden til bevegelsesdetektoren har endret seg",
+        "sv": "Rörelsedetektorns tillstånd har ändrats",
+        "pl": "Stan czujnika ruchu uległ zmianie",
+        "ru": "Состояние датчика движения изменилось",
+        "ko": "동작 감지기의 상태가 변경되었습니다"
       },
       "tokens": [
         {
           "name": "isMotion",
           "type": "boolean",
           "title": {
-            "en": "is motion?"
+            "en": "is motion?",
+            "nl": "is er beweging?",
+            "da": "er der bevægelse?",
+            "de": "ist Bewegung?",
+            "es": "¿hay movimiento?",
+            "fr": "y a-t-il un mouvement ?",
+            "it": "c'è movimento?",
+            "no": "er det bevegelse?",
+            "sv": "är det rörelse?",
+            "pl": "czy jest ruch?",
+            "ru": "есть движение?",
+            "ko": "동작이 있나요?"
           },
           "example": "motion"
         }

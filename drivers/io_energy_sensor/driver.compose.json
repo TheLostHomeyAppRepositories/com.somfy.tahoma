@@ -1,6 +1,17 @@
 {
   "name": {
-    "en": "Energy Meter"
+    "en": "Energy Meter",
+    "nl": "Energie Meter",
+    "da": "Energimåler",
+    "de": "Energiezähler",
+    "es": "Medidor de Energía",
+    "fr": "Compteur d'énergie",
+    "it": "Contatore di Energia",
+    "no": "Energimåler",
+    "sv": "Energimätare",
+    "pl": "Miernik Energii",
+    "ru": "Энергометры",
+    "ko": "에너지 미터"
   },
   "class": "sensor",
   "capabilities": [
@@ -9,5 +20,7 @@
   "energy": {
     "cumulative": true
   },
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

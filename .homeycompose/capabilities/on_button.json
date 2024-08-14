@@ -6,6 +6,15 @@
   "title": {
     "en": "On",
     "nl": "Aan",
-    "de": "Auf"
+    "de": "Auf",
+    "da": "Til",
+    "es": "Encendido",
+    "fr": "Allumé",
+    "it": "Acceso",
+    "no": "På",
+    "sv": "På",
+    "pl": "Włączony",
+    "ru": "Вкл",
+    "ko": "켜짐"
   }
 }

@@ -3,14 +3,36 @@
     {
       "id": "pedestrian_changed",
       "title": {
-        "en": "The pedestrian state changed"
+        "en": "The pedestrian state changed",
+        "nl": "De voetgangersstatus is gewijzigd",
+        "da": "Fodgængerens tilstand ændret sig",
+        "de": "Der Fußgängerstatus hat sich geändert",
+        "es": "El estado del peatón cambió",
+        "fr": "L'état du piéton a changé",
+        "it": "Lo stato del pedone è cambiato",
+        "no": "Fotgjengertilstanden har endret seg",
+        "sv": "Gångtrafikantens tillstånd har ändrats",
+        "pl": "Stan pieszego się zmienił",
+        "ru": "Состояние пешехода изменилось",
+        "ko": "보행자 상태가 변경되었습니다"
       },
       "tokens": [
         {
           "name": "pedestrian",
           "type": "boolean",
           "title": {
-            "en": "At Pedestrian Position"
+            "en": "At Pedestrian Position",
+            "nl": "Op Voetgangerspositie",
+            "da": "Ved fodgængerposition",
+            "de": "An der Fußgängerposition",
+            "es": "En Posición Peatonal",
+            "fr": "À la position piéton",
+            "it": "Alla posizione pedonale",
+            "no": "Ved fotgjengerposisjon",
+            "sv": "Vid gångtrafikantens position",
+            "pl": "Na pozycji pieszego",
+            "ru": "На позиции пешехода",
+            "ko": "보행자 위치에서"
           }
         }
       ],

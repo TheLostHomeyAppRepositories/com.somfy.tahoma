@@ -2,7 +2,17 @@
   "type": "number",
   "title": {
     "en": "Error Code State",
-    "nl": "Foutcodestatus"
+    "nl": "Foutcodestatus",
+    "da": "Fejlkodestatus",
+    "de": "Fehlercode-Zustand",
+    "es": "Estado del Código de Error",
+    "fr": "État du Code d'Erreur",
+    "it": "Stato del Codice di Errore",
+    "no": "Feilkodestatus",
+    "sv": "Felkodstatus",
+    "pl": "Stan kodu błędu",
+    "ru": "Состояние кода ошибки",
+    "ko": "오류 코드 상태"
   },
   "getable": true,
   "setable": false,

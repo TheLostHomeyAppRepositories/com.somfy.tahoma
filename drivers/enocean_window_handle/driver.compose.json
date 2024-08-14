@@ -1,11 +1,23 @@
 {
   "name": {
     "en": "Window Handle (SecuSignal)",
-    "nl": "Raamkruk (SecuSignal)"
+    "nl": "Raamkruk (SecuSignal)",
+    "da": "Vindueshåndtag (SecuSignal)",
+    "de": "Fenstergriff (SecuSignal)",
+    "es": "Manilla de Ventana (SecuSignal)",
+    "fr": "Poignée de Fenêtre (SecuSignal)",
+    "it": "Maniglia della Finestra (SecuSignal)",
+    "no": "Vindushåndtak (SecuSignal)",
+    "sv": "Fönsterhandtag (SecuSignal)",
+    "pl": "Klamka Okienna (SecuSignal)",
+    "ru": "Ручка для окна (SecuSignal)",
+    "ko": "창 핸들 (SecuSignal)"
   },
   "class": "sensor",
   "capabilities": [
     "alarm_contact"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

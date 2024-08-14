@@ -1,25 +1,69 @@
 {
   "type": "enum",
   "title": {
-    "en": "Native Function Level"
+    "en": "Native Function Level",
+    "nl": "Niveau van de Native Functie",
+    "da": "Indbygget Funktionsniveau",
+    "de": "Natives Funktionsniveau",
+    "es": "Nivel de Función Nativa",
+    "fr": "Niveau de Fonction Native",
+    "it": "Livello di Funzione Nativa",
+    "no": "Innebygd Funksjonsnivå",
+    "sv": "Inbyggd Funktionsnivå",
+    "pl": "Poziom Funkcji Rodzimej",
+    "ru": "Уровень Родной Функции",
+    "ko": "베이스 기능 레벨"
   },
   "values": [
     {
       "id": "base",
       "title": {
-        "en": "Base"
+        "en": "Base",
+        "nl": "Basis",
+        "da": "Grundlæggende",
+        "de": "Basis",
+        "es": "Básico",
+        "fr": "Base",
+        "it": "Base",
+        "no": "Grunnleggende",
+        "sv": "Bas",
+        "pl": "Podstawowy",
+        "ru": "Базовый",
+        "ko": "기본"
       }
     },
     {
       "id": "medium",
       "title": {
-        "en": "Medium"
+        "en": "Medium",
+        "nl": "Middelmatig",
+        "da": "Mellem",
+        "de": "Mittel",
+        "es": "Medio",
+        "fr": "Intermédiaire",
+        "it": "Medio",
+        "no": "Middels",
+        "sv": "Medium",
+        "pl": "Średni",
+        "ru": "Средний",
+        "ko": "중간"
       }
     },
     {
       "id": "top",
       "title": {
-        "en": "Top"
+        "en": "Top",
+        "nl": "Top",
+        "da": "Top",
+        "de": "Top",
+        "es": "Superior",
+        "fr": "Haut",
+        "it": "Alto",
+        "no": "Topp",
+        "sv": "Topp",
+        "pl": "Najwyższy",
+        "ru": "Высший",
+        "ko": "최고"
       }
     }
   ],

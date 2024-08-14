@@ -2,7 +2,17 @@
   "type": "number",
   "title": {
     "en": "Power State",
-    "nl": "Vermogensstatus"
+    "nl": "Vermogensstatus",
+    "da": "Strømstatus",
+    "de": "Leistungszustand",
+    "es": "Estado de Potencia",
+    "fr": "État de Puissance",
+    "it": "Stato di Potenza",
+    "no": "Strømtilstand",
+    "sv": "Effektläge",
+    "pl": "Stan Zasilania",
+    "ru": "Состояние питания",
+    "ko": "전원 상태"
   },
   "getable": true,
   "setable": false,
