@@ -790,5 +790,8 @@
 	},
 	"4.0.86": {
 		"en": "Added 'io:WindowOpenerUnoIOComponent' to 'Velux Window (IO)'"
-	}	
+	},
+	"4.0.87": {
+		"en": "Added 'Silent Mode' to Velux roller shutter(io) if the state is available."
+	}
 }

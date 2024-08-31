@@ -821,6 +821,13 @@ class myApp extends Homey.App
 				}
 				return args.device.triggerCapabilityListener('windowcoverings_tilt_up');
 			});
+
+		this.homey.flow.getActionCard('set_quite_mode')
+			.registerRunListener(async (args, state) =>
+			{
+				this.log('set_quite_mode');
+				return args.device.triggerCapabilityListener('quite_mode', args.quite_mode === 'on');
+			});
 }
 
 	hashCode(s)

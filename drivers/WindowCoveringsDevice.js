@@ -510,6 +510,8 @@ class WindowCoveringsDevice extends Device
 	{
 		try
 		{
+			let foundActiveOptionstate = false;
+
 			let states = await super.getStates();
 			if (states)
 			{
@@ -650,6 +652,19 @@ class WindowCoveringsDevice extends Device
 						}
 					}
 				}
+
+				const silentState = states.find((state) => (state && (state.name === 'core:ActivatedOptionsState')));
+				if (silentState)
+				{
+					this.homey.app.logStates(`${this.getName()}: core:ActivatedOptionsState = ${silentState.value}`);
+					if (!this.hasCapability('quiet_mode'))
+					{
+						await this.addCapability('quiet_mode');
+					}
+					this.setCapabilityValue('quiet_mode', silentState.value.includes('silence')).catch(this.error);
+					foundActiveOptionstate = true;
+				}
+
 				states = null;
 			}
 			else if (this.openClosedStateName === '')
@@ -664,6 +679,11 @@ class WindowCoveringsDevice extends Device
 				this.log(this.getName(), ' No device status');
 
 				this.setCapabilityValue('windowcoverings_state', null).catch(this.error);
+			}
+
+			if (!foundActiveOptionstate && this.hasCapability('quiet_mode'))
+			{
+				this.removeCapability('quiet_mode').catch(this.error);
 			}
 		}
 		catch (error)
@@ -856,6 +876,23 @@ class WindowCoveringsDevice extends Device
 											fromCloudSync: true,
 										}).catch(this.error);
 									}
+								}
+							}
+							else if (deviceState.name === 'core:ActivatedOptionsState')
+							{
+								// Check for more message that are the same
+								if (!this.checkForDuplicatesEvents(events, i, x + 1, myURL, 'core:ActivatedOptionsState'))
+								{
+									const silentStateValue = deviceState.value;
+									this.homey.app.logStates(`${this.getName()}: core:ActivatedOptionsState = ${silentStateValue}`);
+									if (!this.hasCapability('quiet_mode'))
+									{
+										await this.addCapability('quiet_mode');
+									}
+									this.triggerCapabilityListener('quiet_mode', silentStateValue.includes('silence'),
+									{
+										fromCloudSync: true,
+									}).catch(this.error);
 								}
 							}
 						}

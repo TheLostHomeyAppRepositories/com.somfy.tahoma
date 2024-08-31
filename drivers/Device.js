@@ -690,14 +690,21 @@ class Device extends Homey.Device
 					if (simData)
 					{
 						const deviceOid = this.getData().id;
-						for (let i = 0; i < simData.length; i++)
+						for (let i = 0; i < simData.devices.cloud.length; i++)
 						{
-							if (simData[i].oid === deviceOid)
+							if (simData.devices.cloud[i].oid === deviceOid)
 							{
-								return simData[i].states;
+								return simData.devices.cloud[i].states;
 							}
 						}
-						return null;
+						for (let i = 0; i < simData.devices.local.length; i++)
+							{
+								if (simData.devices.local[i].oid === deviceOid)
+								{
+									return simData.devices.local[i].states;
+								}
+							}
+							return null;
 					}
 				}
 			}
