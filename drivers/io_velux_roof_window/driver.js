@@ -13,7 +13,7 @@ class RoofWindowDriver extends ioWindowCoveringsDriver
 
 	async onInit()
 	{
-		this.deviceType = ['io:WindowOpenerVeluxIOComponent', 'ogp:Window'];
+		this.deviceType = ['io:WindowOpenerVeluxIOComponent', 'ogp:Window', 'io:WindowOpenerUnoIOComponent'];
 
 		await super.onInit();
 	}

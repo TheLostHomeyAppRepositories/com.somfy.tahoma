@@ -13,7 +13,7 @@
   "description": {
     "en": "The heart of your Smart Home"
   },
-  "version": "4.0.85",
+  "version": "4.0.86",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Adrian Rockall",
@@ -9720,7 +9720,7 @@
         "small": "/drivers/io_velux_roof_window/assets/images/small.png"
       },
       "name": {
-        "en": "Velux roof window (io)",
+        "en": "Velux window (io)",
         "nl": "Velux dakraam (io)"
       },
       "class": "windowcoverings",

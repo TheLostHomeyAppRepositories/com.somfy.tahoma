@@ -787,6 +787,8 @@
 	},
 	"4.0.85": {
 		"en": "Added 'rts:GarageDoorWithVentilationPositionRTSComponent' to 'Gate / Garage Door Opener (RTS)"
-	}
-	
+	},
+	"4.0.86": {
+		"en": "Added 'io:WindowOpenerUnoIOComponent' to 'Velux Window (IO)'"
+	}	
 }
