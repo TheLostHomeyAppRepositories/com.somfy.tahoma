@@ -13,6 +13,8 @@ class WindowCoveringsDevice extends Device
 
 	async onInit()
 	{
+		this.requiresQuietMode = false;
+
 		if (this.hasCapability('lock_state'))
 		{
 			this.driver.lock_state_changedTrigger = this.homey.flow.getDeviceTriggerCard('lock_state_changed');
@@ -681,7 +683,7 @@ class WindowCoveringsDevice extends Device
 				this.setCapabilityValue('windowcoverings_state', null).catch(this.error);
 			}
 
-			if (!foundActiveOptionstate && this.hasCapability('quiet_mode'))
+			if (!this.requiresQuietMode && !foundActiveOptionstate && this.hasCapability('quiet_mode'))
 			{
 				this.removeCapability('quiet_mode').catch(this.error);
 			}

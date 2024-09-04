@@ -793,5 +793,8 @@
 	},
 	"4.0.87": {
 		"en": "Added 'Silent Mode' to Velux roller shutter(io) if the state is available."
+	},
+	"4.0.88": {
+		"en": "Fix missing quiet_mode capability for Roller shutter with quiet mode (io)."
 	}
 }
