@@ -796,5 +796,8 @@
 	},
 	"4.0.88": {
 		"en": "Fix missing quiet_mode capability for Roller shutter with quiet mode (io)."
+	},
+	"4.0.89": {
+		"en": "Added 'io:SomfyRainIOSystemSensor' to 'Ondeis Rain Sensor (io)'"
 	}
 }
