@@ -1,0 +1,38 @@
+{
+	"type": "boolean",
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"title": {
+		"en": "Rain Alarm",
+		"fr": "Alarme de pluie",
+		"de": "Regenalarm",
+		"nl": "Regenalarm",
+		"es": "Alarma de lluvia",
+		"pt": "Alarme de chuva",
+		"it": "Allarme pioggia",
+		"pl": "Alarm deszczowy"
+	},
+	"icon": "/drivers/io_rain_sensor/assets/icon.svg",
+	"insights": true,
+	"insightsTitleTrue": {
+		"en": "Raining",
+		"fr": "Il pleut",
+		"de": "Regen",
+		"nl": "Regen",
+		"es": "Lluvia",
+		"pt": "Chuva",
+		"it": "Pioggia",
+		"pl": "Deszcz"
+	},
+	"insightsTitleFalse": {
+		"en": "Stopped Raining",
+		"fr": "Arrêt de la pluie",
+		"de": "Regen gestoppt",
+		"nl": "Regen gestopt",
+		"es": "Dejó de llover",
+		"pt": "Chuva parou",
+		"it": "Pioggia cessata",
+		"pl": "Deszcz się zatrzymał"
+	}
+}

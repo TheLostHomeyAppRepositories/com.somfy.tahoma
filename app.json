@@ -8590,6 +8590,116 @@
           }
         }
       ],
+      "icon": "/drivers/io_rain_sensor/assets/icon.svg",
+      "images": {
+        "large": "/drivers/io_rain_sensor/assets/images/large.png",
+        "small": "/drivers/io_rain_sensor/assets/images/small.png"
+      },
+      "name": {
+        "en": "Ondeis Rain Sensor (io)",
+        "fr": "Capteur de pluie Ondeis (io)",
+        "es": "Sensor de lluvia Ondeis (io)",
+        "de": "Ondeis Regensensor (io)",
+        "pt": "Sensor de chuva Ondeis (io)",
+        "it": "Sensore di pioggia Ondeis (io)",
+        "nl": "Ondeis regensensor (io)",
+        "cn": "Ondeis雨传感器（io）",
+        "pl": "Czujnik deszczu Ondeis (io)"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_rain"
+      ],
+      "id": "io_rain_sensor"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
+        {
+          "id": "select_region"
+        },
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "fr": "Adresse e-mail",
+              "de": "E-Mail-Adresse",
+              "nl": "E-mailadres"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "fr": "jean@dupont.com",
+              "de": "max.mustermann@mustermail.de",
+              "nl": "jansen@holland.nl"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "fr": "Mot de passe",
+              "de": "Passwort",
+              "nl": "Wachtwoord"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "fr": "Mot de passe",
+              "de": "Passwort",
+              "nl": "Wachtwoord"
+            }
+          }
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "fr": "Adresse e-mail",
+              "de": "E-Mail-Adresse",
+              "nl": "E-mailadres"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "fr": "jean@dupont.com",
+              "de": "max.mustermann@mustermail.de",
+              "nl": "jansen@holland.nl"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "fr": "Mot de passe",
+              "de": "Passwort",
+              "nl": "Wachtwoord"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "fr": "Mot de passe",
+              "de": "Passwort",
+              "nl": "Wachtwoord"
+            }
+          }
+        }
+      ],
       "icon": "/drivers/io_roller_shutter/assets/icon.svg",
       "images": {
         "large": "/drivers/io_roller_shutter/assets/images/large.png",
@@ -12919,6 +13029,44 @@
           }
         }
       ]
+    },
+    "alarm_rain": {
+      "type": "boolean",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "title": {
+        "en": "Rain Alarm",
+        "fr": "Alarme de pluie",
+        "de": "Regenalarm",
+        "nl": "Regenalarm",
+        "es": "Alarma de lluvia",
+        "pt": "Alarme de chuva",
+        "it": "Allarme pioggia",
+        "pl": "Alarm deszczowy"
+      },
+      "icon": "/drivers/io_rain_sensor/assets/icon.svg",
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Raining",
+        "fr": "Il pleut",
+        "de": "Regen",
+        "nl": "Regen",
+        "es": "Lluvia",
+        "pt": "Chuva",
+        "it": "Pioggia",
+        "pl": "Deszcz"
+      },
+      "insightsTitleFalse": {
+        "en": "Stopped Raining",
+        "fr": "Arrêt de la pluie",
+        "de": "Regen gestoppt",
+        "nl": "Regen gestopt",
+        "es": "Dejó de llover",
+        "pt": "Chuva parou",
+        "it": "Pioggia cessata",
+        "pl": "Deszcz się zatrzymał"
+      }
     },
     "alarm_room_state": {
       "type": "boolean",
