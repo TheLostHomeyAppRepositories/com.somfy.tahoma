@@ -799,5 +799,8 @@
 	},
 	"4.0.89": {
 		"en": "Added 'io:SomfyRainIOSystemSensor' to 'Ondeis Rain Sensor (io)'"
+	},
+	"4.0.90": {
+		"en": "Added Flow triggers for Started amd Stopped raining"
 	}
 }
