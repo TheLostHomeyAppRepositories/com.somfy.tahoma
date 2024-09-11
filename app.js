@@ -1322,7 +1322,7 @@ class myApp extends Homey.App
 			}
 
 			// Set a time limit in case the command complete signal is missed
-			this.boostTimerId = this.homey.setTimeout(() => this.unBoostSync(true), 45000);
+			this.boostTimerId = this.homey.setTimeout(() => this.unBoostSync(true), 60000);
 
 			if (this.infoLogEnabled)
 			{
