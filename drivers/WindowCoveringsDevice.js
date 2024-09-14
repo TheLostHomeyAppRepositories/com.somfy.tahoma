@@ -175,34 +175,32 @@ class WindowCoveringsDevice extends Device
 					this.executionCmd = '';
 					this.executionId = null;
 				}
-				else
+
+				if (this.executionCmd !== null)
 				{
-					if (this.executionCmd !== null)
+					if (this.executionCmd === this.windowcoveringsActions[value])
 					{
-						if (this.executionCmd === this.windowcoveringsActions[value])
-						{
-							// Already executing this command so ignore it
-							this.homey.app.logInformation(`${this.getName()}: onCapabilityWindowcoveringsState`, `command ${this.executionCmd} already executing`);
-							return;
-						}
-
-						if (this.executionId !== null)
-						{
-							await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
-							this.executionCmd = '';
-							this.executionId = null;
-						}
+						// Already executing this command so ignore it
+						this.homey.app.logInformation(`${this.getName()}: onCapabilityWindowcoveringsState`, `command ${this.executionCmd} already executing`);
+						return;
 					}
-					this.executionCmd = this.windowcoveringsActions[value];
 
-					const action = {
-						name: this.executionCmd,
-						parameters: [],
-					};
-
-					const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
-					this.executionId = { id: result.execId, local: result.local };
+					if (this.executionId !== null)
+					{
+						await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
+						this.executionCmd = '';
+						this.executionId = null;
+					}
 				}
+				this.executionCmd = this.windowcoveringsActions[value];
+
+				const action = {
+					name: this.executionCmd,
+					parameters: [],
+				};
+
+				const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+				this.executionId = { id: result.execId, local: result.local };
 
 				this.setWarning(null).catch(this.error);
 			}
@@ -917,6 +915,9 @@ class WindowCoveringsDevice extends Device
 								{
 									this.executionCmd = element.actions[x].command;
 								}
+
+								this.lastCommandFailed = false;
+
 								if (!local && this.boostSync)
 								{
 									if (!await this.homey.app.boostSync())
@@ -951,6 +952,7 @@ class WindowCoveringsDevice extends Device
 							this.driver.triggerDeviceCommandComplete(this, this.executionCmd, (element.newState === 'COMPLETED'));
 							this.executionId = null;
 							this.executionCmd = '';
+							this.lastCommandFailed = (element.newState === 'FAILED');
 						}
 					}
 				}
@@ -963,6 +965,25 @@ class WindowCoveringsDevice extends Device
 				message: error.message,
 				stack: error.stack,
 			});
+		}
+	}
+
+	async waitForActionToFinish(timeout)
+	{
+		let retries = timeout;
+		while ((this.executionId !== null) && (retries-- > 0))
+		{
+			await this.homey.app.asyncDelay(1000);
+		}
+
+		if (this.lastCommandFailed)
+		{
+			throw new Error('Command failed');
+		}
+
+		if (retries <= 0)
+		{
+			throw new Error('Timeout waiting for action to finish');
 		}
 	}
 

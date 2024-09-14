@@ -828,6 +828,13 @@ class myApp extends Homey.App
 				this.log('set_quite_mode');
 				return args.device.triggerCapabilityListener('quite_mode', args.quite_mode === 'on');
 			});
+
+		this.homey.flow.getActionCard('wait_for_action_to_finish')
+			.registerRunListener(async (args, state) =>
+			{
+				this.log('wait_for_action_to_finish');
+				return args.device.waitForActionToFinish(args.timeout);
+			});
 }
 
 	hashCode(s)

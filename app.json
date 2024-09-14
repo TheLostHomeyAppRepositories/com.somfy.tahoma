@@ -13,7 +13,7 @@
   "description": {
     "en": "The heart of your Smart Home"
   },
-  "version": "4.0.90",
+  "version": "4.0.91",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Adrian Rockall",
@@ -2373,6 +2373,64 @@
             ]
           }
         ]
+      },
+      {
+        "advanced": true,
+        "title": {
+          "en": "Wait for actions to finish",
+          "nl": "Wacht tot acties zijn voltooid",
+          "fr": "Attendre que les actions soient terminées",
+          "de": "Warten Sie, bis die Aktionen abgeschlossen sind",
+          "es": "Esperar a que las acciones terminen",
+          "it": "Attendere che le azioni siano completate",
+          "pt": "Aguarde até que as ações terminem",
+          "pl": "Poczekaj, aż akcje zostaną zakończone"
+        },
+        "titleFormatted": {
+          "en": "Wait [[timeout]] seconds for action to finish",
+          "nl": "Wacht [[timeout]] seconden tot actie is voltooid",
+          "fr": "Attendre [[timeout]] secondes que l'action soit terminée",
+          "de": "Warten Sie [[timeout]] Sekunden, bis die Aktion abgeschlossen ist",
+          "es": "Espere [[timeout]] segundos a que la acción termine",
+          "it": "Attendere [[timeout]] secondi che l'azione sia completata",
+          "pt": "Aguarde [[timeout]] segundos para que a ação termine",
+          "pl": "Poczekaj [[timeout]] sekund, aż akcja zostanie zakończona"
+        },
+        "args": [
+          {
+            "name": "timeout",
+            "type": "number",
+            "title": {
+              "en": "Maximum time to wait",
+              "nl": "Maximale wachttijd",
+              "fr": "Temps d'attente maximal",
+              "de": "Maximale Wartezeit",
+              "es": "Tiempo máximo de espera",
+              "it": "Tempo massimo di attesa",
+              "pt": "Tempo máximo de espera",
+              "pl": "Maksymalny czas oczekiwania"
+            },
+            "min": 0,
+            "max": 60,
+            "label": "seconds",
+            "placeholder": {
+              "en": "Timeout",
+              "nl": "Time-out",
+              "fr": "Délai d'attente",
+              "de": "Zeitüberschreitung",
+              "es": "Tiempo de espera",
+              "it": "Tempo scaduto",
+              "pt": "Tempo limite",
+              "pl": "Limit czasu"
+            }
+          },
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=io_exterior_venetian_blind|io_garage_door|io_garage_door_partial|io_horizontal_awning|io_pergola|io_roller_shutter|io_roller_shutter_quiet|io_sliding_gate|io_velux_interior_blind|io_velux_roller_shutter|io_velux_roof_window|io_vertical_exterior_blind|io_vertical_interior_blind|rts_gate_opener|rts_horizontal_awning|rts_interior_blind|rts_interior_curtain|rts_interior_venetian_blind"
+          }
+        ],
+        "id": "wait_for_action_to_finish"
       },
       {
         "title": {

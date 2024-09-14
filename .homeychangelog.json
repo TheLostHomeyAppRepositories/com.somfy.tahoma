@@ -802,5 +802,8 @@
 	},
 	"4.0.90": {
 		"en": "Added Flow triggers for Started amd Stopped raining"
+	},
+	"4.0.91": {
+		"en": "Added a device action card for 'Wait for command to complete' for devices that support it. Send stop command for idle button after cancelling current action."
 	}
 }
