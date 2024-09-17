@@ -13,7 +13,7 @@ class OpenCloseDriver extends Driver
 
 	async onInit()
 	{
-		this.deviceType = ['rts:GarageDoor4TRTSComponent', 'rts:SlidingGateOpener4TRTSComponent', 'io:CyclicGarageOpenerIOComponent', 'io:CyclicSlidingGateOpenerIOComponent'];
+		this.deviceType = ['rts:GarageDoor4TRTSComponent', 'rts:SlidingGateOpener4TRTSComponent', 'io:CyclicGarageOpenerIOComponent', 'io:CyclicSlidingGateOpenerIOComponent', 'rts:GateOpenerRTS4TComponent'];
 	}
 
 }

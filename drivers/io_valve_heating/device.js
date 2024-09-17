@@ -207,7 +207,7 @@ class ValveHeatingDevice extends SensorDevice
 			{
 				try
 				{
-					await this.homey.app.cancelExecution(this.executionCommands[oldIdx].id, this.executionCommands[oldIdx].local);
+					await this.homey.app.cancelExecution(deviceData.label, this.executionCommands[oldIdx].id, this.executionCommands[oldIdx].local);
 				}
 				catch (err)
 				{

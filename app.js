@@ -1838,8 +1838,13 @@ class myApp extends Homey.App
 		return source.toString();
 	}
 
-	async cancelExecution(id, local)
+	async cancelExecution(label, id, local)
 	{
+		if (this.infoLogEnabled)
+		{
+			this.homey.app.logInformation(`${label}: cancelExecution`, ` ${id}`);
+		}
+
 		if (local && this.tahomaLocal && this.tahomaLocal.authenticated)
 		{
 			try
@@ -1881,7 +1886,7 @@ class myApp extends Homey.App
 					const data = await this.tahomaLocal.executeDeviceAction(label, deviceURL, action, action2);
 					if (data.errorCode)
 					{
-						this.homey.app.logInformation(`${this.getName()}: onCapabilityHeatingModeState`, `Failed to send command: ${JSON.stringify(action)}, error = ${data.error} (${data.errorCode})`);
+						this.homey.app.logInformation(`${label}: onCapabilityHeatingModeState`, `Failed to send local command: ${JSON.stringify(action)}, error = ${data.error} (${data.errorCode})`);
 						throw (new Error(data.error));
 					}
 
@@ -1902,7 +1907,7 @@ class myApp extends Homey.App
 				const data = this.tahomaCloud.executeDeviceAction(label, deviceURL, action, action2);
 				if (data.errorCode)
 				{
-					this.homey.app.logInformation(`${this.getName()}: onCapabilityHeatingModeState`, `Failed to send command: ${JSON.stringify(action)}, error = ${data.error} (${data.errorCode})`);
+					this.homey.app.logInformation(`${this.getName()}: onCapabilityHeatingModeState`, `Failed to send cloud command: ${JSON.stringify(action)}, error = ${data.error} (${data.errorCode})`);
 					throw (new Error(data.error));
 				}
 

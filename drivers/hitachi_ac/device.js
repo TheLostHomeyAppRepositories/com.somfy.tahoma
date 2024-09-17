@@ -49,7 +49,7 @@ class HitachiACDevice extends SensorDevice
 			{
 				try
 				{
-					await this.homey.app.cancelExecution(this.executionCommands[oldIdx].id, this.executionCommands[oldIdx].local);
+					await this.homey.app.cancelExecution(deviceData.label, this.executionCommands[oldIdx].id, this.executionCommands[oldIdx].local);
 				}
 				catch (err)
 				{
@@ -100,7 +100,7 @@ class HitachiACDevice extends SensorDevice
 			{
 				try
 				{
-					await this.homey.app.cancelExecution(this.executionCommands[oldIdx].id, this.executionCommands[oldIdx].local);
+					await this.homey.app.cancelExecution(deviceData.label, this.executionCommands[oldIdx].id, this.executionCommands[oldIdx].local);
 				}
 				catch (err)
 				{
@@ -194,13 +194,16 @@ class HitachiACDevice extends SensorDevice
 			fan = 'auto';
 		}
 
+		// Send the command
+		const deviceData = this.getData();
+
 		// Cancel the current command
 		const oldIdx = this.executionCommands.findIndex((element) => element.name === 'globalControl');
 		if (oldIdx >= 0)
 		{
 			try
 			{
-				await this.homey.app.cancelExecution(this.executionCommands[oldIdx].id, this.executionCommands[oldIdx].local);
+				await this.homey.app.cancelExecution(deviceData.label, this.executionCommands[oldIdx].id, this.executionCommands[oldIdx].local);
 			}
 			catch (err)
 			{
@@ -214,8 +217,6 @@ class HitachiACDevice extends SensorDevice
 			this.executionCommands.splice(oldIdx, 1);
 		}
 
-		// Send the command
-		const deviceData = this.getData();
 		const action = {
 			name: 'globalControl',
 			parameters: ['on', temp, fan, heatMode, mode],

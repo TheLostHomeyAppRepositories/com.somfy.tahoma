@@ -171,7 +171,7 @@ class WindowCoveringsDevice extends Device
 
 				if (value === 'idle' && (this.executionId !== null))
 				{
-					await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
+					await this.homey.app.cancelExecution(deviceData.label, this.executionId.id, this.executionId.local);
 					this.executionCmd = '';
 					this.executionId = null;
 				}
@@ -187,7 +187,7 @@ class WindowCoveringsDevice extends Device
 
 					if (this.executionId !== null)
 					{
-						await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
+						await this.homey.app.cancelExecution(deviceData.label, this.executionId.id, this.executionId.local);
 						this.executionCmd = '';
 						this.executionId = null;
 					}
@@ -259,13 +259,13 @@ class WindowCoveringsDevice extends Device
 					if (this.executionCmd === `${this.setPositionActionName}, ${value}`)
 					{
 						// Already executing this command so ignore it
-						this.homey.app.logInformation(`${this.getName()}: onCapabilityWindowcoveringsSet`, `command ${this.executionCmd} already executing`);
+						this.homey.app.logInformation(`${deviceData.label}: onCapabilityWindowcoveringsSet`, `command ${this.executionCmd} already executing`);
 						return;
 					}
 
 					if (this.executionId !== null)
 					{
-						await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
+						await this.homey.app.cancelExecution(deviceData.label, this.executionId.id, this.executionId.local);
 						this.executionCmd = '';
 						this.executionId = null;
 					}
@@ -321,7 +321,7 @@ class WindowCoveringsDevice extends Device
 			{
 				if (this.executionId !== null)
 				{
-					await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
+					await this.homey.app.cancelExecution(deviceData.label, this.executionId.id, this.executionId.local);
 					this.executionCmd = '';
 					this.executionId = null;
 				}
@@ -365,7 +365,7 @@ class WindowCoveringsDevice extends Device
 			{
 				if (this.executionId !== null)
 				{
-					await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
+					await this.homey.app.cancelExecution(deviceData.label, this.executionId.id, this.executionId.local);
 					this.executionCmd = '';
 					this.executionId = null;
 				}
@@ -397,7 +397,7 @@ class WindowCoveringsDevice extends Device
 			{
 				if (this.executionId !== null)
 				{
-					await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
+					await this.homey.app.cancelExecution(deviceData.label, this.executionId.id, this.executionId.local);
 					this.executionCmd = '';
 					this.executionId = null;
 				}
@@ -429,7 +429,7 @@ class WindowCoveringsDevice extends Device
 			{
 				if (this.executionId !== null)
 				{
-					await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
+					await this.homey.app.cancelExecution(deviceData.label, this.executionId.id, this.executionId.local);
 				}
 
 				const action = {
@@ -459,7 +459,7 @@ class WindowCoveringsDevice extends Device
 			{
 				if (this.executionId !== null)
 				{
-					await this.homey.app.cancelExecution(this.executionId.id, this.executionId.local);
+					await this.homey.app.cancelExecution(deviceData.label, this.executionId.id, this.executionId.local);
 				}
 
 				const action = {

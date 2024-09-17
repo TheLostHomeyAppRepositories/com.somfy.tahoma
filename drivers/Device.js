@@ -166,7 +166,7 @@ class Device extends Homey.Device
 				// Found it so cancel the current command first
 				try
 				{
-					await this.homey.app.cancelExecution(this.executionCommands[existingCommandIdx].id, this.executionCommands[existingCommandIdx].local);
+					await this.homey.app.cancelExecution(deviceData.label, this.executionCommands[existingCommandIdx].id, this.executionCommands[existingCommandIdx].local);
 				}
 				catch (err)
 				{
