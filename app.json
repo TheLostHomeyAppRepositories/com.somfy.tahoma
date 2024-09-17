@@ -13,7 +13,7 @@
   "description": {
     "en": "The heart of your Smart Home"
   },
-  "version": "4.0.91",
+  "version": "4.0.92",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Adrian Rockall",
@@ -12352,7 +12352,13 @@
       },
       "name": {
         "en": "Open / Close Remote",
-        "nl": "Afstandsbediening openen / sluiten"
+        "nl": "Afstandsbediening openen / sluiten",
+        "de": "Fernbedienung öffnen / schließen",
+        "fr": "Télécommande ouvrir / fermer",
+        "es": "Mando a distancia abrir / cerrar",
+        "pt": "Controle remoto abrir / fechar",
+        "it": "Telecomando apri / chiudi",
+        "pl": "Pilot otwórz / zamknij"
       },
       "class": "button",
       "capabilities": [
