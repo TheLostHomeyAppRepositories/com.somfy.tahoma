@@ -808,5 +808,8 @@
 	},
 	"4.0.92": {
 		"en": "Added 'rts:GateOpenerRTS4TComponent' to 'Open / Close Remote'"
+	},
+	"4.0.93": {
+		"en": "Fixed USA region issue"
 	}
 }
