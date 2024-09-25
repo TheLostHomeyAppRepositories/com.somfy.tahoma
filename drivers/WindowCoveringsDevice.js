@@ -23,7 +23,7 @@ class WindowCoveringsDevice extends Device
 		const classType = this.getSetting('classType');
 		if (classType === null)
 		{
-			this.setSetting('classType', this.getClass());
+			this.setSettings({ classType: this.getClass() });
 		}
 
 		this.invertPosition = this.getSetting('invertPosition');
