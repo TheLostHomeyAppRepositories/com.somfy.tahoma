@@ -134,7 +134,7 @@ class ValveHeatingDevice extends SensorDevice
                 }
             }
 
-            const applicableEntries = CapabilitiesXRef.filter(entry => entry.somfyNameSet[0] === capabilityXRef.somfyNameSet[0]).sort((a, b) => a.somfyArray - b.somfyArray);
+            const applicableEntries = CapabilitiesXRef.filter((entry) => entry.somfyNameSet[0] === capabilityXRef.somfyNameSet[0]).sort((a, b) => a.somfyArray - b.somfyArray);
 
             const somfyValues = [];
             for (const element of applicableEntries)
@@ -143,7 +143,7 @@ class ValveHeatingDevice extends SensorDevice
             }
 
             const deviceData = this.getData();
-            const idx = this.executionCommands.findIndex(element => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
+            const idx = this.executionCommands.findIndex((element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
             if (idx >= 0)
             {
                 try
@@ -185,7 +185,7 @@ class ValveHeatingDevice extends SensorDevice
                 }
                 else
                 {
-                    const idx = this.executionCommands.findIndex(element => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
+                    const idx = this.executionCommands.findIndex((element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
                     if (idx < 0)
                     {
                         this.executionCommands.push({ id: result.execId, name: action.name });
