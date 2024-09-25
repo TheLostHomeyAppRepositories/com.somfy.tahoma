@@ -1,6 +1,16 @@
 {
   "name": {
-    "en": "Blind or Shutter (RTS)"
+    "en": "Blind or Shutter (RTS)",
+    "da": "Rullegardin eller skodde (RTS)",
+    "de": "Jalousie oder Rollladen (RTS)",
+    "es": "Persiana o contraventana (RTS)",
+    "fr": "Store ou volet (RTS)",
+    "it": "Tenda o tapparella (RTS)",
+    "no": "Rullegardin eller skodde (RTS)",
+    "sv": "Rullgardin eller fönsterlucka (RTS)",
+    "pl": "Żaluzja lub okiennica (RTS)",
+    "ru": "Жалюзи или ставня (RTS)",
+    "ko": "블라인드 또는 셔터 (RTS)"
   },
   "class": "blinds",
   "capabilities": [
@@ -13,14 +23,36 @@
       "type": "checkbox",
       "label": {
         "en": "Invert Up / Down",
-        "nl": "Omkeren omhoog / omlaag"
+        "nl": "Omkeren omhoog / omlaag",
+        "da": "Omvend op / ned",
+        "de": "Oben/Unten umkehren",
+        "es": "Invertir arriba / abajo",
+        "fr": "Inverser haut / bas",
+        "it": "Inverti su / giù",
+        "no": "Inverter opp / ned",
+        "sv": "Invertera upp / ned",
+        "pl": "Odwróć góra / dół",
+        "ru": "Перевернуть вверх / вниз",
+        "ko": "위/아래 반전"
       },
       "value": false,
       "hint": {
         "en": "Reverse the Up / Down direction controls",
-        "nl": "Draai de bedieningselementen omhoog/omlaag om"
+        "nl": "Draai de bedieningselementen omhoog/omlaag om",
+        "da": "Omvend retning for op / ned",
+        "de": "Richtung der Auf-/Ab-Steuerung umkehren",
+        "es": "Invertir los controles de dirección arriba/abajo",
+        "fr": "Inverser les commandes de direction haut/bas",
+        "it": "Inverte i controlli di direzione su / giù",
+        "no": "Reverser retningen opp / ned",
+        "sv": "Invertera styrning av upp / ned-riktning",
+        "pl": "Odwróć sterowanie kierunkiem góra / dół",
+        "ru": "Перевернуть управление направлением вверх / вниз",
+        "ko": "위/아래 방향 제어 반전"
       }
     }
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

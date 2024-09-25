@@ -1,25 +1,45 @@
 {
-    "id": "contact_has_changed",
-    "title": {
-        "en": "The state of the opening detector has changed",
-        "nl": "De staat van de openingsmelder is veranderd"
-    },
-    "tokens": [
-        {
-            "name": "isOpen",
-            "type": "boolean",
-            "title": {
-                "en": "is open?",
-                "nl": "is geopend?"
-            },
-            "example": "open"
-        }
-    ],
-    "args": [
-        {
-          "name": "device",
-          "type": "device",
-          "filter": "driver_id=enocean_window_handle|io_opening_detector|one_alarm"
-        }
-      ]
+  "id": "contact_has_changed",
+  "title": {
+    "en": "The state of the opening detector has changed",
+    "nl": "De staat van de openingsmelder is veranderd",
+    "da": "Åbningsdetektorens tilstand er ændret",
+    "de": "Der Zustand des Öffnungsmelders hat sich geändert",
+    "es": "El estado del detector de apertura ha cambiado",
+    "fr": "L'état du détecteur d'ouverture a changé",
+    "it": "Lo stato del rilevatore di apertura è cambiato",
+    "no": "Tilstanden til åpningsdetektoren har endret seg",
+    "sv": "Öppningsdetektorns status har ändrats",
+    "pl": "Stan czujnika otwarcia uległ zmianie",
+    "ru": "Состояние датчика открытия изменилось",
+    "ko": "개폐 감지기의 상태가 변경되었습니다"
+  },
+  "tokens": [
+    {
+      "name": "isOpen",
+      "type": "boolean",
+      "title": {
+        "en": "is open?",
+        "nl": "is geopend?",
+        "da": "er åben?",
+        "de": "ist offen?",
+        "es": "está abierto?",
+        "fr": "est-il ouvert?",
+        "it": "è aperto?",
+        "no": "er åpen?",
+        "sv": "är öppen?",
+        "pl": "jest otwarty?",
+        "ru": "открыто?",
+        "ko": "열려 있습니까?"
+      },
+      "example": "open"
     }
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=enocean_window_handle|io_opening_detector|one_alarm"
+    }
+  ]
+}

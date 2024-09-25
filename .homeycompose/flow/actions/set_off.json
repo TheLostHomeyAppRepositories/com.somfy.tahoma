@@ -2,7 +2,17 @@
   "id": "set_off",
   "title": {
     "en": "Turn off the device",
-    "nl": "Zet het apparaat uit"
+    "nl": "Zet het apparaat uit",
+    "da": "Sluk enheden",
+    "de": "Das Gerät ausschalten",
+    "es": "Apague el dispositivo",
+    "fr": "Éteignez l'appareil",
+    "it": "Spegni il dispositivo",
+    "no": "Slå av enheten",
+    "sv": "Stäng av enheten",
+    "pl": "Wyłącz urządzenie",
+    "ru": "Выключите устройство",
+    "ko": "장치를 끄십시오"
   },
   "args": [
     {

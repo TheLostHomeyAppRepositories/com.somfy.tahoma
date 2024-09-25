@@ -1,6 +1,17 @@
 {
   "name": {
-    "en": "Atlantic Main Zone Controller"
+    "en": "Atlantic Main Zone Controller",
+    "nl": "Atlantic Hoofdzone Controller",
+    "da": "Atlantic Hovedzone Controller",
+    "de": "Atlantic Hauptzonenregler",
+    "es": "Controlador de Zona Principal Atlantic",
+    "fr": "Contrôleur de Zone Principale Atlantic",
+    "it": "Controller Zona Principale Atlantic",
+    "no": "Atlantic Hovedsonekontroller",
+    "sv": "Atlantic Huvudzonkontroll",
+    "pl": "Kontroler Strefy Głównej Atlantic",
+    "ru": "Контроллер Главной Зоны Atlantic",
+    "ko": "Atlantic 메인 존 컨트롤러"
   },
   "class": "heater",
   "capabilities": [
@@ -18,18 +29,40 @@
   "capabilitiesOptions": {
     "target_temperature.absence_cooling": {
       "title": {
-          "en": "Absence Cooling Temperature",
-          "nl": "Afwezigheid Koeltemperatuur"
+        "en": "Absence Cooling Temperature",
+        "nl": "Afwezigheid Koeltemperatuur",
+        "da": "Fravær Køling Temperatur",
+        "de": "Abwesenheit Kühltemperatur",
+        "es": "Temperatura de Enfriamiento por Ausencia",
+        "fr": "Température de Refroidissement d'Absence",
+        "it": "Temperatura di Raffreddamento in Assenza",
+        "no": "Fravær Kjøling Temperatur",
+        "sv": "Frånvaro Kylning Temperatur",
+        "pl": "Temperatura Chłodzenia podczas Nieobecności",
+        "ru": "Температура Охлаждения при Отсутствии",
+        "ko": "부재 시 냉방 온도"
       },
       "min": 0
     },
     "target_temperature.absence_heating": {
       "title": {
         "en": "Absence Heating Temperature",
-        "nl": "Afwezigheid Verwarmingstemperatuur"
-    },
+        "nl": "Afwezigheid Verwarmingstemperatuur",
+        "da": "Fravær Opvarmning Temperatur",
+        "de": "Abwesenheit Heiztemperatur",
+        "es": "Temperatura de Calefacción por Ausencia",
+        "fr": "Température de Chauffage d'Absence",
+        "it": "Temperatura di Riscaldamento in Assenza",
+        "no": "Fravær Oppvarming Temperatur",
+        "sv": "Frånvaro Uppvärmning Temperatur",
+        "pl": "Temperatura Ogrzewania podczas Nieobecności",
+        "ru": "Температура Отопления при Отсутствии",
+        "ko": "부재 시 난방 온도"
+      },
       "min": 0
     }
   },
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

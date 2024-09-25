@@ -1,11 +1,23 @@
 {
   "name": {
     "en": "Open / Close Remote",
-    "nl": "Afstandsbediening openen / sluiten"
+    "nl": "Afstandsbediening openen / sluiten",
+    "da": "Åbn / Luk Fjernbetjening",
+    "de": "Fernbedienung Öffnen / Schließen",
+    "es": "Abrir / Cerrar Remoto",
+    "fr": "Ouvrir / Fermer Télécommande",
+    "it": "Apri / Chiudi Telecomando",
+    "no": "Åpne / Lukke Fjernkontroll",
+    "sv": "Öppna / Stänga fjärrkontroll",
+    "pl": "Otwórz / Zamknij Pilot",
+    "ru": "Открыть / Закрыть пульт",
+    "ko": "리모컨 열기 / 닫기"
   },
   "class": "button",
   "capabilities": [
     "button"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

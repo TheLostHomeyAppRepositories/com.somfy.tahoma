@@ -1,6 +1,17 @@
 {
   "name": {
-    "en": "Atlantic Water Tank Heater"
+    "en": "Atlantic Water Tank Heater",
+    "nl": "Atlantische Waterboilerverwarmer",
+    "da": "Atlantisk Vandtankvarmer",
+    "de": "Atlantischer Wassertankheizer",
+    "es": "Calentador de Tanque de Agua Atlántico",
+    "fr": "Chauffe-eau Atlantique",
+    "it": "Riscaldatore per serbatoio d'acqua Atlantico",
+    "no": "Atlantisk Vannbeholdervarmer",
+    "sv": "Atlantisk Vattentankvärmare",
+    "pl": "Atlantycki Podgrzewacz Wody",
+    "ru": "Атлантический нагреватель для водяного бака",
+    "ko": "대서양 물 탱크 히터"
   },
   "class": "heater",
   "capabilities": [
@@ -8,8 +19,21 @@
   ],
   "capabilitiesOptions": {
     "onoff": {
-      "title": "Force Heating"
+      "title": "Force Heating",
+      "nl": "Verwarming Forceren",
+      "da": "Tving Varme",
+      "de": "Heizung Erzwingen",
+      "es": "Forzar Calefacción",
+      "fr": "Forcer le Chauffage",
+      "it": "Forza Riscaldamento",
+      "no": "Tving Varme",
+      "sv": "Tvinga Uppvärmning",
+      "pl": "Wymuś Ogrzewanie",
+      "ru": "Принудительный Нагрев",
+      "ko": "강제 가열"
     }
   },
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

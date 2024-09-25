@@ -1,7 +1,17 @@
 {
   "name": {
     "en": "Exterior blind (io)",
-    "nl": "Verticale buitenzonwering (io)"
+    "nl": "Verticale buitenzonwering (io)",
+    "da": "Udvendig rullegardin (io)",
+    "de": "Außenjalousie (io)",
+    "es": "Persiana exterior (io)",
+    "fr": "Store extérieur (io)",
+    "it": "Tenda esterna (io)",
+    "no": "Utvendig persienne (io)",
+    "sv": "Utvändig persienn (io)",
+    "pl": "Żaluzje zewnętrzne (io)",
+    "ru": "Наружная жалюзи (io)",
+    "ko": "외부 블라인드 (io)"
   },
   "class": "sunshade",
   "capabilities": [
@@ -15,12 +25,32 @@
       "type": "checkbox",
       "label": {
         "en": "Invert Up / Down",
-        "nl": "Omkeren omhoog / omlaag"
+        "nl": "Omkeren omhoog / omlaag",
+        "da": "Vend op / ned",
+        "de": "Hoch / Runter umkehren",
+        "es": "Invertir arriba / abajo",
+        "fr": "Inverser haut / bas",
+        "it": "Inverti su / giù",
+        "no": "Vend opp / ned",
+        "sv": "Vänd upp / ner",
+        "pl": "Odwróć góra / dół",
+        "ru": "Инвертировать вверх / вниз",
+        "ko": "위아래 반전"
       },
       "value": false,
       "hint": {
         "en": "Reverse the Up / Down direction controls",
-        "nl": "Draai de bedieningselementen omhoog/omlaag om"
+        "nl": "Draai de bedieningselementen omhoog/omlaag om",
+        "da": "Vend op / ned retningskontrol",
+        "de": "Umkehrung der Auf / Ab-Richtungskontrollen",
+        "es": "Invertir los controles de dirección arriba / abajo",
+        "fr": "Inverser les commandes de direction haut / bas",
+        "it": "Inverti i controlli di direzione su / giù",
+        "no": "Vend kontrollene opp / ned",
+        "sv": "Vänd upp / ner-styrningen",
+        "pl": "Odwróć kontrolę kierunków (góra / dół)",
+        "ru": "Инвертировать элементы управления вверх / вниз",
+        "ko": "위아래 방향 제어 반전"
       }
     },
     {
@@ -28,12 +58,32 @@
       "type": "checkbox",
       "label": {
         "en": "Invert Tile Action",
-        "nl": "Tegelactie omkeren"
+        "nl": "Tegelactie omkeren",
+        "da": "Vend Flisehandling",
+        "de": "Kachelaktion umkehren",
+        "es": "Invertir acción del azulejo",
+        "fr": "Inverser l'action de la tuile",
+        "it": "Inverti azione tessera",
+        "no": "Vend flisehandling",
+        "sv": "Vänd kakelåtgärd",
+        "pl": "Odwróć działanie kafelka",
+        "ru": "Инвертировать действие плитки",
+        "ko": "타일 동작 반전"
       },
       "value": false,
       "hint": {
         "en": "Reverse the Open / Close state of the Tile",
-        "nl": "Keer de Open / Sluit-status van de tegel om"
+        "nl": "Keer de Open / Sluit-status van de tegel om",
+        "da": "Vend åbne / lukke tilstanden for flisen",
+        "de": "Den Offen- / Geschlossen-Zustand der Kachel umkehren",
+        "es": "Invertir el estado abrir / cerrar del azulejo",
+        "fr": "Inverser l'état d'ouverture / fermeture de la tuile",
+        "it": "Inverti lo stato di apertura / chiusura della tessera",
+        "no": "Vend åpen / lukket tilstanden til flisen",
+        "sv": "Vänd öppet / stängt tillstånd för kakel",
+        "pl": "Odwróć stan otwarcia / zamknięcia kafelka",
+        "ru": "Изменить состояние плитки открыто / закрыто",
+        "ko": "타일의 열림 / 닫힘 상태 반전"
       }
     },
     {
@@ -41,14 +91,36 @@
       "type": "checkbox",
       "label": {
         "en": "Invert Position",
-        "nl": "Positie omkeren"
+        "nl": "Positie omkeren",
+        "da": "Invertér position",
+        "de": "Position umkehren",
+        "es": "Invertir posición",
+        "fr": "Inverser la position",
+        "it": "Inverti posizione",
+        "no": "Vend posisjon",
+        "sv": "Vänd position",
+        "pl": "Odwróć pozycję",
+        "ru": "Инвертировать позицию",
+        "ko": "위치 반전"
       },
       "value": false,
       "hint": {
         "en": "Reverse the position control.",
-        "nl": "Draai de positieregeling om."
+        "nl": "Draai de positieregeling om.",
+        "da": "Vend positionskontrollen.",
+        "de": "Position umkehren.",
+        "es": "Invertir el control de posición.",
+        "fr": "Inverser le contrôle de position.",
+        "it": "Inverti il controllo della posizione.",
+        "no": "Vend posisjonskontrollen.",
+        "sv": "Vänd positionskontrollen.",
+        "pl": "Odwróć kontrolę pozycji.",
+        "ru": "Инвертировать управление положением.",
+        "ko": "위치 제어 반전."
       }
     }
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

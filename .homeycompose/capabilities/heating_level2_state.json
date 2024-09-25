@@ -2,33 +2,83 @@
   "type": "enum",
   "title": {
     "en": "Heating Level",
-    "nl": "Verwarmingsniveau"
+    "nl": "Verwarmingsniveau",
+    "da": "Varmegeniveau",
+    "de": "Heizstufe",
+    "es": "Nivel de Calefacción",
+    "fr": "Niveau de Chauffage",
+    "it": "Livello di Riscaldamento",
+    "no": "Oppvarmingsnivå",
+    "sv": "Värmnivå",
+    "pl": "Poziom Ogrzewania",
+    "ru": "Уровень отопления",
+    "ko": "난방 수준"
   },
   "values": [
     {
       "id": "comfort",
       "title": {
-        "en": "Comfort"
+        "en": "Comfort",
+        "da": "Komfort",
+        "de": "Komfort",
+        "es": "Confort",
+        "fr": "Confort",
+        "it": "Comfort",
+        "no": "Komfort",
+        "sv": "Komfort",
+        "pl": "Komfort",
+        "ru": "Комфорт",
+        "ko": "편안함"
       }
     },
     {
       "id": "eco",
       "title": {
-        "en": "Eco"
+        "en": "Eco",
+        "da": "Øko",
+        "de": "Öko",
+        "es": "Ecológico",
+        "fr": "Éco",
+        "it": "Eco",
+        "no": "Øko",
+        "sv": "Ekonomi",
+        "pl": "Eko",
+        "ru": "Эко",
+        "ko": "에코"
       }
     },
     {
       "id": "frostprotection",
       "title": {
         "en": "Frost Protection",
-        "nl": "Vorstbescherming"
+        "nl": "Vorstbescherming",
+        "da": "Frostbeskyttelse",
+        "de": "Frostschutz",
+        "es": "Protección contra Heladas",
+        "fr": "Protection contre le Gel",
+        "it": "Protezione Antigelo",
+        "no": "Frostbeskyttelse",
+        "sv": "Frostskydd",
+        "pl": "Ochrona przed Mrozem",
+        "ru": "Защита от замерзания",
+        "ko": "동결 방지"
       }
     },
     {
       "id": "off",
       "title": {
         "en": "Off",
-        "nl": "Uit"
+        "nl": "Uit",
+        "da": "Slukket",
+        "de": "Aus",
+        "es": "Apagado",
+        "fr": "Éteint",
+        "it": "Spento",
+        "no": "Av",
+        "sv": "Av",
+        "pl": "Wyłączony",
+        "ru": "Выкл.",
+        "ko": "꺼짐"
       }
     }
   ],

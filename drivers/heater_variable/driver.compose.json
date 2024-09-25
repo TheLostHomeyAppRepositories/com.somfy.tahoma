@@ -1,7 +1,17 @@
 {
   "name": {
     "en": "Heater - Variable Power",
-    "nl": "Verwarming - variabel vermogen"
+    "nl": "Verwarming - variabel vermogen",
+    "da": "Varmeapparat - Variabel Effekt",
+    "de": "Heizung - Variable Leistung",
+    "es": "Calentador - Potencia Variable",
+    "fr": "Radiateur - Puissance Variable",
+    "it": "Riscaldatore - Potenza Variabile",
+    "no": "Varmeapparat - Variabel Effekt",
+    "sv": "Värmare - Variabel Effekt",
+    "pl": "Grzejnik - Zmienna Moc",
+    "ru": "Обогреватель - Переменная Мощность",
+    "ko": "히터 - 가변 전력"
   },
   "class": "heater",
   "capabilities": [
@@ -10,5 +20,7 @@
     "my_heat_level",
     "heat_level"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

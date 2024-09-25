@@ -2,58 +2,148 @@
   "type": "enum",
   "title": {
     "en": "Maximum Heating Level",
-    "nl": "Maximaal verwarmingsniveau"
+    "nl": "Maximaal verwarmingsniveau",
+    "da": "Maksimal Opvarmningsniveau",
+    "de": "Maximale Heizstufe",
+    "es": "Nivel Máximo de Calefacción",
+    "fr": "Niveau de Chauffage Maximum",
+    "it": "Livello di Riscaldamento Massimo",
+    "no": "Maksimal Oppvarmingsnivå",
+    "sv": "Maximal Uppvärmningsnivå",
+    "pl": "Maksymalny Poziom Ogrzewania",
+    "ru": "Максимальный Уровень Отопления",
+    "ko": "최대 난방 수준"
   },
   "values": [
     {
       "id": "boost",
       "title": {
-        "en": "Boost"
+        "en": "Boost",
+        "da": "Forstærk",
+        "de": "Boost",
+        "es": "Impulso",
+        "fr": "Boost",
+        "it": "Boost",
+        "no": "Boost",
+        "sv": "Boost",
+        "pl": "Wzmocnienie",
+        "ru": "Ускорение",
+        "ko": "부스트"
       }
     },
     {
       "id": "comfort",
       "title": {
-        "en": "Comfort"
+        "en": "Comfort",
+        "da": "Komfort",
+        "de": "Komfort",
+        "es": "Confort",
+        "fr": "Confort",
+        "it": "Comfort",
+        "no": "Komfort",
+        "sv": "Komfort",
+        "pl": "Komfort",
+        "ru": "Комфорт",
+        "ko": "쾌적함"
       }
     },
     {
       "id": "comfort_1",
       "title": {
-        "en": "Comfort 1"
+        "en": "Comfort 1",
+        "da": "Komfort 1",
+        "de": "Komfort 1",
+        "es": "Confort 1",
+        "fr": "Confort 1",
+        "it": "Comfort 1",
+        "no": "Komfort 1",
+        "sv": "Komfort 1",
+        "pl": "Komfort 1",
+        "ru": "Комфорт 1",
+        "ko": "쾌적함 1"
       }
     },
     {
       "id": "comfort_2",
       "title": {
-        "en": "Comfort 2"
+        "en": "Comfort 2",
+        "da": "Komfort 2",
+        "de": "Komfort 2",
+        "es": "Confort 2",
+        "fr": "Confort 2",
+        "it": "Comfort 2",
+        "no": "Komfort 2",
+        "sv": "Komfort 2",
+        "pl": "Komfort 2",
+        "ru": "Комфорт 2",
+        "ko": "쾌적함 2"
       }
     },
     {
       "id": "eco",
       "title": {
-        "en": "Eco"
+        "en": "Eco",
+        "da": "Øko",
+        "de": "Öko",
+        "es": "Ecológico",
+        "fr": "Éco",
+        "it": "Eco",
+        "no": "Øko",
+        "sv": "Eco",
+        "pl": "Eko",
+        "ru": "Эко",
+        "ko": "에코"
       }
     },
     {
       "id": "frostprotection",
       "title": {
         "en": "Frost Protection",
-        "nl": "Vorstbescherming"
+        "nl": "Vorstbescherming",
+        "da": "Frostbeskyttelse",
+        "de": "Frostschutz",
+        "es": "Protección contra las heladas",
+        "fr": "Protection contre le gel",
+        "it": "Protezione antigelo",
+        "no": "Frostbeskyttelse",
+        "sv": "Frostskydd",
+        "pl": "Ochrona przed mrozem",
+        "ru": "Защита от замерзания",
+        "ko": "동결 방지"
       }
     },
     {
       "id": "off",
       "title": {
         "en": "Off",
-        "nl": "Uit"
+        "nl": "Uit",
+        "da": "Slukket",
+        "de": "Aus",
+        "es": "Apagado",
+        "fr": "Éteint",
+        "it": "Spento",
+        "no": "Av",
+        "sv": "Av",
+        "pl": "Wył.",
+        "ru": "Выкл.",
+        "ko": "끄기"
       }
     },
     {
       "id": "secured",
       "title": {
         "en": "Secured",
-        "nl": "Beveiligd"
+        "nl": "Beveiligd",
+        "da": "Sikret",
+        "de": "Gesichert",
+        "es": "Asegurado",
+        "fr": "Sécurisé",
+        "it": "Protetto",
+        "no": "Sikret",
+        "sv": "Säkrad",
+        "pl": "Zabezpieczony",
+        "ru": "Защищено",
+        "ko": "보안"
       }
     }
   ],

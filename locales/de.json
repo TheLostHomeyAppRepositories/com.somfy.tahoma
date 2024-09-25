@@ -1,0 +1,70 @@
+{
+  "settings": {
+    "title": "TaHoma / Connexoon Einstellungen",
+    "intro": "Um Homey TaHoma / Connexoon steuern zu lassen, autorisieren Sie bitte Homey, indem Sie die TaHoma / Connexoon Anmeldedaten ausfüllen.",
+    "logintitle": "TaHoma / Connexoon Anmeldedaten",
+    "username": "Benutzername",
+    "password": "Passwort",
+    "save": "Anmeldedaten speichern",
+    "login_success": "Erfolgreich angemeldet.",
+    "login_failure": "Anmeldung fehlgeschlagen.",
+    "logouttitle": "Zugriff für Homey widerrufen",
+    "logout": "Abmelden",
+    "logout_success": "Erfolgreich abgemeldet.",
+    "logout_failure": "Abmeldung fehlgeschlagen.",
+    "preferences": "Einstellungen",
+    "sync_speed": "Aktualisierungsintervall",
+    "sync_tooltip": "(Sekunden)",
+    "save_preferences": "Einstellungen speichern",
+    "linkurl": "Verbindungs-URL (Standard ist normalerweise gut für Tahoma und Connexoon)",
+    "save_verifying": "Anmeldung wird versucht. Bitte warten...",
+    "logout_description": "Dies wird von Tahoma abmelden und Ihre Anmeldedaten aus der App entfernen.",
+    "min_sync_speed": "Das Minimumintervall für die Synchronisierung beträgt 30 Sekunden",
+    "max_sync_speed": "Das Maximalintervall für die Synchronisierung beträgt 90 Sekunden",
+    "pref_saved": "Die Einstellungen wurden gespeichert",
+    "settings": "Einstellungen",
+    "information_log": "Informationsprotokoll",
+    "device_log": "Geräteprotokoll",
+    "state_log": "Statusprotokoll",
+    "oauth_method": "Neue OAuth-Anmeldemethode verwenden",
+    "intro1": "Verwenden Sie dies, wenn Sie ein Gerät haben, das nicht unterstützt wird.",
+    "intro2": "Tippen Sie auf Log abrufen und warten Sie auf die Daten. Senden Sie dann das Log.",
+    "intro3": "Kontaktieren Sie @Adrian_Rockall im Community-Forum, um zu beschreiben, welches Gerät nicht unterstützt wird.",
+    "intro4": "Es werden keine persönlichen Daten erfasst oder gesendet, daher kann ich nicht antworten, wenn Sie mich nicht kontaktieren.",
+    "get": "Log abrufen",
+    "clear": "Log löschen",
+    "send": "Log senden",
+    "log_enabled": "Log aktiviert",
+    "polling_enabled": "Status-Updates abrufen",
+    "show_password": "Passwort anzeigen",
+    "pref_intro1": "Die App kann nach Updates suchen, um Homey mit den Geräten synchronisiert zu halten.",
+    "pref_intro2": "Dies belastet die Somfy-Server, daher möglichst ausgeschaltet lassen.",
+    "pref_intro3": "Wenn Sie Updates für Sensoren benötigen, halten Sie das Intervall so hoch wie möglich.",
+    "event_log": "Ereignisprotokoll"
+  },
+  "errors": {
+    "on_pair_login_failure": "Anmeldung nicht möglich. Bitte gehen Sie zur Einstellungsseite und gewähren Sie Homey Zugriff auf TaHoma."
+  },
+  "valve_heating_mode_state": {
+    "away": "Abwesend",
+    "comfort": "Zuhause",
+    "eco": "Nacht",
+    "frostprotection": "Frostschutz",
+    "geofencingmode": "Geofencing",
+    "manual": "Manuell",
+    "suddendropmode": "Offenes Fenster"
+  },
+  "defect_state": {
+    "dead": "Tot",
+    "lowbattery": "Schwache Batterie",
+    "maintenancerequired": "Wartung erforderlich",
+    "nodefect": "Kein Fehler"
+  },
+  "valve_operating_mode_state": {
+    "auto": "Auto (Zeitplan)",
+    "manual": "Manuell"
+  },
+  "my_position_token": "Meine Position",
+  "command_queued": "Befehl in Warteschlange, auf Aufwachen des Geräts warten",
+  "command_failed": "Befehl fehlgeschlagen"
+}

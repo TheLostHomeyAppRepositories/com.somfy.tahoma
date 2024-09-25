@@ -4,7 +4,18 @@
   "setable": true,
   "uiComponent": "button",
   "title": {
-    "en": "Ring"
+    "en": "Ring",
+    "nl": "Bel",
+    "da": "Ring",
+    "de": "Klingeln",
+    "es": "Llamar",
+    "fr": "Sonner",
+    "it": "Squillo",
+    "no": "Ring",
+    "sv": "Ring",
+    "pl": "Dzwonić",
+    "ru": "Звонить",
+    "ko": "벨소리"
   },
   "icon": "/drivers/siren/assets/icon.svg"
 }

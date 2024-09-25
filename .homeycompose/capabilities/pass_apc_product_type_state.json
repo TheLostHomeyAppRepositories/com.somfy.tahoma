@@ -1,7 +1,18 @@
 {
   "type": "string",
   "title": {
-    "en": "Product Type"
+    "en": "Product Type",
+    "nl": "Producttype",
+    "da": "Produkttype",
+    "de": "Produkttyp",
+    "es": "Tipo de producto",
+    "fr": "Type de produit",
+    "it": "Tipo di prodotto",
+    "no": "Produkttype",
+    "sv": "Produkttyp",
+    "pl": "Typ produktu",
+    "ru": "Тип продукта",
+    "ko": "제품 유형"
   },
   "getable": true,
   "setable": false

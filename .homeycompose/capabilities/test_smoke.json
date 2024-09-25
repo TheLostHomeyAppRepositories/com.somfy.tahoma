@@ -5,6 +5,16 @@
   "uiComponent": "button",
   "title": {
     "en": "Test Alarm",
-    "nl": "Testalarm:"
+    "nl": "Testalarm:",
+    "da": "Testalarm",
+    "de": "Alarm testen",
+    "es": "Probar Alarma",
+    "fr": "Tester l'alarme",
+    "it": "Test allarme",
+    "no": "Test alarm",
+    "sv": "Testa larm",
+    "pl": "Test Alarmu",
+    "ru": "Проверка сигнала тревоги",
+    "ko": "테스트 알람"
   }
 }

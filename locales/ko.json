@@ -1,0 +1,70 @@
+{
+  "settings": {
+    "title": "TaHoma / Connexoon 설정",
+    "intro": "Homey가 TaHoma / Connexoon을 제어하도록 하려면 계정을 입력하여 Homey를 인증해 주세요.",
+    "logintitle": "TaHoma / Connexoon 로그인 정보",
+    "username": "사용자 이름",
+    "password": "비밀번호",
+    "save": "저장",
+    "login_success": "로그인 성공.",
+    "login_failure": "로그인 실패.",
+    "logouttitle": "Homey의 접근 권한 해제",
+    "logout": "로그아웃",
+    "logout_success": "로그아웃 성공.",
+    "logout_failure": "로그아웃 실패.",
+    "preferences": "환경 설정",
+    "sync_speed": "업데이트 간격",
+    "sync_tooltip": "(초)",
+    "save_preferences": "환경 설정 저장",
+    "linkurl": "연결 URL (기본 설정은 일반적으로 Tahoma 및 Connexoon에 적합)",
+    "save_verifying": "로그인 시도 중입니다. 잠시만 기다려주세요...",
+    "logout_description": "이 작업은 Tahoma에서 로그아웃하고 앱에서 자격 증명을 제거합니다.",
+    "min_sync_speed": "최소 동기화 속도는 30초입니다",
+    "max_sync_speed": "최대 동기화 속도는 90초입니다",
+    "pref_saved": "환경 설정이 저장되었습니다",
+    "settings": "설정",
+    "information_log": "정보 로그",
+    "device_log": "장치 로그",
+    "state_log": "상태 로그",
+    "oauth_method": "새 OAuth 로그인 방법 사용",
+    "intro1": "지원되지 않는 장치가 있는 경우 사용하세요.",
+    "intro2": "로그를 가져오기를 탭하고 데이터가 나타날 때까지 기다리세요. 그런 다음 로그를 보내세요.",
+    "intro3": "지원되지 않는 장치를 설명하려면 커뮤니티 포럼에서 @Adrian_Rockall에게 연락하세요.",
+    "intro4": "개인 정보는 수집되거나 전송되지 않으므로 연락하지 않으면 응답할 수 없습니다.",
+    "get": "로그 가져오기",
+    "clear": "로그 지우기",
+    "send": "로그 보내기",
+    "log_enabled": "로그 활성화됨",
+    "polling_enabled": "상태 업데이트 확인",
+    "show_password": "비밀번호 보기",
+    "pref_intro1": "앱은 Homey가 장치와 동기화되도록 업데이트를 요청할 수 있습니다.",
+    "pref_intro2": "이것은 Somfy 서버에 부하를 가하기 때문에 가능하면 꺼두세요.",
+    "pref_intro3": "센서 업데이트가 필요한 경우 간격을 최대한 길게 유지하세요.",
+    "event_log": "이벤트 로그"
+  },
+  "errors": {
+    "on_pair_login_failure": "로그인할 수 없습니다. 설정 화면으로 이동하여 Homey에 대한 접근 권한을 제공해 주세요."
+  },
+  "valve_heating_mode_state": {
+    "away": "외출",
+    "comfort": "집",
+    "eco": "밤",
+    "frostprotection": "서리 방지",
+    "geofencingmode": "지오펜싱",
+    "manual": "수동",
+    "suddendropmode": "창문 열림"
+  },
+  "defect_state": {
+    "dead": "죽은",
+    "lowbattery": "배터리 부족",
+    "maintenancerequired": "유지 보수 필요",
+    "nodefect": "결함 없음"
+  },
+  "valve_operating_mode_state": {
+    "auto": "자동 (일정)",
+    "manual": "수동"
+  },
+  "my_position_token": "내 위치",
+  "command_queued": "명령이 대기열에 추가되었습니다. 장치가 깨어날 때까지 기다리세요",
+  "command_failed": "명령 실패"
+}

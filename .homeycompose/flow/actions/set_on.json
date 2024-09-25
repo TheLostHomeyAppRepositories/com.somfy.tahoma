@@ -2,7 +2,17 @@
   "id": "set_on",
   "title": {
     "en": "Turn on the device",
-    "nl": "Zet het apparaat aan"
+    "nl": "Zet het apparaat aan",
+    "da": "Tænd enheden",
+    "de": "Schalte das Gerät ein",
+    "es": "Enciende el dispositivo",
+    "fr": "Allume l'appareil",
+    "it": "Accendi il dispositivo",
+    "no": "Slå på enheten",
+    "sv": "Slå på enheten",
+    "pl": "Włącz urządzenie",
+    "ru": "Включите устройство",
+    "ko": "장치를 켜다"
   },
   "args": [
     {

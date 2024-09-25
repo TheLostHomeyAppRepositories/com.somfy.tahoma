@@ -5,16 +5,46 @@
   "uiComponent": "sensor",
   "title": {
     "en": "Valve Open",
-    "nl": "Klep open"
+    "nl": "Klep open",
+    "da": "Ventil åben",
+    "de": "Ventil offen",
+    "es": "Válvula abierta",
+    "fr": "Valve ouverte",
+    "it": "Valvola aperta",
+    "no": "Ventil åpen",
+    "sv": "Ventil öppen",
+    "pl": "Zawór otwarty",
+    "ru": "Клапан открыт",
+    "ko": "밸브 열림"
   },
   "icon": "/assets/valve.svg",
   "insights": true,
   "insightsTitleTrue": {
     "en": "Valve Opened",
-    "nl": "Klep geopend"
+    "nl": "Klep geopend",
+    "da": "Ventil åbnet",
+    "de": "Ventil geöffnet",
+    "es": "Válvula abierta",
+    "fr": "Valve ouverte",
+    "it": "Valvola aperta",
+    "no": "Ventil åpnet",
+    "sv": "Ventil öppnad",
+    "pl": "Zawór otwarty",
+    "ru": "Клапан открыт",
+    "ko": "밸브 열림"
   },
   "insightsTitleFalse": {
     "en": "Valve Closed",
-    "nl": "Klep gesloten"
+    "nl": "Klep gesloten",
+    "da": "Ventil lukket",
+    "de": "Ventil geschlossen",
+    "es": "Válvula cerrada",
+    "fr": "Valve fermée",
+    "it": "Valvola chiusa",
+    "no": "Ventil lukket",
+    "sv": "Ventil stängd",
+    "pl": "Zawór zamknięty",
+    "ru": "Клапан закрыт",
+    "ko": "밸브 닫힘"
   }
 }

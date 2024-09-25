@@ -3,61 +3,150 @@
   "title": {
     "en": "Hot Water Mode",
     "nl": "Heetwatermodus",
-    "de": "Heißwassermodus"
+    "de": "Heißwassermodus",
+    "da": "Varmtvandsmodus",
+    "es": "Modo de agua caliente",
+    "fr": "Mode eau chaude",
+    "it": "Modalità acqua calda",
+    "no": "Varmtvannsmodus",
+    "sv": "Varmvattenläge",
+    "pl": "Tryb gorącej wody",
+    "ru": "Режим горячей воды",
+    "ko": "온수 모드"
   },
   "values": [
     {
       "id": "comfort",
       "title": {
-        "en": "Comfort"
+        "en": "Comfort",
+        "da": "Komfort",
+        "de": "Komfort",
+        "es": "Confort",
+        "fr": "Confort",
+        "it": "Comfort",
+        "no": "Komfort",
+        "sv": "Komfort",
+        "pl": "Komfort",
+        "ru": "Комфорт",
+        "ko": "편안함"
       }
     },
     {
       "id": "eco",
       "title": {
-        "en": "Eco"
+        "en": "Eco",
+        "da": "Øko",
+        "de": "Öko",
+        "es": "Ecológico",
+        "fr": "Éco",
+        "it": "Eco",
+        "no": "Øko",
+        "sv": "Eco",
+        "pl": "Eko",
+        "ru": "Эко",
+        "ko": "에코"
       }
     },
     {
       "id": "externalScheduling",
       "title": {
         "en": "External Scheduling",
-        "nl": "Externe planning"
+        "nl": "Externe planning",
+        "da": "Ekstern planlægning",
+        "de": "Externes Planen",
+        "es": "Programación externa",
+        "fr": "Programmation externe",
+        "it": "Pianificazione esterna",
+        "no": "Ekstern planlegging",
+        "sv": "Extern schemaläggning",
+        "pl": "Zewnętrzne planowanie",
+        "ru": "Внешнее планирование",
+        "ko": "외부 일정 관리"
       }
     },
     {
       "id": "internalScheduling",
       "title": {
         "en": "Internal Scheduling",
-        "nl": "Interne planning"
+        "nl": "Interne planning",
+        "da": "Intern planlægning",
+        "de": "Internes Planen",
+        "es": "Programación interna",
+        "fr": "Programmation interne",
+        "it": "Pianificazione interna",
+        "no": "Intern planlegging",
+        "sv": "Intern schemaläggning",
+        "pl": "Wewnętrzne planowanie",
+        "ru": "Внутреннее планирование",
+        "ko": "내부 일정 관리"
       }
     },
     {
       "id": "manu",
       "title": {
         "en": "Manual",
-        "nl": "Handmatig"
+        "nl": "Handmatig",
+        "da": "Manuel",
+        "de": "Manuell",
+        "es": "Manual",
+        "fr": "Manuel",
+        "it": "Manuale",
+        "no": "Manuell",
+        "sv": "Manuell",
+        "pl": "Ręczny",
+        "ru": "Ручной",
+        "ko": "수동"
       }
     },
     {
       "id": "peakAndOffPeakScheduling",
       "title": {
         "en": "Peak And Off Peak Scheduling",
-        "nl": "Piek- en dalurenplanning"
+        "nl": "Piek- en dalurenplanning",
+        "da": "Planlægning af spidsbelastning og lav belastning",
+        "de": "Planung für Spitzen- und Schwachlastzeiten",
+        "es": "Programación de horas pico y valle",
+        "fr": "Programmation des heures pleines et creuses",
+        "it": "Pianificazione delle ore di punta e non di punta",
+        "no": "Planlegging av topp- og lavtider",
+        "sv": "Planering av hög- och lågtid",
+        "pl": "Planowanie godzin szczytu i poza szczytem",
+        "ru": "Планирование пиковых и непиковых периодов",
+        "ko": "피크 및 비피크 일정 관리"
       }
     },
     {
       "id": "peakAndOffPeakTimes",
       "title": {
         "en": "Peak And Off Peak Times",
-        "nl": "Piek- en daluren"
+        "nl": "Piek- en daluren",
+        "da": "Spids- og lavtid",
+        "de": "Spitzen- und Schwachlastzeiten",
+        "es": "Horas pico y valle",
+        "fr": "Heures pleines et creuses",
+        "it": "Ore di punta e non di punta",
+        "no": "Topp- og lavtid",
+        "sv": "Hög- och lågtid",
+        "pl": "Godziny szczytu i poza szczytem",
+        "ru": "Пиковое и непиковое время",
+        "ko": "피크 및 비피크 시간"
       }
     },
     {
       "id": "stop",
       "title": {
         "en": "Stop",
-        "nl": "Hou op"
+        "nl": "Hou op",
+        "da": "Stop",
+        "de": "Stopp",
+        "es": "Detener",
+        "fr": "Arrêter",
+        "it": "Fermare",
+        "no": "Stopp",
+        "sv": "Stoppa",
+        "pl": "Zatrzymaj",
+        "ru": "Остановить",
+        "ko": "멈춤"
       }
     }
   ],

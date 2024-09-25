@@ -1,70 +1,178 @@
 {
-    "actions": [
+  "actions": [
+    {
+      "id": "ac_operating_mode_set",
+      "title": {
+        "en": "Set the Heat / Cool mode",
+        "nl": "Stel de Verwarm / Koel modus in",
+        "da": "Indstil varme / køletilstand",
+        "de": "Stellen Sie den Heiz- / Kühlmodus ein",
+        "es": "Establecer el modo Calor / Enfriar",
+        "fr": "Régler le mode Chauffage / Refroidissement",
+        "it": "Imposta la modalità Riscaldamento / Raffreddamento",
+        "no": "Sett varme-/kjølemodus",
+        "sv": "Ställ in värme-/kylfunktion",
+        "pl": "Ustaw tryb grzania/chłodzenia",
+        "ru": "Установить режим отопления/охлаждения",
+        "ko": "난방 / 냉방 모드 설정"
+      },
+      "titleFormatted": {
+        "en": "Set the Mode to [[state]]",
+        "nl": "Stel de modus in op [[state]]",
+        "da": "Indstil tilstand til [[state]]",
+        "de": "Stellen Sie den Modus auf [[state]] ein",
+        "es": "Establecer el modo a [[state]]",
+        "fr": "Régler le mode à [[state]]",
+        "it": "Imposta la modalità su [[state]]",
+        "no": "Sett modus til [[state]]",
+        "sv": "Ställ in läget till [[state]]",
+        "pl": "Ustaw tryb na [[state]]",
+        "ru": "Установить режим на [[state]]",
+        "ko": "[[state]] 모드로 설정"
+      },
+      "args": [
         {
-            "id": "ac_operating_mode_set",
-            "title": {
-                "en": "Set the Heat / Cool mode"
+          "name": "state",
+          "type": "dropdown",
+          "title": {
+            "en": "Heat / Cool Mode",
+            "nl": "Verwarm / Koel modus",
+            "da": "Varme- / køletilstand",
+            "de": "Heiz- / Kühlmodus",
+            "es": "Modo Calor / Enfriar",
+            "fr": "Mode Chauffage / Refroidissement",
+            "it": "Modalità Riscaldamento / Raffreddamento",
+            "no": "Varme-/kjølemodus",
+            "sv": "Värme-/kylfunktion",
+            "pl": "Tryb grzania/chłodzenia",
+            "ru": "Режим отопления/охлаждения",
+            "ko": "난방 / 냉방 모드"
+          },
+          "values": [
+            {
+              "id": "heating",
+              "label": {
+                "en": "Heating",
+                "nl": "Verwarming",
+                "da": "Opvarmning",
+                "de": "Heizung",
+                "es": "Calefacción",
+                "fr": "Chauffage",
+                "it": "Riscaldamento",
+                "no": "Oppvarming",
+                "sv": "Uppvärmning",
+                "pl": "Ogrzewanie",
+                "ru": "Отопление",
+                "ko": "난방"
+              }
             },
-            "titleFormatted": {
-                "en": "Set the Mode to [[state]]"
-            },
-            "args": [
-                {
-                    "name": "state",
-                    "type": "dropdown",
-                    "title": {
-                        "en": "Heat / Cool Mode"
-                    },
-                    "values": [
-                        {
-                            "id": "heating",
-                            "label": {
-                                "en": "Heating"
-                            }
-                        },
-                        {
-                            "id": "cooling",
-                            "label": {
-                                "en": "Cooling"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "ac_auto_manual_set",
-            "title": {
-                "en": "Set the Auto / Manual Mode"
-            },
-            "titleFormatted": {
-                "en": "Set the Mode to [[state]]"
-            },
-            "args": [
-                {
-                    "name": "state",
-                    "type": "dropdown",
-                    "title": {
-                        "en": "Auto / Manual Mode"
-                    },
-                    "values": [
-                        {
-                            "id": "auto",
-                            "label": {
-                                "en": "Automatic",
-                                "nl": "Automatisch"
-                            }
-                        },
-                        {
-                            "id": "manu",
-                            "label": {
-                                "en": "Manual",
-                                "nl": "Handmatig"
-                            }
-                        }
-                    ]
-                }
-            ]
+            {
+              "id": "cooling",
+              "label": {
+                "en": "Cooling",
+                "nl": "Koeling",
+                "da": "Køling",
+                "de": "Kühlung",
+                "es": "Enfriamiento",
+                "fr": "Refroidissement",
+                "it": "Raffreddamento",
+                "no": "Kjøling",
+                "sv": "Kylning",
+                "pl": "Chłodzenie",
+                "ru": "Охлаждение",
+                "ko": "냉방"
+              }
+            }
+          ]
         }
-    ]
+      ]
+    },
+    {
+      "id": "ac_auto_manual_set",
+      "title": {
+        "en": "Set the Auto / Manual Mode",
+        "nl": "Stel de Automatische / Handmatige modus in",
+        "da": "Indstil auto-/manuel tilstand",
+        "de": "Automatischen / manuellen Modus einstellen",
+        "es": "Establecer el modo automático / manual",
+        "fr": "Régler le mode Automatique / Manuel",
+        "it": "Imposta la modalità automatica / manuale",
+        "no": "Sett auto- / manuell modus",
+        "sv": "Ställ in automatisk/manuell funktion",
+        "pl": "Ustaw tryb automatyczny / ręczny",
+        "ru": "Установить автоматический/ручной режим",
+        "ko": "자동 / 수동 모드 설정"
+      },
+      "titleFormatted": {
+        "en": "Set the Mode to [[state]]",
+        "nl": "Stel de modus in op [[state]]",
+        "da": "Indstil tilstand til [[state]]",
+        "de": "Stellen Sie den Modus auf [[state]] ein",
+        "es": "Establecer el modo a [[state]]",
+        "fr": "Régler le mode à [[state]]",
+        "it": "Imposta la modalità su [[state]]",
+        "no": "Sett modus til [[state]]",
+        "sv": "Ställ in läget till [[state]]",
+        "pl": "Ustaw tryb na [[state]]",
+        "ru": "Установить режим на [[state]]",
+        "ko": "[[state]] 모드로 설정"
+      },
+      "args": [
+        {
+          "name": "state",
+          "type": "dropdown",
+          "title": {
+            "en": "Auto / Manual Mode",
+            "nl": "Automatische / Handmatige modus",
+            "da": "Auto / manuel tilstand",
+            "de": "Automatischer / manueller Modus",
+            "es": "Modo automático / manual",
+            "fr": "Mode automatique / manuel",
+            "it": "Modalità automatica / manuale",
+            "no": "Auto / manuell modus",
+            "sv": "Automatisk/manuell funktion",
+            "pl": "Tryb automatyczny / ręczny",
+            "ru": "Автоматический / ручной режим",
+            "ko": "자동 / 수동 모드"
+          },
+          "values": [
+            {
+              "id": "auto",
+              "label": {
+                "en": "Automatic",
+                "nl": "Automatisch",
+                "da": "Automatisk",
+                "de": "Automatisch",
+                "es": "Automático",
+                "fr": "Automatique",
+                "it": "Automatico",
+                "no": "Automatisk",
+                "sv": "Automatisk",
+                "pl": "Automatyczny",
+                "ru": "Автоматический",
+                "ko": "자동"
+              }
+            },
+            {
+              "id": "manu",
+              "label": {
+                "en": "Manual",
+                "nl": "Handmatig",
+                "da": "Manuel",
+                "de": "Manuell",
+                "es": "Manual",
+                "fr": "Manuel",
+                "it": "Manuale",
+                "no": "Manuell",
+                "sv": "Manuell",
+                "pl": "Ręczny",
+                "ru": "Ручной",
+                "ko": "수동"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

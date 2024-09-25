@@ -1,6 +1,17 @@
 {
   "name": {
-    "en": "Atlantic Electric Heater"
+    "en": "Atlantic Electric Heater",
+    "nl": "Atlantische elektrische verwarming",
+    "da": "Atlantisk elektrisk varmeapparat",
+    "de": "Atlantik Elektroheizung",
+    "es": "Calefactor Eléctrico Atlántico",
+    "fr": "Chauffage électrique Atlantique",
+    "it": "Riscaldatore elettrico Atlantico",
+    "no": "Atlantisk elektrisk varmeapparat",
+    "sv": "Atlantisk elektrisk värmare",
+    "pl": "Atlantyczny grzejnik elektryczny",
+    "ru": "Атлантический электрический обогреватель",
+    "ko": "애틀랜틱 전기 히터"
   },
   "class": "heater",
   "capabilities": [
@@ -26,18 +37,59 @@
     "target_temperature.comfort_heating": {
       "min": 0,
       "max": 28,
-      "title": "Comfort Heating Temperature"
+      "title": {
+        "en": "Comfort Heating Temperature",
+        "nl": "Comfort verwarmings temperatuur",
+        "da": "Komfortopvarmningstemperatur",
+        "de": "Komfort Heizung Temperatur",
+        "es": "Temperatura de calefacción de comodidad",
+        "fr": "Température de chauffage confortable",
+        "it": "Temperatura di riscaldamento di comfort",
+        "no": "Komfort oppvarmingstemperatur",
+        "sv": "Komfortvärme temperatur",
+        "pl": "Temperatura ogrzewania komfortowego",
+        "ru": "Температура комфортного отопления",
+        "ko": "편안한 난방 온도"
+      }
     },
     "target_temperature.eco_heating": {
       "min": 0,
       "max": 28,
-      "title": "Eco Heating Temperature"
+      "title": {
+        "en": "Eco Heating Temperature",
+        "nl": "Eco verwarmings temperatuur",
+        "da": "Øko-opvarmningstemperatur",
+        "de": "Eco Heizung Temperatur",
+        "es": "Temperatura de calefacción ecológica",
+        "fr": "Température de chauffage écologique",
+        "it": "Temperatura di riscaldamento ecologico",
+        "no": "Eko oppvarmingstemperatur",
+        "sv": "Eko-värme temperatur",
+        "pl": "Temperatura ogrzewania ekologicznego",
+        "ru": "Температура эко-отопления",
+        "ko": "에코 난방 온도"
+      }
     },
     "target_temperature.derogated": {
       "min": 0,
       "max": 28,
-      "title": "Derogated Temperature"
+      "title": {
+        "en": "Derogated Temperature",
+        "nl": "Afgeweken temperatuur",
+        "da": "Afvist temperatur",
+        "de": "Abgeleitete Temperatur",
+        "es": "Temperatura Derogada",
+        "fr": "Température dérogée",
+        "it": "Temperatura derogata",
+        "no": "Fraviket temperatur",
+        "sv": "Avvikande temperatur",
+        "pl": "Temperatura odstępstwa",
+        "ru": "Отступленная температура",
+        "ko": "일탈된 온도"
+      }
     }
   },
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

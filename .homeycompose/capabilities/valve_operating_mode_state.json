@@ -2,7 +2,17 @@
   "type": "string",
   "title": {
     "en": "Operating Mode",
-    "nl": "Bedrijfsmodus"
+    "nl": "Bedrijfsmodus",
+    "da": "Driftstilstand",
+    "de": "Betriebsmodus",
+    "es": "Modo de funcionamiento",
+    "fr": "Mode de fonctionnement",
+    "it": "Modalità operativa",
+    "no": "Driftsmodus",
+    "sv": "Driftläge",
+    "pl": "Tryb operacyjny",
+    "ru": "Режим работы",
+    "ko": "작동 모드"
   },
   "getable": true,
   "setable": false,

@@ -2,7 +2,17 @@
   "id": "set_my_heat_level",
   "title": {
     "en": "Set the heat to MY level",
-    "nl": "Zet de verwarming op MY niveau"
+    "nl": "Zet de verwarming op MY niveau",
+    "da": "Indstil varmen til MY niveau",
+    "de": "Stelle die Heizung auf MEIN Niveau",
+    "es": "Ajusta el calor a MI nivel",
+    "fr": "Réglez la chaleur à MON niveau",
+    "it": "Imposta il calore al MIO livello",
+    "no": "Sett varmen til MITT nivå",
+    "sv": "Ställ in värmen till MIN nivå",
+    "pl": "Ustaw ciepło na MÓJ poziom",
+    "ru": "Установите тепло на МОЙ уровень",
+    "ko": "MY 수준으로 열 설정"
   },
   "args": [
     {

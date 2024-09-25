@@ -1,11 +1,23 @@
 {
   "name": {
     "en": "Security Camera Light Controller",
-    "nl": "Beveiligingscamera Lichtcontroller"
+    "nl": "Beveiligingscamera Lichtcontroller",
+    "da": "Sikkerhedskamera Lys Controller",
+    "de": "Sicherheitskamera Lichtsteuerung",
+    "es": "Controlador de Luz de Cámara de Seguridad",
+    "fr": "Contrôleur de Lumière de Caméra de Sécurité",
+    "it": "Controller Luce Telecamera di Sicurezza",
+    "no": "Sikkerhetskamera Lys Kontroller",
+    "sv": "Säkerhetskamera Ljuskontroller",
+    "pl": "Kamera Bezpieczeństwa Sterownik Światła",
+    "ru": "Контроллер Света Камеры Безопасности",
+    "ko": "보안 카메라 조명 제어기"
   },
   "class": "light",
   "capabilities": [
     "onoff"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

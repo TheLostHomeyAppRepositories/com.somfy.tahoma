@@ -1,0 +1,70 @@
+{
+  "settings": {
+    "title": "TaHoma / Connexoon Indstillinger",
+    "intro": "For at lade Homey kontrollere TaHoma / Connexoon skal du autorisere Homey ved at indtaste TaHoma / Connexoon loginoplysninger.",
+    "logintitle": "TaHoma / Connexoon loginoplysninger",
+    "username": "Brugernavn",
+    "password": "Adgangskode",
+    "save": "Gem oplysninger",
+    "login_success": "Logget ind med succes.",
+    "login_failure": "Kunne ikke logge ind.",
+    "logouttitle": "Tilbagekald adgang til Homey",
+    "logout": "Log ud",
+    "logout_success": "Logget ud med succes.",
+    "logout_failure": "Logout mislykkedes.",
+    "preferences": "Præferencer",
+    "sync_speed": "Opdateringsinterval",
+    "sync_tooltip": "(sekunder)",
+    "save_preferences": "Gem præferencer",
+    "linkurl": "Forbindelses-URL (Standard er normalt god for Tahoma og Connexoon)",
+    "save_verifying": "Forsøger at logge ind. Vent venligst...",
+    "logout_description": "Dette vil logge ud fra Tahoma og fjerne dine oplysninger fra appen.",
+    "min_sync_speed": "Minimum Sync Speed værdi er 30 sekunder",
+    "max_sync_speed": "Maksimum Sync Speed værdi er 90 sekunder",
+    "pref_saved": "Præferencerne er gemt",
+    "settings": "Indstillinger",
+    "information_log": "Informationslog",
+    "device_log": "Enhedslog",
+    "state_log": "Tilstandslog",
+    "oauth_method": "Brug ny OAuth login metode",
+    "intro1": "Brug dette, hvis du har en enhed, der ikke er understøttet.",
+    "intro2": "Tryk på Få log og vent på, at dataene vises. Send derefter loggen.",
+    "intro3": "Kontakt @Adrian_Rockall på fællesskabsforumet for at beskrive, hvilken enhed der ikke er understøttet.",
+    "intro4": "Ingen personlige data opfanges eller sendes, så hvis du ikke kontakter mig, vil jeg ikke kunne svare.",
+    "get": "Få Log",
+    "clear": "Ryd Log",
+    "send": "Send Log",
+    "log_enabled": "Log aktiveret",
+    "polling_enabled": "Spørg efter statusopdateringer",
+    "show_password": "Vis Adgangskode",
+    "pref_intro1": "Appen kan anmode om opdateringer for at holde Homey synkroniseret med enhederne.",
+    "pref_intro2": "Dette lægger en belastning på Somfy-serverne, så hold det slukket, hvis det er muligt.",
+    "pref_intro3": "Hvis du har brug for opdateringer for sensorer, så hold intervallet så højt som muligt.",
+    "event_log": "Begivenhedslog"
+  },
+  "errors": {
+    "on_pair_login_failure": "Kunne ikke logge ind. Gå til indstillingsskærmen og giv adgang til TaHoma for Homey."
+  },
+  "valve_heating_mode_state": {
+    "away": "Væk",
+    "comfort": "Hjemme",
+    "eco": "Nat",
+    "frostprotection": "Frostbeskyttelse",
+    "geofencingmode": "Geofencing",
+    "manual": "Manuel",
+    "suddendropmode": "Åben Vindue"
+  },
+  "defect_state": {
+    "dead": "Død",
+    "lowbattery": "Lav Batteri",
+    "maintenancerequired": "Vedligeholdelse Påkrævet",
+    "nodefect": "Ingen Defekt"
+  },
+  "valve_operating_mode_state": {
+    "auto": "Auto (Tidsplan)",
+    "manual": "Manuel"
+  },
+  "my_position_token": "Min Position",
+  "command_queued": "Kommando køet, vent på at enheden vågner",
+  "command_failed": "Kommando mislykkedes"
+}

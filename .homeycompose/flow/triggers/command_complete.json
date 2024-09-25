@@ -1,48 +1,98 @@
 {
-    "id": "command_complete",
-    "deprecated": true,
-    "title": {
-        "en": "A command completed",
-        "nl": "Een opdracht voltooid"
+  "id": "command_complete",
+  "deprecated": true,
+  "title": {
+    "en": "A command completed",
+    "nl": "Een opdracht voltooid",
+    "da": "En kommando afsluttet",
+    "de": "Ein Befehl ausgeführt",
+    "es": "Un comando completado",
+    "fr": "Une commande terminée",
+    "it": "Un comando completato",
+    "no": "En kommando fullført",
+    "sv": "Ett kommando slutfört",
+    "pl": "Polecenie wykonane",
+    "ru": "Команда выполнена",
+    "ko": "명령어가 완료되었습니다"
+  },
+  "titleFormatted": {
+    "en": "A command completed on device [[device]]",
+    "nl": "Een opdracht voltooid op apparaat [[device]]",
+    "da": "Et kommando afsluttet på enhed [[device]]",
+    "de": "Ein Befehl ausgeführt auf Gerät [[device]]",
+    "es": "Un comando completado en el dispositivo [[device]]",
+    "fr": "Commande terminée sur l'appareil [[device]]",
+    "it": "Un comando completato su dispositivo [[device]]",
+    "no": "En kommando fullført på enhet [[device]]",
+    "sv": "Ett kommando slutfört på enhet [[device]]",
+    "pl": "Polecenie wykonane na urządzeniu [[device]]",
+    "ru": "Команда выполнена на устройстве [[device]]",
+    "ko": "장치 [[device]]에서 명령어가 완료되었습니다"
+  },
+  "platforms": [
+    "local",
+    "cloud"
+  ],
+  "connectivity": [
+    "cloud"
+  ],
+  "tokens": [
+    {
+      "name": "state",
+      "type": "boolean",
+      "title": {
+        "en": "Successful",
+        "nl": "Succesvol",
+        "da": "Succesfuld",
+        "de": "Erfolgreich",
+        "es": "Exitoso",
+        "fr": "Réussi",
+        "it": "Riuscito",
+        "no": "Vellykket",
+        "sv": "Lyckad",
+        "pl": "Udany",
+        "ru": "Успешно",
+        "ko": "성공적인"
+      },
+      "example": "true"
     },
-    "titleFormatted": {
-        "en": "A command completed on device [[device]]",
-        "nl": "Een opdracht voltooid op apparaat [[device]]"
-    },
-    "platforms": [
-        "local",
-        "cloud"
-    ],
-    "connectivity": [
-        "cloud"
-    ],
-    "tokens": [
-        {
-            "name": "state",
-            "type": "boolean",
-            "title": {
-                "en": "Successful",
-                "nl": "Succesvol"
-            },
-            "example": "true"
-        },
-        {
-            "name": "name",
-            "type": "string",
-            "title": {
-                "en": "Command Name",
-                "nl": "Opdrachtnaam"
-            }
-        }
-    ],
-    "args": [
-        {
-            "name": "device",
-            "type": "device",
-            "title": {
-                "en": "Device",
-                "nl": "Apparaat"
-            }
-        }
-    ]
+    {
+      "name": "name",
+      "type": "string",
+      "title": {
+        "en": "Command Name",
+        "nl": "Opdrachtnaam",
+        "da": "Kommando Navn",
+        "de": "Befehlname",
+        "es": "Nombre del Comando",
+        "fr": "Nom de la Commande",
+        "it": "Nome Comando",
+        "no": "Kommando Navn",
+        "sv": "Kommando Namn",
+        "pl": "Nazwa Polecenia",
+        "ru": "Название команды",
+        "ko": "명령어 이름"
+      }
+    }
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "title": {
+        "en": "Device",
+        "nl": "Apparaat",
+        "da": "Enhed",
+        "de": "Gerät",
+        "es": "Dispositivo",
+        "fr": "Appareil",
+        "it": "Dispositivo",
+        "no": "Enhet",
+        "sv": "Enhet",
+        "pl": "Urządzenie",
+        "ru": "Устройство",
+        "ko": "장치"
+      }
+    }
+  ]
 }

@@ -2,34 +2,84 @@
   "type": "enum",
   "title": {
     "en": "Remote State",
-    "nl": "Externe staat:"
+    "nl": "Externe staat:",
+    "da": "Fjernstat",
+    "de": "Entfernter Zustand",
+    "es": "Estado remoto",
+    "fr": "État distant",
+    "it": "Stato remoto",
+    "no": "Fjernstatus",
+    "sv": "Fjärrstat",
+    "pl": "Stan zdalny",
+    "ru": "Удаленное состояние",
+    "ko": "원격 상태"
   },
   "values": [
     {
       "id": "up",
       "title": {
         "en": "Up",
-        "nl": "Omhoog"
+        "nl": "Omhoog",
+        "da": "Op",
+        "de": "Hoch",
+        "es": "Arriba",
+        "fr": "En haut",
+        "it": "Su",
+        "no": "Opp",
+        "sv": "Upp",
+        "pl": "Góra",
+        "ru": "Вверх",
+        "ko": "위"
       }
     },
     {
       "id": "down",
       "title": {
         "en": "Down",
-        "nl": "Omlaag"
+        "nl": "Omlaag",
+        "da": "Ned",
+        "de": "Runter",
+        "es": "Abajo",
+        "fr": "En bas",
+        "it": "Giù",
+        "no": "Ned",
+        "sv": "Ner",
+        "pl": "Dół",
+        "ru": "Вниз",
+        "ko": "아래"
       }
     },
     {
       "id": "stop",
       "title": {
         "en": "Stop",
-        "nl": "Hou op"
+        "nl": "Hou op",
+        "da": "Stop",
+        "de": "Stoppen",
+        "es": "Parar",
+        "fr": "Arrêter",
+        "it": "Fermare",
+        "no": "Stopp",
+        "sv": "Stopp",
+        "pl": "Stop",
+        "ru": "Стоп",
+        "ko": "중지"
       }
     },
     {
       "id": "prog",
       "title": {
-        "en": "Prog"
+        "en": "Prog",
+        "da": "Prog",
+        "de": "Prog",
+        "es": "Prog",
+        "fr": "Prog",
+        "it": "Prog",
+        "no": "Prog",
+        "sv": "Prog",
+        "pl": "Prog",
+        "ru": "Прог",
+        "ko": "프로"
       }
     }
   ],

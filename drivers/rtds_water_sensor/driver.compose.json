@@ -1,11 +1,23 @@
 {
   "name": {
     "en": "Water Sensor",
-    "nl": "Watersensor"
+    "nl": "Watersensor",
+    "da": "Vandsensor",
+    "de": "Wassersensor",
+    "es": "Sensor de agua",
+    "fr": "Capteur d'eau",
+    "it": "Sensore d'acqua",
+    "no": "Vannsensor",
+    "sv": "Vattensensor",
+    "pl": "Czujnik wody",
+    "ru": "Датчик воды",
+    "ko": "물 센서"
   },
   "class": "sensor",
   "capabilities": [
     "alarm_water"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

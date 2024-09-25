@@ -1,11 +1,24 @@
 {
   "name": {
-    "en": "Pilot Wire Programmer"
+    "en": "Pilot Wire Programmer",
+    "nl": "Pilot Wire Programmeur",
+    "da": "Pilot Wire Programmer",
+    "de": "Pilot Wire Programmierer",
+    "es": "Programador de Pilot Wire",
+    "fr": "Programmeur de Pilot Wire",
+    "it": "Programmatore Pilot Wire",
+    "no": "Pilot Wire Programmer",
+    "sv": "Pilot Wire Programmer",
+    "pl": "Programator Pilot Wire",
+    "ru": "Программатор Pilot Wire",
+    "ko": "파일럿 와이어 프로그래머"
   },
   "class": "heater",
   "capabilities": [
     "onoff",
     "heating_mode"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

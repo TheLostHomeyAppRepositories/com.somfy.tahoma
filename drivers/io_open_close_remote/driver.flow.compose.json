@@ -1,69 +1,163 @@
 {
-    "triggers": [
+  "triggers": [
+    {
+      "id": "remote_state_changed",
+      "title": {
+        "en": "The remote state changed",
+        "nl": "De remotesituatie is veranderd",
+        "da": "Den eksterne tilstand er ændret",
+        "de": "Der Fernzustand hat sich geändert",
+        "es": "El estado remoto cambió",
+        "fr": "L'état distant a changé",
+        "it": "Lo stato remoto è cambiato",
+        "no": "Den eksterne tilstanden endret seg",
+        "sv": "Det fjärrstyrda tillståndet har ändrats",
+        "pl": "Zdalny stan zmienił się",
+        "ru": "Удалённое состояние изменилось",
+        "ko": "원격 상태가 변경되었습니다."
+      },
+      "tokens": [
         {
-            "id": "remote_state_changed",
-            "title": {
-                "en": "The remote state changed"
-            },
-            "tokens": [
-                {
-                    "name": "remote_state",
-                    "type": "string",
-                    "title": {
-                        "en": "New State"
-                    },
-                    "example": "up"
-                }
-            ],
-            "args": []
-        },
-        {
-            "id": "remote_state_changed_to",
-            "title": {
-                "en": "The remote state changed to"
-            },
-            "titleFormatted": {
-                "en": "The remote state changed to [[expected_state]]"
-            },
-            "args": [
-                {
-                    "type": "dropdown",
-                    "name": "expected_state",
-                    "title": {
-                        "en": "Expected State",
-                        "nl": "Verwachte staat"
-                    },
-                    "values": [
-                        {
-                            "id": "up",
-                            "label": {
-                                "en": "Up",
-                                "nl": "Omhoog"
-                            }
-                        },
-                        {
-                            "id": "down",
-                            "label": {
-                                "en": "Down",
-                                "nl": "Omlaag"
-                            }
-                        },
-                        {
-                            "id": "stop",
-                            "label": {
-                                "en": "Stop",
-                                "nl": "Hou op"
-                            }
-                        },
-                        {
-                            "id": "prog",
-                            "label": {
-                                "en": "Prog"
-                            }
-                        }
-                    ]
-                }
-            ]
+          "name": "remote_state",
+          "type": "string",
+          "title": {
+            "en": "New State",
+            "nl": "Nieuwe staat",
+            "da": "Ny tilstand",
+            "de": "Neuer Zustand",
+            "es": "Nuevo Estado",
+            "fr": "Nouvel État",
+            "it": "Nuovo stato",
+            "no": "Ny tilstand",
+            "sv": "Nytt tillstånd",
+            "pl": "Nowy stan",
+            "ru": "Новое состояние",
+            "ko": "새로운 상태"
+          },
+          "example": "up"
         }
-    ]
+      ],
+      "args": []
+    },
+    {
+      "id": "remote_state_changed_to",
+      "title": {
+        "en": "The remote state changed to",
+        "nl": "De remotesituatie is veranderd in",
+        "da": "Den eksterne tilstand blev ændret til",
+        "de": "Der Fernzustand hat sich geändert zu",
+        "es": "El estado remoto cambió a",
+        "fr": "L'état distant a changé pour",
+        "it": "Lo stato remoto è cambiato in",
+        "no": "Den eksterne tilstanden endret seg til",
+        "sv": "Det fjärrstyrda tillståndet ändrades till",
+        "pl": "Zdalny stan zmienił się na",
+        "ru": "Удалённое состояние изменилось на",
+        "ko": "원격 상태가 다음으로 변경되었습니다."
+      },
+      "titleFormatted": {
+        "en": "The remote state changed to [[expected_state]]",
+        "nl": "De remotesituatie is veranderd in [[expected_state]]",
+        "da": "Den eksterne tilstand blev ændret til [[expected_state]]",
+        "de": "Der Fernzustand hat sich geändert zu [[expected_state]]",
+        "es": "El estado remoto cambió a [[expected_state]]",
+        "fr": "L'état distant a changé pour [[expected_state]]",
+        "it": "Lo stato remoto è cambiato in [[expected_state]]",
+        "no": "Den eksterne tilstanden endret seg til [[expected_state]]",
+        "sv": "Det fjärrstyrda tillståndet ändrades till [[expected_state]]",
+        "pl": "Zdalny stan zmienił się na [[expected_state]]",
+        "ru": "Удалённое состояние изменилось на [[expected_state]]",
+        "ko": "원격 상태가 [[expected_state]]로 변경되었습니다."
+      },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "expected_state",
+          "title": {
+            "en": "Expected State",
+            "nl": "Verwachte staat",
+            "da": "Forventet tilstand",
+            "de": "Erwarteter Zustand",
+            "es": "Estado esperado",
+            "fr": "État attendu",
+            "it": "Stato previsto",
+            "no": "Forventet tilstand",
+            "sv": "Förväntat tillstånd",
+            "pl": "Oczekiwany stan",
+            "ru": "Ожидаемое состояние",
+            "ko": "예상 상태"
+          },
+          "values": [
+            {
+              "id": "up",
+              "label": {
+                "en": "Up",
+                "nl": "Omhoog",
+                "da": "Op",
+                "de": "Oben",
+                "es": "Arriba",
+                "fr": "Haut",
+                "it": "Su",
+                "no": "Opp",
+                "sv": "Upp",
+                "pl": "W górę",
+                "ru": "Вверх",
+                "ko": "위로"
+              }
+            },
+            {
+              "id": "down",
+              "label": {
+                "en": "Down",
+                "nl": "Omlaag",
+                "da": "Ned",
+                "de": "Unten",
+                "es": "Abajo",
+                "fr": "Bas",
+                "it": "Giù",
+                "no": "Ned",
+                "sv": "Ner",
+                "pl": "W dół",
+                "ru": "Вниз",
+                "ko": "아래로"
+              }
+            },
+            {
+              "id": "stop",
+              "label": {
+                "en": "Stop",
+                "nl": "Hou op",
+                "da": "Stop",
+                "de": "Stopp",
+                "es": "Detener",
+                "fr": "Arrêter",
+                "it": "Ferma",
+                "no": "Stopp",
+                "sv": "Stoppa",
+                "pl": "Stop",
+                "ru": "Стоп",
+                "ko": "멈추다"
+              }
+            },
+            {
+              "id": "prog",
+              "label": {
+                "en": "Prog",
+                "da": "Prog",
+                "de": "Prog",
+                "es": "Prog",
+                "fr": "Prog",
+                "it": "Prog",
+                "no": "Prog",
+                "sv": "Prog",
+                "pl": "Prog",
+                "ru": "Prog",
+                "ko": "Prog"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

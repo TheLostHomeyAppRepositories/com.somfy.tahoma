@@ -1,6 +1,17 @@
 {
   "name": {
-    "en": "Garage Door with Position Control (io)"
+    "en": "Garage Door with Position Control (io)",
+    "nl": "Garagedeur met Positiebesturing (io)",
+    "da": "Garageport med Positionskontrol (io)",
+    "de": "Garagentor mit Positionskontrolle (io)",
+    "es": "Puerta de Garaje con Control de Posición (io)",
+    "fr": "Porte de Garage avec Contrôle de Position (io)",
+    "it": "Porta del Garage con Controllo di Posizione (io)",
+    "no": "Garasjeport med Posisjonskontroll (io)",
+    "sv": "Garagedörr med Positionskontroll (io)",
+    "pl": "Drzwi Garażowe z Kontrolą Pozycji (io)",
+    "ru": "Гаражные ворота с контролем положения (io)",
+    "ko": "위치 제어가 있는 차고 문 (io)"
   },
   "class": "blinds",
   "capabilities": [
@@ -13,12 +24,32 @@
       "type": "checkbox",
       "label": {
         "en": "Invert Up / Down",
-        "nl": "Omkeren omhoog / omlaag"
+        "nl": "Omkeren omhoog / omlaag",
+        "da": "Omdrej Op / Ned",
+        "de": "Umkehren Hoch / Runter",
+        "es": "Invertir Arriba / Abajo",
+        "fr": "Inverser Haut / Bas",
+        "it": "Invertire Su / Giù",
+        "no": "Inverter Opp / Ned",
+        "sv": "Invertera Upp / Ner",
+        "pl": "Odwróć Góra / Dół",
+        "ru": "Инвертировать Вверх / Вниз",
+        "ko": "위/아래 반전"
       },
       "value": false,
       "hint": {
         "en": "Reverse the Up / Down direction controls",
-        "nl": "Draai de bedieningselementen omhoog/omlaag om"
+        "nl": "Draai de bedieningselementen omhoog/omlaag om",
+        "da": "Omvend retning af Op / Ned kontrol",
+        "de": "Die Steuerung für Hoch / Runter umkehren",
+        "es": "Invertir los controles de dirección Arriba / Abajo",
+        "fr": "Inverser les commandes de direction Haut / Bas",
+        "it": "Invertire i controlli di direzione Su / Giù",
+        "no": "Reverser retningen for Opp / Ned-kontrollene",
+        "sv": "Invertera riktningen för Upp / Ned kontroller",
+        "pl": "Odwróć kierunki sterowania Góra / Dół",
+        "ru": "Инвертировать управление направлением Вверх / Вниз",
+        "ko": "위/아래 방향 제어 반전"
       }
     },
     {
@@ -26,14 +57,36 @@
       "type": "checkbox",
       "label": {
         "en": "Invert Position",
-        "nl": "Positie omkeren"
+        "nl": "Positie omkeren",
+        "da": "Omdrej Position",
+        "de": "Position umkehren",
+        "es": "Invertir Posición",
+        "fr": "Inverser la Position",
+        "it": "Invertire Posizione",
+        "no": "Inverter Posisjon",
+        "sv": "Invertera Position",
+        "pl": "Odwróć Pozycję",
+        "ru": "Инвертировать Позицию",
+        "ko": "위치 반전"
       },
       "value": false,
       "hint": {
         "en": "Reverse the position control.",
-        "nl": "Draai de positieregeling om."
+        "nl": "Draai de positieregeling om.",
+        "da": "Omvend posistionskontrol.",
+        "de": "Die Positionsregelung umkehren.",
+        "es": "Invertir el control de posición.",
+        "fr": "Inverser le contrôle de position.",
+        "it": "Invertire il controllo della posizione.",
+        "no": "Reverser posisjonskontrollen.",
+        "sv": "Invertera positionskontrollen.",
+        "pl": "Odwróć kontrolę pozycji.",
+        "ru": "Инвертировать управление позицией.",
+        "ko": "위치 제어를 반전시키세요."
       }
     }
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

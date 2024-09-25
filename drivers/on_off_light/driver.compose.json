@@ -1,11 +1,23 @@
 {
   "name": {
     "en": "On/Off Light",
-    "nl": "Aan/Uit Licht"
+    "nl": "Aan/Uit Licht",
+    "da": "Tænd/Sluk Lys",
+    "de": "Ein/Aus Licht",
+    "es": "Luz Encendido/Apagado",
+    "fr": "Lumière Marche/Arrêt",
+    "it": "Luce Accendi/Spegni",
+    "no": "På/Av Lys",
+    "sv": "På/Av Ljus",
+    "pl": "Światło Włącz/Wyłącz",
+    "ru": "Вкл/Выкл Свет",
+    "ko": "켜기/끄기 조명"
   },
   "class": "light",
   "capabilities": [
     "onoff"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

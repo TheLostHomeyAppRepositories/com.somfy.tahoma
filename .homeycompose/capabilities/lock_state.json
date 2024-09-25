@@ -2,7 +2,17 @@
   "type": "string",
   "title": {
     "en": "Lock State",
-    "nl": "Vergrendelingsstatus"
+    "nl": "Vergrendelingsstatus",
+    "da": "Låsetilstand",
+    "de": "Schließzustand",
+    "es": "Estado de bloqueo",
+    "fr": "État du verrou",
+    "it": "Stato di blocco",
+    "no": "Låsetilstand",
+    "sv": "Låsstatus",
+    "pl": "Stan zamka",
+    "ru": "Состояние замка",
+    "ko": "잠금 상태"
   },
   "getable": true,
   "setable": false,

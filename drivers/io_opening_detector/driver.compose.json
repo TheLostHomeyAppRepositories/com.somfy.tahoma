@@ -1,7 +1,17 @@
 {
   "name": {
     "en": "Opening Detector (io)",
-    "nl": "Openingsmelder (io)"
+    "nl": "Openingsmelder (io)",
+    "da": "Åbningsdetektor (io)",
+    "de": "Öffnungsdetektor (io)",
+    "es": "Detector de Apertura (io)",
+    "fr": "Détecteur d'Ouverture (io)",
+    "it": "Rivelatore di Apertura (io)",
+    "no": "Åpningsdetektor (io)",
+    "sv": "Öppningsdetektor (io)",
+    "pl": "Detektor Otwarcia (io)",
+    "ru": "Датчик Открывания (io)",
+    "ko": "개폐 감지기 (io)"
   },
   "class": "sensor",
   "energy": {
@@ -15,5 +25,7 @@
     "defect_state",
     "alarm_battery"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

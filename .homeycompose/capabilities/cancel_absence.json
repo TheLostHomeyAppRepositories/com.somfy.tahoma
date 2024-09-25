@@ -5,6 +5,16 @@
   "uiComponent": "button",
   "title": {
     "en": "Cancel Absence",
-    "nl": "Afwezigheid annuleren"
+    "nl": "Afwezigheid annuleren",
+    "da": "Annuller fravær",
+    "de": "Abwesenheit stornieren",
+    "es": "Cancelar ausencia",
+    "fr": "Annuler l'absence",
+    "it": "Annulla assenza",
+    "no": "Avbryt fravær",
+    "sv": "Avbryt frånvaro",
+    "pl": "Anuluj nieobecność",
+    "ru": "Отменить отсутствие",
+    "ko": "결석 취소"
   }
 }

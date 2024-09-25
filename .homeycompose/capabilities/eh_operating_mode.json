@@ -2,95 +2,235 @@
   "type": "enum",
   "title": {
     "en": "Operating Mode",
-    "nl": "Bedrijfsmodus:"
+    "nl": "Bedrijfsmodus:",
+    "da": "Betjeningsmåde",
+    "de": "Betriebsmodus",
+    "es": "Modo de funcionamiento",
+    "fr": "Mode de fonctionnement",
+    "it": "Modalità operativa",
+    "no": "Driftsmodus",
+    "sv": "Driftsläge",
+    "pl": "Tryb działania",
+    "ru": "Режим работы",
+    "ko": "작동 모드"
   },
   "values": [
     {
       "id": "antifreeze",
       "title": {
         "en": "Antifreeze",
-        "nl": "Antivries"
+        "nl": "Antivries",
+        "da": "Frostvæske",
+        "de": "Frostschutzmittel",
+        "es": "Anticongelante",
+        "fr": "Antigel",
+        "it": "Antigelo",
+        "no": "Frostvæske",
+        "sv": "Frostskyddsmedel",
+        "pl": "Płyn przeciw zamarzaniu",
+        "ru": "Антифриз",
+        "ko": "부동액"
       }
     },
     {
       "id": "auto",
       "title": {
         "en": "Automatic",
-        "nl": "Automatisch"
+        "nl": "Automatisch",
+        "da": "Automatisk",
+        "de": "Automatisch",
+        "es": "Automático",
+        "fr": "Automatique",
+        "it": "Automatico",
+        "no": "Automatisk",
+        "sv": "Automatisk",
+        "pl": "Automatyczny",
+        "ru": "Автоматический",
+        "ko": "자동"
       }
     },
     {
       "id": "away",
       "title": {
         "en": "Away",
-        "nl": "Weg"
+        "nl": "Weg",
+        "da": "Væk",
+        "de": "Abwesend",
+        "es": "Fuera",
+        "fr": "Absent",
+        "it": "Assente",
+        "no": "Borte",
+        "sv": "Borta",
+        "pl": "Poza domem",
+        "ru": "Вне дома",
+        "ko": "외출"
       }
     },
     {
       "id": "boost",
       "title": {
-        "en": "Boost"
+        "en": "Boost",
+        "da": "Boost",
+        "de": "Schub",
+        "es": "Impulso",
+        "fr": "Boost",
+        "it": "Boost",
+        "no": "Boost",
+        "sv": "Boost",
+        "pl": "Boost",
+        "ru": "Форсаж",
+        "ko": "부스트"
       }
     },
     {
       "id": "eco",
       "title": {
-        "en": "Eco"
+        "en": "Eco",
+        "da": "Øko",
+        "de": "Öko",
+        "es": "Ecológico",
+        "fr": "Éco",
+        "it": "Eco",
+        "no": "Øko",
+        "sv": "Ekonomisk",
+        "pl": "Eko",
+        "ru": "Эко",
+        "ko": "에코"
       }
     },
     {
       "id": "frostprotection",
       "title": {
         "en": "Frost Protection",
-        "nl": "Vorstbescherming"
+        "nl": "Vorstbescherming",
+        "da": "Frostbeskyttelse",
+        "de": "Frostschutz",
+        "es": "Protección contra heladas",
+        "fr": "Protection contre le gel",
+        "it": "Protezione antigelo",
+        "no": "Frostbeskyttelse",
+        "sv": "Frostskydd",
+        "pl": "Ochrona przed mrozem",
+        "ru": "Защита от замерзания",
+        "ko": "동파방지"
       }
     },
     {
       "id": "manual",
       "title": {
         "en": "Manual",
-        "nl": "Handmatig"
+        "nl": "Handmatig",
+        "da": "Manuel",
+        "de": "Manuell",
+        "es": "Manual",
+        "fr": "Manuel",
+        "it": "Manuale",
+        "no": "Manuell",
+        "sv": "Manuell",
+        "pl": "Ręczny",
+        "ru": "Ручной",
+        "ko": "수동"
       }
     },
     {
       "id": "max",
       "title": {
         "en": "Maximum",
-        "nl": "Maximaal"
+        "nl": "Maximaal",
+        "da": "Maksimum",
+        "de": "Maximal",
+        "es": "Máximo",
+        "fr": "Maximum",
+        "it": "Massimo",
+        "no": "Maksimum",
+        "sv": "Maximum",
+        "pl": "Maksymalny",
+        "ru": "Максимальный",
+        "ko": "최대"
       }
     },
     {
       "id": "normal",
       "title": {
         "en": "Normal",
-        "nl": "Normaal"
+        "nl": "Normaal",
+        "da": "Normal",
+        "de": "Normal",
+        "es": "Normal",
+        "fr": "Normal",
+        "it": "Normale",
+        "no": "Normal",
+        "sv": "Normal",
+        "pl": "Normalny",
+        "ru": "Обычный",
+        "ko": "표준"
       }
     },
     {
       "id": "off",
       "title": {
         "en": "Off",
-        "nl": "Uit"
+        "nl": "Uit",
+        "da": "Slukke",
+        "de": "Aus",
+        "es": "Apagar",
+        "fr": "Éteindre",
+        "it": "Spento",
+        "no": "Av",
+        "sv": "Av",
+        "pl": "Wyłączone",
+        "ru": "Выкл",
+        "ko": "끄기"
       }
     },
     {
       "id": "on",
       "title": {
         "en": "On",
-        "nl": "Op"
+        "nl": "Op",
+        "da": "På",
+        "de": "An",
+        "es": "Encendido",
+        "fr": "Allumé",
+        "it": "Acceso",
+        "no": "På",
+        "sv": "På",
+        "pl": "Włączone",
+        "ru": "Вкл",
+        "ko": "켜기"
       }
     },
     {
       "id": "prog",
       "title": {
-        "en": "Prog"
+        "en": "Prog",
+        "da": "Prog",
+        "de": "Prog",
+        "es": "Prog",
+        "fr": "Prog",
+        "it": "Prog",
+        "no": "Prog",
+        "sv": "Prog",
+        "pl": "Prog",
+        "ru": "Прог",
+        "ko": "프로그"
       }
     },
     {
       "id": "program",
       "title": {
         "en": "Program",
-        "nl": "Programma"
+        "nl": "Programma",
+        "da": "Program",
+        "de": "Programm",
+        "es": "Programa",
+        "fr": "Programme",
+        "it": "Programma",
+        "no": "Program",
+        "sv": "Program",
+        "pl": "Program",
+        "ru": "Программа",
+        "ko": "프로그램"
       }
     }
   ],

@@ -1,10 +1,23 @@
 {
   "name": {
-    "en": "IO Heating Interface"
+    "en": "IO Heating Interface",
+    "nl": "IO Verwarmingsinterface",
+    "da": "IO Opvarmningsgrænseflade",
+    "de": "IO Heizschnittstelle",
+    "es": "Interfaz de Calefacción IO",
+    "fr": "Interface de Chauffage IO",
+    "it": "Interfaccia di Riscaldamento IO",
+    "no": "IO Oppvarmingsgrensesnitt",
+    "sv": "IO Uppvärmningsgränssnitt",
+    "pl": "Interfejs Ogrzewania IO",
+    "ru": "Интерфейс отопления IO",
+    "ko": "IO 난방 인터페이스"
   },
   "class": "heater",
   "capabilities": [
     "heating_level2_state"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

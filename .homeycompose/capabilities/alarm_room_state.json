@@ -5,16 +5,46 @@
   "uiComponent": "sensor",
   "title": {
     "en": "Sensor Dirty",
-    "nl": "Sensor vuil"
+    "nl": "Sensor vuil",
+    "da": "Sensor beskidt",
+    "de": "Sensor schmutzig",
+    "es": "Sensor sucio",
+    "fr": "Capteur sale",
+    "it": "Sensore sporco",
+    "no": "Sensor skitten",
+    "sv": "Sensor smutsig",
+    "pl": "Czujnik brudny",
+    "ru": "Датчик грязный",
+    "ko": "센서 더러움"
   },
   "icon": "/assets/dirty.svg",
   "insights": true,
   "insightsTitleTrue": {
     "en": "clean",
-    "nl": "Schoon"
+    "nl": "Schoon",
+    "da": "ren",
+    "de": "sauber",
+    "es": "limpio",
+    "fr": "propre",
+    "it": "pulito",
+    "no": "ren",
+    "sv": "ren",
+    "pl": "czysty",
+    "ru": "чистый",
+    "ko": "깨끗한"
   },
   "insightsTitleFalse": {
     "en": "dirty",
-    "nl": "Vies"
+    "nl": "Vies",
+    "da": "beskidt",
+    "de": "schmutzig",
+    "es": "sucio",
+    "fr": "sale",
+    "it": "sporco",
+    "no": "skitten",
+    "sv": "smutsig",
+    "pl": "brudny",
+    "ru": "грязный",
+    "ko": "더러운"
   }
 }

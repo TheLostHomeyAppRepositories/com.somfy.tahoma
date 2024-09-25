@@ -6,6 +6,16 @@
   "icon": "/assets/calendar.svg",
   "title": {
     "en": "Activate Agenda / Timer",
-    "nl": "Activeer Agenda / Timer"
+    "nl": "Activeer Agenda / Timer",
+    "da": "Aktiver Agenda / Timer",
+    "de": "Agenda / Timer aktivieren",
+    "es": "Activar Agenda / Temporizador",
+    "fr": "Activer l'agenda / le minuteur",
+    "it": "Attiva Agenda / Timer",
+    "no": "Aktiver Agenda / Timer",
+    "sv": "Aktivera Agenda / Timer",
+    "pl": "Aktywuj Agendę / Timer",
+    "ru": "Активировать Повестку дня / Таймер",
+    "ko": "일정 / 타이머 활성화"
   }
 }

@@ -2,15 +2,45 @@
   "id": "set_heat_level",
   "title": {
     "en": "Set the heat level",
-    "nl": "Stel het warmteniveau in"
+    "nl": "Stel het warmteniveau in",
+    "da": "Indstil varmeniveauet",
+    "de": "Stellen Sie die Heizstufe ein",
+    "es": "Establecer el nivel de calor",
+    "fr": "Définir le niveau de chaleur",
+    "it": "Imposta il livello di calore",
+    "no": "Sett varmenivået",
+    "sv": "Ställ in värmenivån",
+    "pl": "Ustaw poziom ciepła",
+    "ru": "Установите уровень тепла",
+    "ko": "난방 수준 설정"
   },
   "titleFormatted": {
     "en": "Set the heat level to [[heat_level]]%",
-    "nl": "Stel het warmteniveau in op [[heat_level]]%"
+    "nl": "Stel het warmteniveau in op [[heat_level]]%",
+    "da": "Indstil varmeniveauet til [[heat_level]]%",
+    "de": "Stellen Sie die Heizstufe auf [[heat_level]]%",
+    "es": "Establecer el nivel de calor a [[heat_level]]%",
+    "fr": "Définir le niveau de chaleur à [[heat_level]]%",
+    "it": "Imposta il livello di calore al [[heat_level]]%",
+    "no": "Sett varmenivået til [[heat_level]]%",
+    "sv": "Ställ in värmenivån till [[heat_level]]%",
+    "pl": "Ustaw poziom ciepła na [[heat_level]]%",
+    "ru": "Установите уровень тепла на [[heat_level]]%",
+    "ko": "[[heat_level]]%로 난방 수준 설정"
   },
   "hint": {
     "en": "Sets the heat output level to the specified value",
-    "nl": "Stelt het warmtevermogensniveau in op de opgegeven waarde"
+    "nl": "Stelt het warmtevermogensniveau in op de opgegeven waarde",
+    "da": "Indstiller varmeudgangsniveauet til den angivne værdi",
+    "de": "Stellt das Heizleistungsniveau auf den angegebenen Wert ein",
+    "es": "Establece el nivel de salida de calor al valor especificado",
+    "fr": "Définit le niveau de sortie de chaleur à la valeur spécifiée",
+    "it": "Imposta il livello di uscita del calore al valore specificato",
+    "no": "Stiller varmeeffektnivået til den spesifiserte verdien",
+    "sv": "Ställer in värmeutgångsnivån till det specificerade värdet",
+    "pl": "Ustawia poziom wyjściowy ciepła na określoną wartość",
+    "ru": "Устанавливает уровень тепловой мощности на заданное значение",
+    "ko": "지정된 값으로 열 출력 수준을 설정합니다"
   },
   "args": [
     {
@@ -19,17 +49,27 @@
       "filter": "driver_id=heater_variable"
     },
     {
-        "name": "heat_level",
-        "type": "number",
-        "title": {
-            "en": "Heat Level",
-            "nl": "Warmteniveau"
-        },
-        "min": 0,
-        "max": 100,
-        "placeholder": {
-            "en": "%"
-        }
-  }
+      "name": "heat_level",
+      "type": "number",
+      "title": {
+        "en": "Heat Level",
+        "nl": "Warmteniveau",
+        "da": "Varme Niveau",
+        "de": "Heizstufe",
+        "es": "Nivel de Calor",
+        "fr": "Niveau de Chaleur",
+        "it": "Livello di Calore",
+        "no": "Varmenivå",
+        "sv": "Värmenivå",
+        "pl": "Poziom Ciepła",
+        "ru": "Уровень Тепла",
+        "ko": "난방 수준"
+      },
+      "min": 0,
+      "max": 100,
+      "placeholder": {
+        "en": "%"
+      }
+    }
   ]
 }

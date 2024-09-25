@@ -3,14 +3,36 @@
     {
       "id": "calendar_state_on",
       "title": {
-        "en": "Activate Agenda / Timer"
+        "en": "Activate Agenda / Timer",
+        "nl": "Agenda / Timer activeren",
+        "da": "Aktiver Agenda / Timer",
+        "de": "Agenda / Timer aktivieren",
+        "es": "Activar Agenda / Temporizador",
+        "fr": "Activer Agenda / Minuteur",
+        "it": "Attiva Agenda / Timer",
+        "no": "Aktiver Agenda / Timer",
+        "sv": "Aktivera Agenda / Timer",
+        "pl": "Aktywuj Agendę / Timer",
+        "ru": "Активировать Повестка / Таймер",
+        "ko": "일정 / 타이머 활성화"
       },
       "args": []
     },
     {
       "id": "calendar_state_off",
       "title": {
-        "en": "Deactivate Agenda / Timer"
+        "en": "Deactivate Agenda / Timer",
+        "nl": "Agenda / Timer deactiveren",
+        "da": "Deaktiver Agenda / Timer",
+        "de": "Agenda / Timer deaktivieren",
+        "es": "Desactivar Agenda / Temporizador",
+        "fr": "Désactiver Agenda / Minuteur",
+        "it": "Disattiva Agenda / Timer",
+        "no": "Deaktiver Agenda / Timer",
+        "sv": "Inaktivera Agenda / Timer",
+        "pl": "Dezaktywuj Agendę / Timer",
+        "ru": "Деактивировать Повестка / Таймер",
+        "ko": "일정 / 타이머 비활성화"
       },
       "args": []
     }

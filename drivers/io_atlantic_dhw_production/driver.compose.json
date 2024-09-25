@@ -1,6 +1,17 @@
 {
   "name": {
-    "en": "Atlantic Hot Water Production"
+    "en": "Atlantic Hot Water Production",
+    "nl": "Atlantische Warmwaterproductie",
+    "da": "Atlantisk Varmtvandsproduktion",
+    "de": "Atlantische Warmwasserproduktion",
+    "es": "Producción de Agua Caliente Atlántica",
+    "fr": "Production d'Eau Chaude Atlantique",
+    "it": "Produzione di Acqua Calda Atlantica",
+    "no": "Atlantisk Varmtvannsproduksjon",
+    "sv": "Atlantisk Vattenproduktion",
+    "pl": "Atlantycka Produkcja Ciepłej Wody",
+    "ru": "Атлантическое производство горячей воды",
+    "ko": "대서양 온수 생산"
   },
   "class": "heater",
   "capabilities": [
@@ -17,5 +28,7 @@
       "max": 60
     }
   },
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

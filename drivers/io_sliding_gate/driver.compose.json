@@ -1,11 +1,24 @@
 {
   "name": {
-    "en": "Sliding gate (io)"
+    "en": "Sliding gate (io)",
+    "nl": "Schuifpoort (io)",
+    "da": "Skydelåge (io)",
+    "de": "Schiebetor (io)",
+    "es": "Puerta corredera (io)",
+    "fr": "Portail coulissant (io)",
+    "it": "Cancello scorrevole (io)",
+    "no": "Skyveport (io)",
+    "sv": "Skjutport (io)",
+    "pl": "Brama przesuwna (io)",
+    "ru": "Раздвижные ворота (io)",
+    "ko": "슬라이딩 게이트 (io)"
   },
   "class": "other",
   "capabilities": [
     "pedestrian",
     "windowcoverings_state"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

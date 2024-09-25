@@ -5,16 +5,46 @@
   "uiComponent": "button",
   "title": {
     "en": "Open Window Activation",
-    "nl": "Open Venster Activering"
+    "nl": "Open Venster Activering",
+    "da": "Åben Windows-aktivering",
+    "de": "Fensteraktivierung öffnen",
+    "es": "Activación de ventana abierta",
+    "fr": "Activation de la fenêtre ouverte",
+    "it": "Attivazione finestra aperta",
+    "no": "Åpen vindusaktivering",
+    "sv": "Öppen fönsteraktivering",
+    "pl": "Aktywacja otwartego okna",
+    "ru": "Активация открытого окна",
+    "ko": "창문 열기 활성화"
   },
   "insights": true,
   "insightsTitleTrue": {
     "en": "Open Windows detection turned on",
-    "nl": "Open Windows-detectie ingeschakeld"
+    "nl": "Open Windows-detectie ingeschakeld",
+    "da": "Registrering af åbne vinduer er slået til",
+    "de": "Erkennung offener Fenster eingeschaltet",
+    "es": "Detección de ventanas abiertas activada",
+    "fr": "Détection de fenêtres ouvertes activée",
+    "it": "Rilevamento finestra aperta attivato",
+    "no": "Åpne vinduer deteksjon aktivert",
+    "sv": "Öppen fönsterdetektering aktiverad",
+    "pl": "Wykrywanie otwartych okien włączone",
+    "ru": "Обнаружение открытых окон включено",
+    "ko": "창문 감지가 켜졌습니다"
   },
   "insightsTitleFalse": {
     "en": "Open Windows detection turned off",
-    "nl": "Open Windows-detectie uitgeschakeld"
+    "nl": "Open Windows-detectie uitgeschakeld",
+    "da": "Registrering af åbne vinduer er slået fra",
+    "de": "Erkennung offener Fenster ausgeschaltet",
+    "es": "Detección de ventanas abiertas desactivada",
+    "fr": "Détection de fenêtres ouvertes désactivée",
+    "it": "Rilevamento finestra aperta disattivato",
+    "no": "Åpne vinduer deteksjon deaktivert",
+    "sv": "Öppen fönsterdetektering avaktiverad",
+    "pl": "Wykrywanie otwartych okien wyłączone",
+    "ru": "Обнаружение открытых окон выключено",
+    "ko": "창문 감지가 꺼졌습니다"
   },
   "icon": "/assets/open_windows.svg"
 }

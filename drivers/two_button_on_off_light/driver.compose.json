@@ -1,7 +1,17 @@
 {
   "name": {
     "en": "Light with Timer (RTS)",
-    "nl": "Licht met timer (RTS)"
+    "nl": "Licht met timer (RTS)",
+    "da": "Lys med timer (RTS)",
+    "de": "Licht mit Timer (RTS)",
+    "es": "Luz con temporizador (RTS)",
+    "fr": "Lumière avec minuterie (RTS)",
+    "it": "Luce con timer (RTS)",
+    "no": "Lys med timer (RTS)",
+    "sv": "Ljuskälla med timer (RTS)",
+    "pl": "Światło z timerem (RTS)",
+    "ru": "Свет с таймером (RTS)",
+    "ko": "타이머가 있는 조명 (RTS)"
   },
   "class": "button",
   "capabilities": [
@@ -9,5 +19,7 @@
     "off_button",
     "on_with_timer"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

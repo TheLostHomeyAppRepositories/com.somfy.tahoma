@@ -1,10 +1,23 @@
 {
   "name": {
-    "en": "Remote Control"
+    "en": "Remote Control",
+    "nl": "Afstandsbediening",
+    "da": "Fjernbetjening",
+    "de": "Fernbedienung",
+    "es": "Control remoto",
+    "fr": "Télécommande",
+    "it": "Telecomando",
+    "no": "Fjernkontroll",
+    "sv": "Fjärrkontroll",
+    "pl": "Pilot",
+    "ru": "Пульт дистанционного управления",
+    "ko": "리모컨"
   },
   "class": "remote",
   "capabilities": [
     "remote_state"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

@@ -2,7 +2,17 @@
   "type": "number",
   "title": {
     "en": "Signal Strength",
-    "nl": "De signaalsterkte"
+    "nl": "De signaalsterkte",
+    "da": "Signalstyrke",
+    "de": "Signalstärke",
+    "es": "Intensidad de la señal",
+    "fr": "Force du signal",
+    "it": "Potenza del segnale",
+    "no": "Signalstyrke",
+    "sv": "Signalstyrka",
+    "pl": "Siła sygnału",
+    "ru": "Сила сигнала",
+    "ko": "신호 강도"
   },
   "getable": true,
   "setable": false,

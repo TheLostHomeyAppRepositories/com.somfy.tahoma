@@ -1,44 +1,104 @@
 {
-    "actions": [
+  "actions": [
+    {
+      "id": "set_open_close_stop",
+      "title": {
+        "en": "Open, Close or Stop gate",
+        "da": "Åbn, luk eller stop porten",
+        "de": "Tor öffnen, schließen oder stoppen",
+        "es": "Abrir, cerrar o detener puerta",
+        "fr": "Ouvrir, fermer ou arrêter la porte",
+        "it": "Apri, chiudi o ferma il cancello",
+        "no": "Åpne, lukke eller stoppe porten",
+        "sv": "Öppna, stäng eller stoppa porten",
+        "pl": "Otwórz, zamknij lub zatrzymaj bramę",
+        "ru": "Открыть, закрыть или остановить ворота",
+        "ko": "문 열기, 닫기 또는 정지"
+      },
+      "titleFormatted": {
+        "en": "[[state]] the gate",
+        "da": "[[state]] porten",
+        "de": "[[state]] das Tor",
+        "es": "[[state]] la puerta",
+        "fr": "[[state]] la porte",
+        "it": "[[state]] il cancello",
+        "no": "[[state]] porten",
+        "sv": "[[state]] porten",
+        "pl": "[[state]] bramę",
+        "ru": "[[state]] ворота",
+        "ko": "문 [[state]]"
+      },
+      "args": [
         {
-            "id": "set_open_close_stop",
-            "title": {
-                "en": "Open, Close or Stop gate"
+          "name": "state",
+          "type": "dropdown",
+          "title": {
+            "en": "Open / Close state",
+            "da": "Åbn / Luk tilstand",
+            "de": "Öffnen / Schließen Zustand",
+            "es": "Estado Abierto / Cerrado",
+            "fr": "État Ouvert / Fermé",
+            "it": "Stato Aperto / Chiuso",
+            "no": "Åpen / Lukket tilstand",
+            "sv": "Öppen / Stängd tillstånd",
+            "pl": "Stan Otwórz / Zamknij",
+            "ru": "Состояние Открыть / Закрыть",
+            "ko": "열기 / 닫기 상태"
+          },
+          "values": [
+            {
+              "id": "open",
+              "label": {
+                "en": "Open",
+                "da": "Åben",
+                "de": "Offen",
+                "es": "Abierto",
+                "fr": "Ouvert",
+                "it": "Aperto",
+                "no": "Åpen",
+                "sv": "Öppen",
+                "pl": "Otwarty",
+                "ru": "Открыть",
+                "ko": "열기"
+              }
             },
-            "titleFormatted": {
-                "en": "[[state]] the gate"
+            {
+              "id": "close",
+              "label": {
+                "en": "Close",
+                "nl": "Dichtbij",
+                "da": "Lukke",
+                "de": "Schließen",
+                "es": "Cerrado",
+                "fr": "Fermer",
+                "it": "Chiudi",
+                "no": "Lukke",
+                "sv": "Stänga",
+                "pl": "Zamknij",
+                "ru": "Закрыть",
+                "ko": "닫기"
+              }
             },
-            "args": [
-                {
-                    "name": "state",
-                    "type": "dropdown",
-                    "title": {
-                        "en": "Open / Close state"
-                    },
-                    "values": [
-                        {
-                            "id": "open",
-                            "label": {
-                                "en": "Open"
-                            }
-                        },
-                        {
-                            "id": "close",
-                            "label": {
-                                "en": "Close",
-                                "nl": "Dichtbij"
-                            }
-                        },
-                        {
-                            "id": "stop",
-                            "label": {
-                                "en": "Stop",
-                                "nl": "Hou op"
-                            }
-                        }
-                    ]
-                }
-            ]
+            {
+              "id": "stop",
+              "label": {
+                "en": "Stop",
+                "nl": "Hou op",
+                "da": "Stop",
+                "de": "Stopp",
+                "es": "Detener",
+                "fr": "Arrêter",
+                "it": "Fermare",
+                "no": "Stopp",
+                "sv": "Stoppa",
+                "pl": "Zatrzymaj",
+                "ru": "Стоп",
+                "ko": "정지"
+              }
+            }
+          ]
         }
-    ]
+      ]
+    }
+  ]
 }

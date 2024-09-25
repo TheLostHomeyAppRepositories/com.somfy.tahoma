@@ -5,6 +5,16 @@
   "uiComponent": "button",
   "title": {
     "en": "Stop",
-    "nl": "Hou op"
+    "nl": "Hou op",
+    "da": "Stop",
+    "de": "Stopp",
+    "es": "Parar",
+    "fr": "Arrêter",
+    "it": "Ferma",
+    "no": "Stopp",
+    "sv": "Stoppa",
+    "pl": "Stop",
+    "ru": "Стоп",
+    "ko": "정지"
   }
 }
