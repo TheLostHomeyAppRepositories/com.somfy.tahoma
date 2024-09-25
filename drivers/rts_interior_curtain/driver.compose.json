@@ -1,7 +1,17 @@
 {
   "name": {
     "en": "Interior Curtain (RTS)",
-    "nl": "Binnengordijn (RTS)"
+    "nl": "Binnengordijn (RTS)",
+    "da": "Indvendigt Gardin (RTS)",
+    "de": "Innenvorhang (RTS)",
+    "es": "Cortina Interior (RTS)",
+    "fr": "Rideau Intérieur (RTS)",
+    "it": "Tenda Interna (RTS)",
+    "no": "Innvendig Gardin (RTS)",
+    "sv": "Invändig Gardin (RTS)",
+    "pl": "Zasłona Wewnętrzna (RTS)",
+    "ru": "Внутренняя штора (RTS)",
+    "ko": "내부 커튼 (RTS)"
   },
   "class": "curtain",
   "capabilities": [
@@ -14,14 +24,36 @@
       "type": "checkbox",
       "label": {
         "en": "Invert Up / Down",
-        "nl": "Omkeren omhoog / omlaag"
+        "nl": "Omkeren omhoog / omlaag",
+        "da": "Omdrej Op / Ned",
+        "de": "Oben/Unten umkehren",
+        "es": "Invertir Arriba / Abajo",
+        "fr": "Inverser Haut / Bas",
+        "it": "Inverti Su / Giù",
+        "no": "Inverter Opp / Ned",
+        "sv": "Invertera Upp / Ner",
+        "pl": "Odwróć Góra / Dół",
+        "ru": "Инвертировать Вверх / Вниз",
+        "ko": "위/아래 반전"
       },
       "value": false,
       "hint": {
         "en": "Reverse the Up / Down direction controls",
-        "nl": "Draai de bedieningselementen omhoog/omlaag om"
+        "nl": "Draai de bedieningselementen omhoog/omlaag om",
+        "da": "Vend om på Op / Ned retningskontrollerne",
+        "de": "Richtung der Oben/Unten-Steuerung umkehren",
+        "es": "Invertir los controles de dirección Arriba / Abajo",
+        "fr": "Inversez les commandes de direction Haut / Bas",
+        "it": "Inverti i controlli di direzione Su / Giù",
+        "no": "Reverser Opp / Ned retningskontrollene",
+        "sv": "Invertera Upp / Ner riktningskontrollerna",
+        "pl": "Odwróć kontrolki kierunku Góra / Dół",
+        "ru": "Инвертировать элементы управления направления Вверх / Вниз",
+        "ko": "상/하 방향 컨트롤 반전"
       }
     }
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

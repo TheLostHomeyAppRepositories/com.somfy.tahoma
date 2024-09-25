@@ -1,155 +1,373 @@
 {
-    "actions": [
+  "actions": [
+    {
+      "id": "eco_temperature_set",
+      "title": {
+        "en": "Set the Eco temperature",
+        "da": "Indstil eco-temperaturen",
+        "de": "Eco-Temperatur einstellen",
+        "es": "Configurar la temperatura Eco",
+        "fr": "Régler la température Eco",
+        "it": "Imposta la temperatura Eco",
+        "no": "Sett Eco-temperaturen",
+        "sv": "Ställ in Eco-temperaturen",
+        "pl": "Ustaw temperaturę Eco",
+        "ru": "Установить эко температуру",
+        "ko": "에코 온도 설정"
+      },
+      "titleFormatted": {
+        "en": "Set the Eco temperature to [[target_temperature]]",
+        "da": "Indstil eco-temperaturen til [[target_temperature]]",
+        "de": "Eco-Temperatur auf [[target_temperature]] einstellen",
+        "es": "Configurar la temperatura Eco a [[target_temperature]]",
+        "fr": "Régler la température Eco à [[target_temperature]]",
+        "it": "Imposta la temperatura Eco a [[target_temperature]]",
+        "no": "Sett Eco-temperaturen til [[target_temperature]]",
+        "sv": "Ställ in Eco-temperaturen till [[target_temperature]]",
+        "pl": "Ustaw temperaturę Eco na [[target_temperature]]",
+        "ru": "Установить эко температуру на [[target_temperature]]",
+        "ko": "에코 온도를 [[target_temperature]]로 설정"
+      },
+      "args": [
         {
-            "id": "eco_temperature_set",
-            "title": {
-                "en": "Set the Eco temperature"
-            },
-            "titleFormatted": {
-                "en": "Set the Eco temperature to [[target_temperature]]"
-            },
-            "args": [
-                {
-                    "name": "target_temperature",
-                    "type": "range",
-                    "title": {
-                        "en": "Target Temperature"
-                    },
-                    "min": 30,
-                    "max": 60,
-                    "step": 1,
-                    "label": "°C",
-                    "labelDecimals": 0
-                }
-            ]
-        },
-        {
-            "id": "comfort_temperature_set",
-            "title": {
-                "en": "Set the Comfort temperature"
-            },
-            "titleFormatted": {
-                "en": "Set the comfort temperature to [[target_temperature]]"
-            },
-            "args": [
-                {
-                    "name": "target_temperature",
-                    "type": "range",
-                    "title": {
-                        "en": "Target Temperature"
-                    },
-                    "min": 30,
-                    "max": 60,
-                    "step": 1,
-                    "label": "°C",
-                    "labelDecimals": 0
-                }
-            ]
-        },
-        {
-            "id": "boiler_mode_set",
-            "title": {
-                "en": "Set the boiler mode"
-            },
-            "titleFormatted": {
-                "en": "Set the boiler mode to [[state]]"
-            },
-            "args": [
-                {
-                    "name": "state",
-                    "type": "dropdown",
-                    "title": {
-                        "en": "Mode"
-                    },
-                    "values": [
-                        {
-                            "id": "comfort",
-                            "label": {
-                                "en": "Comfort"
-                            }
-                        },
-                        {
-                            "id": "eco",
-                            "label": {
-                                "en": "Eco"
-                            }
-                        },
-                        {
-                            "id": "externalScheduling",
-                            "label": {
-                                "en": "External Scheduling"
-                            }
-                        },
-                        {
-                            "id": "internalScheduling",
-                            "label": {
-                                "en": "Internal Scheduling"
-                            }
-                        },
-                        {
-                            "id": "manu",
-                            "label": {
-                                "en": "Manual",
-                                "nl": "Handmatig"
-                            }
-                        },
-                        {
-                            "id": "peakAndOffPeakScheduling",
-                            "label": {
-                                "en": "Peak And Off Peak Scheduling"
-                            }
-                        },
-                        {
-                            "id": "peakAndOffPeakTimes",
-                            "label": {
-                                "en": "Peak And Off Peak Times"
-                            }
-                        },
-                        {
-                            "id": "stop",
-                            "label": {
-                                "en": "Stop",
-                                "nl": "Hou op"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "boost_on_off",
-            "title": {
-                "en": "Turn boost On / Off",
-                "nl": "Zet aan / uit"
-            },
-            "titleFormatted": {
-                "en": "Turn boost [[state]]"
-            },
-            "args": [
-                {
-                    "name": "state",
-                    "type": "dropdown",
-                    "title": {
-                        "en": "State"
-                    },
-                    "values": [
-                        {
-                            "id": "on",
-                            "label": {
-                                "en": "On",
-                                "nl": "aan"
-                            }
-                        },
-                        {
-                            "id": "off",
-                            "label": {
-                                "en": "Off",
-                                "nl": "uit"
-                            }
-                        }
-                    ]
-                }
-            ]
+          "name": "target_temperature",
+          "type": "range",
+          "title": {
+            "en": "Target Temperature",
+            "da": "Mål Temperatur",
+            "de": "Zieltemperatur",
+            "es": "Temperatura Objetivo",
+            "fr": "Température cible",
+            "it": "Temperatura obiettivo",
+            "no": "Mål temperatur",
+            "sv": "Måltemperatur",
+            "pl": "Temperatura docelowa",
+            "ru": "Целевая температура",
+            "ko": "목표 온도"
+          },
+          "min": 30,
+          "max": 60,
+          "step": 1,
+          "label": "°C",
+          "labelDecimals": 0
         }
-    ]
+      ]
+    },
+    {
+      "id": "comfort_temperature_set",
+      "title": {
+        "en": "Set the Comfort temperature",
+        "da": "Indstil komforttemperaturen",
+        "de": "Komforttemperatur einstellen",
+        "es": "Configurar la temperatura de confort",
+        "fr": "Régler la température de confort",
+        "it": "Imposta la temperatura di comfort",
+        "no": "Sett komforttemperaturen",
+        "sv": "Ställ in komforttemperaturen",
+        "pl": "Ustaw temperaturę komfortu",
+        "ru": "Установить комфортную температуру",
+        "ko": "쾌적 온도 설정"
+      },
+      "titleFormatted": {
+        "en": "Set the comfort temperature to [[target_temperature]]",
+        "da": "Indstil komforttemperaturen til [[target_temperature]]",
+        "de": "Komforttemperatur auf [[target_temperature]] einstellen",
+        "es": "Configurar la temperatura de confort a [[target_temperature]]",
+        "fr": "Régler la température de confort à [[target_temperature]]",
+        "it": "Imposta la temperatura di comfort a [[target_temperature]]",
+        "no": "Sett komforttemperaturen til [[target_temperature]]",
+        "sv": "Ställ in komforttemperaturen till [[target_temperature]]",
+        "pl": "Ustaw temperaturę komfortu na [[target_temperature]]",
+        "ru": "Установить комфортную температуру на [[target_temperature]]",
+        "ko": "쾌적 온도를 [[target_temperature]]로 설정"
+      },
+      "args": [
+        {
+          "name": "target_temperature",
+          "type": "range",
+          "title": {
+            "en": "Target Temperature",
+            "da": "Mål Temperatur",
+            "de": "Zieltemperatur",
+            "es": "Temperatura Objetivo",
+            "fr": "Température cible",
+            "it": "Temperatura obiettivo",
+            "no": "Mål temperatur",
+            "sv": "Måltemperatur",
+            "pl": "Temperatura docelowa",
+            "ru": "Целевая температура",
+            "ko": "목표 온도"
+          },
+          "min": 30,
+          "max": 60,
+          "step": 1,
+          "label": "°C",
+          "labelDecimals": 0
+        }
+      ]
+    },
+    {
+      "id": "boiler_mode_set",
+      "title": {
+        "en": "Set the boiler mode",
+        "da": "Indstil kedeldriftstilstanden",
+        "de": "Kesselmodus einstellen",
+        "es": "Configurar el modo de la caldera",
+        "fr": "Régler le mode de la chaudière",
+        "it": "Imposta la modalità caldaia",
+        "no": "Sett kjelens modus",
+        "sv": "Ställ in pannans läge",
+        "pl": "Ustaw tryb kotła",
+        "ru": "Установить режим бойлера",
+        "ko": "보일러 모드 설정"
+      },
+      "titleFormatted": {
+        "en": "Set the boiler mode to [[state]]",
+        "da": "Indstil kedeldriftstilstanden til [[state]]",
+        "de": "Kesselmodus auf [[state]] einstellen",
+        "es": "Configurar el modo de la caldera a [[state]]",
+        "fr": "Régler le mode de la chaudière sur [[state]]",
+        "it": "Imposta la modalità caldaia su [[state]]",
+        "no": "Sett kjelens modus til [[state]]",
+        "sv": "Ställ in pannans läge till [[state]]",
+        "pl": "Ustaw tryb kotła na [[state]]",
+        "ru": "Установить режим бойлера на [[state]]",
+        "ko": "보일러 모드를 [[state]]로 설정"
+      },
+      "args": [
+        {
+          "name": "state",
+          "type": "dropdown",
+          "title": {
+            "en": "Mode",
+            "da": "Metode",
+            "de": "Modus",
+            "es": "Modo",
+            "fr": "Mode",
+            "it": "Modalità",
+            "no": "Modus",
+            "sv": "Läge",
+            "pl": "Tryb",
+            "ru": "Режим",
+            "ko": "모드"
+          },
+          "values": [
+            {
+              "id": "comfort",
+              "label": {
+                "en": "Comfort",
+                "da": "Komfort",
+                "de": "Komfort",
+                "es": "Confort",
+                "fr": "Confort",
+                "it": "Comfort",
+                "no": "Komfort",
+                "sv": "Komfort",
+                "pl": "Komfort",
+                "ru": "Комфорт",
+                "ko": "쾌적"
+              }
+            },
+            {
+              "id": "eco",
+              "label": {
+                "en": "Eco",
+                "da": "Eco",
+                "de": "Eco",
+                "es": "Eco",
+                "fr": "Eco",
+                "it": "Eco",
+                "no": "Eco",
+                "sv": "Eco",
+                "pl": "Eco",
+                "ru": "Эко",
+                "ko": "에코"
+              }
+            },
+            {
+              "id": "externalScheduling",
+              "label": {
+                "en": "External Scheduling",
+                "da": "Ekstern planlægning",
+                "de": "Externe Planung",
+                "es": "Planificación externa",
+                "fr": "Planification externe",
+                "it": "Pianificazione esterna",
+                "no": "Ekstern planlegging",
+                "sv": "Extern schemaläggning",
+                "pl": "Zewnętrzne harmonogramy",
+                "ru": "Внешнее планирование",
+                "ko": "외부 일정 계획"
+              }
+            },
+            {
+              "id": "internalScheduling",
+              "label": {
+                "en": "Internal Scheduling",
+                "da": "Intern planlægning",
+                "de": "Interne Planung",
+                "es": "Planificación interna",
+                "fr": "Planification interne",
+                "it": "Pianificazione interna",
+                "no": "Intern planlegging",
+                "sv": "Intern schemaläggning",
+                "pl": "Wewnętrzne harmonogramy",
+                "ru": "Внутреннее планирование",
+                "ko": "내부 일정 계획"
+              }
+            },
+            {
+              "id": "manu",
+              "label": {
+                "en": "Manual",
+                "fr": "Manuel",
+                "da": "Manuel",
+                "de": "Manuell",
+                "es": "Manual",
+                "it": "Manuale",
+                "no": "Manuell",
+                "sv": "Manuell",
+                "pl": "Ręczny",
+                "ru": "Вручную",
+                "ko": "수동"
+              }
+            },
+            {
+              "id": "peakAndOffPeakScheduling",
+              "label": {
+                "en": "Peak And Off Peak Scheduling",
+                "da": "Spids- og lavplanlægning",
+                "de": "Hoch- und Niedriglastplanung",
+                "es": "Planificación de picos y valles",
+                "fr": "Planification des heures pleines et creuses",
+                "it": "Pianificazione di picco e non",
+                "no": "Planlegging for topptid og lavtid",
+                "sv": "Schemaläggning för hög- och lågtider",
+                "pl": "Harmonogramy szczytowe i poza szczytem",
+                "ru": "Планирование в пиковое и непиковое время",
+                "ko": "피크 및 비피크 일정 계획"
+              }
+            },
+            {
+              "id": "peakAndOffPeakTimes",
+              "label": {
+                "en": "Peak And Off Peak Times",
+                "da": "Spids- og lavperioder",
+                "de": "Hoch- und Niedriglastzeiten",
+                "es": "Tiempos de picos y valles",
+                "fr": "Heures pleines et creuses",
+                "it": "Ore di punta e di bassa",
+                "no": "Topptid og lavtid",
+                "sv": "Hög- och lågtider",
+                "pl": "Czasy szczytowe i poza szczytem",
+                "ru": "Пиковое и непиковое время",
+                "ko": "피크 및 비피크 시간"
+              }
+            },
+            {
+              "id": "stop",
+              "label": {
+                "en": "Stop",
+                "da": "Stop",
+                "de": "Stopp",
+                "es": "Parar",
+                "fr": "Arréter",
+                "it": "Fermata",
+                "no": "Stopp",
+                "sv": "Stoppa",
+                "pl": "Stop",
+                "ru": "Стоп",
+                "ko": "정지"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "boost_on_off",
+      "title": {
+        "en": "Turn boost On / Off",
+        "nl": "Zet aan / uit",
+        "da": "Tænd boost / sluk",
+        "de": "Booster an / aus",
+        "es": "Encender / Apagar impulso",
+        "fr": "Activer / Désactiver l'amplification",
+        "it": "Attiva / disattiva boost",
+        "no": "Slå boost på / av",
+        "sv": "Aktivera / inaktivera boost",
+        "pl": "Włącz / Wyłącz boost",
+        "ru": "Включить / выключить ускорение",
+        "ko": "부스트 켜기 / 끄기"
+      },
+      "titleFormatted": {
+        "en": "Turn boost [[state]]",
+        "da": "Tænd boost [[state]]",
+        "de": "Booster [[state]]",
+        "es": "Impulso [[state]]",
+        "fr": "Amplification [[state]]",
+        "it": "Boost [[state]]",
+        "no": "Slå boost [[state]]",
+        "sv": "Aktivera boost [[state]]",
+        "pl": "Włącz boost [[state]]",
+        "ru": "Ускорение [[state]]",
+        "ko": "부스트 [[state]]"
+      },
+      "args": [
+        {
+          "name": "state",
+          "type": "dropdown",
+          "title": {
+            "en": "State",
+            "da": "Tilstand",
+            "de": "Zustand",
+            "es": "Estado",
+            "fr": "État",
+            "it": "Stato",
+            "no": "Tilstand",
+            "sv": "Stat",
+            "pl": "Stan",
+            "ru": "Состояние",
+            "ko": "상태"
+          },
+          "values": [
+            {
+              "id": "on",
+              "label": {
+                "en": "On",
+                "nl": "aan",
+                "da": "Tændt",
+                "de": "An",
+                "es": "Encendido",
+                "fr": "Activé",
+                "it": "Acceso",
+                "no": "På",
+                "sv": "På",
+                "pl": "Włącz",
+                "ru": "Включен",
+                "ko": "켜짐"
+              }
+            },
+            {
+              "id": "off",
+              "label": {
+                "en": "Off",
+                "nl": "uit",
+                "da": "Slukket",
+                "de": "Aus",
+                "es": "Apagado",
+                "fr": "Désactivé",
+                "it": "Spento",
+                "no": "Av",
+                "sv": "Av",
+                "pl": "Wyłącz",
+                "ru": "Выключен",
+                "ko": "꺼짐"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

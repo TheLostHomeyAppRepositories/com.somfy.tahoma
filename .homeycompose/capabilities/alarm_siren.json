@@ -5,16 +5,46 @@
   "uiComponent": "sensor",
   "title": {
     "en": "Siren Active",
-    "nl": "Sirene actief"
+    "nl": "Sirene actief",
+    "da": "Sirene Aktiv",
+    "de": "Sirene aktiv",
+    "es": "Sirena activa",
+    "fr": "Sirène active",
+    "it": "Sirena attiva",
+    "no": "Sirene aktiv",
+    "sv": "Siren aktiv",
+    "pl": "Syrena aktywna",
+    "ru": "Сирена активна",
+    "ko": "사이렌 활성화"
   },
   "icon": "/drivers/siren/assets/icon.svg",
   "insights": true,
   "insightsTitleTrue": {
     "en": "Active",
-    "nl": "Actief"
+    "nl": "Actief",
+    "da": "Aktiv",
+    "de": "Aktiv",
+    "es": "Activo",
+    "fr": "Actif",
+    "it": "Attivo",
+    "no": "Aktiv",
+    "sv": "Aktiv",
+    "pl": "Aktywny",
+    "ru": "Активен",
+    "ko": "활성"
   },
   "insightsTitleFalse": {
     "en": "Silent",
-    "nl": "Stil"
+    "nl": "Stil",
+    "da": "Stille",
+    "de": "Still",
+    "es": "Silencioso",
+    "fr": "Silencieux",
+    "it": "Silenzioso",
+    "no": "Stille",
+    "sv": "Tyst",
+    "pl": "Cichy",
+    "ru": "Тихий",
+    "ko": "조용한"
   }
 }

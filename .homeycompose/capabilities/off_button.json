@@ -6,6 +6,15 @@
   "title": {
     "en": "Off",
     "nl": "Uit",
-    "de": "Aus"
+    "de": "Aus",
+    "da": "Fra",
+    "es": "Apagado",
+    "fr": "Éteint",
+    "it": "Spento",
+    "no": "Av",
+    "sv": "Av",
+    "pl": "Wył.",
+    "ru": "Выкл.",
+    "ko": "끄기"
   }
 }

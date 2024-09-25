@@ -2,28 +2,68 @@
   "type": "enum",
   "title": {
     "en": "Operating Until",
-    "nl": "Werkend tot"
+    "nl": "Werkend tot",
+    "da": "Drift indtil",
+    "de": "Betrieb bis",
+    "es": "Funcionando hasta",
+    "fr": "En fonctionnement jusqu'à",
+    "it": "Operativo fino a",
+    "no": "Operativ til",
+    "sv": "I drift till",
+    "pl": "Działające do",
+    "ru": "Работает до",
+    "ko": "작동 중지"
   },
   "values": [
     {
       "id": "date",
       "title": {
         "en": "Date",
-        "nl": "Datum"
+        "nl": "Datum",
+        "da": "Dato",
+        "de": "Datum",
+        "es": "Fecha",
+        "fr": "Date",
+        "it": "Data",
+        "no": "Dato",
+        "sv": "Datum",
+        "pl": "Data",
+        "ru": "Дата",
+        "ko": "날짜"
       }
     },
     {
       "id": "further_notice",
       "title": {
         "en": "Further Notice",
-        "nl": "Nadere aankondiging"
+        "nl": "Nadere aankondiging",
+        "da": "Yderligere varsel",
+        "de": "Weitere Mitteilung",
+        "es": "Nuevo aviso",
+        "fr": "Nouvelle notification",
+        "it": "Ulteriore avviso",
+        "no": "Videre varsel",
+        "sv": "Vidare meddelande",
+        "pl": "Dalsze zawiadomienie",
+        "ru": "Дальнейшее уведомление",
+        "ko": "추후 공지"
       }
     },
     {
       "id": "next_mode",
       "title": {
         "en": "Next Mode Change",
-        "nl": "Volgende modus"
+        "nl": "Volgende modus",
+        "da": "Næste tilstandsskift",
+        "de": "Nächster Moduswechsel",
+        "es": "Próximo cambio de modo",
+        "fr": "Prochain changement de mode",
+        "it": "Prossimo cambio modalità",
+        "no": "Neste modusendring",
+        "sv": "Nästa lägesändring",
+        "pl": "Następna zmiana trybu",
+        "ru": "Следующее изменение режима",
+        "ko": "다음 모드 변경"
       }
     }
   ],

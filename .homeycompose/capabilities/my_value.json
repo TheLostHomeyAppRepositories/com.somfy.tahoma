@@ -5,7 +5,17 @@
   "uiComponent": "sensor",
   "title": {
     "en": "MY Position",
-    "nl": "MY Positie"
+    "nl": "MY Positie",
+    "da": "MIN position",
+    "de": "MEINE Position",
+    "es": "MI posición",
+    "fr": "MA position",
+    "it": "MIA posizione",
+    "no": "MIN posisjon",
+    "sv": "MIN position",
+    "pl": "MOJA pozycja",
+    "ru": "МОЯ позиция",
+    "ko": "내 위치"
   },
   "units": {
     "en": "%"

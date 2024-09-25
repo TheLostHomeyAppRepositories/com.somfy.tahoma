@@ -2,28 +2,68 @@
   "type": "enum",
   "title": {
     "en": "Regulation Mode",
-    "nl": "Regelmodus"
+    "nl": "Regelmodus",
+    "da": "Reguleringsmodus",
+    "de": "Regelmodus",
+    "es": "Modo de regulación",
+    "fr": "Mode de régulation",
+    "it": "Modalità di regolazione",
+    "no": "Reguleringsmodus",
+    "sv": "Regleringsläge",
+    "pl": "Tryb regulacji",
+    "ru": "Режим регулирования",
+    "ko": "규제 모드"
   },
   "values": [
     {
       "id": "increase",
       "title": {
         "en": "Increase",
-        "nl": "Toenemen"
+        "nl": "Toenemen",
+        "da": "Øge",
+        "de": "Erhöhen",
+        "es": "Aumentar",
+        "fr": "Augmenter",
+        "it": "Aumentare",
+        "no": "Øke",
+        "sv": "Öka",
+        "pl": "Zwiększyć",
+        "ru": "Увеличить",
+        "ko": "증가"
       }
     },
     {
       "id": "none",
       "title": {
         "en": "None",
-        "nl": "Geen"
+        "nl": "Geen",
+        "da": "Ingen",
+        "de": "Keine",
+        "es": "Ninguno",
+        "fr": "Aucun",
+        "it": "Nessuno",
+        "no": "Ingen",
+        "sv": "Ingen",
+        "pl": "Nic",
+        "ru": "Ничего",
+        "ko": "없음"
       }
     },
     {
       "id": "standby",
       "title": {
         "en": "Standby",
-        "nl": "Stand-by"
+        "nl": "Stand-by",
+        "da": "Standby",
+        "de": "Standby",
+        "es": "En espera",
+        "fr": "Veille",
+        "it": "Standby",
+        "no": "Standby",
+        "sv": "Vänteläge",
+        "pl": "Tryb gotowości",
+        "ru": "Режим ожидания",
+        "ko": "대기"
       }
     }
   ],

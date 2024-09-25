@@ -2,28 +2,68 @@
   "type": "enum",
   "title": {
     "en": "Remote State",
-    "nl": "Externe staat"
+    "nl": "Externe staat",
+    "da": "Fjernbetjeningsstatus",
+    "de": "Fernbedienungszustand",
+    "es": "Estado remoto",
+    "fr": "État distant",
+    "it": "Stato remoto",
+    "no": "Fjernstatus",
+    "sv": "Fjärrstatus",
+    "pl": "Stan zdalny",
+    "ru": "Удалённое состояние",
+    "ko": "원격 상태"
   },
   "values": [
     {
       "id": "pressed",
       "title": {
         "en": "Pressed",
-        "nl": "ingedrukt"
+        "nl": "ingedrukt",
+        "da": "Trykket",
+        "de": "Gedrückt",
+        "es": "Pulsado",
+        "fr": "Pressé",
+        "it": "Premuto",
+        "no": "Trykket",
+        "sv": "Tryckt",
+        "pl": "Naciśnięty",
+        "ru": "Нажато",
+        "ko": "눌렀음"
       }
     },
     {
       "id": "released",
       "title": {
         "en": "Released",
-        "nl": "Vrijgelaten"
+        "nl": "Vrijgelaten",
+        "da": "Udgivet",
+        "de": "Freigegeben",
+        "es": "Liberado",
+        "fr": "Libéré",
+        "it": "Rilasciato",
+        "no": "Utgitt",
+        "sv": "Frigiven",
+        "pl": "Wydane",
+        "ru": "Выпущено",
+        "ko": "해제 됨"
       }
     },
     {
       "id": "stop",
       "title": {
         "en": "Stop",
-        "nl": "Hou op"
+        "nl": "Hou op",
+        "da": "Stop",
+        "de": "Stopp",
+        "es": "Detener",
+        "fr": "Arrêter",
+        "it": "Fermare",
+        "no": "Stopp",
+        "sv": "Stopp",
+        "pl": "Zatrzymaj",
+        "ru": "Остановить",
+        "ko": "중지"
       }
     }
   ],

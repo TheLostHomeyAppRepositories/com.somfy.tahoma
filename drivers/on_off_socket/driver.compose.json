@@ -1,12 +1,24 @@
 {
   "name": {
     "en": "Socket (RTS & io)",
-    "nl": "Stopcontact (RTS & io)"
+    "nl": "Stopcontact (RTS & io)",
+    "da": "Stikkontakt (RTS & io)",
+    "de": "Steckdose (RTS & io)",
+    "es": "Enchufe (RTS & io)",
+    "fr": "Prise (RTS & io)",
+    "it": "Presa (RTS & io)",
+    "no": "Stikkontakt (RTS & io)",
+    "sv": "Vägguttag (RTS & io)",
+    "pl": "Gniazdko (RTS & io)",
+    "ru": "Розетка (RTS и io)",
+    "ko": "소켓 (RTS & io)"
   },
   "class": "socket",
   "capabilities": [
     "onoff",
     "on_with_timer"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

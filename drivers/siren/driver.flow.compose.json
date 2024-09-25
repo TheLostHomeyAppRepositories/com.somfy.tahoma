@@ -3,14 +3,36 @@
     {
       "id": "alarm_siren_true",
       "title": {
-        "en": "The Siren turned on"
+        "en": "The Siren turned on",
+        "nl": "De sirene ging aan",
+        "da": "Sirenen tændte",
+        "de": "Die Sirene wurde eingeschaltet",
+        "es": "La sirena se encendió",
+        "fr": "La sirène s'est allumée",
+        "it": "La sirena si è accesa",
+        "no": "Sirenene ble slått på",
+        "sv": "Sirenen sattes på",
+        "pl": "Syrena została włączona",
+        "ru": "Сирена включилась",
+        "ko": "사이렌이 켜짐"
       },
       "args": []
     },
     {
       "id": "alarm_siren_false",
       "title": {
-        "en": "The Siren turned off"
+        "en": "The Siren turned off",
+        "nl": "De sirene ging uit",
+        "da": "Sirenen slukkede",
+        "de": "Die Sirene wurde ausgeschaltet",
+        "es": "La sirena se apagó",
+        "fr": "La sirène s'est éteinte",
+        "it": "La sirena si è spenta",
+        "no": "Sirenene ble slått av",
+        "sv": "Sirenen stängdes av",
+        "pl": "Syrena została wyłączona",
+        "ru": "Сирена выключилась",
+        "ko": "사이렌이 꺼짐"
       },
       "args": []
     }
@@ -19,24 +41,68 @@
     {
       "id": "stop_siren",
       "title": {
-        "en": "Stop the siren"
+        "en": "Stop the siren",
+        "nl": "Stop de sirene",
+        "da": "Stop sirenen",
+        "de": "Stoppe die Sirene",
+        "es": "Detener la sirena",
+        "fr": "Arrêter la sirène",
+        "it": "Ferma la sirena",
+        "no": "Stopp sirenen",
+        "sv": "Stoppa sirenen",
+        "pl": "Zatrzymaj syrenę",
+        "ru": "Остановить сирену",
+        "ko": "사이렌 중지"
       },
       "args": []
     },
     {
       "id": "start_siren",
       "title": {
-        "en": "Ring the siren"
+        "en": "Ring the siren",
+        "nl": "Laat de sirene afgaan",
+        "da": "Ring med sirenen",
+        "de": "Lass die Sirene ertönen",
+        "es": "Haz sonar la sirena",
+        "fr": "Faire sonner la sirène",
+        "it": "Suona la sirena",
+        "no": "Ring med sirenen",
+        "sv": "Ring sirenen",
+        "pl": "Włącz syrenę",
+        "ru": "Включить сирену",
+        "ko": "사이렌을 울리다"
       },
       "args": []
     },
     {
       "id": "sound_alarm1",
       "title": {
-        "en": "Sound Alarm"
+        "en": "Sound Alarm",
+        "nl": "Alarm laten afgaan",
+        "da": "Lydalarm",
+        "de": "Alarm auslösen",
+        "es": "Sonido de alarma",
+        "fr": "Alarm sonore",
+        "it": "Suono di allarme",
+        "no": "Lydalarm",
+        "sv": "Ljudlarm",
+        "pl": "Alarm dźwiękowy",
+        "ru": "Звуковой сигнал тревоги",
+        "ko": "소리 알람"
       },
       "titleFormatted": {
-        "en": "Sound alarm for [[duration]] with On/off ratio of [[on_off_ratio]] and repeat [[repeats]] times at [[volume]] volume"
+        "en": "Sound alarm for [[duration]] with On/off ratio of [[on_off_ratio]] and repeat [[repeats]] times at [[volume]] volume",
+        "nl": "Laat alarm afgaan voor [[duration]] met een aan/uit verhouding van [[on_off_ratio]] en herhaal [[repeats]] keer bij [[volume]] volume",
+        "da": "Lydalarm i [[duration]] med en tændt/slukket ratio på [[on_off_ratio]] og gentag [[repeats]] gange ved [[volume]] lydstyrke",
+        "de": "Alarm auslösen für [[duration]], mit einem Ein/Aus-Verhältnis von [[on_off_ratio]] und wiederhole [[repeats]] mal bei [[volume]] Lautstärke",
+        "es": "Activar la alarma durante [[duration]] con una relación de encendido/apagado de [[on_off_ratio]] y repita [[repeats]] veces a [[volume]] volumen",
+        "fr": "Déclencher l'alarme pendant [[duration]] avec un ratio marche/arrêt de [[on_off_ratio]] et répéter [[repeats]] fois à [[volume]] volume",
+        "it": "Suona l'allarme per [[duration]] con un rapporto di accensione/spegnimento di [[on_off_ratio]] e ripeti [[repeats]] volte a [[volume]] volume",
+        "no": "Lydalarm i [[duration]] med en på/av-ratio på [[on_off_ratio]] og gjenta [[repeats]] ganger ved [[volume]] volum",
+        "sv": "Ljudlarm i [[duration]] med en på/av-förhållande på [[on_off_ratio]] och upprepa [[repeats]] gånger vid [[volume]] volym",
+        "pl": "Alarm dźwiękowy przez [[duration]] o stosunku włączania/wyłączania [[on_off_ratio]] i powtarzaj [[repeats]] razy przy głośności [[volume]]",
+        "ru": "Звуковой сигнал тревоги на [[duration]], с соотношением включения/выключения [[on_off_ratio]] и повторением [[repeats]] раз на громкости [[volume]]",
+        "ko": "[[volume]] 볼륨에서 [[repeats]] 번 반복해서 [[on_off_ratio]] 비율로 [[duration]] 동안 알람 소리가 납니다"
       },
       "args": [
         {
@@ -46,10 +112,32 @@
           "max": 300,
           "step": 5,
           "placeholder": {
-            "en": "In seconds"
+            "en": "In seconds",
+            "nl": "In seconden",
+            "da": "I sekunder",
+            "de": "In Sekunden",
+            "es": "En segundos",
+            "fr": "En secondes",
+            "it": "In secondi",
+            "no": "I sekunder",
+            "sv": "I sekunder",
+            "pl": "W sekundach",
+            "ru": "В секундах",
+            "ko": "초 단위"
           },
           "title": {
-            "en": "Alarm Duration"
+            "en": "Alarm Duration",
+            "nl": "Alarmduur",
+            "da": "Alarmvarighed",
+            "de": "Alarmdauer",
+            "es": "Duración de la alarma",
+            "fr": "Durée de l'alarme",
+            "it": "Durata dell'allarme",
+            "no": "Alarmvarighet",
+            "sv": "Alarmens längd",
+            "pl": "Czas trwania alarmu",
+            "ru": "Продолжительность сигнала тревоги",
+            "ko": "알람 지속 시간"
           },
           "label": "s",
           "labelDecimals": 0
@@ -61,10 +149,32 @@
           "max": 90,
           "step": 1,
           "placeholder": {
-            "en": "%"
+            "en": "%",
+            "nl": "%",
+            "da": "%",
+            "de": "%",
+            "es": "%",
+            "fr": "%",
+            "it": "%",
+            "no": "%",
+            "sv": "%",
+            "pl": "%",
+            "ru": "%",
+            "ko": "%"
           },
           "title": {
-            "en": "On / Off ratio"
+            "en": "On / Off ratio",
+            "nl": "Aan/uit verhouding",
+            "da": "Tændt / slukket forhold",
+            "de": "Ein / Aus Verhältnis",
+            "es": "Relación de encendido/apagado",
+            "fr": "Ratio Marche / Arrêt",
+            "it": "Rapporto acceso / spento",
+            "no": "På / av-forhold",
+            "sv": "På / av ratio",
+            "pl": "Stosunek włączania / wyłączania",
+            "ru": "Соотношение включение / выключение",
+            "ko": "켜짐 / 꺼짐 비율"
           },
           "label": "%",
           "labelDecimals": 0
@@ -76,10 +186,32 @@
           "max": 10,
           "step": 1,
           "placeholder": {
-            "en": "repeats"
+            "en": "repeats",
+            "nl": "herhalingen",
+            "da": "gentagelser",
+            "de": "Wiederholungen",
+            "es": "repeticiones",
+            "fr": "répétitions",
+            "it": "ripetizioni",
+            "no": "gjentakelser",
+            "sv": "upprepningar",
+            "pl": "powtórzenia",
+            "ru": "повторения",
+            "ko": "반복"
           },
           "title": {
-            "en": "Repeats"
+            "en": "Repeats",
+            "nl": "Herhalingen",
+            "da": "Gentagelser",
+            "de": "Wiederholungen",
+            "es": "Repite",
+            "fr": "Répétitions",
+            "it": "Ripetizioni",
+            "no": "Gjentas",
+            "sv": "Repetitioner",
+            "pl": "Powtórzenia",
+            "ru": "Повторения",
+            "ko": "반복"
           },
           "labelDecimals": 0
         },
@@ -87,25 +219,69 @@
           "name": "volume",
           "type": "dropdown",
           "title": {
-            "en": "Volume"
+            "en": "Volume",
+            "nl": "Volume",
+            "da": "Lydstyrke",
+            "de": "Lautstärke",
+            "es": "Volumen",
+            "fr": "Volume",
+            "it": "Volume",
+            "no": "Volum",
+            "sv": "Volym",
+            "pl": "Głośność",
+            "ru": "Громкость",
+            "ko": "볼륨"
           },
           "values": [
             {
               "id": "highest",
               "label": {
-                "en": "Highest"
+                "en": "Highest",
+                "nl": "Hoogste",
+                "da": "Højeste",
+                "de": "Höchste",
+                "es": "Más alto",
+                "fr": "Le plus fort",
+                "it": "Più alto",
+                "no": "Høyeste",
+                "sv": "Högsta",
+                "pl": "Najwyższy",
+                "ru": "Самый высокий",
+                "ko": "최고"
               }
             },
             {
               "id": "standard",
               "label": {
-                "en": "Standard"
+                "en": "Standard",
+                "nl": "Standaard",
+                "da": "Standard",
+                "de": "Standard",
+                "es": "Estándar",
+                "fr": "Standard",
+                "it": "Standard",
+                "no": "Standard",
+                "sv": "Standard",
+                "pl": "Standard",
+                "ru": "Стандарт",
+                "ko": "기준"
               }
             },
             {
               "id": "memorizedVolume",
               "label": {
-                "en": "Memorized"
+                "en": "Memorized",
+                "nl": "Gecastreerd",
+                "da": "Husket",
+                "de": "Gemerkte",
+                "es": "Memorizado",
+                "fr": "Mémorisé",
+                "it": "Memorizzato",
+                "no": "Husket",
+                "sv": "Memorerad",
+                "pl": "Zapamiętane",
+                "ru": "Запомненный",
+                "ko": "기억된"
               }
             }
           ]

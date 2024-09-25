@@ -1,51 +1,117 @@
 {
-    "triggers": [
+  "triggers": [
+    {
+      "id": "windowcoverings_tilt_changed",
+      "title": {
+        "en": "The tilt changed",
+        "nl": "De kanteling is veranderd",
+        "da": "Vippen ændrede sig",
+        "de": "Die Neigung hat sich geändert",
+        "es": "El ángulo cambió",
+        "fr": "L'inclinaison a changé",
+        "it": "L'inclinazione è cambiata",
+        "no": "Vippen endret seg",
+        "sv": "Tiltningen ändrades",
+        "pl": "Kąt nachylenia się zmienił",
+        "ru": "Угол наклона изменился",
+        "ko": "기울기가 변경되었습니다"
+      },
+      "tokens": [
         {
-            "id": "windowcoverings_tilt_changed",
-            "title": {
-                "en": "The tilt changed"
-            },
-            "tokens": [
-                {
-                    "name": "windowcoverings_tilt",
-                    "type": "number",
-                    "title": {
-                        "en": "Tilt"
-                    },
-                    "example": 0.5
-                }
-            ],
-            "args": []
+          "name": "windowcoverings_tilt",
+          "type": "number",
+          "title": {
+            "en": "Tilt",
+            "nl": "Kantelen",
+            "da": "Vip",
+            "de": "Neigung",
+            "es": "Ángulo",
+            "fr": "Inclinaison",
+            "it": "Inclinazione",
+            "no": "Vippe",
+            "sv": "Tilt",
+            "pl": "Nachylenie",
+            "ru": "Наклон",
+            "ko": "기울기"
+          },
+          "example": 0.5
         }
-    ],
-    "actions": [
+      ],
+      "args": []
+    }
+  ],
+  "actions": [
+    {
+      "id": "windowcoverings_tilt",
+      "title": {
+        "en": "Set the tilt to",
+        "nl": "Stel de kanteling in op",
+        "da": "Sæt tilt til",
+        "de": "Neigung einstellen auf",
+        "es": "Ajustar el ángulo a",
+        "fr": "Régler l'inclinaison sur",
+        "it": "Imposta l'inclinazione a",
+        "no": "Sett vippen til",
+        "sv": "Ställ in tilt till",
+        "pl": "Ustaw kąt nachylenia na",
+        "ru": "Установите угол наклона на",
+        "ko": "기울기를 설정"
+      },
+      "titleFormatted": {
+        "en": "Set the tilt to [[windowcoverings_set]]",
+        "nl": "Stel de kanteling in op [[windowcoverings_set]]",
+        "da": "Sæt tilt til [[windowcoverings_set]]",
+        "de": "Neigung einstellen auf [[windowcoverings_set]]",
+        "es": "Ajustar el ángulo a [[windowcoverings_set]]",
+        "fr": "Régler l'inclinaison sur [[windowcoverings_set]]",
+        "it": "Imposta l'inclinazione a [[windowcoverings_set]]",
+        "no": "Sett vippen til [[windowcoverings_set]]",
+        "sv": "Ställ in tilt till [[windowcoverings_set]]",
+        "pl": "Ustaw kąt nachylenia na [[windowcoverings_set]]",
+        "ru": "Установите угол наклона на [[windowcoverings_set]]",
+        "ko": "기울기를 [[windowcoverings_set]]로 설정"
+      },
+      "hint": {
+        "en": "Change the tilt position to a value between 0 and 100 (50 is horizontal).",
+        "nl": "Verander de kantelingspositie naar een waarde tussen 0 en 100 (50 is horizontaal).",
+        "da": "Skift vippepositionen til en værdi mellem 0 og 100 (50 er vandret).",
+        "de": "Ändere die Neigungsposition auf einen Wert zwischen 0 und 100 (50 ist horizontal).",
+        "es": "Cambiar la posición del ángulo a un valor entre 0 y 100 (50 es horizontal).",
+        "fr": "Changez la position d'inclinaison pour une valeur entre 0 et 100 (50 est horizontal).",
+        "it": "Cambiare la posizione di inclinazione a un valore tra 0 e 100 (50 è orizzontale).",
+        "no": "Endre vippeposisjonen til en verdi mellom 0 og 100 (50 er horisontal).",
+        "sv": "Ändra tiltpositionen till ett värde mellan 0 och 100 (50 är horisontellt).",
+        "pl": "Zmień pozycję nachylenia na wartość od 0 do 100 (50 to poziom).",
+        "ru": "Измените угол наклона до значения между 0 и 100 (50 - это горизонтально).",
+        "ko": "기울기 위치를 0에서 100 사이로 변경하세요 (50은 수평)."
+      },
+      "args": [
         {
-            "id": "windowcoverings_tilt",
-            "title": {
-                "en": "Set the tilt to"
-            },
-            "titleFormatted": {
-                "en": "Set the tilt to [[windowcoverings_set]]"
-            },
-            "hint": {
-                "en": "Change the tilt position to a value between 0 and 100 (50 is horizontal)."
-            },
-            "args": [
-                {
-                    "name": "windowcoverings_set",
-                    "type": "range",
-                    "title": {
-                        "en": "Tilt level"
-                    },
-                    "min": 0,
-                    "max": 1,
-                    "step": 0.01,
-                    "value": 0.5,
-                    "label": "%",
-                    "labelMultiplier": 100,
-                    "labelDecimals": 0
-                }
-            ]
+          "name": "windowcoverings_set",
+          "type": "range",
+          "title": {
+            "en": "Tilt level",
+            "nl": "Kantel niveau",
+            "da": "Vipniveau",
+            "de": "Neigungsgrad",
+            "es": "Nivel de ángulo",
+            "fr": "Niveau d'inclinaison",
+            "it": "Livello di inclinazione",
+            "no": "Vipppenivå",
+            "sv": "Tilt-nivå",
+            "pl": "Poziom nachylenia",
+            "ru": "Уровень наклона",
+            "ko": "기울기 수준"
+          },
+          "min": 0,
+          "max": 1,
+          "step": 0.01,
+          "value": 0.5,
+          "label": "%",
+          "labelMultiplier": 100,
+          "labelDecimals": 0
         }
-    ]
+      ]
+    }
+  ]
 }

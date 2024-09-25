@@ -1,67 +1,157 @@
 {
-    "actions": [
+  "actions": [
+    {
+      "id": "set_on_off",
+      "title": {
+        "en": "Switch On / Off",
+        "nl": "Zet aan / uit",
+        "da": "Tænd / Sluk",
+        "de": "Anschalten / Ausschalten",
+        "es": "Encender / Apagar",
+        "fr": "Allumer / Éteindre",
+        "it": "Accendi / Spegni",
+        "no": "Slå på / av",
+        "sv": "Slå på / av",
+        "pl": "Włącz / Wyłącz",
+        "ru": "Вкл / Выкл",
+        "ko": "켜기 / 끄기"
+      },
+      "titleFormatted": {
+        "en": "Switch [[state]]",
+        "nl": "Zet  [[state]]",
+        "da": "Skift [[state]]",
+        "de": "Schalte [[state]]",
+        "es": "Cambiar [[state]]",
+        "fr": "Changer [[state]]",
+        "it": "Cambia [[state]]",
+        "no": "Bytt [[state]]",
+        "sv": "Byt [[state]]",
+        "pl": "Przełącz [[state]]",
+        "ru": "Переключить [[state]]",
+        "ko": "[[state]] 전환"
+      },
+      "args": [
         {
-            "id": "set_on_off",
-            "title": {
-                "en": "Switch On / Off",
-                "nl": "Zet aan / uit"
+          "name": "state",
+          "type": "dropdown",
+          "title": {
+            "en": "Power",
+            "da": "Strøm",
+            "de": "Leistung",
+            "es": "Energía",
+            "fr": "Puissance",
+            "it": "Potenza",
+            "no": "Strøm",
+            "sv": "Ström",
+            "pl": "Moc",
+            "ru": "Мощность",
+            "ko": "전원"
+          },
+          "values": [
+            {
+              "id": "on",
+              "label": {
+                "en": "On",
+                "nl": "aan",
+                "da": "Tændt",
+                "de": "An",
+                "es": "Encendido",
+                "fr": "Allumé",
+                "it": "Acceso",
+                "no": "På",
+                "sv": "På",
+                "pl": "Włączony",
+                "ru": "Вкл",
+                "ko": "켜기"
+              }
             },
-            "titleFormatted": {
-                "en": "Switch [[state]]",
-                "nl": "Zet  [[state]]"
-            },
-            "args": [
-                {
-                    "name": "state",
-                    "type": "dropdown",
-                    "title": {
-                        "en": "Power"
-                    },
-                    "values": [
-                        {
-                            "id": "on",
-                            "label": {
-                                "en": "On",
-                                "nl": "aan"
-                            }
-                        },
-                        {
-                            "id": "off",
-                            "label": {
-                                "en": "Off",
-                                "nl": "uit"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "set_on_with_timer",
-            "title": {
-                "en": "Switch On for...",
-                "nl": "Inschakelen voor ..."
-            },
-            "titleFormatted": {
-                "en": "Switch On for [[onTime]] minutes",
-                "nl": "Schakel [[onTime]] minuten in"
-            },
-            "args": [
-                {
-                    "name": "onTime",
-                    "type": "number",
-                    "title": {
-                        "en": "On Time"
-                    },
-                    "min": 1,
-                    "max": 10,
-                    "step": 1,
-                    "placeholder": {
-                        "en": "In minutes",
-                        "nl": "In minuten"
-                    }
-                }
-            ]
+            {
+              "id": "off",
+              "label": {
+                "en": "Off",
+                "nl": "uit",
+                "da": "Slukket",
+                "de": "Aus",
+                "es": "Apagado",
+                "fr": "Éteint",
+                "it": "Spento",
+                "no": "Av",
+                "sv": "Av",
+                "pl": "Wyłączony",
+                "ru": "Выкл",
+                "ko": "끄기"
+              }
+            }
+          ]
         }
-    ]
+      ]
+    },
+    {
+      "id": "set_on_with_timer",
+      "title": {
+        "en": "Switch On for...",
+        "nl": "Inschakelen voor ...",
+        "da": "Tænd i ...",
+        "de": "Einschalten für ...",
+        "es": "Encender durante ...",
+        "fr": "Allumer pendant ...",
+        "it": "Accendere per ...",
+        "no": "Slå på i ...",
+        "sv": "Slå på i ...",
+        "pl": "Włącz na ...",
+        "ru": "Включить на ...",
+        "ko": "켜기 ..."
+      },
+      "titleFormatted": {
+        "en": "Switch On for [[onTime]] minutes",
+        "nl": "Schakel [[onTime]] minuten in",
+        "da": "Tænd i [[onTime]] minutter",
+        "de": "Einschalten für [[onTime]] Minuten",
+        "es": "Encender durante [[onTime]] minutos",
+        "fr": "Allumer pendant [[onTime]] minutes",
+        "it": "Accendere per [[onTime]] minuti",
+        "no": "Slå på i [[onTime]] minutter",
+        "sv": "Slå på i [[onTime]] minuter",
+        "pl": "Włącz na [[onTime]] minut",
+        "ru": "Включить на [[onTime]] минут",
+        "ko": "[[onTime]]분 동안 켜기"
+      },
+      "args": [
+        {
+          "name": "onTime",
+          "type": "number",
+          "title": {
+            "en": "On Time",
+            "da": "Tændt tid",
+            "de": "Eingeschaltete Zeit",
+            "es": "Tiempo encendido",
+            "fr": "Temps allumé",
+            "it": "Tempo acceso",
+            "no": "På-tid",
+            "sv": "På-tid",
+            "pl": "Czas włączony",
+            "ru": "Время включения",
+            "ko": "켜진 시간"
+          },
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "placeholder": {
+            "en": "In minutes",
+            "nl": "In minuten",
+            "da": "I minutter",
+            "de": "In Minuten",
+            "es": "En minutos",
+            "fr": "En minutes",
+            "it": "In minuti",
+            "no": "I minutter",
+            "sv": "I minuter",
+            "pl": "W minutach",
+            "ru": "В минутах",
+            "ko": "분 단위"
+          }
+        }
+      ]
+    }
+  ]
 }

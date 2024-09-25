@@ -1,53 +1,141 @@
 {
-    "type": "enum",
-    "title": {
-        "en": "Operating Mode"
+  "type": "enum",
+  "title": {
+    "en": "Operating Mode",
+    "nl": "Bedrijfsmodus",
+    "da": "Driftstilstand",
+    "de": "Betriebsmodus",
+    "es": "Modo de funcionamiento",
+    "fr": "Mode de fonctionnement",
+    "it": "Modalità di funzionamento",
+    "no": "Driftsmodus",
+    "sv": "Driftläge",
+    "pl": "Tryb operacyjny",
+    "ru": "Режим работы",
+    "ko": "작동 모드"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "picker",
+  "values": [
+    {
+      "id": "auto cooling",
+      "title": {
+        "en": "Auto Cooling",
+        "nl": "Automatisch Koelen",
+        "da": "Auto Nedkøling",
+        "de": "Automatische Kühlung",
+        "es": "Enfriamiento Automático",
+        "fr": "Refroidissement Automatique",
+        "it": "Raffreddamento automatico",
+        "no": "Autokjøling",
+        "sv": "Automatisk Kylning",
+        "pl": "Automatyczne Chłodzenie",
+        "ru": "Авто Охлаждение",
+        "ko": "자동 냉각"
+      }
     },
-    "getable": true,
-    "setable": true,
-    "uiComponent": "picker",
-    "values": [
-        {
-            "id": "auto cooling",
-            "title": {
-                "en": "Auto Cooling"
-            }
-        },
-        {
-            "id": "auto heating",
-            "title": {
-                "en": "Auto Heating"
-            }
-        },
-        {
-            "id": "circulator",
-            "title": {
-                "en": "Circulator"
-            }
-        },
-        {
-            "id": "dehumidify",
-            "title": {
-                "en": "Dehumidify"
-            }
-        },
-        {
-            "id": "fan",
-            "title": {
-                "en": "Fan"
-            }
-        },
-        {
-            "id": "heating",
-            "title": {
-                "en": "Heating"
-            }
-        },
-        {
-            "id": "cooling",
-            "title": {
-                "en": "Cooling"
-            }
-        }
-    ]
+    {
+      "id": "auto heating",
+      "title": {
+        "en": "Auto Heating",
+        "nl": "Automatisch Verwarmen",
+        "da": "Auto Opvarmning",
+        "de": "Automatische Heizung",
+        "es": "Calefacción Automática",
+        "fr": "Chauffage Automatique",
+        "it": "Riscaldamento automatico",
+        "no": "Autovarmer",
+        "sv": "Automatisk Uppvärmning",
+        "pl": "Automatyczne Ogrzewanie",
+        "ru": "Авто Отопление",
+        "ko": "자동 난방"
+      }
+    },
+    {
+      "id": "circulator",
+      "title": {
+        "en": "Circulator",
+        "nl": "Circulator",
+        "da": "Cirkulator",
+        "de": "Zirkulator",
+        "es": "Circulador",
+        "fr": "Circulateur",
+        "it": "Circolatore",
+        "no": "Sirkulator",
+        "sv": "Cirkulator",
+        "pl": "Cyrkulator",
+        "ru": "Циркулятор",
+        "ko": "순환기"
+      }
+    },
+    {
+      "id": "dehumidify",
+      "title": {
+        "en": "Dehumidify",
+        "nl": "Ontvochtigen",
+        "da": "Affugtning",
+        "de": "Entfeuchten",
+        "es": "Deshumidificar",
+        "fr": "Déshumidifier",
+        "it": "Deumidificare",
+        "no": "Avfukt",
+        "sv": "Avfuktning",
+        "pl": "Osuszanie",
+        "ru": "Осушение",
+        "ko": "제습"
+      }
+    },
+    {
+      "id": "fan",
+      "title": {
+        "en": "Fan",
+        "nl": "Ventilator",
+        "da": "Blæser",
+        "de": "Ventilator",
+        "es": "Ventilador",
+        "fr": "Ventilateur",
+        "it": "Ventola",
+        "no": "Vifte",
+        "sv": "Fläkt",
+        "pl": "Wentylator",
+        "ru": "Вентилятор",
+        "ko": "팬"
+      }
+    },
+    {
+      "id": "heating",
+      "title": {
+        "en": "Heating",
+        "nl": "Verwarming",
+        "da": "Opvarmning",
+        "de": "Heizung",
+        "es": "Calefacción",
+        "fr": "Chauffage",
+        "it": "Riscaldamento",
+        "no": "Oppvarming",
+        "sv": "Uppvärmning",
+        "pl": "Ogrzewanie",
+        "ru": "Отопление",
+        "ko": "난방"
+      }
+    },
+    {
+      "id": "cooling",
+      "title": {
+        "en": "Cooling",
+        "nl": "Koeling",
+        "da": "Nedkøling",
+        "de": "Kühlung",
+        "es": "Refrigeración",
+        "fr": "Refroidissement",
+        "it": "Raffreddamento",
+        "no": "Kjøling",
+        "sv": "Kylning",
+        "pl": "Chłodzenie",
+        "ru": "Охлаждение",
+        "ko": "냉각"
+      }
+    }
+  ]
 }

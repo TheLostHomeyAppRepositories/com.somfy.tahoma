@@ -2,7 +2,17 @@
   "id": "device_command_complete",
   "title": {
     "en": "A command completed",
-    "nl": "Een opdracht voltooid"
+    "nl": "Een opdracht voltooid",
+    "da": "En kommando fuldført",
+    "de": "Ein Befehl abgeschlossen",
+    "es": "Un comando completado",
+    "fr": "Une commande terminée",
+    "it": "Un comando completato",
+    "no": "En kommando fullført",
+    "sv": "Ett kommando slutfört",
+    "pl": "Polecenie zakończone",
+    "ru": "Команда выполнена",
+    "ko": "명령이 완료됨"
   },
   "tokens": [
     {
@@ -10,7 +20,17 @@
       "type": "boolean",
       "title": {
         "en": "Successful",
-        "nl": "Succesvol"
+        "nl": "Succesvol",
+        "da": "Vellykket",
+        "de": "Erfolgreich",
+        "es": "Exitoso",
+        "fr": "Réussi",
+        "it": "Riuscito",
+        "no": "Vellykket",
+        "sv": "Lyckad",
+        "pl": "Udany",
+        "ru": "Успешный",
+        "ko": "성공"
       },
       "example": "true"
     },
@@ -19,7 +39,17 @@
       "type": "string",
       "title": {
         "en": "Command Name",
-        "nl": "Opdrachtnaam"
+        "nl": "Opdrachtnaam",
+        "da": "Kommando Navn",
+        "de": "Befehlsname",
+        "es": "Nombre del Comando",
+        "fr": "Nom de la Commande",
+        "it": "Nome del Comando",
+        "no": "Kommandonavn",
+        "sv": "Kommando Namn",
+        "pl": "Nazwa polecenia",
+        "ru": "Имя команды",
+        "ko": "명령 이름"
       }
     }
   ],

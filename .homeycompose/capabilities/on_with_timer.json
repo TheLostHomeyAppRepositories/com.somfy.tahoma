@@ -2,14 +2,34 @@
   "type": "number",
   "title": {
     "en": "On with timer",
-    "nl": "Aan met timer"
+    "nl": "Aan met timer",
+    "da": "Tænder med timer",
+    "de": "An mit Timer",
+    "es": "Encendido con temporizador",
+    "fr": "Allumé avec minuterie",
+    "it": "Acceso con timer",
+    "no": "På med timer",
+    "sv": "På med timer",
+    "pl": "Włącz z timerem",
+    "ru": "Включить с таймером",
+    "ko": "타이머로 켜기"
   },
   "uiComponent": "slider",
   "getable": true,
   "setable": true,
   "units": {
     "en": "minutes",
-    "nl": "Minuten"
+    "nl": "Minuten",
+    "da": "minutter",
+    "de": "Minuten",
+    "es": "minutos",
+    "fr": "minutes",
+    "it": "minuti",
+    "no": "minutter",
+    "sv": "minuter",
+    "pl": "minuty",
+    "ru": "минуты",
+    "ko": "분"
   },
   "min": 0,
   "max": 10,

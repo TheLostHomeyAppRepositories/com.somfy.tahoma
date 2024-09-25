@@ -1,6 +1,17 @@
 {
   "name": {
-    "en": "Gate / Garage Door Opener (RTS)"
+    "en": "Gate / Garage Door Opener (RTS)",
+    "nl": "Poort / Garagedeuropener (RTS)",
+    "da": "Port / Garageportåbner (RTS)",
+    "de": "Tor- / Garagentoröffner (RTS)",
+    "es": "Abrepuertas de garaje (RTS)",
+    "fr": "Ouvre-porte / garage (RTS)",
+    "it": "Apri cancello / porta del garage (RTS)",
+    "no": "Port / Garasjeportåpner (RTS)",
+    "sv": "Grind / Garageportöppnare (RTS)",
+    "pl": "Otwieracz drzwi garażowych (RTS)",
+    "ru": "Открывалка ворот / гаражных дверей (RTS)",
+    "ko": "게이트 / 차고 문 개폐기 (RTS)"
   },
   "class": "other",
   "capabilities": [
@@ -14,19 +25,52 @@
       "type": "dropdown",
       "value": "open",
       "label": {
-        "en": "Open Command"
+        "en": "Open Command",
+        "nl": "Open opdracht",
+        "da": "Åben kommando",
+        "de": "Öffnen Befehl",
+        "es": "Comando de apertura",
+        "fr": "Commande ouvrir",
+        "it": "Comando apri",
+        "no": "Åpen kommando",
+        "sv": "Öppna kommandot",
+        "pl": "Polecenie otwarcia",
+        "ru": "Открыть команду",
+        "ko": "열기 명령"
       },
       "values": [
         {
           "id": "open",
           "label": {
-            "en": "Open"
+            "en": "Open",
+            "nl": "Open",
+            "da": "Åben",
+            "de": "Öffnen",
+            "es": "Abrir",
+            "fr": "Ouvrir",
+            "it": "Apri",
+            "no": "Åpen",
+            "sv": "Öppen",
+            "pl": "Otwórz",
+            "ru": "Открыть",
+            "ko": "열기"
           }
         },
         {
           "id": "rest",
           "label": {
-            "en": "Rest"
+            "en": "Rest",
+            "nl": "Rust",
+            "da": "Hvile",
+            "de": "Ruhe",
+            "es": "Reposo",
+            "fr": "Repos",
+            "it": "Riposo",
+            "no": "Hvile",
+            "sv": "Vila",
+            "pl": "Odpoczynek",
+            "ru": "Покой",
+            "ko": "휴식"
           }
         },
         {
@@ -39,11 +83,24 @@
         {
           "id": "openConfiguration",
           "label": {
-            "en": "Open Configuration"
+            "en": "Open Configuration",
+            "nl": "Open configuratie",
+            "da": "Åben konfiguration",
+            "de": "Konfiguration öffnen",
+            "es": "Abrir configuración",
+            "fr": "Ouvrir la configuration",
+            "it": "Apri configurazione",
+            "no": "Åpne konfigurasjon",
+            "sv": "Öppna konfiguration",
+            "pl": "Otwórz konfigurację",
+            "ru": "Открыть конфигурацию",
+            "ko": "구성 열기"
           }
         }
       ]
     }
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

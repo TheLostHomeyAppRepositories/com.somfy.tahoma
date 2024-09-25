@@ -2,7 +2,17 @@
   "type": "string",
   "title": {
     "en": "Heating Mode",
-    "nl": "Verwarmingsmodus:"
+    "nl": "Verwarmingsmodus:",
+    "da": "Opvarmningstilstand",
+    "de": "Heizmodus",
+    "es": "Modo de calefacción",
+    "fr": "Mode chauffage",
+    "it": "Modalità riscaldamento",
+    "no": "Oppvarmingsmodus",
+    "sv": "Värmeläge",
+    "pl": "Tryb ogrzewania",
+    "ru": "Режим отопления",
+    "ko": "난방 모드"
   },
   "getable": true,
   "setable": false,

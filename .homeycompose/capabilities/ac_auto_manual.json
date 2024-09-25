@@ -1,7 +1,17 @@
 {
   "type": "enum",
   "title": {
-    "en": "Auto / Manual"
+    "en": "Auto / Manual",
+    "da": "Auto / Manuel",
+    "de": "Auto / Manuell",
+    "es": "Automático / Manual",
+    "fr": "Auto / Manuel",
+    "it": "Auto / Manuale",
+    "no": "Auto / Manuell",
+    "sv": "Auto / Manuell",
+    "pl": "Auto / Ręczny",
+    "ru": "Авто / Ручной",
+    "ko": "자동 / 수동"
   },
   "getable": true,
   "setable": true,
@@ -11,14 +21,34 @@
       "id": "auto",
       "title": {
         "en": "Automatic",
-        "nl": "Automatisch"
+        "nl": "Automatisch",
+        "da": "Automatisk",
+        "de": "Automatisch",
+        "es": "Automático",
+        "fr": "Automatique",
+        "it": "Automatico",
+        "no": "Automatisk",
+        "sv": "Automatisk",
+        "pl": "Automatyczny",
+        "ru": "Автоматический",
+        "ko": "자동적"
       }
     },
     {
       "id": "manu",
       "title": {
         "en": "Manual",
-        "nl": "Handmatig"
+        "nl": "Handmatig",
+        "da": "Manuel",
+        "de": "Manuell",
+        "es": "Manual",
+        "fr": "Manuel",
+        "it": "Manuale",
+        "no": "Manuell",
+        "sv": "Manuell",
+        "pl": "Ręczny",
+        "ru": "Ручной",
+        "ko": "수동식"
       }
     }
   ]

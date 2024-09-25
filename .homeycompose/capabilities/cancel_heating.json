@@ -5,6 +5,16 @@
   "uiComponent": "button",
   "title": {
     "en": "Cancel Heating level",
-    "nl": "Annuleren Verwarmingsniveau"
+    "nl": "Annuleren Verwarmingsniveau",
+    "da": "Annuller Varme niveau",
+    "de": "Heizstufe abbrechen",
+    "es": "Cancelar nivel de calefacción",
+    "fr": "Annuler le niveau de chauffage",
+    "it": "Annulla livello di riscaldamento",
+    "no": "Avbryt varmenivå",
+    "sv": "Avbryt värmenivå",
+    "pl": "Anuluj poziom grzania",
+    "ru": "Отменить уровень нагрева",
+    "ko": "난방 수준 취소"
   }
 }

@@ -1,6 +1,17 @@
 {
   "name": {
-    "en": "Hitachi AC unit"
+    "en": "Hitachi AC unit",
+    "nl": "Hitachi AC unit",
+    "da": "Hitachi klimaanlæg",
+    "de": "Hitachi Klimaanlage",
+    "es": "Unidad de aire acondicionado Hitachi",
+    "fr": "Climatiseur Hitachi",
+    "it": "Unità AC Hitachi",
+    "no": "Hitachi klimaanlegg",
+    "sv": "Hitachi AC-enhet",
+    "pl": "Jednostka klimatyzatora Hitachi",
+    "ru": "Кондиционер Hitachi",
+    "ko": "히타치 에어컨 유닛"
   },
   "class": "fan",
   "capabilities": [
@@ -17,14 +28,38 @@
   "capabilitiesOptions": {
     "measure_temperature.outside": {
       "title": {
-          "en": "Outside Temperature"
+        "en": "Outside Temperature",
+        "nl": "Buitentemperatuur",
+        "da": "Udetemperatur",
+        "de": "Außentemperatur",
+        "es": "Temperatura exterior",
+        "fr": "Température extérieure",
+        "it": "Temperatura esterna",
+        "no": "Utetemperatur",
+        "sv": "Utomhustemperatur",
+        "pl": "Temperatura na zewnątrz",
+        "ru": "Температура наружного воздуха",
+        "ko": "외부 온도"
       }
     },
     "alarm_generic": {
-        "title":{
-            "en": "Filter Alarm"
-        }
+      "title": {
+        "en": "Filter Alarm",
+        "nl": "Filter Alarm",
+        "da": "Filteralarm",
+        "de": "Filteralarm",
+        "es": "Alarma de filtro",
+        "fr": "Alarme de filtre",
+        "it": "Allarme filtro",
+        "no": "Filteralarm",
+        "sv": "Filterlarm",
+        "pl": "Alarm filtra",
+        "ru": "Сигнал фильтра",
+        "ko": "필터 알람"
+      }
     }
   },
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

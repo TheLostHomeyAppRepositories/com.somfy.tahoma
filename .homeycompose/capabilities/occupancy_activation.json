@@ -5,7 +5,17 @@
   "uiComponent": "button",
   "title": {
     "en": "Occupancy Activation",
-    "nl": "Bezettingsactivering"
+    "nl": "Bezettingsactivering",
+    "da": "Belægningsaktivering",
+    "de": "Belegungsaktivierung",
+    "es": "Activación de Ocupación",
+    "fr": "Activation d'Occupation",
+    "it": "Attivazione Occupazione",
+    "no": "Belastningsaktivering",
+    "sv": "Beläggningsaktivering",
+    "pl": "Aktywacja Zajętości",
+    "ru": "Активизация Занятости",
+    "ko": "점유 활성화"
   },
   "icon": "/assets/occupancy.svg"
 }

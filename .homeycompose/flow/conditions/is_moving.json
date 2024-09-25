@@ -2,7 +2,17 @@
   "id": "is_moving",
   "title": {
     "en": "The cover !{{is|isn't}} moving",
-    "nl": "De zonwering beweegt !{{wel|niet}}"
+    "nl": "De zonwering beweegt !{{wel|niet}}",
+    "da": "Dækslet !{{bevæger sig|bevæger sig ikke}}",
+    "de": "Die Abdeckung !{{bewegt sich|bewegt sich nicht}}",
+    "es": "La cubierta !{{se está moviendo|no se está moviendo}}",
+    "fr": "Le couvercle !{{se déplace|ne se déplace pas}}",
+    "it": "Il coperchio !{{si sta muovendo|non si sta muovendo}}",
+    "no": "Dekselet !{{beveger seg|beveger seg ikke}}",
+    "sv": "Täckningen !{{rör sig|rör sig inte}}",
+    "pl": "Osłona !{{się porusza|się nie porusza}}",
+    "ru": "Крышка !{{движется|не движется}}",
+    "ko": "덮개가 !{{움직이고 있습니다|움직이고 있지 않습니다}}"
   },
   "args": [
     {

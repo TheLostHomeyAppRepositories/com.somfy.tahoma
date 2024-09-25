@@ -1,6 +1,17 @@
 {
   "name": {
-    "en": "Garage Door - Open and Close (io)"
+    "en": "Garage Door - Open and Close (io)",
+    "nl": "Garagedeur - Openen en Sluiten (io)",
+    "da": "Garageport - Åben og Luk (io)",
+    "de": "Garagentor - Öffnen und Schließen (io)",
+    "es": "Puerta de garaje - Abrir y cerrar (io)",
+    "fr": "Porte de garage - Ouvrir et Fermer (io)",
+    "it": "Porta del garage - Apri e Chiudi (io)",
+    "no": "Garasjedør - Åpne og Lukk (io)",
+    "sv": "Garageport - Öppna och Stäng (io)",
+    "pl": "Drzwi Garażowe - Otwieranie i Zamykane (io)",
+    "ru": "Гаражная дверь - Открыть и Закрыть (io)",
+    "ko": "차고 문 - 열고 닫기 (io)"
   },
   "class": "blinds",
   "capabilities": [
@@ -18,9 +29,21 @@
       "value": false,
       "hint": {
         "en": "Reverse the Up / Down direction controls",
-        "nl": "Draai de bedieningselementen omhoog/omlaag om"
+        "nl": "Draai de bedieningselementen omhoog/omlaag om",
+        "da": "Omvend Op / Ned",
+        "de": "Umdrehen Hoch / Runter",
+        "es": "Invertir Arriba / Abajo",
+        "fr": "Inverser Haut / Bas",
+        "it": "Inverti Su / Giù",
+        "no": "Inverter Opp / Ned",
+        "sv": "Invertera Upp / Ner",
+        "pl": "Odwróć Góra / Dół",
+        "ru": "Перевернуть Вверх / Вниз",
+        "ko": "위 / 아래 반전"
       }
     }
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

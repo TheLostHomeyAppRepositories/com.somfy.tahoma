@@ -1,6 +1,17 @@
 {
   "name": {
-    "en": "Danfoss Icon Thermostat"
+    "en": "Danfoss Icon Thermostat",
+    "nl": "Danfoss Icon Thermostaat",
+    "da": "Danfoss Icon Termostat",
+    "de": "Danfoss Icon Thermostat",
+    "es": "Termostato Danfoss Icon",
+    "fr": "Thermostat Danfoss Icon",
+    "it": "Termostato Danfoss Icon",
+    "no": "Danfoss Icon Termostat",
+    "sv": "Danfoss Icon Termostat",
+    "pl": "Termostat Danfoss Icon",
+    "ru": "Термостат Danfoss Icon",
+    "ko": "Danfoss Icon 온도 조절기"
   },
   "class": "heater",
   "capabilities": [
@@ -18,5 +29,7 @@
       "max": 35
     }
   },
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

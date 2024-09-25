@@ -4,6 +4,17 @@
   "setable": true,
   "uiComponent": "button",
   "title": {
-    "en": "Holiday Mode"
+    "en": "Holiday Mode",
+    "nl": "Vakantiemodus",
+    "da": "Ferietilstand",
+    "de": "Urlaubsmodus",
+    "es": "Modo Vacaciones",
+    "fr": "Mode Vacances",
+    "it": "Modalità Vacanza",
+    "no": "Feriemodus",
+    "sv": "Semesterläge",
+    "pl": "Tryb wakacyjny",
+    "ru": "Режим отпуска",
+    "ko": "휴가 모드"
   }
 }

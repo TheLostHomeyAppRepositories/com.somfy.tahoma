@@ -5,6 +5,16 @@
   "uiComponent": "button",
   "title": {
     "en": "Auto (Schedule Mode)",
-    "nl": "Auto (Schemamodus)"
+    "nl": "Auto (Schemamodus)",
+    "da": "Auto (Planlagt tilstand)",
+    "de": "Auto (Zeitplanmodus)",
+    "es": "Auto (Modo horario)",
+    "fr": "Auto (Mode programme)",
+    "it": "Auto (Modalità programmata)",
+    "no": "Auto (Tidsplanmodus)",
+    "sv": "Auto (Schemaläge)",
+    "pl": "Auto (Tryb harmonogramu)",
+    "ru": "Авто (Режим расписания)",
+    "ko": "자동 (일정 모드)"
   }
 }

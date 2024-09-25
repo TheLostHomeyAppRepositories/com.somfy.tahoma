@@ -1,11 +1,23 @@
 {
   "name": {
     "en": "KeyGo Remote Control",
-    "nl": "KeyGo-afstandsbediening"
+    "nl": "KeyGo-afstandsbediening",
+    "da": "KeyGo Fjernbetjening",
+    "de": "KeyGo Fernbedienung",
+    "es": "Control Remoto KeyGo",
+    "fr": "Télécommande KeyGo",
+    "it": "Telecomando KeyGo",
+    "no": "KeyGo Fjernkontroll",
+    "sv": "KeyGo Fjärrkontroll",
+    "pl": "Pilot KeyGo",
+    "ru": "Пульт ДУ KeyGo",
+    "ko": "KeyGo 리모콘"
   },
   "class": "remote",
   "capabilities": [
     "key_go_remote_state"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

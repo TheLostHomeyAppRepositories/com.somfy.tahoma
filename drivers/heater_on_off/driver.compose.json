@@ -1,11 +1,23 @@
 {
   "name": {
     "en": "Heater - On / Off",
-    "nl": "Verwarming - Aan / Uit"
+    "nl": "Verwarming - Aan / Uit",
+    "da": "Varmer - Tænd / Sluk",
+    "de": "Heizung - Ein / Aus",
+    "es": "Calefactor - Encendido / Apagado",
+    "fr": "Chauffage - Marche / Arrêt",
+    "it": "Riscaldatore - Acceso / Spento",
+    "no": "Varmeovn - På / Av",
+    "sv": "Värmare - På / Av",
+    "pl": "Grzejnik - Włącz / Wyłącz",
+    "ru": "Обогреватель - Вкл / Выкл",
+    "ko": "히터 - 켜기 / 끄기"
   },
   "class": "heater",
   "capabilities": [
     "onoff"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

@@ -2,35 +2,85 @@
   "type": "enum",
   "title": {
     "en": "Operating Mode",
-    "nl": "Bedrijfsmodus"
+    "nl": "Bedrijfsmodus",
+    "da": "Driftstilstand",
+    "de": "Betriebsmodus",
+    "es": "Modo de operación",
+    "fr": "Mode de fonctionnement",
+    "it": "Modalità di funzionamento",
+    "no": "Driftsmodus",
+    "sv": "Driftsläge",
+    "pl": "Tryb pracy",
+    "ru": "Режим работы",
+    "ko": "운영 모드"
   },
   "values": [
     {
       "id": "cooling",
       "title": {
         "en": "Cooling",
-        "nl": "Koeling"
+        "nl": "Koeling",
+        "da": "Køling",
+        "de": "Kühlung",
+        "es": "Refrigeración",
+        "fr": "Refroidissement",
+        "it": "Raffreddamento",
+        "no": "Kjøling",
+        "sv": "Kylning",
+        "pl": "Chłodzenie",
+        "ru": "Охлаждение",
+        "ko": "냉각"
       }
     },
     {
       "id": "drying",
       "title": {
         "en": "Drying",
-        "nl": "Drogen"
+        "nl": "Drogen",
+        "da": "Tørring",
+        "de": "Trocknung",
+        "es": "Secado",
+        "fr": "Séchage",
+        "it": "Asciugatura",
+        "no": "Tørking",
+        "sv": "Torkning",
+        "pl": "Suszenie",
+        "ru": "Сушка",
+        "ko": "건조"
       }
     },
     {
       "id": "heating",
       "title": {
         "en": "Heating",
-        "nl": "Verwarming"
+        "nl": "Verwarming",
+        "da": "Opvarmning",
+        "de": "Heizung",
+        "es": "Calefacción",
+        "fr": "Chauffage",
+        "it": "Riscaldamento",
+        "no": "Oppvarming",
+        "sv": "Uppvärmning",
+        "pl": "Ogrzewanie",
+        "ru": "Отопление",
+        "ko": "난방"
       }
     },
     {
       "id": "stop",
       "title": {
         "en": "Stop",
-        "nl": "Hou op"
+        "nl": "Hou op",
+        "da": "Stop",
+        "de": "Stopp",
+        "es": "Parar",
+        "fr": "Arrêter",
+        "it": "Stop",
+        "no": "Stopp",
+        "sv": "Stopp",
+        "pl": "Zatrzymaj",
+        "ru": "Стоп",
+        "ko": "정지"
       }
     }
   ],

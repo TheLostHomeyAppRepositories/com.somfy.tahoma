@@ -2,7 +2,17 @@
   "type": "enum",
   "title": {
     "en": "Heating Mode",
-    "nl": "Verwarmingsmodus"
+    "nl": "Verwarmingsmodus",
+    "da": "Opvarmningstilstand",
+    "de": "Heizmodus",
+    "es": "Modo de Calefacción",
+    "fr": "Mode Chauffage",
+    "it": "Modalità Riscaldamento",
+    "no": "Oppvarmingsmodus",
+    "sv": "Uppvärmningsläge",
+    "pl": "Tryb Grzania",
+    "ru": "Режим отопления",
+    "ko": "난방 모드"
   },
   "getable": true,
   "setable": true,
@@ -12,32 +22,82 @@
       "id": "auto",
       "title": {
         "en": "Automatic",
-        "nl": "Automatisch"
+        "nl": "Automatisch",
+        "da": "Automatisk",
+        "de": "Automatisch",
+        "es": "Automático",
+        "fr": "Automatique",
+        "it": "Automatico",
+        "no": "Automatisk",
+        "sv": "Automatisk",
+        "pl": "Automatyczny",
+        "ru": "Автоматический",
+        "ko": "자동"
       }
     },
     {
       "id": "comfort",
       "title": {
-        "en": "Comfort"
+        "en": "Comfort",
+        "da": "Komfort",
+        "de": "Komfort",
+        "es": "Comodidad",
+        "fr": "Confort",
+        "it": "Comfort",
+        "no": "Komfort",
+        "sv": "Komfort",
+        "pl": "Komfort",
+        "ru": "Комфортный",
+        "ko": "편안"
       }
     },
     {
       "id": "eco",
       "title": {
-        "en": "Eco"
+        "en": "Eco",
+        "da": "Øko",
+        "de": "Öko",
+        "es": "Económico",
+        "fr": "Éco",
+        "it": "Eco",
+        "no": "Øko",
+        "sv": "Eko",
+        "pl": "Eko",
+        "ru": "Эко",
+        "ko": "에코"
       }
     },
     {
       "id": "free",
       "title": {
         "en": "Free",
-        "nl": "Vrij"
+        "nl": "Vrij",
+        "da": "Fri",
+        "de": "Frei",
+        "es": "Libre",
+        "fr": "Libre",
+        "it": "Libero",
+        "no": "Fri",
+        "sv": "Fri",
+        "pl": "Bezpłatny",
+        "ru": "Свободно",
+        "ko": "무료"
       }
     },
     {
       "id": "secured",
       "title": {
-        "en": "Secured"
+        "en": "Secured",
+        "da": "Sikret",
+        "de": "Gesichert",
+        "es": "Seguro",
+        "fr": "Sécurisé",
+        "it": "Protetto",
+        "no": "Sikret",
+        "sv": "Säkrad",
+        "pl": "Zabezpieczony",
+        "ru": "Защищённый",
+        "ko": "보안"
       }
     }
   ]

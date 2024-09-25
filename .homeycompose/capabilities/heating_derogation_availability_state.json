@@ -2,7 +2,17 @@
   "type": "string",
   "title": {
     "en": "Heating Derogation Availability",
-    "nl": "Beschikbaarheid van afwijking verwarming"
+    "nl": "Beschikbaarheid van afwijking verwarming",
+    "da": "Tilgængelighed for opvarmningsafvigelse",
+    "de": "Verfügbarkeit der Heizungsabweichung",
+    "es": "Disponibilidad de derogación de calefacción",
+    "fr": "Disponibilité de la dérogation de chauffage",
+    "it": "Disponibilità deroga riscaldamento",
+    "no": "Tilgjengelighet for oppvarmingsavvik",
+    "sv": "Tillgänglighet för uppvärmningsavvikelse",
+    "pl": "Dostępność derogacji grzewczej",
+    "ru": "Доступность отклонения отопления",
+    "ko": "난방 이탈 가능성"
   },
   "getable": true,
   "setable": false

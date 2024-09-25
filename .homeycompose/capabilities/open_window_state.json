@@ -5,16 +5,46 @@
   "uiComponent": "sensor",
   "title": {
     "en": "Window Open",
-    "nl": "Venster open"
+    "nl": "Venster open",
+    "da": "Vindue Åben",
+    "de": "Fenster Offen",
+    "es": "Ventana Abierta",
+    "fr": "Fenêtre Ouverte",
+    "it": "Finestra Aperta",
+    "no": "Vindu Åpent",
+    "sv": "Fönster Öppet",
+    "pl": "Okno Otwarte",
+    "ru": "Окно Открыто",
+    "ko": "창문 열림"
   },
   "insights": true,
   "insightsTitleTrue": {
     "en": "Window openned",
-    "nl": "Venster geopend"
+    "nl": "Venster geopend",
+    "da": "Vindue Åbnet",
+    "de": "Fenster Geöffnet",
+    "es": "Ventana Abierta",
+    "fr": "Fenêtre Ouverte",
+    "it": "Finestra Aperta",
+    "no": "Vindu Åpnet",
+    "sv": "Fönster Öppnat",
+    "pl": "Okno Otwarte",
+    "ru": "Окно Открыто",
+    "ko": "창문 열림"
   },
   "insightsTitleFalse": {
     "en": "Window closed",
-    "nl": "Venster gesloten"
+    "nl": "Venster gesloten",
+    "da": "Vindue Lukket",
+    "de": "Fenster Geschlossen",
+    "es": "Ventana Cerrada",
+    "fr": "Fenêtre Fermée",
+    "it": "Finestra Chiusa",
+    "no": "Vindu Lukket",
+    "sv": "Fönster Stängt",
+    "pl": "Okno Zamknięte",
+    "ru": "Окно Закрыто",
+    "ko": "창문 닫힘"
   },
   "icon": "/assets/open_windows.svg"
 }

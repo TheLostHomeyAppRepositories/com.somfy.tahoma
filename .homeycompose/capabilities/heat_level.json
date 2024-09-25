@@ -1,13 +1,23 @@
 {
-    "type": "number",
-    "uiComponent": "slider",
-    "title": {
-        "en": "Heat Level",
-        "nl": "Warmteniveau"
-    },
-    "min": 0,
-    "max": 100,
-    "getable": true,
-    "setable": true,
-    "icon": "/assets/power.svg"
+  "type": "number",
+  "uiComponent": "slider",
+  "title": {
+    "en": "Heat Level",
+    "nl": "Warmteniveau",
+    "da": "Varme niveau",
+    "de": "Wärmeniveau",
+    "es": "Nivel de calor",
+    "fr": "Niveau de chaleur",
+    "it": "Livello di calore",
+    "no": "Varme nivå",
+    "sv": "Värme nivå",
+    "pl": "Poziom ciepła",
+    "ru": "Уровень нагрева",
+    "ko": "난방 수준"
+  },
+  "min": 0,
+  "max": 100,
+  "getable": true,
+  "setable": true,
+  "icon": "/assets/power.svg"
 }

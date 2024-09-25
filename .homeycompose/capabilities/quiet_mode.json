@@ -5,6 +5,16 @@
   "uiComponent": "toggle",
   "title": {
     "en": "Quiet Mode",
-    "nl": "Stille modus"
+    "nl": "Stille modus",
+    "da": "Stilletilstand",
+    "de": "Ruhemodus",
+    "es": "Modo silencioso",
+    "fr": "Mode silencieux",
+    "it": "Modalità silenziosa",
+    "no": "Stillemodus",
+    "sv": "Tyst läge",
+    "pl": "Tryb cichy",
+    "ru": "Тихий режим",
+    "ko": "조용한 모드"
   }
 }

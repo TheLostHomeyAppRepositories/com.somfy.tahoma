@@ -2,7 +2,17 @@
   "type": "string",
   "title": {
     "en": "Last Pass Operating Mode",
-    "nl": "Laatste doorgang bedrijfsmodus"
+    "nl": "Laatste doorgang bedrijfsmodus",
+    "da": "Sidste kontrolleringsfunktion",
+    "de": "Letzter Durchgangsmodus",
+    "es": "Modo de operación de última pasada",
+    "fr": "Mode opératoire de dernier passage",
+    "it": "Modalità operativa dell'ultimo passaggio",
+    "no": "Siste passasjedriftsmodus",
+    "sv": "Sista pass-opereringsläge",
+    "pl": "Ostatni tryb operacyjny przejścia",
+    "ru": "Режим последнего прохода",
+    "ko": "마지막 통과 작동 모드"
   },
   "getable": true,
   "setable": false

@@ -1,6 +1,17 @@
 {
   "name": {
-    "en": "Tahoma / Connexoon Hub"
+    "en": "Tahoma / Connexoon Hub",
+    "nl": "Tahoma / Connexoon Hub",
+    "da": "Tahoma / Connexoon Hub",
+    "de": "Tahoma / Connexoon Hub",
+    "es": "Tahoma / Connexoon Hub",
+    "fr": "Tahoma / Connexoon Hub",
+    "it": "Tahoma / Connexoon Hub",
+    "no": "Tahoma / Connexoon Hub",
+    "sv": "Tahoma / Connexoon Hub",
+    "pl": "Tahoma / Connexoon Hub",
+    "ru": "Tahoma / Connexoon Hub",
+    "ko": "Tahoma / Connexoon Hub"
   },
   "class": "other",
   "capabilities": [
@@ -10,8 +21,21 @@
   ],
   "capabilitiesOptions": {
     "dim": {
-      "title": "LED"
+      "title": "LED",
+      "nl": "LED",
+      "da": "LED",
+      "de": "LED",
+      "es": "LED",
+      "fr": "LED",
+      "it": "LED",
+      "no": "LED",
+      "sv": "LED",
+      "pl": "LED",
+      "ru": "LED",
+      "ko": "LED"
     }
   },
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

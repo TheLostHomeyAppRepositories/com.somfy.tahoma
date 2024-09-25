@@ -4,7 +4,18 @@
   "setable": true,
   "uiComponent": "button",
   "title": {
-    "en": "Alarm 1"
+    "en": "Alarm 1",
+    "nl": "Alarm 1",
+    "da": "Alarm 1",
+    "de": "Alarm 1",
+    "es": "Alarma 1",
+    "fr": "Alarme 1",
+    "it": "Allarme 1",
+    "no": "Alarm 1",
+    "sv": "Alarm 1",
+    "pl": "Alarm 1",
+    "ru": "Сигнализация 1",
+    "ko": "경보 1"
   },
   "icon": "/drivers/siren/assets/icon.svg"
 }

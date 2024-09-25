@@ -1,7 +1,17 @@
 {
   "name": {
     "en": "Siren (io)",
-    "nl": "Sirene (io)"
+    "nl": "Sirene (io)",
+    "da": "Sirene (io)",
+    "de": "Sirene (io)",
+    "es": "Sirena (io)",
+    "fr": "Sirène (io)",
+    "it": "Sirena (io)",
+    "no": "Sirene (io)",
+    "sv": "Sirén (io)",
+    "pl": "Syrena (io)",
+    "ru": "Сирена (io)",
+    "ko": "사이렌 (io)"
   },
   "class": "homealarm",
   "energy": {
@@ -17,5 +27,7 @@
     "alarm_siren",
     "alarm_battery"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

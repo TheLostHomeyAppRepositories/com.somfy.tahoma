@@ -4,6 +4,17 @@
   "setable": true,
   "uiComponent": "button",
   "title": {
-    "en": "Boost"
+    "en": "Boost",
+    "nl": "Versterken",
+    "da": "Boost",
+    "de": "Schub",
+    "es": "Impulso",
+    "fr": "Booster",
+    "it": "Boost",
+    "no": "Styrke",
+    "sv": "Boost",
+    "pl": "Zwiększenie",
+    "ru": "Ускорение",
+    "ko": "부스트"
   }
 }

@@ -1,7 +1,17 @@
 {
   "name": {
     "en": "Awning (RTS)",
-    "nl": "Buitenzonwering (RTS)"
+    "nl": "Buitenzonwering (RTS)",
+    "de": "Markise (RTS)",
+    "da": "Markise (RTS)",
+    "es": "Toldo (RTS)",
+    "fr": "Store (RTS)",
+    "it": "Tenda (RTS)",
+    "no": "Markiser (RTS)",
+    "sv": "Markis (RTS)",
+    "pl": "Markiza (RTS)",
+    "ru": "Маркиза (RTS)",
+    "ko": "어닝(RTS)"
   },
   "class": "sunshade",
   "capabilities": [
@@ -14,14 +24,36 @@
       "type": "checkbox",
       "label": {
         "en": "Invert Up / Down",
-        "nl": "Omkeren omhoog / omlaag"
+        "nl": "Omkeren omhoog / omlaag",
+        "de": "Umkehren Hoch / Runter",
+        "da": "Omdiriger Op / Ned",
+        "es": "Invertir Arriba / Abajo",
+        "fr": "Inverser Haut / Bas",
+        "it": "Inverti Su / Giù",
+        "no": "Omvendt opp / ned",
+        "sv": "Invertera upp/ner",
+        "pl": "Odwróć Góra / Dół",
+        "ru": "Инвертировать Вверх / Вниз",
+        "ko": "위/아래 반전"
       },
       "value": false,
       "hint": {
         "en": "Reverse the Up / Down direction controls",
-        "nl": "Draai de bedieningselementen omhoog/omlaag om"
+        "nl": "Draai de bedieningselementen omhoog/omlaag om",
+        "de": "Richtung Hoch / Runter umkehren",
+        "da": "Omvend retning Op / Ned kontrol",
+        "es": "Invertir los controles de dirección Arriba / Abajo",
+        "fr": "Inverser les contrôles de direction Haut / Bas",
+        "it": "Inverti i controlli di direzione Su / Giù",
+        "no": "Reverser opp / ned retningskontrollene",
+        "sv": "Omvänd upp / ner riktningkontroller",
+        "pl": "Odwróć kierunek sterowania góra / dół",
+        "ru": "Инвертировать вверх / вниз контролы",
+        "ko": "상 / 하 방향 제어 반전"
       }
     }
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

@@ -1,10 +1,23 @@
 {
   "name": {
-    "en": "Occupancy Detector (io)"
+    "en": "Occupancy Detector (io)",
+    "nl": "Bezettingsdetector (io)",
+    "da": "Belægningsdetektor (io)",
+    "de": "Belegungsdetektor (io)",
+    "es": "Detector de Ocupación (io)",
+    "fr": "Détecteur d'Occupation (io)",
+    "it": "Rilevatore di Occupazione (io)",
+    "no": "Okkuperingsdetektor (io)",
+    "sv": "Beläggningsdetektor (io)",
+    "pl": "Detektor zajętości (io)",
+    "ru": "Датчик занятости (io)",
+    "ko": "점유 감지기 (io)"
   },
   "class": "sensor",
   "capabilities": [
     "alarm_motion"
   ],
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

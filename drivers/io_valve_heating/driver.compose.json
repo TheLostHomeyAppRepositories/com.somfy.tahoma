@@ -1,52 +1,117 @@
 {
-    "name": {
-        "en": "Radiator Valve"
+  "name": {
+    "en": "Radiator Valve",
+    "nl": "Radiatorklep",
+    "da": "Radiatorventil",
+    "de": "Heizkörperventil",
+    "es": "Válvula de radiador",
+    "fr": "Vanne de radiateur",
+    "it": "Valvola del radiatore",
+    "no": "Radiatorventil",
+    "sv": "Radiatorventil",
+    "pl": "Zawór grzejnika",
+    "ru": "Радиаторный клапан",
+    "ko": "라디에이터 밸브"
+  },
+  "class": "heater",
+  "energy": {
+    "batteries": [
+      "AA",
+      "AA"
+    ]
+  },
+  "capabilities": [
+    "measure_temperature",
+    "target_temperature.comfort_heating",
+    "target_temperature.eco_heating",
+    "target_temperature.away",
+    "target_temperature.frost_protection",
+    "open_window_activation",
+    "valve_auto_mode",
+    "measure_battery",
+    "valve_heating_mode_state",
+    "valve_operating_mode_state",
+    "derogation_mode",
+    "derogation_type",
+    "valve_state",
+    "defect_state",
+    "rssi"
+  ],
+  "capabilitiesOptions": {
+    "target_temperature.comfort_heating": {
+      "min": 5,
+      "max": 26,
+      "title": {
+        "en": "Home Temperature",
+        "nl": "Huis temperatuur",
+        "da": "Hjemmetemperatur",
+        "de": "Heimtemperatur",
+        "es": "Temperatura de casa",
+        "fr": "Température de la maison",
+        "it": "Temperatura domestica",
+        "no": "Hjemmetemperatur",
+        "sv": "Hemma temperatur",
+        "pl": "Temperatura domowa",
+        "ru": "Домашняя температура",
+        "ko": "가정 온도"
+      }
     },
-    "class": "heater",
-    "energy": {
-        "batteries": [
-            "AA",
-            "AA"
-        ]
+    "target_temperature.eco_heating": {
+      "min": 5,
+      "max": 26,
+      "title": {
+        "en": "Night Temperature",
+        "nl": "Nacht temperatuur",
+        "da": "Nattetemperatur",
+        "de": "Nachttemperatur",
+        "es": "Temperatura nocturna",
+        "fr": "Température de nuit",
+        "it": "Temperatura notturna",
+        "no": "Nattetemperatur",
+        "sv": "Nattetemperatur",
+        "pl": "Temperatura nocna",
+        "ru": "Ночная температура",
+        "ko": "야간 온도"
+      }
     },
-    "capabilities": [
-        "measure_temperature",
-        "target_temperature.comfort_heating",
-        "target_temperature.eco_heating",
-        "target_temperature.away",
-        "target_temperature.frost_protection",
-        "open_window_activation",
-        "valve_auto_mode",
-        "measure_battery",
-        "valve_heating_mode_state",
-        "valve_operating_mode_state",
-        "derogation_mode",
-        "derogation_type",
-        "valve_state",
-        "defect_state",
-        "rssi"
-    ],
-    "capabilitiesOptions": {
-        "target_temperature.comfort_heating": {
-            "min": 5,
-            "max": 26,
-            "title": "Home Temperature"
-        },
-        "target_temperature.eco_heating": {
-            "min": 5,
-            "max": 26,
-            "title": "Night Temperature"
-        },
-        "target_temperature.away": {
-            "min": 5,
-            "max": 26,
-            "title": "Away Temperature"
-        },
-        "target_temperature.frost_protection": {
-            "min": 5,
-            "max": 26,
-            "title": "Frost Protection Temperature"
-        }
+    "target_temperature.away": {
+      "min": 5,
+      "max": 26,
+      "title": {
+        "en": "Away Temperature",
+        "nl": "Afwezig temperatuur",
+        "da": "Fraværstemperatur",
+        "de": "Abwesenheitstemperatur",
+        "es": "Temperatura de ausencia",
+        "fr": "Température d'absence",
+        "it": "Temperatura assenza",
+        "no": "Bortetemperatur",
+        "sv": "Borta temperatur",
+        "pl": "Temperatura poza domem",
+        "ru": "Температура отсутствия",
+        "ko": "외출 온도"
+      }
     },
-    "$extends": ["cloudDriver"]
+    "target_temperature.frost_protection": {
+      "min": 5,
+      "max": 26,
+      "title": {
+        "en": "Frost Protection Temperature",
+        "nl": "Vorstbescherming temperatuur",
+        "da": "Frostbeskyttelsestemperatur",
+        "de": "Frostschutztemperatur",
+        "es": "Temperatura de protección contra heladas",
+        "fr": "Température de protection contre le gel",
+        "it": "Temperatura di protezione dal gelo",
+        "no": "Frostbeskyttelsestemperatur",
+        "sv": "Frostskyddstemperatur",
+        "pl": "Temperatura ochrony przed zamarzaniem",
+        "ru": "Температура защиты от замерзания",
+        "ko": "동결 방지 온도"
+      }
+    }
+  },
+  "$extends": [
+    "cloudDriver"
+  ]
 }

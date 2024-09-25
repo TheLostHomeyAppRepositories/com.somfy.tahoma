@@ -1,6 +1,16 @@
 {
   "name": {
-    "en": "Atlantic Water Boiler"
+    "en": "Atlantic Water Boiler",
+    "da": "Atlantic Vandkedel",
+    "de": "Atlantic Wasserboiler",
+    "es": "Caldera de Agua Atlantic",
+    "fr": "Chaudière à Eau Atlantic",
+    "it": "Caldaia ad Acqua Atlantic",
+    "no": "Atlantic Vannkoker",
+    "sv": "Atlantic Vattenkokare",
+    "pl": "Podgrzewacz Wody Atlantic",
+    "ru": "Котел для Воды Atlantic",
+    "ko": "아틀란틱 온수 보일러"
   },
   "class": "heater",
   "capabilities": [
@@ -15,18 +25,40 @@
       "min": 30,
       "max": 60,
       "title": {
-          "en": "Comfort Temperature",
-          "nl": "Comforttemperatuur"
+        "en": "Comfort Temperature",
+        "nl": "Comforttemperatuur",
+        "da": "Komforttemperatur",
+        "de": "Komforttemperatur",
+        "es": "Temperatura de Confort",
+        "fr": "Température de Confort",
+        "it": "Temperatura di Comfort",
+        "no": "Komforttemperatur",
+        "sv": "Komforttemperatur",
+        "pl": "Temperatura Komfortu",
+        "ru": "Комфортная температура",
+        "ko": "안락한 온도"
       }
     },
     "target_temperature.eco": {
       "min": 30,
       "max": 60,
       "title": {
-          "en": "Eco Temperature",
-          "nl": "Ecotemperatuur"
+        "en": "Eco Temperature",
+        "nl": "Ecotemperatuur",
+        "da": "Eco Temperatur",
+        "de": "Eco Temperatur",
+        "es": "Temperatura Eco",
+        "fr": "Température Eco",
+        "it": "Temperatura Eco",
+        "no": "Eco Temperatur",
+        "sv": "Eco Temperatur",
+        "pl": "Temperatura Eco",
+        "ru": "Эко температура",
+        "ko": "에코 온도"
       }
     }
   },
-  "$extends": ["cloudDriver"]
+  "$extends": [
+    "cloudDriver"
+  ]
 }

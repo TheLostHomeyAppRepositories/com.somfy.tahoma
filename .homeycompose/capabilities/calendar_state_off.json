@@ -6,6 +6,16 @@
   "icon": "/assets/calendar_off.svg",
   "title": {
     "en": "Deactivate Agenda / Timer",
-    "nl": "Agenda / Timer deactiveren"
+    "nl": "Agenda / Timer deactiveren",
+    "da": "Deaktiver Agenda / Timer",
+    "de": "Agenda / Timer deaktivieren",
+    "es": "Desactivar Agenda / Temporizador",
+    "fr": "Désactiver l'agenda / Minuteur",
+    "it": "Disattiva Agenda / Timer",
+    "no": "Deaktiver Agenda / Timer",
+    "sv": "Inaktivera Agenda / Timer",
+    "pl": "Dezaktywuj Agendę / Timer",
+    "ru": "Деактивировать Повестку дня / Таймер",
+    "ko": "일정 / 타이머 비활성화"
   }
 }
