@@ -39,9 +39,14 @@ class SlidingGateDevice extends WindowCoveringsDevice
 		}
 		else
 		{
-			if (this.hasCapability('windowcoverings_state'))
+			if (this.hasCapability('windowcoverings_set'))
 			{
-				this.removeCapability('windowcoverings_state').catch(this.error);
+				this.removeCapability('windowcoverings_set').catch(this.error);
+			}
+
+			if (!this.hasCapability('windowcoverings_state'))
+			{
+				this.addCapability('windowcoverings_state').catch(this.error);
 			}
 
 			this.positionStateName = ''; // Device is not positionable

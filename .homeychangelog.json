@@ -811,5 +811,8 @@
 	},
 	"4.0.93": {
 		"en": "Fixed USA region issue"
+	},
+	"4.0.94": {
+		"en": "Fix 'Sliding gate (io)' that was broken in the last update. Added more languages"
 	}
 }

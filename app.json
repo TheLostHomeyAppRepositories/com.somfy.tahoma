@@ -35,7 +35,7 @@
     "ru": "Сердце вашего умного дома",
     "ko": "스마트 홈의 중심"
   },
-  "version": "4.0.93",
+  "version": "4.0.94",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Adrian Rockall",
@@ -486,9 +486,17 @@
       {
         "title": {
           "en": "The pedestrian state changed",
+          "nl": "De voetgangersstatus is gewijzigd",
+          "da": "Fodgængerens tilstand ændret sig",
+          "de": "Der Fußgängerstatus hat sich geändert",
+          "es": "El estado del peatón cambió",
           "fr": "L'état du piéton a changé",
-          "de": "Der Fußgängerzustand hat sich geändert",
-          "nl": "De status van de voetganger is veranderd"
+          "it": "Lo stato del pedone è cambiato",
+          "no": "Fotgjengertilstanden har endret seg",
+          "sv": "Gångtrafikantens tillstånd har ändrats",
+          "pl": "Stan pieszego się zmienił",
+          "ru": "Состояние пешехода изменилось",
+          "ko": "보행자 상태가 변경되었습니다"
         },
         "tokens": [
           {
@@ -496,9 +504,17 @@
             "type": "boolean",
             "title": {
               "en": "At Pedestrian Position",
-              "fr": "À la position de piéton",
-              "de": "Am Fußgängerstandort",
-              "nl": "Op voetgangerspositie"
+              "nl": "Op Voetgangerspositie",
+              "da": "Ved fodgængerposition",
+              "de": "An der Fußgängerposition",
+              "es": "En Posición Peatonal",
+              "fr": "À la position piéton",
+              "it": "Alla posizione pedonale",
+              "no": "Ved fotgjengerposisjon",
+              "sv": "Vid gångtrafikantens position",
+              "pl": "Na pozycji pieszego",
+              "ru": "На позиции пешехода",
+              "ko": "보행자 위치에서"
             }
           }
         ],
@@ -1026,50 +1042,6 @@
                 }
               }
             ]
-          }
-        ]
-      },
-      {
-        "id": "pedestrian_changed",
-        "title": {
-          "en": "The pedestrian state changed",
-          "nl": "De voetgangersstatus is gewijzigd",
-          "da": "Fodgængerens tilstand ændret sig",
-          "de": "Der Fußgängerstatus hat sich geändert",
-          "es": "El estado del peatón cambió",
-          "fr": "L'état du piéton a changé",
-          "it": "Lo stato del pedone è cambiato",
-          "no": "Fotgjengertilstanden har endret seg",
-          "sv": "Gångtrafikantens tillstånd har ändrats",
-          "pl": "Stan pieszego się zmienił",
-          "ru": "Состояние пешехода изменилось",
-          "ko": "보행자 상태가 변경되었습니다"
-        },
-        "tokens": [
-          {
-            "name": "pedestrian",
-            "type": "boolean",
-            "title": {
-              "en": "At Pedestrian Position",
-              "nl": "Op Voetgangerspositie",
-              "da": "Ved fodgængerposition",
-              "de": "An der Fußgängerposition",
-              "es": "En Posición Peatonal",
-              "fr": "À la position piéton",
-              "it": "Alla posizione pedonale",
-              "no": "Ved fotgjengerposisjon",
-              "sv": "Vid gångtrafikantens position",
-              "pl": "Na pozycji pieszego",
-              "ru": "На позиции пешехода",
-              "ko": "보행자 위치에서"
-            }
-          }
-        ],
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=io_sliding_gate"
           }
         ]
       },
@@ -2552,11 +2524,7 @@
             "min": 0,
             "max": 100,
             "placeholder": {
-              "en": "%",
-              "nl": "%",
-              "fr": "%",
-              "de": "%",
-              "du": "%"
+              "en": "%"
             }
           }
         ]
@@ -2629,7 +2597,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=heater_variable|protexial_alarm"
+            "filter": "driver_id=heater_variable"
           }
         ]
       },
@@ -2653,7 +2621,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=heater_variable|protexial_alarm"
+            "filter": "driver_id=heater_variable"
           }
         ]
       },
@@ -2691,7 +2659,6 @@
       },
       {
         "id": "set_polling_mode",
-        "deprecated": true,
         "title": {
           "en": "Turn polling on / off",
           "nl": "Polling aan/uit zetten",
@@ -2799,7 +2766,6 @@
       },
       {
         "id": "set_polling_speed",
-        "deprecated": true,
         "title": {
           "en": "Set Polling Interval",
           "nl": "Stel de update frequentie in",
@@ -2879,6 +2845,284 @@
         ]
       },
       {
+        "title": {
+          "en": "Set quite mode",
+          "nl": "Stille modus instellen",
+          "fr": "Définir le mode silencieux",
+          "de": "Ruhemodus einstellen",
+          "es": "Establecer modo silencioso",
+          "pt": "Definir modo silencioso",
+          "it": "Imposta la modalità silenziosa",
+          "pl": "Ustaw tryb cichy"
+        },
+        "titleFormatted": {
+          "en": "Set quite mode [[quiet_mode]]",
+          "nl": "Stille modus instellen [[quiet_mode]]",
+          "fr": "Définir le mode silencieux [[quiet_mode]]",
+          "de": "Ruhemodus einstellen [[quiet_mode]]",
+          "es": "Establecer modo silencioso [[quiet_mode]]",
+          "pt": "Definir modo silencioso [[quiet_mode]]",
+          "it": "Imposta la modalità silenziosa [[quiet_mode]]",
+          "pl": "Ustaw tryb cichy [[quiet_mode]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=io_velux_roller_shutter"
+          },
+          {
+            "name": "quiet_mode",
+            "type": "checkbox",
+            "title": {
+              "en": "Silent",
+              "nl": "Stil",
+              "fr": "Silencieux",
+              "de": "Leise",
+              "es": "Silencioso",
+              "pt": "Silencioso",
+              "it": "Silenzioso",
+              "pl": "Cichy"
+            }
+          }
+        ],
+        "id": "set_quite_mode"
+      },
+      {
+        "id": "set_zone",
+        "title": {
+          "en": "Turn on the specified zones"
+        },
+        "titleFormatted": {
+          "en": "Turn on zone A [[zone_button_a]], zone B [[zone_button_b]], zone C [[zone_button_c]]"
+        },
+        "hint": {
+          "en": "You can only turn zones on, not off. If you want to turn off a zone, you have to turn off the whole alarm."
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=protexial_alarm"
+          },
+          {
+            "name": "zone_button_a",
+            "title": {
+              "en": "Zone A"
+            },
+            "type": "dropdown",
+            "value": "0",
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "No Change"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "On"
+                }
+              }
+            ]
+          },
+          {
+            "name": "zone_button_b",
+            "title": {
+              "en": "Zone B"
+            },
+            "type": "dropdown",
+            "value": "0",
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "No Change"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "On"
+                }
+              }
+            ]
+          },
+          {
+            "name": "zone_button_c",
+            "title": {
+              "en": "Zone C"
+            },
+            "type": "dropdown",
+            "value": "0",
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "No Change"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "On"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "advanced": true,
+        "title": {
+          "en": "Wait for actions to finish",
+          "nl": "Wacht tot acties zijn voltooid",
+          "fr": "Attendre que les actions soient terminées",
+          "de": "Warten Sie, bis die Aktionen abgeschlossen sind",
+          "es": "Esperar a que las acciones terminen",
+          "it": "Attendere che le azioni siano completate",
+          "pt": "Aguarde até que as ações terminem",
+          "pl": "Poczekaj, aż akcje zostaną zakończone"
+        },
+        "titleFormatted": {
+          "en": "Wait [[timeout]] seconds for action to finish",
+          "nl": "Wacht [[timeout]] seconden tot actie is voltooid",
+          "fr": "Attendre [[timeout]] secondes que l'action soit terminée",
+          "de": "Warten Sie [[timeout]] Sekunden, bis die Aktion abgeschlossen ist",
+          "es": "Espere [[timeout]] segundos a que la acción termine",
+          "it": "Attendere [[timeout]] secondi che l'azione sia completata",
+          "pt": "Aguarde [[timeout]] segundos para que a ação termine",
+          "pl": "Poczekaj [[timeout]] sekund, aż akcja zostanie zakończona"
+        },
+        "args": [
+          {
+            "name": "timeout",
+            "type": "number",
+            "title": {
+              "en": "Maximum time to wait",
+              "nl": "Maximale wachttijd",
+              "fr": "Temps d'attente maximal",
+              "de": "Maximale Wartezeit",
+              "es": "Tiempo máximo de espera",
+              "it": "Tempo massimo di attesa",
+              "pt": "Tempo máximo de espera",
+              "pl": "Maksymalny czas oczekiwania"
+            },
+            "min": 0,
+            "max": 60,
+            "label": "seconds",
+            "placeholder": {
+              "en": "Timeout",
+              "nl": "Time-out",
+              "fr": "Délai d'attente",
+              "de": "Zeitüberschreitung",
+              "es": "Tiempo de espera",
+              "it": "Tempo scaduto",
+              "pt": "Tempo limite",
+              "pl": "Limit czasu"
+            }
+          },
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=io_exterior_venetian_blind|io_garage_door|io_garage_door_partial|io_horizontal_awning|io_pergola|io_roller_shutter|io_roller_shutter_quiet|io_sliding_gate|io_velux_interior_blind|io_velux_roller_shutter|io_velux_roof_window|io_vertical_exterior_blind|io_vertical_interior_blind|rts_gate_opener|rts_horizontal_awning|rts_interior_blind|rts_interior_curtain|rts_interior_venetian_blind"
+          }
+        ],
+        "id": "wait_for_action_to_finish"
+      },
+      {
+        "title": {
+          "en": "Set the Lower Shutter Position",
+          "fr": "Définir la position inférieure du volet",
+          "de": "Untere Jalousie-Position einstellen",
+          "nl": "Stel de onderste shutterpositie in"
+        },
+        "titleFormatted": {
+          "en": "Set the Lower Shutter position to [[windowcoverings_set]]",
+          "fr": "Définir la position inférieure du volet à [[windowcoverings_set]]",
+          "de": "Untere Jalousie-Position auf [[windowcoverings_set]] setzen",
+          "nl": "Stel de onderste shutterpositie in op [[windowcoverings_set]]"
+        },
+        "hint": {
+          "en": "Sets lower shutter position",
+          "fr": "Définit la position inférieure du volet",
+          "de": "Stellt die untere Jalousie-Position ein",
+          "nl": "Stelt de onderste shutterpositie in"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=io_dual_blinds"
+          },
+          {
+            "name": "windowcoverings_set",
+            "title": {
+              "en": "Position",
+              "fr": "Position",
+              "de": "Position",
+              "nl": "Positie"
+            },
+            "type": "range",
+            "min": 0,
+            "max": 1,
+            "step": 0.01,
+            "value": 0.5,
+            "label": "%",
+            "labelMultiplier": 100,
+            "labelDecimals": 0
+          }
+        ],
+        "id": "windowcoverings_lower_set"
+      },
+      {
+        "title": {
+          "en": "Set the Upper Shutter Position",
+          "fr": "Réglez la position du volet supérieur",
+          "de": "Obere Jalousienposition einstellen",
+          "nl": "Stel de positie van het bovenste rolluik in"
+        },
+        "titleFormatted": {
+          "en": "Set the Upper Shutter position to [[windowcoverings_set]]",
+          "fr": "Réglez la position du volet supérieur à [[windowcoverings_set]]",
+          "de": "Setzen Sie die obere Jalousienposition auf [[windowcoverings_set]]",
+          "nl": "Stel de positie van het bovenste rolluik in op [[windowcoverings_set]]"
+        },
+        "hint": {
+          "en": "Sets upper shutter position",
+          "fr": "Définit la position du volet supérieur",
+          "de": "Setzt die Position der oberen Jalousie",
+          "nl": "Stelt de positie van het bovenste rolluik in"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=io_dual_blinds"
+          },
+          {
+            "name": "windowcoverings_set",
+            "title": {
+              "en": "Position",
+              "fr": "Position",
+              "de": "Position",
+              "nl": "Positie"
+            },
+            "type": "range",
+            "min": 0,
+            "max": 1,
+            "step": 0.01,
+            "value": 0.5,
+            "label": "%",
+            "labelMultiplier": 100,
+            "labelDecimals": 0
+          }
+        ],
+        "id": "windowcoverings_upper_set"
+      },
+      {
+        "id": "ac_operating_mode_set",
         "title": {
           "en": "Set the Heat / Cool mode",
           "nl": "Stel de Verwarm / Koel modus in",
@@ -5771,9 +6015,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -5840,7 +6081,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -6026,9 +6268,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -6095,7 +6334,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -6215,9 +6455,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -6284,7 +6521,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -6399,9 +6637,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -6468,7 +6703,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -6562,9 +6798,7 @@
       },
       "class": "sensor",
       "capabilities": [
-        "alarm_contact",
-        "tilted_state",
-        "open_window_state"
+        "alarm_contact"
       ],
       "id": "enocean_window_handle"
     },
@@ -6577,9 +6811,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -6647,7 +6878,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -6756,9 +6988,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -6825,7 +7054,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -6933,9 +7163,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -7002,7 +7229,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -7113,9 +7341,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -7182,7 +7407,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -7332,9 +7558,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -7401,7 +7624,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -7527,9 +7751,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -7596,7 +7817,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -7749,9 +7971,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -7818,7 +8037,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -7927,9 +8147,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -7996,7 +8213,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -8145,9 +8363,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -8214,7 +8429,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -8333,9 +8549,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -8402,7 +8615,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -8526,9 +8740,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -8595,7 +8806,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -8775,9 +8987,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -8844,7 +9053,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -9133,9 +9343,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -9202,7 +9409,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -9311,8 +9519,193 @@
       ],
       "pair": [
         {
-          "id": "select_region"
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
         },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices",
+            "prev": "login_credentials"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        }
+      ],
+      "icon": "/drivers/io_dual_blinds/assets/icon.svg",
+      "images": {
+        "large": "/drivers/io_dual_blinds/assets/images/large.png",
+        "small": "/drivers/io_dual_blinds/assets/images/small.png"
+      },
+      "name": {
+        "en": "Dual Shutters",
+        "fr": "Volets Doubles",
+        "de": "Doppelläden",
+        "nl": "Dubbele shutters"
+      },
+      "class": "windowcoverings",
+      "capabilities": [
+        "windowcoverings_set.upper",
+        "windowcoverings_set.lower",
+        "open_button",
+        "close_button"
+      ],
+      "capabilitiesOptions": {
+        "windowcoverings_set.upper": {
+          "title": {
+            "en": "Upper Position",
+            "fr": "Position supérieure",
+            "de": "Obere Position",
+            "nl": "Bovenste positie"
+          }
+        },
+        "windowcoverings_set.lower": {
+          "title": {
+            "en": "Lower Position",
+            "fr": "Position inférieure",
+            "de": "Untere Position",
+            "nl": "Onderste positie"
+          }
+        }
+      },
+      "id": "io_dual_blinds"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -9380,7 +9773,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -9491,9 +9885,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -9560,7 +9951,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -9758,45 +10150,6 @@
             "ru": "Инвертировать контроль положения.",
             "ko": "위치 제어를 반전"
           }
-        },
-        {
-          "id": "classType",
-          "type": "dropdown",
-          "label": {
-            "en": "Device Class",
-            "nl": "Apparaatklasse",
-            "fr": "Catégorie d'appareil",
-            "de": "Geräteklasse"
-          },
-          "value": "blinds",
-          "hint": {
-            "en": "Set the Homey class.",
-            "nl": "Stel de Homey-klasse in.",
-            "fr": "Définir la catégorie d'appareil Homey.",
-            "de": "Einstellen der Homey-Klasse."
-          },
-          "values": [
-            {
-              "id": "windowcoverings",
-              "label": "Generic window covering"
-            },
-            {
-              "id": "blinds",
-              "label": "Blinds"
-            },
-            {
-              "id": "curtain",
-              "label": "Curtain"
-            },
-            {
-              "id": "sunshade",
-              "label": "Sunshade"
-            },
-            {
-              "id": "garagedoor",
-              "label": "Garage door"
-            }
-          ]
         }
       ],
       "id": "io_exterior_venetian_blind"
@@ -9810,9 +10163,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -9880,7 +10230,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -9972,7 +10323,7 @@
         "ru": "Гаражные ворота с контролем положения (io)",
         "ko": "위치 제어가 있는 차고 문 (io)"
       },
-      "class": "garagedoor",
+      "class": "blinds",
       "capabilities": [
         "windowcoverings_state",
         "windowcoverings_set"
@@ -10043,45 +10394,6 @@
             "ru": "Инвертировать управление позицией.",
             "ko": "위치 제어를 반전시키세요."
           }
-        },
-        {
-          "id": "classType",
-          "type": "dropdown",
-          "label": {
-            "en": "Device Class",
-            "nl": "Apparaatklasse",
-            "fr": "Classe de l'appareil",
-            "de": "Geräteklasse"
-          },
-          "value": "blinds",
-          "hint": {
-            "en": "Set the Homey class.",
-            "nl": "Stel de Homey-klasse in.",
-            "fr": "Définir la classe Homey.",
-            "de": "Legen Sie die Homey-Klasse fest."
-          },
-          "values": [
-            {
-              "id": "windowcoverings",
-              "label": "Generic window covering"
-            },
-            {
-              "id": "blinds",
-              "label": "Blinds"
-            },
-            {
-              "id": "curtain",
-              "label": "Curtain"
-            },
-            {
-              "id": "sunshade",
-              "label": "Sunshade"
-            },
-            {
-              "id": "garagedoor",
-              "label": "Garage door"
-            }
-          ]
         }
       ],
       "id": "io_garage_door"
@@ -10095,9 +10407,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -10165,7 +10474,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -10257,7 +10567,7 @@
         "ru": "Гаражная дверь - Открыть и Закрыть (io)",
         "ko": "차고 문 - 열고 닫기 (io)"
       },
-      "class": "garagedoor",
+      "class": "blinds",
       "capabilities": [
         "windowcoverings_state",
         "my_position"
@@ -10268,9 +10578,7 @@
           "type": "checkbox",
           "label": {
             "en": "Invert Up / Down",
-            "nl": "Omkeren omhoog / omlaag",
-            "fr": "Inverser Haut / Bas",
-            "de": "Oben / Unten umkehren"
+            "nl": "Omkeren omhoog / omlaag"
           },
           "value": false,
           "hint": {
@@ -10287,45 +10595,6 @@
             "ru": "Перевернуть Вверх / Вниз",
             "ko": "위 / 아래 반전"
           }
-        },
-        {
-          "id": "classType",
-          "type": "dropdown",
-          "label": {
-            "en": "Device Class",
-            "fr": "Classe de l'appareil",
-            "de": "Geräteklasse",
-            "nl": "Apparaatklasse"
-          },
-          "value": "blinds",
-          "hint": {
-            "en": "Set the Homey class.",
-            "nl": "Stel de Homey klasse in.",
-            "fr": "Définissez la classe Homey.",
-            "de": "Setze die Homey-Klasse."
-          },
-          "values": [
-            {
-              "id": "windowcoverings",
-              "label": "Generic window covering"
-            },
-            {
-              "id": "blinds",
-              "label": "Blinds"
-            },
-            {
-              "id": "curtain",
-              "label": "Curtain"
-            },
-            {
-              "id": "sunshade",
-              "label": "Sunshade"
-            },
-            {
-              "id": "garagedoor",
-              "label": "Garage door"
-            }
-          ]
         }
       ],
       "id": "io_garage_door_partial"
@@ -10339,9 +10608,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -10409,7 +10675,216 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        }
+      ],
+      "icon": "/drivers/io_gate/assets/icon.svg",
+      "images": {
+        "large": "/drivers/io_gate/assets/images/large.png",
+        "small": "/drivers/io_gate/assets/images/small.png"
+      },
+      "name": {
+        "en": "Positionable Gate (io)",
+        "fr": "Portail positionnable (IO)",
+        "de": "Positionierbares Tor (IO)",
+        "nl": "Positioneerbare poort (IO)"
+      },
+      "class": "other",
+      "capabilities": [
+        "pedestrian",
+        "windowcoverings_state",
+        "windowcoverings_set"
+      ],
+      "settings": [
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class",
+            "fr": "Classe de périphérique",
+            "de": "Geräteklasse",
+            "nl": "Apparaatklassen"
+          },
+          "value": "other",
+          "hint": {
+            "en": "Set the Homey class.",
+            "fr": "Définissez la classe Homey.",
+            "de": "Setzen Sie die Homey-Klasse.",
+            "nl": "Stel de Homey-klasse in."
+          },
+          "values": [
+            {
+              "id": "other",
+              "label": {
+                "en": "Generic class",
+                "fr": "Classe générique",
+                "de": "Generische Klasse",
+                "nl": "Generieke klasse"
+              }
+            },
+            {
+              "id": "garagedoor",
+              "label": {
+                "en": "Garage door",
+                "fr": "Porte de garage",
+                "de": "Garagentor",
+                "nl": "Garagedeur"
+              }
+            }
+          ]
+        }
+      ],
+      "id": "io_gate"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -10517,9 +10992,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -10586,7 +11058,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -10785,43 +11258,6 @@
             "ru": "Инвертировать управление положением.",
             "ko": "위치 제어 반전."
           }
-        },
-        {
-          "id": "classType",
-          "type": "dropdown",
-          "label": {
-            "en": "Device Class",
-            "fr": "Classe de l'appareil",
-            "de": "Geräteklasse"
-          },
-          "value": "sunshade",
-          "hint": {
-            "en": "Set the Homey class.",
-            "fr": "Définir la classe Homey.",
-            "de": "Setzen Sie die Homey-Klasse."
-          },
-          "values": [
-            {
-              "id": "windowcoverings",
-              "label": "Generic window covering"
-            },
-            {
-              "id": "blinds",
-              "label": "Blinds"
-            },
-            {
-              "id": "curtain",
-              "label": "Curtain"
-            },
-            {
-              "id": "sunshade",
-              "label": "Sunshade"
-            },
-            {
-              "id": "garagedoor",
-              "label": "Garage door"
-            }
-          ]
         }
       ],
       "id": "io_horizontal_awning"
@@ -10835,9 +11271,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -10905,7 +11338,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -11021,9 +11455,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -11090,7 +11521,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -11198,9 +11630,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -11267,7 +11696,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -11375,9 +11805,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -11444,7 +11871,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -11560,9 +11988,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -11629,7 +12054,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -11792,45 +12218,6 @@
             "ru": "Инвертировать управление положением.",
             "ko": "위치 제어 반전."
           }
-        },
-        {
-          "id": "classType",
-          "type": "dropdown",
-          "label": {
-            "en": "Device Class",
-            "fr": "Classe de l'appareil",
-            "de": "Geräteklasse",
-            "du": "Apparaatklasse"
-          },
-          "value": "sunshade",
-          "hint": {
-            "en": "Set the Homey class.",
-            "fr": "Définir la classe Homey",
-            "de": "Homey-Klasse setzen",
-            "du": "Stel de Homey-klasse in."
-          },
-          "values": [
-            {
-              "id": "windowcoverings",
-              "label": "Generic window covering"
-            },
-            {
-              "id": "blinds",
-              "label": "Blinds"
-            },
-            {
-              "id": "curtain",
-              "label": "Curtain"
-            },
-            {
-              "id": "sunshade",
-              "label": "Sunshade"
-            },
-            {
-              "id": "garagedoor",
-              "label": "Garage door"
-            }
-          ]
         }
       ],
       "id": "io_pergola"
@@ -11844,9 +12231,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -11914,7 +12298,180 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        }
+      ],
+      "icon": "/drivers/io_rain_sensor/assets/icon.svg",
+      "images": {
+        "large": "/drivers/io_rain_sensor/assets/images/large.png",
+        "small": "/drivers/io_rain_sensor/assets/images/small.png"
+      },
+      "name": {
+        "en": "Ondeis Rain Sensor (io)",
+        "fr": "Capteur de pluie Ondeis (io)",
+        "es": "Sensor de lluvia Ondeis (io)",
+        "de": "Ondeis Regensensor (io)",
+        "pt": "Sensor de chuva Ondeis (io)",
+        "it": "Sensore di pioggia Ondeis (io)",
+        "nl": "Ondeis regensensor (io)",
+        "cn": "Ondeis雨传感器（io）",
+        "pl": "Czujnik deszczu Ondeis (io)"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_rain"
+      ],
+      "id": "io_rain_sensor"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -12112,43 +12669,6 @@
             "ru": "Инвертировать управление позицией.",
             "ko": "위치 제어 반전."
           }
-        },
-        {
-          "id": "classType",
-          "type": "dropdown",
-          "label": {
-            "en": "Device Class",
-            "fr": "Classe d'appareil",
-            "de": "Geräteklasse"
-          },
-          "value": "blinds",
-          "hint": {
-            "en": "Set the Homey class.",
-            "fr": "Définir la classe Homey.",
-            "de": "Legen Sie die Homey-Klasse fest."
-          },
-          "values": [
-            {
-              "id": "windowcoverings",
-              "label": "Generic window covering"
-            },
-            {
-              "id": "blinds",
-              "label": "Blinds"
-            },
-            {
-              "id": "curtain",
-              "label": "Curtain"
-            },
-            {
-              "id": "sunshade",
-              "label": "Sunshade"
-            },
-            {
-              "id": "garagedoor",
-              "label": "Garage door"
-            }
-          ]
         }
       ],
       "id": "io_roller_shutter"
@@ -12162,9 +12682,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -12232,7 +12749,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -12431,43 +12949,6 @@
             "ru": "Инвертировать управление положением.",
             "ko": "위치 제어 반전."
           }
-        },
-        {
-          "id": "classType",
-          "type": "dropdown",
-          "label": {
-            "en": "Device Class",
-            "fr": "Catégorie d'appareil",
-            "de": "Geräteklasse"
-          },
-          "value": "blinds",
-          "hint": {
-            "en": "Set the Homey class.",
-            "fr": "Définissez la classe Homey.",
-            "de": "Setzen Sie die Homey-Klasse."
-          },
-          "values": [
-            {
-              "id": "windowcoverings",
-              "label": "Generic window covering"
-            },
-            {
-              "id": "blinds",
-              "label": "Blinds"
-            },
-            {
-              "id": "curtain",
-              "label": "Curtain"
-            },
-            {
-              "id": "sunshade",
-              "label": "Sunshade"
-            },
-            {
-              "id": "garagedoor",
-              "label": "Garage door"
-            }
-          ]
         }
       ],
       "id": "io_roller_shutter_quiet"
@@ -12481,9 +12962,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -12551,7 +13029,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -12646,47 +13125,7 @@
       "class": "other",
       "capabilities": [
         "pedestrian",
-        "windowcoverings_state",
-        "windowcoverings_set"
-      ],
-      "settings": [
-        {
-          "id": "classType",
-          "type": "dropdown",
-          "label": {
-            "en": "Device Class",
-            "fr": "Classe de périphérique",
-            "de": "Geräteklasse",
-            "nl": "Apparaatklassen"
-          },
-          "value": "other",
-          "hint": {
-            "en": "Set the Homey class.",
-            "fr": "Définissez la classe Homey.",
-            "de": "Setzen Sie die Homey-Klasse.",
-            "nl": "Stel de Homey-klasse in."
-          },
-          "values": [
-            {
-              "id": "other",
-              "label": {
-                "en": "Generic class",
-                "fr": "Classe générique",
-                "de": "Generische Klasse",
-                "nl": "Generieke klasse"
-              }
-            },
-            {
-              "id": "garagedoor",
-              "label": {
-                "en": "Garage door",
-                "fr": "Porte de garage",
-                "de": "Garagentor",
-                "nl": "Garagedeur"
-              }
-            }
-          ]
-        }
+        "windowcoverings_state"
       ],
       "id": "io_sliding_gate"
     },
@@ -12699,9 +13138,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -12769,7 +13205,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -12885,9 +13322,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -12954,7 +13388,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -13055,8 +13490,6 @@
       },
       "capabilities": [
         "measure_temperature",
-        "measure_temperature.current_target",
-        "target_temperature.manual",
         "target_temperature.comfort_heating",
         "target_temperature.eco_heating",
         "target_temperature.away",
@@ -13073,14 +13506,6 @@
         "rssi"
       ],
       "capabilitiesOptions": {
-        "measure_temperature.current_target": {
-          "title": "Active Target"
-        },
-        "target_temperature.manual": {
-          "min": 5,
-          "max": 26,
-          "title": "Manual Temperature"
-        },
         "target_temperature.comfort_heating": {
           "min": 5,
           "max": 26,
@@ -13166,9 +13591,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -13235,7 +13657,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -13432,39 +13855,6 @@
             "ru": "Инвертировать управление положением.",
             "ko": "위치 제어 반전."
           }
-        },
-        {
-          "id": "classType",
-          "type": "dropdown",
-          "label": {
-            "en": "Device Class"
-          },
-          "value": "sunshade",
-          "hint": {
-            "en": "Set the Homey class."
-          },
-          "values": [
-            {
-              "id": "windowcoverings",
-              "label": "Generic window covering"
-            },
-            {
-              "id": "blinds",
-              "label": "Blinds"
-            },
-            {
-              "id": "curtain",
-              "label": "Curtain"
-            },
-            {
-              "id": "sunshade",
-              "label": "Sunshade"
-            },
-            {
-              "id": "garagedoor",
-              "label": "Garage door"
-            }
-          ]
         }
       ],
       "id": "io_velux_interior_blind"
@@ -13478,9 +13868,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -13548,7 +13935,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -13644,7 +14032,6 @@
       "capabilities": [
         "windowcoverings_state",
         "windowcoverings_set",
-        "quiet_mode",
         "quick_open"
       ],
       "settings": [
@@ -13746,39 +14133,6 @@
             "ru": "Инвертировать контроль положения.",
             "ko": "위치 제어 반대로"
           }
-        },
-        {
-          "id": "classType",
-          "type": "dropdown",
-          "label": {
-            "en": "Device Class"
-          },
-          "value": "blinds",
-          "hint": {
-            "en": "Set the Homey class."
-          },
-          "values": [
-            {
-              "id": "windowcoverings",
-              "label": "Generic window covering"
-            },
-            {
-              "id": "blinds",
-              "label": "Blinds"
-            },
-            {
-              "id": "curtain",
-              "label": "Curtain"
-            },
-            {
-              "id": "sunshade",
-              "label": "Sunshade"
-            },
-            {
-              "id": "garagedoor",
-              "label": "Garage door"
-            }
-          ]
         }
       ],
       "id": "io_velux_roller_shutter"
@@ -13792,9 +14146,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -13862,7 +14213,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -14059,39 +14411,6 @@
             "ru": "Инвертировать управление позицией.",
             "ko": "위치 제어를 반전"
           }
-        },
-        {
-          "id": "classType",
-          "type": "dropdown",
-          "label": {
-            "en": "Device Class"
-          },
-          "value": "windowcoverings",
-          "hint": {
-            "en": "Set the Homey class."
-          },
-          "values": [
-            {
-              "id": "windowcoverings",
-              "label": "Generic window covering"
-            },
-            {
-              "id": "blinds",
-              "label": "Blinds"
-            },
-            {
-              "id": "curtain",
-              "label": "Curtain"
-            },
-            {
-              "id": "sunshade",
-              "label": "Sunshade"
-            },
-            {
-              "id": "garagedoor",
-              "label": "Garage door"
-            }
-          ]
         }
       ],
       "id": "io_velux_roof_window"
@@ -14105,9 +14424,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -14175,7 +14491,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -14271,8 +14588,7 @@
       "capabilities": [
         "windowcoverings_state",
         "windowcoverings_set",
-        "quick_open",
-        "my_position"
+        "quick_open"
       ],
       "settings": [
         {
@@ -14373,39 +14689,6 @@
             "ru": "Инвертировать управление положением.",
             "ko": "위치 제어 반전."
           }
-        },
-        {
-          "id": "classType",
-          "type": "dropdown",
-          "label": {
-            "en": "Device Class"
-          },
-          "value": "sunshade",
-          "hint": {
-            "en": "Set the Homey class."
-          },
-          "values": [
-            {
-              "id": "windowcoverings",
-              "label": "Generic window covering"
-            },
-            {
-              "id": "blinds",
-              "label": "Blinds"
-            },
-            {
-              "id": "curtain",
-              "label": "Curtain"
-            },
-            {
-              "id": "sunshade",
-              "label": "Sunshade"
-            },
-            {
-              "id": "garagedoor",
-              "label": "Garage door"
-            }
-          ]
         }
       ],
       "id": "io_vertical_exterior_blind"
@@ -14419,9 +14702,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -14489,7 +14769,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -14584,8 +14865,7 @@
       "capabilities": [
         "windowcoverings_state",
         "windowcoverings_set",
-        "quick_open",
-        "my_position"
+        "quick_open"
       ],
       "settings": [
         {
@@ -14686,39 +14966,6 @@
             "ru": "Инвертировать управление позицией.",
             "ko": "위치 제어 반전."
           }
-        },
-        {
-          "id": "classType",
-          "type": "dropdown",
-          "label": {
-            "en": "Device Class"
-          },
-          "value": "blinds",
-          "hint": {
-            "en": "Set the Homey class."
-          },
-          "values": [
-            {
-              "id": "windowcoverings",
-              "label": "Generic window covering"
-            },
-            {
-              "id": "blinds",
-              "label": "Blinds"
-            },
-            {
-              "id": "curtain",
-              "label": "Curtain"
-            },
-            {
-              "id": "sunshade",
-              "label": "Sunshade"
-            },
-            {
-              "id": "garagedoor",
-              "label": "Garage door"
-            }
-          ]
         }
       ],
       "id": "io_vertical_interior_blind"
@@ -14732,9 +14979,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -14802,7 +15046,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -14910,9 +15155,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -14979,7 +15221,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -15087,9 +15330,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -15156,7 +15396,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -15264,9 +15505,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -15333,7 +15571,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -15442,9 +15681,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -15511,7 +15747,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -15620,9 +15857,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -15689,7 +15923,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -15798,9 +16033,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -15867,7 +16099,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -15976,8 +16209,195 @@
       ],
       "pair": [
         {
-          "id": "select_region"
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
         },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices",
+            "prev": "login_credentials"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        }
+      ],
+      "icon": "/drivers/protexial_alarm/assets/icon.svg",
+      "images": {
+        "large": "/drivers/protexial_alarm/assets/images/large.png",
+        "small": "/drivers/protexial_alarm/assets/images/small.png"
+      },
+      "name": {
+        "en": "Protexial IO Alarm"
+      },
+      "class": "homealarm",
+      "capabilities": [
+        "off_button",
+        "on_button",
+        "zone_button.a",
+        "zone_button.b",
+        "zone_button.c"
+      ],
+      "capabilitiesOptions": {
+        "on_button": {
+          "title": {
+            "en": "All Zones On"
+          }
+        },
+        "zone_button.a": {
+          "title": {
+            "en": "Zone A"
+          }
+        },
+        "zone_button.b": {
+          "title": {
+            "en": "Zone B"
+          }
+        },
+        "zone_button.c": {
+          "title": {
+            "en": "Zone C"
+          }
+        }
+      },
+      "id": "protexial_alarm"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -16045,7 +16465,172 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        }
+      ],
+      "icon": "/drivers/remote_eliot/assets/icon.svg",
+      "images": {
+        "large": "/drivers/remote_eliot/assets/images/large.png",
+        "small": "/drivers/remote_eliot/assets/images/small.png"
+      },
+      "name": {
+        "en": "Eliot Remote Control"
+      },
+      "class": "remote",
+      "capabilities": [
+        "remote_eliot_state"
+      ],
+      "id": "remote_eliot"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -16153,9 +16738,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -16222,7 +16804,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -16318,8 +16901,7 @@
       "capabilities": [
         "open_button",
         "close_button",
-        "stop_button",
-        "my_position"
+        "stop_button"
       ],
       "settings": [
         {
@@ -16400,39 +16982,6 @@
               }
             }
           ]
-        },
-        {
-          "id": "classType",
-          "type": "dropdown",
-          "label": {
-            "en": "Device Class"
-          },
-          "value": "other",
-          "hint": {
-            "en": "Set the Homey class."
-          },
-          "values": [
-            {
-              "id": "windowcoverings",
-              "label": "Generic window covering"
-            },
-            {
-              "id": "blinds",
-              "label": "Blinds"
-            },
-            {
-              "id": "curtain",
-              "label": "Curtain"
-            },
-            {
-              "id": "sunshade",
-              "label": "Sunshade"
-            },
-            {
-              "id": "garagedoor",
-              "label": "Garage door"
-            }
-          ]
         }
       ],
       "id": "rts_gate_opener"
@@ -16446,9 +16995,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -16516,7 +17062,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -16646,39 +17193,6 @@
             "ru": "Инвертировать вверх / вниз контролы",
             "ko": "상 / 하 방향 제어 반전"
           }
-        },
-        {
-          "id": "classType",
-          "type": "dropdown",
-          "label": {
-            "en": "Device Class"
-          },
-          "value": "sunshade",
-          "hint": {
-            "en": "Set the Homey class."
-          },
-          "values": [
-            {
-              "id": "windowcoverings",
-              "label": "Generic window covering"
-            },
-            {
-              "id": "blinds",
-              "label": "Blinds"
-            },
-            {
-              "id": "curtain",
-              "label": "Curtain"
-            },
-            {
-              "id": "sunshade",
-              "label": "Sunshade"
-            },
-            {
-              "id": "garagedoor",
-              "label": "Garage door"
-            }
-          ]
         }
       ],
       "id": "rts_horizontal_awning"
@@ -16692,9 +17206,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -16762,7 +17273,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -16891,39 +17403,6 @@
             "ru": "Перевернуть управление направлением вверх / вниз",
             "ko": "위/아래 방향 제어 반전"
           }
-        },
-        {
-          "id": "classType",
-          "type": "dropdown",
-          "label": {
-            "en": "Device Class"
-          },
-          "value": "blinds",
-          "hint": {
-            "en": "Set the Homey class."
-          },
-          "values": [
-            {
-              "id": "windowcoverings",
-              "label": "Generic window covering"
-            },
-            {
-              "id": "blinds",
-              "label": "Blinds"
-            },
-            {
-              "id": "curtain",
-              "label": "Curtain"
-            },
-            {
-              "id": "sunshade",
-              "label": "Sunshade"
-            },
-            {
-              "id": "garagedoor",
-              "label": "Garage door"
-            }
-          ]
         }
       ],
       "id": "rts_interior_blind"
@@ -16937,9 +17416,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -17007,7 +17483,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -17137,39 +17614,6 @@
             "ru": "Инвертировать элементы управления направления Вверх / Вниз",
             "ko": "상/하 방향 컨트롤 반전"
           }
-        },
-        {
-          "id": "classType",
-          "type": "dropdown",
-          "label": {
-            "en": "Device Class"
-          },
-          "value": "curtain",
-          "hint": {
-            "en": "Set the Homey class."
-          },
-          "values": [
-            {
-              "id": "windowcoverings",
-              "label": "Generic window covering"
-            },
-            {
-              "id": "blinds",
-              "label": "Blinds"
-            },
-            {
-              "id": "curtain",
-              "label": "Curtain"
-            },
-            {
-              "id": "sunshade",
-              "label": "Sunshade"
-            },
-            {
-              "id": "garagedoor",
-              "label": "Garage door"
-            }
-          ]
         }
       ],
       "id": "rts_interior_curtain"
@@ -17183,9 +17627,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -17253,7 +17694,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -17385,39 +17827,6 @@
             "ru": "Перевернуть управление Вверх / Вниз",
             "ko": "위 / 아래 방향 제어 반전"
           }
-        },
-        {
-          "id": "classType",
-          "type": "dropdown",
-          "label": {
-            "en": "Device Class"
-          },
-          "value": "blinds",
-          "hint": {
-            "en": "Set the Homey class."
-          },
-          "values": [
-            {
-              "id": "windowcoverings",
-              "label": "Generic window covering"
-            },
-            {
-              "id": "blinds",
-              "label": "Blinds"
-            },
-            {
-              "id": "curtain",
-              "label": "Curtain"
-            },
-            {
-              "id": "sunshade",
-              "label": "Sunshade"
-            },
-            {
-              "id": "garagedoor",
-              "label": "Garage door"
-            }
-          ]
         }
       ],
       "id": "rts_interior_venetian_blind"
@@ -17431,9 +17840,6 @@
         "cloud"
       ],
       "pair": [
-        {
-          "id": "select_region"
-        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -17501,7 +17907,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -17609,9 +18016,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -17678,7 +18082,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -17796,9 +18201,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -17865,7 +18267,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -18017,9 +18420,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -18086,7 +18486,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -18195,9 +18596,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -18264,7 +18662,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {
@@ -18374,9 +18773,6 @@
       ],
       "pair": [
         {
-          "id": "select_region"
-        },
-        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -18443,7 +18839,8 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_devices",
+            "prev": "login_credentials"
           }
         },
         {

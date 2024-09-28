@@ -4,10 +4,6 @@
 
 const WindowCoveringsDevice = require('../WindowCoveringsDevice');
 
-/**
- * Device class for exterior venetian blinds with the io:SlidingDiscreteGateOpenerIOComponent controllable name in TaHoma
- * @extends {WindowCoveringsDevice}
- */
 class IOGateDevice extends WindowCoveringsDevice
 {
 
