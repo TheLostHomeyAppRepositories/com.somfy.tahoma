@@ -11,72 +11,85 @@ const WindowCoveringsDevice = require('../WindowCoveringsDevice');
 class RollerShutterDeviceQuiet extends WindowCoveringsDevice
 {
 
-    async onInit()
-    {
-        if (this.hasCapability('lock_state'))
-        {
-            this.removeCapability('lock_state').catch(this.error);
-        }
+	async onInit()
+	{
+		if (this.hasCapability('lock_state'))
+		{
+			this.removeCapability('lock_state').catch(this.error);
+		}
 
-        await super.onInit();
+		await super.onInit();
 
-        if (!this.hasCapability('my_position'))
-        {
-            this.addCapability('my_position').catch(this.error);
-        }
+		this.requiresQuietMode = true;
 
-        if (!this.hasCapability('quick_open'))
-        {
-            this.addCapability('quick_open').catch(this.error);
-        }
+		if (!this.hasCapability('my_position'))
+		{
+			this.addCapability('my_position').catch(this.error);
+		}
 
-        this.registerCapabilityListener('quiet_mode',
-            this.onCapabilityQuietMode.bind(this));
+		if (!this.hasCapability('quick_open'))
+		{
+			this.addCapability('quick_open').catch(this.error);
+		}
 
-        this.quietMode = this.getCapabilityValue('quiet_mode');
-        if (this.quietMode)
-        {
-            this.setPositionActionName = 'setPositionAndLinearSpeed';
-        }
-        else
-        {
-            this.setPositionActionName = 'setClosure';
-        }
-    }
+		if (!this.hasCapability('quiet_mode'))
+		{
+			try
+			{
+				await this.addCapability('quiet_mode');
+			}
+			catch (error)
+			{
+				this.error('Could not add quiet_mode capability:', error);
+			}
+		}
 
-    async onCapabilityQuietMode(value, opts)
-    {
-        this.quietMode = value;
-        if (value)
-        {
-            this.setPositionActionName = 'setPositionAndLinearSpeed';
-        }
-        else
-        {
-            this.setPositionActionName = 'setClosure';
-        }
-    }
+		this.registerCapabilityListener('quiet_mode', this.onCapabilityQuietMode.bind(this));
 
-    async onCapabilityWindowcoveringsState(value, opts)
-    {
-        if ((!opts || !opts.fromCloudSync) && this.setPositionActionName === 'setPositionAndLinearSpeed' && (value === 'up' || value === 'down')
-        )
-        {
-            return super.onCapabilityWindowcoveringsSet(value === 'up' ? 1 : 0, opts);
-        }
+		this.quietMode = this.getCapabilityValue('quiet_mode');
+		if (this.quietMode)
+		{
+			this.setPositionActionName = 'setPositionAndLinearSpeed';
+		}
+		else
+		{
+			this.setPositionActionName = 'setClosure';
+		}
+	}
 
-            return super.onCapabilityWindowcoveringsState(value, opts);
-    }
+	async onCapabilityQuietMode(value, opts)
+	{
+		this.quietMode = value;
+		if (value)
+		{
+			this.setPositionActionName = 'setPositionAndLinearSpeed';
+		}
+		else
+		{
+			this.setPositionActionName = 'setClosure';
+		}
+	}
 
-    async onCapabilityMyPosition(value, opts)
-    {
-        if (this.setPositionActionName === 'setPositionAndLinearSpeed')
-        {
-            return super.onCapabilityWindowcoveringsSet(0.14, opts);
-        }
+	async onCapabilityWindowcoveringsState(value, opts)
+	{
+		if ((!opts || !opts.fromCloudSync) && this.setPositionActionName === 'setPositionAndLinearSpeed' && (value === 'up' || value === 'down')
+		)
+		{
+			return super.onCapabilityWindowcoveringsSet(value === 'up' ? 1 : 0, opts);
+		}
 
-            return super.onCapabilityMyPosition(value, opts);
-    }
+			return super.onCapabilityWindowcoveringsState(value, opts);
+	}
+
+	async onCapabilityMyPosition(value, opts)
+	{
+		if (this.setPositionActionName === 'setPositionAndLinearSpeed')
+		{
+			return super.onCapabilityWindowcoveringsSet(0.14, opts);
+		}
+
+			return super.onCapabilityMyPosition(value, opts);
+	}
 
 }
 

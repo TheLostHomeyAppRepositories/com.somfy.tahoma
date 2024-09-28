@@ -11,11 +11,11 @@ const Driver = require('../Driver');
 class OnOffLightControllerDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['rts:LightRTSComponent', 'io:LightMicroModuleSomfyIOComponent', 'io:OnOffIOComponent', 'eliot:OnOffSwitchEliotComponent', 'io:SwitchMicroModuleSomfyIOComponent'];
-        await super.onInit();
-    }
+	async onInit()
+	{
+		this.deviceType = ['rts:LightRTSComponent', 'io:LightMicroModuleSomfyIOComponent', 'io:OnOffIOComponent', 'eliot:OnOffSwitchEliotComponent', 'io:SwitchMicroModuleSomfyIOComponent'];
+		await super.onInit();
+	}
 
 }
 

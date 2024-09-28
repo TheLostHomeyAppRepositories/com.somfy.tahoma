@@ -1,0 +1,43 @@
+{
+	"title": {
+		"en": "Set quite mode",
+		"nl": "Stille modus instellen",
+		"fr": "Définir le mode silencieux",
+		"de": "Ruhemodus einstellen",
+		"es": "Establecer modo silencioso",
+		"pt": "Definir modo silencioso",
+		"it": "Imposta la modalità silenziosa",
+		"pl": "Ustaw tryb cichy"
+	},
+	"titleFormatted": {
+		"en": "Set quite mode [[quiet_mode]]",
+		"nl": "Stille modus instellen [[quiet_mode]]",
+		"fr": "Définir le mode silencieux [[quiet_mode]]",
+		"de": "Ruhemodus einstellen [[quiet_mode]]",
+		"es": "Establecer modo silencioso [[quiet_mode]]",
+		"pt": "Definir modo silencioso [[quiet_mode]]",
+		"it": "Imposta la modalità silenziosa [[quiet_mode]]",
+		"pl": "Ustaw tryb cichy [[quiet_mode]]"
+	},
+	"args": [
+		{
+			"name": "device",
+			"type": "device",
+			"filter": "driver_id=io_velux_roller_shutter"
+		},
+		{
+			"name": "quiet_mode",
+			"type": "checkbox",
+			"title": {
+				"en": "Silent",
+				"nl": "Stil",
+				"fr": "Silencieux",
+				"de": "Leise",
+				"es": "Silencioso",
+				"pt": "Silencioso",
+				"it": "Silenzioso",
+				"pl": "Cichy"
+			}
+		}
+	]
+}

@@ -11,10 +11,10 @@ const Driver = require('../Driver');
 class DoorLockDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['io:LockUnlockDoorLockWithUnknownPositionIOComponent'];
-    }
+	async onInit()
+	{
+		this.deviceType = ['io:LockUnlockDoorLockWithUnknownPositionIOComponent', 'opendoors:OpenDoorsSmartLockComponent'];
+	}
 
 }
 

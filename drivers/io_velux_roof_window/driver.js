@@ -11,12 +11,12 @@ const ioWindowCoveringsDriver = require('../ioWindowCoveringsDriver');
 class RoofWindowDriver extends ioWindowCoveringsDriver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['io:WindowOpenerVeluxIOComponent', 'ogp:Window'];
+	async onInit()
+	{
+		this.deviceType = ['io:WindowOpenerVeluxIOComponent', 'ogp:Window', 'io:WindowOpenerUnoIOComponent'];
 
-        await super.onInit();
-    }
+		await super.onInit();
+	}
 
 }
 

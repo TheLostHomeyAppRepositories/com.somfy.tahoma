@@ -11,10 +11,10 @@ const Driver = require('../Driver');
 class WaterSensorDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['rtds:RTDSWaterSensor'];
-    }
+	async onInit()
+	{
+		this.deviceType = ['rtds:RTDSWaterSensor'];
+	}
 
 }
 

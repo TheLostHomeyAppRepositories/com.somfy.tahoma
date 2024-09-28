@@ -7,10 +7,10 @@ const LightControllerDevice = require('../LightControllerDevice');
 class simpleLightControllerDevice extends LightControllerDevice
 {
 
-    async onInit()
-    {
-        await super.onInit();
-    }
+	async onInit()
+	{
+		await super.onInit();
+	}
 
 }
 

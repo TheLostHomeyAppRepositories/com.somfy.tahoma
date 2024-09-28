@@ -1,0 +1,39 @@
+{
+	"title": {
+		"en": "Nudge the blind slates"
+	},
+	"titleFormatted": {
+		"en": "Nudge the blind slates [[direction]]"
+	},
+	"hint": {
+		"en": "Nudge the blind slates up or down a small amount"
+	},
+	"args": [
+		{
+			"name": "device",
+			"type": "device",
+			"filter": "driver_id=rts_interior_venetian_blind&capabilities=windowcoverings_tilt_up"
+		},
+		{
+			"name": "direction",
+			"type": "dropdown",
+			"title": {
+				"en": "Direction"
+			},
+			"values": [
+				{
+					"id": "up",
+					"label": {
+						"en": "Up"
+					}
+				},
+				{
+					"id": "down",
+					"label": {
+						"en": "Down"
+					}
+				}
+			]
+		}
+	]
+}

@@ -35,11 +35,11 @@
     "ru": "Сердце вашего умного дома",
     "ko": "스마트 홈의 중심"
   },
-  "version": "3.0.35",
+  "version": "4.0.93",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Adrian Rockall",
-    "email": "ady@rockall.plus.com"
+    "email": "ady@rockalls.uk"
   },
   "contributing": {
     "donate": {
@@ -71,8 +71,8 @@
     ]
   },
   "images": {
-    "small": "assets/images/small.png",
-    "large": "assets/images/large.png"
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png"
   },
   "category": [
     "appliances",
@@ -140,10 +140,98 @@
       "method": "post",
       "path": "/SendEventLog/",
       "public": true
+    },
+    "GetLocalTokens": {
+      "method": "post",
+      "path": "/GetLocalTokens/"
+    },
+    "DeleteLocalToken": {
+      "method": "post",
+      "path": "/DeleteLocalToken/"
     }
   },
   "flow": {
     "triggers": [
+      {
+        "title": {
+          "en": "It has stopped raining",
+          "nl": "Het is gestopt met regenen",
+          "fr": "Il a cessé de pleuvoir",
+          "de": "Es hat aufgehört zu regnen",
+          "es": "Ha dejado de llover",
+          "it": "Ha smesso di piovere",
+          "pt": "Parou de chover",
+          "pl": "Deszcz się skończył"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=io_rain_sensor"
+          }
+        ],
+        "id": "alarm_rain_false"
+      },
+      {
+        "title": {
+          "en": "It has started raining",
+          "nl": "Het is begonnen met regenen",
+          "fr": "Il a commencé à pleuvoir",
+          "de": "Es hat angefangen zu regnen",
+          "es": "Ha empezado a llover",
+          "it": "Ha iniziato a piovere",
+          "pt": "Começou a chover",
+          "pl": "Zaczęło padać"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=io_rain_sensor"
+          }
+        ],
+        "id": "alarm_rain_true"
+      },
+      {
+        "title": {
+          "en": "The alarm zone state changed",
+          "nl": "De alarmzone is veranderd"
+        },
+        "tokens": [
+          {
+            "name": "zoneA",
+            "type": "boolean",
+            "title": {
+              "en": "Alarm zone A state"
+            },
+            "example": "true"
+          },
+          {
+            "name": "zoneB",
+            "type": "boolean",
+            "title": {
+              "en": "Alarm zone B state"
+            },
+            "example": "true"
+          },
+          {
+            "name": "zoneC",
+            "type": "boolean",
+            "title": {
+              "en": "Alarm zone C state"
+            },
+            "example": "true"
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=protexial_alarm"
+          }
+        ],
+        "id": "alarm_zone_state_changed"
+      },
       {
         "id": "command_complete",
         "deprecated": true,
@@ -396,6 +484,92 @@
         ]
       },
       {
+        "title": {
+          "en": "The pedestrian state changed",
+          "fr": "L'état du piéton a changé",
+          "de": "Der Fußgängerzustand hat sich geändert",
+          "nl": "De status van de voetganger is veranderd"
+        },
+        "tokens": [
+          {
+            "name": "pedestrian",
+            "type": "boolean",
+            "title": {
+              "en": "At Pedestrian Position",
+              "fr": "À la position de piéton",
+              "de": "Am Fußgängerstandort",
+              "nl": "Op voetgangerspositie"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=i0_gate|io_sliding_gate"
+          }
+        ],
+        "id": "pedestrian_changed"
+      },
+      {
+        "id": "tilt_has_changed",
+        "title": {
+          "en": "The state of the tilt has changed",
+          "nl": "De staat van de kanteling is gewijzigd",
+          "fr": "L'état de l'inclinaison a changé",
+          "de": "Der Zustand der Neigung hat sich geändert"
+        },
+        "tokens": [
+          {
+            "name": "isTilted",
+            "type": "boolean",
+            "title": {
+              "en": "is tilted?",
+              "nl": "is gekanteld?",
+              "fr": "est incliné ?",
+              "de": "ist geneigt?"
+            },
+            "example": "tilted"
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=enocean_window_handle"
+          }
+        ]
+      },
+      {
+        "id": "window_open_has_changed",
+        "title": {
+          "en": "The state of the window has changed",
+          "nl": "De status van het venster is gewijzigd",
+          "fr": "L'état de la fenêtre a changé",
+          "de": "Der Zustand des Fensters hat sich geändert"
+        },
+        "tokens": [
+          {
+            "name": "isWindowOpen",
+            "type": "boolean",
+            "title": {
+              "en": "is open?",
+              "nl": "is geopend?",
+              "fr": "est ouvert?",
+              "de": "ist offen?"
+            },
+            "example": "open"
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=enocean_window_handle"
+          }
+        ]
+      },
+      {
         "id": "windowcoverings_tilt_changed",
         "title": {
           "en": "The tilt changed",
@@ -441,14 +615,88 @@
         ]
       },
       {
+        "id": "heating_level2_state_changed",
+        "title": {
+          "en": "The heating mode changed",
+          "fr": "Le mode de chauffage a changé",
+          "de": "Der Heizmodus hat sich geändert",
+          "nl": "De verwarmingsmodus is gewijzigd"
+        },
+        "titleFormatted": {
+          "en": "The heating mode changed to [[heating_level2_state]]",
+          "fr": "Le mode de chauffage a changé en [[heating_level2_state]]",
+          "de": "Der Heizmodus hat sich zu [[heating_level2_state]] geändert",
+          "nl": "De verwarmingsmodus is gewijzigd naar [[heating_level2_state]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=io_heating_interface"
+          },
+          {
+            "name": "heating_level2_state",
+            "type": "dropdown",
+            "title": {
+              "en": "Heating Mode",
+              "fr": "Mode de chauffage",
+              "de": "Heizmodus",
+              "nl": "Verwarmingsmodus"
+            },
+            "values": [
+              {
+                "id": "comfort",
+                "title": {
+                  "en": "Comfort",
+                  "fr": "Confort",
+                  "de": "Komfort",
+                  "nl": "Comfort"
+                }
+              },
+              {
+                "id": "eco",
+                "title": {
+                  "en": "Eco",
+                  "fr": "Economique",
+                  "de": "Eco",
+                  "nl": "Eco"
+                }
+              },
+              {
+                "id": "frostprotection",
+                "title": {
+                  "en": "Frost Protection",
+                  "fr": "Protection contre le gel",
+                  "de": "Frostschutz",
+                  "nl": "Vorstbescherming"
+                }
+              },
+              {
+                "id": "off",
+                "title": {
+                  "en": "Off",
+                  "fr": "Éteint",
+                  "de": "Aus",
+                  "nl": "Uit"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "change_luminance_more_than",
         "title": {
           "en": "The luminance is more than",
-          "nl": "De lichtsterkte is meer dan"
+          "nl": "De lichtsterkte is meer dan",
+          "fr": "La luminance est supérieure à",
+          "de": "Die Helligkeit ist mehr als"
         },
         "titleFormatted": {
           "en": "The luminance is more than [[luminance]]",
-          "nl": "De lichtsterkte is meer dan [[luminance]]"
+          "nl": "De lichtsterkte is meer dan [[luminance]]",
+          "fr": "La luminance est supérieure à [[luminance]]",
+          "de": "Die Helligkeit ist mehr als [[luminance]]"
         },
         "args": [
           {
@@ -460,10 +708,16 @@
             "name": "luminance",
             "type": "number",
             "title": {
-              "en": "Luminance"
+              "en": "Luminance",
+              "fr": "Luminance",
+              "de": "Helligkeit",
+              "nl": "Lichtsterkte"
             },
             "placeholder": {
-              "en": "in Lux"
+              "en": "in Lux",
+              "fr": "en Lux",
+              "de": "in Lux",
+              "nl": "in Lux"
             }
           }
         ]
@@ -472,11 +726,15 @@
         "id": "change_luminance_less_than",
         "title": {
           "en": "The luminance is less than",
-          "nl": "De lichtsterkte is minder dan"
+          "nl": "De lichtsterkte is minder dan",
+          "fr": "La luminance est inférieure à",
+          "de": "Die Helligkeit ist weniger als"
         },
         "titleFormatted": {
           "en": "The luminance is less than [[luminance]]",
-          "nl": "De lichtsterkte is minder dan [[luminance]]"
+          "nl": "De lichtsterkte is minder dan [[luminance]]",
+          "fr": "La luminance est inférieure à [[luminance]]",
+          "de": "Die Helligkeit ist weniger als [[luminance]]"
         },
         "args": [
           {
@@ -488,10 +746,16 @@
             "name": "luminance",
             "type": "number",
             "title": {
-              "en": "Luminance"
+              "en": "Luminance",
+              "fr": "Luminance",
+              "de": "Helligkeit",
+              "nl": "Lichtsterkte"
             },
             "placeholder": {
-              "en": "in Lux"
+              "en": "in Lux",
+              "fr": "en Lux",
+              "de": "in Lux",
+              "nl": "in Lux"
             }
           }
         ]
@@ -500,11 +764,15 @@
         "id": "change_luminance_between",
         "title": {
           "en": "The luminance is between",
-          "nl": "De lichtsterkte is tussen"
+          "nl": "De lichtsterkte is tussen",
+          "fr": "La luminance est comprise entre",
+          "de": "Die Helligkeit liegt zwischen"
         },
         "titleFormatted": {
           "en": "The luminance is between [[luminance_from]] and [[luminance_to]]",
-          "nl": "De lichtsterkte is tussen [[luminance_from]] en [[luminance_to]]"
+          "nl": "De lichtsterkte is tussen [[luminance_from]] en [[luminance_to]]",
+          "fr": "La luminance est comprise entre [[luminance_from]] et [[luminance_to]]",
+          "de": "Die Helligkeit liegt zwischen [[luminance_from]] und [[luminance_to]]"
         },
         "args": [
           {
@@ -516,20 +784,32 @@
             "name": "luminance_from",
             "type": "number",
             "title": {
-              "en": "Luminance From"
+              "en": "Luminance From",
+              "fr": "Luminance De",
+              "de": "Helligkeit von",
+              "nl": "Lichtsterkte vanaf"
             },
             "placeholder": {
-              "en": "in Lux"
+              "en": "in Lux",
+              "fr": "en Lux",
+              "de": "in Lux",
+              "nl": "in Lux"
             }
           },
           {
             "name": "luminance_to",
             "type": "number",
             "title": {
-              "en": "Luminance Tp"
+              "en": "Luminance To",
+              "fr": "Luminance À",
+              "de": "Helligkeit bis",
+              "nl": "Lichtsterkte tot"
             },
             "placeholder": {
-              "en": "in Lux"
+              "en": "in Lux",
+              "fr": "en Lux",
+              "de": "in Lux",
+              "nl": "in Lux"
             }
           }
         ]
@@ -797,11 +1077,15 @@
         "id": "change_temperature_more_than",
         "title": {
           "en": "The temperature is more than",
-          "nl": "De temperatuur is meer dan"
+          "nl": "De temperatuur is meer dan",
+          "fr": "La température est supérieure à",
+          "de": "Die Temperatur ist höher als"
         },
         "titleFormatted": {
           "en": "The temperature is more than [[temperature]]",
-          "nl": "De temperatuur is meer dan [[temperature]]"
+          "nl": "De temperatuur is meer dan [[temperature]]",
+          "fr": "La température est supérieure à [[temperature]]",
+          "de": "Die Temperatur ist höher als [[temperature]]"
         },
         "args": [
           {
@@ -813,10 +1097,16 @@
             "name": "temperature",
             "type": "number",
             "title": {
-              "en": "Temperature"
+              "en": "Temperature",
+              "fr": "Température",
+              "de": "Temperatur",
+              "nl": "Temperatuur"
             },
             "placeholder": {
-              "en": "in C"
+              "en": "in C",
+              "fr": "en C",
+              "de": "in C",
+              "nl": "in C"
             }
           }
         ]
@@ -825,11 +1115,15 @@
         "id": "change_temperature_less_than",
         "title": {
           "en": "The temperature is less than",
-          "nl": "De temperatuur is minder dan"
+          "nl": "De temperatuur is minder dan",
+          "fr": "La température est inférieure à",
+          "de": "Die Temperatur ist niedriger als"
         },
         "titleFormatted": {
           "en": "The temperature is less than [[temperature]]",
-          "nl": "De temperatuur is minder dan [[temperature]]"
+          "nl": "De temperatuur is minder dan [[temperature]]",
+          "fr": "La température est inférieure à [[temperature]]",
+          "de": "Die Temperatur ist niedriger als [[temperature]]"
         },
         "args": [
           {
@@ -841,10 +1135,16 @@
             "name": "temperature",
             "type": "number",
             "title": {
-              "en": "Temperature"
+              "en": "Temperature",
+              "fr": "Température",
+              "de": "Temperatur",
+              "nl": "Temperatuur"
             },
             "placeholder": {
-              "en": "in C"
+              "en": "in C",
+              "fr": "en C",
+              "de": "in C",
+              "nl": "in C"
             }
           }
         ]
@@ -853,11 +1153,15 @@
         "id": "change_temperature_between",
         "title": {
           "en": "The temperature is between",
-          "nl": "De temperatuur is tussen"
+          "nl": "De temperatuur is tussen",
+          "fr": "La température est comprise entre",
+          "de": "Die Temperatur liegt zwischen"
         },
         "titleFormatted": {
           "en": "The temperature is between [[temperature_from]] and [[temperature_to]]",
-          "nl": "De temperatuur is tussen [[temperature_from]] en [[temperature_to]]"
+          "nl": "De temperatuur is tussen [[temperature_from]] en [[temperature_to]]",
+          "fr": "La température est comprise entre [[temperature_from]] et [[temperature_to]]",
+          "de": "Die Temperatur liegt zwischen [[temperature_from]] und [[temperature_to]]"
         },
         "args": [
           {
@@ -869,20 +1173,32 @@
             "name": "temperature_from",
             "type": "number",
             "title": {
-              "en": "Temperature From"
+              "en": "Temperature From",
+              "fr": "Température à partir de",
+              "de": "Temperatur von",
+              "nl": "Temperatuur Vanaf"
             },
             "placeholder": {
-              "en": "in C"
+              "en": "in C",
+              "fr": "en C",
+              "de": "in C",
+              "nl": "in C"
             }
           },
           {
             "name": "temperature_to",
             "type": "number",
             "title": {
-              "en": "Temperature To"
+              "en": "Temperature To",
+              "fr": "Température jusqu'à",
+              "de": "Temperatur bis",
+              "nl": "Temperatuur Tot en met"
             },
             "placeholder": {
-              "en": "in C"
+              "en": "in C",
+              "fr": "en C",
+              "de": "in C",
+              "nl": "in C"
             }
           }
         ]
@@ -1229,6 +1545,155 @@
         ]
       },
       {
+        "id": "heating_mode_changed",
+        "title": {
+          "en": "The heating mode changed"
+        },
+        "titleFormatted": {
+          "en": "The heating mode changed to [[heating_mode]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pilot_wire_programmer"
+          },
+          {
+            "name": "heating_mode",
+            "type": "dropdown",
+            "title": {
+              "en": "Heating Mode",
+              "nl": "Verwarmingsmodus"
+            },
+            "values": [
+              {
+                "id": "auto",
+                "title": {
+                  "en": "Automatic",
+                  "nl": "Automatisch"
+                }
+              },
+              {
+                "id": "comfort",
+                "title": {
+                  "en": "Comfort"
+                }
+              },
+              {
+                "id": "eco",
+                "title": {
+                  "en": "Eco"
+                }
+              },
+              {
+                "id": "free",
+                "title": {
+                  "en": "Free",
+                  "nl": "Vrij"
+                }
+              },
+              {
+                "id": "secured",
+                "title": {
+                  "en": "Secured"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "eliot_remote_state_changed",
+        "title": {
+          "en": "The remote state changed"
+        },
+        "tokens": [
+          {
+            "name": "remote_state",
+            "type": "string",
+            "title": {
+              "en": "New State"
+            },
+            "example": "pressed"
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=remote_eliot"
+          }
+        ]
+      },
+      {
+        "id": "eliot_remote_state_changed_to",
+        "title": {
+          "en": "The remote state changed to"
+        },
+        "titleFormatted": {
+          "en": "The remote state changed to [[expected_state]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=remote_eliot"
+          },
+          {
+            "type": "dropdown",
+            "name": "expected_state",
+            "title": {
+              "en": "Expected State",
+              "nl": "Verwachte staat"
+            },
+            "values": [
+              {
+                "id": "heldDown",
+                "label": {
+                  "en": "Held Down"
+                }
+              },
+              {
+                "id": "pressed",
+                "label": {
+                  "en": "Pressed"
+                }
+              },
+              {
+                "id": "pressedX2",
+                "label": {
+                  "en": "Pressed twice"
+                }
+              },
+              {
+                "id": "pressedX3",
+                "label": {
+                  "en": "Pressed 3 times"
+                }
+              },
+              {
+                "id": "pressedX4",
+                "label": {
+                  "en": "Pressed 4 times"
+                }
+              },
+              {
+                "id": "pressedX5",
+                "label": {
+                  "en": "Pressed 5 times"
+                }
+              },
+              {
+                "id": "released",
+                "label": {
+                  "en": "Released"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "alarm_siren_true",
         "title": {
           "en": "The Siren turned on",
@@ -1556,11 +2021,15 @@
         "id": "has_luminance_more_than",
         "title": {
           "en": "The luminance !{{is|isn't}} more than",
-          "nl": "De lichtsterkte !{{is|is niet}} meer dan"
+          "nl": "De lichtsterkte !{{is|is niet}} meer dan",
+          "fr": "La luminance {{n'est pas|est}} supérieure à",
+          "de": "Die Helligkeit {{nicht|ist}} mehr als"
         },
         "titleFormatted": {
           "en": "The luminance !{{is|isn't}} more than [[luminance]]",
-          "nl": "De lichtsterkte !{{is|is niet}} meer dan [[luminance]]"
+          "nl": "De lichtsterkte !{{is|is niet}} meer dan [[luminance]]",
+          "fr": "La luminance {{n'est pas|est}} supérieure à [[luminance]]",
+          "de": "Die Helligkeit {{nicht|ist}} mehr als [[luminance]]"
         },
         "args": [
           {
@@ -1572,10 +2041,16 @@
             "name": "luminance",
             "type": "number",
             "title": {
-              "en": "Luminance"
+              "en": "Luminance",
+              "fr": "Luminance",
+              "de": "Helligkeit",
+              "nl": "Lichtsterkte"
             },
             "placeholder": {
-              "en": "in Lux"
+              "en": "in Lux",
+              "fr": "en Lux",
+              "de": "in Lux",
+              "nl": "in Lux"
             }
           }
         ]
@@ -1584,11 +2059,15 @@
         "id": "has_luminance_less_than",
         "title": {
           "en": "The luminance !{{is|isn't}} less than",
-          "nl": "De lichtsterkte !{{is|is niet}} minder dan"
+          "nl": "De lichtsterkte !{{is|is niet}} minder dan",
+          "fr": "La luminance {{n'est pas|est}} inférieure à",
+          "de": "Die Helligkeit {{nicht|ist}} weniger als"
         },
         "titleFormatted": {
           "en": "The luminance !{{is|isn't}} less than [[luminance]]",
-          "nl": "De lichtsterkte !{{is|is niet}} minder dan [[luminance]]"
+          "nl": "De lichtsterkte !{{is|is niet}} minder dan [[luminance]]",
+          "fr": "La luminance {{n'est pas|est}} inférieure à [[luminance]]",
+          "de": "Die Helligkeit {{nicht|ist}} weniger als [[luminance]]"
         },
         "args": [
           {
@@ -1600,10 +2079,16 @@
             "name": "luminance",
             "type": "number",
             "title": {
-              "en": "Luminance"
+              "en": "Luminance",
+              "fr": "Luminance",
+              "de": "Helligkeit",
+              "nl": "Lichtsterkte"
             },
             "placeholder": {
-              "en": "in Lux"
+              "en": "in Lux",
+              "fr": "en Lux",
+              "de": "in Lux",
+              "nl": "in Lux"
             }
           }
         ]
@@ -1612,11 +2097,15 @@
         "id": "has_luminance_between",
         "title": {
           "en": "The luminance !{{is|isn't}} between",
-          "nl": "De lichtsterkte !{{is|is niet}} tussen"
+          "nl": "De lichtsterkte !{{is|is niet}} tussen",
+          "fr": "La luminance {{n'est pas|est}} comprise entre",
+          "de": "Die Helligkeit {{nicht|ist}} zwischen"
         },
         "titleFormatted": {
           "en": "The luminance !{{is|isn't}} between [[luminance_from]] and [[luminance_to]]",
-          "nl": "De lichtsterkte !{{is|is niet}} tussen [[luminance_from]] en [[luminance_to]]"
+          "nl": "De lichtsterkte !{{is|is niet}} tussen [[luminance_from]] en [[luminance_to]]",
+          "fr": "La luminance {{n'est pas|est}} comprise entre [[luminance_from]] et [[luminance_to]]",
+          "de": "Die Helligkeit {{nicht|ist}} zwischen [[luminance_from]] und [[luminance_to]]"
         },
         "args": [
           {
@@ -1628,20 +2117,32 @@
             "name": "luminance_from",
             "type": "number",
             "title": {
-              "en": "Luminance From"
+              "en": "Luminance From",
+              "fr": "Luminance De",
+              "de": "Helligkeit von",
+              "nl": "Lichtsterkte vanaf"
             },
             "placeholder": {
-              "en": "in Lux"
+              "en": "in Lux",
+              "fr": "en Lux",
+              "de": "in Lux",
+              "nl": "in Lux"
             }
           },
           {
             "name": "luminance_to",
             "type": "number",
             "title": {
-              "en": "Luminance To"
+              "en": "Luminance To",
+              "fr": "Luminance À",
+              "de": "Helligkeit bis",
+              "nl": "Lichtsterkte tot"
             },
             "placeholder": {
-              "en": "in Lux"
+              "en": "in Lux",
+              "fr": "en Lux",
+              "de": "in Lux",
+              "nl": "in Lux"
             }
           }
         ]
@@ -1650,11 +2151,15 @@
         "id": "has_temperature_more_than",
         "title": {
           "en": "The temperature !{{is|isn't}} more than",
-          "nl": "De temperatuur !{{is|is niet}} meer dan"
+          "nl": "De temperatuur !{{is|niet}} meer dan",
+          "fr": "La température !{{pas|n'est}} supérieure à",
+          "de": "Die Temperatur !{{ist|nicht}} höher als"
         },
         "titleFormatted": {
           "en": "The temperature !{{is|isn't}} more than [[temperature]]",
-          "nl": "De temperatuur !{{is|is niet}} meer dan [[temperature]]"
+          "nl": "De temperatuur !{{is|niet}} meer dan [[temperature]]",
+          "fr": "La température !{{pas|n'est}} supérieure à [[temperature]]",
+          "de": "Die Temperatur !{{ist|nicht}} höher als [[temperature]]"
         },
         "args": [
           {
@@ -1666,10 +2171,16 @@
             "name": "temperature",
             "type": "number",
             "title": {
-              "en": "Temperature"
+              "en": "Temperature",
+              "fr": "Température",
+              "de": "Temperatur",
+              "nl": "Temperatuur"
             },
             "placeholder": {
-              "en": "in C"
+              "en": "in C",
+              "fr": "en C",
+              "de": "in C",
+              "nl": "in C"
             }
           }
         ]
@@ -1678,11 +2189,15 @@
         "id": "has_temperature_less_than",
         "title": {
           "en": "The temperature !{{is|isn't}} less than",
-          "nl": "De temperatuur !{{is|is niet}} minder dan"
+          "nl": "De temperatuur !{{is|niet}} minder dan",
+          "fr": "La température !{{est|n'est pas}} inférieure à",
+          "de": "Die Temperatur !{{ist|nicht}} niedriger als"
         },
         "titleFormatted": {
           "en": "The temperature !{{is|isn't}} less than [[temperature]]",
-          "nl": "De temperatuur !{{is|is niet}} minder dan [[temperature]]"
+          "nl": "De temperatuur !{{is|niet}} minder dan [[temperature]]",
+          "fr": "La température !{{est|n'est pas}} inférieure à [[temperature]]",
+          "de": "Die Temperatur !{{ist|ist nicht}} kleiner als [[temperature]]"
         },
         "args": [
           {
@@ -1694,10 +2209,16 @@
             "name": "temperature",
             "type": "number",
             "title": {
-              "en": "Temperature"
+              "en": "Temperature",
+              "fr": "Température",
+              "de": "Temperatur",
+              "nl": "Temperatuur"
             },
             "placeholder": {
-              "en": "in C"
+              "en": "in C",
+              "fr": "en C",
+              "de": "in C",
+              "nl": "in C"
             }
           }
         ]
@@ -1706,11 +2227,15 @@
         "id": "has_temperature_between",
         "title": {
           "en": "The temperature !{{is|isn't}} between",
-          "nl": "De temperatuur !{{is|is niet}} tussen"
+          "nl": "De temperatuur !{{is|niet}} tussen",
+          "fr": "La température !{{est|n'est pas}} comprise entre",
+          "de": "Die Temperatur !{{ist|ist nicht}} dazwischen"
         },
         "titleFormatted": {
           "en": "The temperature !{{is|isn't}} between [[temperature_from]] and [[temperature_to]]",
-          "nl": "De temperatuur !{{is|is niet}} tussen [[temperature_from]] en [[temperature_to]]"
+          "nl": "De temperatuur !{{is|niet}} tussen [[temperature_from]] en [[temperature_to]]",
+          "fr": "La température n'est !{{pas|}} comprise entre [[temperature_from]] et [[temperature_to]]",
+          "de": "Die Temperatur !{{is|isn't}} zwischen [[temperature_from]] und [[temperature_to]]"
         },
         "args": [
           {
@@ -1722,20 +2247,32 @@
             "name": "temperature_from",
             "type": "number",
             "title": {
-              "en": "Temperature From"
+              "en": "Temperature From",
+              "fr": "Température à partir de",
+              "de": "Temperatur von",
+              "nl": "Temperatuur Vanaf"
             },
             "placeholder": {
-              "en": "in C"
+              "en": "in C",
+              "fr": "en C",
+              "de": "in C",
+              "nl": "in C"
             }
           },
           {
             "name": "temperature_to",
             "type": "number",
             "title": {
-              "en": "Temperature To"
+              "en": "Temperature To",
+              "fr": "Température jusqu'à",
+              "de": "Temperatur bis",
+              "nl": "Temperatuur Tot en met"
             },
             "placeholder": {
-              "en": "in C"
+              "en": "in C",
+              "fr": "en C",
+              "de": "in C",
+              "nl": "in C"
             }
           }
         ]
@@ -1890,6 +2427,62 @@
         ]
       },
       {
+        "title": {
+          "en": "Nudge the blind slates"
+        },
+        "titleFormatted": {
+          "en": "Nudge the blind slates [[direction]]"
+        },
+        "hint": {
+          "en": "Nudge the blind slates up or down a small amount"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=rts_interior_venetian_blind&capabilities=windowcoverings_tilt_up"
+          },
+          {
+            "name": "direction",
+            "type": "dropdown",
+            "title": {
+              "en": "Direction"
+            },
+            "values": [
+              {
+                "id": "up",
+                "label": {
+                  "en": "Up"
+                }
+              },
+              {
+                "id": "down",
+                "label": {
+                  "en": "Down"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "nudge_windowcoverings_tilt"
+      },
+      {
+        "title": {
+          "en": "Close the shutters",
+          "fr": "Fermer les volets",
+          "de": "Rollläden schließen",
+          "nl": "Sluit de luiken"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=io_dual_blinds"
+          }
+        ],
+        "id": "set_close"
+      },
+      {
         "id": "set_heat_level",
         "title": {
           "en": "Set the heat level",
@@ -1959,7 +2552,11 @@
             "min": 0,
             "max": 100,
             "placeholder": {
-              "en": "%"
+              "en": "%",
+              "nl": "%",
+              "fr": "%",
+              "de": "%",
+              "du": "%"
             }
           }
         ]
@@ -2032,7 +2629,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=heater_variable"
+            "filter": "driver_id=heater_variable|protexial_alarm"
           }
         ]
       },
@@ -2056,12 +2653,45 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=heater_variable"
+            "filter": "driver_id=heater_variable|protexial_alarm"
           }
         ]
       },
       {
+        "title": {
+          "en": "Open the shutters",
+          "fr": "Ouvrir les volets",
+          "de": "Öffnen Sie die Fensterläden",
+          "nl": "Open de luiken"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=io_dual_blinds"
+          }
+        ],
+        "id": "set_open"
+      },
+      {
+        "title": {
+          "en": "Move to Pedestrian Position",
+          "fr": "Se déplacer vers la position piétonne",
+          "de": "Zur Fußgängerposition bewegen",
+          "nl": "Naar de voetgangerspositie bewegen"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=io_sliding_gate"
+          }
+        ],
+        "id": "set_pedestrian"
+      },
+      {
         "id": "set_polling_mode",
+        "deprecated": true,
         "title": {
           "en": "Turn polling on / off",
           "nl": "Polling aan/uit zetten",
@@ -2169,6 +2799,7 @@
       },
       {
         "id": "set_polling_speed",
+        "deprecated": true,
         "title": {
           "en": "Set Polling Interval",
           "nl": "Stel de update frequentie in",
@@ -2248,7 +2879,6 @@
         ]
       },
       {
-        "id": "ac_operating_mode_set",
         "title": {
           "en": "Set the Heat / Cool mode",
           "nl": "Stel de Verwarm / Koel modus in",
@@ -3219,10 +3849,16 @@
       {
         "id": "heat_mode_set",
         "title": {
-          "en": "Set the Heat Mode"
+          "en": "Set the Heat Mode",
+          "fr": "Définir le mode de chauffage",
+          "de": "Heizmodus einstellen",
+          "nl": "Verwarmingsmodus instellen"
         },
         "titleFormatted": {
-          "en": "Set the Heat Mode to [[state]]"
+          "en": "Set the Heat Mode to [[state]]",
+          "fr": "Définir le mode de chauffage sur [[state]]",
+          "de": "Heizmodus auf [[state]] einstellen",
+          "nl": "Verwarmingsmodus instellen op [[state]]"
         },
         "args": [
           {
@@ -3234,50 +3870,72 @@
             "name": "state",
             "type": "dropdown",
             "title": {
-              "en": "Heat Mode"
+              "en": "Heat Mode",
+              "fr": "Mode de chauffage",
+              "de": "Heizmodus",
+              "nl": "Verwarmingsmodus"
             },
             "values": [
               {
                 "id": "absence",
                 "label": {
-                  "en": "Absent"
+                  "en": "Absent",
+                  "fr": "Absent",
+                  "de": "Abwesend",
+                  "nl": "Afwezig"
                 }
               },
               {
                 "id": "auto",
                 "label": {
                   "en": "Automatic",
+                  "fr": "Automatique",
+                  "de": "Automatisch",
                   "nl": "Automatisch"
                 }
               },
               {
                 "id": "comfort",
                 "label": {
-                  "en": "Comfort"
+                  "en": "Comfort",
+                  "fr": "Confort",
+                  "de": "Komfort",
+                  "nl": "Comfort"
                 }
               },
               {
                 "id": "eco",
                 "label": {
-                  "en": "Eco"
+                  "en": "Eco",
+                  "fr": "Économie",
+                  "de": "Eco",
+                  "nl": "Eco"
                 }
               },
               {
                 "id": "externalScheduling",
                 "label": {
-                  "en": "External Scheduling"
+                  "en": "External Scheduling",
+                  "fr": "Planification externe",
+                  "de": "Externe Planung",
+                  "nl": "Externe planning"
                 }
               },
               {
                 "id": "internalScheduling",
                 "label": {
-                  "en": "Internal Scheduling"
+                  "en": "Internal Scheduling",
+                  "fr": "Planification interne",
+                  "de": "Interne Planung",
+                  "nl": "Interne planning"
                 }
               },
               {
                 "id": "manu",
                 "label": {
                   "en": "Manual",
+                  "fr": "Manuel",
+                  "de": "Manuell",
                   "nl": "Handmatig"
                 }
               },
@@ -3285,7 +3943,9 @@
                 "id": "stop",
                 "label": {
                   "en": "Stop",
-                  "nl": "Hou op"
+                  "fr": "Arrêter",
+                  "de": "Stopp",
+                  "nl": "Stop"
                 }
               }
             ]
@@ -3295,10 +3955,16 @@
       {
         "id": "cool_mode_set",
         "title": {
-          "en": "Set the Cooling Mode"
+          "en": "Set the Cooling Mode",
+          "fr": "Définir le mode de refroidissement",
+          "de": "Kühlmodus einstellen",
+          "nl": "Koelmodus instellen"
         },
         "titleFormatted": {
-          "en": "Set the Cooling Mode to [[state]]"
+          "en": "Set the Cooling Mode to [[state]]",
+          "fr": "Définir le mode de refroidissement sur [[state]]",
+          "de": "Kühlmodus auf [[state]] einstellen",
+          "nl": "Koelmodus instellen op [[state]]"
         },
         "args": [
           {
@@ -3310,50 +3976,72 @@
             "name": "state",
             "type": "dropdown",
             "title": {
-              "en": "Cooling Mode"
+              "en": "Cooling Mode",
+              "fr": "Mode de refroidissement",
+              "de": "Kühlmodus",
+              "nl": "Koelmodus"
             },
             "values": [
               {
                 "id": "absence",
                 "label": {
-                  "en": "Absent"
+                  "en": "Absent",
+                  "fr": "Absent",
+                  "de": "Abwesend",
+                  "nl": "Afwezig"
                 }
               },
               {
                 "id": "auto",
                 "label": {
                   "en": "Automatic",
+                  "fr": "Automatique",
+                  "de": "Automatisch",
                   "nl": "Automatisch"
                 }
               },
               {
                 "id": "comfort",
                 "label": {
-                  "en": "Comfort"
+                  "en": "Comfort",
+                  "fr": "Confort",
+                  "de": "Komfort",
+                  "nl": "Comfort"
                 }
               },
               {
                 "id": "eco",
                 "label": {
-                  "en": "Eco"
+                  "en": "Eco",
+                  "fr": "Économie",
+                  "de": "Eco",
+                  "nl": "Eco"
                 }
               },
               {
                 "id": "externalScheduling",
                 "label": {
-                  "en": "External Scheduling"
+                  "en": "External Scheduling",
+                  "fr": "Planification externe",
+                  "de": "Externe Planung",
+                  "nl": "Externe planning"
                 }
               },
               {
                 "id": "internalScheduling",
                 "label": {
-                  "en": "Internal Scheduling"
+                  "en": "Internal Scheduling",
+                  "fr": "Planification interne",
+                  "de": "Interne Planung",
+                  "nl": "Interne planning"
                 }
               },
               {
                 "id": "manu",
                 "label": {
                   "en": "Manual",
+                  "fr": "Manuel",
+                  "de": "Manuell",
                   "nl": "Handmatig"
                 }
               },
@@ -3361,7 +4049,9 @@
                 "id": "stop",
                 "label": {
                   "en": "Stop",
-                  "nl": "Hou op"
+                  "fr": "Arrêter",
+                  "de": "Stopp",
+                  "nl": "Stop"
                 }
               }
             ]
@@ -3371,10 +4061,16 @@
       {
         "id": "cooling_on_off",
         "title": {
-          "en": "Switch Cooling Mode On / Off"
+          "en": "Switch Cooling Mode On / Off",
+          "fr": "Activer / Désactiver le mode de refroidissement",
+          "de": "Kühlmodus ein- / ausschalten",
+          "nl": "Koelmodus in-/uitschakelen"
         },
         "titleFormatted": {
-          "en": "Switch Cooling Mode [[state]]"
+          "en": "Switch Cooling Mode [[state]]",
+          "fr": "Activer / Désactiver le mode de refroidissement [[state]]",
+          "de": "Kühlmodus [[state]]",
+          "nl": "Koelmodus [[state]]"
         },
         "args": [
           {
@@ -3386,21 +4082,28 @@
             "name": "state",
             "type": "dropdown",
             "title": {
-              "en": "Cooling Mode"
+              "en": "Cooling Mode",
+              "fr": "Mode de refroidissement",
+              "de": "Kühlmodus",
+              "nl": "Koelmodus"
             },
             "values": [
               {
                 "id": "on",
                 "label": {
                   "en": "On",
-                  "nl": "aan"
+                  "fr": "Activé",
+                  "de": "Ein",
+                  "nl": "Aan"
                 }
               },
               {
                 "id": "off",
                 "label": {
                   "en": "Off",
-                  "nl": "uit"
+                  "fr": "Désactivé",
+                  "de": "Aus",
+                  "nl": "Uit"
                 }
               }
             ]
@@ -3410,10 +4113,16 @@
       {
         "id": "heating_on_off",
         "title": {
-          "en": "Switch Heating Mode On / Off"
+          "en": "Switch Heating Mode On / Off",
+          "fr": "Activer / Désactiver le mode de chauffage",
+          "de": "Heizmodus ein- / ausschalten",
+          "nl": "Verwarmingsmodus in-/uitschakelen"
         },
         "titleFormatted": {
-          "en": "Switch Heating Mode [[state]]"
+          "en": "Switch Heating Mode [[state]]",
+          "fr": "Activer / Désactiver le mode de chauffage [[state]]",
+          "de": "Heizmodus [[state]]",
+          "nl": "Verwarmingsmodus [[state]]"
         },
         "args": [
           {
@@ -3425,21 +4134,28 @@
             "name": "state",
             "type": "dropdown",
             "title": {
-              "en": "Heating Mode"
+              "en": "Heating Mode",
+              "fr": "Mode de chauffage",
+              "de": "Heizmodus",
+              "nl": "Verwarmingsmodus"
             },
             "values": [
               {
                 "id": "on",
                 "label": {
                   "en": "On",
-                  "nl": "aan"
+                  "fr": "Activé",
+                  "de": "Ein",
+                  "nl": "Aan"
                 }
               },
               {
                 "id": "off",
                 "label": {
                   "en": "Off",
-                  "nl": "uit"
+                  "fr": "Désactivé",
+                  "de": "Aus",
+                  "nl": "Uit"
                 }
               }
             ]
@@ -3449,10 +4165,16 @@
       {
         "id": "derogation_on_off",
         "title": {
-          "en": "Switch Derogation Mode On / Off"
+          "en": "Switch Derogation Mode On / Off",
+          "fr": "Activer / Désactiver le mode de dérogation",
+          "de": "Derogationsmodus ein- / ausschalten",
+          "nl": "Derogatiemodus in-/uitschakelen"
         },
         "titleFormatted": {
-          "en": "Switch Derogation Mode [[state]]"
+          "en": "Switch Derogation Mode [[state]]",
+          "fr": "Activer / Désactiver le mode de dérogation [[state]]",
+          "de": "Derogationsmodus [[state]]",
+          "nl": "Derogatiemodus [[state]]"
         },
         "args": [
           {
@@ -3464,21 +4186,28 @@
             "name": "state",
             "type": "dropdown",
             "title": {
-              "en": "Derogation Mode"
+              "en": "Derogation Mode",
+              "fr": "Mode de dérogation",
+              "de": "Derogationsmodus",
+              "nl": "Derogatiemodus"
             },
             "values": [
               {
                 "id": "on",
                 "label": {
                   "en": "On",
-                  "nl": "aan"
+                  "fr": "Activé",
+                  "de": "Ein",
+                  "nl": "Aan"
                 }
               },
               {
                 "id": "off",
                 "label": {
                   "en": "Off",
-                  "nl": "uit"
+                  "fr": "Désactivé",
+                  "de": "Aus",
+                  "nl": "Uit"
                 }
               }
             ]
@@ -3488,10 +4217,16 @@
       {
         "id": "eco_cooling_temperature_set",
         "title": {
-          "en": "Set the Eco Cooling temperature"
+          "en": "Set the Eco Cooling temperature",
+          "fr": "Définir la température de refroidissement éco",
+          "de": "Eco-Kühltemperatur einstellen",
+          "nl": "Stel de Eco Koeltemperatuur in"
         },
         "titleFormatted": {
-          "en": "Set the Eco Cooling to [[target_temperature]]"
+          "en": "Set the Eco Cooling to [[target_temperature]]",
+          "fr": "Définir la température de refroidissement éco à [[target_temperature]]",
+          "de": "Eco-Kühltemperatur auf [[target_temperature]] einstellen",
+          "nl": "Stel de Eco Koeltemperatuur in op [[target_temperature]]"
         },
         "args": [
           {
@@ -3503,7 +4238,10 @@
             "name": "target_temperature",
             "type": "range",
             "title": {
-              "en": "Target Temperature"
+              "en": "Target Temperature",
+              "fr": "Température cible",
+              "de": "Zieltemperatur",
+              "nl": "Doeltemperatuur"
             },
             "min": 4,
             "max": 35,
@@ -3516,10 +4254,16 @@
       {
         "id": "eco_heating_temperature_set",
         "title": {
-          "en": "Set the Eco Heating temperature"
+          "en": "Set the Eco Heating temperature",
+          "fr": "Définir la température de chauffage éco",
+          "de": "Eco-Heiztemperatur einstellen",
+          "nl": "Stel de Eco Verwarmings temperatuur in"
         },
         "titleFormatted": {
-          "en": "Set the Eco Heating to [[target_temperature]]"
+          "en": "Set the Eco Heating to [[target_temperature]]",
+          "fr": "Définir la température de chauffage éco à [[target_temperature]]",
+          "de": "Eco-Heiztemperatur auf [[target_temperature]] einstellen",
+          "nl": "Stel de Eco Verwarmings temperatuur in op [[target_temperature]]"
         },
         "args": [
           {
@@ -3531,7 +4275,10 @@
             "name": "target_temperature",
             "type": "range",
             "title": {
-              "en": "Target Temperature"
+              "en": "Target Temperature",
+              "fr": "Température cible",
+              "de": "Zieltemperatur",
+              "nl": "Doeltemperatuur"
             },
             "min": 4,
             "max": 35,
@@ -3544,10 +4291,16 @@
       {
         "id": "comfort_cooling_temperature_set",
         "title": {
-          "en": "Set the Comfort Cooling temperature"
+          "en": "Set the Comfort Cooling temperature",
+          "fr": "Définir la température de refroidissement confort",
+          "de": "Komfort-Kühltemperatur einstellen",
+          "nl": "Stel de Comfort Koeltemperatuur in"
         },
         "titleFormatted": {
-          "en": "Set the Comfort Cooling to [[target_temperature]]"
+          "en": "Set the Comfort Cooling to [[target_temperature]]",
+          "fr": "Définir la température de refroidissement confort à [[target_temperature]]",
+          "de": "Komfort-Kühltemperatur auf [[target_temperature]] einstellen",
+          "nl": "Stel de Comfort Koeltemperatuur in op [[target_temperature]]"
         },
         "args": [
           {
@@ -3559,7 +4312,10 @@
             "name": "target_temperature",
             "type": "range",
             "title": {
-              "en": "Target Temperature"
+              "en": "Target Temperature",
+              "fr": "Température cible",
+              "de": "Zieltemperatur",
+              "nl": "Doeltemperatuur"
             },
             "min": 4,
             "max": 35,
@@ -3572,10 +4328,16 @@
       {
         "id": "comfort_heating_temperature_set",
         "title": {
-          "en": "Set the Comfort Heating temperature"
+          "en": "Set the Comfort Heating temperature",
+          "fr": "Définir la température de chauffage confort",
+          "de": "Komfort-Heiztemperatur einstellen",
+          "nl": "Stel de Comfort Verwarmings temperatuur in"
         },
         "titleFormatted": {
-          "en": "Set the Comfort Heating to [[target_temperature]]"
+          "en": "Set the Comfort Heating to [[target_temperature]]",
+          "fr": "Définir la température de chauffage confort à [[target_temperature]]",
+          "de": "Komfort-Heiztemperatur auf [[target_temperature]] einstellen",
+          "nl": "Stel de Comfort Verwarmings temperatuur in op [[target_temperature]]"
         },
         "args": [
           {
@@ -3587,7 +4349,10 @@
             "name": "target_temperature",
             "type": "range",
             "title": {
-              "en": "Target Temperature"
+              "en": "Target Temperature",
+              "fr": "Température cible",
+              "de": "Zieltemperatur",
+              "nl": "Doeltemperatuur"
             },
             "min": 4,
             "max": 35,
@@ -3600,10 +4365,16 @@
       {
         "id": "derogation_temperature_set",
         "title": {
-          "en": "Set the Derogation temperature"
+          "en": "Set the Derogation temperature",
+          "fr": "Définir la température de dérogation",
+          "de": "Derogations-Temperatur einstellen",
+          "nl": "Stel de Derogatie temperatuur in"
         },
         "titleFormatted": {
-          "en": "Set the Derogation to [[target_temperature]]"
+          "en": "Set the Derogation to [[target_temperature]]",
+          "fr": "Définir la température de dérogation à [[target_temperature]]",
+          "de": "Derogations-Temperatur auf [[target_temperature]] einstellen",
+          "nl": "Stel de Derogatie temperatuur in op [[target_temperature]]"
         },
         "args": [
           {
@@ -3615,7 +4386,10 @@
             "name": "target_temperature",
             "type": "range",
             "title": {
-              "en": "Target Temperature"
+              "en": "Target Temperature",
+              "fr": "Température cible",
+              "de": "Zieltemperatur",
+              "nl": "Doeltemperatuur"
             },
             "min": 4,
             "max": 35,
@@ -3699,6 +4473,76 @@
             "label": "%",
             "labelMultiplier": 100,
             "labelDecimals": 0
+          }
+        ]
+      },
+      {
+        "id": "set_heating_level2_state",
+        "title": {
+          "en": "Set the heating mode",
+          "fr": "Définir le mode de chauffage",
+          "de": "Heizmodus setzen",
+          "nl": "Verwarmingsmodus instellen"
+        },
+        "titleFormatted": {
+          "en": "Set the heating mode to [[state]]",
+          "fr": "Définir le mode de chauffage à [[state]]",
+          "de": "Heizmodus auf [[state]] setzen",
+          "nl": "Verwarmingsmodus instellen op [[state]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=io_heating_interface"
+          },
+          {
+            "name": "state",
+            "type": "dropdown",
+            "title": {
+              "en": "Heating Mode",
+              "fr": "Mode de chauffage",
+              "de": "Heizmodus",
+              "nl": "Verwarmingsmodus"
+            },
+            "values": [
+              {
+                "id": "comfort",
+                "title": {
+                  "en": "Comfort",
+                  "fr": "Confort",
+                  "de": "Komfort",
+                  "nl": "Comfort"
+                }
+              },
+              {
+                "id": "eco",
+                "title": {
+                  "en": "Eco",
+                  "fr": "Economique",
+                  "de": "Eco",
+                  "nl": "Eco"
+                }
+              },
+              {
+                "id": "frostprotection",
+                "title": {
+                  "en": "Frost Protection",
+                  "fr": "Protection contre le gel",
+                  "de": "Frostschutz",
+                  "nl": "Vorstbescherming"
+                }
+              },
+              {
+                "id": "off",
+                "title": {
+                  "en": "Off",
+                  "fr": "Éteint",
+                  "de": "Aus",
+                  "nl": "Uit"
+                }
+              }
+            ]
           }
         ]
       },
@@ -3790,6 +4634,236 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "id": "target_temperature_manual_set",
+        "highlight": true,
+        "title": {
+          "en": "Set the manual temperature until"
+        },
+        "titleFormatted": {
+          "en": "Set the manual temperature to [[target_temperature]] until [[derogation_type]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=io_valve_heating"
+          },
+          {
+            "name": "target_temperature",
+            "title": {
+              "en": "Target temperature"
+            },
+            "type": "range",
+            "min": 5,
+            "max": 40,
+            "step": 0.5,
+            "label": "°C",
+            "labelDecimals": 1
+          },
+          {
+            "name": "derogation_type",
+            "type": "dropdown",
+            "title": {
+              "en": "Until"
+            },
+            "values": [
+              {
+                "id": "further_notice",
+                "title": {
+                  "en": "Further notice",
+                  "nl": "Nadere aankondiging"
+                }
+              },
+              {
+                "id": "next_mode",
+                "title": {
+                  "en": "Next mode change",
+                  "nl": "Volgende modus"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "target_temperature_manual_set_for",
+        "highlight": true,
+        "title": {
+          "en": "Set the manual temperature for"
+        },
+        "titleFormatted": {
+          "en": "Set the manual temperature to [[target_temperature]] for [[days]], [[hours]], [[minutes]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=io_valve_heating"
+          },
+          {
+            "name": "target_temperature",
+            "title": {
+              "en": "Target temperature"
+            },
+            "type": "range",
+            "min": 5,
+            "max": 40,
+            "step": 0.5,
+            "label": "°C",
+            "labelDecimals": 1
+          },
+          {
+            "name": "days",
+            "type": "range",
+            "title": {
+              "en": "Days"
+            },
+            "min": 0,
+            "max": 14,
+            "step": 1,
+            "label": " Days",
+            "labelDecimals": 0
+          },
+          {
+            "name": "hours",
+            "type": "range",
+            "title": {
+              "en": "Hours"
+            },
+            "min": 0,
+            "max": 23,
+            "step": 1,
+            "label": " Hours",
+            "labelDecimals": 0
+          },
+          {
+            "name": "minutes",
+            "type": "range",
+            "title": {
+              "en": "Minutes"
+            },
+            "min": 0,
+            "max": 59,
+            "step": 1,
+            "label": " Minutes",
+            "labelDecimals": 0
+          }
+        ]
+      },
+      {
+        "id": "target_temperature_comfort_heating_set",
+        "highlight": true,
+        "title": {
+          "en": "Set the comfort heating temperature"
+        },
+        "titleFormatted": {
+          "en": "Set the comfort heating temperature to [[target_temperature]] °C"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=io_valve_heating"
+          },
+          {
+            "name": "target_temperature",
+            "title": {
+              "en": "Target temperature"
+            },
+            "type": "range",
+            "min": 5,
+            "max": 40,
+            "step": 0.5,
+            "label": "°C",
+            "labelDecimals": 1
+          }
+        ]
+      },
+      {
+        "id": "target_temperature_eco_heating_set",
+        "title": {
+          "en": "Set the Eco heating temperature"
+        },
+        "titleFormatted": {
+          "en": "Set the Eco heating temperature to [[target_temperature]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=io_valve_heating"
+          },
+          {
+            "name": "target_temperature",
+            "title": {
+              "en": "Target temperature"
+            },
+            "type": "range",
+            "min": 5,
+            "max": 40,
+            "step": 0.5,
+            "label": "°C",
+            "labelDecimals": 1
+          }
+        ]
+      },
+      {
+        "id": "target_temperature_away_set",
+        "title": {
+          "en": "Set the away temperature"
+        },
+        "titleFormatted": {
+          "en": "Set the away temperature to [[target_temperature]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=io_valve_heating"
+          },
+          {
+            "name": "target_temperature",
+            "title": {
+              "en": "Target temperature"
+            },
+            "type": "range",
+            "min": 5,
+            "max": 40,
+            "step": 0.5,
+            "label": "°C",
+            "labelDecimals": 1
+          }
+        ]
+      },
+      {
+        "id": "target_temperature_frost_protection_set",
+        "title": {
+          "en": "Set the frost protection temperature"
+        },
+        "titleFormatted": {
+          "en": "Set the frost protection temperature to [[target_temperature]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=io_valve_heating"
+          },
+          {
+            "name": "target_temperature",
+            "title": {
+              "en": "Target temperature"
+            },
+            "type": "range",
+            "min": 5,
+            "max": 40,
+            "step": 0.5,
+            "label": "°C",
+            "labelDecimals": 1
           }
         ]
       },
@@ -3936,13 +5010,6 @@
             },
             "values": [
               {
-                "id": "date",
-                "title": {
-                  "en": "Date",
-                  "nl": "Datum"
-                }
-              },
-              {
                 "id": "further_notice",
                 "title": {
                   "en": "Further notice",
@@ -3954,6 +5021,64 @@
                 "title": {
                   "en": "Next mode change",
                   "nl": "Volgende modus"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_heating_mode",
+        "title": {
+          "en": "Set the heating mode"
+        },
+        "titleFormatted": {
+          "en": "Set the heating mode to [[state]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pilot_wire_programmer"
+          },
+          {
+            "name": "state",
+            "type": "dropdown",
+            "title": {
+              "en": "Heating Mode",
+              "nl": "Verwarmingsmodus"
+            },
+            "values": [
+              {
+                "id": "auto",
+                "title": {
+                  "en": "Automatic",
+                  "nl": "Automatisch"
+                }
+              },
+              {
+                "id": "comfort",
+                "title": {
+                  "en": "Comfort"
+                }
+              },
+              {
+                "id": "eco",
+                "title": {
+                  "en": "Eco"
+                }
+              },
+              {
+                "id": "free",
+                "title": {
+                  "en": "Free",
+                  "nl": "Vrij"
+                }
+              },
+              {
+                "id": "secured",
+                "title": {
+                  "en": "Secured"
                 }
               }
             ]
@@ -4646,6 +5771,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -4712,8 +5840,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -4899,6 +6026,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -4965,8 +6095,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -5086,6 +6215,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -5152,8 +6284,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -5268,6 +6399,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -5334,8 +6468,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -5429,7 +6562,9 @@
       },
       "class": "sensor",
       "capabilities": [
-        "alarm_contact"
+        "alarm_contact",
+        "tilted_state",
+        "open_window_state"
       ],
       "id": "enocean_window_handle"
     },
@@ -5442,6 +6577,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -5509,8 +6647,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -5619,6 +6756,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -5685,8 +6825,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -5794,6 +6933,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -5860,8 +7002,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -5972,6 +7113,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -6038,8 +7182,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -6189,6 +7332,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -6255,8 +7401,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -6382,6 +7527,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -6448,8 +7596,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -6602,6 +7749,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -6668,8 +7818,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -6778,6 +7927,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -6844,8 +7996,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -6994,6 +8145,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -7060,8 +8214,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -7180,6 +8333,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -7246,8 +8402,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -7371,6 +8526,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -7437,8 +8595,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -7618,6 +8775,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -7684,8 +8844,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -7974,6 +9133,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -8040,8 +9202,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -8150,6 +9311,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -8216,8 +9380,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -8328,6 +9491,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -8394,8 +9560,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -8593,6 +9758,45 @@
             "ru": "Инвертировать контроль положения.",
             "ko": "위치 제어를 반전"
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class",
+            "nl": "Apparaatklasse",
+            "fr": "Catégorie d'appareil",
+            "de": "Geräteklasse"
+          },
+          "value": "blinds",
+          "hint": {
+            "en": "Set the Homey class.",
+            "nl": "Stel de Homey-klasse in.",
+            "fr": "Définir la catégorie d'appareil Homey.",
+            "de": "Einstellen der Homey-Klasse."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_exterior_venetian_blind"
@@ -8606,6 +9810,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -8673,8 +9880,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -8766,7 +9972,7 @@
         "ru": "Гаражные ворота с контролем положения (io)",
         "ko": "위치 제어가 있는 차고 문 (io)"
       },
-      "class": "blinds",
+      "class": "garagedoor",
       "capabilities": [
         "windowcoverings_state",
         "windowcoverings_set"
@@ -8837,6 +10043,45 @@
             "ru": "Инвертировать управление позицией.",
             "ko": "위치 제어를 반전시키세요."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class",
+            "nl": "Apparaatklasse",
+            "fr": "Classe de l'appareil",
+            "de": "Geräteklasse"
+          },
+          "value": "blinds",
+          "hint": {
+            "en": "Set the Homey class.",
+            "nl": "Stel de Homey-klasse in.",
+            "fr": "Définir la classe Homey.",
+            "de": "Legen Sie die Homey-Klasse fest."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_garage_door"
@@ -8850,6 +10095,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -8917,8 +10165,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -9010,7 +10257,7 @@
         "ru": "Гаражная дверь - Открыть и Закрыть (io)",
         "ko": "차고 문 - 열고 닫기 (io)"
       },
-      "class": "blinds",
+      "class": "garagedoor",
       "capabilities": [
         "windowcoverings_state",
         "my_position"
@@ -9021,7 +10268,9 @@
           "type": "checkbox",
           "label": {
             "en": "Invert Up / Down",
-            "nl": "Omkeren omhoog / omlaag"
+            "nl": "Omkeren omhoog / omlaag",
+            "fr": "Inverser Haut / Bas",
+            "de": "Oben / Unten umkehren"
           },
           "value": false,
           "hint": {
@@ -9038,6 +10287,45 @@
             "ru": "Перевернуть Вверх / Вниз",
             "ko": "위 / 아래 반전"
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class",
+            "fr": "Classe de l'appareil",
+            "de": "Geräteklasse",
+            "nl": "Apparaatklasse"
+          },
+          "value": "blinds",
+          "hint": {
+            "en": "Set the Homey class.",
+            "nl": "Stel de Homey klasse in.",
+            "fr": "Définissez la classe Homey.",
+            "de": "Setze die Homey-Klasse."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_garage_door_partial"
@@ -9051,6 +10339,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -9118,8 +10409,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -9227,6 +10517,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -9293,8 +10586,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -9493,6 +10785,43 @@
             "ru": "Инвертировать управление положением.",
             "ko": "위치 제어 반전."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class",
+            "fr": "Classe de l'appareil",
+            "de": "Geräteklasse"
+          },
+          "value": "sunshade",
+          "hint": {
+            "en": "Set the Homey class.",
+            "fr": "Définir la classe Homey.",
+            "de": "Setzen Sie die Homey-Klasse."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_horizontal_awning"
@@ -9506,6 +10835,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -9573,8 +10905,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -9690,6 +11021,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -9756,8 +11090,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -9865,6 +11198,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -9931,8 +11267,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -10040,6 +11375,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -10106,8 +11444,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -10223,6 +11560,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -10289,8 +11629,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -10453,6 +11792,45 @@
             "ru": "Инвертировать управление положением.",
             "ko": "위치 제어 반전."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class",
+            "fr": "Classe de l'appareil",
+            "de": "Geräteklasse",
+            "du": "Apparaatklasse"
+          },
+          "value": "sunshade",
+          "hint": {
+            "en": "Set the Homey class.",
+            "fr": "Définir la classe Homey",
+            "de": "Homey-Klasse setzen",
+            "du": "Stel de Homey-klasse in."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_pergola"
@@ -10466,6 +11844,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -10533,8 +11914,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -10732,6 +12112,43 @@
             "ru": "Инвертировать управление позицией.",
             "ko": "위치 제어 반전."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class",
+            "fr": "Classe d'appareil",
+            "de": "Geräteklasse"
+          },
+          "value": "blinds",
+          "hint": {
+            "en": "Set the Homey class.",
+            "fr": "Définir la classe Homey.",
+            "de": "Legen Sie die Homey-Klasse fest."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_roller_shutter"
@@ -10745,6 +12162,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -10812,8 +12232,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -11012,6 +12431,43 @@
             "ru": "Инвертировать управление положением.",
             "ko": "위치 제어 반전."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class",
+            "fr": "Catégorie d'appareil",
+            "de": "Geräteklasse"
+          },
+          "value": "blinds",
+          "hint": {
+            "en": "Set the Homey class.",
+            "fr": "Définissez la classe Homey.",
+            "de": "Setzen Sie die Homey-Klasse."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_roller_shutter_quiet"
@@ -11025,6 +12481,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -11092,8 +12551,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -11188,7 +12646,47 @@
       "class": "other",
       "capabilities": [
         "pedestrian",
-        "windowcoverings_state"
+        "windowcoverings_state",
+        "windowcoverings_set"
+      ],
+      "settings": [
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class",
+            "fr": "Classe de périphérique",
+            "de": "Geräteklasse",
+            "nl": "Apparaatklassen"
+          },
+          "value": "other",
+          "hint": {
+            "en": "Set the Homey class.",
+            "fr": "Définissez la classe Homey.",
+            "de": "Setzen Sie die Homey-Klasse.",
+            "nl": "Stel de Homey-klasse in."
+          },
+          "values": [
+            {
+              "id": "other",
+              "label": {
+                "en": "Generic class",
+                "fr": "Classe générique",
+                "de": "Generische Klasse",
+                "nl": "Generieke klasse"
+              }
+            },
+            {
+              "id": "garagedoor",
+              "label": {
+                "en": "Garage door",
+                "fr": "Porte de garage",
+                "de": "Garagentor",
+                "nl": "Garagedeur"
+              }
+            }
+          ]
+        }
       ],
       "id": "io_sliding_gate"
     },
@@ -11201,6 +12699,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -11268,8 +12769,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -11385,6 +12885,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -11451,8 +12954,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -11553,6 +13055,8 @@
       },
       "capabilities": [
         "measure_temperature",
+        "measure_temperature.current_target",
+        "target_temperature.manual",
         "target_temperature.comfort_heating",
         "target_temperature.eco_heating",
         "target_temperature.away",
@@ -11569,6 +13073,14 @@
         "rssi"
       ],
       "capabilitiesOptions": {
+        "measure_temperature.current_target": {
+          "title": "Active Target"
+        },
+        "target_temperature.manual": {
+          "min": 5,
+          "max": 26,
+          "title": "Manual Temperature"
+        },
         "target_temperature.comfort_heating": {
           "min": 5,
           "max": 26,
@@ -11654,6 +13166,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -11720,8 +13235,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -11918,6 +13432,39 @@
             "ru": "Инвертировать управление положением.",
             "ko": "위치 제어 반전."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "sunshade",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_velux_interior_blind"
@@ -11931,6 +13478,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -11998,8 +13548,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -12095,6 +13644,7 @@
       "capabilities": [
         "windowcoverings_state",
         "windowcoverings_set",
+        "quiet_mode",
         "quick_open"
       ],
       "settings": [
@@ -12196,6 +13746,39 @@
             "ru": "Инвертировать контроль положения.",
             "ko": "위치 제어 반대로"
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "blinds",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_velux_roller_shutter"
@@ -12209,6 +13792,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -12276,8 +13862,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -12474,6 +14059,39 @@
             "ru": "Инвертировать управление позицией.",
             "ko": "위치 제어를 반전"
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "windowcoverings",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_velux_roof_window"
@@ -12487,6 +14105,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -12554,8 +14175,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -12651,7 +14271,8 @@
       "capabilities": [
         "windowcoverings_state",
         "windowcoverings_set",
-        "quick_open"
+        "quick_open",
+        "my_position"
       ],
       "settings": [
         {
@@ -12752,6 +14373,39 @@
             "ru": "Инвертировать управление положением.",
             "ko": "위치 제어 반전."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "sunshade",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_vertical_exterior_blind"
@@ -12765,6 +14419,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -12832,8 +14489,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -12928,7 +14584,8 @@
       "capabilities": [
         "windowcoverings_state",
         "windowcoverings_set",
-        "quick_open"
+        "quick_open",
+        "my_position"
       ],
       "settings": [
         {
@@ -13029,6 +14686,39 @@
             "ru": "Инвертировать управление позицией.",
             "ko": "위치 제어 반전."
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "blinds",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "io_vertical_interior_blind"
@@ -13042,6 +14732,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -13109,8 +14802,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -13218,6 +14910,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -13284,8 +14979,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -13393,6 +15087,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -13459,8 +15156,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -13568,6 +15264,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -13634,8 +15333,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -13744,6 +15442,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -13810,8 +15511,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -13920,6 +15620,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -13986,8 +15689,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -14096,6 +15798,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -14162,8 +15867,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -14272,6 +15976,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -14338,8 +16045,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -14447,6 +16153,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -14513,8 +16222,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -14610,7 +16318,8 @@
       "capabilities": [
         "open_button",
         "close_button",
-        "stop_button"
+        "stop_button",
+        "my_position"
       ],
       "settings": [
         {
@@ -14691,6 +16400,39 @@
               }
             }
           ]
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "other",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "rts_gate_opener"
@@ -14704,6 +16446,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -14771,8 +16516,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -14902,6 +16646,39 @@
             "ru": "Инвертировать вверх / вниз контролы",
             "ko": "상 / 하 방향 제어 반전"
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "sunshade",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "rts_horizontal_awning"
@@ -14915,6 +16692,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -14982,8 +16762,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -15112,6 +16891,39 @@
             "ru": "Перевернуть управление направлением вверх / вниз",
             "ko": "위/아래 방향 제어 반전"
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "blinds",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "rts_interior_blind"
@@ -15125,6 +16937,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -15192,8 +17007,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -15323,6 +17137,39 @@
             "ru": "Инвертировать элементы управления направления Вверх / Вниз",
             "ko": "상/하 방향 컨트롤 반전"
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "curtain",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "rts_interior_curtain"
@@ -15336,6 +17183,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -15403,8 +17253,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -15536,6 +17385,39 @@
             "ru": "Перевернуть управление Вверх / Вниз",
             "ko": "위 / 아래 방향 제어 반전"
           }
+        },
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class"
+          },
+          "value": "blinds",
+          "hint": {
+            "en": "Set the Homey class."
+          },
+          "values": [
+            {
+              "id": "windowcoverings",
+              "label": "Generic window covering"
+            },
+            {
+              "id": "blinds",
+              "label": "Blinds"
+            },
+            {
+              "id": "curtain",
+              "label": "Curtain"
+            },
+            {
+              "id": "sunshade",
+              "label": "Sunshade"
+            },
+            {
+              "id": "garagedoor",
+              "label": "Garage door"
+            }
+          ]
         }
       ],
       "id": "rts_interior_venetian_blind"
@@ -15549,6 +17431,9 @@
         "cloud"
       ],
       "pair": [
+        {
+          "id": "select_region"
+        },
         {
           "id": "login_credentials",
           "template": "login_credentials",
@@ -15616,8 +17501,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -15725,6 +17609,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -15791,8 +17678,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -15910,6 +17796,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -15976,8 +17865,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -16129,6 +18017,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -16195,8 +18086,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -16305,6 +18195,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -16371,8 +18264,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -16482,6 +18374,9 @@
       ],
       "pair": [
         {
+          "id": "select_region"
+        },
+        {
           "id": "login_credentials",
           "template": "login_credentials",
           "options": {
@@ -16548,8 +18443,7 @@
           "id": "list_my_devices",
           "template": "list_devices",
           "navigation": {
-            "next": "add_my_devices",
-            "prev": "login_credentials"
+            "next": "add_my_devices"
           }
         },
         {
@@ -17042,6 +18936,44 @@
           }
         }
       ]
+    },
+    "alarm_rain": {
+      "type": "boolean",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "title": {
+        "en": "Rain Alarm",
+        "fr": "Alarme de pluie",
+        "de": "Regenalarm",
+        "nl": "Regenalarm",
+        "es": "Alarma de lluvia",
+        "pt": "Alarme de chuva",
+        "it": "Allarme pioggia",
+        "pl": "Alarm deszczowy"
+      },
+      "icon": "/drivers/io_rain_sensor/assets/icon.svg",
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Raining",
+        "fr": "Il pleut",
+        "de": "Regen",
+        "nl": "Regen",
+        "es": "Lluvia",
+        "pt": "Chuva",
+        "it": "Pioggia",
+        "pl": "Deszcz"
+      },
+      "insightsTitleFalse": {
+        "en": "Stopped Raining",
+        "fr": "Arrêt de la pluie",
+        "de": "Regen gestoppt",
+        "nl": "Regen gestopt",
+        "es": "Dejó de llover",
+        "pt": "Chuva parou",
+        "it": "Pioggia cessata",
+        "pl": "Deszcz się zatrzymał"
+      }
     },
     "alarm_room_state": {
       "type": "boolean",
@@ -19316,6 +21248,61 @@
       "getable": true,
       "setable": true
     },
+    "remote_eliot_state": {
+      "type": "enum",
+      "title": {
+        "en": "Remote State",
+        "nl": "Externe staat:",
+        "fr": "État de la télécommande",
+        "de": "Fernbedienungszustand"
+      },
+      "values": [
+        {
+          "id": "heldDown",
+          "title": {
+            "en": "Held Down"
+          }
+        },
+        {
+          "id": "pressed",
+          "title": {
+            "en": "Pressed"
+          }
+        },
+        {
+          "id": "pressedX2",
+          "title": {
+            "en": "Pressed twice"
+          }
+        },
+        {
+          "id": "pressedX3",
+          "title": {
+            "en": "Pressed 3 times"
+          }
+        },
+        {
+          "id": "pressedX4",
+          "title": {
+            "en": "Pressed 4 times"
+          }
+        },
+        {
+          "id": "pressedX5",
+          "title": {
+            "en": "Pressed 5 times"
+          }
+        },
+        {
+          "id": "released",
+          "title": {
+            "en": "Released"
+          }
+        }
+      ],
+      "getable": true,
+      "setable": false
+    },
     "remote_state": {
       "type": "enum",
       "title": {
@@ -19624,6 +21611,44 @@
       "getable": true,
       "setable": false
     },
+    "tilted_state": {
+      "type": "boolean",
+      "getable": true,
+      "setable": true,
+      "uiComponent": "sensor",
+      "title": {
+        "en": "Window Tilted",
+        "nl": "Venster gekanteld",
+        "fr": "Fenêtre inclinée",
+        "de": "Fenster gekippt"
+      },
+      "titleTrue": {
+        "en": "Tilted",
+        "nl": "Gekanteld",
+        "fr": "Incliné",
+        "de": "Gekippt"
+      },
+      "titleFalse": {
+        "en": "Closed",
+        "nl": "gesloten",
+        "fr": "fermée",
+        "de": "geschlossen"
+      },
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Tilted",
+        "nl": "Gekanteld",
+        "fr": "Incliné",
+        "de": "Gekippt"
+      },
+      "insightsTitleFalse": {
+        "en": "Closed",
+        "nl": "gesloten",
+        "fr": "fermée",
+        "de": "geschlossen"
+      },
+      "icon": "/assets/window_tilt.svg"
+    },
     "valve_auto_mode": {
       "type": "boolean",
       "getable": true,
@@ -19735,6 +21760,25 @@
         "ru": "Клапан закрыт",
         "ko": "밸브 닫힘"
       }
+    },
+    "zone_button": {
+      "type": "boolean",
+      "getable": true,
+      "setable": true,
+      "uiComponent": "button",
+      "title": {
+        "en": "Zone"
+      }
+    }
+  },
+  "discovery": {
+    "somfy_tahoma": {
+      "type": "mdns-sd",
+      "mdns-sd": {
+        "name": "_kizboxdev",
+        "protocol": "tcp"
+      },
+      "id": "{{txt.gateway_pin}}"
     }
   }
 }

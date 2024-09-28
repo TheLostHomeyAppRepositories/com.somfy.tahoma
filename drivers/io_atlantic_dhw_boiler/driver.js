@@ -11,10 +11,10 @@ const Driver = require('../Driver');
 class PilotWireProgrammerDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['io:AtlanticPassAPCDHWComponent'];
-    }
+	async onInit()
+	{
+		this.deviceType = ['io:AtlanticPassAPCDHWComponent'];
+	}
 
 }
 

@@ -1,0 +1,44 @@
+{
+	"title": {
+		"en": "Set the Upper Shutter Position",
+		"fr": "Réglez la position du volet supérieur",
+		"de": "Obere Jalousienposition einstellen",
+		"nl": "Stel de positie van het bovenste rolluik in"
+	},
+	"titleFormatted": {
+		"en": "Set the Upper Shutter position to [[windowcoverings_set]]",
+		"fr": "Réglez la position du volet supérieur à [[windowcoverings_set]]",
+		"de": "Setzen Sie die obere Jalousienposition auf [[windowcoverings_set]]",
+		"nl": "Stel de positie van het bovenste rolluik in op [[windowcoverings_set]]"
+	},
+	"hint": {
+		"en": "Sets upper shutter position",
+		"fr": "Définit la position du volet supérieur",
+		"de": "Setzt die Position der oberen Jalousie",
+		"nl": "Stelt de positie van het bovenste rolluik in"
+	},
+	"args": [
+		{
+			"name": "device",
+			"type": "device",
+			"filter": "driver_id=io_dual_blinds"
+		},
+		{
+			"name": "windowcoverings_set",
+			"title": {
+				"en": "Position",
+				"fr": "Position",
+				"de": "Position",
+				"nl": "Positie"
+			},
+			"type": "range",
+			"min": 0,
+			"max": 1,
+			"step": 0.01,
+			"value": 0.5,
+			"label": "%",
+			"labelMultiplier": 100,
+			"labelDecimals": 0
+		}
+	]
+}

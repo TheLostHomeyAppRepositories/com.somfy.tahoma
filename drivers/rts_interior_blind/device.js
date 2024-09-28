@@ -5,38 +5,58 @@
 const WindowCoveringsDevice = require('../WindowCoveringsDevice');
 
 /**
- * Device class for exterior venetian blinds with the rts:BlindRTSComponent, rts:HorizontalAwningRTSComponent and rts:RollerShutterRTSComponent controllable name in TaHoma
  * @extends {WindowCoveringsDevice}
  */
 class InteriorBlindDevice extends WindowCoveringsDevice {
 
-    async onInit() {
-        if (this.hasCapability('lock_state'))
-        {
-            this.removeCapability('lock_state').catch(this.error);
-        }
+	async onInit() {
+		if (this.hasCapability('lock_state'))
+		{
+			this.removeCapability('lock_state').catch(this.error);
+		}
 
-        if (this.hasCapability('windowcoverings_state.rts'))
-        {
-            this.removeCapability('windowcoverings_state.rts').catch(this.error);
-            this.addCapability('windowcoverings_state').catch(this.error);
-        }
+		if (this.hasCapability('windowcoverings_state.rts'))
+		{
+			this.removeCapability('windowcoverings_state.rts').catch(this.error);
+			this.addCapability('windowcoverings_state').catch(this.error);
+		}
+		const dd = this.getData();
+		let controllableName = '';
+		if (dd.controllableName)
+		{
+			controllableName = dd.controllableName.toString().toLowerCase();
+		}
 
-        if (!this.hasCapability('my_position'))
-        {
-            this.addCapability('my_position').catch(this.error);
-        }
+		if (controllableName === 'ogp:blind')
+		{
+			if (this.hasCapability('my_position'))
+			{
+				this.removeCapability('my_position').catch(this.error);
+			}
+		}
+		else
+		{
+			if (controllableName === 'profalux868:profalux868rollershutter')
+			{
+				this.myCommand = 'goToMemorized1Position';
+			}
 
-        await super.onInit();
+			if (!this.hasCapability('my_position'))
+			{
+				this.addCapability('my_position').catch(this.error);
+			}
+		}
 
-        this.positionStateName = '';
-        this.openClosedStateName = '';
-        this.boostSync = true;
-    }
+		await super.onInit();
 
-    async sync() {
-        // No states are available so no need to call anything
-    }
+		this.positionStateName = '';
+		this.openClosedStateName = '';
+		this.boostSync = true;
+	}
+
+	async sync() {
+		// No states are available so no need to call anything
+	}
 
 }
 

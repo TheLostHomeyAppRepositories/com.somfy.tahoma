@@ -11,10 +11,10 @@ const Driver = require('../Driver');
 class HeaterVariableDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['io:SimpleExteriorHeatingIOComponent'];
-    }
+	async onInit()
+	{
+		this.deviceType = ['io:SimpleExteriorHeatingIOComponent'];
+	}
 
 }
 

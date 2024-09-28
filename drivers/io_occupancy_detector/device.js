@@ -5,26 +5,26 @@
 const SensorDevice = require('../SensorDevice');
 
 const CapabilitiesXRef = [
-    {
-        homeyName: 'alarm_motion',
-        somfyNameGet: 'core:OccupancyState',
-        somfyNameSet: [],
-        compare: ['', 'personInside'],
-    },
+	{
+		homeyName: 'alarm_motion',
+		somfyNameGet: 'core:OccupancyState',
+		somfyNameSet: [],
+		compare: ['', 'personInside'],
+	},
 ];
 class OccupancyDetectorDevice extends SensorDevice
 {
 
-    async onInit()
-    {
-        await super.onInit(CapabilitiesXRef);
-    }
+	async onInit()
+	{
+		await super.onInit(CapabilitiesXRef);
+	}
 
-    // Update the capabilities
-    async syncEvents(events)
-    {
-        this.syncEventsList(events, CapabilitiesXRef);
-    }
+	// Update the capabilities
+	async syncEvents(events, local)
+	{
+		this.syncEventsList(events, CapabilitiesXRef, local);
+	}
 
 }
 

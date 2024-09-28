@@ -11,12 +11,12 @@ const ioWindowCoveringsDriver = require('../ioWindowCoveringsDriver');
 class HorizontalAwningDriver extends ioWindowCoveringsDriver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['io:VerticalInteriorBlindGenericIOComponent'];
+	async onInit()
+	{
+		this.deviceType = ['io:VerticalInteriorBlindGenericIOComponent', 'ogp:Blind'];
 
-        await super.onInit();
-    }
+		await super.onInit();
+	}
 
 }
 

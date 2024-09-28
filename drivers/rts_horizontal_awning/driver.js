@@ -11,10 +11,10 @@ const Driver = require('../Driver');
 class HorizontalAwningRTSDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['rts:HorizontalAwningRTSComponent'];
-    }
+	async onInit()
+	{
+		this.deviceType = ['rts:HorizontalAwningRTSComponent'];
+	}
 
 }
 

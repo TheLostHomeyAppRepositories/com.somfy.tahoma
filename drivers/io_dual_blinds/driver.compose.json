@@ -1,0 +1,36 @@
+{
+	"name": {
+		"en": "Dual Shutters",
+		"fr": "Volets Doubles",
+		"de": "Doppelläden",
+		"nl": "Dubbele shutters"
+	},
+	"class": "windowcoverings",
+	"capabilities": [
+		"windowcoverings_set.upper",
+		"windowcoverings_set.lower",
+		"open_button",
+		"close_button"
+	],
+	"capabilitiesOptions": {
+		"windowcoverings_set.upper": {
+			"title": {
+				"en": "Upper Position",
+				"fr": "Position supérieure",
+				"de": "Obere Position",
+				"nl": "Bovenste positie"
+			}
+		},
+		"windowcoverings_set.lower": {
+			"title": {
+				"en": "Lower Position",
+				"fr": "Position inférieure",
+				"de": "Untere Position",
+				"nl": "Onderste positie"
+			}
+		}
+	},
+	"$extends": [
+		"cloudDriver"
+	]
+}

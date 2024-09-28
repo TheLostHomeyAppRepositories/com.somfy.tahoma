@@ -10,23 +10,45 @@ const WindowCoveringsDevice = require('../WindowCoveringsDevice');
  */
 class PergolaDevice extends WindowCoveringsDevice {
 
-    async onInit() {
-        if (this.hasCapability('lock_state')) {
-            this.removeCapability('lock_state').catch(this.error);
-        }
+	async onInit() {
+		if (this.hasCapability('lock_state')) {
+			this.removeCapability('lock_state').catch(this.error);
+		}
 
-        await super.onInit();
+		await super.onInit();
 
-        this.windowcoveringsActions = {
-            up: 'openSlats',
-            idle: null,
-            down: 'closeSlats',
-        };
+		const dd = this.getData();
+		this.controllableName = '';
+		if (dd.controllableName)
+		{
+			this.controllableName = dd.controllableName.toString().toLowerCase();
+		}
 
-        this.positionStateName = 'core:SlatsOrientationState';
-        this.setPositionActionName = 'setOrientation';
-        this.openClosedStateName = 'core:SlatsOpenClosedState';
-    }
+		if (this.controllableName === 'ogp:pergola')
+		{
+			this.windowcoveringsActions = {
+				up: 'open',
+				idle: 'stop',
+				down: 'close',
+			};
+
+			this.positionStateName = 'core:ClosureState';
+			this.setPositionActionName = 'setClosure';
+			this.openClosedStateName = 'core:OpenClosedState';
+		}
+		else
+		{
+			this.windowcoveringsActions = {
+				up: 'openSlats',
+				idle: null,
+				down: 'closeSlats',
+			};
+
+			this.positionStateName = 'core:SlatsOrientationState';
+			this.setPositionActionName = 'setOrientation';
+			this.openClosedStateName = 'core:SlatsOpenClosedState';
+		}
+	}
 
 }
 

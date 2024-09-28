@@ -1,0 +1,85 @@
+{
+	"id": "set_zone",
+	"title": {
+		"en": "Turn on the specified zones"
+	},
+	"titleFormatted": {
+		"en": "Turn on zone A [[zone_button_a]], zone B [[zone_button_b]], zone C [[zone_button_c]]"
+	},
+	"hint": {
+		"en": "You can only turn zones on, not off. If you want to turn off a zone, you have to turn off the whole alarm."
+	},
+	"args": [
+		{
+			"name": "device",
+			"type": "device",
+			"filter": "driver_id=protexial_alarm"
+		},
+		{
+			"name": "zone_button_a",
+			"title": {
+				"en": "Zone A"
+			},
+			"type": "dropdown",
+			"value": "0",
+			"values": [
+				{
+					"id": "0",
+					"label": {
+						"en": "No Change"
+					}
+				},
+				{
+					"id": "1",
+					"label": {
+						"en": "On"
+					}
+				}
+			]
+		},
+		{
+			"name": "zone_button_b",
+			"title": {
+				"en": "Zone B"
+			},
+			"type": "dropdown",
+			"value": "0",
+			"values": [
+				{
+					"id": "0",
+					"label": {
+						"en": "No Change"
+					}
+				},
+				{
+					"id": "1",
+					"label": {
+						"en": "On"
+					}
+				}
+			]
+		},
+		{
+			"name": "zone_button_c",
+			"title": {
+				"en": "Zone C"
+			},
+			"type": "dropdown",
+			"value": "0",
+			"values": [
+				{
+					"id": "0",
+					"label": {
+						"en": "No Change"
+					}
+				},
+				{
+					"id": "1",
+					"label": {
+						"en": "On"
+					}
+				}
+			]
+		}
+	]
+}

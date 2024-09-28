@@ -1,0 +1,29 @@
+{
+	"id": "tilt_has_changed",
+	"title": {
+		"en": "The state of the tilt has changed",
+		"nl": "De staat van de kanteling is gewijzigd",
+		"fr": "L'état de l'inclinaison a changé",
+		"de": "Der Zustand der Neigung hat sich geändert"
+	},
+	"tokens": [
+		{
+			"name": "isTilted",
+			"type": "boolean",
+			"title": {
+				"en": "is tilted?",
+				"nl": "is gekanteld?",
+				"fr": "est incliné ?",
+				"de": "ist geneigt?"
+			},
+			"example": "tilted"
+		}
+	],
+	"args": [
+		{
+			"name": "device",
+			"type": "device",
+			"filter": "driver_id=enocean_window_handle"
+		}
+	]
+}

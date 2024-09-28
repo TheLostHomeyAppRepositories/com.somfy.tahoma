@@ -6,10 +6,10 @@ const Driver = require('../Driver');
 class HitachiACDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['ovp:HLinkMainController'];
-    }
+	async onInit()
+	{
+		this.deviceType = ['ovp:HLinkMainController'];
+	}
 
 }
 

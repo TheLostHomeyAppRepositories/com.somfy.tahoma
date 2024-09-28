@@ -11,11 +11,11 @@ const Driver = require('../Driver');
 class evChargerDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['eliot:ElectricVehicleChargerComponent'];
-        await super.onInit();
-    }
+	async onInit()
+	{
+		this.deviceType = ['eliot:ElectricVehicleChargerComponent'];
+		await super.onInit();
+	}
 
 }
 

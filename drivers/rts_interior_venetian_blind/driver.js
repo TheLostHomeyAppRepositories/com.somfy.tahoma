@@ -11,10 +11,10 @@ const Driver = require('../Driver');
 class InteriorVenetianBlindDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['rts:VenetianBlindRTSComponent', 'rts:ExteriorVenetianBlindRTSComponent'];
-    }
+	async onInit()
+	{
+		this.deviceType = ['rts:VenetianBlindRTSComponent', 'rts:ExteriorVenetianBlindRTSComponent'];
+	}
 
 }
 

@@ -11,11 +11,11 @@ const Driver = require('../Driver');
 class WhiteTemperatureLightControllerDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['hue:ColorTemperatureLightBulbHUEComponent', 'hue:ColorTemperatureLightSpotHUEComponent'];
-        await super.onInit();
-    }
+	async onInit()
+	{
+		this.deviceType = ['hue:ColorTemperatureLightBulbHUEComponent', 'hue:ColorTemperatureLightSpotHUEComponent', 'io:DimmableColorTemperatureLightIOComponent'];
+		await super.onInit();
+	}
 
 }
 

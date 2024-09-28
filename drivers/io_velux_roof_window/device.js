@@ -10,17 +10,17 @@ const WindowCoveringsDevice = require('../WindowCoveringsDevice');
  */
 class RoofWindowDevice extends WindowCoveringsDevice {
 
-    async onInit() {
-        if (!this.hasCapability('lock_state')) {
-            this.addCapability('lock_state');
-        }
+	async onInit() {
+		if (!this.hasCapability('lock_state')) {
+			this.addCapability('lock_state');
+		}
 
-        await super.onInit();
+		await super.onInit();
 
-        if (!this.hasCapability('quick_open')) {
-            this.addCapability('quick_open').catch(this.error);
-        }
-    }
+		if (!this.hasCapability('quick_open')) {
+			this.addCapability('quick_open').catch(this.error);
+		}
+	}
 
 }
 

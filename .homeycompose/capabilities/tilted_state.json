@@ -1,0 +1,38 @@
+{
+	"type": "boolean",
+	"getable": true,
+	"setable": true,
+	"uiComponent": "sensor",
+	"title": {
+		"en": "Window Tilted",
+		"nl": "Venster gekanteld",
+		"fr": "Fenêtre inclinée",
+		"de": "Fenster gekippt"
+	},
+	"titleTrue": {
+		"en": "Tilted",
+		"nl": "Gekanteld",
+		"fr": "Incliné",
+		"de": "Gekippt"
+	},
+	"titleFalse": {
+		"en": "Closed",
+		"nl": "gesloten",
+		"fr": "fermée",
+		"de": "geschlossen"
+	},
+	"insights": true,
+	"insightsTitleTrue": {
+		"en": "Tilted",
+		"nl": "Gekanteld",
+		"fr": "Incliné",
+		"de": "Gekippt"
+	},
+	"insightsTitleFalse": {
+		"en": "Closed",
+		"nl": "gesloten",
+		"fr": "fermée",
+		"de": "geschlossen"
+	},
+	"icon": "/assets/window_tilt.svg"
+}

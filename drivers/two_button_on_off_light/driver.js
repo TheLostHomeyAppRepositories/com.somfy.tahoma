@@ -12,11 +12,11 @@ const Driver = require('../Driver');
 class two_button_on_offDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['enocean:EnOceanOnOffLight', 'rts:OnOffRTSComponent'];
-        await super.onInit();
-    }
+	async onInit()
+	{
+		this.deviceType = ['enocean:EnOceanOnOffLight', 'rts:OnOffRTSComponent', 'rts:ExteriorHeatingRTSComponent'];
+		await super.onInit();
+	}
 
 }
 

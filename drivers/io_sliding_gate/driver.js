@@ -8,22 +8,23 @@ const ioWindowCoveringsDriver = require('../ioWindowCoveringsDriver');
  * Driver class for exterior venetian blinds with the io:SlidingDiscreteGateOpenerIOComponent and "io:DiscreteGateOpenerIOComponent" controllable name in TaHoma
  * @extends {ioWindowCoveringsDriver}
  */
-class SlidingGateDriver extends ioWindowCoveringsDriver {
+class SlidingGateDriver extends ioWindowCoveringsDriver
+{
 
-  async onInit() {
-    this.deviceType = ['io:SlidingDiscreteGateOpenerIOComponent', 'io:DiscreteGateOpenerIOComponent'];
+	async onInit()
+	{
+		this.deviceType = ['io:SlidingDiscreteGateOpenerIOComponent', 'io:DiscreteGateOpenerIOComponent', 'io:SlidingDiscreteFullyPedestriableGateOpenerIOComponent', 'io:SlidingGateOpenerIOComponent'];
 
-      this.pedestrian_changedTrigger = this.homey.flow.getDeviceTriggerCard('pedestrian_changed');
+		this.pedestrian_changedTrigger = this.homey.flow.getDeviceTriggerCard('pedestrian_changed');
 
-    await super.onInit();
-  }
+		await super.onInit();
+	}
 
-  triggerPedestrianChange(device, tokens, state)
-  {
-      this.triggerFlow(this.pedestrian_changedTrigger, device, tokens, state);
-      return this;
-  }
+	triggerPedestrianChange(device, tokens, state)
+	{
+		this.triggerFlow(this.pedestrian_changedTrigger, device, tokens, state);
+		return this;
+	}
 
 }
-
 module.exports = SlidingGateDriver;

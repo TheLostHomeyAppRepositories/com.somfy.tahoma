@@ -97,6 +97,6 @@
   "setable": true,
   "uiComponent": "picker",
   "$flow": {
-    "conditions": []
+	"conditions": []
   }
 }

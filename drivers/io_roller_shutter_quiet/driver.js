@@ -11,12 +11,16 @@ const ioWindowCoveringsDriver = require('../ioWindowCoveringsDriver');
 class RollerShutterQuietDriver extends ioWindowCoveringsDriver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['io:RollerShutterWithLowSpeedManagementIOComponent'];
+	async onInit()
+	{
+		// Added 'io:DynamicRollerShutterIOComponent' here as it supports the quiet mode, but I have left it in io_roller_shutter for backward compatibility
+		this.deviceType = [
+			'io:RollerShutterWithLowSpeedManagementIOComponent',
+			'io:DynamicRollerShutterIOComponent',
+		];
 
-        await super.onInit();
-    }
+		await super.onInit();
+	}
 
 }
 

@@ -1,0 +1,12 @@
+{
+	"name": {
+		"en": "Eliot Remote Control"
+	},
+	"class": "remote",
+	"capabilities": [
+		"remote_eliot_state"
+	],
+	"$extends": [
+		"cloudDriver"
+	]
+}

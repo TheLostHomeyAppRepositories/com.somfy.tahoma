@@ -10,25 +10,39 @@ const Driver = require('../Driver');
 class WindowHandleDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['enocean:EnOceanWindowHandle'];
+	async onInit()
+	{
+		this.deviceType = ['enocean:EnOceanWindowHandle'];
 
-        /** * CONTACT TRIGGERS ** */
-        this._triggerContactChange = this.homey.flow.getDeviceTriggerCard('contact_has_changed');
-    }
+		/** * CONTACT TRIGGERS ** */
+		this._triggerContactChange = this.homey.flow.getDeviceTriggerCard('contact_has_changed');
+		this._triggerTiltedStateChange = this.homey.flow.getDeviceTriggerCard('tilt_has_changed');
+		this._triggerOpenWindowStateChange = this.homey.flow.getDeviceTriggerCard('window_open_has_changed');
+	}
 
-    /**
-     * Triggers the 'contact change' flow
-     * @param {Device} device - A Device instance
-     * @param {Object} tokens - An object with tokens and their typed values, as defined in the app.json
-     * @param {Object} state - An object with properties which are accessible throughout the Flow
-     */
-    triggerContactChange(device, tokens, state)
-    {
-        this.triggerFlow(this._triggerContactChange, device, tokens, state);
-        return this;
-    }
+	/**
+	 * Triggers the 'contact change' flow
+	 * @param {Device} device - A Device instance
+	 * @param {Object} tokens - An object with tokens and their typed values, as defined in the app.json
+	 * @param {Object} state - An object with properties which are accessible throughout the Flow
+	 */
+	triggerContactChange(device, tokens, state)
+	{
+		this.triggerFlow(this._triggerContactChange, device, tokens, state);
+		return this;
+	}
+
+	triggerTiltedStateChange(device, tokens, state)
+	{
+		this.triggerFlow(this._triggerTiltedStateChange, device, tokens, state);
+		return this;
+	}
+
+	triggerOpenWindowStateChange(device, tokens, state)
+	{
+		this.triggerFlow(this._triggerOpenWindowStateChange, device, tokens, state);
+		return this;
+	}
 
 }
 

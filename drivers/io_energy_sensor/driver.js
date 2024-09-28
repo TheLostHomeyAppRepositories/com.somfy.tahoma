@@ -13,19 +13,21 @@ const Driver = require('../Driver');
 class EnergySensorDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['io:TotalElectricalEnergyConsumptionIOSystemSensor',
-            'io:TotalElectricalEnergyConsumptionSensor',
-            'io:OtherElectricalEnergyConsumptionSensor',
-            'io:PlugsElectricalEnergyConsumptionSensor',
-            'io:DHWElectricalEnergyConsumptionSensor',
-            'io:CoolingRelatedElectricalEnergyConsumptionSensor',
-            'io:HeatingRelatedElectricalEnergyConsumptionSensor',
-            'io:HeatingElectricalEnergyConsumptionSensor',
-            'io:CumulatedElectricalEnergyConsumptionIOSystemDeviceSensor',
-        ];
-    }
+	async onInit()
+	{
+		this.deviceType = [
+			'io:TotalElectricalEnergyConsumptionIOSystemSensor',
+			'io:TotalElectricalEnergyConsumptionSensor',
+			'io:OtherElectricalEnergyConsumptionSensor',
+			'io:PlugsElectricalEnergyConsumptionSensor',
+			'io:DHWElectricalEnergyConsumptionSensor',
+			'io:CoolingRelatedElectricalEnergyConsumptionSensor',
+			'io:HeatingRelatedElectricalEnergyConsumptionSensor',
+			'io:HeatingElectricalEnergyConsumptionSensor',
+			'io:CumulatedElectricalEnergyConsumptionIOSystemDeviceSensor',
+			'eliot:EliotElectricEnergyConsumptionSensor',
+		];
+	}
 
 }
 

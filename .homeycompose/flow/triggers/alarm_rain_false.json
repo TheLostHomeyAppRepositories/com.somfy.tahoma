@@ -1,0 +1,19 @@
+{
+	"title": {
+		"en": "It has stopped raining",
+		"nl": "Het is gestopt met regenen",
+		"fr": "Il a cessé de pleuvoir",
+		"de": "Es hat aufgehört zu regnen",
+		"es": "Ha dejado de llover",
+		"it": "Ha smesso di piovere",
+		"pt": "Parou de chover",
+		"pl": "Deszcz się skończył"
+	},
+	"args": [
+		{
+			"name": "device",
+			"type": "device",
+			"filter": "driver_id=io_rain_sensor"
+		}
+	]
+}

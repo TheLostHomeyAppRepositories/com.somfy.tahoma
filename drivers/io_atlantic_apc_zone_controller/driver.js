@@ -11,10 +11,10 @@ const Driver = require('../Driver');
 class AtlanticZoneControllerDriver extends Driver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['io:AtlanticPassAPCZoneControlMainComponent'];
-    }
+	async onInit()
+	{
+		this.deviceType = ['io:AtlanticPassAPCZoneControlMainComponent'];
+	}
 
 }
 

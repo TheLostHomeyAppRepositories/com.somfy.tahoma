@@ -5,28 +5,26 @@
 const SensorDevice = require('../SensorDevice');
 
 const CapabilitiesXRef = [
-    {
-        homeyName: 'heating_level2_state',
-        somfyNameGet: 'io:TargetHeatingLevelState',
-        somfyNameSet: ['setHeatingLevel'],
-    }
+	{
+		homeyName: 'heating_level2_state',
+		somfyNameGet: 'io:TargetHeatingLevelState',
+		somfyNameSet: ['setHeatingLevel'],
+	},
 ];
 class IOHeaterDevice extends SensorDevice
 {
 
-    async onInit()
-    {
-        await super.onInit(CapabilitiesXRef);
-        const dd = this.getData();
+	async onInit()
+	{
+		await super.onInit(CapabilitiesXRef);
+		this.boostSync = true;
+	}
 
-        this.boostSync = true;
-    }
-
-    // Update the capabilities
-    async syncEvents(events)
-    {
-        this.syncEventsList(events, CapabilitiesXRef);
-    }
+	// Update the capabilities
+	async syncEvents(events, local)
+	{
+		this.syncEventsList(events, CapabilitiesXRef, local);
+	}
 
 }
 

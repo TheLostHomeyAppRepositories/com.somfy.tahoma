@@ -12,10 +12,10 @@ const LightControllerDevice = require('../LightControllerDevice');
 class WhiteTemperatureLightControllerDevice extends LightControllerDevice
 {
 
-    async onInit()
-    {
-        await super.onInit();
-    }
+	async onInit()
+	{
+		await super.onInit();
+	}
 
 }
 

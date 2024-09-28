@@ -7,188 +7,197 @@ const Device = require('../Device');
 class rtsGateOpenerDevice extends Device
 {
 
-    async onInit()
-    {
-        await super.onInit();
-        this.registerCapabilityListener('open_button', this.onCapabilityOpen.bind(this));
-        this.registerCapabilityListener('close_button', this.onCapabilityClose.bind(this));
-        this.registerCapabilityListener('stop_button', this.onCapabilityStop.bind(this));
+	async onInit()
+	{
+		await super.onInit();
+		this.registerCapabilityListener('open_button', this.onCapabilityOpen.bind(this));
+		this.registerCapabilityListener('close_button', this.onCapabilityClose.bind(this));
+		this.registerCapabilityListener('stop_button', this.onCapabilityStop.bind(this));
 
-        this.boostSync = true;
-    }
+		const dd = this.getData();
 
-    async onCapabilityOpen(value)
-    {
-        if (this.commandExecuting === 'open')
-        {
-            // This command is still processing
-            return;
-        }
+		this.controllableName = '';
+		if (dd.controllableName)
+		{
+			this.controllableName = dd.controllableName.toString().toLowerCase();
+		}
 
-        this.sendOpenCloseStop('open');
-    }
+		if (this.controllableName === 'rts:garagedoorwithventilationpositionrtscomponent')
+		{
+			if (!this.hasCapability('my_position'))
+			{
+				this.addCapability('my_position')
+				.then(this.registerCapabilityListener('my_position', this.onCapabilityMyPosition.bind(this)))
+				.catch(this.error);
+			}
+			else
+			{
+				this.registerCapabilityListener('my_position', this.onCapabilityMyPosition.bind(this));
+			}
+		}
+		else if (this.hasCapability('my_position'))
+		{
+			this.removeCapability('my_position')
+			.catch(this.error);
+		}
 
-    async onCapabilityClose(value)
-    {
-        if (this.commandExecuting === 'close')
-        {
-            // This command is still processing
-            return;
-        }
+		this.boostSync = true;
+	}
 
-        this.sendOpenCloseStop('close');
-    }
+	async onCapabilityOpen(value)
+	{
+		if (this.commandExecuting === 'open')
+		{
+			// This command is still processing
+			return;
+		}
 
-    async onCapabilityStop(value)
-    {
-        if (this.commandExecuting === 'stop')
-        {
-            // This command is still processing
-            return;
-        }
+		await this.sendOpenCloseStop('open');
+	}
 
-        this.sendOpenCloseStop('stop');
-    }
+	async onCapabilityClose(value)
+	{
+		if (this.commandExecuting === 'close')
+		{
+			// This command is still processing
+			return;
+		}
 
-    async sendOpenCloseStop(value)
-    {
-        if (this.boostSync)
-        {
-            if (!await this.homey.app.boostSync())
-            {
-                throw (new Error('Failed to Boost Sync'));
-            }
-        }
+		await this.sendOpenCloseStop('close');
+	}
 
-        const deviceData = this.getData();
-        if (this.executionId !== null)
-        {
-            await this.homey.app.tahoma.cancelExecution(this.executionId);
-        }
+	async onCapabilityStop(value)
+	{
+		if (this.commandExecuting === 'stop')
+		{
+			// This command is still processing
+			return;
+		}
 
-        let action;
-        const actionParam = this.getSetting('open_command');
-        if (actionParam && value === 'open')
-        {
-            action = {
-                name: actionParam,
-                parameters: [],
-            };
-        }
-        else
-        {
-            action = {
-                name: value,
-                parameters: [],
-            };
-        }
+		await this.sendOpenCloseStop('stop');
+	}
 
-        try
-        {
-            const result = await this.homey.app.tahoma.executeDeviceAction(deviceData.label, deviceData.deviceURL, action);
-            if (result)
-            {
-                if (result.errorCode)
-                {
-                    this.homey.app.logInformation(this.getName(),
-                    {
-                        message: result.error,
-                        stack: result.errorCode,
-                    });
+	async onCapabilityMyPosition(value)
+	{
+		if (this.commandExecuting === 'my')
+		{
+			// This command is still processing
+			return;
+		}
 
-                    if (this.boostSync)
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
-                    throw (new Error(result.error));
-                }
-                else
-                {
-                    this.commandExecuting = action.name;
-                    this.executionCmd = action.name;
-                    this.executionId = result.execId;
-                }
-            }
-            else
-            {
-                this.homey.app.logInformation(`${this.getName()}: sendOpenClose`, 'Failed to send command');
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
-                throw (new Error('Failed to send command'));
-            }
-        }
-        catch (err)
-        {
-            this.homey.app.logInformation(`${this.getName()}: sendOpenClose`, 'Failed to send command');
-            if (this.boostSync)
-            {
-                await this.homey.app.unBoostSync();
-            }
-            throw (err);
-        }
-    }
+		await this.sendOpenCloseStop('my');
+	}
 
-    // look for updates in the events array
-    async syncEvents(events)
-    {
-        if (events === null)
-        {
-            return this.sync();
-        }
+	async sendOpenCloseStop(value)
+	{
+		if (this.boostSync)
+		{
+			if (!await this.homey.app.boostSync())
+			{
+				throw (new Error('Failed to Boost Sync'));
+			}
+		}
 
-        const myURL = this.getDeviceUrl();
+		const deviceData = this.getData();
+		if (this.executionId !== null)
+		{
+			await this.homey.app.cancelExecution(deviceData.label, this.executionId.id, this.executionId.local);
+		}
 
-        // Process events sequentially so they are in the correct order
-        for (let i = 0; i < events.length; i++)
-        {
-            const element = events[i];
-            if (element.name === 'ExecutionRegisteredEvent')
-            {
-                for (let x = 0; x < element.actions.length; x++)
-                {
-                    if (myURL === element.actions[x].deviceURL)
-                    {
-                        if (this.executionId !== element.execId)
-                        {
-                            this.executionId = element.execId;
-                            this.executionCmd = element.actions[x].commands[0].name;
-                            if (this.boostSync)
-                            {
-                                if (!await this.homey.app.boostSync())
-                                {
-                                    this.executionCmd = '';
-                                    this.executionId = null;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            else if (element.name === 'ExecutionStateChangedEvent')
-            {
-                if ((element.newState === 'COMPLETED') || (element.newState === 'FAILED'))
-                {
-                    if (this.executionId === element.execId)
-                    {
-                        if (this.boostSync)
-                        {
-                            await this.homey.app.unBoostSync();
-                        }
+		let action;
+		const actionParam = this.getSetting('open_command');
+		if (actionParam && value === 'open')
+		{
+			action = {
+				name: actionParam,
+				parameters: [],
+			};
+		}
+		else
+		{
+			action = {
+				name: value,
+				parameters: [],
+			};
+		}
 
-                        this.homey.app.triggerCommandComplete(this, this.executionCmd, (element.newState === 'COMPLETED'));
-                        this.driver.triggerDeviceCommandComplete(this, this.executionCmd, (element.newState === 'COMPLETED'));
-                        this.commandExecuting = '';
-                        this.executionId = null;
-                        this.executionCmd = '';
-                    }
-                }
-            }
-        }
+		const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+		this.commandExecuting = action.name;
+		this.executionCmd = action.name;
+		this.executionId = { id: result.execId, local: result.local };
+	}
 
-        return myURL;
-    }
+	// look for updates in the events array
+	async syncEvents(events, local)
+	{
+		if (events === null)
+		{
+			return this.sync();
+		}
+
+		const myURL = this.getDeviceUrl();
+		if (!local && this.homey.app.isLocalDevice(myURL))
+		{
+			// This device is handled locally so ignore cloud updates
+			return myURL;
+		}
+
+		// Process events sequentially so they are in the correct order
+		for (let i = 0; i < events.length; i++)
+		{
+			const element = events[i];
+			if (element.name === 'ExecutionRegisteredEvent')
+			{
+				for (let x = 0; x < element.actions.length; x++)
+				{
+					if (myURL === element.actions[x].deviceURL)
+					{
+						if (!this.executionId || (this.executionId.id !== element.execId))
+						{
+							this.executionId = { id: element.execId, local };
+							if (element.actions[x].commands)
+							{
+								this.executionCmd = element.actions[x].commands[0].name;
+							}
+							else
+							{
+								this.executionCmd = element.actions[x].command;
+							}
+							if (!local && this.boostSync)
+							{
+								if (!await this.homey.app.boostSync())
+								{
+									this.executionCmd = '';
+									this.executionId = null;
+								}
+							}
+						}
+					}
+				}
+			}
+			else if (element.name === 'ExecutionStateChangedEvent')
+			{
+				if ((element.newState === 'COMPLETED') || (element.newState === 'FAILED'))
+				{
+					if (this.executionId && (this.executionId.id === element.execId))
+					{
+						if (!local && this.boostSync)
+						{
+							await this.homey.app.unBoostSync();
+						}
+
+						this.homey.app.triggerCommandComplete(this, this.executionCmd, (element.newState === 'COMPLETED'));
+						this.driver.triggerDeviceCommandComplete(this, this.executionCmd, (element.newState === 'COMPLETED'));
+						this.commandExecuting = '';
+						this.executionId = null;
+						this.executionCmd = '';
+					}
+				}
+			}
+		}
+
+		return myURL;
+	}
 
 }
 

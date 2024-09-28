@@ -1,0 +1,15 @@
+{
+	"title": {
+		"en": "Move to Pedestrian Position",
+		"fr": "Se déplacer vers la position piétonne",
+		"de": "Zur Fußgängerposition bewegen",
+		"nl": "Naar de voetgangerspositie bewegen"
+	},
+	"args": [
+		{
+			"name": "device",
+			"type": "device",
+			"filter": "driver_id=io_sliding_gate"
+		}
+	]
+}

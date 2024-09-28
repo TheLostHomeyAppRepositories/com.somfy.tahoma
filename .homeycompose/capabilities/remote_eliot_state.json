@@ -1,0 +1,55 @@
+{
+	"type": "enum",
+	"title": {
+		"en": "Remote State",
+		"nl": "Externe staat:",
+		"fr": "État de la télécommande",
+		"de": "Fernbedienungszustand"
+	},
+	"values": [
+		{
+			"id": "heldDown",
+			"title": {
+				"en": "Held Down"
+			}
+		},
+		{
+			"id": "pressed",
+			"title": {
+				"en": "Pressed"
+			}
+		},
+		{
+			"id": "pressedX2",
+			"title": {
+				"en": "Pressed twice"
+			}
+		},
+		{
+			"id": "pressedX3",
+			"title": {
+				"en": "Pressed 3 times"
+			}
+		},
+		{
+			"id": "pressedX4",
+			"title": {
+				"en": "Pressed 4 times"
+			}
+		},
+		{
+			"id": "pressedX5",
+			"title": {
+				"en": "Pressed 5 times"
+			}
+		},
+		{
+			"id": "released",
+			"title": {
+				"en": "Released"
+			}
+		}
+	],
+	"getable": true,
+	"setable": false
+}

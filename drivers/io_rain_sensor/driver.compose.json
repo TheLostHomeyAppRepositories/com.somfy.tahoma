@@ -1,0 +1,20 @@
+{
+	"name": {
+		"en": "Ondeis Rain Sensor (io)",
+		"fr": "Capteur de pluie Ondeis (io)",
+		"es": "Sensor de lluvia Ondeis (io)",
+		"de": "Ondeis Regensensor (io)",
+		"pt": "Sensor de chuva Ondeis (io)",
+		"it": "Sensore di pioggia Ondeis (io)",
+		"nl": "Ondeis regensensor (io)",
+		"cn": "Ondeis雨传感器（io）",
+		"pl": "Czujnik deszczu Ondeis (io)"
+	},
+	"class": "sensor",
+	"capabilities": [
+		"alarm_rain"
+	],
+	"$extends": [
+		"cloudDriver"
+	]
+}

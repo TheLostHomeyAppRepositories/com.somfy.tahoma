@@ -11,12 +11,12 @@ const ioWindowCoveringsDriver = require('../ioWindowCoveringsDriver');
 class PergolaDriver extends ioWindowCoveringsDriver
 {
 
-    async onInit()
-    {
-        this.deviceType = ['io:SimpleBioclimaticPergolaIOComponent'];
+	async onInit()
+	{
+		this.deviceType = ['io:SimpleBioclimaticPergolaIOComponent', 'ogp:Pergola'];
 
-        await super.onInit();
-    }
+		await super.onInit();
+	}
 
 }
 
