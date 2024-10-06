@@ -814,5 +814,8 @@
 	},
 	"4.0.94": {
 		"en": "Fix 'Sliding gate (io)' that was broken in the last update. Added more languages"
+	},
+	"4.0.95": {
+		"en": "Fix merge issue with 'Radiator Valve'."
 	}
 }
