@@ -141,47 +141,51 @@ class ValveHeatingDevice extends SensorDevice
 		if (this.infoLogEnabled)
 		{
 			this.homey.app.logInformation(this.getName(),
-			{
-				message: 'onCapability',
-				stack: { capabilityXRef, value, opts },
-			});
+				{
+					message: 'onCapability',
+					stack: { capabilityXRef, value, opts },
+				});
 		}
 
 		if (!opts || !opts.fromCloudSync)
 		{
-			if (typeof (capabilityXRef.somfyArray) === 'undefined')
+			if (typeof capabilityXRef.somfyArray === 'undefined')
 			{
 				// Let the base class handle the standard entries
 				super.onCapability(capabilityXRef, value, opts);
 				return;
 			}
 
-            const applicableEntries = CapabilitiesXRef.filter((entry) => entry.somfyNameSet[0] === capabilityXRef.somfyNameSet[0]).sort((a, b) => a.somfyArray - b.somfyArray);
+			let applicableEntries = CapabilitiesXRef.filter(
+				(entry) => entry.somfyNameSet[0] === capabilityXRef.somfyNameSet[0],
+			).sort((a, b) => a.somfyArray - b.somfyArray);
 
 			if (capabilityXRef.somfySetGroup)
 			{
-				const applicableEntries2 = applicableEntries.filter((entry) => (entry.somfySetGroup.indexOf(capabilityXRef.somfySetGroup[0]) >= 0));
+				const applicableEntries2 = applicableEntries.filter(
+					(entry) => entry.somfySetGroup.indexOf(
+						capabilityXRef.somfySetGroup[0],
+					) >= 0,
+				);
 				applicableEntries = applicableEntries2;
 			}
 
-            const deviceData = this.getData();
-            const idx = this.executionCommands.findIndex((element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
-            if (idx >= 0)
-            {
-                try
-                {
-                    await this.homey.app.tahoma.cancelExecution(this.executionCommands[idx].id);
-                }
-                catch (err)
-                {
-                    this.homey.app.logInformation(this.getName(),
-                    {
-                        message: err.message,
-                        stack: err.stack,
-                    });
-                }
-                this.executionCommands.splice(idx, 1);
-            }
+			const somfyValues = [];
+			for (const element of applicableEntries)
+			{
+				let itemValue = value;
+				if (element.homeyName !== capabilityXRef.homeyName)
+				{
+					// Entry is not the main value so check if it is the opts
+					if (opts && opts[element.homeyName])
+					{
+						itemValue = opts[element.homeyName];
+					} else
+					{
+						itemValue = this.getCapabilityValue(element.homeyName);
+					}
+				}
+				// let itemValue = element.homeyName === capabilityXRef.homeyName ? value : this.getCapabilityValue(element.homeyName);
 
 				if (element.illegalSetValues)
 				{
@@ -189,11 +193,14 @@ class ValveHeatingDevice extends SensorDevice
 					if (idx >= 0)
 					{
 						// The value is not allowed to be set
-						if (this.hasCapability(element.illegalAlternative[idx]))
+						if (
+							this.hasCapability(element.illegalAlternative[idx])
+						)
 						{
-							itemValue = this.getCapabilityValue(element.illegalAlternative[idx]);
-						}
-						else
+							itemValue = this.getCapabilityValue(
+								element.illegalAlternative[idx],
+							);
+						} else
 						{
 							itemValue = element.illegalAlternative[idx];
 						}
@@ -203,17 +210,21 @@ class ValveHeatingDevice extends SensorDevice
 			}
 
 			const deviceData = this.getData();
-			const oldIdx = this.executionCommands.findIndex((element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
+			const oldIdx = this.executionCommands.findIndex(
+				(element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0,
+			);
 			if (oldIdx >= 0)
 			{
 				try
 				{
-					await this.homey.app.cancelExecution(deviceData.label, this.executionCommands[oldIdx].id, this.executionCommands[oldIdx].local);
-				}
-				catch (err)
+					await this.homey.app.cancelExecution(
+						deviceData.label,
+						this.executionCommands[oldIdx].id,
+						this.executionCommands[oldIdx].local,
+					);
+				} catch (err)
 				{
-					this.homey.app.logInformation(this.getName(),
-					{
+					this.homey.app.logInformation(this.getName(), {
 						message: err.message,
 						stack: err.stack,
 					});
@@ -221,54 +232,34 @@ class ValveHeatingDevice extends SensorDevice
 				this.executionCommands.splice(oldIdx, 1);
 			}
 
-                    if (this.boostSync)
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
-                    throw (new Error(result.error));
-                }
-                else
-                {
-                    const idx = this.executionCommands.findIndex((element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
-                    if (idx < 0)
-                    {
-                        this.executionCommands.push({ id: result.execId, name: action.name });
-                    }
-                    else
-                    {
-                        await this.homey.app.unBoostSync();
-                    }
-                }
-            }
-            else
-            {
-                this.homey.app.logInformation(`${this.getName()}: onCapability ${capabilityXRef.somfyNameSet[0]}`, 'Failed to send command');
-                if (this.boostSync)
-                {
-                    await this.homey.app.unBoostSync();
-                }
-                throw (new Error('Failed to send command'));
-            }
-        }
-        else
-        {
-            // Let the base class handle the standard entries
-            super.onCapability(capabilityXRef, value, opts);
-        }
-    }
+			const action = {
+				name: capabilityXRef.somfyNameSet[0],
+				parameters: somfyValues,
+			};
 
-			const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync, null, true);
-			const idx = this.executionCommands.findIndex((element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0);
+			const result = await this.homey.app.executeDeviceAction(
+				deviceData.label,
+				deviceData.deviceURL,
+				action,
+				this.boostSync,
+				null,
+				true,
+			);
+			const idx = this.executionCommands.findIndex(
+				(element) => capabilityXRef.somfyNameSet.indexOf(element.name) >= 0,
+			);
 			if (idx < 0)
 			{
-				this.executionCommands.push({ id: result.execId, name: action.name, local: result.local });
-			}
-			else
+				this.executionCommands.push({
+					id: result.execId,
+					name: action.name,
+					local: result.local,
+				});
+			} else
 			{
 				await this.homey.app.unBoostSync();
 			}
-		}
-		else
+		} else
 		{
 			// Let the base class handle the standard entries
 			super.onCapability(capabilityXRef, value, opts);
