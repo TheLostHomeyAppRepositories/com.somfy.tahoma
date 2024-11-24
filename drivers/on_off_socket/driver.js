@@ -9,7 +9,7 @@ class OnOffSocketControllerDriver extends Driver
 
 	async onInit()
 	{
-		this.deviceType = ['io:OnOffIOComponent', 'eliot:OnOffSwitchEliotComponent', 'io:SwitchMicroModuleSomfyIOComponent'];
+		this.deviceType = ['io:OnOffIOComponent', 'eliot:OnOffSwitchEliotComponent', 'io:SwitchMicroModuleSomfyIOComponent', 'ogp:Outlet'];
 		await super.onInit();
 	}
 
