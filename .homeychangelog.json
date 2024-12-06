@@ -822,6 +822,6 @@
 		"en": "Added 'ogp:Outlet' to 'Socket (RTS & io)'"
 	},
 	"4.0.97": {
-		"en": "Added 'zigbee:ThermostatAndFanComponent' and 'zigbee:ThermostatHeatingAndCoolingComponent' to 'Zigbee AC Control'"
+		"en": "Added 'zigbee:ThermostatAndFanComponent' to 'Zigbee AC Control' and 'zigbee:ThermostatHeatingAndCoolingComponent' to 'Zigbee Thermostat'"
 	}
 }

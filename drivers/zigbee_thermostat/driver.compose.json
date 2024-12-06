@@ -13,7 +13,7 @@
 		"ru": "Zigbee Термостат",
 		"ko": "Zigbee 온도 조절기"
 	},
-	"class": "airconditioning",
+	"class": "thermostat",
 	"capabilities": [
 		"measure_temperature",
 		"target_temperature.cooling",
