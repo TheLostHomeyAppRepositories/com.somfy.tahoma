@@ -47,6 +47,11 @@ class GarageDoorPartialIODevice extends WindowCoveringsDevice
 				this.openClosedStateName = 'core:OpenClosedUnknownState';
 			}
 		}
+		else if (this.controllableName === 'io:DynamicGarageDoor')
+		{
+			this.openClosedStateName = 'core:OpenClosedState';
+			this.myCommand = 'goToAlias'; // Name of the command to set the My position
+		}
 		else
 		{
 			this.openClosedStateName = 'core:OpenClosedPartialState';

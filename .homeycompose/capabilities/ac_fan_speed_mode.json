@@ -1,0 +1,103 @@
+{
+  "type": "enum",
+  "title": {
+    "en": "Fan Speed",
+    "nl": "Ventilatorsnelheid",
+    "da": "Blæserhastighed",
+    "de": "Ventilatorgeschwindigkeit",
+    "es": "Velocidad del ventilador",
+    "fr": "Vitesse du ventilateur",
+    "it": "Velocità della ventola",
+    "no": "Viftehastighet",
+    "sv": "Fläkthastighet",
+    "pl": "Prędkość wentylatora",
+    "ru": "Скорость вентилятора",
+    "ko": "팬 속도"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "picker",
+  "values": [
+    {
+      "id": "auto",
+      "title": {
+        "en": "Automatic",
+        "nl": "Automatisch",
+        "da": "Automatisk",
+        "de": "Automatisch",
+        "es": "Automático",
+        "fr": "Automatique",
+        "it": "Automatico",
+        "no": "Automatisk",
+        "sv": "Automatisk",
+        "pl": "Automatyczny",
+        "ru": "Автоматический",
+        "ko": "자동"
+      }
+    },
+    {
+      "id": "hi",
+      "title": {
+        "en": "Hi Speed",
+        "da": "Høj hastighed",
+        "de": "Hohe Geschwindigkeit",
+        "es": "Alta velocidad",
+        "fr": "Haute vitesse",
+        "it": "Alta velocità",
+        "no": "Høy hastighet",
+        "sv": "Hög hastighet",
+        "pl": "Wysoka prędkość",
+        "ru": "Высокая скорость",
+        "ko": "고속"
+      }
+    },
+    {
+      "id": "lo",
+      "title": {
+        "en": "Low Speed",
+        "da": "Lav hastighed",
+        "de": "Niedrige Geschwindigkeit",
+        "es": "Baja velocidad",
+        "fr": "Basse vitesse",
+        "it": "Bassa velocità",
+        "no": "Lav hastighet",
+        "sv": "Låg hastighet",
+        "pl": "Niska prędkość",
+        "ru": "Низкая скорость",
+        "ko": "저속"
+      }
+    },
+    {
+      "id": "med",
+      "title": {
+        "en": "Medium Speed",
+        "da": "Middel hastighed",
+        "de": "Mittlere Geschwindigkeit",
+        "es": "Velocidad media",
+        "fr": "Vitesse moyenne",
+        "it": "Velocità media",
+        "no": "Middels hastighet",
+        "sv": "Medelhastighet",
+        "pl": "Średnia prędkość",
+        "ru": "Средняя скорость",
+        "ko": "중간 속도"
+      }
+    },
+    {
+      "id": "silent",
+      "title": {
+        "en": "Silent",
+        "da": "Stille",
+        "de": "Leise",
+        "es": "Silencioso",
+        "fr": "Silencieux",
+        "it": "Silenzioso",
+        "no": "Stillhet",
+        "sv": "Tyst",
+        "pl": "Cichy",
+        "ru": "Тихий",
+        "ko": "조용한"
+      }
+    }
+  ]
+}

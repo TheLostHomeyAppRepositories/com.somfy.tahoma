@@ -1,0 +1,65 @@
+{
+	"name": {
+		"en": "Zigbee Thermostat",
+		"nl": "Zigbee Thermostaat",
+		"da": "Zigbee Termostat",
+		"de": "Zigbee Thermostat",
+		"es": "Termostato Zigbee",
+		"fr": "Thermostat Zigbee",
+		"it": "Termostato Zigbee",
+		"no": "Zigbee Termostat",
+		"sv": "Zigbee Termostat",
+		"pl": "Zigbee Termostat",
+		"ru": "Zigbee Термостат",
+		"ko": "Zigbee 온도 조절기"
+	},
+	"class": "airconditioning",
+	"capabilities": [
+		"measure_temperature",
+		"target_temperature.cooling",
+		"target_temperature.heating",
+		"ac_control_mode",
+		"ac_thermostat_mode"
+	],
+	"capabilitiesOptions": {
+		"target_temperature.cooling": {
+			"min": 4,
+			"max": 35,
+			"title": {
+				"en": "Cooling Temperature",
+				"nl": "Koeltemperatuur",
+				"da": "Kølingstemperatur",
+				"de": "Kühltemperatur",
+				"es": "Temperatura de refrigeración",
+				"fr": "Température de refroidissement",
+				"it": "Temperatura di raffreddamento",
+				"no": "Kjølingstemperatur",
+				"sv": "Kylningstemperatur",
+				"pl": "Temperatura Chłodzenia",
+				"ru": "Температура Охлаждения",
+				"ko": "냉방 온도"
+			}
+		},
+		"target_temperature.heating": {
+			"min": 4,
+			"max": 35,
+			"title": {
+				"en": "Heating Temperature",
+				"nl": "Verwarmingstemperatuur",
+				"da": "Opvarmningstemperatur",
+				"de": "Heiztemperatur",
+				"es": "Temperatura de calefacción",
+				"fr": "Température de chauffage",
+				"it": "Temperatura di riscaldamento",
+				"no": "Oppvarmingstemperatur",
+				"sv": "Värmetemperatur",
+				"pl": "Temperatura Ogrzewania",
+				"ru": "Температура Обогрева",
+				"ko": "난방 온도"
+			}
+		}
+	},
+	"$extends": [
+		"cloudDriver"
+	]
+}

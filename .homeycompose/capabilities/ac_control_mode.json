@@ -1,0 +1,124 @@
+{
+	"type": "enum",
+	"title": {
+		"en": "Operating Mode",
+		"nl": "Bedrijfsmodus",
+		"da": "Driftstilstand",
+		"de": "Betriebsmodus",
+		"es": "Modo de funcionamiento",
+		"fr": "Mode de fonctionnement",
+		"it": "Modalità di funzionamento",
+		"no": "Driftsmodus",
+		"sv": "Driftläge",
+		"pl": "Tryb operacyjny",
+		"ru": "Режим работы",
+		"ko": "작동 모드"
+	},
+	"getable": true,
+	"setable": true,
+	"uiComponent": "picker",
+	"values": [
+		{
+			"id": "coolingOnly",
+			"title": {
+				"en": "Cooling Only",
+				"nl": "Alleen Koelen",
+				"da": "Kun Køling",
+				"de": "Nur Kühlen",
+				"es": "Solo Refrigeración",
+				"fr": "Refroidissement Seulement",
+				"it": "Solo Raffreddamento",
+				"no": "Kun Kjøling",
+				"sv": "Endast Kylning",
+				"pl": "Tylko Chłodzenie",
+				"ru": "Только Охлаждение",
+				"ko": "냉방 전용"
+			}
+		},
+		{
+			"id": "coolingWithReheat",
+			"title": {
+				"en": "Cooling with Reheat",
+				"nl": "Koelen met Naverwarming",
+				"da": "Køling med Genopvarmning",
+				"de": "Kühlen mit Wiederaufheizung",
+				"es": "Refrigeración con Recalentamiento",
+				"fr": "Refroidissement avec Réchauffage",
+				"it": "Raffreddamento con Ricarica",
+				"no": "Kjøling med Reoppvarming",
+				"sv": "Kylning med Återuppvärmning",
+				"pl": "Chłodzenie z Przegrzewaniem",
+				"ru": "Охлаждение с Перегревом",
+				"ko": "재열림과 함께 냉방"
+			}
+		},
+		{
+			"id": "heatingOnly",
+			"title": {
+				"en": "Heating Only",
+				"nl": "Alleen Verwarmen",
+				"da": "Kun Opvarmning",
+				"de": "Nur Heizen",
+				"es": "Solo Calefacción",
+				"fr": "Chauffage Seulement",
+				"it": "Solo Riscaldamento",
+				"no": "Kun Oppvarming",
+				"sv": "Endast Uppvärmning",
+				"pl": "Tylko Ogrzewanie",
+				"ru": "Только Отопление",
+				"ko": "난방 전용"
+			}
+		},
+		{
+			"id": "heatingWithReheat",
+			"title": {
+				"en": "Heating with Reheat",
+				"nl": "Verwarmen met Naverwarming",
+				"da": "Opvarmning med Genopvarmning",
+				"de": "Heizen mit Wiederaufheizung",
+				"es": "Calefacción con Recalentamiento",
+				"fr": "Chauffage avec Réchauffage",
+				"it": "Riscaldamento con Ricarica",
+				"no": "Oppvarming med Reoppvarming",
+				"sv": "Uppvärmning med Återuppvärmning",
+				"pl": "Ogrzewanie z Przegrzewaniem",
+				"ru": "Отопление с Перегревом",
+				"ko": "재열림과 함께 난방"
+			}
+		},
+		{
+			"id": "coolingHeating",
+			"title": {
+				"en": "Cooling and Heating",
+				"nl": "Koelen en Verwarmen",
+				"da": "Køling og Opvarmning",
+				"de": "Kühlen und Heizen",
+				"es": "Refrigeración y Calefacción",
+				"fr": "Refroidissement et Chauffage",
+				"it": "Raffreddamento e Riscaldamento",
+				"no": "Kjøling og Oppvarming",
+				"sv": "Kylning och Uppvärmning",
+				"pl": "Chłodzenie i Ogrzewanie",
+				"ru": "Охлаждение и Отопление",
+				"ko": "냉방 및 난방"
+			}
+		},
+		{
+			"id": "coolingHeatingWithReheat",
+			"title": {
+				"en": "Cooling and Heating with Reheat",
+				"nl": "Koelen en Verwarmen met Naverwarming",
+				"da": "Køling og Opvarmning med Genopvarmning",
+				"de": "Kühlen und Heizen mit Wiederaufheizung",
+				"es": "Refrigeración y Calefacción con Recalentamiento",
+				"fr": "Refroidissement et Chauffage avec Réchauffage",
+				"it": "Raffreddamento e Riscaldamento con Ricarica",
+				"no": "Kjøling og Oppvarming med Reoppvarming",
+				"sv": "Kylning och Uppvärmning med Återuppvärmning",
+				"pl": "Chłodzenie i Ogrzewanie z Przegrzewaniem",
+				"ru": "Охлаждение и Отопление с Перегревом",
+				"ko": "냉방 및 난방과 함께 재열림"
+			}
+		}
+	]
+}

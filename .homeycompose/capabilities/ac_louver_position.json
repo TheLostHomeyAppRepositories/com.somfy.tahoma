@@ -1,0 +1,107 @@
+{
+	"type": "enum",
+	"title": {
+		"en": "Louvre Position",
+		"nl": "Lamellenstand",
+		"da": "Lamelposition",
+		"de": "Lamellenposition",
+		"es": "Posición de las lamas",
+		"fr": "Position des lames",
+		"it": "Posizione delle lamelle",
+		"no": "Lamelstilling",
+		"sv": "Lamellposition",
+		"pl": "Pozycja żaluzji",
+		"ru": "Положение жалюзи",
+		"ko": "루버 위치"
+	},
+	"getable": true,
+	"setable": true,
+	"uiComponent": "picker",
+	"values": [
+		{
+			"id": "fully closed",
+			"title": {
+				"en": "fully closed",
+				"nl": "volledig gesloten",
+				"da": "fuldstændigt lukket",
+				"de": "vollständig geschlossen",
+				"es": "totalmente cerrado",
+				"fr": "complètement fermé",
+				"it": "completamente chiuso",
+				"no": "helt lukket",
+				"sv": "helt stängd",
+				"pl": "całkowicie zamknięte",
+				"ru": "полностью закрыто",
+				"ko": "완전히 닫힘"
+			}
+		},
+		{
+			"id": "fully open",
+			"title": {
+				"en": "fully open",
+				"nl": "volledig open",
+				"da": "fuldt åben",
+				"de": "vollständig geöffnet",
+				"es": "totalmente abierto",
+				"fr": "complètement ouvert",
+				"it": "completamente aperto",
+				"no": "helt åpen",
+				"sv": "helt öppen",
+				"pl": "całkowicie otwarte",
+				"ru": "полностью открыто",
+				"ko": "완전히 열림"
+			}
+		},
+		{
+			"id": "quater open",
+			"title": {
+				"en": "half open",
+				"nl": "half open",
+				"da": "halvåben",
+				"de": "halb geöffnet",
+				"es": "medio abierto",
+				"fr": "à moitié ouvert",
+				"it": "mezzo aperto",
+				"no": "halvåpen",
+				"sv": "halvöppen",
+				"pl": "połowicznie otwarte",
+				"ru": "полуоткрыто",
+				"ko": "반 열림"
+			}
+		},
+		{
+			"id": "half open",
+			"title": {
+				"en": "half open",
+				"nl": "half open",
+				"da": "halvåben",
+				"de": "halb geöffnet",
+				"es": "medio abierto",
+				"fr": "à moitié ouvert",
+				"it": "mezzo aperto",
+				"no": "halvåpen",
+				"sv": "halvöppen",
+				"pl": "połowicznie otwarte",
+				"ru": "полуоткрыто",
+				"ko": "반 열림"
+			}
+		},
+		{
+			"id": "three quaters open",
+			"title": {
+				"en": "three quaters open",
+				"nl": "driekwart open",
+				"da": "tre fjerdedele åben",
+				"de": "drei Viertel geöffnet",
+				"es": "tres cuartos abierto",
+				"fr": "trois quarts ouvert",
+				"it": "tre quarti aperto",
+				"no": "tre fjerdedeler åpen",
+				"sv": "tre fjärdedelar öppen",
+				"pl": "trzy czwarte otwarte",
+				"ru": "три четверти открыто",
+				"ko": "세 사분의 열림"
+			}
+		}
+	]
+}

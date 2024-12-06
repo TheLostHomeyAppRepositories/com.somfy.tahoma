@@ -1,0 +1,174 @@
+{
+	"type": "enum",
+	"title": {
+		"en": "Thermostat Mode",
+		"nl": "Thermostaatmodus",
+		"da": "Termostat tilstand",
+		"de": "Thermostatmodus",
+		"es": "Modo de termostato",
+		"fr": "Mode thermostat",
+		"it": "Modalità termostato",
+		"no": "Termostatmodus",
+		"sv": "Termostatläge",
+		"pl": "Tryb termostatu",
+		"ru": "Режим термостата",
+		"ko": "온도 조절기 모드"
+	},
+	"getable": true,
+	"setable": true,
+	"uiComponent": "picker",
+	"values": [
+		{
+			"id": "off",
+			"title": {
+				"en": "Off",
+				"da": "Slukket",
+				"de": "Aus",
+				"es": "Apagado",
+				"fr": "Éteint",
+				"it": "Spento",
+				"no": "Av",
+				"sv": "Av",
+				"pl": "Wyłączony",
+				"ru": "Выключено",
+				"ko": "끄기"
+			}
+		},
+		{
+			"id": "auto",
+			"title": {
+				"en": "Automatic",
+				"nl": "Automatisch",
+				"da": "Automatisk",
+				"de": "Automatisch",
+				"es": "Automático",
+				"fr": "Automatique",
+				"it": "Automatico",
+				"no": "Automatisk",
+				"sv": "Automatisk",
+				"pl": "Automatyczny",
+				"ru": "Автоматический",
+				"ko": "자동"
+			}
+		},
+		{
+			"id": "cool",
+			"title": {
+				"en": "Cool",
+				"nl": "Koelen",
+				"da": "Køl",
+				"de": "Kühlen",
+				"es": "Frío",
+				"fr": "Froid",
+				"it": "Raffreddare",
+				"no": "Kjøl",
+				"sv": "Kyla",
+				"pl": "Chłodzenie",
+				"ru": "Охлаждать",
+				"ko": "시원하게"
+			}
+		},
+		{
+			"id": "heat",
+			"title": {
+				"en": "Heat",
+				"nl": "Verwarmen",
+				"da": "Varme",
+				"de": "Heizen",
+				"es": "Calor",
+				"fr": "Chaleur",
+				"it": "Calore",
+				"no": "Varme",
+				"sv": "Värme",
+				"pl": "Ogrzewanie",
+				"ru": "Тепло",
+				"ko": "열"
+			}
+		},
+		{
+			"id": "emergencyHeating",
+			"title": {
+				"en": "Emergency Heating",
+				"nl": "Noodverwarming",
+				"da": "Nødvarme",
+				"de": "Notheizung",
+				"es": "Calefacción de emergencia",
+				"fr": "Chauffage d'urgence",
+				"it": "Riscaldamento di emergenza",
+				"no": "Nødoppvarming",
+				"sv": "Nödvärme",
+				"pl": "Ogrzewanie awaryjne",
+				"ru": "Аварийное отопление",
+				"ko": "비상 난방"
+			}
+		},
+		{
+			"id": "precooling",
+			"title": {
+				"en": "Precooling",
+				"nl": "Vooraf koelen",
+				"da": "Forafkøling",
+				"de": "Vorkühlen",
+				"es": "Preenfriamiento",
+				"fr": "Pré-refroidissement",
+				"it": "Pre-raffreddamento",
+				"no": "Forkjøling",
+				"sv": "Förkylning",
+				"pl": "Przedschładzanie",
+				"ru": "Предварительное охлаждение",
+				"ko": "사전 냉각"
+			}
+		},
+		{
+			"id": "fanOnly",
+			"title": {
+				"en": "Fan Only",
+				"nl": "Alleen Ventilator",
+				"da": "Kun Ventilator",
+				"de": "Nur Lüfter",
+				"es": "Solo Ventilador",
+				"fr": "Ventilateur Seulement",
+				"it": "Solo Ventilatore",
+				"no": "Kun Vifte",
+				"sv": "Endast Fläkt",
+				"pl": "Tylko Wentylator",
+				"ru": "Только Вентилятор",
+				"ko": "팬 전용"
+			}
+		},
+		{
+			"id": "dry",
+			"title": {
+				"en": "Dry",
+				"nl": "Droog",
+				"da": "Tør",
+				"de": "Trocken",
+				"es": "Seco",
+				"fr": "Sec",
+				"it": "Asciutto",
+				"no": "Tørr",
+				"sv": "Torrt",
+				"pl": "Suchy",
+				"ru": "Сухой",
+				"ko": "건조한"
+			}
+		},
+		{
+			"id": "sleep",
+			"title": {
+				"en": "Sleep",
+				"nl": "Slaap",
+				"da": "Søvn",
+				"de": "Schlaf",
+				"es": "Dormir",
+				"fr": "Dormir",
+				"it": "Dormire",
+				"no": "Søvn",
+				"sv": "Sömn",
+				"pl": "Sen",
+				"ru": "Сон",
+				"ko": "수면"
+			}
+		}
+	]
+}

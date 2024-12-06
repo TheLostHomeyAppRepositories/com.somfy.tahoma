@@ -35,8 +35,8 @@
     "ru": "Сердце вашего умного дома",
     "ko": "스마트 홈의 중심"
   },
-  "version": "4.0.95",
-  "compatibility": ">=5.0.0",
+  "version": "4.0.97",
+  "compatibility": ">=12.0.0",
   "author": {
     "name": "Adrian Rockall",
     "email": "ady@rockalls.uk"
@@ -19012,6 +19012,442 @@
         }
       ],
       "id": "white_temperature_light"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices",
+            "prev": "login_credentials"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        }
+      ],
+      "icon": "/drivers/zigbee_ac/assets/icon.svg",
+      "images": {
+        "large": "/drivers/zigbee_ac/assets/images/large.png",
+        "small": "/drivers/zigbee_ac/assets/images/small.png"
+      },
+      "name": {
+        "en": "Zigbee AC Control",
+        "nl": "Zigbee AC Control",
+        "da": "Zigbee AC Control",
+        "de": "Zigbee AC Control",
+        "es": "Zigbee AC Control",
+        "fr": "Zigbee AC Control",
+        "it": "Zigbee AC Control",
+        "no": "Zigbee AC Control",
+        "sv": "Zigbee AC Control",
+        "pl": "Zigbee AC Control",
+        "ru": "Zigbee AC Control",
+        "ko": "Zigbee AC Control"
+      },
+      "class": "airconditioning",
+      "capabilities": [
+        "measure_temperature",
+        "target_temperature.cooling",
+        "target_temperature.heating",
+        "ac_louver_position",
+        "ac_control_mode",
+        "ac_thermostat_mode",
+        "ac_fan_speed_mode"
+      ],
+      "capabilitiesOptions": {
+        "target_temperature.cooling": {
+          "min": 4,
+          "max": 35,
+          "title": {
+            "en": "Cooling Temperature",
+            "nl": "Koeltemperatuur",
+            "da": "Kølingstemperatur",
+            "de": "Kühltemperatur",
+            "es": "Temperatura de refrigeración",
+            "fr": "Température de refroidissement",
+            "it": "Temperatura di raffreddamento",
+            "no": "Kjølingstemperatur",
+            "sv": "Kylningstemperatur",
+            "pl": "Temperatura Chłodzenia",
+            "ru": "Температура Охлаждения",
+            "ko": "냉방 온도"
+          }
+        },
+        "target_temperature.heating": {
+          "min": 4,
+          "max": 35,
+          "title": {
+            "en": "Heating Temperature",
+            "nl": "Verwarmingstemperatuur",
+            "da": "Opvarmningstemperatur",
+            "de": "Heiztemperatur",
+            "es": "Temperatura de calefacción",
+            "fr": "Température de chauffage",
+            "it": "Temperatura di riscaldamento",
+            "no": "Oppvarmingstemperatur",
+            "sv": "Värmetemperatur",
+            "pl": "Temperatura Ogrzewania",
+            "ru": "Температура Обогрева",
+            "ko": "난방 온도"
+          }
+        }
+      },
+      "id": "zigbee_ac"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices",
+            "prev": "login_credentials"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        }
+      ],
+      "icon": "/drivers/zigbee_thermostat/assets/icon.svg",
+      "images": {
+        "large": "/drivers/zigbee_thermostat/assets/images/large.png",
+        "small": "/drivers/zigbee_thermostat/assets/images/small.png"
+      },
+      "name": {
+        "en": "Zigbee Thermostat",
+        "nl": "Zigbee Thermostaat",
+        "da": "Zigbee Termostat",
+        "de": "Zigbee Thermostat",
+        "es": "Termostato Zigbee",
+        "fr": "Thermostat Zigbee",
+        "it": "Termostato Zigbee",
+        "no": "Zigbee Termostat",
+        "sv": "Zigbee Termostat",
+        "pl": "Zigbee Termostat",
+        "ru": "Zigbee Термостат",
+        "ko": "Zigbee 온도 조절기"
+      },
+      "class": "airconditioning",
+      "capabilities": [
+        "measure_temperature",
+        "target_temperature.cooling",
+        "target_temperature.heating",
+        "ac_control_mode",
+        "ac_thermostat_mode"
+      ],
+      "capabilitiesOptions": {
+        "target_temperature.cooling": {
+          "min": 4,
+          "max": 35,
+          "title": {
+            "en": "Cooling Temperature",
+            "nl": "Koeltemperatuur",
+            "da": "Kølingstemperatur",
+            "de": "Kühltemperatur",
+            "es": "Temperatura de refrigeración",
+            "fr": "Température de refroidissement",
+            "it": "Temperatura di raffreddamento",
+            "no": "Kjølingstemperatur",
+            "sv": "Kylningstemperatur",
+            "pl": "Temperatura Chłodzenia",
+            "ru": "Температура Охлаждения",
+            "ko": "냉방 온도"
+          }
+        },
+        "target_temperature.heating": {
+          "min": 4,
+          "max": 35,
+          "title": {
+            "en": "Heating Temperature",
+            "nl": "Verwarmingstemperatuur",
+            "da": "Opvarmningstemperatur",
+            "de": "Heiztemperatur",
+            "es": "Temperatura de calefacción",
+            "fr": "Température de chauffage",
+            "it": "Temperatura di riscaldamento",
+            "no": "Oppvarmingstemperatur",
+            "sv": "Värmetemperatur",
+            "pl": "Temperatura Ogrzewania",
+            "ru": "Температура Обогрева",
+            "ko": "난방 온도"
+          }
+        }
+      },
+      "id": "zigbee_thermostat"
     }
   ],
   "capabilities": {
@@ -19070,7 +19506,234 @@
         }
       ]
     },
+    "ac_control_mode": {
+      "type": "enum",
+      "title": {
+        "en": "Operating Mode",
+        "nl": "Bedrijfsmodus",
+        "da": "Driftstilstand",
+        "de": "Betriebsmodus",
+        "es": "Modo de funcionamiento",
+        "fr": "Mode de fonctionnement",
+        "it": "Modalità di funzionamento",
+        "no": "Driftsmodus",
+        "sv": "Driftläge",
+        "pl": "Tryb operacyjny",
+        "ru": "Режим работы",
+        "ko": "작동 모드"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "coolingOnly",
+          "title": {
+            "en": "Cooling Only",
+            "nl": "Alleen Koelen",
+            "da": "Kun Køling",
+            "de": "Nur Kühlen",
+            "es": "Solo Refrigeración",
+            "fr": "Refroidissement Seulement",
+            "it": "Solo Raffreddamento",
+            "no": "Kun Kjøling",
+            "sv": "Endast Kylning",
+            "pl": "Tylko Chłodzenie",
+            "ru": "Только Охлаждение",
+            "ko": "냉방 전용"
+          }
+        },
+        {
+          "id": "coolingWithReheat",
+          "title": {
+            "en": "Cooling with Reheat",
+            "nl": "Koelen met Naverwarming",
+            "da": "Køling med Genopvarmning",
+            "de": "Kühlen mit Wiederaufheizung",
+            "es": "Refrigeración con Recalentamiento",
+            "fr": "Refroidissement avec Réchauffage",
+            "it": "Raffreddamento con Ricarica",
+            "no": "Kjøling med Reoppvarming",
+            "sv": "Kylning med Återuppvärmning",
+            "pl": "Chłodzenie z Przegrzewaniem",
+            "ru": "Охлаждение с Перегревом",
+            "ko": "재열림과 함께 냉방"
+          }
+        },
+        {
+          "id": "heatingOnly",
+          "title": {
+            "en": "Heating Only",
+            "nl": "Alleen Verwarmen",
+            "da": "Kun Opvarmning",
+            "de": "Nur Heizen",
+            "es": "Solo Calefacción",
+            "fr": "Chauffage Seulement",
+            "it": "Solo Riscaldamento",
+            "no": "Kun Oppvarming",
+            "sv": "Endast Uppvärmning",
+            "pl": "Tylko Ogrzewanie",
+            "ru": "Только Отопление",
+            "ko": "난방 전용"
+          }
+        },
+        {
+          "id": "heatingWithReheat",
+          "title": {
+            "en": "Heating with Reheat",
+            "nl": "Verwarmen met Naverwarming",
+            "da": "Opvarmning med Genopvarmning",
+            "de": "Heizen mit Wiederaufheizung",
+            "es": "Calefacción con Recalentamiento",
+            "fr": "Chauffage avec Réchauffage",
+            "it": "Riscaldamento con Ricarica",
+            "no": "Oppvarming med Reoppvarming",
+            "sv": "Uppvärmning med Återuppvärmning",
+            "pl": "Ogrzewanie z Przegrzewaniem",
+            "ru": "Отопление с Перегревом",
+            "ko": "재열림과 함께 난방"
+          }
+        },
+        {
+          "id": "coolingHeating",
+          "title": {
+            "en": "Cooling and Heating",
+            "nl": "Koelen en Verwarmen",
+            "da": "Køling og Opvarmning",
+            "de": "Kühlen und Heizen",
+            "es": "Refrigeración y Calefacción",
+            "fr": "Refroidissement et Chauffage",
+            "it": "Raffreddamento e Riscaldamento",
+            "no": "Kjøling og Oppvarming",
+            "sv": "Kylning och Uppvärmning",
+            "pl": "Chłodzenie i Ogrzewanie",
+            "ru": "Охлаждение и Отопление",
+            "ko": "냉방 및 난방"
+          }
+        },
+        {
+          "id": "coolingHeatingWithReheat",
+          "title": {
+            "en": "Cooling and Heating with Reheat",
+            "nl": "Koelen en Verwarmen met Naverwarming",
+            "da": "Køling og Opvarmning med Genopvarmning",
+            "de": "Kühlen und Heizen mit Wiederaufheizung",
+            "es": "Refrigeración y Calefacción con Recalentamiento",
+            "fr": "Refroidissement et Chauffage avec Réchauffage",
+            "it": "Raffreddamento e Riscaldamento con Ricarica",
+            "no": "Kjøling og Oppvarming med Reoppvarming",
+            "sv": "Kylning och Uppvärmning med Återuppvärmning",
+            "pl": "Chłodzenie i Ogrzewanie z Przegrzewaniem",
+            "ru": "Охлаждение и Отопление с Перегревом",
+            "ko": "냉방 및 난방과 함께 재열림"
+          }
+        }
+      ]
+    },
     "ac_fan_speed": {
+      "type": "enum",
+      "title": {
+        "en": "Fan Speed",
+        "nl": "Ventilatorsnelheid",
+        "da": "Blæserhastighed",
+        "de": "Ventilatorgeschwindigkeit",
+        "es": "Velocidad del ventilador",
+        "fr": "Vitesse du ventilateur",
+        "it": "Velocità della ventola",
+        "no": "Viftehastighet",
+        "sv": "Fläkthastighet",
+        "pl": "Prędkość wentylatora",
+        "ru": "Скорость вентилятора",
+        "ko": "팬 속도"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "auto",
+          "title": {
+            "en": "Automatic",
+            "nl": "Automatisch",
+            "da": "Automatisk",
+            "de": "Automatisch",
+            "es": "Automático",
+            "fr": "Automatique",
+            "it": "Automatico",
+            "no": "Automatisk",
+            "sv": "Automatisk",
+            "pl": "Automatyczny",
+            "ru": "Автоматический",
+            "ko": "자동"
+          }
+        },
+        {
+          "id": "hi",
+          "title": {
+            "en": "Hi Speed",
+            "da": "Høj hastighed",
+            "de": "Hohe Geschwindigkeit",
+            "es": "Alta velocidad",
+            "fr": "Haute vitesse",
+            "it": "Alta velocità",
+            "no": "Høy hastighet",
+            "sv": "Hög hastighet",
+            "pl": "Wysoka prędkość",
+            "ru": "Высокая скорость",
+            "ko": "고속"
+          }
+        },
+        {
+          "id": "lo",
+          "title": {
+            "en": "Low Speed",
+            "da": "Lav hastighed",
+            "de": "Niedrige Geschwindigkeit",
+            "es": "Baja velocidad",
+            "fr": "Basse vitesse",
+            "it": "Bassa velocità",
+            "no": "Lav hastighet",
+            "sv": "Låg hastighet",
+            "pl": "Niska prędkość",
+            "ru": "Низкая скорость",
+            "ko": "저속"
+          }
+        },
+        {
+          "id": "med",
+          "title": {
+            "en": "Medium Speed",
+            "da": "Middel hastighed",
+            "de": "Mittlere Geschwindigkeit",
+            "es": "Velocidad media",
+            "fr": "Vitesse moyenne",
+            "it": "Velocità media",
+            "no": "Middels hastighet",
+            "sv": "Medelhastighet",
+            "pl": "Średnia prędkość",
+            "ru": "Средняя скорость",
+            "ko": "중간 속도"
+          }
+        },
+        {
+          "id": "silent",
+          "title": {
+            "en": "Silent",
+            "da": "Stille",
+            "de": "Leise",
+            "es": "Silencioso",
+            "fr": "Silencieux",
+            "it": "Silenzioso",
+            "no": "Stillhet",
+            "sv": "Tyst",
+            "pl": "Cichy",
+            "ru": "Тихий",
+            "ko": "조용한"
+          }
+        }
+      ]
+    },
+    "ac_fan_speed_mode": {
       "type": "enum",
       "title": {
         "en": "Fan Speed",
@@ -19192,6 +19855,113 @@
         "ru": "Режим отпуска",
         "ko": "휴가 모드"
       }
+    },
+    "ac_louver_position": {
+      "type": "enum",
+      "title": {
+        "en": "Louvre Position",
+        "nl": "Lamellenstand",
+        "da": "Lamelposition",
+        "de": "Lamellenposition",
+        "es": "Posición de las lamas",
+        "fr": "Position des lames",
+        "it": "Posizione delle lamelle",
+        "no": "Lamelstilling",
+        "sv": "Lamellposition",
+        "pl": "Pozycja żaluzji",
+        "ru": "Положение жалюзи",
+        "ko": "루버 위치"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "fully closed",
+          "title": {
+            "en": "fully closed",
+            "nl": "volledig gesloten",
+            "da": "fuldstændigt lukket",
+            "de": "vollständig geschlossen",
+            "es": "totalmente cerrado",
+            "fr": "complètement fermé",
+            "it": "completamente chiuso",
+            "no": "helt lukket",
+            "sv": "helt stängd",
+            "pl": "całkowicie zamknięte",
+            "ru": "полностью закрыто",
+            "ko": "완전히 닫힘"
+          }
+        },
+        {
+          "id": "fully open",
+          "title": {
+            "en": "fully open",
+            "nl": "volledig open",
+            "da": "fuldt åben",
+            "de": "vollständig geöffnet",
+            "es": "totalmente abierto",
+            "fr": "complètement ouvert",
+            "it": "completamente aperto",
+            "no": "helt åpen",
+            "sv": "helt öppen",
+            "pl": "całkowicie otwarte",
+            "ru": "полностью открыто",
+            "ko": "완전히 열림"
+          }
+        },
+        {
+          "id": "quater open",
+          "title": {
+            "en": "half open",
+            "nl": "half open",
+            "da": "halvåben",
+            "de": "halb geöffnet",
+            "es": "medio abierto",
+            "fr": "à moitié ouvert",
+            "it": "mezzo aperto",
+            "no": "halvåpen",
+            "sv": "halvöppen",
+            "pl": "połowicznie otwarte",
+            "ru": "полуоткрыто",
+            "ko": "반 열림"
+          }
+        },
+        {
+          "id": "half open",
+          "title": {
+            "en": "half open",
+            "nl": "half open",
+            "da": "halvåben",
+            "de": "halb geöffnet",
+            "es": "medio abierto",
+            "fr": "à moitié ouvert",
+            "it": "mezzo aperto",
+            "no": "halvåpen",
+            "sv": "halvöppen",
+            "pl": "połowicznie otwarte",
+            "ru": "полуоткрыто",
+            "ko": "반 열림"
+          }
+        },
+        {
+          "id": "three quaters open",
+          "title": {
+            "en": "three quaters open",
+            "nl": "driekwart open",
+            "da": "tre fjerdedele åben",
+            "de": "drei Viertel geöffnet",
+            "es": "tres cuartos abierto",
+            "fr": "trois quarts ouvert",
+            "it": "tre quarti aperto",
+            "no": "tre fjerdedeler åpen",
+            "sv": "tre fjärdedelar öppen",
+            "pl": "trzy czwarte otwarte",
+            "ru": "три четверти открыто",
+            "ko": "세 사분의 열림"
+          }
+        }
+      ]
     },
     "ac_operating_mode": {
       "type": "enum",
@@ -19330,6 +20100,180 @@
             "pl": "Chłodzenie",
             "ru": "Охлаждение",
             "ko": "냉각"
+          }
+        }
+      ]
+    },
+    "ac_thermostat_mode": {
+      "type": "enum",
+      "title": {
+        "en": "Thermostat Mode",
+        "nl": "Thermostaatmodus",
+        "da": "Termostat tilstand",
+        "de": "Thermostatmodus",
+        "es": "Modo de termostato",
+        "fr": "Mode thermostat",
+        "it": "Modalità termostato",
+        "no": "Termostatmodus",
+        "sv": "Termostatläge",
+        "pl": "Tryb termostatu",
+        "ru": "Режим термостата",
+        "ko": "온도 조절기 모드"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "off",
+          "title": {
+            "en": "Off",
+            "da": "Slukket",
+            "de": "Aus",
+            "es": "Apagado",
+            "fr": "Éteint",
+            "it": "Spento",
+            "no": "Av",
+            "sv": "Av",
+            "pl": "Wyłączony",
+            "ru": "Выключено",
+            "ko": "끄기"
+          }
+        },
+        {
+          "id": "auto",
+          "title": {
+            "en": "Automatic",
+            "nl": "Automatisch",
+            "da": "Automatisk",
+            "de": "Automatisch",
+            "es": "Automático",
+            "fr": "Automatique",
+            "it": "Automatico",
+            "no": "Automatisk",
+            "sv": "Automatisk",
+            "pl": "Automatyczny",
+            "ru": "Автоматический",
+            "ko": "자동"
+          }
+        },
+        {
+          "id": "cool",
+          "title": {
+            "en": "Cool",
+            "nl": "Koelen",
+            "da": "Køl",
+            "de": "Kühlen",
+            "es": "Frío",
+            "fr": "Froid",
+            "it": "Raffreddare",
+            "no": "Kjøl",
+            "sv": "Kyla",
+            "pl": "Chłodzenie",
+            "ru": "Охлаждать",
+            "ko": "시원하게"
+          }
+        },
+        {
+          "id": "heat",
+          "title": {
+            "en": "Heat",
+            "nl": "Verwarmen",
+            "da": "Varme",
+            "de": "Heizen",
+            "es": "Calor",
+            "fr": "Chaleur",
+            "it": "Calore",
+            "no": "Varme",
+            "sv": "Värme",
+            "pl": "Ogrzewanie",
+            "ru": "Тепло",
+            "ko": "열"
+          }
+        },
+        {
+          "id": "emergencyHeating",
+          "title": {
+            "en": "Emergency Heating",
+            "nl": "Noodverwarming",
+            "da": "Nødvarme",
+            "de": "Notheizung",
+            "es": "Calefacción de emergencia",
+            "fr": "Chauffage d'urgence",
+            "it": "Riscaldamento di emergenza",
+            "no": "Nødoppvarming",
+            "sv": "Nödvärme",
+            "pl": "Ogrzewanie awaryjne",
+            "ru": "Аварийное отопление",
+            "ko": "비상 난방"
+          }
+        },
+        {
+          "id": "precooling",
+          "title": {
+            "en": "Precooling",
+            "nl": "Vooraf koelen",
+            "da": "Forafkøling",
+            "de": "Vorkühlen",
+            "es": "Preenfriamiento",
+            "fr": "Pré-refroidissement",
+            "it": "Pre-raffreddamento",
+            "no": "Forkjøling",
+            "sv": "Förkylning",
+            "pl": "Przedschładzanie",
+            "ru": "Предварительное охлаждение",
+            "ko": "사전 냉각"
+          }
+        },
+        {
+          "id": "fanOnly",
+          "title": {
+            "en": "Fan Only",
+            "nl": "Alleen Ventilator",
+            "da": "Kun Ventilator",
+            "de": "Nur Lüfter",
+            "es": "Solo Ventilador",
+            "fr": "Ventilateur Seulement",
+            "it": "Solo Ventilatore",
+            "no": "Kun Vifte",
+            "sv": "Endast Fläkt",
+            "pl": "Tylko Wentylator",
+            "ru": "Только Вентилятор",
+            "ko": "팬 전용"
+          }
+        },
+        {
+          "id": "dry",
+          "title": {
+            "en": "Dry",
+            "nl": "Droog",
+            "da": "Tør",
+            "de": "Trocken",
+            "es": "Seco",
+            "fr": "Sec",
+            "it": "Asciutto",
+            "no": "Tørr",
+            "sv": "Torrt",
+            "pl": "Suchy",
+            "ru": "Сухой",
+            "ko": "건조한"
+          }
+        },
+        {
+          "id": "sleep",
+          "title": {
+            "en": "Sleep",
+            "nl": "Slaap",
+            "da": "Søvn",
+            "de": "Schlaf",
+            "es": "Dormir",
+            "fr": "Dormir",
+            "it": "Dormire",
+            "no": "Søvn",
+            "sv": "Sömn",
+            "pl": "Sen",
+            "ru": "Сон",
+            "ko": "수면"
           }
         }
       ]
