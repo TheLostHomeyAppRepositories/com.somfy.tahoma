@@ -6427,7 +6427,7 @@
         "ru": "Термостат Danfoss Icon",
         "ko": "Danfoss Icon 온도 조절기"
       },
-      "class": "heater",
+      "class": "thermostat",
       "capabilities": [
         "target_temperature",
         "measure_temperature",
@@ -19401,7 +19401,7 @@
         "ru": "Zigbee Термостат",
         "ko": "Zigbee 온도 조절기"
       },
-      "class": "airconditioning",
+      "class": "thermostat",
       "capabilities": [
         "measure_temperature",
         "target_temperature.cooling",
