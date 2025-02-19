@@ -826,5 +826,11 @@
 	},
 	"4.0.98": {
 		"en": "Add Mt Position to 'ogp:venetianblind'"
+	},
+	"4.0.99": {
+		"en": "Added 'rts:TiltOnlyVenetianBlindRTSComponent' to 'Venetian blind (RTS)'"
+	},
+	"4.0.100": {
+		"en": "Added 'io:OnOffLightIOComponent' to 'Socket (RTS & io)'"
 	}
 }

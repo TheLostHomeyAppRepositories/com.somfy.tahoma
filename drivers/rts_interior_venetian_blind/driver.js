@@ -13,7 +13,7 @@ class InteriorVenetianBlindDriver extends Driver
 
 	async onInit()
 	{
-		this.deviceType = ['rts:VenetianBlindRTSComponent', 'rts:ExteriorVenetianBlindRTSComponent'];
+		this.deviceType = ['rts:VenetianBlindRTSComponent', 'rts:ExteriorVenetianBlindRTSComponent', 'rts:TiltOnlyVenetianBlindRTSComponent'];
 	}
 
 }

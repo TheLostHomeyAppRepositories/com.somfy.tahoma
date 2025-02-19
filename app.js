@@ -350,7 +350,7 @@ class myApp extends Homey.App
 			{
 				if (error.message)
 				{
-					this.logInformation('Local login', `Error: ${error.message}`);
+					this.logInformation('Local login: getDevices', `Error: ${error.message}`);
 					if (error.message.indexOf('ECONNREFUSED ') !== -1)
 					{
 						this.homey.settings.unset('localBearer');
@@ -976,11 +976,25 @@ class myApp extends Homey.App
 		let localDevices = null;
 		if (this.tahomaCloud.authenticated)
 		{
-			cloudDevices = await this.tahomaCloud.getDeviceData();
+			try
+			{
+				cloudDevices = await this.tahomaCloud.getDeviceData();
+			}
+			catch (error)
+			{
+				this.logInformation('logDevices', error);
+			}
 		}
 		if (this.tahomaLocal && this.tahomaLocal.authenticated)
 		{
-			localDevices = await this.tahomaLocal.getDeviceData();
+			try
+			{
+				localDevices = await this.tahomaLocal.getDeviceData();
+			}
+			catch (error)
+			{
+				this.logInformation('logDevices', error);
+			}
 		}
 
 		if (cloudDevices && localDevices)
