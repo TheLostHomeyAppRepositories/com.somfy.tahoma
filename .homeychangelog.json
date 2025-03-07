@@ -832,5 +832,8 @@
 	},
 	"4.0.100": {
 		"en": "Added 'io:OnOffLightIOComponent' to 'Socket (RTS & io)'"
+	},
+	"4.0.101": {
+		"en": "Added 'zigbee:OnOffComponent', 'zigbee:ElectricalEnergyConsumptionSensorComponent', 'io:TemperatureSensor', 'io:TemperatureMeasurementSensor', 'io:LightSensor'"
 	}
 }

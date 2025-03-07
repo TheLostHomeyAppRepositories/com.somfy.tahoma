@@ -20,6 +20,9 @@ class TemperatureSensorDriver extends Driver
 			'ovp:SomfyPilotWireTemperatureSensorOVPComponent',
 			'zwave:ZWaveTemperatureSensor',
 			'io:TemperatureInCelciusIOSystemDeviceSensor',
+			'netatmo:TemperatureComponent',
+			'io:TemperatureSensor',
+			'io:TemperatureMeasurementSensor',
 		];
 
 		/** * TEMPERATURE TRIGGERS ** */

@@ -13,7 +13,7 @@ class OnOffLightControllerDriver extends Driver
 
 	async onInit()
 	{
-		this.deviceType = ['rts:LightRTSComponent', 'io:LightMicroModuleSomfyIOComponent', 'io:OnOffIOComponent', 'eliot:OnOffSwitchEliotComponent', 'io:SwitchMicroModuleSomfyIOComponent'];
+		this.deviceType = ['rts:LightRTSComponent', 'io:LightMicroModuleSomfyIOComponent', 'io:OnOffIOComponent', 'eliot:OnOffSwitchEliotComponent', 'io:SwitchMicroModuleSomfyIOComponent', 'zigbee:OnOffComponent'];
 		await super.onInit();
 	}
 

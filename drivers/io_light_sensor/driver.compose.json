@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "Sunis sun sensor (io)",
-    "nl": "Sunis zonsensor (io)",
-    "da": "Sunis solsensensor (io)",
-    "de": "Sunis Sonnensensor (io)",
-    "es": "Sensor de sol Sunis (io)",
-    "fr": "Capteur solaire Sunis (io)",
-    "it": "Sensore solare Sunis (io)",
-    "no": "Sunis solsensor (io)",
-    "sv": "Sunis solsensor (io)",
-    "pl": "Czujnik słońca Sunis (io)",
-    "ru": "Солнечный датчик Sunis (io)",
-    "ko": "Sunis 태양 감지기 (io)"
+    "en": "Sun sensor (io)",
+    "nl": "Zonsensor (io)",
+    "da": "SSolsensor (io)",
+    "de": "Sonnensensor (io)",
+    "es": "Sensor solar (io)",
+    "fr": "Capteur solaire (io)",
+    "it": "Sensore solare (io)",
+    "no": "SSolsensor (io)",
+    "sv": "SSolsensor (io)",
+    "pl": "Czujnik słońca (io)",
+    "ru": "Солнечный датчик (io)",
+    "ko": "태양 센서 (io)"
   },
   "class": "sensor",
   "energy": {

@@ -12,18 +12,47 @@ const CapabilitiesXRef = [
 		scale: 1000,
 	},
 ];
+const CapabilitiesXRefWithPower = [
+	{
+		homeyName: 'meter_power',
+		somfyNameGet: 'core:ElectricEnergyConsumptionState',
+		somfyNameSet: [],
+		scale: 1,
+	},
+	{
+		homeyName: 'measure_power',
+		somfyNameGet: 'core:ElectricPowerConsumptionState',
+		somfyNameSet: [],
+		scale: 1,
+	},
+];
 class EnergySensorDevice extends SensorDevice
 {
 
 	async onInit()
 	{
-		await super.onInit(CapabilitiesXRef);
+		this.CapabilitiesXRef = CapabilitiesXRef;
+		const dd = this.getData();
+		let controllableName = '';
+		if (dd.controllableName)
+		{
+			controllableName = dd.controllableName.toString().toLowerCase();
+		}
+		if (controllableName === 'zigbee:electricalenergyconsumptionsensorcomponent')
+		{
+			this.CapabilitiesXRef = CapabilitiesXRefWithPower;
+		}
+		else if (this.hasCapability('measure_power'))
+		{
+			this.removeCapability('measure_power').catch(this.error);
+		}
+		await super.onInit(this.CapabilitiesXRef);
 	}
 
 	// Update the capabilities
 	async syncEvents(events, local)
 	{
-		this.syncEventsList(events, CapabilitiesXRef, local);
+		this.syncEventsList(events, this.CapabilitiesXRef, local);
 	}
 
 }

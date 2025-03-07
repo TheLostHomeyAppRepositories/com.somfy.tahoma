@@ -15,7 +15,8 @@
   },
   "class": "sensor",
   "capabilities": [
-    "meter_power"
+    "meter_power",
+	"measure_power"
   ],
   "energy": {
     "cumulative": true

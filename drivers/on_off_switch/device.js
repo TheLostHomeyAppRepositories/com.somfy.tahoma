@@ -22,7 +22,7 @@ class onOffLightControllerDevice extends LightControllerDevice
 			controllableName = dd.controllableName.toString().toLowerCase();
 		}
 
-		if (controllableName !== 'io:switchmicromodulesomfyiocomponent')
+		if ((controllableName !== 'io:switchmicromodulesomfyiocomponent') && (controllableName !== 'io:LightMicroModuleSomfyIOComponent') && (controllableName !== 'zigbee:onoffcomponent'))
 		{
 			if (this.hasCapability('on_with_timer'))
 			{

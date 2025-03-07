@@ -13,7 +13,7 @@ class LightSensorDriver extends Driver
 
 	async onInit()
 	{
-		this.deviceType = ['io:LightIOSystemSensor', 'zwave:ZWaveLightSensor', 'io:SunEnergyActuatorSensor'];
+		this.deviceType = ['io:LightIOSystemSensor', 'zwave:ZWaveLightSensor', 'io:SunEnergyActuatorSensor', 'io:LightSensor'];
 
 		/** * LUMINANCE TRIGGERS ** */
 		this._triggerLuminanceMoreThan = this.homey.flow.getDeviceTriggerCard('change_luminance_more_than');
