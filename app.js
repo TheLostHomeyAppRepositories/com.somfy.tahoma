@@ -997,7 +997,8 @@ class myApp extends Homey.App
 			}
 		}
 
-		if (cloudDevices && localDevices)
+		// check if we have both cloud and local devices and they are both arrays
+		if (Array.isArray(cloudDevices) && Array.isArray(localDevices))
 		{
 			// Filter cloud devices to remove local devices
 			const unique = cloudDevices.filter((cloud) =>

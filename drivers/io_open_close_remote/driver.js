@@ -14,7 +14,7 @@ class io_open_close_remoteDriver extends Driver
 
 	async onInit()
 	{
-		this.deviceType = ['io:IORemoteController'];
+		this.deviceType = ['io:IORemoteController', 'io:DynamicRemoteController'];
 		await super.onInit();
 
 		this._remoteSateChangedTrigger = this.homey.flow.getDeviceTriggerCard('remote_state_changed');

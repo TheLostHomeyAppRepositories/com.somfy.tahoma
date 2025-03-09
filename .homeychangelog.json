@@ -835,5 +835,8 @@
 	},
 	"4.0.101": {
 		"en": "Added 'zigbee:OnOffComponent', 'zigbee:ElectricalEnergyConsumptionSensorComponent', 'io:TemperatureSensor', 'io:TemperatureMeasurementSensor', 'io:LightSensor'"
+	},
+	"4.0.102": {
+		"en": "Added 'io:DynamicRemoteController' to 'Remote (io)'"
 	}
 }
