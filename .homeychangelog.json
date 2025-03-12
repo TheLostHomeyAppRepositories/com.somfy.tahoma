@@ -838,5 +838,8 @@
 	},
 	"4.0.102": {
 		"en": "Added 'io:DynamicRemoteController' to 'Remote (io)'"
+	},
+	"4.0.103": {
+		"en": "Add RGB Light driver"
 	}
 }

@@ -1,0 +1,31 @@
+{
+  "name": {
+    "en": "RGB Light",
+    "nl": "RGB-licht",
+    "da": "RGB Lys",
+    "de": "RGB Licht",
+    "es": "Luz RGB",
+    "fr": "Lumière RGB",
+    "it": "Luce RGB",
+    "no": "RGB Lys",
+    "sv": "RGB Ljus",
+    "pl": "Światło RGB",
+    "ru": "RGB свет",
+    "ko": "RGB 조명"
+  },
+  "class": "light",
+  "capabilities": [
+    "onoff",
+    "dim",
+    "light_hue",
+    "light_saturation"
+  ],
+  "capabilitiesOptions": {
+    "onoff": {
+      "setOnDim": false
+    }
+  },
+  "$extends": [
+    "cloudDriver"
+  ]
+}
