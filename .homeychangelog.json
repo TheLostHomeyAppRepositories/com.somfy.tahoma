@@ -841,5 +841,8 @@
 	},
 	"4.0.103": {
 		"en": "Add RGB Light driver"
+	},
+	"4.0.104": {
+		"en": "Fix translation AND Flow cards"
 	}
 }
