@@ -46,7 +46,8 @@
 		"region": "Region",
 		"europe": "Europe",
 		"usa": "USA",
-		"oceana": "Oceana"
+		"oceana": "Oceana",
+		"localToken": "Local Token"
 	},
 	"pair": {
 		"select_region": {

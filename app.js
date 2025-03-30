@@ -299,7 +299,7 @@ class myApp extends Homey.App
 		this.syncTimerId = this.homey.setTimeout(() => this.startSync(), 60000);
 	}
 
-	async doLocalLogin(username, password, region)
+	async doLocalLogin(username, password, region, localToken)
 	{
 		if (this.tahomaLocal === null)
 		{
@@ -313,7 +313,13 @@ class myApp extends Homey.App
 				this.logInformation('Doing local login');
 			}
 
-			this.localBearer = await this.tahomaLocal.getLocalAuthCode(username, password, region, this.localBridgeInfo.pin, this.localBridgeInfo.port, this.localBearer, await this.homey.cloud.getHomeyId());
+			let newToken = null;
+			if (localToken)
+			{
+				this.logInformation('Using provided local token');
+				newToken = { token: localToken };
+			}
+			this.localBearer = await this.tahomaLocal.getLocalAuthCode(username, password, region, this.localBridgeInfo.pin, this.localBridgeInfo.port, this.localBearer, await this.homey.cloud.getHomeyId(), newToken);
 		}
 		else
 		{
@@ -334,6 +340,7 @@ class myApp extends Homey.App
 			this.homey.settings.set('username', username);
 			this.homey.settings.set('password', password);
 			this.homey.settings.set('region', region);
+			this.homey.settings.set('localToken', localToken);
 			this.homey.settings.set('localBearer', this.localBearer);
 
 			try
@@ -850,11 +857,11 @@ class myApp extends Homey.App
 	// Throws an exception if the login fails
 	async newLogin(args)
 	{
-		await this.newLogin_2(args.username, args.password, args.region, true);
+		await this.newLogin_2(args.username, args.password, args.region, args.localToken, true);
 	}
 
 	// Throws an exception if the login fails
-	async newLogin_2(username, password, region, forceLogin = false)
+	async newLogin_2(username, password, region, localToken, forceLogin = false)
 	{
 		// Stop the timer so periodic updates don't happen while changing login
 		await this.stopSync();
@@ -869,7 +876,7 @@ class myApp extends Homey.App
 			try
 			{
 				// Need to get a local bearer token
-				await this.doLocalLogin(username, password, region);
+				await this.doLocalLogin(username, password, region, localToken);
 			}
 			catch (error)
 			{

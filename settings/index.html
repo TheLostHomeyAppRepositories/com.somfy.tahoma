@@ -67,6 +67,10 @@
 					<p></p>
 				</div>
 				<div class="field row">
+					<label class="homey-form-label" for="localToken" data-i18n="settings.localToken"></label>
+					<input class="homey-form-input" id="localToken" type="text" value="" />
+				</div>
+				<div class="field row">
 					<label class="homey-form-label" for="region" data-i18n="settings.region"></label>
 					<select class="homey-form-select" name="region" id="region">
 						<option value="europe" data-i18n="settings.europe"></option>
@@ -200,6 +204,7 @@
 		var usernameEl = document.getElementById('username');
 		var passwordEl = document.getElementById('password');
 		var showPasswordEl = document.getElementById('showPassword');
+		var localTokenEl = document.getElementById('localToken');
 		var regionE1 = document.getElementById('region');
 		var logoutEl = document.getElementById('logoutElement');
 
@@ -335,6 +340,13 @@
 				}
 			});
 
+			Homey.get('localToken', function(err, localToken)
+			{
+				if (err) return Homey.alert(err);
+				console.log('localToken: ', localToken);
+				localTokenEl.value = localToken;
+			});
+
 			Homey.get('region', function(err, region)
 			{
 				if (err) return Homey.alert(err);
@@ -346,14 +358,16 @@
 			{
 				Object.values(document.querySelectorAll('*')).forEach(element => element.style.cursor = "wait");
 				response.innerHTML = __('settings.save_verifying');
-				var username = usernameEl.value;
-				var password = passwordEl.value;
-				var region = regionE1.value;
+				const username = usernameEl.value;
+				const password = passwordEl.value; // Changed var to const for consistency
+				const region = regionE1.value;
+				const localToken = localTokenEl.value; // Added localToken variable
 				Homey.api('POST', '/login/',
 				{
 					"username": username,
 					"password": password,
 					"region": region,
+					"localToken": localToken
 				}, function(err, result)
 				{
 					Object.values(document.querySelectorAll('*')).forEach(element => element.style.cursor = "default");
@@ -384,6 +398,7 @@
 						response.innerHTML = __('settings.logout_success');
 						usernameEl.value = ('');
 						passwordEl.value = ('');
+						localTokenEl.value = ('');
 					}
 				});
 			});

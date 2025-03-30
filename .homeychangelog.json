@@ -844,5 +844,8 @@
 	},
 	"4.0.104": {
 		"en": "Fix translation AND Flow cards"
+	},
+	"4.0.105": {
+		"en": "Added option to enter a local access token manually."
 	}
 }
