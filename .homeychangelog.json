@@ -847,5 +847,8 @@
 	},
 	"4.0.105": {
 		"en": "Added option to enter a local access token manually."
+	},
+	"4.0.106": {
+		"en": "Add fix for alternative Tahoma URL for local access."
 	}
 }
