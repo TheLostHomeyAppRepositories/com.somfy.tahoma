@@ -26,15 +26,12 @@ class PergolaDevice extends WindowCoveringsDevice {
 
 		if (this.controllableName === 'ogp:pergola')
 		{
-			this.windowcoveringsActions = {
-				up: 'open',
-				idle: 'stop',
-				down: 'close',
-			};
-
-			this.positionStateName = 'core:ClosureState';
-			this.setPositionActionName = 'setClosure';
-			this.openClosedStateName = 'core:OpenClosedState';
+			if (this.hasCapability('windowcoverings_state')) {
+				this.removeCapability('windowcoverings_state').catch(this.error);
+			}
+			this.positionStateName = 'core:SlateOrientationState';
+			this.setPositionActionName = 'core:TiltState';
+			this.openClosedStateName = '';
 		}
 		else
 		{
