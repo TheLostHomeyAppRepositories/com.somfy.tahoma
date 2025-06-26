@@ -29,8 +29,8 @@ class PergolaDevice extends WindowCoveringsDevice {
 			if (this.hasCapability('windowcoverings_state')) {
 				this.removeCapability('windowcoverings_state').catch(this.error);
 			}
-			this.positionStateName = 'core:SlateOrientationState';
-			this.setPositionActionName = 'core:TiltState';
+			this.positionStateName = 'core:TiltState';
+			this.setPositionActionName = 'setTilt';
 			this.openClosedStateName = '';
 		}
 		else
