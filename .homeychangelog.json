@@ -853,5 +853,8 @@
 	},
 	"4.0.107": {
 		"en": "Updated Pergola device inline with Somfy changes to the API and added 'my_position' capability."
+	},
+	"4.0.108": {
+		"en": "Fix issue with the Pergola 'my_position' command not being set correctly."
 	}
 }

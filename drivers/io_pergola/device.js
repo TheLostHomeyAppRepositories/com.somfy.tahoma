@@ -27,6 +27,7 @@ class PergolaDevice extends WindowCoveringsDevice
 			this.controllableName = dd.controllableName.toString().toLowerCase();
 		}
 
+		this.myParameter = [];
 		if (this.controllableName === 'ogp:pergola')
 		{
 			if (this.hasCapability('windowcoverings_state'))
@@ -42,6 +43,8 @@ class PergolaDevice extends WindowCoveringsDevice
 				this.addCapability('my_position').catch(this.error);
 			}
 
+			this.myCommand = 'goToAlias';
+			this.myParameter = ['1'];
 			this.registerCapabilityListener('my_position', this.onCapabilityMyPosition.bind(this));
 		}
 		else
@@ -72,7 +75,7 @@ class PergolaDevice extends WindowCoveringsDevice
 
 				const action = {
 					name: this.myCommand,
-					parameters: [1],
+					parameters: this.myParameter,
 				};
 				const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
 				this.executionCmd = action.name;
