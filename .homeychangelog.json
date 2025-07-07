@@ -856,5 +856,8 @@
 	},
 	"4.0.108": {
 		"en": "Fix issue with the Pergola 'my_position' command not being set correctly."
+	},
+	"4.0.109": {
+		"en": "Added 'io:DynamicExteriorVenetianBlindIOComponent' to 'Exterior Venetian Blinds (io)'"
 	}
 }

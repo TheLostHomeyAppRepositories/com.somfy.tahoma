@@ -37,14 +37,21 @@ class ExteriorVenetianBlindDevice extends WindowCoveringsDevice
 			controllableName = dd.controllableName.toString().toLowerCase();
 		}
 
-		if (controllableName === 'ogp:venetianblind')
+		if ((controllableName === 'ogp:venetianblind') || (controllableName === 'io:dynamicexteriorvenetianblind'))
 		{
 			if (!this.hasCapability('my_position'))
 			{
 				this.addCapability('my_position').catch(this.error);
 			}
 
-			this.myCommand = 'goToAlias'; // Name of the command to set the My position
+			if (controllableName === 'ogp:venetianblind')
+			{
+				this.myCommand = 'goToAlias'; // Name of the command to set the My position
+			}
+			else
+			{
+				this.myCommand = 'my'; // Name of the command to set the My position
+			}
 		}
 		else if (this.hasCapability('my_position'))
 		{
