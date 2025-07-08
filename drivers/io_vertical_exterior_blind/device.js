@@ -37,6 +37,12 @@ class VerticalExteriorBlindDevice extends WindowCoveringsDevice
 		{
 			this.addCapability('my_position').catch(this.error);
 		}
+
+		if ((this.controllableName === 'io:DynamicBlindIOComponent'))
+		{
+			this.myCommand = 'goToAlias'; // Name of the command to set the My position
+			this.myParameter = ['1'];
+		}
 	}
 
 }

@@ -859,5 +859,8 @@
 	},
 	"4.0.109": {
 		"en": "Added 'io:DynamicExteriorVenetianBlindIOComponent' to 'Exterior Venetian Blinds (io)'"
+	},
+	"4.0.110": {
+		"en": "Added 'io:DynamicBlindIOComponent' to 'Exterior Blinds (io)'."
 	}
 }

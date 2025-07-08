@@ -13,7 +13,7 @@ class VerticalExteriorBlindDriver extends Driver
 
 	async onInit()
 	{
-		this.deviceType = ['io:VerticalExteriorAwningIOComponent', 'io:VerticalExteriorAwningVeluxIOComponent', 'io:VerticalExteriorAwningWithBatteryIOComponent'];
+		this.deviceType = ['io:VerticalExteriorAwningIOComponent', 'io:VerticalExteriorAwningVeluxIOComponent', 'io:VerticalExteriorAwningWithBatteryIOComponent', 'io:DynamicBlindIOComponent'];
 	}
 
 }
