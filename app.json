@@ -35,7 +35,7 @@
     "ru": "Сердце вашего умного дома",
     "ko": "스마트 홈의 중심"
   },
-  "version": "4.0.110",
+  "version": "4.0.111",
   "compatibility": ">=12.0.0",
   "author": {
     "name": "Adrian Rockall",
@@ -2846,7 +2846,7 @@
       },
       {
         "title": {
-          "en": "Set quite mode",
+          "en": "Set quiet_mode",
           "nl": "Stille modus instellen",
           "fr": "Définir le mode silencieux",
           "de": "Ruhemodus einstellen",
@@ -2856,7 +2856,7 @@
           "pl": "Ustaw tryb cichy"
         },
         "titleFormatted": {
-          "en": "Set quite mode [[quiet_mode]]",
+          "en": "Set quiet_mode [[quiet_mode]]",
           "nl": "Stille modus instellen [[quiet_mode]]",
           "fr": "Définir le mode silencieux [[quiet_mode]]",
           "de": "Ruhemodus einstellen [[quiet_mode]]",
@@ -2886,7 +2886,7 @@
             }
           }
         ],
-        "id": "set_quite_mode"
+        "id": "set_quiet_mode_mode"
       },
       {
         "id": "set_zone",

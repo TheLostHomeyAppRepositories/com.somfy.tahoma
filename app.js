@@ -829,11 +829,11 @@ class myApp extends Homey.App
 				return args.device.triggerCapabilityListener('windowcoverings_tilt_up');
 			});
 
-		this.homey.flow.getActionCard('set_quite_mode')
+		this.homey.flow.getActionCard('set_quiet_mode')
 			.registerRunListener(async (args, state) =>
 			{
-				this.log('set_quite_mode');
-				return args.device.triggerCapabilityListener('quite_mode', args.quite_mode === 'on');
+				this.log('set_quiet_mode');
+				return args.device.triggerCapabilityListener('quiet_mode', args.quiet_mode === 'on');
 			});
 
 		this.homey.flow.getActionCard('wait_for_action_to_finish')

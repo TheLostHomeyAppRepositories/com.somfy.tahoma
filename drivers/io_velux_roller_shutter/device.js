@@ -68,11 +68,11 @@ class VeluxRollerShutterDevice extends WindowCoveringsDevice {
 			// New value from Tahoma
 			if (this.homey.app.infoLogEnabled)
 			{
-				const oldValue = this.getCapabilityValue('quite_mode');
+				const oldValue = this.getCapabilityValue('quiet_mode');
 				this.homey.app.logInformation(`${this.getName()}: onCapabilityQuietMode`, `Old Value: ${oldValue}, New Value: ${value}`);
 			}
 
-			this.setCapabilityValue('quite_mode', value).catch(this.error);
+			this.setCapabilityValue('quiet_mode', value).catch(this.error);
 		}
 	}
 
