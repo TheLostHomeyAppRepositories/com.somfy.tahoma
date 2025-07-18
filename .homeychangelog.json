@@ -865,5 +865,8 @@
 	},
 	"4.0.111": {
 		"en": "Fixed quiet mode."
+	},
+	"4.0.112": {
+		"en": "Fixed quiet mode Flow action card."
 	}
 }

@@ -506,14 +506,6 @@ class myApp extends Homey.App
 				return args.device.onCapabilityWindowcoveringsTiltSet(args.windowcoverings_set, null);
 			});
 
-		this.homey.flow.getActionCard('set_quiet_mode')
-			.registerRunListener(async (args, state) =>
-			{
-				this.log('set_quiet_mode');
-				await args.device.onCapabilityQuietMode(args.newQuietMode === 'on', null);
-				return args.device.setCapabilityValue('quiet_mode', args.newQuietMode === 'on');
-			});
-
 		this.homey.flow.getActionCard('set_my_position')
 			.registerRunListener(async (args, state) =>
 			{
