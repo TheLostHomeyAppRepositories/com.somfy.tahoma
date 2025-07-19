@@ -23,7 +23,7 @@
 		{
 			"name": "device",
 			"type": "device",
-			"filter": "driver_id=io_velux_roller_shutter"
+			"filter": "driver_id=io_velux_roller_shutter|io_roller_shutter_quiet"
 		},
 		{
 			"name": "quiet_mode",

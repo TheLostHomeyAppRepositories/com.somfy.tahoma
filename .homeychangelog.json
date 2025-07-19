@@ -868,5 +868,8 @@
 	},
 	"4.0.112": {
 		"en": "Fixed quiet mode Flow action card."
+	},
+	"4.0.113": {
+		"en": "Added 'io:RollerShutterVeluxIOComponent' to 'Roller shutter with quiet mode (io)' to support the correct quiet mode."
 	}
 }

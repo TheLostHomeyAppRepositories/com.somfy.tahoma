@@ -17,6 +17,7 @@ class RollerShutterQuietDriver extends ioWindowCoveringsDriver
 		this.deviceType = [
 			'io:RollerShutterWithLowSpeedManagementIOComponent',
 			'io:DynamicRollerShutterIOComponent',
+			'io:RollerShutterVeluxIOComponent',
 		];
 
 		await super.onInit();
