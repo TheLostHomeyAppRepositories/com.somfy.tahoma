@@ -33,5 +33,7 @@
   },
   "min": 0,
   "max": 10,
-  "step": 1
+  "step": 1,
+  "decimals": 0,
+  "icon": "/assets/stopwatch.svg"
 }

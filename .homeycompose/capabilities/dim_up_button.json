@@ -1,0 +1,21 @@
+{
+  "type": "boolean",
+  "getable": false,
+  "setable": true,
+  "uiComponent": "button",
+  "title": {
+    "en": "Brighter",
+	"nl": "Lichter",
+	"de": "Heller",
+	"da": "Lysere",
+	"es": "Más Brillante",
+	"fr": "Plus Lumineux",
+	"it": "Più Luminoso",
+	"no": "Lysere",
+	"sv": "Ljusa",
+	"pl": "Jaśniejszy",
+	"ru": "Ярче",
+	"ko": "더 밝게"
+  },
+  "icon": "/assets/brighter.svg"
+}

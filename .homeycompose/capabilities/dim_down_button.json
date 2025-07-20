@@ -1,0 +1,21 @@
+{
+  "type": "boolean",
+  "getable": false,
+  "setable": true,
+  "uiComponent": "button",
+  "title": {
+    "en": "Dimmer",
+	"nl": "Dimmen",
+	"de": "Dimmer",
+	"da": "Dæmper",
+	"es": "Atenuador",
+	"fr": "Variateur",
+	"it": "Dimmers",
+	"no": "Demper",
+	"sv": "Dimmer",
+	"pl": "Ściemniacz",
+	"ru": "Диммер",
+	"ko": "조명 조절기"
+  },
+"icon": "/assets/dimmer.svg"
+}

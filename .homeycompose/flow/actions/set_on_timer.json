@@ -1,0 +1,46 @@
+{
+	"id": "set_on_timer",
+	"title": {
+		"en": "Switch On for...",
+		"nl": "Zet aan voor...",
+		"da": "Tænd i...",
+		"de": "Schalte ein für...",
+		"es": "Enciende por...",
+		"fr": "Allume pour...",
+		"it": "Accendi per...",
+		"no": "Slå på i...",
+		"sv": "Slå på i...",
+		"pl": "Włącz na...",
+		"ru": "Включить на...",
+		"ko": "켜기..."
+	},
+	"titleFormatted": {
+		"en": "Switch On for [[duration]] minutes",
+		"nl": "Schakel [[duration]] minuten in",
+		"da": "Tænd i [[duration]] minutter",
+		"de": "Einschalten für [[duration]] Minuten",
+		"es": "Encender durante [[duration]] minutos",
+		"fr": "Allumer pendant [[duration]] minutes",
+		"it": "Accendere per [[duration]] minuti",
+		"no": "Slå på i [[duration]] minutter",
+		"sv": "Slå på i [[duration]] minuter",
+		"pl": "Włącz na [[duration]] minut",
+		"ru": "Включить на [[duration]] минут",
+		"ko": "[[duration]]분 동안 켜기"
+	},
+	"args": [
+		{
+			"name": "device",
+			"type": "device",
+			"filter": "driver_id=rts_dimmable_light"
+		},
+		{
+			"name": "duration",
+			"type": "number",
+			"min": 1,
+			"max": 10,
+			"step": 1,
+			"unit": "min"
+		}
+	]
+}

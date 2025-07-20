@@ -16,5 +16,6 @@
     "pl": "Włączony",
     "ru": "Вкл",
     "ko": "켜짐"
-  }
+  },
+"icon": "/assets/on.svg"
 }

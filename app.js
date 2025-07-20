@@ -534,6 +534,13 @@ class myApp extends Homey.App
 				return args.device.triggerCapabilityListener('on_button', true, null);
 			});
 
+		this.homey.flow.getActionCard('set_on_timer')
+			.registerRunListener(async (args, state) =>
+			{
+				this.log('set_on_timer');
+				return args.device.triggerCapabilityListener('on_with_timer', args.duration, null);
+			});
+
 		this.homey.flow.getActionCard('set_off')
 			.registerRunListener(async (args, state) =>
 			{
@@ -1985,8 +1992,27 @@ class myApp extends Homey.App
 		}
 		if (this.tahomaCloud.authenticated)
 		{
-			// Get the cloud data as it will support all devices
-			return this.tahomaCloud.getDeviceData();
+			// Get the cloud data, as it will support devices not available in the local connection
+			const cloudData = await this.tahomaCloud.getDeviceData();
+
+			// join the local and cloud data but remove duplicates
+			if (data && Array.isArray(data) && Array.isArray(cloudData))
+			{
+				// Filter cloud devices to remove local devices
+				const unique = cloudData.filter((cloud) =>
+				{
+					const isDuplicate = (data.findIndex((local) => (local.deviceURL === cloud.deviceURL) && (local.controllableName === cloud.controllableName)) >= 0);
+
+					if (!isDuplicate)
+					{
+						return true;
+					}
+
+					return false;
+				});
+
+				data = data.concat(unique);
+			}
 		}
 
 		return data;

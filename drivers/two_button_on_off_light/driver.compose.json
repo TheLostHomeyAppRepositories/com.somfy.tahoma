@@ -13,7 +13,7 @@
     "ru": "Свет с таймером (RTS)",
     "ko": "타이머가 있는 조명 (RTS)"
   },
-  "class": "button",
+  "class": "light",
   "capabilities": [
     "on_button",
     "off_button",

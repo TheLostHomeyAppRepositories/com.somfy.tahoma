@@ -35,7 +35,7 @@
     "ru": "Сердце вашего умного дома",
     "ko": "스마트 홈의 중심"
   },
-  "version": "4.0.113",
+  "version": "4.0.114",
   "compatibility": ">=12.0.0",
   "author": {
     "name": "Adrian Rockall",
@@ -2573,7 +2573,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=rts_interior_venetian_blind|io_roller_shutter_quiet|io_garage_door_partial|io_roller_shutter|io_horizontal_awning|rts_interior_blind|rts_interior_curtain"
+            "filter": "driver_id=rts_interior_venetian_blind|io_roller_shutter_quiet|io_garage_door_partial|io_roller_shutter|io_horizontal_awning|rts_interior_blind|rts_interior_curtain|rts_dimmable_light"
           }
         ]
       },
@@ -2597,7 +2597,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=heater_variable"
+            "filter": "driver_id=heater_variable|rts_dimmable_light"
           }
         ]
       },
@@ -2621,7 +2621,53 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=heater_variable"
+            "filter": "driver_id=heater_variable|rts_dimmable_light"
+          }
+        ]
+      },
+      {
+        "id": "set_on_timer",
+        "title": {
+          "en": "Switch On for...",
+          "nl": "Zet aan voor...",
+          "da": "Tænd i...",
+          "de": "Schalte ein für...",
+          "es": "Enciende por...",
+          "fr": "Allume pour...",
+          "it": "Accendi per...",
+          "no": "Slå på i...",
+          "sv": "Slå på i...",
+          "pl": "Włącz na...",
+          "ru": "Включить на...",
+          "ko": "켜기..."
+        },
+        "titleFormatted": {
+          "en": "Switch On for [[duration]] minutes",
+          "nl": "Schakel [[duration]] minuten in",
+          "da": "Tænd i [[duration]] minutter",
+          "de": "Einschalten für [[duration]] Minuten",
+          "es": "Encender durante [[duration]] minutos",
+          "fr": "Allumer pendant [[duration]] minutes",
+          "it": "Accendere per [[duration]] minuti",
+          "no": "Slå på i [[duration]] minutter",
+          "sv": "Slå på i [[duration]] minuter",
+          "pl": "Włącz na [[duration]] minut",
+          "ru": "Включить на [[duration]] минут",
+          "ko": "[[duration]]분 동안 켜기"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=rts_dimmable_light"
+          },
+          {
+            "name": "duration",
+            "type": "number",
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "unit": "min"
           }
         ]
       },
@@ -16972,6 +17018,186 @@
           }
         }
       ],
+      "icon": "/drivers/rts_dimmable_light/assets/icon.svg",
+      "images": {
+        "large": "/drivers/rts_dimmable_light/assets/images/large.png",
+        "small": "/drivers/rts_dimmable_light/assets/images/small.png"
+      },
+      "name": {
+        "en": "Dimmable Light (RTS)",
+        "nl": "Dimbaar Licht (RTS)",
+        "da": "Dimmbar Lys (RTS)",
+        "de": "Dimmbares Licht (RTS)",
+        "es": "Luz Regulable (RTS)",
+        "fr": "Lumière Dimmable (RTS)",
+        "it": "Luce Dimmabile (RTS)",
+        "no": "Dimmbar Lys (RTS)",
+        "sv": "Dimmbar Ljus (RTS)",
+        "pl": "Dimmowalne Światło (RTS)",
+        "ru": "Диммируемый Свет (RTS)",
+        "ko": "조절 가능한 조명 (RTS)"
+      },
+      "class": "light",
+      "capabilities": [
+        "on_button",
+        "off_button",
+        "dim_up_button",
+        "dim_down_button",
+        "on_with_timer",
+        "my_position"
+      ],
+      "id": "rts_dimmable_light"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices",
+            "prev": "login_credentials"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        }
+      ],
       "icon": "/drivers/rts_gate_opener/assets/icon.svg",
       "images": {
         "large": "/drivers/rts_gate_opener/assets/images/large.png",
@@ -18849,7 +19075,7 @@
         "ru": "Свет с таймером (RTS)",
         "ko": "타이머가 있는 조명 (RTS)"
       },
-      "class": "button",
+      "class": "light",
       "capabilities": [
         "on_button",
         "off_button",
@@ -20986,6 +21212,48 @@
       "getable": true,
       "setable": true
     },
+    "dim_down_button": {
+      "type": "boolean",
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "title": {
+        "en": "Dimmer",
+        "nl": "Dimmen",
+        "de": "Dimmer",
+        "da": "Dæmper",
+        "es": "Atenuador",
+        "fr": "Variateur",
+        "it": "Dimmers",
+        "no": "Demper",
+        "sv": "Dimmer",
+        "pl": "Ściemniacz",
+        "ru": "Диммер",
+        "ko": "조명 조절기"
+      },
+      "icon": "/assets/dimmer.svg"
+    },
+    "dim_up_button": {
+      "type": "boolean",
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "title": {
+        "en": "Brighter",
+        "nl": "Lichter",
+        "de": "Heller",
+        "da": "Lysere",
+        "es": "Más Brillante",
+        "fr": "Plus Lumineux",
+        "it": "Più Luminoso",
+        "no": "Lysere",
+        "sv": "Ljusa",
+        "pl": "Jaśniejszy",
+        "ru": "Ярче",
+        "ko": "더 밝게"
+      },
+      "icon": "/assets/brighter.svg"
+    },
     "eh_operating_mode": {
       "type": "enum",
       "title": {
@@ -22086,7 +22354,8 @@
         "pl": "MY poziom ciepła",
         "ru": "MY уровень тепла",
         "ko": "MY 열 수준"
-      }
+      },
+      "icon": "/assets/my.svg"
     },
     "my_position": {
       "type": "boolean",
@@ -22106,7 +22375,8 @@
         "pl": "MOJA Pozycja",
         "ru": "МОЯ Позиция",
         "ko": "내 위치"
-      }
+      },
+      "icon": "/assets/my.svg"
     },
     "my_value": {
       "type": "number",
@@ -22243,7 +22513,8 @@
         "pl": "Wył.",
         "ru": "Выкл.",
         "ko": "끄기"
-      }
+      },
+      "icon": "/assets/off.svg"
     },
     "on_button": {
       "type": "boolean",
@@ -22263,7 +22534,8 @@
         "pl": "Włączony",
         "ru": "Вкл",
         "ko": "켜짐"
-      }
+      },
+      "icon": "/assets/on.svg"
     },
     "on_with_timer": {
       "type": "number",
@@ -22300,7 +22572,9 @@
       },
       "min": 0,
       "max": 10,
-      "step": 1
+      "step": 1,
+      "decimals": 0,
+      "icon": "/assets/stopwatch.svg"
     },
     "open_button": {
       "type": "boolean",

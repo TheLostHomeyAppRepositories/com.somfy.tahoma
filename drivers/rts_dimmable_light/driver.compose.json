@@ -1,0 +1,28 @@
+{
+  "name": {
+    "en": "Dimmable Light (RTS)",
+	"nl": "Dimbaar Licht (RTS)",
+	"da": "Dimmbar Lys (RTS)",
+	"de": "Dimmbares Licht (RTS)",
+	"es": "Luz Regulable (RTS)",
+	"fr": "Lumière Dimmable (RTS)",
+	"it": "Luce Dimmabile (RTS)",
+	"no": "Dimmbar Lys (RTS)",
+	"sv": "Dimmbar Ljus (RTS)",
+	"pl": "Dimmowalne Światło (RTS)",
+	"ru": "Диммируемый Свет (RTS)",
+	"ko": "조절 가능한 조명 (RTS)"
+  },
+  "class": "light",
+  "capabilities": [
+    "on_button",
+	"off_button",
+	"dim_up_button",
+	"dim_down_button",
+	"on_with_timer",
+	"my_position"
+  ],
+  "$extends": [
+    "cloudDriver"
+  ]
+}
