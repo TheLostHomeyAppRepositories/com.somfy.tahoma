@@ -2663,6 +2663,20 @@
           },
           {
             "name": "duration",
+            "title": {
+              "en": "Duration",
+              "nl": "Duur",
+              "da": "Varighed",
+              "de": "Dauer",
+              "es": "Duración",
+              "fr": "Durée",
+              "it": "Durata",
+              "no": "Varighet",
+              "sv": "Varaktighet",
+              "pl": "Czas trwania",
+              "ru": "Продолжительность",
+              "ko": "지속 시간"
+            },
             "type": "number",
             "min": 1,
             "max": 10,
