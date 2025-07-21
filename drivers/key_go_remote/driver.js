@@ -54,7 +54,7 @@ class key_go_remoteDriver extends Driver
 			throw new Error(error.message);
 		}
 
-		return null;
+		return [];
 	}
 
 	triggerRemoteSateChange(device, tokens, state)

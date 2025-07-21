@@ -124,7 +124,7 @@ class Driver extends Homey.Driver
 		try
 		{
 			let devices = await this.homey.app.getDeviceData();
-			if (devices.devices && devices.devices.cloud)
+			if (devices && devices.devices && devices.devices.cloud)
 			{
 				const cloudDevices = ((devices.devices.cloud ? (devices.devices.cloud.devices ? devices.devices.cloud.devices : devices.devices.cloud) : null));
 				const localDevices = (devices.devices.local ? (devices.devices.local.devices ? devices.devices.local.devices : devices.devices.local) : null);
@@ -168,7 +168,7 @@ class Driver extends Homey.Driver
 			throw new Error(error.message);
 		}
 
-		return null;
+		return [];
 	}
 
 	/**

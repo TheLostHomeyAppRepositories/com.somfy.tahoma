@@ -47,6 +47,13 @@ class RollerShutterDeviceQuiet extends WindowCoveringsDevice
 		this.registerCapabilityListener('quiet_mode', this.onCapabilityQuietMode.bind(this));
 
 		this.quietMode = this.getCapabilityValue('quiet_mode');
+		if (this.quietMode === undefined || this.quietMode === null)
+		{
+			// If the quiet mode capability is not set, we assume it is enabled
+			this.quietMode = true;
+			this.setCapabilityValue('quiet_mode', this.quietMode).catch(this.error);
+		}
+
 		if (this.quietMode)
 		{
 			this.setPositionActionName = 'setPositionAndLinearSpeed';

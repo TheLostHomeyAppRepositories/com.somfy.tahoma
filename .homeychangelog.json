@@ -874,5 +874,8 @@
 	},
 	"4.0.114": {
 		"en": "Added 'rts:DimmableLightRTSComponent' to 'Dimmable Light (RTS)'."
+	},
+	"4.0.115": {
+		"en": "Changes for quiet mode."
 	}
 }

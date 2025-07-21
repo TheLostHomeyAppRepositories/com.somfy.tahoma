@@ -231,12 +231,12 @@ class rtsDimmableLightDevice extends Device
 	// look for updates in the events array
 	async syncEvents(events, local)
 	{
+		const myURL = this.getDeviceUrl();
 		if (events === null)
 		{
-			return this.sync();
+			return myURL;
 		}
 
-		const myURL = this.getDeviceUrl();
 		if (!local && this.homey.app.isLocalDevice(myURL))
 		{
 			// This device is handled locally so ignore cloud updates

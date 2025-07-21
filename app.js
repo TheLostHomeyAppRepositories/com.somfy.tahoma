@@ -1995,23 +1995,30 @@ class myApp extends Homey.App
 			// Get the cloud data, as it will support devices not available in the local connection
 			const cloudData = await this.tahomaCloud.getDeviceData();
 
-			// join the local and cloud data but remove duplicates
-			if (data && Array.isArray(data) && Array.isArray(cloudData))
+			if (data)
 			{
-				// Filter cloud devices to remove local devices
-				const unique = cloudData.filter((cloud) =>
+				// join the local and cloud data but remove duplicates
+				if (Array.isArray(data) && Array.isArray(cloudData))
 				{
-					const isDuplicate = (data.findIndex((local) => (local.deviceURL === cloud.deviceURL) && (local.controllableName === cloud.controllableName)) >= 0);
-
-					if (!isDuplicate)
+					// Filter cloud devices to remove local devices
+					const unique = cloudData.filter((cloud) =>
 					{
-						return true;
-					}
+						const isDuplicate = (data.findIndex((local) => (local.deviceURL === cloud.deviceURL) && (local.controllableName === cloud.controllableName)) >= 0);
 
-					return false;
-				});
+						if (!isDuplicate)
+						{
+							return true;
+						}
 
-				data = data.concat(unique);
+						return false;
+					});
+
+					data = data.concat(unique);
+				}
+			}
+			else
+			{
+				data = cloudData;
 			}
 		}
 

@@ -16,5 +16,6 @@
     "pl": "Tryb cichy",
     "ru": "Тихий режим",
     "ko": "조용한 모드"
-  }
+  },
+  "icon": "/assets/quiet.svg"
 }
