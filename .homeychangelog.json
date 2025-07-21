@@ -877,5 +877,8 @@
 	},
 	"4.0.115": {
 		"en": "Changes for quiet mode."
+	},
+	"4.0.116": {
+		"en": "Fix Quiet Mode Flow card. Fix Dim Up and Dim Down buttons for 'Dimmable Light (RTS)'."
 	}
 }

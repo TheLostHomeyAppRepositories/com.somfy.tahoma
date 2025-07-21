@@ -831,14 +831,14 @@ class myApp extends Homey.App
 		this.homey.flow.getActionCard('set_quiet_mode')
 			.registerRunListener(async (args, state) =>
 			{
-				this.log('set_quiet_mode');
-				return args.device.triggerCapabilityListener('quiet_mode', args.quiet_mode === 'on');
+				this.log(`set_quiet_mode ${args.quiet_mode}`);
+				return args.device.triggerCapabilityListener('quiet_mode', args.quiet_mode);
 			});
 
 		this.homey.flow.getActionCard('wait_for_action_to_finish')
 			.registerRunListener(async (args, state) =>
 			{
-				this.log('wait_for_action_to_finish');
+				this.log(`wait_for_action_to_finish ${args.timeout}`);
 				return args.device.waitForActionToFinish(args.timeout);
 			});
 }

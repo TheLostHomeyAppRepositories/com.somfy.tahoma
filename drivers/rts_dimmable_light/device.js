@@ -179,7 +179,7 @@ class rtsDimmableLightDevice extends Device
 			return;
 		}
 
-		this.sendDimUp();
+		this.sendDimUpDown(true);
 	}
 
 	async onCapabilityDimDown(value)
@@ -190,7 +190,7 @@ class rtsDimmableLightDevice extends Device
 			return;
 		}
 
-		this.sendDimDown();
+		this.sendDimUpDown(false);
 	}
 
 	async sendDimUpDown(value)
