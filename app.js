@@ -841,6 +841,54 @@ class myApp extends Homey.App
 				this.log(`wait_for_action_to_finish ${args.timeout}`);
 				return args.device.waitForActionToFinish(args.timeout);
 			});
+
+		this.homey.flow.getActionCard('target_temperature_cooling_set')
+			.registerRunListener(async (args, state) =>
+			{
+				this.log('target_temperature_cooling_set');
+				await args.device.onCapabilityTargetTemperatureCooling(args.target_temperature, null);
+				return args.device.setCapabilityValue('target_temperature.cooling', args.target_temperature);
+			});
+
+		this.homey.flow.getActionCard('target_temperature_heating_set')
+			.registerRunListener(async (args, state) =>
+			{
+				this.log('target_temperature_heating_set');
+				await args.device.onCapabilityTargetTemperatureHeating(args.target_temperature, null);
+				return args.device.setCapabilityValue('target_temperature.heating', args.target_temperature);
+			});
+
+		this.homey.flow.getActionCard('ac_louver_position_set')
+			.registerRunListener(async (args, state) =>
+			{
+				this.log('ac_louver_position_set');
+				await args.device.onCapabilityLouverPosition(args.louver_position, null);
+				return args.device.setCapabilityValue('louver_position', args.louver_position);
+			});
+
+		this.homey.flow.getActionCard('ac_control_mode_set')
+			.registerRunListener(async (args, state) =>
+			{
+				this.log('ac_control_mode_set');
+				await args.device.onCapabilityControlMode(args.control_mode, null);
+				return args.device.setCapabilityValue('control_mode', args.control_mode);
+			});
+
+		this.homey.flow.getActionCard('ac_thermostat_mode_set')
+			.registerRunListener(async (args, state) =>
+			{
+				this.log('ac_thermostat_mode_set');
+				await args.device.onCapabilityThermostatMode(args.thermostat_mode, null);
+				return args.device.setCapabilityValue('thermostat_mode', args.thermostat_mode);
+			});
+
+		this.homey.flow.getActionCard('ac_fan_speed_set')
+			.registerRunListener(async (args, state) =>
+			{
+				this.log('ac_fan_speed_set');
+				await args.device.onCapabilityFanSpeed(args.fan_speed, null);
+				return args.device.setCapabilityValue('fan_speed', args.fan_speed);
+			});
 }
 
 	hashCode(s)

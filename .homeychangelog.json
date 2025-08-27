@@ -880,5 +880,8 @@
 	},
 	"4.0.116": {
 		"en": "Fix Quiet Mode Flow card. Fix Dim Up and Dim Down buttons for 'Dimmable Light (RTS)'."
+	},
+	"4.0.117": {
+		"en": "Added action cards for Zigbee thermostat and Zigbee AC."
 	}
 }
