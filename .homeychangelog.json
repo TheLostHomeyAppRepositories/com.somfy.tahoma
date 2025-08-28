@@ -883,5 +883,8 @@
 	},
 	"4.0.117": {
 		"en": "Added action cards for Zigbee thermostat and Zigbee AC."
+	},
+	"4.0.118": {
+		"en": "Fix for Zigbee thermostat and Zigbee AC action cards."
 	}
 }

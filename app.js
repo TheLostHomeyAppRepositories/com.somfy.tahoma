@@ -863,7 +863,7 @@ class myApp extends Homey.App
 			{
 				this.log('ac_louver_position_set');
 				await args.device.onCapabilityLouverPosition(args.louver_position, null);
-				return args.device.setCapabilityValue('louver_position', args.louver_position);
+				return args.device.setCapabilityValue('ac_louver_position', args.louver_position);
 			});
 
 		this.homey.flow.getActionCard('ac_control_mode_set')
@@ -871,7 +871,7 @@ class myApp extends Homey.App
 			{
 				this.log('ac_control_mode_set');
 				await args.device.onCapabilityControlMode(args.control_mode, null);
-				return args.device.setCapabilityValue('control_mode', args.control_mode);
+				return args.device.setCapabilityValue('ac_control_mode', args.control_mode);
 			});
 
 		this.homey.flow.getActionCard('ac_thermostat_mode_set')
@@ -879,7 +879,7 @@ class myApp extends Homey.App
 			{
 				this.log('ac_thermostat_mode_set');
 				await args.device.onCapabilityThermostatMode(args.thermostat_mode, null);
-				return args.device.setCapabilityValue('thermostat_mode', args.thermostat_mode);
+				return args.device.setCapabilityValue('ac_thermostat_mode', args.thermostat_mode);
 			});
 
 		this.homey.flow.getActionCard('ac_fan_speed_set')
@@ -887,7 +887,7 @@ class myApp extends Homey.App
 			{
 				this.log('ac_fan_speed_set');
 				await args.device.onCapabilityFanSpeed(args.fan_speed, null);
-				return args.device.setCapabilityValue('fan_speed', args.fan_speed);
+				return args.device.setCapabilityValue('ac_fan_speed_mode', args.fan_speed);
 			});
 }
 
