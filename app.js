@@ -878,7 +878,7 @@ class myApp extends Homey.App
 			.registerRunListener(async (args, state) =>
 			{
 				this.log('ac_thermostat_mode_set');
-				await args.device.onCapabilityThermostatMode(args.thermostat_mode, null);
+				await args.device.onCapabilityThermostateMode(args.thermostat_mode, null);
 				return args.device.setCapabilityValue('ac_thermostat_mode', args.thermostat_mode);
 			});
 
