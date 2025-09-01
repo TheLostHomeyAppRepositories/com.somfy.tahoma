@@ -888,6 +888,9 @@
 		"en": "Fix for Zigbee thermostat and Zigbee AC action cards."
 	},
 	"4.0.119": {
-		"en": "Fi 2 for Zigbee thermostat and Zigbee AC action cards."
+		"en": "Fix 2 for Zigbee thermostat and Zigbee AC action cards."
+	},
+	"4.0.120": {
+		"en": "Added 'myfox:SomfyProtectDoorLock' to 'Door Lock (io)'"
 	}
 }

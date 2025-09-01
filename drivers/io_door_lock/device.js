@@ -8,7 +8,8 @@ const CapabilitiesXRef = [
 	{
 		homeyName: 'onoff',
 		somfyNameGet: 'core:LockedUnlockedState',
-		somfyNameSet: ['setLockedUnlocked'],
+		// somfyNameSet: ['setLockedUnlocked'],
+		somfyNameSet: ['unlock', 'lock'],
 		compare: ['unlocked', 'locked'],
 	},
 	{
