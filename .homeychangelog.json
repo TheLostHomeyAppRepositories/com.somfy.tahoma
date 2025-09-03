@@ -892,5 +892,8 @@
 	},
 	"4.0.120": {
 		"en": "Added 'myfox:SomfyProtectDoorLock' to 'Door Lock (io)'"
+	},
+	"4.0.121": {
+		"en": "Fix for 'myfox:SomfyProtectDoorLock' lock/unlock command"
 	}
 }

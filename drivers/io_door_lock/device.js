@@ -11,6 +11,7 @@ const CapabilitiesXRef = [
 		// somfyNameSet: ['setLockedUnlocked'],
 		somfyNameSet: ['unlock', 'lock'],
 		compare: ['unlocked', 'locked'],
+		ignoreValue: true,
 	},
 	{
 		homeyName: 'locked',
