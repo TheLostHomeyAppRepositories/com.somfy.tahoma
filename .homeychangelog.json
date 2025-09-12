@@ -895,5 +895,8 @@
 	},
 	"4.0.121": {
 		"en": "Fix for 'myfox:SomfyProtectDoorLock' lock/unlock command"
+	},
+	"4.0.122": {
+		"en": "Fix for devices that have a # in the name but don't start at #1."
 	}
 }

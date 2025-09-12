@@ -88,9 +88,9 @@ class Device extends Homey.Device
 			return subUrl[0];
 		}
 
-		if (!subUrl || (subUrl.length < 2))
+		if (!subUrl || (subUrl.length < 2) || (subUrl[1] !== '1'))
 		{
-			// There was no # so return null
+			// There was no #1 so return null
 			return null;
 		}
 
@@ -674,10 +674,18 @@ class Device extends Homey.Device
 						if (url2)
 						{
 							// We have a sub url to check
-							const states2 = await this.homey.app.getDeviceStates(url2);
-							states = states.concat(states2);
+							try
+							{
+								const states2 = await this.homey.app.getDeviceStates(url2);
+								states = states.concat(states2);
+							}
+							catch (err)
+							{
+								// Ignore errors here
+							}
 						}
 					}
+
 					if (states)
 					{
 						return states;
