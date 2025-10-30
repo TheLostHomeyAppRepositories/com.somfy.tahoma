@@ -205,7 +205,9 @@ class myApp extends Homey.App
 
 		this.registerActionFlowCards();
 
-		this.syncTimerId = this.homey.setTimeout(() => this.initSync(), 30000);
+		// If this is a cloud Homey then add a random, between 0 and 2 minutes, delay to the initial sync to avoid all cloud Homeys syncing at the same time
+		const randomDelay = this.homeyIP ? 0 : Math.floor(Math.random() * 120000);
+		this.syncTimerId = this.homey.setTimeout(() => this.initSync(), 30000 + randomDelay);
 
 		this.discoveryStrategy = this.homey.discovery.getStrategy('somfy_tahoma');
 		this.discoveryStrategy.on('result', (discoveryResult) =>
@@ -1138,7 +1140,7 @@ class myApp extends Homey.App
 			{
 				data = {
 					message: error.message,
-					stack: error.stack,
+					stack: error.stack.stack ? error.stack.stack : error.stack,
 				};
 			}
 			else if (error.message)

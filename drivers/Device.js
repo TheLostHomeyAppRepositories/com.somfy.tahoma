@@ -40,7 +40,7 @@ class Device extends Homey.Device
 				this.registerCapabilityListener(element.homeyName, this.onCapability.bind(this, element));
 			}
 
-//			this.syncEventsList(null, CapabilitiesXRef);
+			//			this.syncEventsList(null, CapabilitiesXRef);
 		}
 		this.log('Device init:', this.getName(), 'class:', this.getClass());
 	}
@@ -171,10 +171,10 @@ class Device extends Homey.Device
 				catch (err)
 				{
 					this.homey.app.logInformation(this.getName(),
-					{
-						message: err.message,
-						stack: err.stack,
-					});
+						{
+							message: err.message,
+							stack: err.stack,
+						});
 				}
 				// Remove the command from the array
 				this.executionCommands.splice(existingCommandIdx, 1);
@@ -375,10 +375,10 @@ class Device extends Homey.Device
 					catch (error)
 					{
 						this.homey.app.logInformation(this.getName(),
-						{
-							message: error.message,
-							stack: error.stack,
-						});
+							{
+								message: error.message,
+								stack: error.stack,
+							});
 					}
 
 					xRefEntry = null;
@@ -389,18 +389,18 @@ class Device extends Homey.Device
 			else
 			{
 				this.homey.app.logInformation(this.getName(),
-				{
-					message: 'No states returned from Tahoma',
-				});
+					{
+						message: 'No states returned from Tahoma',
+					});
 			}
 		}
 		catch (error)
 		{
 			this.homey.app.logInformation(this.getName(),
-			{
-				message: error.message,
-				stack: error.stack,
-			});
+				{
+					message: error.message,
+					stack: error.stack,
+				});
 		}
 	}
 
@@ -448,10 +448,10 @@ class Device extends Homey.Device
 					if (this.homey.app.infoLogEnabled)
 					{
 						this.homey.app.logInformation(this.getName(),
-						{
-							message: 'Processing device state change event',
-							stack: event,
-						});
+							{
+								message: 'Processing device state change event',
+								stack: event,
+							});
 					}
 					// Got what we need to update the device so lets process each capability
 					for (const tahomaState of event.deviceStates)
@@ -477,10 +477,10 @@ class Device extends Homey.Device
 									if (this.homey.app.infoLogEnabled)
 									{
 										this.homey.app.logInformation(this.getName(),
-										{
-											message: 'State has no value',
-											stack: { capability: xRefEntry.homeyName },
-										});
+											{
+												message: 'State has no value',
+												stack: { capability: xRefEntry.homeyName },
+											});
 									}
 
 									continue;
@@ -557,10 +557,10 @@ class Device extends Homey.Device
 									if (this.homey.app.infoLogEnabled)
 									{
 										this.homey.app.logInformation(this.getName(),
-										{
-											message: 'Setting new state',
-											stack: { capability: xRefEntry.homeyName, state: newState },
-										});
+											{
+												message: 'Setting new state',
+												stack: { capability: xRefEntry.homeyName, state: newState },
+											});
 									}
 									const { homeyName } = xRefEntry;
 									this.triggerCapabilityListener(homeyName, newState, { fromCloudSync: true }).catch(this.error);
@@ -568,10 +568,10 @@ class Device extends Homey.Device
 								else if (this.homey.app.infoLogEnabled)
 								{
 									this.homey.app.logInformation(this.getName(),
-									{
-										message: 'Same as existing state',
-										stack: { capability: xRefEntry.homeyName, state: newState },
-									});
+										{
+											message: 'Same as existing state',
+											stack: { capability: xRefEntry.homeyName, state: newState },
+										});
 								}
 							}
 						}
@@ -698,14 +698,20 @@ class Device extends Homey.Device
 					if (simData)
 					{
 						const deviceOid = this.getData().id;
-						for (let i = 0; i < simData.devices.cloud.length; i++)
+						if (simData.devices.cloud)
 						{
-							if (simData.devices.cloud[i].oid === deviceOid)
+							for (let i = 0; i < simData.devices.cloud.length; i++)
 							{
-								return simData.devices.cloud[i].states;
+								if (simData.devices.cloud[i].oid === deviceOid)
+								{
+									return simData.devices.cloud[i].states;
+								}
 							}
 						}
-						for (let i = 0; i < simData.devices.local.length; i++)
+
+						if (simData.devices.local)
+						{
+							for (let i = 0; i < simData.devices.local.length; i++)
 							{
 								if (simData.devices.local[i].oid === deviceOid)
 								{
@@ -713,6 +719,7 @@ class Device extends Homey.Device
 								}
 							}
 							return null;
+						}
 					}
 				}
 			}
@@ -720,11 +727,11 @@ class Device extends Homey.Device
 		catch (error)
 		{
 			const stack = error.response ? error.response.data : error;
-			this.homey.app.logInformation('Device initial sync.',
-			{
-				message: this.getName(),
-				stack,
-			});
+			this.homey.app.logInformation('Device initial sync error',
+				{
+					message: this.getName(),
+					stack,
+				});
 		}
 		return null;
 	}
@@ -749,10 +756,10 @@ class Device extends Homey.Device
 						if (this.homey.app.infoLogEnabled)
 						{
 							this.homey.app.logInformation(this.getName(),
-							{
-								message: 'Ignoring duplicate event',
-								stack: deviceState,
-							});
+								{
+									message: 'Ignoring duplicate event',
+									stack: deviceState,
+								});
 						}
 						return true;
 					}
