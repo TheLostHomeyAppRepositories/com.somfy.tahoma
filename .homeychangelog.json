@@ -901,5 +901,8 @@
 	},
 	"4.0.123": {
 		"en": "Fix for 'io:DynamicGarageDoor' and 'io:DynamicBlindIOComponent' not setting up correct open / close state parameter."
+	},
+	"4.0.124": {
+		"en": "Detect 401 and 403 errors and add enforced 24 hour delay between login attempts to prevent Somfy locking the account. Increased random delay before first login attempt to reduce chance of multiple Homeys logging in simultaneously."
 	}
 }
