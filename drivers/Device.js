@@ -5,7 +5,6 @@
 'use strict';
 
 const Homey = require('homey');
-const { isArray } = require('axios/lib/utils');
 /**
  * Base class for devices
  * @extends {Homey.Device}
@@ -204,7 +203,7 @@ class Device extends Homey.Device
 					parameters: [],
 				};
 			}
-			else if ((somfyValue === null) || (isArray(somfyValue) && somfyValue.length === 0))
+			else if ((somfyValue === null) || (Array.isArray(somfyValue) && somfyValue.length === 0))
 			{
 				action = {
 					name: capabilityXRef.somfyNameSet[cmdIdx],
