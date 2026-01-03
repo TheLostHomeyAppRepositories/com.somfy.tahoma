@@ -25,6 +25,8 @@ class myApp extends Homey.App
 	{
 		this.log(`${Homey.manifest.id} running...`);
 
+		this.localOnly = false; // set to true to prevent the cloud polling and only use local bridge if possible
+
 		this.syncing = false;
 		this.syncTimerId = null;
 		this.loginTimerId = null;
@@ -266,13 +268,13 @@ class myApp extends Homey.App
 
 		this.homey.settings.set('localBridge', this.localBridgeInfo);
 		this.logInformation('mDNS Found a local bridge',
-		{
-			pin: '####-####-####',
-			address: this.localBridgeInfo.address,
-			port: this.localBridgeInfo.port,
-			api_version: this.localBridgeInfo.api_version,
-			fw_version: this.localBridgeInfo.fw_version,
-		});
+			{
+				pin: '####-####-####',
+				address: this.localBridgeInfo.address,
+				port: this.localBridgeInfo.port,
+				api_version: this.localBridgeInfo.api_version,
+				fw_version: this.localBridgeInfo.fw_version,
+			});
 
 		const username = this.homey.settings.get('username');
 		const password = this.homey.settings.get('password');
@@ -287,6 +289,8 @@ class myApp extends Homey.App
 		{
 			if (await this.doLocalLogin(username, password, region))
 			{
+				this.localOnly = true;
+
 				// Start sync in 5 seconds
 				this.syncTimerId = this.homey.setTimeout(() => this.startSync(), 5000);
 				return;
@@ -387,11 +391,15 @@ class myApp extends Homey.App
 		if (!this.localBridgeInfo)
 		{
 			throw new Error('No Somfy bridges have been detected.\n'
-							+ 'Make sure the Developer mode has been enabled on you Somfy account.\n'
-							+ 'The Somfy bridge should broadcast it\'s IP and PIN via mDNS once the option is enabled.');
+				+ 'Make sure the Developer mode has been enabled on you Somfy account.\n'
+				+ 'The Somfy bridge should broadcast it\'s IP and PIN via mDNS once the option is enabled.');
 		}
 		try
 		{
+			if (this.tahomaCloud.authenticated === false)
+			{
+				await this.initSync();
+			}
 			const tokens = await this.tahomaCloud.getLocalTokens(this.localBridgeInfo.pin);
 			return this.varToString(tokens);
 		}
@@ -891,7 +899,7 @@ class myApp extends Homey.App
 				await args.device.onCapabilityFanSpeed(args.fan_speed, null);
 				return args.device.setCapabilityValue('ac_fan_speed_mode', args.fan_speed);
 			});
-}
+	}
 
 	hashCode(s)
 	{
@@ -940,6 +948,7 @@ class myApp extends Homey.App
 			}
 		}
 
+		// Need to do cloud login
 		if (this.tahomaCloud && (!this.tahomaCloud.authenticated || forceLogin))
 		{
 			// make sure we logout from old method first
@@ -988,7 +997,13 @@ class myApp extends Homey.App
 			}
 		}
 
+		// Start the sync process
 		this.startSync();
+		if (this.localOnly)
+		{
+			return this.tahomaLocal.authenticated;
+		}
+
 		return this.tahomaCloud.authenticated;
 	}
 
@@ -1030,6 +1045,13 @@ class myApp extends Homey.App
 		const devices = { cloud: {}, local: { ip: this.localBridgeInfo ? this.localBridgeInfo.address : null } };
 		let cloudDevices = null;
 		let localDevices = null;
+
+		if (!this.tahomaCloud.authenticated)
+		{
+			// Try to login first
+			await this.initSync();
+		}
+
 		if (this.tahomaCloud.authenticated)
 		{
 			try
@@ -1041,6 +1063,7 @@ class myApp extends Homey.App
 				this.logInformation('logDevices', error);
 			}
 		}
+
 		if (this.tahomaLocal && this.tahomaLocal.authenticated)
 		{
 			try
@@ -1126,9 +1149,9 @@ class myApp extends Homey.App
 		}
 
 		this.homey.settings.set('deviceLog',
-		{
-			devices: logData,
-		});
+			{
+				devices: logData,
+			});
 	}
 
 	logInformation(source, error)
@@ -1377,83 +1400,86 @@ class myApp extends Homey.App
 	// Boost the sync speed when a command is executed that has status feedback
 	async boostSync()
 	{
-		if (this.tahomaCloud.authenticated)
+		if (!this.localOnly)
 		{
-			if (this.unBoostTimerID)
+			if (this.tahomaCloud.authenticated)
 			{
-				this.homey.clearTimeout(this.unBoostTimerID);
-				this.unBoostTimerID = null;
-			}
-
-			let maxLoops = 50;
-			while (this.unBoosting && (maxLoops-- > 0))
-			{
-				await this.homey.app.asyncDelay(1000);
-			}
-
-			this.commandsQueued++;
-
-			if (this.boostTimerId)
-			{
-				this.homey.clearTimeout(this.boostTimerId);
-				this.boostTimerId = null;
-			}
-
-			// Set a time limit in case the command complete signal is missed
-			this.boostTimerId = this.homey.setTimeout(() => this.unBoostSync(true), 60000);
-
-			if (this.infoLogEnabled)
-			{
-				this.logInformation('Boost Sync',
+				if (this.unBoostTimerID)
 				{
-					message: 'Increased Polling',
-					stack: { syncInterval: 3, queSize: this.commandsQueued },
-				});
-			}
-
-			if (this.commandsQueued === 1)
-			{
-				this.nextCloudInterval = 0;
-				if (this.syncTimerId)
-				{
-					this.homey.clearTimeout(this.syncTimerId);
-					this.syncTimerId = null;
+					this.homey.clearTimeout(this.unBoostTimerID);
+					this.unBoostTimerID = null;
 				}
 
-				if (!this.tahomaCloud.eventsRegistered())
+				let maxLoops = 50;
+				while (this.unBoosting && (maxLoops-- > 0))
 				{
-					// The events are not currently registered so do that now
-					try
+					await this.homey.app.asyncDelay(1000);
+				}
+
+				this.commandsQueued++;
+
+				if (this.boostTimerId)
+				{
+					this.homey.clearTimeout(this.boostTimerId);
+					this.boostTimerId = null;
+				}
+
+				// Set a time limit in case the command complete signal is missed
+				this.boostTimerId = this.homey.setTimeout(() => this.unBoostSync(true), 60000);
+
+				if (this.infoLogEnabled)
+				{
+					this.logInformation('Boost Sync',
+						{
+							message: 'Increased Polling',
+							stack: { syncInterval: 3, queSize: this.commandsQueued },
+						});
+				}
+
+				if (this.commandsQueued === 1)
+				{
+					this.nextCloudInterval = 0;
+					if (this.syncTimerId)
 					{
-						await this.tahomaCloud.getEvents();
+						this.homey.clearTimeout(this.syncTimerId);
+						this.syncTimerId = null;
 					}
-					catch (error)
+
+					if (!this.tahomaCloud.eventsRegistered())
 					{
-						this.logInformation('Boost Sync register events: ', error.message);
-						this.commandsQueued = 0;
+						// The events are not currently registered so do that now
+						try
+						{
+							await this.tahomaCloud.getEvents();
+						}
+						catch (error)
+						{
+							this.logInformation('Boost Sync register events: ', error.message);
+							this.commandsQueued = 0;
+							return false;
+						}
+					}
+
+					this.nextCloudInterval = LOCAL_INTERVAL * 1000;
+					if (!this.syncing)
+					{
+						// We can't run the sync loop from here so fire it from a timer
+						this.syncTimerId = this.homey.setTimeout(this.syncLoop, LOCAL_INTERVAL * 1000);
+					}
+				}
+				else
+				{
+					let maxDelay = 6;
+					while ((maxDelay > 0) && (this.commandsQueued > 0) && (!this.tahomaCloud.eventsRegistered()))
+					{
+						await this.asyncDelay(500);
+						maxDelay--;
+					}
+
+					if ((!this.tahomaCloud.eventsRegistered()))
+					{
 						return false;
 					}
-				}
-
-				this.nextCloudInterval = LOCAL_INTERVAL * 1000;
-				if (!this.syncing)
-				{
-					// We can't run the sync loop from here so fire it from a timer
-					this.syncTimerId = this.homey.setTimeout(this.syncLoop, LOCAL_INTERVAL * 1000);
-				}
-			}
-			else
-			{
-				let maxDelay = 6;
-				while ((maxDelay > 0) && (this.commandsQueued > 0) && (!this.tahomaCloud.eventsRegistered()))
-				{
-					await this.asyncDelay(500);
-					maxDelay--;
-				}
-
-				if ((!this.tahomaCloud.eventsRegistered()))
-				{
-					return false;
 				}
 			}
 		}
@@ -1477,15 +1503,15 @@ class myApp extends Homey.App
 		if (this.infoLogEnabled)
 		{
 			this.logInformation('UnBoost Sync',
-			{
-				message: 'Reverting to previous Polling',
-				stack:
 				{
-					timeOut: immediate,
-					syncInterval: CLOUD_INTERVAL,
-					queSize: this.commandsQueued,
-				},
-			});
+					message: 'Reverting to previous Polling',
+					stack:
+					{
+						timeOut: immediate,
+						syncInterval: CLOUD_INTERVAL,
+						queSize: this.commandsQueued,
+					},
+				});
 		}
 
 		if (this.commandsQueued > 0)
@@ -1598,14 +1624,17 @@ class myApp extends Homey.App
 				nextInterval = LOCAL_INTERVAL * 1000;
 			}
 
-			if ((this.nextCloudInterval - (LOCAL_INTERVAL * 1000)) <= 0)
+			if (!this.localOnly)
 			{
-				nextInterval = await this.syncWorker(this.tahomaCloud);
-				this.nextCloudInterval = nextInterval;
-			}
-			else
-			{
-				this.nextCloudInterval -= (LOCAL_INTERVAL * 1000);
+				if ((this.nextCloudInterval - (LOCAL_INTERVAL * 1000)) <= 0)
+				{
+					nextInterval = await this.syncWorker(this.tahomaCloud);
+					this.nextCloudInterval = nextInterval;
+				}
+				else
+				{
+					this.nextCloudInterval -= (LOCAL_INTERVAL * 1000);
+				}
 			}
 		}
 
@@ -1657,12 +1686,12 @@ class myApp extends Homey.App
 			if (tahomaConnection.localLogin)
 			{
 				this.logInformation('Local syncLoop',
-				`Logged in = ${tahomaConnection.authenticated}, Local = ${tahomaConnection.localLogin}, Old Sync State = ${this.syncing}, Next cloud sync in ${this.nextCloudInterval / 1000}s`);
+					`Logged in = ${tahomaConnection.authenticated}, Local = ${tahomaConnection.localLogin}, Old Sync State = ${this.syncing}, Next cloud sync in ${this.nextCloudInterval / 1000}s`);
 			}
 			else
 			{
 				this.logInformation('Cloud syncLoop',
-				`Logged in = ${tahomaConnection.authenticated}, Local = ${tahomaConnection.localLogin}, Old Sync State = ${this.syncing}`);
+					`Logged in = ${tahomaConnection.authenticated}, Local = ${tahomaConnection.localLogin}, Old Sync State = ${this.syncing}`);
 			}
 		}
 
@@ -1670,7 +1699,7 @@ class myApp extends Homey.App
 		{
 			this.syncing = true;
 
-			// Make sure it has been about 30 seconds since last sync unless boost is on
+			// Make sure it has been about 30 seconds since last sync unless boost is on or a local login
 			if (tahomaConnection.localLogin || this.boostTimerId || ((Date.now() - this.lastSync) > 28000))
 			{
 				if (!tahomaConnection.localLogin)
@@ -1822,18 +1851,33 @@ class myApp extends Homey.App
 		this.homey.flow.getActionCard('activate_scenario')
 			.registerRunListener(async (args, state) =>
 			{
+				if (this.localOnly)
+				{
+					return this.tahomaLocal.executeScenario(args.scenario.oid);
+				}
 				return this.tahomaCloud.executeScenario(args.scenario.oid);
 			})
 			.getArgument('scenario').registerAutocompleteListener((query) =>
 			{
+				if (this.localOnly)
+				{
+					return this.tahomaLocal.getScenarios().then((data) => data.map(({ oid, label }) => (
+					{
+						oid,
+						name: label,
+					})).filter(({ name }) => name.toLowerCase().indexOf(query.toLowerCase()) > -1)).catch((error) =>
+					{
+						this.logInformation('addScenarioActionListeners', error.message);
+					});
+				}
 				return this.tahomaCloud.getActionGroups().then((data) => data.map(({ oid, label }) => (
-				{
-					oid,
-					name: label,
-				})).filter(({ name }) => name.toLowerCase().indexOf(query.toLowerCase()) > -1)).catch((error) =>
-				{
-					this.logInformation('addScenarioActionListeners', error.message);
-				});
+					{
+						oid,
+						name: label,
+					})).filter(({ name }) => name.toLowerCase().indexOf(query.toLowerCase()) > -1)).catch((error) =>
+					{
+						this.logInformation('addScenarioActionListeners', error.message);
+					});
 			});
 	}
 
@@ -1928,7 +1972,7 @@ class myApp extends Homey.App
 			}
 		}
 
-		if (!local && this.tahomaCloud.authenticated)
+		if (!this.localOnly && !local && this.tahomaCloud.authenticated)
 		{
 			try
 			{
@@ -1969,6 +2013,11 @@ class myApp extends Homey.App
 					this.logInformation(`${label}: Local command failed (will try cloud)`, `command: ${this.varToString(action)}, error = ${this.varToString(err)})`);
 				}
 			}
+		}
+
+		if (this.tahomaCloud.authenticated === false)
+		{
+			await this.initSync();
 		}
 
 		if (this.tahomaCloud.authenticated && !this.usingDebugData)
@@ -2019,6 +2068,13 @@ class myApp extends Homey.App
 				}
 			}
 		}
+
+		if (!this.tahomaCloud.authenticated)
+		{
+			// Try to login to the cloud first
+			await this.initSync();
+		}
+
 		if (this.tahomaCloud.authenticated && !this.usingDebugData)
 		{
 			const states = await this.tahomaCloud.getDeviceStates(deviceURL);
@@ -2026,6 +2082,9 @@ class myApp extends Homey.App
 			{
 				this.logInformation('Device cloud states', states);
 			}
+
+			// Make sure we are not in local only mode as this device is cloud only
+			this.localOnly = false;
 			return states;
 		}
 
@@ -2040,6 +2099,12 @@ class myApp extends Homey.App
 			// Always try to get local data so it populates the supported list
 			data = await this.tahomaLocal.getDeviceData();
 		}
+		if (!this.tahomaCloud.authenticated)
+		{
+			// Try to login to the cloud first
+			await this.initSync();
+		}
+
 		if (this.tahomaCloud.authenticated)
 		{
 			// Get the cloud data, as it will support devices not available in the local connection
@@ -2088,10 +2153,10 @@ class myApp extends Homey.App
 				}
 			}
 			else
-			if (this.tahomaLocal.supportedDevices.findIndex((element) => element.deviceURL === deviceURL) >= 0)
-			{
-				return true;
-			}
+				if (this.tahomaLocal.supportedDevices.findIndex((element) => element.deviceURL === deviceURL) >= 0)
+				{
+					return true;
+				}
 		}
 
 		return false;
@@ -2099,7 +2164,7 @@ class myApp extends Homey.App
 
 	isLoggedIn()
 	{
-		return (this.tahomaCloud.authenticated || (this.tahomaLocal && this.tahomaLocal.authenticated));
+		return ((this.tahomaCloud && this.tahomaCloud.authenticated) || (this.tahomaLocal && this.tahomaLocal.authenticated));
 	}
 
 }
