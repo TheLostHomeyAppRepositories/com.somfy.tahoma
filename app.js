@@ -921,7 +921,6 @@ class myApp extends Homey.App
 	async newLogin_2(username, password, region, localToken, forceLogin = false)
 	{
 		// Stop the timer so periodic updates don't happen while changing login
-		await this.stopSync();
 		if (this.loginTimerId)
 		{
 			this.homey.clearTimeout(this.loginTimerId);
@@ -932,6 +931,8 @@ class myApp extends Homey.App
 		{
 			try
 			{
+				await this.stopSync('local');
+
 				// Need to get a local bearer token
 				await this.doLocalLogin(username, password, region, localToken);
 			}
@@ -951,6 +952,8 @@ class myApp extends Homey.App
 		// Need to do cloud login
 		if (this.tahomaCloud && (!this.tahomaCloud.authenticated || forceLogin))
 		{
+			await this.stopSync('cloud');
+
 			// make sure we logout from old method first
 			await this.tahomaCloud.logout();
 
@@ -981,8 +984,22 @@ class myApp extends Homey.App
 
 			if (!this.tahomaCloud.authenticated)
 			{
-				// Try once more with the alternative method but let an error break us out of here
-				await this.tahomaCloud.login(username, password, region, loginMethod, this.homeyIP);
+				try
+				{
+					// Try once more with the alternative method
+					await this.tahomaCloud.login(username, password, region, loginMethod, this.homeyIP);
+				}
+				catch (error)
+				{
+					if (error.message)
+					{
+						this.logInformation('Login OAuth 2', `Error: ${error.message}`);
+					}
+					else
+					{
+						this.logInformation('Login OAuth 2', error);
+					}
+				}
 			}
 
 			if (this.tahomaCloud.authenticated)
@@ -1021,9 +1038,9 @@ class myApp extends Homey.App
 			await this.homey.app.asyncDelay(1000);
 		}
 
-		await this.stopSync();
 		if (this.tahomaCloud)
 		{
+			await this.stopSync('cloud');
 			await this.tahomaCloud.logout();
 		}
 
@@ -1528,20 +1545,23 @@ class myApp extends Homey.App
 		this.unBoosting = false;
 	}
 
-	async stopSync()
+	async stopSync(CloudLocal)
 	{
-		if (this.commandsQueued > 0)
+		if (CloudLocal === 'cloud')
 		{
-			this.commandsQueued = 0;
-			this.homey.clearTimeout(this.boostTimerId);
-			this.boostTimerId = null;
-			if (this.infoLogEnabled)
+			if (this.commandsQueued > 0)
 			{
-				this.logInformation('stopSync', 'Cleared commandsQueued');
+				this.commandsQueued = 0;
+				this.homey.clearTimeout(this.boostTimerId);
+				this.boostTimerId = null;
+				if (this.infoLogEnabled)
+				{
+					this.logInformation('stopSync', 'Cleared commandsQueued');
+				}
 			}
-		}
 
-		this.nextCloudInterval = 0;
+			this.nextCloudInterval = 0;
+		}
 
 		if (this.syncTimerId)
 		{
@@ -1553,20 +1573,21 @@ class myApp extends Homey.App
 			}
 		}
 
-		if (this.tahomaCloud)
-		{
-			if (this.infoLogEnabled)
-			{
-				this.logInformation('stopSync', 'Stopping Local Event Polling');
-			}
-
-			await this.tahomaCloud.eventsClearRegistered();
-		}
-		if (this.tahomaLocal)
+		if (this.tahomaCloud && (CloudLocal === 'cloud'))
 		{
 			if (this.infoLogEnabled)
 			{
 				this.logInformation('stopSync', 'Stopping Cloud Event Polling');
+			}
+
+			await this.tahomaCloud.eventsClearRegistered();
+		}
+
+		if (this.tahomaLocal && (CloudLocal === 'local'))
+		{
+			if (this.infoLogEnabled)
+			{
+				this.logInformation('stopSync', 'Stopping Local Event Polling');
 			}
 
 			await this.tahomaLocal.eventsClearRegistered();
