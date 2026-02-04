@@ -904,5 +904,8 @@
 	},
 	"4.0.124": {
 		"en": "Detect 401 and 403 errors and add enforced 24 hour delay between login attempts to prevent Somfy locking the account. Increased random delay before first login attempt to reduce chance of multiple Homeys logging in simultaneously."
+	},
+	"4.0.125": {
+		"en": "Add measure_battery capability to window coverings devices if battery level or battery state is available."
 	}
 }

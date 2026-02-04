@@ -859,12 +859,35 @@ class WindowCoveringsDevice extends Device
 									}).catch(this.error);
 								}
 							}
-							else if (deviceState.name === 'core:BatteryState')
+							else if (deviceState.name === 'core:BatteryLevelState')
 							{
-								// Device tilt position
+								// Device battery level state
+								this.hasBatteryLevelState = true;
+
+								// Check for more message that are the same
+								if (!this.checkForDuplicatesEvents(events, i, x + 1, myURL, 'core:BatteryLevelState'))
+								{
+									if (!this.hasCapability('measure_battery'))
+									{
+										await this.addCapability('measure_battery');
+									}
+									this.homey.app.logStates(`${this.getName()}: core:BatteryLevelState = ${deviceState.value}`);
+									this.triggerCapabilityListener('measure_battery', deviceState.value,
+										{
+											fromCloudSync: true,
+										}).catch(this.error);
+								}
+							}
+							else if ((deviceState.name === 'core:BatteryState') && !this.hasBatteryLevelState)
+							{
+								// Device battery state
 								// Check for more message that are the same
 								if (!this.checkForDuplicatesEvents(events, i, x + 1, myURL, 'core:BatteryState'))
 								{
+									if (!this.hasCapability('measure_battery'))
+									{
+										await this.addCapability('measure_battery');
+									}
 									const batteryStateValue = deviceState.value;
 									this.homey.app.logStates(`${this.getName()}: core:BatteryState = ${batteryStateValue}`);
 									const batteryStates = ['verylow', 'low', 'normal', 'full'];
