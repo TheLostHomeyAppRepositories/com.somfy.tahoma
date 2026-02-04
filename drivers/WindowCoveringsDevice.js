@@ -639,11 +639,28 @@ class WindowCoveringsDevice extends Device
 					}).catch(this.error);
 				}
 
-				if (this.hasCapability('measure_battery'))
+				const batteryState = states.find((state) => (state && (state.name === 'core:BatteryLevelState')));
+				if (batteryState)
+				{
+					// Device battery level state
+					this.hasBatteryLevelState = true;
+
+					if (!this.hasCapability('measure_battery'))
+					{
+						await this.addCapability('measure_battery');
+					}
+					this.setCapabilityValue('measure_battery', batteryState.value).catch(this.error);
+				}
+				else
 				{
 					const batteryState = states.find((state) => (state && (state.name === 'core:BatteryState')));
 					if (batteryState)
 					{
+						if (!this.hasCapability('measure_battery'))
+						{
+							await this.addCapability('measure_battery');
+						}
+
 						const batteryStates = ['verylow', 'low', 'normal', 'full'];
 						const batteryLevel = batteryStates.findIndex((state) => state === batteryState.value);
 						if (batteryLevel >= 0)
