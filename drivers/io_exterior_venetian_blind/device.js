@@ -37,7 +37,7 @@ class ExteriorVenetianBlindDevice extends WindowCoveringsDevice
 			controllableName = dd.controllableName.toString().toLowerCase();
 		}
 
-		if ((controllableName === 'ogp:venetianblind') || (controllableName === 'io:dynamicexteriorvenetianblind'))
+		if ((controllableName === 'ogp:venetianblind') || (controllableName === 'io:dynamicexteriorvenetianblind') || (controllableName === 'zigbee:somfyvenetianblindcomponent'))
 		{
 			if (!this.hasCapability('my_position'))
 			{

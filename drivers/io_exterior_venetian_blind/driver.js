@@ -13,7 +13,7 @@ class ExteriorVenetianBlindDriver extends ioWindowCoveringsDriver
 
 	async onInit()
 	{
-		this.deviceType = ['io:ExteriorVenetianBlindIOComponent', 'ogp:VenetianBlind', 'io:ExteriorVenetianBlindUnoIOComponent', 'io:VenetianBlindIOComponent', 'io:DynamicExteriorVenetianBlindIOComponent'];
+		this.deviceType = ['io:ExteriorVenetianBlindIOComponent', 'ogp:VenetianBlind', 'io:ExteriorVenetianBlindUnoIOComponent', 'io:VenetianBlindIOComponent', 'io:DynamicExteriorVenetianBlindIOComponent', 'zigbee:SomfyVenetianBlindComponent'];
 
 		this.tilt_changedTrigger = this.homey.flow.getDeviceTriggerCard('windowcoverings_tilt_changed');
 

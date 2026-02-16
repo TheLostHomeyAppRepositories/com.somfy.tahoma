@@ -910,5 +910,8 @@
 	},
 	"4.0.126": {
 		"en": "Add measure_battery capability to window coverings devices if battery level or battery state is available when fetching initial state."
+	},
+	"4.0.127": {
+		"en": "Added support for 'zigbee:SomfyVenetianBlindComponent'."
 	}
 }
