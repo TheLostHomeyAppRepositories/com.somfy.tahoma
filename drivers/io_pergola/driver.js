@@ -13,7 +13,7 @@ class PergolaDriver extends ioWindowCoveringsDriver
 
 	async onInit()
 	{
-		this.deviceType = ['io:SimpleBioclimaticPergolaIOComponent', 'ogp:Pergola'];
+		this.deviceType = ['io:SimpleBioclimaticPergolaIOComponent', 'ogp:Pergola', 'io:DynamicPergolaIOComponent'];
 
 		await super.onInit();
 	}

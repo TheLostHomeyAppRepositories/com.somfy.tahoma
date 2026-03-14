@@ -28,7 +28,7 @@ class PergolaDevice extends WindowCoveringsDevice
 		}
 
 		this.myParameter = [];
-		if (this.controllableName === 'ogp:pergola')
+		if ((this.controllableName === 'ogp:pergola') || (this.controllableName === 'io:dynamicpergolaiocomponent'))
 		{
 			if (this.hasCapability('windowcoverings_state'))
 			{

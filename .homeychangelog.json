@@ -913,5 +913,8 @@
 	},
 	"4.0.127": {
 		"en": "Added support for 'zigbee:SomfyVenetianBlindComponent'."
+	},
+	"4.0.128": {
+		"en": "Added support for 'io:SimpleExteriorHeatingIOComponent'."
 	}
 }
