@@ -343,9 +343,8 @@ class WindowCoveringsDevice extends Device
 				throw (err);
 			}
 		}
-		else
+		else if (this.hasCapability('windowcoverings_tilt_set'))
 		{
-			// New value from Tahoma
 			this.setCapabilityValue('windowcoverings_tilt_set', value).catch(this.error);
 
 			// trigger flows

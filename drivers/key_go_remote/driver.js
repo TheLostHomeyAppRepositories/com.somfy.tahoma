@@ -36,7 +36,8 @@ class key_go_remoteDriver extends Driver
 				this.log('setup resolve');
 				const homeyDevices = devices.filter((device) => this.deviceType.indexOf(device.controllableName) !== -1).map((device) => (
 				{
-					name: `${device.label}: ${device.attributes[0].name === 'core:GroupIndex' ? device.attributes[0].value : device.attributes[1].value}`,
+					// eslint-disable-next-line no-nested-ternary
+					name: `${device.label}: ${(device.attributes[0].value && device.attributes[0].name && device.attributes[0].name === 'core:GroupIndex') ? device.attributes[0].value : (device.attributes[1].value ? device.attributes[1].value : '')}`,
 					data:
 					{
 						id: device.oid,

@@ -916,5 +916,8 @@
 	},
 	"4.0.128": {
 		"en": "Added support for 'io:SimpleExteriorHeatingIOComponent'."
+	},
+	"4.0.129": {
+		"en": "Fixes a few bugs that showed up in logs."
 	}
 }
