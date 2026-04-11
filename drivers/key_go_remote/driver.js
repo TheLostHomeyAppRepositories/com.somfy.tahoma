@@ -34,18 +34,28 @@ class key_go_remoteDriver extends Driver
 			if (devices)
 			{
 				this.log('setup resolve');
-				const homeyDevices = devices.filter((device) => this.deviceType.indexOf(device.controllableName) !== -1).map((device) => (
-				{
-					// eslint-disable-next-line no-nested-ternary
-					name: `${device.label}: ${(device.attributes[0].value && device.attributes[0].name && device.attributes[0].name === 'core:GroupIndex') ? device.attributes[0].value : (device.attributes[1].value ? device.attributes[1].value : '')}`,
-					data:
+				const homeyDevices = devices.filter((device) => this.deviceType.indexOf(device.controllableName) !== -1).map((device) => {
+					let readableIndex = '';
+
+					// if the Attributes array contains an attribute with the name "core:GroupIndex", set readableIndex to that value as ': value', otherwise leave it at an empty string
+					const attributes = Array.isArray(device.attributes) ? device.attributes : [];
+					if (attributes.length > 0)
 					{
-						id: device.oid,
-						deviceURL: device.deviceURL,
-						label: device.label,
-						controllableName: device.controllableName,
-					},
-				}));
+						const groupIndexAttribute = attributes.find((attribute) => attribute && attribute.name === 'core:GroupIndex' && attribute.value);
+						readableIndex = groupIndexAttribute ? `: ${groupIndexAttribute.value}` : '';
+					}
+
+					return {
+						name: `${device.label}${readableIndex}`,
+						data:
+						{
+							id: device.oid,
+							deviceURL: device.deviceURL,
+							label: device.label,
+							controllableName: device.controllableName,
+						},
+					};
+				});
 				return homeyDevices;
 			}
 		}

@@ -919,5 +919,8 @@
 	},
 	"4.0.129": {
 		"en": "Fixes a few bugs that showed up in logs."
+	},
+	"4.0.130": {
+		"en": "Fix crash when KeyGo remote has no attributes."
 	}
 }
