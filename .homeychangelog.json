@@ -922,5 +922,8 @@
 	},
 	"4.0.130": {
 		"en": "Fix crash when KeyGo remote has no attributes."
+	},
+	"4.0.131": {
+		"en": "Added support for On/Off version of the ogp:Light."
 	}
 }

@@ -9,7 +9,7 @@ class simpleLightControllerDriver extends Driver
 
 	async onInit()
 	{
-		this.deviceType = ['zwave:OnOffLightZWaveComponent', 'zwave:OnOffZWaveComponent', 'eliot:OnOffLightEliotComponent', 'io:OnOffLightIOComponent'];
+		this.deviceType = ['zwave:OnOffLightZWaveComponent', 'zwave:OnOffZWaveComponent', 'eliot:OnOffLightEliotComponent', 'io:OnOffLightIOComponent', 'ogp:Light'];
 		await super.onInit();
 	}
 
