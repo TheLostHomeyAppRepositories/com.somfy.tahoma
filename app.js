@@ -2045,7 +2045,7 @@ class myApp extends Homey.App
 		{
 			try
 			{
-				const data = this.tahomaCloud.executeDeviceAction(label, deviceURL, action, action2);
+				const data = await this.tahomaCloud.executeDeviceAction(label, deviceURL, action, action2);
 				if (data.errorCode)
 				{
 					this.homey.app.logInformation(`${this.getName()}: onCapabilityHeatingModeState`, `Failed to send cloud command: ${JSON.stringify(action)}, error = ${data.error} (${data.errorCode})`);

@@ -247,7 +247,7 @@ class LightControllerDevice extends Device
 			const element = events[i];
 			if (element.name === 'DeviceStateChangedEvent')
 			{
-				if ((element.deviceURL === myURL) && element.deviceStates)
+				if ((element.deviceURL === myURL) && Array.isArray(element.deviceStates))
 				{
 					if (this.homey.app.infoLogEnabled)
 					{
@@ -271,25 +271,28 @@ class LightControllerDevice extends Device
 			}
 			else if (element.name === 'ExecutionRegisteredEvent')
 			{
-				for (let x = 0; x < element.actions.length; x++)
+				if (Array.isArray(element.actions))
 				{
-					if (myURL === element.actions[x].deviceURL)
+					for (let x = 0; x < element.actions.length; x++)
 					{
-						this.executionId = { id: element.execId, local };
-						if (element.actions[x].commands)
+						if (myURL === element.actions[x].deviceURL)
 						{
-							this.executionCmd = element.actions[x].commands[0].name;
-						}
-						else
-						{
-							this.executionCmd = element.actions[x].command;
-						}
-						if (!local && this.boostSync)
-						{
-							await this.homey.app.boostSync();
-							this.commandExecuting = '';
-							this.executionId = null;
-							this.executionCmd = '';
+							this.executionId = { id: element.execId, local };
+							if (element.actions[x].commands)
+							{
+								this.executionCmd = element.actions[x].commands[0].name;
+							}
+							else
+							{
+								this.executionCmd = element.actions[x].command;
+							}
+							if (!local && this.boostSync)
+							{
+								await this.homey.app.boostSync();
+								this.commandExecuting = '';
+								this.executionId = null;
+								this.executionCmd = '';
+							}
 						}
 					}
 				}

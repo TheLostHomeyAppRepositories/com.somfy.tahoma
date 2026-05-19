@@ -73,7 +73,7 @@ class io_open_close_remoteDevice extends Device
 			const element = events[i];
 			if (element.name === 'DeviceStateChangedEvent')
 			{
-				if ((element.deviceURL === myURL) && element.deviceStates)
+				if ((element.deviceURL === myURL) && Array.isArray(element.deviceStates))
 				{
 					if (this.homey.app.infoLogEnabled)
 					{

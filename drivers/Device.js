@@ -442,7 +442,7 @@ class Device extends Homey.Device
 			if (event.name === 'DeviceStateChangedEvent')
 			{
 				// If the URL matches then it is for this device
-				if (event.deviceStates && (event.deviceURL.startsWith(myURL)))
+				if (Array.isArray(event.deviceStates) && (event.deviceURL.startsWith(myURL)))
 				{
 					if (this.homey.app.infoLogEnabled)
 					{
@@ -579,25 +579,30 @@ class Device extends Homey.Device
 			}
 			else if (event.name === 'ExecutionRegisteredEvent')
 			{
-				// A command is being executed so check if we already know about it
-				for (const eventAction of event.actions)
+				if (Array.isArray(event.actions))
 				{
-					if (myURL === eventAction.deviceURL)
+					// A command is being executed so check if we already know about it
+					for (const eventAction of event.actions)
 					{
-						// Check if this command is already in the execution array
-						const idx = this.executionCommands.findIndex((element2) => element2.name === eventAction.command);
-						if (idx < 0)
+						if (myURL === eventAction.deviceURL)
 						{
-							// Not known so record it and boost the events interval
-							const newIdx = this.executionCommands.push({ id: event.execId, name: eventAction.command });
-							if (!local && this.boostSync)
+							// Check if this command is already in the execution array
+							const idx = this.executionCommands.findIndex((element2) => element2.name === eventAction.command);
+							if (idx < 0)
 							{
-								if (!await this.homey.app.boostSync())
+								// Not known so record it and boost the events interval
+								const newIdx = this.executionCommands.push({ id: event.execId, name: eventAction.command });
+								if (!local && this.boostSync)
 								{
-									this.executionCommands.splice(newIdx, 1);
+									if (!await this.homey.app.boostSync())
+									{
+										this.executionCommands.splice(newIdx, 1);
+									}
 								}
 							}
 						}
+						}
+				}
 					}
 				}
 			}

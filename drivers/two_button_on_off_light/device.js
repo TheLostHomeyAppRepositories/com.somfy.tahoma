@@ -153,6 +153,10 @@ class two_button_on_offDevice extends Device
 			const element = events[i];
 			if (element.name === 'ExecutionRegisteredEvent')
 			{
+				if (!Array.isArray(element.actions))
+				{
+					continue;
+				}
 				for (let x = 0; x < element.actions.length; x++)
 				{
 					if (myURL === element.actions[x].deviceURL)

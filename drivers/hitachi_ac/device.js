@@ -339,7 +339,7 @@ class HitachiACDevice extends SensorDevice
 			const element = events[i];
 			if (element.name === 'DeviceStateChangedEvent')
 			{
-				if ((element.deviceURL === myURL) && element.deviceStates)
+				if ((element.deviceURL === myURL) && Array.isArray(element.deviceStates))
 				{
 					if (this.homey.app.infoLogEnabled)
 					{
@@ -398,6 +398,10 @@ class HitachiACDevice extends SensorDevice
 			}
 			else if (element.name === 'ExecutionRegisteredEvent')
 			{
+				if (!Array.isArray(element.actions))
+				{
+					continue;
+				}
 				// A command is being executed so check if we already know about it
 				for (const eventAction of element.actions)
 				{

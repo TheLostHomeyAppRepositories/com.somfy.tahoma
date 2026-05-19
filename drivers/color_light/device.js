@@ -240,7 +240,7 @@ class ColorLightControllerDevice extends Device
 			const element = events[i];
 			if (element.name === 'DeviceStateChangedEvent')
 			{
-				if ((element.deviceURL === myURL) && element.deviceStates)
+				if ((element.deviceURL === myURL) && Array.isArray(element.deviceStates))
 				{
 					if (this.homey.app.infoLogEnabled)
 					{
@@ -264,6 +264,10 @@ class ColorLightControllerDevice extends Device
 			}
 			else if (element.name === 'ExecutionRegisteredEvent')
 			{
+				if (!Array.isArray(element.actions))
+				{
+					continue;
+				}
 				for (let x = 0; x < element.actions.length; x++)
 				{
 					if (myURL === element.actions[x].deviceURL)
