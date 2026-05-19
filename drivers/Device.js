@@ -602,9 +602,7 @@ class Device extends Homey.Device
 							}
 						}
 						}
-				}
 					}
-				}
 			}
 			else if (event.name === 'ExecutionStateChangedEvent')
 			{
