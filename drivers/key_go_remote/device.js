@@ -36,8 +36,8 @@ class key_go_remoteDevice extends Device
 			};
 
 			// trigger flows
-			this.driver.triggerRemoteSateChange(device, tokens, state);
-			this.driver.triggerRemoteSateChangeTo(device, tokens, state);
+			this.driver.triggerRemoteStateChange(device, tokens, state);
+			this.driver.triggerRemoteStateChangeTo(device, tokens, state);
 		}
 
 		return Promise.resolve();
@@ -113,10 +113,10 @@ class key_go_remoteDevice extends Device
 						{
 							this.homey.app.logStates(`${this.getName()}: io:OneWayStoppableButtonState = ${deviceState.value}`);
 							const oldState = this.getState().key_go_remote_state;
-							const newSate = deviceState.value;
-							if (oldState !== newSate)
+							const newState = deviceState.value;
+							if (oldState !== newState)
 							{
-								this.triggerCapabilityListener('key_go_remote_state', newSate).catch(this.error);
+								this.triggerCapabilityListener('key_go_remote_state', newState).catch(this.error);
 							}
 						}
 					}

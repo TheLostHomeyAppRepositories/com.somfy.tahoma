@@ -36,8 +36,8 @@ class io_open_close_remoteDevice extends Device
 			};
 
 			// trigger flows
-			this.driver.triggerRemoteSateChange(device, tokens, state);
-			this.driver.triggerRemoteSateChangeTo(device, tokens, state);
+			this.driver.triggerRemoteStateChange(device, tokens, state);
+			this.driver.triggerRemoteStateChangeTo(device, tokens, state);
 		// }
 
 		return Promise.resolve();
@@ -90,8 +90,8 @@ class io_open_close_remoteDevice extends Device
 						if (deviceState.name === 'io:OneWayControllerButtonState')
 						{
 							this.homey.app.logStates(`${this.getName()}: io:OneWayControllerButtonState = ${deviceState.value}`);
-							const newSate = deviceState.value;
-							this.triggerCapabilityListener('remote_state', newSate).catch(this.error);
+							const newState = deviceState.value;
+							this.triggerCapabilityListener('remote_state', newState).catch(this.error);
 							this.homey.setTimeout(() =>
 							{
 								this.setCapabilityValue('remote_state', null).catch(this.error);

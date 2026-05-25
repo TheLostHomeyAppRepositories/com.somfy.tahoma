@@ -22,7 +22,7 @@ class eliot_remoteDevice extends Device
 
 	onCapabilityRemoteState(value)
 	{
-		const oldState = this.getState().remote_state;
+		const oldState = this.getState().eliot_remote_state;
 		if (oldState !== value)
 		{
 			this.setCapabilityValue('eliot_remote_state', value).catch(this.error);
@@ -36,8 +36,8 @@ class eliot_remoteDevice extends Device
 			};
 
 			// trigger flows
-			this.driver.triggerRemoteSateChange(device, tokens, state);
-			this.driver.triggerRemoteSateChangeTo(device, tokens, state);
+			this.driver.triggerRemoteStateChange(device, tokens, state);
+			this.driver.triggerRemoteStateChangeTo(device, tokens, state);
 		}
 
 		return Promise.resolve();
@@ -112,11 +112,11 @@ class eliot_remoteDevice extends Device
 						if (deviceState.name === 'core:RockerSwitchPushWayState')
 						{
 							this.homey.app.logStates(`${this.getName()}: core:RockerSwitchPushWayState = ${deviceState.value}`);
-							const oldState = this.getState().remote_state;
-							const newSate = deviceState.value;
-							if (oldState !== newSate)
+							const oldState = this.getState().eliot_remote_state;
+							const newState = deviceState.value;
+							if (oldState !== newState)
 							{
-								this.triggerCapabilityListener('eliot_remote_state', newSate).catch(this.error);
+								this.triggerCapabilityListener('eliot_remote_state', newState).catch(this.error);
 							}
 						}
 					}

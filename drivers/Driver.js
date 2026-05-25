@@ -13,6 +13,25 @@ const Homey = require('homey');
 class Driver extends Homey.Driver
 {
 
+	logInformationSafe(context, details)
+	{
+		try
+		{
+			const app = this.homey.app;
+			if (app && (typeof app.logInformation === 'function'))
+			{
+				app.logInformation(context, details);
+				return;
+			}
+		}
+		catch (err)
+		{
+			// App is shutting down or already destroyed.
+		}
+
+		this.error(context, details);
+	}
+
 	async onInit()
 	{
 		/** * Command Complete ** */
@@ -144,7 +163,7 @@ class Driver extends Homey.Driver
 				}
 			}
 
-			this.homey.app.logInformation('OnReceiveSetupData', devices);
+			this.logInformationSafe('OnReceiveSetupData', devices);
 			if (devices)
 			{
 				this.log('setup resolve');
@@ -164,8 +183,8 @@ class Driver extends Homey.Driver
 		}
 		catch (error)
 		{
-			this.homey.app.logInformation('OnReceiveSetupData', error);
-			throw new Error(error.message);
+			this.logInformationSafe('OnReceiveSetupData', error);
+			throw error;
 		}
 
 		return [];
@@ -191,7 +210,7 @@ class Driver extends Homey.Driver
 				})
 				.catch((error) =>
 				{
-					this.homey.app.logInformation(`triggerFlow (${trigger.id})`, error);
+					this.logInformationSafe(`triggerFlow (${trigger.id})`, error);
 				});
 		}
 	}

@@ -925,5 +925,8 @@
 	},
 	"4.0.131": {
 		"en": "Added support for On/Off version of the ogp:Light."
+	},
+	"4.0.132": {
+		"en": "Enhance error handling and logging across multiple drivers and classes; fix state naming inconsistencies."
 	}
 }

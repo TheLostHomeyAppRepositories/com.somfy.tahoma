@@ -17,9 +17,9 @@ class io_open_close_remoteDriver extends Driver
 		this.deviceType = ['io:IORemoteController', 'io:DynamicRemoteController'];
 		await super.onInit();
 
-		this._remoteSateChangedTrigger = this.homey.flow.getDeviceTriggerCard('remote_state_changed');
+		this._remoteStateChangedTrigger = this.homey.flow.getDeviceTriggerCard('remote_state_changed');
 
-		this._remoteSateChangedTriggerTo = this.homey.flow.getDeviceTriggerCard('remote_state_changed_to')
+		this._remoteStateChangedTriggerTo = this.homey.flow.getDeviceTriggerCard('remote_state_changed_to')
 			.registerRunListener((args, state) =>
 			{
 				// If true, this flow should run
@@ -27,15 +27,15 @@ class io_open_close_remoteDriver extends Driver
 			});
 	}
 
-	triggerRemoteSateChange(device, tokens, state)
+	triggerRemoteStateChange(device, tokens, state)
 	{
-		this.triggerFlow(this._remoteSateChangedTrigger, device, tokens, state);
+		this.triggerFlow(this._remoteStateChangedTrigger, device, tokens, state);
 		return this;
 	}
 
-	triggerRemoteSateChangeTo(device, tokens, state)
+	triggerRemoteStateChangeTo(device, tokens, state)
 	{
-		this.triggerFlow(this._remoteSateChangedTriggerTo, device, tokens, state);
+		this.triggerFlow(this._remoteStateChangedTriggerTo, device, tokens, state);
 		return this;
 	}
 

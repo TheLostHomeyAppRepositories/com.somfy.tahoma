@@ -35,6 +35,7 @@ class myApp extends Homey.App
 		this.unBoosting = false;
 		this.commandsQueued = 0;
 		this.lastSync = 0;
+		this._logoutInProgress = null;
 		this.lastLogTime = new Date(Date.now());
 
 		this.localBridgeInfo = this.homey.settings.get('localBridge');
@@ -84,7 +85,10 @@ class myApp extends Homey.App
 
 		this.homey.on('unload', async () =>
 		{
-			await this.logOut(false);
+			await this.logOut(false).catch((error) =>
+			{
+				this.logInformation('unload logOut failed', error.message ? error.message : error);
+			});
 		});
 
 		this.homey.settings.on('set', (setting) =>
@@ -109,7 +113,10 @@ class myApp extends Homey.App
 					this.usingDebugData = false;
 				}
 
-				this.syncEvents(null);
+					this.syncEvents(null).catch((error) =>
+					{
+						this.logInformation('settings simData syncEvents', error.message ? error.message : error);
+					});
 			}
 		});
 
@@ -424,10 +431,17 @@ class myApp extends Homey.App
 		}
 	}
 
-	onUninit()
+	async onUninit()
 	{
 		// Log out but don't clear the credentials
-		this.logOut(false);
+		try
+		{
+			await this.logOut(false);
+		}
+		catch (error)
+		{
+			this.logInformation('onUninit logOut failed', error.message ? error.message : error);
+		}
 	}
 
 	registerActionFlowCards()
@@ -1026,22 +1040,45 @@ class myApp extends Homey.App
 
 	async logOut(ClearCredentials = true)
 	{
-		if (this.unBoostTimerID)
+		if (this._logoutInProgress)
 		{
-			this.homey.clearTimeout(this.unBoostTimerID);
-			this.unBoostTimerID = null;
+			await this._logoutInProgress;
+			if (ClearCredentials)
+			{
+				this.homey.settings.unset('username');
+				this.homey.settings.unset('password');
+			}
+			return true;
 		}
 
-		let maxLoops = 50;
-		while (this.unBoosting && (maxLoops-- > 0))
+		this._logoutInProgress = (async () =>
 		{
-			await this.homey.app.asyncDelay(1000);
-		}
+			if (this.unBoostTimerID)
+			{
+				this.homey.clearTimeout(this.unBoostTimerID);
+				this.unBoostTimerID = null;
+			}
 
-		if (this.tahomaCloud)
+			let maxLoops = 50;
+			while (this.unBoosting && (maxLoops-- > 0))
+			{
+				await this.asyncDelay(1000);
+			}
+
+			if (this.tahomaCloud)
+			{
+				await this.stopSync('cloud');
+				await this.tahomaCloud.logout();
+			}
+		})();
+
+		try
 		{
-			await this.stopSync('cloud');
-			await this.tahomaCloud.logout();
+			await this._logoutInProgress;
+		}
+		finally
+		{
+			this._logoutInProgress = null;
 		}
 
 		if (ClearCredentials)
@@ -1049,6 +1086,7 @@ class myApp extends Homey.App
 			this.homey.settings.unset('username');
 			this.homey.settings.unset('password');
 		}
+
 		return true;
 	}
 
@@ -1430,7 +1468,7 @@ class myApp extends Homey.App
 				let maxLoops = 50;
 				while (this.unBoosting && (maxLoops-- > 0))
 				{
-					await this.homey.app.asyncDelay(1000);
+					await this.asyncDelay(1000);
 				}
 
 				this.commandsQueued++;
@@ -1771,7 +1809,7 @@ class myApp extends Homey.App
 							this.logInformation('syncLoop', 'Postponed for 1 minute');
 							nextInterval = 61000;
 						}
-						else if (tahomaConnection.local && error.message === 'Request failed with status code 400')
+						else if (tahomaConnection.localLogin && error.message === 'Request failed with status code 400')
 						{
 							await this.syncEvents(null, true);
 						}
