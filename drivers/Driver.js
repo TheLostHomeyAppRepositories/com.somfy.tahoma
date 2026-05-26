@@ -188,7 +188,7 @@ class Driver extends Homey.Driver
 			}
 
 			password = sessionPassword;
-			const credentialsAreValid = await this.homey.app.newLogin_2(username, password, region);
+			const credentialsAreValid = await this.homey.app.newLogin_2(username, password, region, null, true);
 
 			if (credentialsAreValid && (typeof this.homey.app.upsertAccountSession === 'function'))
 			{
@@ -204,6 +204,13 @@ class Driver extends Homey.Driver
 		session.setHandler('list_devices', async () =>
 		{
 			this.log('list_devices');
+			if (this.homey.app && this.homey.app.infoLogEnabled && this.homey.app.tahomaCloud)
+			{
+				const cloudUsername = (typeof this.homey.app.normalizeSessionEmail === 'function')
+					? this.homey.app.normalizeSessionEmail(this.homey.app.tahomaCloud.username)
+					: (this.homey.app.tahomaCloud.username || '');
+				this.homey.app.logInformation('Pairing list_devices', `Cloud authenticated user: ${cloudUsername || 'not authenticated'}`);
+			}
 			if (!username || !password)
 			{
 				if (selectedExistingSession && (typeof this.homey.app.getSessionByEmail === 'function'))
@@ -244,7 +251,7 @@ class Driver extends Homey.Driver
 		{
 			username = data.username;
 			password = data.password;
-			const credentialsAreValid = await this.homey.app.newLogin_2(username, password, region);
+			const credentialsAreValid = await this.homey.app.newLogin_2(username, password, region, null, true);
 
 			// return true to continue adding the device if the login succeeded
 			// return false to indicate to the user the login attempt failed

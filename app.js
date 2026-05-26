@@ -52,6 +52,13 @@ class myApp extends Homey.App
 		{
 			this.localBearersByPin = {};
 		}
+		this.localCredentialRetryAfter = {};
+		this.localPollingNoPinMatchLogged = false;
+		this.tahomaCloudsBySession = {};
+		this.cloudSessionRetryAfter = {};
+		this.cloudLastSyncBySession = {};
+		this.primaryCloudSessionUsername = '';
+		this.forceImmediateCloudSync = false;
 
 		if (this.localBridgeInfo && this.localBridgeInfo.pin && this.localBearer)
 		{
@@ -164,6 +171,13 @@ class myApp extends Homey.App
 		}
 
 		this.tahomaCloud = new Tahoma(this.homey, false);
+		const initialCloudUsername = this.normalizeSessionEmail(this.homey.settings.get('username'));
+		if (initialCloudUsername)
+		{
+			this.tahomaCloudsBySession[initialCloudUsername] = this.tahomaCloud;
+			this.tahomaCloud.sessionUsername = initialCloudUsername;
+			this.primaryCloudSessionUsername = initialCloudUsername;
+		}
 
 		// Setup the flow listeners
 		this.addScenarioActionListeners();
@@ -239,9 +253,10 @@ class myApp extends Homey.App
 
 		this.registerActionFlowCards();
 
-		// If this is a cloud Homey then add a random, between 0 and 2 minutes, delay to the initial sync to avoid all cloud Homeys syncing at the same time
+		// On Homey Pro start syncing sooner; keep cloud stagger to avoid synchronized bursts.
 		const randomDelay = this.homeyIP ? 0 : Math.floor(Math.random() * 120000);
-		this.syncTimerId = this.homey.setTimeout(() => this.initSync(), 30000 + randomDelay);
+		const initialSyncDelay = this.homeyIP ? 15000 : 30000;
+		this.syncTimerId = this.homey.setTimeout(() => this.initSync(), initialSyncDelay + randomDelay);
 
 		this.discoveryStrategy = this.homey.discovery.getStrategy('somfy_tahoma');
 		this.discoveryStrategy.on('result', (discoveryResult) =>
@@ -328,24 +343,35 @@ class myApp extends Homey.App
 			this.homey.settings.set('region', region);
 		}
 
-		try
+		const bridgeCandidates = this.getCandidateCredentialsForLocalRouting(effectiveUsername, this.localBridgeInfo.pin);
+		for (const candidate of bridgeCandidates)
 		{
-			if (await this.doLocalLogin(effectiveUsername, effectivePassword, region))
+			try
 			{
-				this.localOnly = true;
+				if (await this.doLocalLogin(candidate.username, candidate.password, candidate.region))
+				{
+					this.localOnly = true;
 
-				// Start sync in 5 seconds
-				this.syncTimerId = this.homey.setTimeout(() => this.startSync(), 5000);
-				return;
+					// Start sync in 5 seconds
+					this.syncTimerId = this.homey.setTimeout(() => this.startSync(), 5000);
+					return;
+				}
+			}
+			catch (err)
+			{
+				this.logInformation('Local login failed', err.message);
 			}
 		}
-		catch (err)
+
+		// Retry sync sooner on Homey Pro when no local PIN-matched login is available.
+		if (this.homeyIP)
 		{
-			this.logInformation('Local login failed', err.message);
+			// On Homey Pro, trigger cloud sync on the first loop after fallback startSync.
+			this.forceImmediateCloudSync = true;
 		}
 
-		// Retry sync in 60 seconds
-		this.syncTimerId = this.homey.setTimeout(() => this.startSync(), 60000);
+		const mdnsFallbackDelay = this.homeyIP ? 15000 : 60000;
+		this.syncTimerId = this.homey.setTimeout(() => this.startSync(), mdnsFallbackDelay);
 	}
 
 	async doLocalLoginForClient(localClient, username, password, region, localToken, bridgeInfo, persistCredentials = true, quiet = false, setAsActive = true)
@@ -357,6 +383,13 @@ class myApp extends Homey.App
 
 		const bridgePin = this.normalizeBridgePin(bridgeInfo ? bridgeInfo.pin : '');
 		const currentAuthenticatedBridgePin = this.normalizeBridgePin(this.localAuthenticatedBridgePin || '');
+		const attemptKey = this.getLocalAttemptKey(bridgePin, username, region);
+		const now = Date.now();
+
+		if (attemptKey && this.localCredentialRetryAfter[attemptKey] && (this.localCredentialRetryAfter[attemptKey] > now))
+		{
+			return false;
+		}
 
 		if (bridgePin && localClient.authenticated && ((currentAuthenticatedBridgePin === bridgePin) || !setAsActive) && Array.isArray(localClient.supportedDevices) && (localClient.supportedDevices.length > 0))
 		{
@@ -384,6 +417,12 @@ class myApp extends Homey.App
 			const localBearer = await localClient.getLocalAuthCode(username, password, region, bridgeInfo.pin, bridgeInfo.port, bearerForBridge, await this.homey.cloud.getHomeyId(), newToken);
 			if (!localBearer)
 			{
+				const statusCode = localClient.lastLocalTokenError && localClient.lastLocalTokenError.statusCode;
+				if (attemptKey && [400, 401, 403].includes(statusCode))
+				{
+					// The bridge rejected this account; avoid hammering token generation for a while.
+					this.localCredentialRetryAfter[attemptKey] = Date.now() + (5 * 60 * 1000);
+				}
 				return false;
 			}
 
@@ -396,6 +435,11 @@ class myApp extends Homey.App
 			{
 				this.localBearersByPin[bridgeInfo.pin] = localBearer;
 				this.homey.settings.set('localBearersByPin', this.localBearersByPin);
+			}
+
+			if (attemptKey && this.localCredentialRetryAfter[attemptKey])
+			{
+				delete this.localCredentialRetryAfter[attemptKey];
 			}
 
 			if (setAsActive)
@@ -484,11 +528,28 @@ class myApp extends Homey.App
 				return false;
 			}
 
+			if (bridgeInfo && bridgeInfo.pin)
+			{
+				this.linkSessionToBridgePin(username, bridgeInfo.pin);
+			}
+
 			return true;
 		}
 
 		this.logInformation('No local Bearer token');
 		return false;
+	}
+
+	getLocalAttemptKey(bridgePin, username, region)
+	{
+		const pin = this.normalizeBridgePin(bridgePin || '');
+		const normalizedUsername = this.normalizeSessionEmail(username);
+		if (!pin || !normalizedUsername)
+		{
+			return '';
+		}
+
+		return `${pin}|${normalizedUsername}|${region || 'europe'}`;
 	}
 
 	async doLocalLogin(username, password, region, localToken, bridgeOverride = null, persistCredentials = true, quiet = false)
@@ -1030,6 +1091,183 @@ class myApp extends Homey.App
 		return h;
 	}
 
+	getCloudClientForSession(username)
+	{
+		const normalizedUsername = this.normalizeSessionEmail(username);
+		if (!normalizedUsername)
+		{
+			return this.tahomaCloud;
+		}
+
+		if (!this.tahomaCloudsBySession || (typeof this.tahomaCloudsBySession !== 'object'))
+		{
+			this.tahomaCloudsBySession = {};
+		}
+
+		if (!this.tahomaCloudsBySession[normalizedUsername])
+		{
+			this.tahomaCloudsBySession[normalizedUsername] = new Tahoma(this.homey, false);
+		}
+
+		this.tahomaCloudsBySession[normalizedUsername].sessionUsername = normalizedUsername;
+
+		return this.tahomaCloudsBySession[normalizedUsername];
+	}
+
+	setPrimaryCloudSession(username)
+	{
+		const normalizedUsername = this.normalizeSessionEmail(username);
+		if (!normalizedUsername)
+		{
+			return;
+		}
+
+		this.primaryCloudSessionUsername = normalizedUsername;
+		this.tahomaCloud = this.getCloudClientForSession(normalizedUsername);
+	}
+
+	getCloudPollingSessions()
+	{
+		const sessions = this.getAccountSessions()
+			.filter((session) => session && this.isValidSessionEmail(session.username) && session.password)
+			.map((session) =>
+			({
+				username: this.normalizeSessionEmail(session.username),
+				password: session.password,
+				region: session.region || 'europe',
+			}));
+
+		const currentUsername = this.normalizeSessionEmail(this.homey.settings.get('username'));
+		const currentPassword = this.homey.settings.get('password');
+		const currentRegion = this.homey.settings.get('region') || 'europe';
+		if (currentUsername && currentPassword && !sessions.find((session) => session.username === currentUsername))
+		{
+			sessions.unshift({
+				username: currentUsername,
+				password: currentPassword,
+				region: currentRegion,
+			});
+		}
+
+		return sessions;
+	}
+
+	async loginCloudClient(cloudClient, username, password, region)
+	{
+		let loginMethod = true;
+		try
+		{
+			await cloudClient.login(username, password, region, loginMethod, this.homeyIP);
+		}
+		catch (error)
+		{
+			if (error.message)
+			{
+				this.logInformation('Login OAuth', `Error: ${error.message}`);
+			}
+			else
+			{
+				this.logInformation('Login OAuth', error);
+			}
+
+			loginMethod = !loginMethod;
+		}
+
+		if (!cloudClient.authenticated)
+		{
+			try
+			{
+				await cloudClient.login(username, password, region, loginMethod, this.homeyIP);
+			}
+			catch (error)
+			{
+				if (error.message)
+				{
+					this.logInformation('Login OAuth 2', `Error: ${error.message}`);
+				}
+				else
+				{
+					this.logInformation('Login OAuth 2', error);
+				}
+			}
+		}
+
+		return cloudClient.authenticated;
+	}
+
+	async ensureCloudSessionAuthenticated(username, password, region, forceLogin = false)
+	{
+		const normalizedUsername = this.normalizeSessionEmail(username);
+		if (!normalizedUsername || !password)
+		{
+			return false;
+		}
+
+		const cloudClient = this.getCloudClientForSession(normalizedUsername);
+		const clientUsername = this.normalizeSessionEmail(cloudClient.username);
+		const shouldRelogin = forceLogin || !cloudClient.authenticated || (clientUsername && (clientUsername !== normalizedUsername));
+		if (!shouldRelogin)
+		{
+			return true;
+		}
+
+		const retryAfter = this.cloudSessionRetryAfter[normalizedUsername] || 0;
+		if (!forceLogin && (retryAfter > Date.now()))
+		{
+			return false;
+		}
+
+		try
+		{
+			await cloudClient.logout();
+		}
+		catch (error)
+		{
+			this.logInformation('Cloud logout before relogin', error.message ? error.message : error);
+		}
+
+		// Keep a small gap between logout and login to avoid auth race conditions.
+		await new Promise((resolve) => this.homey.setTimeout(resolve, 1000));
+
+		const authenticated = await this.loginCloudClient(cloudClient, normalizedUsername, password, region || 'europe');
+		if (!authenticated)
+		{
+			this.cloudSessionRetryAfter[normalizedUsername] = Date.now() + 60000;
+			return false;
+		}
+
+		delete this.cloudSessionRetryAfter[normalizedUsername];
+		return true;
+	}
+
+	async syncAllCloudSessions()
+	{
+		const sessions = this.getCloudPollingSessions();
+		if (!Array.isArray(sessions) || (sessions.length === 0))
+		{
+			if (this.infoLogEnabled)
+			{
+				this.logInformation('Cloud syncLoop', 'No cloud sessions available for polling');
+			}
+			return CLOUD_INTERVAL * 1000;
+		}
+
+		let nextInterval = CLOUD_INTERVAL * 1000;
+		for (const session of sessions)
+		{
+			const authenticated = await this.ensureCloudSessionAuthenticated(session.username, session.password, session.region, false);
+			if (!authenticated)
+			{
+				continue;
+			}
+
+			const cloudClient = this.getCloudClientForSession(session.username);
+			nextInterval = await this.syncWorker(cloudClient);
+		}
+
+		return nextInterval;
+	}
+
 	// Throws an exception if the login fails
 	async newLogin(args)
 	{
@@ -1039,6 +1277,12 @@ class myApp extends Homey.App
 	// Throws an exception if the login fails
 	async newLogin_2(username, password, region, localToken, forceLogin = false)
 	{
+		const normalizedRequestedUsername = this.normalizeSessionEmail(username);
+		const normalizedCurrentCloudUsername = this.normalizeSessionEmail(this.tahomaCloud && this.tahomaCloud.username ? this.tahomaCloud.username : '');
+		const normalizedCurrentLocalUsername = this.normalizeSessionEmail(this.tahomaLocal && this.tahomaLocal.username ? this.tahomaLocal.username : '');
+		const switchCloudAccount = !!(normalizedRequestedUsername && normalizedCurrentCloudUsername && (normalizedRequestedUsername !== normalizedCurrentCloudUsername));
+		const switchLocalAccount = !!(normalizedRequestedUsername && normalizedCurrentLocalUsername && (normalizedRequestedUsername !== normalizedCurrentLocalUsername));
+
 		// Stop the timer so periodic updates don't happen while changing login
 		if (this.loginTimerId)
 		{
@@ -1046,83 +1290,47 @@ class myApp extends Homey.App
 			this.loginTimerId = null;
 		}
 
-		if (this.localBridgeInfo && this.localBridgeInfo.pin && (!this.tahomaLocal.authenticated || forceLogin))
+		if (this.localBridgeInfo && this.localBridgeInfo.pin && (!this.tahomaLocal.authenticated || forceLogin || switchLocalAccount))
 		{
-			try
-			{
-				await this.stopSync('local');
-
-				// Need to get a local bearer token
-				await this.doLocalLogin(username, password, region, localToken);
-			}
-			catch (error)
-			{
-				if (error.message)
-				{
-					this.logInformation('Login doLocal', `Error: ${error.message}`);
-				}
-				else
-				{
-					this.logInformation('Login doLocal', error);
-				}
-			}
-		}
-
-		// Need to do cloud login
-		if (this.tahomaCloud && (!this.tahomaCloud.authenticated || forceLogin))
-		{
-			await this.stopSync('cloud');
-
-			// make sure we logout from old method first
-			await this.tahomaCloud.logout();
-
-			// Allow a short delay before logging back in
-			await new Promise((resolve) => this.homey.setTimeout(resolve, 1000));
-
-			let loginMethod = true; // Start with new method
-
-			// Login with supplied credentials. An error is thrown if the login fails
-			try
-			{
-				await this.tahomaCloud.login(username, password, region, loginMethod, this.homeyIP);
-			}
-			catch (error)
-			{
-				if (error.message)
-				{
-					this.logInformation('Login OAuth', `Error: ${error.message}`);
-				}
-				else
-				{
-					this.logInformation('Login OAuth', error);
-				}
-
-				// Try other log in method
-				loginMethod = !loginMethod;
-			}
-
-			if (!this.tahomaCloud.authenticated)
+			const bridgeCandidates = this.getCandidateCredentialsForLocalRouting(username, this.localBridgeInfo.pin);
+			if (bridgeCandidates.length > 0)
 			{
 				try
 				{
-					// Try once more with the alternative method
-					await this.tahomaCloud.login(username, password, region, loginMethod, this.homeyIP);
+					await this.stopSync('local');
+
+					// Need to get a local bearer token
+					await this.doLocalLogin(username, password, region, localToken);
 				}
 				catch (error)
 				{
 					if (error.message)
 					{
-						this.logInformation('Login OAuth 2', `Error: ${error.message}`);
+						this.logInformation('Login doLocal', `Error: ${error.message}`);
 					}
 					else
 					{
-						this.logInformation('Login OAuth 2', error);
+						this.logInformation('Login doLocal', error);
 					}
 				}
 			}
+		}
 
-			if (this.tahomaCloud.authenticated)
+		// Need to do cloud login
+		if (this.tahomaCloud && (!this.tahomaCloud.authenticated || forceLogin || switchCloudAccount))
+		{
+			if (switchCloudAccount && this.infoLogEnabled)
 			{
+				this.logInformation('newLogin_2', `Switching cloud account from ${normalizedCurrentCloudUsername} to ${normalizedRequestedUsername}`);
+			}
+
+			await this.stopSync('cloud');
+
+			const cloudAuthenticated = await this.ensureCloudSessionAuthenticated(username, password, region, true);
+			if (cloudAuthenticated)
+			{
+				this.setPrimaryCloudSession(username);
+
 				// All good so save the credentials
 				this.homey.settings.set('username', username);
 				this.homey.settings.set('password', password);
@@ -1173,7 +1381,24 @@ class myApp extends Homey.App
 			if (this.tahomaCloud)
 			{
 				await this.stopSync('cloud');
-				await this.tahomaCloud.logout();
+
+				const cloudClients = new Set();
+				cloudClients.add(this.tahomaCloud);
+				if (this.tahomaCloudsBySession && (typeof this.tahomaCloudsBySession === 'object'))
+				{
+					for (const cloudClient of Object.values(this.tahomaCloudsBySession))
+					{
+						if (cloudClient)
+						{
+							cloudClients.add(cloudClient);
+						}
+					}
+				}
+
+				for (const cloudClient of cloudClients)
+				{
+					await cloudClient.logout();
+				}
 			}
 		})();
 
@@ -1202,21 +1427,80 @@ class myApp extends Homey.App
 			this.logInformation('logDevices', 'Fetching devices');
 		}
 
-		const devices = { cloud: {}, local: { ip: this.localBridgeInfo ? this.localBridgeInfo.address : null } };
-		let cloudDevices = null;
-		let localDevices = null;
+		const devices = {
+			sessions: [],
+			local: {
+				ip: this.localBridgeInfo ? this.localBridgeInfo.address : null,
+				devices: [],
+			},
+		};
+		let cloudFetches = 0;
 
-		if (!this.tahomaCloud.authenticated)
+		const cloudSessions = this.getCloudPollingSessions();
+		if ((!Array.isArray(cloudSessions) || (cloudSessions.length === 0)) && this.tahomaCloud && !this.tahomaCloud.authenticated)
 		{
-			// Try to login first
+			// Keep legacy behavior when no account session list exists yet.
 			await this.initSync();
 		}
 
-		if (this.tahomaCloud.authenticated)
+		if (Array.isArray(cloudSessions) && (cloudSessions.length > 0))
+		{
+			for (const session of cloudSessions)
+			{
+				const sessionLog = {
+					login: session.username,
+					devices: {
+						cloud: {
+							devices: [],
+						},
+					},
+				};
+
+				try
+				{
+					const authenticated = await this.ensureCloudSessionAuthenticated(session.username, session.password, session.region, false);
+					if (!authenticated)
+					{
+						devices.sessions.push(sessionLog);
+						continue;
+					}
+
+					const cloudClient = this.getCloudClientForSession(session.username);
+					const sessionDevices = await cloudClient.getDeviceData();
+					if (Array.isArray(sessionDevices))
+					{
+						sessionLog.devices.cloud.devices = sessionDevices;
+						cloudFetches++;
+					}
+				}
+				catch (error)
+				{
+					this.logInformation('logDevices', error);
+				}
+
+				devices.sessions.push(sessionLog);
+			}
+		}
+		else if (this.tahomaCloud && this.tahomaCloud.authenticated)
 		{
 			try
 			{
-				cloudDevices = await this.tahomaCloud.getDeviceData();
+				const singleCloudDevices = await this.tahomaCloud.getDeviceData();
+				const singleLogin = this.normalizeSessionEmail(this.tahomaCloud.username || this.homey.settings.get('username') || '');
+				const singleSessionLog = {
+					login: singleLogin,
+					devices: {
+						cloud: {
+							devices: Array.isArray(singleCloudDevices) ? singleCloudDevices : [],
+						},
+					},
+				};
+				devices.sessions.push(singleSessionLog);
+
+				if (Array.isArray(singleCloudDevices))
+				{
+					cloudFetches = 1;
+				}
 			}
 			catch (error)
 			{
@@ -1228,7 +1512,11 @@ class myApp extends Homey.App
 		{
 			try
 			{
-				localDevices = await this.tahomaLocal.getDeviceData();
+				const localDevices = await this.tahomaLocal.getDeviceData();
+				if (Array.isArray(localDevices))
+				{
+					devices.local.devices = localDevices;
+				}
 			}
 			catch (error)
 			{
@@ -1236,43 +1524,54 @@ class myApp extends Homey.App
 			}
 		}
 
-		// check if we have both cloud and local devices and they are both arrays
-		if (Array.isArray(cloudDevices) && Array.isArray(localDevices))
-		{
-			// Filter cloud devices to remove local devices
-			const unique = cloudDevices.filter((cloud) =>
-			{
-				const isDuplicate = (localDevices.findIndex((local) => (local.deviceURL === cloud.deviceURL) && (local.controllableName === cloud.controllableName)) >= 0);
-
-				if (!isDuplicate)
-				{
-					return true;
-				}
-
-				return false;
-			});
-
-			devices.cloud.devices = unique;
-			devices.local.devices = localDevices;
-		}
-		else
-		{
-			if (cloudDevices)
-			{
-				devices.cloud = cloudDevices;
-			}
-			if (localDevices)
-			{
-				devices.local = localDevices;
-			}
-		}
-
 		// Do a deep copy
 		const logData = JSON.parse(JSON.stringify(devices));
 
-		if (devices && this.infoLogEnabled)
+		if (Array.isArray(logData.sessions))
 		{
-			this.logInformation('logDevices', `Log contains ${devices.length} devices`);
+			const localByLogin = {};
+			if (Array.isArray(logData.local.devices))
+			{
+				for (const localDevice of logData.local.devices)
+				{
+					const login = this.normalizeSessionEmail(this.getDeviceSessionUsername(localDevice.deviceURL));
+					if (!login)
+					{
+						continue;
+					}
+
+					if (!localByLogin[login])
+					{
+						localByLogin[login] = [];
+					}
+
+					localByLogin[login].push(localDevice);
+				}
+			}
+
+			for (const sessionLog of logData.sessions)
+			{
+				if (!sessionLog || !sessionLog.login || !sessionLog.devices)
+				{
+					continue;
+				}
+
+				const sessionLocalDevices = localByLogin[this.normalizeSessionEmail(sessionLog.login)] || [];
+				sessionLog.devices.local = {
+					ip: logData.local.ip,
+					devices: sessionLocalDevices,
+				};
+			}
+		}
+
+		if (this.infoLogEnabled)
+		{
+			const cloudCount = Array.isArray(logData.sessions)
+				? logData.sessions.reduce((count, sessionLog) =>
+					count + ((sessionLog && sessionLog.devices && sessionLog.devices.cloud && Array.isArray(sessionLog.devices.cloud.devices)) ? sessionLog.devices.cloud.devices.length : 0), 0)
+				: 0;
+			const localCount = Array.isArray(logData.local.devices) ? logData.local.devices.length : 0;
+			this.logInformation('logDevices', `Log contains ${cloudCount + localCount} devices (${cloudCount} cloud from ${cloudFetches} session(s), ${localCount} local)`);
 		}
 
 		if (this.homey.settings.get('debugMode'))
@@ -1285,7 +1584,7 @@ class myApp extends Homey.App
 		else
 		{
 			// Remove personal device information
-			if (logData.local.devices)
+			if (Array.isArray(logData.local.devices))
 			{
 				logData.local.devices.forEach((element) =>
 				{
@@ -1296,14 +1595,20 @@ class myApp extends Homey.App
 				});
 			}
 
-			if (logData.cloud.devices)
+			if (Array.isArray(logData.sessions))
 			{
-				logData.cloud.devices.forEach((element) =>
+				logData.sessions.forEach((sessionLog) =>
 				{
-					delete element.creationTime;
-					delete element.lastUpdateTime;
-					delete element.shortcut;
-					delete element.placeOID;
+					if (sessionLog && sessionLog.devices && sessionLog.devices.cloud && Array.isArray(sessionLog.devices.cloud.devices))
+					{
+						sessionLog.devices.cloud.devices.forEach((element) =>
+						{
+							delete element.creationTime;
+							delete element.lastUpdateTime;
+							delete element.shortcut;
+							delete element.placeOID;
+						});
+					}
 				});
 			}
 		}
@@ -1733,7 +2038,26 @@ class myApp extends Homey.App
 				this.logInformation('stopSync', 'Stopping Cloud Event Polling');
 			}
 
-			await this.tahomaCloud.eventsClearRegistered();
+			const cloudClients = new Set();
+			if (this.tahomaCloud)
+			{
+				cloudClients.add(this.tahomaCloud);
+			}
+			if (this.tahomaCloudsBySession && (typeof this.tahomaCloudsBySession === 'object'))
+			{
+				for (const cloudClient of Object.values(this.tahomaCloudsBySession))
+				{
+					if (cloudClient)
+					{
+						cloudClients.add(cloudClient);
+					}
+				}
+			}
+
+			for (const cloudClient of cloudClients)
+			{
+				await cloudClient.eventsClearRegistered();
+			}
 		}
 
 		if (this.tahomaLocal && (CloudLocal === 'local'))
@@ -1779,7 +2103,14 @@ class myApp extends Homey.App
 			this.logInformation(`Restart local sync in: ${LOCAL_INTERVAL} seconds, cloud sync in: ${CLOUD_INTERVAL} seconds`);
 		}
 
-		this.nextCloudInterval = CLOUD_INTERVAL * 1000;
+		let nextCloudDelay = CLOUD_INTERVAL * 1000;
+		if (this.forceImmediateCloudSync && !this.localOnly)
+		{
+			nextCloudDelay = LOCAL_INTERVAL * 1000;
+			this.forceImmediateCloudSync = false;
+		}
+
+		this.nextCloudInterval = nextCloudDelay;
 		if (!this.syncing)
 		{
 			this.syncTimerId = this.homey.setTimeout(this.syncLoop, LOCAL_INTERVAL * 1000);
@@ -1813,7 +2144,7 @@ class myApp extends Homey.App
 			{
 				if ((this.nextCloudInterval - (LOCAL_INTERVAL * 1000)) <= 0)
 				{
-					nextInterval = await this.syncWorker(this.tahomaCloud);
+					nextInterval = await this.syncAllCloudSessions();
 					this.nextCloudInterval = nextInterval;
 				}
 				else
@@ -1854,22 +2185,42 @@ class myApp extends Homey.App
 			return nextInterval;
 		}
 
-		const candidates = this.getCandidateCredentialsForLocalRouting();
-		if (!Array.isArray(candidates) || (candidates.length === 0))
-		{
-			if (this.infoLogEnabled)
-			{
-				this.logInformation('Local syncLoop', 'No credentials available for local bridges');
-			}
+		const normalizedBridges = bridges.filter((bridge) => bridge && this.normalizeBridgePin(bridge.pin));
+		const bridgeCandidatesByPin = new Map();
+		let hasPinMatchedSessions = false;
 
+		for (const bridge of normalizedBridges)
+		{
+			const bridgePin = this.normalizeBridgePin(bridge.pin);
+			const bridgeCandidates = this.getCandidateCredentialsForLocalRouting('', bridgePin);
+			bridgeCandidatesByPin.set(bridgePin, bridgeCandidates);
+			if (bridgeCandidates.length > 0)
+			{
+				hasPinMatchedSessions = true;
+			}
+		}
+
+		if (!hasPinMatchedSessions)
+		{
+			if (this.infoLogEnabled && !this.localPollingNoPinMatchLogged)
+			{
+				this.logInformation('Local syncLoop', 'No local sessions match discovered bridge pin(s); local polling is disabled until a pin match is learned.');
+			}
+			this.localPollingNoPinMatchLogged = true;
 			return nextInterval;
 		}
 
-		const bridgeTasks = bridges
-			.filter((bridge) => bridge && this.normalizeBridgePin(bridge.pin))
+		this.localPollingNoPinMatchLogged = false;
+
+		const bridgeTasks = normalizedBridges
 			.map(async (bridge) =>
 			{
 				const bridgePin = this.normalizeBridgePin(bridge.pin);
+				const bridgeCandidates = bridgeCandidatesByPin.get(bridgePin) || [];
+				if (bridgeCandidates.length === 0)
+				{
+					return { bridge, bridgePin, synced: false, events: undefined, skipped: true };
+				}
 				const localClientForBridge = this.getLocalClientForBridge(bridge);
 				if (!localClientForBridge)
 				{
@@ -1879,7 +2230,7 @@ class myApp extends Homey.App
 				let authenticated = localClientForBridge.authenticated && Array.isArray(localClientForBridge.supportedDevices) && (localClientForBridge.supportedDevices.length > 0);
 				if (!authenticated)
 				{
-					for (const candidate of candidates)
+					for (const candidate of bridgeCandidates)
 					{
 						try
 						{
@@ -2002,13 +2353,26 @@ class myApp extends Homey.App
 		if (!this.syncing)
 		{
 			this.syncing = true;
+			const cloudSessionKey = !tahomaConnection.localLogin
+				? this.normalizeSessionEmail(tahomaConnection.sessionUsername || tahomaConnection.username || '')
+				: '';
+			const connectionLastSync = tahomaConnection.localLogin
+				? this.lastSync
+				: (cloudSessionKey ? (this.cloudLastSyncBySession[cloudSessionKey] || 0) : this.lastSync);
 
 			// Make sure it has been about 30 seconds since last sync unless boost is on or a local login
-			if (tahomaConnection.localLogin || this.boostTimerId || ((Date.now() - this.lastSync) > 28000))
+			if (tahomaConnection.localLogin || this.boostTimerId || ((Date.now() - connectionLastSync) > 28000))
 			{
 				if (!tahomaConnection.localLogin)
 				{
-					this.lastSync = Date.now();
+					if (cloudSessionKey)
+					{
+						this.cloudLastSyncBySession[cloudSessionKey] = Date.now();
+					}
+					else
+					{
+						this.lastSync = Date.now();
+					}
 				}
 
 				try
@@ -2432,11 +2796,11 @@ class myApp extends Homey.App
 		{
 			const localByKey = new Map();
 			const bridges = this.getDiscoveredLocalBridges();
-			const candidates = this.getCandidateCredentialsForLocalRouting();
 
 			for (const bridge of bridges)
 			{
-				for (const candidate of candidates)
+				const bridgeCandidates = this.getCandidateCredentialsForLocalRouting('', bridge ? bridge.pin : '');
+				for (const candidate of bridgeCandidates)
 				{
 					try
 					{
@@ -2496,6 +2860,13 @@ class myApp extends Homey.App
 		{
 			// Get the cloud data, as it will support devices not available in the local connection
 			const cloudData = await this.tahomaCloud.getDeviceData();
+			const sessionUsernameForCloudData = this.tahomaCloud && this.tahomaCloud.username
+				? this.tahomaCloud.username
+				: this.homey.settings.get('username');
+			if (sessionUsernameForCloudData)
+			{
+				this.linkSessionToBridgePinsFromDevices(sessionUsernameForCloudData, cloudData);
+			}
 
 			if (data)
 			{
@@ -2691,7 +3062,7 @@ class myApp extends Homey.App
 		return '';
 	}
 
-	getCandidateCredentialsForLocalRouting(preferredSessionUsername = '')
+	getCandidateCredentialsForLocalRouting(preferredSessionUsername = '', preferredBridgePin = '')
 	{
 		if (typeof this.ensureCredentialsFromSessions === 'function')
 		{
@@ -2723,6 +3094,19 @@ class myApp extends Homey.App
 			});
 		};
 
+		const normalizedPreferredBridgePin = this.normalizeBridgePin(preferredBridgePin || '');
+		const sessions = this.getAccountSessions();
+		let bridgeScopedSessionUsernames = null;
+		if (normalizedPreferredBridgePin)
+		{
+			bridgeScopedSessionUsernames = new Set(
+				sessions
+					.filter((session) => this.doesSessionMatchBridgePin(session, normalizedPreferredBridgePin))
+					.map((session) => this.normalizeSessionEmail(session.username))
+					.filter((username) => !!username),
+			);
+		}
+
 		const preferred = preferredSessionUsername ? this.getSessionByEmail(preferredSessionUsername) : null;
 		if (preferred && preferred.password)
 		{
@@ -2731,13 +3115,22 @@ class myApp extends Homey.App
 
 		addCandidate(this.homey.settings.get('username'), this.homey.settings.get('password'), this.homey.settings.get('region'));
 
-		const sessions = this.getAccountSessions();
 		for (const session of sessions)
 		{
 			if (session && session.password)
 			{
 				addCandidate(session.username, session.password, session.region);
 			}
+		}
+
+		if (bridgeScopedSessionUsernames)
+		{
+			if (bridgeScopedSessionUsernames.size === 0)
+			{
+				return [];
+			}
+
+			return candidates.filter((candidate) => bridgeScopedSessionUsernames.has(candidate.username));
 		}
 
 		return candidates;
@@ -2762,10 +3155,9 @@ class myApp extends Homey.App
 			? [preferredBridge, ...bridges.filter((bridge) => !bridge || (this.normalizeBridgePin(bridge.pin) !== this.normalizeBridgePin(preferredBridge.pin)))]
 			: bridges;
 
-		const candidates = this.getCandidateCredentialsForLocalRouting(preferredSessionUsername);
-
 		for (const bridge of prioritizedBridges)
 		{
+			const candidates = this.getCandidateCredentialsForLocalRouting(preferredSessionUsername, bridge ? bridge.pin : '');
 			for (const candidate of candidates)
 			{
 				try
@@ -2794,6 +3186,82 @@ class myApp extends Homey.App
 		}
 
 		return false;
+	}
+
+	doesSessionMatchBridgePin(session, bridgePin)
+	{
+		if (!session || !bridgePin)
+		{
+			return false;
+		}
+
+		const normalizedBridgePin = this.normalizeBridgePin(bridgePin);
+		if (!normalizedBridgePin)
+		{
+			return false;
+		}
+
+		const bridgePins = Array.isArray(session.bridgePins) ? session.bridgePins : [];
+		return bridgePins.some((pin) => this.normalizeBridgePin(pin) === normalizedBridgePin);
+	}
+
+	linkSessionToBridgePin(username, bridgePin)
+	{
+		const normalizedUsername = this.normalizeSessionEmail(username);
+		const normalizedBridgePin = this.normalizeBridgePin(bridgePin);
+		if (!normalizedUsername || !normalizedBridgePin)
+		{
+			return false;
+		}
+
+		const sessions = this.getAccountSessions();
+		const idx = sessions.findIndex((session) => this.normalizeSessionEmail(session.username) === normalizedUsername);
+		if (idx < 0)
+		{
+			return false;
+		}
+
+		const existingPins = Array.isArray(sessions[idx].bridgePins) ? sessions[idx].bridgePins : [];
+		const normalizedPins = existingPins
+			.map((pin) => this.normalizeBridgePin(pin))
+			.filter((pin) => !!pin);
+
+		if (normalizedPins.includes(normalizedBridgePin))
+		{
+			return false;
+		}
+
+		sessions[idx] = {
+			...sessions[idx],
+			bridgePins: [...normalizedPins, normalizedBridgePin],
+		};
+		this.saveAccountSessions(sessions);
+		return true;
+	}
+
+	linkSessionToBridgePinsFromDevices(username, devices)
+	{
+		if (!Array.isArray(devices) || !username)
+		{
+			return 0;
+		}
+
+		const linkedPins = new Set();
+		for (const device of devices)
+		{
+			const pin = this.getBridgePinFromDeviceURL(device && device.deviceURL ? device.deviceURL : '');
+			if (!pin)
+			{
+				continue;
+			}
+
+			if (this.linkSessionToBridgePin(username, pin))
+			{
+				linkedPins.add(pin);
+			}
+		}
+
+		return linkedPins.size;
 	}
 
 	async tryLocalCommandForSession(label, deviceURL, action, action2)
@@ -2951,7 +3419,10 @@ class myApp extends Homey.App
 
 	isLoggedIn()
 	{
-		return ((this.tahomaCloud && this.tahomaCloud.authenticated) || (this.tahomaLocal && this.tahomaLocal.authenticated));
+		const cloudLoggedIn = (this.tahomaCloud && this.tahomaCloud.authenticated)
+			|| (this.tahomaCloudsBySession && Object.values(this.tahomaCloudsBySession).some((client) => client && client.authenticated));
+
+		return (cloudLoggedIn || (this.tahomaLocal && this.tahomaLocal.authenticated));
 	}
 
 	normalizeSessionEmail(username)
@@ -3023,11 +3494,16 @@ class myApp extends Homey.App
 
 		if (idx >= 0)
 		{
+			const existingPins = Array.isArray(sessions[idx].bridgePins) ? sessions[idx].bridgePins : [];
+			const normalizedPins = existingPins
+				.map((pin) => this.normalizeBridgePin(pin))
+				.filter((pin) => !!pin);
 			sessions[idx] = {
 				...sessions[idx],
 				username: normalized,
 				password: password === undefined ? sessions[idx].password : password,
 				region: region || sessions[idx].region || 'europe',
+				bridgePins: normalizedPins,
 				lastUsed: now,
 			};
 			this.saveAccountSessions(sessions);
@@ -3039,6 +3515,7 @@ class myApp extends Homey.App
 			username: normalized,
 			password,
 			region: region || 'europe',
+			bridgePins: [],
 			lastUsed: now,
 		};
 
