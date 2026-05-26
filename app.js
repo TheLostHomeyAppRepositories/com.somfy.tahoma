@@ -40,6 +40,24 @@ class myApp extends Homey.App
 
 		this.localBridgeInfo = this.homey.settings.get('localBridge');
 		this.localBearer = this.homey.settings.get('localBearer');
+		this.tahomaLocalsByPin = {};
+		this.localBridges = this.homey.settings.get('localBridges');
+		if (!Array.isArray(this.localBridges))
+		{
+			this.localBridges = [];
+		}
+
+		this.localBearersByPin = this.homey.settings.get('localBearersByPin');
+		if (!this.localBearersByPin || (typeof this.localBearersByPin !== 'object'))
+		{
+			this.localBearersByPin = {};
+		}
+
+		if (this.localBridgeInfo && this.localBridgeInfo.pin && this.localBearer)
+		{
+			this.localBearersByPin[this.localBridgeInfo.pin] = this.localBearer;
+		}
+		this.localAuthenticatedBridgePin = this.normalizeBridgePin(this.localBridgeInfo ? this.localBridgeInfo.pin : '');
 		this.usingDebugData = false;
 
 		if (process.env.DEBUG === '1')
@@ -129,6 +147,10 @@ class myApp extends Homey.App
 			if (this.homeyIP)
 			{
 				this.tahomaLocal = new Tahoma(this.homey, true);
+				if (this.localBridgeInfo && this.localBridgeInfo.pin)
+				{
+					this.tahomaLocalsByPin[this.normalizeBridgePin(this.localBridgeInfo.pin)] = this.tahomaLocal;
+				}
 			}
 		}
 		catch (err)
@@ -263,6 +285,7 @@ class myApp extends Homey.App
 			api_version: discoveryResult.txt.api_version,
 			fw_version: discoveryResult.txt.fw_version,
 		};
+		this.upsertDiscoveredLocalBridge(this.localBridgeInfo);
 
 		if (!this.localBridgeInfo.pin)
 		{
@@ -325,16 +348,24 @@ class myApp extends Homey.App
 		this.syncTimerId = this.homey.setTimeout(() => this.startSync(), 60000);
 	}
 
-	async doLocalLogin(username, password, region, localToken)
+	async doLocalLoginForClient(localClient, username, password, region, localToken, bridgeInfo, persistCredentials = true, quiet = false, setAsActive = true)
 	{
-		if (this.tahomaLocal === null)
+		if (!localClient)
 		{
 			return false;
 		}
 
-		if (username && password && this.localBridgeInfo)
+		const bridgePin = this.normalizeBridgePin(bridgeInfo ? bridgeInfo.pin : '');
+		const currentAuthenticatedBridgePin = this.normalizeBridgePin(this.localAuthenticatedBridgePin || '');
+
+		if (bridgePin && localClient.authenticated && ((currentAuthenticatedBridgePin === bridgePin) || !setAsActive) && Array.isArray(localClient.supportedDevices) && (localClient.supportedDevices.length > 0))
 		{
-			if (this.infoLogEnabled)
+			return true;
+		}
+
+		if (username && password && bridgeInfo)
+		{
+			if (this.infoLogEnabled && !quiet)
 			{
 				this.logInformation('Doing local login');
 			}
@@ -342,14 +373,43 @@ class myApp extends Homey.App
 			let newToken = null;
 			if (localToken)
 			{
-				this.logInformation('Using provided local token');
+				if (!quiet)
+				{
+					this.logInformation('Using provided local token');
+				}
 				newToken = { token: localToken };
 			}
-			this.localBearer = await this.tahomaLocal.getLocalAuthCode(username, password, region, this.localBridgeInfo.pin, this.localBridgeInfo.port, this.localBearer, await this.homey.cloud.getHomeyId(), newToken);
+
+			const bearerForBridge = (this.localBearersByPin && bridgeInfo.pin) ? this.localBearersByPin[bridgeInfo.pin] : this.localBearer;
+			const localBearer = await localClient.getLocalAuthCode(username, password, region, bridgeInfo.pin, bridgeInfo.port, bearerForBridge, await this.homey.cloud.getHomeyId(), newToken);
+			if (!localBearer)
+			{
+				return false;
+			}
+
+			if (!this.localBearersByPin || (typeof this.localBearersByPin !== 'object'))
+			{
+				this.localBearersByPin = {};
+			}
+
+			if (bridgeInfo && bridgeInfo.pin)
+			{
+				this.localBearersByPin[bridgeInfo.pin] = localBearer;
+				this.homey.settings.set('localBearersByPin', this.localBearersByPin);
+			}
+
+			if (setAsActive)
+			{
+				this.localBearer = localBearer;
+			}
+			else
+			{
+				this.localBearer = this.localBearer || localBearer;
+			}
 		}
 		else
 		{
-			if (this.localBridgeInfo)
+			if (bridgeInfo)
 			{
 				this.logInformation('Local login', 'Missing credentials');
 			}
@@ -360,24 +420,37 @@ class myApp extends Homey.App
 			return false;
 		}
 
-		if (this.localBearer)
+		if (setAsActive ? !!this.localBearer : !!(this.localBearersByPin && this.localBearersByPin[bridgePin]))
 		{
+			if (bridgeInfo && bridgeInfo.pin && setAsActive)
+			{
+				this.localAuthenticatedBridgePin = this.normalizeBridgePin(bridgeInfo.pin);
+			}
+
+			if (setAsActive)
+			{
+				this.tahomaLocal = localClient;
+			}
+
 			// Login was successful
-			this.homey.settings.set('username', username);
-			this.homey.settings.set('password', password);
-			this.homey.settings.set('region', region);
-			this.homey.settings.set('localToken', localToken);
-			this.homey.settings.set('localBearer', this.localBearer);
+			if (persistCredentials)
+			{
+				this.homey.settings.set('username', username);
+				this.homey.settings.set('password', password);
+				this.homey.settings.set('region', region);
+				this.homey.settings.set('localToken', localToken);
+				this.homey.settings.set('localBearer', this.localBearer);
+			}
 
 			try
 			{
-				if (this.infoLogEnabled)
+				if (this.infoLogEnabled && !quiet)
 				{
 					this.logInformation('Local login: Getting local API version');
-					const apiVer = await this.tahomaLocal.getLocalAPIVersion();
+					const apiVer = await localClient.getLocalAPIVersion();
 					this.logInformation('Local login Successful', apiVer);
 				}
-				await this.tahomaLocal.getDeviceData();
+				await localClient.getDeviceData();
 			}
 			catch (error)
 			{
@@ -386,9 +459,21 @@ class myApp extends Homey.App
 					this.logInformation('Local login: getDevices', `Error: ${error.message}`);
 					if (error.message.indexOf('ECONNREFUSED ') !== -1)
 					{
-						this.homey.settings.unset('localBearer');
+						if (persistCredentials)
+						{
+							this.homey.settings.unset('localBearer');
+						}
 						this.localBearer = null;
-						this.tahomaLocal.authenticated = false;
+						localClient.authenticated = false;
+						if (bridgePin && (this.localAuthenticatedBridgePin === bridgePin))
+						{
+							this.localAuthenticatedBridgePin = '';
+						}
+						if (bridgeInfo && bridgeInfo.pin && this.localBearersByPin)
+						{
+							delete this.localBearersByPin[bridgeInfo.pin];
+							this.homey.settings.set('localBearersByPin', this.localBearersByPin);
+						}
 					}
 				}
 				else
@@ -404,6 +489,13 @@ class myApp extends Homey.App
 
 		this.logInformation('No local Bearer token');
 		return false;
+	}
+
+	async doLocalLogin(username, password, region, localToken, bridgeOverride = null, persistCredentials = true, quiet = false)
+	{
+		const bridgeInfo = bridgeOverride || this.localBridgeInfo;
+		const localClient = this.getLocalClientForBridge(bridgeInfo);
+		return this.doLocalLoginForClient(localClient, username, password, region, localToken, bridgeInfo, persistCredentials, quiet, true);
 	}
 
 	async getLocalTokens()
@@ -1652,6 +1744,17 @@ class myApp extends Homey.App
 			}
 
 			await this.tahomaLocal.eventsClearRegistered();
+
+			if (this.tahomaLocalsByPin && (typeof this.tahomaLocalsByPin === 'object'))
+			{
+				for (const localClient of Object.values(this.tahomaLocalsByPin))
+				{
+					if (localClient && localClient !== this.tahomaLocal)
+					{
+						await localClient.eventsClearRegistered();
+					}
+				}
+			}
 		}
 	}
 
@@ -1697,9 +1800,9 @@ class myApp extends Homey.App
 
 		if (this.nextCloudInterval !== 0)
 		{
-			if (this.tahomaLocal && this.localBridgeInfo && this.localBridgeInfo.pin)
+			if (this.tahomaLocal)
 			{
-				nextInterval = await this.syncWorker(this.tahomaLocal);
+				nextInterval = await this.syncAllLocalBridges();
 			}
 			else
 			{
@@ -1734,6 +1837,125 @@ class myApp extends Homey.App
 
 			this.syncTimerId = this.homey.setTimeout(() => this.initSync(), 10000);
 		}
+	}
+
+	async syncAllLocalBridges()
+	{
+		let nextInterval = LOCAL_INTERVAL * 1000;
+
+		const bridges = this.getDiscoveredLocalBridges();
+		if (!Array.isArray(bridges) || (bridges.length === 0))
+		{
+			if (this.infoLogEnabled)
+			{
+				this.logInformation('Local syncLoop', 'No discovered local bridges');
+			}
+
+			return nextInterval;
+		}
+
+		const candidates = this.getCandidateCredentialsForLocalRouting();
+		if (!Array.isArray(candidates) || (candidates.length === 0))
+		{
+			if (this.infoLogEnabled)
+			{
+				this.logInformation('Local syncLoop', 'No credentials available for local bridges');
+			}
+
+			return nextInterval;
+		}
+
+		const bridgeTasks = bridges
+			.filter((bridge) => bridge && this.normalizeBridgePin(bridge.pin))
+			.map(async (bridge) =>
+			{
+				const bridgePin = this.normalizeBridgePin(bridge.pin);
+				const localClientForBridge = this.getLocalClientForBridge(bridge);
+				if (!localClientForBridge)
+				{
+					return { bridge, bridgePin, synced: false, events: undefined };
+				}
+
+				let authenticated = localClientForBridge.authenticated && Array.isArray(localClientForBridge.supportedDevices) && (localClientForBridge.supportedDevices.length > 0);
+				if (!authenticated)
+				{
+					for (const candidate of candidates)
+					{
+						try
+						{
+							const ok = await this.doLocalLoginForClient(localClientForBridge, candidate.username, candidate.password, candidate.region, null, bridge, false, true, false);
+							if (ok && localClientForBridge.authenticated)
+							{
+								authenticated = true;
+								break;
+							}
+						}
+						catch (error)
+						{
+							this.logInformation('syncAllLocalBridges login', error.message ? error.message : error);
+						}
+					}
+				}
+
+				if (!authenticated)
+				{
+					if (this.infoLogEnabled)
+					{
+						this.logInformation('Local syncLoop', `Failed to sync bridge ${bridge.pin}`);
+					}
+					return { bridge, bridgePin, synced: false, events: undefined };
+				}
+
+				if (this.infoLogEnabled)
+				{
+					this.logInformation('Local syncLoop', `Syncing bridge ${bridge.pin}`);
+				}
+
+				try
+				{
+					const events = await localClientForBridge.getEvents();
+					return { bridge, bridgePin, synced: true, events };
+				}
+				catch (error)
+				{
+					this.logInformation('syncAllLocalBridges events', error.message ? error.message : error);
+					return { bridge, bridgePin, synced: false, events: undefined };
+				}
+			});
+
+		const bridgeResults = await Promise.all(bridgeTasks);
+		let requiresFullRefresh = false;
+		const mergedEvents = [];
+
+		for (const result of bridgeResults)
+		{
+			if (!result || !result.synced)
+			{
+				continue;
+			}
+
+			if (!this.localBridgeInfo)
+			{
+				this.localBridgeInfo = result.bridge;
+				this.homey.settings.set('localBridge', this.localBridgeInfo);
+			}
+
+			if ((result.events === null) && (this.boostTimerId === null))
+			{
+				requiresFullRefresh = true;
+			}
+			else if (Array.isArray(result.events) && (result.events.length > 0))
+			{
+				mergedEvents.push(...result.events);
+			}
+		}
+
+		if (requiresFullRefresh || (mergedEvents.length > 0))
+		{
+			await this.syncEvents(requiresFullRefresh ? null : mergedEvents, true);
+		}
+
+		return nextInterval;
 	}
 
 	async syncWorker(tahomaConnection)
@@ -2097,6 +2319,21 @@ class myApp extends Homey.App
 			}
 		}
 
+		if (!forceCloud)
+		{
+			const currentCredentialsLocalData = await this.tryLocalCommandForCurrentCredentials(label, deviceURL, action, action2);
+			if (currentCredentialsLocalData)
+			{
+				return currentCredentialsLocalData;
+			}
+
+			const sessionLocalData = await this.tryLocalCommandForSession(label, deviceURL, action, action2);
+			if (sessionLocalData)
+			{
+				return sessionLocalData;
+			}
+		}
+
 		if (this.tahomaCloud.authenticated === false)
 		{
 			await this.initSync();
@@ -2151,6 +2388,21 @@ class myApp extends Homey.App
 			}
 		}
 
+		const preferredSessionUsername = this.getDeviceSessionUsername(deviceURL);
+		if (await this.ensureLocalConnectionForDevice(deviceURL, preferredSessionUsername))
+		{
+			const states = await this.tahomaLocal.getDeviceStates(deviceURL);
+			if (states)
+			{
+				if (this.infoLogEnabled)
+				{
+					this.logInformation('Device routed local states', states);
+				}
+
+				return states;
+			}
+		}
+
 		if (!this.tahomaCloud.authenticated)
 		{
 			// Try to login to the cloud first
@@ -2176,10 +2428,63 @@ class myApp extends Homey.App
 	async getDeviceData()
 	{
 		let data = null;
-		if (this.tahomaLocal && this.tahomaLocal.authenticated)
+		if (this.tahomaLocal)
 		{
-			// Always try to get local data so it populates the supported list
-			data = await this.tahomaLocal.getDeviceData();
+			const localByKey = new Map();
+			const bridges = this.getDiscoveredLocalBridges();
+			const candidates = this.getCandidateCredentialsForLocalRouting();
+
+			for (const bridge of bridges)
+			{
+				for (const candidate of candidates)
+				{
+					try
+					{
+						const localClientForBridge = this.getLocalClientForBridge(bridge);
+						const ok = await this.doLocalLoginForClient(localClientForBridge, candidate.username, candidate.password, candidate.region, null, bridge, false, true, false);
+						if (!ok || !localClientForBridge || !localClientForBridge.authenticated)
+						{
+							continue;
+						}
+
+						const bridgeData = await localClientForBridge.getDeviceData();
+						if (!Array.isArray(bridgeData) || (bridgeData.length === 0))
+						{
+							continue;
+						}
+
+						for (const entry of bridgeData)
+						{
+							if (!entry || !entry.deviceURL)
+							{
+								continue;
+							}
+
+							const key = `${entry.deviceURL}|${entry.controllableName || ''}`;
+							if (!localByKey.has(key))
+							{
+								localByKey.set(key, entry);
+							}
+						}
+
+						break;
+					}
+					catch (error)
+					{
+						this.logInformation('getDeviceData local bridge', error.message ? error.message : error);
+					}
+				}
+			}
+
+			if (localByKey.size > 0)
+			{
+				data = [...localByKey.values()];
+			}
+			else if (this.tahomaLocal.authenticated)
+			{
+				// Fallback to current local connection if present
+				data = await this.tahomaLocal.getDeviceData();
+			}
 		}
 		if (!this.tahomaCloud.authenticated)
 		{
@@ -2220,6 +2525,406 @@ class myApp extends Homey.App
 		}
 
 		return data;
+	}
+
+	upsertDiscoveredLocalBridge(bridgeInfo)
+	{
+		if (!bridgeInfo || !bridgeInfo.pin)
+		{
+			return;
+		}
+
+		const normalizedPin = this.normalizeBridgePin(bridgeInfo.pin);
+		if (!normalizedPin)
+		{
+			return;
+		}
+
+		const normalizedBridgeInfo = {
+			...bridgeInfo,
+			pin: normalizedPin,
+		};
+
+		if (!Array.isArray(this.localBridges))
+		{
+			this.localBridges = [];
+		}
+
+		const idx = this.localBridges.findIndex((bridge) => bridge && this.normalizeBridgePin(bridge.pin) === normalizedPin);
+		if (idx >= 0)
+		{
+			this.localBridges[idx] = { ...this.localBridges[idx], ...normalizedBridgeInfo };
+		}
+		else
+		{
+			this.localBridges.push({ ...normalizedBridgeInfo });
+		}
+
+		this.homey.settings.set('localBridges', this.localBridges);
+	}
+
+	normalizeBridgePin(pin)
+	{
+		if (!pin)
+		{
+			return '';
+		}
+
+		const normalized = `${pin}`.trim();
+		if (!/^\d{4}-\d{4}-\d{4}$/.test(normalized))
+		{
+			return '';
+		}
+
+		return normalized;
+	}
+
+	getBridgePinFromDeviceURL(deviceURL)
+	{
+		if (!deviceURL)
+		{
+			return '';
+		}
+
+		const matches = `${deviceURL}`.match(/^[a-z0-9_+.-]+:\/\/(\d{4}-\d{4}-\d{4})\//i);
+		if (!matches || !matches[1])
+		{
+			return '';
+		}
+
+		return this.normalizeBridgePin(matches[1]);
+	}
+
+	getBridgeByPin(pin)
+	{
+		const normalizedPin = this.normalizeBridgePin(pin);
+		if (!normalizedPin)
+		{
+			return null;
+		}
+
+		const bridges = this.getDiscoveredLocalBridges();
+		const idx = bridges.findIndex((bridge) => bridge && this.normalizeBridgePin(bridge.pin) === normalizedPin);
+		if (idx < 0)
+		{
+			return null;
+		}
+
+		return bridges[idx];
+	}
+
+	getLocalClientForBridge(bridgeInfo)
+	{
+		if (!this.homeyIP)
+		{
+			return null;
+		}
+
+		const normalizedPin = this.normalizeBridgePin(bridgeInfo && bridgeInfo.pin ? bridgeInfo.pin : '');
+		if (!normalizedPin)
+		{
+			return this.tahomaLocal || null;
+		}
+
+		if (!this.tahomaLocalsByPin || (typeof this.tahomaLocalsByPin !== 'object'))
+		{
+			this.tahomaLocalsByPin = {};
+		}
+
+		if (!this.tahomaLocalsByPin[normalizedPin])
+		{
+			this.tahomaLocalsByPin[normalizedPin] = new Tahoma(this.homey, true);
+		}
+
+		return this.tahomaLocalsByPin[normalizedPin];
+	}
+
+	getDiscoveredLocalBridges()
+	{
+		if (!Array.isArray(this.localBridges))
+		{
+			this.localBridges = this.homey.settings.get('localBridges');
+			if (!Array.isArray(this.localBridges))
+			{
+				this.localBridges = [];
+			}
+		}
+
+		if (this.localBridgeInfo && this.localBridgeInfo.pin)
+		{
+			this.upsertDiscoveredLocalBridge(this.localBridgeInfo);
+		}
+
+		return this.localBridges;
+	}
+
+	getDeviceSessionUsername(deviceURL)
+	{
+		try
+		{
+			const drivers = this.homey.drivers.getDrivers();
+			for (const driver of Object.values(drivers))
+			{
+				const devices = (driver && (typeof driver.getDevices === 'function')) ? driver.getDevices() : {};
+				for (const device of Object.values(devices))
+				{
+					const data = (device && (typeof device.getData === 'function')) ? device.getData() : null;
+					if (!data || !data.deviceURL)
+					{
+						continue;
+					}
+
+					if ((data.deviceURL === deviceURL) || (deviceURL && data.deviceURL && data.deviceURL.startsWith(`${deviceURL}#`)) || (data.deviceURL && data.deviceURL.indexOf('#') > 0 && data.deviceURL.split('#')[0] === deviceURL))
+					{
+						const settings = (typeof device.getSettings === 'function') ? device.getSettings() : {};
+						const sessionUsername = settings ? settings.sessionUsername : null;
+						return this.normalizeSessionEmail(sessionUsername);
+					}
+				}
+			}
+		}
+		catch (error)
+		{
+			this.logInformation('getDeviceSessionUsername', error.message ? error.message : error);
+		}
+
+		return '';
+	}
+
+	getCandidateCredentialsForLocalRouting(preferredSessionUsername = '')
+	{
+		if (typeof this.ensureCredentialsFromSessions === 'function')
+		{
+			this.ensureCredentialsFromSessions();
+		}
+
+		const candidates = [];
+		const seen = new Set();
+
+		const addCandidate = (username, password, region) =>
+		{
+			const normalized = this.normalizeSessionEmail(username);
+			if (!normalized || !password)
+			{
+				return;
+			}
+
+			const key = `${normalized}|${region || 'europe'}`;
+			if (seen.has(key))
+			{
+				return;
+			}
+
+			seen.add(key);
+			candidates.push({
+				username: normalized,
+				password,
+				region: region || 'europe',
+			});
+		};
+
+		const preferred = preferredSessionUsername ? this.getSessionByEmail(preferredSessionUsername) : null;
+		if (preferred && preferred.password)
+		{
+			addCandidate(preferred.username, preferred.password, preferred.region);
+		}
+
+		addCandidate(this.homey.settings.get('username'), this.homey.settings.get('password'), this.homey.settings.get('region'));
+
+		const sessions = this.getAccountSessions();
+		for (const session of sessions)
+		{
+			if (session && session.password)
+			{
+				addCandidate(session.username, session.password, session.region);
+			}
+		}
+
+		return candidates;
+	}
+
+	async ensureLocalConnectionForDevice(deviceURL, preferredSessionUsername = '')
+	{
+		if (!this.tahomaLocal)
+		{
+			return false;
+		}
+
+		if (this.tahomaLocal.authenticated && this.tahomaLocal.supportedDevices && (this.tahomaLocal.supportedDevices.findIndex((element) => element.deviceURL === deviceURL) >= 0))
+		{
+			return true;
+		}
+
+		const bridges = this.getDiscoveredLocalBridges();
+		const deviceBridgePin = this.getBridgePinFromDeviceURL(deviceURL);
+		const preferredBridge = deviceBridgePin ? this.getBridgeByPin(deviceBridgePin) : null;
+		const prioritizedBridges = preferredBridge
+			? [preferredBridge, ...bridges.filter((bridge) => !bridge || (this.normalizeBridgePin(bridge.pin) !== this.normalizeBridgePin(preferredBridge.pin)))]
+			: bridges;
+
+		const candidates = this.getCandidateCredentialsForLocalRouting(preferredSessionUsername);
+
+		for (const bridge of prioritizedBridges)
+		{
+			for (const candidate of candidates)
+			{
+				try
+				{
+					const localClientForBridge = this.getLocalClientForBridge(bridge);
+					const ok = await this.doLocalLoginForClient(localClientForBridge, candidate.username, candidate.password, candidate.region, null, bridge, false, true, false);
+					if (!ok || !localClientForBridge || !localClientForBridge.authenticated || !localClientForBridge.supportedDevices)
+					{
+						continue;
+					}
+
+					if (localClientForBridge.supportedDevices.findIndex((element) => element.deviceURL === deviceURL) >= 0)
+					{
+						this.localBridgeInfo = bridge;
+						this.homey.settings.set('localBridge', this.localBridgeInfo);
+						this.tahomaLocal = localClientForBridge;
+						this.localAuthenticatedBridgePin = this.normalizeBridgePin(bridge.pin);
+						return true;
+					}
+				}
+				catch (error)
+				{
+					this.logInformation('ensureLocalConnectionForDevice', error.message ? error.message : error);
+				}
+			}
+		}
+
+		return false;
+	}
+
+	async tryLocalCommandForSession(label, deviceURL, action, action2)
+	{
+		if (!this.tahomaLocal)
+		{
+			return null;
+		}
+
+		const sessionUsername = this.getDeviceSessionUsername(deviceURL);
+		if (!sessionUsername)
+		{
+			return null;
+		}
+
+		const session = this.getSessionByEmail(sessionUsername);
+		if (!session || !session.password)
+		{
+			return null;
+		}
+
+		const bridges = this.getDiscoveredLocalBridges();
+		const deviceBridgePin = this.getBridgePinFromDeviceURL(deviceURL);
+		const preferredBridge = deviceBridgePin ? this.getBridgeByPin(deviceBridgePin) : null;
+		const prioritizedBridges = preferredBridge
+			? [preferredBridge, ...bridges.filter((bridge) => !bridge || (this.normalizeBridgePin(bridge.pin) !== this.normalizeBridgePin(preferredBridge.pin)))]
+			: bridges;
+
+		for (const bridge of prioritizedBridges)
+		{
+			try
+			{
+				const localClientForBridge = this.getLocalClientForBridge(bridge);
+				const ok = await this.doLocalLoginForClient(localClientForBridge, session.username, session.password, session.region || 'europe', null, bridge, false, true, false);
+				if (!ok || !localClientForBridge || !localClientForBridge.authenticated || !localClientForBridge.supportedDevices)
+				{
+					continue;
+				}
+
+				const supportsDevice = localClientForBridge.supportedDevices.findIndex((element) => element.deviceURL === deviceURL) >= 0;
+				if (!supportsDevice)
+				{
+					continue;
+				}
+
+				this.localBridgeInfo = bridge;
+				this.homey.settings.set('localBridge', this.localBridgeInfo);
+
+				const data = await localClientForBridge.executeDeviceAction(label, deviceURL, action, action2);
+				if (data.errorCode)
+				{
+					continue;
+				}
+
+				data.local = true;
+				return data;
+			}
+			catch (error)
+			{
+				this.logInformation(`${label}: session local attempt failed`, error.message ? error.message : error);
+			}
+		}
+
+		return null;
+	}
+
+	async tryLocalCommandForCurrentCredentials(label, deviceURL, action, action2)
+	{
+		if (!this.tahomaLocal)
+		{
+			return null;
+		}
+
+		const bridgePin = this.getBridgePinFromDeviceURL(deviceURL);
+		if (!bridgePin)
+		{
+			return null;
+		}
+
+		const bridge = this.getBridgeByPin(bridgePin);
+		if (!bridge)
+		{
+			return null;
+		}
+
+		if (typeof this.ensureCredentialsFromSessions === 'function')
+		{
+			this.ensureCredentialsFromSessions();
+		}
+
+		const username = this.homey.settings.get('username');
+		const password = this.homey.settings.get('password');
+		const region = this.homey.settings.get('region') || 'europe';
+		if (!username || !password)
+		{
+			return null;
+		}
+
+		try
+		{
+			const localClientForBridge = this.getLocalClientForBridge(bridge);
+			const ok = await this.doLocalLoginForClient(localClientForBridge, username, password, region, null, bridge, false, true, false);
+			if (!ok || !localClientForBridge || !localClientForBridge.authenticated || !localClientForBridge.supportedDevices)
+			{
+				return null;
+			}
+
+			const supportsDevice = localClientForBridge.supportedDevices.findIndex((element) => element.deviceURL === deviceURL) >= 0;
+			if (!supportsDevice)
+			{
+				return null;
+			}
+
+			this.localBridgeInfo = bridge;
+			this.homey.settings.set('localBridge', this.localBridgeInfo);
+
+			const data = await localClientForBridge.executeDeviceAction(label, deviceURL, action, action2);
+			if (data.errorCode)
+			{
+				return null;
+			}
+
+			data.local = true;
+			return data;
+		}
+		catch (error)
+		{
+			this.logInformation(`${label}: current-credentials local attempt failed`, error.message ? error.message : error);
+		}
+
+		return null;
 	}
 
 	isLocalDevice(deviceURL, combineSubURLs)
