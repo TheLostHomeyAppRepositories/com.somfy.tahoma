@@ -83,6 +83,9 @@ class myApp extends Homey.App
 			this.homey.settings.set('eventLogEnabled', this.eventLogEnabled);
 		}
 
+		this.migrateLegacyCredentialsToSessions();
+		this.ensureCredentialsFromSessions();
+
 		this.homey.on('unload', async () =>
 		{
 			await this.logOut(false).catch((error) =>
@@ -286,7 +289,17 @@ class myApp extends Homey.App
 		const username = this.homey.settings.get('username');
 		const password = this.homey.settings.get('password');
 		let region = this.homey.settings.get('region');
-		if (!region && username && password)
+		if ((!username || !password) && (typeof this.ensureCredentialsFromSessions === 'function'))
+		{
+			this.ensureCredentialsFromSessions();
+		}
+
+		const retryUsername = this.homey.settings.get('username');
+		const retryPassword = this.homey.settings.get('password');
+		const effectiveUsername = retryUsername || username;
+		const effectivePassword = retryPassword || password;
+		region = this.homey.settings.get('region') || region;
+		if (!region && effectiveUsername && effectivePassword)
 		{
 			region = 'europe';
 			this.homey.settings.set('region', region);
@@ -294,7 +307,7 @@ class myApp extends Homey.App
 
 		try
 		{
-			if (await this.doLocalLogin(username, password, region))
+			if (await this.doLocalLogin(effectiveUsername, effectivePassword, region))
 			{
 				this.localOnly = true;
 
@@ -1404,7 +1417,17 @@ class myApp extends Homey.App
 		const username = this.homey.settings.get('username');
 		const password = this.homey.settings.get('password');
 		const region = this.homey.settings.get('region');
-		if (!username || !password)
+		if ((!username || !password) && (typeof this.ensureCredentialsFromSessions === 'function'))
+		{
+			this.ensureCredentialsFromSessions();
+		}
+
+		const retryUsername = this.homey.settings.get('username');
+		const retryPassword = this.homey.settings.get('password');
+		const effectiveUsername = retryUsername || username;
+		const effectivePassword = retryPassword || password;
+		const effectiveRegion = this.homey.settings.get('region') || region;
+		if (!effectiveUsername || !effectivePassword)
 		{
 			return;
 		}
@@ -1418,7 +1441,7 @@ class myApp extends Homey.App
 				this.logInformation('initSync', 'Starting');
 			}
 
-			await this.newLogin_2(username, password, region);
+			await this.newLogin_2(effectiveUsername, effectivePassword, effectiveRegion);
 			return;
 		}
 		catch (error)
@@ -2224,6 +2247,332 @@ class myApp extends Homey.App
 	isLoggedIn()
 	{
 		return ((this.tahomaCloud && this.tahomaCloud.authenticated) || (this.tahomaLocal && this.tahomaLocal.authenticated));
+	}
+
+	normalizeSessionEmail(username)
+	{
+		if (!username)
+		{
+			return '';
+		}
+
+		return `${username}`.trim().toLowerCase();
+	}
+
+	isValidSessionEmail(username)
+	{
+		const normalized = this.normalizeSessionEmail(username);
+		if (!normalized)
+		{
+			return false;
+		}
+
+		return (/^[^\s@]+@[^\s@]+\.[^\s@]+$/).test(normalized);
+	}
+
+	getAccountSessions()
+	{
+		const sessions = this.homey.settings.get('accountSessions');
+		if (!Array.isArray(sessions))
+		{
+			return [];
+		}
+
+		return sessions;
+	}
+
+	saveAccountSessions(sessions)
+	{
+		this.homey.settings.set('accountSessions', sessions);
+	}
+
+	getSessionByEmail(username)
+	{
+		const normalized = this.normalizeSessionEmail(username);
+		if (!normalized)
+		{
+			return null;
+		}
+
+		const sessions = this.getAccountSessions();
+		const idx = sessions.findIndex((session) => this.normalizeSessionEmail(session.username) === normalized);
+		if (idx < 0)
+		{
+			return null;
+		}
+
+		return sessions[idx];
+	}
+
+	upsertAccountSession({ username, password, region })
+	{
+		const normalized = this.normalizeSessionEmail(username);
+		if (!this.isValidSessionEmail(normalized))
+		{
+			throw new Error('Please enter a valid email address');
+		}
+
+		const sessions = this.getAccountSessions();
+		const now = Date.now();
+		const idx = sessions.findIndex((session) => this.normalizeSessionEmail(session.username) === normalized);
+
+		if (idx >= 0)
+		{
+			sessions[idx] = {
+				...sessions[idx],
+				username: normalized,
+				password: password === undefined ? sessions[idx].password : password,
+				region: region || sessions[idx].region || 'europe',
+				lastUsed: now,
+			};
+			this.saveAccountSessions(sessions);
+			return sessions[idx];
+		}
+
+		const session = {
+			id: this.hashCode(`${normalized}:${now.toString()}:${Math.random().toString(36)}`).toString(),
+			username: normalized,
+			password,
+			region: region || 'europe',
+			lastUsed: now,
+		};
+
+		sessions.push(session);
+		this.saveAccountSessions(sessions);
+		return session;
+	}
+
+	getPairingSessions()
+	{
+		this.migrateLegacyCredentialsToSessions();
+
+		return this.getAccountSessions().map((session) =>
+		({
+			username: session.username,
+			region: session.region,
+			lastUsed: session.lastUsed,
+		}));
+	}
+
+	getSessionUsage(username)
+	{
+		const normalized = this.normalizeSessionEmail(username);
+		if (!this.isValidSessionEmail(normalized))
+		{
+			return {
+				inUse: false,
+				globalCredentialsMatch: false,
+				deviceCount: 0,
+				devices: [],
+			};
+		}
+
+		const devicesUsingSession = [];
+
+		try
+		{
+			const drivers = this.homey.drivers.getDrivers();
+			for (const [driverId, driver] of Object.entries(drivers))
+			{
+				const devices = (driver && (typeof driver.getDevices === 'function')) ? driver.getDevices() : {};
+				for (const device of Object.values(devices))
+				{
+					let matched = false;
+					try
+					{
+						const settings = (device && (typeof device.getSettings === 'function')) ? device.getSettings() : {};
+						const data = (device && (typeof device.getData === 'function')) ? device.getData() : {};
+
+						const sessionCandidates = [
+							settings.username,
+							settings.email,
+							settings.accountEmail,
+							settings.sessionEmail,
+							settings.sessionUsername,
+							data.username,
+							data.email,
+						];
+
+						matched = sessionCandidates.some((candidate) => this.normalizeSessionEmail(candidate) === normalized);
+					}
+					catch (error)
+					{
+						this.logInformation('getSessionUsage device inspect', error.message ? error.message : error);
+					}
+
+					if (matched)
+					{
+						devicesUsingSession.push({
+							driverId,
+							name: (device && (typeof device.getName === 'function')) ? device.getName() : 'Unknown device',
+							id: (device && (typeof device.getData === 'function') && device.getData()) ? device.getData().id : null,
+						});
+					}
+				}
+			}
+		}
+		catch (error)
+		{
+			this.logInformation('getSessionUsage', error.message ? error.message : error);
+		}
+
+		const currentUsername = this.normalizeSessionEmail(this.homey.settings.get('username'));
+		const globalCredentialsMatch = (currentUsername === normalized);
+
+		return {
+			inUse: globalCredentialsMatch || (devicesUsingSession.length > 0),
+			globalCredentialsMatch,
+			deviceCount: devicesUsingSession.length,
+			devices: devicesUsingSession,
+		};
+	}
+
+	removeAccountSession(username, options = {})
+	{
+		const force = !!(options && options.force);
+		const clearGlobalCredentials = !!(options && options.clearGlobalCredentials);
+		const normalized = this.normalizeSessionEmail(username);
+
+		if (!this.isValidSessionEmail(normalized))
+		{
+			throw new Error('Please enter a valid email address');
+		}
+
+		const sessions = this.getAccountSessions();
+		const idx = sessions.findIndex((session) => this.normalizeSessionEmail(session.username) === normalized);
+		if (idx < 0)
+		{
+			return {
+				removed: false,
+				notFound: true,
+				usage: this.getSessionUsage(normalized),
+			};
+		}
+
+		const usage = this.getSessionUsage(normalized);
+		if (usage.inUse && !force)
+		{
+			return {
+				removed: false,
+				inUse: true,
+				usage,
+			};
+		}
+
+		sessions.splice(idx, 1);
+		this.saveAccountSessions(sessions);
+
+		const currentUsername = this.normalizeSessionEmail(this.homey.settings.get('username'));
+		if (clearGlobalCredentials && (currentUsername === normalized))
+		{
+			this.homey.settings.unset('username');
+			this.homey.settings.unset('password');
+		}
+
+		return {
+			removed: true,
+			forced: force,
+			usage,
+		};
+	}
+
+	async autoRemoveUnusedSession(username)
+	{
+		const normalized = this.normalizeSessionEmail(username);
+		if (!this.isValidSessionEmail(normalized))
+		{
+			return {
+				removed: false,
+				reason: 'invalid_username',
+			};
+		}
+
+		const usage = this.getSessionUsage(normalized);
+		if (usage.deviceCount > 0)
+		{
+			return {
+				removed: false,
+				reason: 'still_used_by_devices',
+				usage,
+			};
+		}
+
+		const removal = this.removeAccountSession(normalized,
+			{
+				force: true,
+				clearGlobalCredentials: false,
+			});
+		return {
+			...removal,
+			autoRemoved: !!(removal && removal.removed),
+		};
+	}
+
+	ensureCredentialsFromSessions()
+	{
+		try
+		{
+			const currentUsername = this.homey.settings.get('username');
+			const currentPassword = this.homey.settings.get('password');
+			if (currentUsername && currentPassword)
+			{
+				return false;
+			}
+
+			const sessions = this.getAccountSessions();
+			if (!Array.isArray(sessions) || (sessions.length === 0))
+			{
+				return false;
+			}
+
+			const candidates = sessions
+				.filter((session) => session && this.isValidSessionEmail(session.username) && session.password)
+				.sort((a, b) => (b.lastUsed || 0) - (a.lastUsed || 0));
+
+			if (candidates.length === 0)
+			{
+				return false;
+			}
+
+			const selected = candidates[0];
+			this.homey.settings.set('username', this.normalizeSessionEmail(selected.username));
+			this.homey.settings.set('password', selected.password);
+			this.homey.settings.set('region', selected.region || 'europe');
+
+			this.logInformation('ensureCredentialsFromSessions', `Recovered credentials for ${this.normalizeSessionEmail(selected.username)}`);
+			return true;
+		}
+		catch (error)
+		{
+			this.logInformation('ensureCredentialsFromSessions', error.message ? error.message : error);
+		}
+
+		return false;
+	}
+
+	migrateLegacyCredentialsToSessions()
+	{
+		try
+		{
+			const username = this.homey.settings.get('username');
+			const password = this.homey.settings.get('password');
+			const region = this.homey.settings.get('region') || 'europe';
+
+			if (!username || !password)
+			{
+				return;
+			}
+
+			const existing = this.getSessionByEmail(username);
+			if (!existing)
+			{
+				this.upsertAccountSession({ username, password, region });
+			}
+		}
+		catch (error)
+		{
+			this.logInformation('migrateLegacyCredentialsToSessions', error.message ? error.message : error);
+		}
 	}
 
 }

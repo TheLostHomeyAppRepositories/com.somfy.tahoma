@@ -47,15 +47,16 @@ class Driver extends Homey.Driver
 
 	async onPair(session)
 	{
-		let username = this.homey.settings.get('username');
-		let password = this.homey.settings.get('password');
+		let username = '';
+		let password = '';
 		let region = this.homey.settings.get('region');
+		let selectedExistingSession = false;
 
 		session.setHandler('showView', async (view) =>
 		{
 			if (view === 'login_credentials')
 			{
-				if (username && password && this.homey.app.isLoggedIn())
+				if (selectedExistingSession && username && password)
 				{
 					await session.nextView();
 				}
@@ -67,6 +68,70 @@ class Driver extends Homey.Driver
 					await session.nextView();
 				}
 			}
+		});
+
+		session.setHandler('sessions_list', async () =>
+		{
+			if (typeof this.homey.app.getPairingSessions === 'function')
+			{
+				return this.homey.app.getPairingSessions();
+			}
+
+			return [];
+		});
+
+		session.setHandler('session_select', async (data) =>
+		{
+			const email = data && data.username ? data.username : '';
+			if (!email || (typeof this.homey.app.getSessionByEmail !== 'function'))
+			{
+				return { found: false };
+			}
+
+			const existing = this.homey.app.getSessionByEmail(email);
+			if (!existing)
+			{
+				return { found: false };
+			}
+
+			username = existing.username;
+			password = existing.password || '';
+			region = existing.region || region;
+			selectedExistingSession = true;
+
+			return {
+				found: true,
+				username,
+				region,
+			};
+		});
+
+		session.setHandler('session_delete', async (data) =>
+		{
+			const email = data && data.username ? data.username : '';
+			const force = !!(data && data.force);
+
+			if (!email || (typeof this.homey.app.removeAccountSession !== 'function'))
+			{
+				return {
+					removed: false,
+					notSupported: true,
+				};
+			}
+
+			const result = this.homey.app.removeAccountSession(email, { force });
+			const normalized = (typeof this.homey.app.normalizeSessionEmail === 'function')
+				? this.homey.app.normalizeSessionEmail(email)
+				: email;
+
+			if (result && result.removed && normalized === username)
+			{
+				username = '';
+				password = '';
+				selectedExistingSession = false;
+			}
+
+			return result;
 		});
 
 		session.setHandler('select_region_setup', async () =>
@@ -85,9 +150,50 @@ class Driver extends Homey.Driver
 
 		session.setHandler('login', async (data) =>
 		{
-			username = data.username;
-			password = data.password;
+			const requestedUsername = data && data.username ? data.username : username;
+			const requestedPassword = data && data.password ? data.password : '';
+			const requestedRegion = data && data.region ? data.region : region;
+
+			if (typeof this.homey.app.normalizeSessionEmail === 'function')
+			{
+				username = this.homey.app.normalizeSessionEmail(requestedUsername);
+			}
+			else
+			{
+				username = requestedUsername;
+			}
+
+			if (typeof this.homey.app.isValidSessionEmail === 'function' && !this.homey.app.isValidSessionEmail(username))
+			{
+				throw new Error('Please enter a valid email address');
+			}
+
+			region = requestedRegion || region || 'europe';
+
+			let sessionPassword = requestedPassword;
+			if ((!sessionPassword || sessionPassword.length === 0) && (typeof this.homey.app.getSessionByEmail === 'function'))
+			{
+				const existing = this.homey.app.getSessionByEmail(username);
+				if (existing && existing.password)
+				{
+					sessionPassword = existing.password;
+					region = existing.region || region;
+					selectedExistingSession = true;
+				}
+			}
+
+			if (!sessionPassword || sessionPassword.length === 0)
+			{
+				throw new Error('Please enter your password or select an existing session');
+			}
+
+			password = sessionPassword;
 			const credentialsAreValid = await this.homey.app.newLogin_2(username, password, region);
+
+			if (credentialsAreValid && (typeof this.homey.app.upsertAccountSession === 'function'))
+			{
+				this.homey.app.upsertAccountSession({ username, password, region });
+			}
 
 			// return true to continue adding the device if the login succeeded
 			// return false to indicate to the user the login attempt failed
@@ -98,11 +204,20 @@ class Driver extends Homey.Driver
 		session.setHandler('list_devices', async () =>
 		{
 			this.log('list_devices');
-			const username = this.homey.settings.get('username');
-			const password = this.homey.settings.get('password');
 			if (!username || !password)
 			{
-				throw new Error(this.homey.__('errors.on_pair_login_failure'));
+				if (selectedExistingSession && (typeof this.homey.app.getSessionByEmail === 'function'))
+				{
+					const existing = this.homey.app.getSessionByEmail(username);
+					if (!existing || !existing.password)
+					{
+						throw new Error(this.homey.__('errors.on_pair_login_failure'));
+					}
+				}
+				else
+				{
+					throw new Error(this.homey.__('errors.on_pair_login_failure'));
+				}
 			}
 			return this.onReceiveSetupData();
 		});
@@ -167,6 +282,11 @@ class Driver extends Homey.Driver
 			if (devices)
 			{
 				this.log('setup resolve');
+				const currentSessionUsername = this.homey.settings.get('username');
+				const normalizedSessionUsername = (this.homey.app && (typeof this.homey.app.normalizeSessionEmail === 'function'))
+					? this.homey.app.normalizeSessionEmail(currentSessionUsername)
+					: currentSessionUsername;
+
 				const homeyDevices = devices.filter((device) => this.deviceType.indexOf(device.controllableName) !== -1).map((device) => (
 				{
 					name: device.label,
@@ -177,6 +297,9 @@ class Driver extends Homey.Driver
 						label: device.label,
 						controllableName: device.controllableName,
 					},
+					settings: normalizedSessionUsername
+						? { sessionUsername: normalizedSessionUsername }
+						: undefined,
 				}));
 				return homeyDevices;
 			}

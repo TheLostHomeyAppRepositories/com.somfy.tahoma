@@ -55,6 +55,27 @@ class Device extends Homey.Device
 		{
 			clearTimeout(this.timerId);
 		}
+
+		try
+		{
+			const settings = (typeof this.getSettings === 'function') ? this.getSettings() : {};
+			const sessionUsername = settings ? settings.sessionUsername : null;
+			if (sessionUsername && this.homey.app && (typeof this.homey.app.autoRemoveUnusedSession === 'function'))
+			{
+				this.homey.setTimeout(() =>
+				{
+					this.homey.app.autoRemoveUnusedSession(sessionUsername).catch((error) =>
+					{
+						this.error('autoRemoveUnusedSession failed', error);
+					});
+				}, 2000);
+			}
+		}
+		catch (error)
+		{
+			this.error('onDeleted session cleanup failed', error);
+		}
+
 		this.log('device deleted');
 	}
 
