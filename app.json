@@ -6709,6 +6709,184 @@
           }
         }
       ],
+      "icon": "/drivers/co2_sensor/assets/icon.svg",
+      "images": {
+        "large": "/drivers/co2_sensor/assets/images/large.png",
+        "small": "/drivers/co2_sensor/assets/images/small.png"
+      },
+      "name": {
+        "en": "CO2 Sensor",
+        "nl": "CO2-sensor",
+        "da": "CO2-sensor",
+        "de": "CO2-Sensor",
+        "es": "Sensor de CO2",
+        "fr": "Capteur CO2",
+        "it": "Sensore CO2",
+        "no": "CO2-sensor",
+        "sv": "CO2-sensor",
+        "pl": "Czujnik CO2",
+        "ru": "Датчик CO2",
+        "ko": "CO2 센서"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_co2"
+      ],
+      "id": "co2_sensor"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
+        {
+          "id": "session_select"
+        },
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices",
+            "prev": "login_credentials"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        }
+      ],
       "icon": "/drivers/color_light/assets/icon.svg",
       "images": {
         "large": "/drivers/color_light/assets/images/large.png",
@@ -8504,6 +8682,184 @@
         }
       },
       "id": "hub"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
+        {
+          "id": "session_select"
+        },
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices",
+            "prev": "login_credentials"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        }
+      ],
+      "icon": "/drivers/humidity_sensor/assets/icon.svg",
+      "images": {
+        "large": "/drivers/humidity_sensor/assets/images/large.png",
+        "small": "/drivers/humidity_sensor/assets/images/small.png"
+      },
+      "name": {
+        "en": "Humidity Sensor",
+        "nl": "Luchtvochtigheidssensor",
+        "da": "Fugtighedssensor",
+        "de": "Luftfeuchtigkeitssensor",
+        "es": "Sensor de humedad",
+        "fr": "Capteur d'humidite",
+        "it": "Sensore di umidita",
+        "no": "Fuktighetssensor",
+        "sv": "Luftfuktighetssensor",
+        "pl": "Czujnik wilgotnosci",
+        "ru": "Датчик влажности",
+        "ko": "습도 센서"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_humidity"
+      ],
+      "id": "humidity_sensor"
     },
     {
       "platforms": [
@@ -13210,15 +13566,15 @@
         "small": "/drivers/io_rain_sensor/assets/images/small.png"
       },
       "name": {
-        "en": "Ondeis Rain Sensor (io)",
-        "fr": "Capteur de pluie Ondeis (io)",
-        "es": "Sensor de lluvia Ondeis (io)",
-        "de": "Ondeis Regensensor (io)",
-        "pt": "Sensor de chuva Ondeis (io)",
-        "it": "Sensore di pioggia Ondeis (io)",
-        "nl": "Ondeis regensensor (io)",
-        "cn": "Ondeis雨传感器（io）",
-        "pl": "Czujnik deszczu Ondeis (io)"
+        "en": "Rain Sensor",
+        "fr": "Capteur de pluie",
+        "es": "Sensor de lluvia",
+        "de": "Regensensor",
+        "pt": "Sensor de chuva",
+        "it": "Sensore di pioggia",
+        "nl": "Regensensor",
+        "cn": "雨传感器",
+        "pl": "Czujnik deszczu"
       },
       "class": "sensor",
       "capabilities": [
@@ -16187,6 +16543,194 @@
         "onoff"
       ],
       "id": "myfox_light_controller"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
+        {
+          "id": "session_select"
+        },
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices",
+            "prev": "login_credentials"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        }
+      ],
+      "icon": "/drivers/netatmo_room_controller/assets/icon.svg",
+      "images": {
+        "large": "/drivers/netatmo_room_controller/assets/images/large.png",
+        "small": "/drivers/netatmo_room_controller/assets/images/small.png"
+      },
+      "name": {
+        "en": "Netatmo Room Controller",
+        "nl": "Netatmo kamercontroller",
+        "da": "Netatmo rumkontrol",
+        "de": "Netatmo Raumcontroller",
+        "es": "Controlador de habitacion Netatmo",
+        "fr": "Controleur de piece Netatmo",
+        "it": "Controller stanza Netatmo",
+        "no": "Netatmo romkontroller",
+        "sv": "Netatmo rumsstyrenhet",
+        "pl": "Kontroler pomieszczenia Netatmo",
+        "ru": "ÃÅ¡ÃÂ¾ÃÂ¼ÃÂ½ÃÂ°Ã‘â€šÃÂ½Ã‘â€¹ÃÂ¹ ÃÂºÃÂ¾ÃÂ½Ã‘â€šÃ‘â‚¬ÃÂ¾ÃÂ»ÃÂ»ÃÂµÃ‘â‚¬ Netatmo",
+        "ko": "Netatmo Ã«Â£Â¸ Ã¬Â»Â¨Ã­Å Â¸Ã«Â¡Â¤Ã«Å¸Â¬"
+      },
+      "class": "thermostat",
+      "capabilities": [
+        "target_temperature",
+        "eh_operating_mode",
+        "netatmo_cooling_operating_mode",
+        "netatmo_pilot_wire_mode",
+        "open_window_state"
+      ],
+      "capabilitiesOptions": {
+        "target_temperature": {
+          "min": 5,
+          "max": 30
+        }
+      },
+      "id": "netatmo_room_controller"
     },
     {
       "platforms": [
@@ -20274,6 +20818,185 @@
           }
         }
       ],
+      "icon": "/drivers/wind_sensor/assets/icon.svg",
+      "images": {
+        "large": "/drivers/wind_sensor/assets/images/large.png",
+        "small": "/drivers/wind_sensor/assets/images/small.png"
+      },
+      "name": {
+        "en": "Wind Sensor",
+        "nl": "Windsensor",
+        "da": "Vindsensor",
+        "de": "Windsensor",
+        "es": "Sensor de viento",
+        "fr": "Capteur de vent",
+        "it": "Sensore del vento",
+        "no": "Vindsensor",
+        "sv": "Vindsensor",
+        "pl": "Czujnik wiatru",
+        "ru": "Ð”Ð°Ñ‚Ñ‡Ð¸Ðº Ð²ÐµÑ‚Ñ€Ð°",
+        "ko": "ë°”ëžŒ ì„¼ì„œ"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_wind_angle",
+        "measure_wind_strength"
+      ],
+      "id": "wind_sensor"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
+        {
+          "id": "session_select"
+        },
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices",
+            "prev": "login_credentials"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        }
+      ],
       "icon": "/drivers/zigbee_ac/assets/icon.svg",
       "images": {
         "large": "/drivers/zigbee_ac/assets/images/large.png",
@@ -23267,6 +23990,142 @@
       ],
       "getable": true,
       "setable": true
+    },
+    "netatmo_cooling_operating_mode": {
+      "type": "enum",
+      "title": {
+        "en": "Cooling Operating Mode"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "antifreeze",
+          "title": {
+            "en": "Antifreeze"
+          }
+        },
+        {
+          "id": "auto",
+          "title": {
+            "en": "Automatic"
+          }
+        },
+        {
+          "id": "away",
+          "title": {
+            "en": "Away"
+          }
+        },
+        {
+          "id": "boost",
+          "title": {
+            "en": "Boost"
+          }
+        },
+        {
+          "id": "eco",
+          "title": {
+            "en": "Eco"
+          }
+        },
+        {
+          "id": "frostprotection",
+          "title": {
+            "en": "Frost Protection"
+          }
+        },
+        {
+          "id": "manual",
+          "title": {
+            "en": "Manual"
+          }
+        },
+        {
+          "id": "max",
+          "title": {
+            "en": "Maximum"
+          }
+        },
+        {
+          "id": "normal",
+          "title": {
+            "en": "Normal"
+          }
+        },
+        {
+          "id": "off",
+          "title": {
+            "en": "Off"
+          }
+        },
+        {
+          "id": "on",
+          "title": {
+            "en": "On"
+          }
+        },
+        {
+          "id": "prog",
+          "title": {
+            "en": "Prog"
+          }
+        },
+        {
+          "id": "program",
+          "title": {
+            "en": "Program"
+          }
+        }
+      ]
+    },
+    "netatmo_pilot_wire_mode": {
+      "type": "enum",
+      "title": {
+        "en": "Pilot Wire Mode"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "off",
+          "title": {
+            "en": "Off"
+          }
+        },
+        {
+          "id": "comfort",
+          "title": {
+            "en": "Comfort"
+          }
+        },
+        {
+          "id": "eco",
+          "title": {
+            "en": "Eco"
+          }
+        },
+        {
+          "id": "comfort-1",
+          "title": {
+            "en": "Comfort -1"
+          }
+        },
+        {
+          "id": "comfort-2",
+          "title": {
+            "en": "Comfort -2"
+          }
+        },
+        {
+          "id": "frostprotection",
+          "title": {
+            "en": "Frost Protection"
+          }
+        }
+      ]
     },
     "occupancy_activation": {
       "type": "boolean",

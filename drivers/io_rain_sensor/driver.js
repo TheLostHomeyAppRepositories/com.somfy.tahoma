@@ -5,17 +5,15 @@
 const Driver = require('../Driver');
 
 /**
- * Driver class for the light sensor with the io:LightIOSystemSensor controllable name in TaHoma
+ * Driver class for the rain sensor with the io:SomfyRainIOSystemSensor or netatmo:RainComponent controllable name in TaHoma
  * @extends {Driver}
  */
-class LightSensorDriver extends Driver
+class RainSensorDriver extends Driver
 {
-
 	async onInit()
 	{
-		this.deviceType = ['io:SomfyRainIOSystemSensor'];
+		this.deviceType = ['io:SomfyRainIOSystemSensor', 'netatmo:RainComponent'];
 	}
-
 }
 
-module.exports = LightSensorDriver;
+module.exports = RainSensorDriver;

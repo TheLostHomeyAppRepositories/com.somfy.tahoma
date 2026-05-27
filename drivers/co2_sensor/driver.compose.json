@@ -1,0 +1,23 @@
+{
+	"name": {
+		"en": "CO2 Sensor",
+		"nl": "CO2-sensor",
+		"da": "CO2-sensor",
+		"de": "CO2-Sensor",
+		"es": "Sensor de CO2",
+		"fr": "Capteur CO2",
+		"it": "Sensore CO2",
+		"no": "CO2-sensor",
+		"sv": "CO2-sensor",
+		"pl": "Czujnik CO2",
+		"ru": "Датчик CO2",
+		"ko": "CO2 센서"
+	},
+	"class": "sensor",
+	"capabilities": [
+		"measure_co2"
+	],
+	"$extends": [
+		"cloudDriver"
+	]
+}

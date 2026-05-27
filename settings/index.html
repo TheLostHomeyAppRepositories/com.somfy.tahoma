@@ -1,7 +1,10 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Somfy TaHoma Settings</title>
 	<link rel="stylesheet" type="text/css" href="busy_indicator.css" />
 
 	<style type="text/css">
@@ -19,6 +22,36 @@
 		#busybox.show {
 			display: block;
 		}
+
+		.is-hidden {
+			display: none;
+		}
+
+		.btn-clear {
+			background-color: #a5510d;
+			color: white;
+			margin: 5px 20px 5px 5px;
+		}
+
+		.btn-send {
+			background-color: #0f9e16;
+			color: white;
+			margin: 5px 20px 5px 5px;
+		}
+
+		.btn-log {
+			margin-top: 10px;
+		}
+
+		.nowrap-textarea {
+			white-space: nowrap;
+		}
+
+		.sim-buttons {
+			display: flex;
+			gap: 5px;
+			flex-wrap: wrap;
+		}
 	</style>
 
 	<script type="text/javascript" src="/homey.js" data-origin="settings"></script>
@@ -34,13 +67,13 @@
 
 	<!-- Tab links -->
 	<div class="tab">
-		<button class="tablinks" onclick="setPage(event, 'settings')" id="defaultOpen"><span data-i18n="settings.settings"></span></button>
-		<button class="tablinks" onclick="setPage(event, 'infoLog')"><span data-i18n="settings.information_log"></span></button>
-		<button class="tablinks" onclick="setPage(event, 'deviceLogTab')"><span data-i18n="settings.device_log"></span></button>
-		<button class="tablinks" onclick="setPage(event, 'stateLog')"><span data-i18n="settings.state_log"></span></button>
-		<button class="tablinks" onclick="setPage(event, 'eventLog')"><span data-i18n="settings.event_log"></span></button>
-		<button class="tablinks" onclick="setPage(event, 'localTokens')"><span data-i18n="settings.local_tokens"></span></button>
-		<button class="tablinks" onclick="setPage(event, 'simulator')" id="simLogTab" style="display:none">Simulation Data</button>
+		<button class="tablinks" onclick="setPage(event, 'settings')" id="defaultOpen" title="Settings"><span data-i18n="settings.settings"></span></button>
+		<button class="tablinks" onclick="setPage(event, 'infoLog')" title="Information Log"><span data-i18n="settings.information_log"></span></button>
+		<button class="tablinks" onclick="setPage(event, 'deviceLogTab')" title="Device Log"><span data-i18n="settings.device_log"></span></button>
+		<button class="tablinks" onclick="setPage(event, 'stateLog')" title="State Log"><span data-i18n="settings.state_log"></span></button>
+		<button class="tablinks" onclick="setPage(event, 'eventLog')" title="Event Log"><span data-i18n="settings.event_log"></span></button>
+		<button class="tablinks" onclick="setPage(event, 'localTokens')" title="Local Tokens"><span data-i18n="settings.local_tokens"></span></button>
+		<button class="tablinks is-hidden" onclick="setPage(event, 'simulator')" id="simLogTab" title="Simulation Data">Simulation Data</button>
 	</div>
 
 	<!-- SETTINGS PAGE -->
@@ -54,13 +87,13 @@
 				<span id="response"></span>
 				<div class="field row">
 					<label class="homey-form-label" for="username" data-i18n="settings.username"></label>
-					<input class="homey-form-input" id="username" type="text" value="" />
+					<input class="homey-form-input" id="username" type="text" value="" title="Username" />
 				</div>
 				<div class="field row">
 					<label class="homey-form-label" for="password" data-i18n="settings.password"></label>
-					<input class="homey-form-input" id="password" type="password" value="" />
+					<input class="homey-form-input" id="password" type="password" value="" title="Password" />
 					<label class="homey-form-checkbox">
-						<input class="homey-form-checkbox-input" id="showPassword" type="checkbox" value="showPassword" />
+						<input class="homey-form-checkbox-input" id="showPassword" type="checkbox" value="showPassword" title="Show password" />
 						<span class="homey-form-checkbox-checkmark"></span>
 						<span class="homey-form-checkbox-text"><span data-i18n="settings.show_password"></span></span>
 					</label>
@@ -68,11 +101,11 @@
 				</div>
 				<div class="field row">
 					<label class="homey-form-label" for="localToken" data-i18n="settings.localToken"></label>
-					<input class="homey-form-input" id="localToken" type="text" value="" />
+					<input class="homey-form-input" id="localToken" type="text" value="" title="Local token" />
 				</div>
 				<div class="field row">
 					<label class="homey-form-label" for="region" data-i18n="settings.region"></label>
-					<select class="homey-form-select" name="region" id="region">
+					<select class="homey-form-select" name="region" id="region" title="Region">
 						<option value="europe" data-i18n="settings.europe"></option>
 						<option value="usa" data-i18n="settings.usa"></option>
 						<option value="oceana" data-i18n="settings.oceana"></option>
@@ -80,14 +113,14 @@
 					<p></p>
 				</div>
 				<div class="field row">
-					<button class="homey-button-primary-full" id="saveButton" data-i18n="settings.save"></button>
+					<button class="homey-button-primary-full" id="saveButton" data-i18n="settings.save" title="Save"></button>
 				</div>
 			</fieldset>
-			<fieldset class="homey-form-fieldset" id="logoutElement" style="display: none;">
+			<fieldset class="homey-form-fieldset is-hidden" id="logoutElement">
 				<legend class="homey-form-legend" data-i18n="settings.logouttitle"></legend>
 				<p id="logoutText" data-i18n="settings.logout_description"></p>
-				<button id="logoutButton" class="homey-button-danger-shadow" data-i18n="settings.logout"></button>
-		</fieldset>
+				<button id="logoutButton" class="homey-button-danger-shadow" data-i18n="settings.logout" title="Log out"></button>
+			</fieldset>
 	</div>
 
 	<!-- Information LOG PAGE -->
@@ -96,15 +129,15 @@
 			<p data-i18n="settings.intro4"></p>
 			<div class="field row">
 				<label class="homey-form-checkbox">
-					<input class="homey-form-checkbox-input" id="InfoLogEnabled" type="checkbox" value="logEnabled" />
+					<input class="homey-form-checkbox-input" id="InfoLogEnabled" type="checkbox" value="logEnabled" title="Enable information log" />
 					<span class="homey-form-checkbox-checkmark"></span>
 					<span class="homey-form-checkbox-text"><span data-i18n="settings.log_enabled"></span></span>
 				</label>
 			</div>
-			<button id="clearInfoLog" style="background-color:#a5510d;color:white;margin:5px 20px 5px 5px;" data-i18n="settings.clear"></button>
-			<button id="sendInfoLog" style="background-color:#0f9e16;color:white;margin:5px 20px 5px 5px;" data-i18n="settings.send"></button>
+			<button id="clearInfoLog" class="btn-clear" data-i18n="settings.clear" title="Clear information log"></button>
+			<button id="sendInfoLog" class="btn-send" data-i18n="settings.send" title="Send information log"></button>
 			<div class="field row">
-				<textarea id="infoLogData" style="white-space: nowrap;"></textarea>
+				<textarea id="infoLogData" class="nowrap-textarea" title="Information log data"></textarea>
 			</div>
 		</fieldset>
 	</div>
@@ -117,12 +150,12 @@
 			<p data-i18n="settings.intro3"></p>
 			<p data-i18n="settings.intro4"></p>
 			<p>
-				<button id="getDeviceLog" style="background-color:#0f9e16;color:white;margin:10px 20px 5px 5px;" data-i18n="settings.get"></button>
-				<button id="clearDeviceLog" style="background-color:#a5510d;color:white;margin:10px 20px 5px 5px;" data-i18n="settings.clear"></button>
-				<button id="sendDeviceLog" style="background-color:#0f9e16;color:white;margin:10px 20px 5px 5px;" data-i18n="settings.send"></button>
+				<button id="getDeviceLog" class="btn-send btn-log" data-i18n="settings.get" title="Get device log"></button>
+				<button id="clearDeviceLog" class="btn-clear btn-log" data-i18n="settings.clear" title="Clear device log"></button>
+				<button id="sendDeviceLog" class="btn-send btn-log" data-i18n="settings.send" title="Send device log"></button>
 			</p>
 			<div class="field row">
-				<textarea id="deviceLog" style="white-space: nowrap;"></textarea>
+				<textarea id="deviceLog" class="nowrap-textarea" title="Device log data"></textarea>
 			</div>
 		</fieldset>
 	</div>
@@ -131,9 +164,9 @@
 	<div id="simulator" class="tabcontent">
 		<fieldset class="homey-form-fieldset">
 			<h1>For debug use only</h1>
-			<p><button id="useSim" style="background-color:#0f9e16;color:white;margin:5px 20px 5px 5px;">Activate</button><button id="clearSim" style="background-color:#a5510d;color:white;margin:5px 20px 5px 5px;">Clear Sim</button></p>
+			<p class="sim-buttons"><button id="useSim" class="btn-send" title="Activate simulation">Activate</button><button id="clearSim" class="btn-clear" title="Clear simulation">Clear Sim</button></p>
 			<div class="field row">
-				<textarea id="simData" style="white-space: nowrap;"></textarea>
+				<textarea id="simData" class="nowrap-textarea" title="Simulation data"></textarea>
 			</div>
 		</fieldset>
 	</div>
@@ -143,14 +176,14 @@
 		<fieldset class="homey-form-fieldset">
 			<div class="field row">
 				<label class="homey-form-checkbox">
-					<input class="homey-form-checkbox-input" id="stateLogEnabled" type="checkbox" value="logEnabled" />
+					<input class="homey-form-checkbox-input" id="stateLogEnabled" type="checkbox" value="logEnabled" title="Enable state log" />
 					<span class="homey-form-checkbox-checkmark"></span>
 					<span class="homey-form-checkbox-text"><span data-i18n="settings.log_enabled"></span></span>
 				</label>
 			</div>
-			<button id="clearStateLog" style="background-color:#a5510d;color:white;margin:10px 20px 5px 5px;" data-i18n="settings.clear"></button>
+			<button id="clearStateLog" class="btn-clear btn-log" data-i18n="settings.clear" title="Clear state log"></button>
 			<div class="field row">
-				<textarea id="stateLogData" style="white-space: nowrap;"></textarea>
+				<textarea id="stateLogData" class="nowrap-textarea" title="State log data"></textarea>
 			</div>
 		</fieldset>
 	</div>
@@ -161,15 +194,15 @@
 			<p data-i18n="settings.intro4"></p>
 			<div class="field row">
 				<label class="homey-form-checkbox">
-					<input class="homey-form-checkbox-input" id="eventLogEnabled" type="checkbox" value="logEnabled" />
+					<input class="homey-form-checkbox-input" id="eventLogEnabled" type="checkbox" value="logEnabled" title="Enable event log" />
 					<span class="homey-form-checkbox-checkmark"></span>
 					<span class="homey-form-checkbox-text"><span data-i18n="settings.log_enabled"></span></span>
 				</label>
 			</div>
-			<button id="clearEventLog" style="background-color:#a5510d;color:white;margin:10px 20px 5px 5px;" data-i18n="settings.clear"></button>
-			<button id="sendEventLog" style="background-color:#0f9e16;color:white;margin:5px 20px 5px 5px;" data-i18n="settings.send"></button>
+			<button id="clearEventLog" class="btn-clear btn-log" data-i18n="settings.clear" title="Clear event log"></button>
+			<button id="sendEventLog" class="btn-send" data-i18n="settings.send" title="Send event log"></button>
 			<div class="field row">
-				<textarea id="eventLogData" style="white-space: nowrap;"></textarea>
+				<textarea id="eventLogData" class="nowrap-textarea" title="Event log data"></textarea>
 			</div>
 		</fieldset>
 	</div>
@@ -181,13 +214,13 @@
 			<div class="homey-form-group">
 				<div class="field row">
 					<label class="homey-form-label" for="localTokenUUIDElement" data-i18n="settings.token_id"></label>
-					<input class="homey-form-input" id="localTokenUUIDElement" type="text" value="" />
+					<input class="homey-form-input" id="localTokenUUIDElement" type="text" value="" title="Token UUID to delete" />
 				</div>
-				<button id="deleteLocalToken" style="background-color:#0f9e16;color:white;margin:5px 20px 5px 5px;" data-i18n="settings.delete_token"></button>
+				<button id="deleteLocalToken" class="btn-send" data-i18n="settings.delete_token" title="Delete local token"></button>
 			</div>
-			<button id="getLocalTokens" style="background-color:#0f9e16;color:white;margin:5px 20px 5px 5px;" data-i18n="settings.get_tokens"></button>
+			<button id="getLocalTokens" class="btn-send" data-i18n="settings.get_tokens" title="Refresh token list"></button>
 			<div class="field row">
-				<textarea id="localTokensData" style="white-space: nowrap;"></textarea>
+				<textarea id="localTokensData" class="nowrap-textarea" title="Local token data"></textarea>
 			</div>
 		</fieldset>
 	</div>

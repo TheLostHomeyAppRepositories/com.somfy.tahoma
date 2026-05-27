@@ -1,0 +1,23 @@
+{
+	"name": {
+		"en": "Humidity Sensor",
+		"nl": "Luchtvochtigheidssensor",
+		"da": "Fugtighedssensor",
+		"de": "Luftfeuchtigkeitssensor",
+		"es": "Sensor de humedad",
+		"fr": "Capteur d'humidite",
+		"it": "Sensore di umidita",
+		"no": "Fuktighetssensor",
+		"sv": "Luftfuktighetssensor",
+		"pl": "Czujnik wilgotnosci",
+		"ru": "Датчик влажности",
+		"ko": "습도 센서"
+	},
+	"class": "sensor",
+	"capabilities": [
+		"measure_humidity"
+	],
+	"$extends": [
+		"cloudDriver"
+	]
+}

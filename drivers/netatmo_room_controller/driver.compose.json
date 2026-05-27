@@ -1,0 +1,33 @@
+{
+	"name": {
+		"en": "Netatmo Room Controller",
+		"nl": "Netatmo kamercontroller",
+		"da": "Netatmo rumkontrol",
+		"de": "Netatmo Raumcontroller",
+		"es": "Controlador de habitacion Netatmo",
+		"fr": "Controleur de piece Netatmo",
+		"it": "Controller stanza Netatmo",
+		"no": "Netatmo romkontroller",
+		"sv": "Netatmo rumsstyrenhet",
+		"pl": "Kontroler pomieszczenia Netatmo",
+		"ru": "ÃÅ¡ÃÂ¾ÃÂ¼ÃÂ½ÃÂ°Ã‘â€šÃÂ½Ã‘â€¹ÃÂ¹ ÃÂºÃÂ¾ÃÂ½Ã‘â€šÃ‘â‚¬ÃÂ¾ÃÂ»ÃÂ»ÃÂµÃ‘â‚¬ Netatmo",
+		"ko": "Netatmo Ã«Â£Â¸ Ã¬Â»Â¨Ã­Å Â¸Ã«Â¡Â¤Ã«Å¸Â¬"
+	},
+	"class": "thermostat",
+	"capabilities": [
+		"target_temperature",
+		"eh_operating_mode",
+		"netatmo_cooling_operating_mode",
+		"netatmo_pilot_wire_mode",
+		"open_window_state"
+	],
+	"capabilitiesOptions": {
+		"target_temperature": {
+			"min": 5,
+			"max": 30
+		}
+	},
+	"$extends": [
+		"cloudDriver"
+	]
+}

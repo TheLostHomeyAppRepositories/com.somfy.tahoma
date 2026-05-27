@@ -13,7 +13,7 @@ const CapabilitiesXRef = [
 	parameters: '',
 }];
 
-class LightSensorDevice extends SensorDevice
+class RainSensorDevice extends SensorDevice
 {
 
 	async onInit()
@@ -34,4 +34,4 @@ class LightSensorDevice extends SensorDevice
 	}
 
 }
-module.exports = LightSensorDevice;
+module.exports = RainSensorDevice;

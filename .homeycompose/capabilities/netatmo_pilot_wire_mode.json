@@ -1,0 +1,47 @@
+{
+	"type": "enum",
+	"title": {
+		"en": "Pilot Wire Mode"
+	},
+	"getable": true,
+	"setable": true,
+	"uiComponent": "picker",
+	"values": [
+		{
+			"id": "off",
+			"title": {
+				"en": "Off"
+			}
+		},
+		{
+			"id": "comfort",
+			"title": {
+				"en": "Comfort"
+			}
+		},
+		{
+			"id": "eco",
+			"title": {
+				"en": "Eco"
+			}
+		},
+		{
+			"id": "comfort-1",
+			"title": {
+				"en": "Comfort -1"
+			}
+		},
+		{
+			"id": "comfort-2",
+			"title": {
+				"en": "Comfort -2"
+			}
+		},
+		{
+			"id": "frostprotection",
+			"title": {
+				"en": "Frost Protection"
+			}
+		}
+	]
+}

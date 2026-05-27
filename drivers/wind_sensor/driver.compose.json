@@ -1,0 +1,24 @@
+{
+	"name": {
+		"en": "Wind Sensor",
+		"nl": "Windsensor",
+		"da": "Vindsensor",
+		"de": "Windsensor",
+		"es": "Sensor de viento",
+		"fr": "Capteur de vent",
+		"it": "Sensore del vento",
+		"no": "Vindsensor",
+		"sv": "Vindsensor",
+		"pl": "Czujnik wiatru",
+		"ru": "Ð”Ð°Ñ‚Ñ‡Ð¸Ðº Ð²ÐµÑ‚Ñ€Ð°",
+		"ko": "ë°”ëžŒ ì„¼ì„œ"
+	},
+	"class": "sensor",
+	"capabilities": [
+		"measure_wind_angle",
+		"measure_wind_strength"
+	],
+	"$extends": [
+		"cloudDriver"
+	]
+}

@@ -1,14 +1,14 @@
 {
 	"name": {
-		"en": "Ondeis Rain Sensor (io)",
-		"fr": "Capteur de pluie Ondeis (io)",
-		"es": "Sensor de lluvia Ondeis (io)",
-		"de": "Ondeis Regensensor (io)",
-		"pt": "Sensor de chuva Ondeis (io)",
-		"it": "Sensore di pioggia Ondeis (io)",
-		"nl": "Ondeis regensensor (io)",
-		"cn": "Ondeis雨传感器（io）",
-		"pl": "Czujnik deszczu Ondeis (io)"
+		"en": "Rain Sensor",
+		"fr": "Capteur de pluie",
+		"es": "Sensor de lluvia",
+		"de": "Regensensor",
+		"pt": "Sensor de chuva",
+		"it": "Sensore di pioggia",
+		"nl": "Regensensor",
+		"cn": "雨传感器",
+		"pl": "Czujnik deszczu"
 	},
 	"class": "sensor",
 	"capabilities": [
