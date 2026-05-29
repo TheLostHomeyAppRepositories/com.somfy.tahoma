@@ -37,6 +37,7 @@ class myApp extends Homey.App
 		this.lastSync = 0;
 		this._logoutInProgress = null;
 		this.lastLogTime = new Date(Date.now());
+		this.deviceHttp400Tracker = {};
 
 		this.localBridgeInfo = this.homey.settings.get('localBridge');
 		this.localBearer = this.homey.settings.get('localBearer');
@@ -115,7 +116,7 @@ class myApp extends Homey.App
 		{
 			await this.logOut(false).catch((error) =>
 			{
-				this.logInformation('unload logOut failed', error.message ? error.message : error);
+				this.error('unload logOut failed', error && error.message ? error.message : error);
 			});
 		});
 
@@ -606,7 +607,7 @@ class myApp extends Homey.App
 		}
 		catch (error)
 		{
-			this.logInformation('onUninit logOut failed', error.message ? error.message : error);
+			this.error('onUninit logOut failed', error && error.message ? error.message : error);
 		}
 	}
 
@@ -1089,6 +1090,139 @@ class myApp extends Homey.App
 			h = Math.imul(31, h) + s.charCodeAt(i) | 0;
 		}
 		return h;
+	}
+
+	isTransientSyncError(error)
+	{
+		if (!error)
+		{
+			return false;
+		}
+
+		const message = String(error.message || '').toLowerCase();
+		const code = String(error.code || '').toUpperCase();
+
+		if (message.indexOf('timeout of') >= 0 && message.indexOf('exceeded') >= 0)
+		{
+			return true;
+		}
+
+		if (message.indexOf('request timeout') >= 0)
+		{
+			return true;
+		}
+
+		if (message.indexOf('missing expected cr after response line') >= 0)
+		{
+			return true;
+		}
+
+		if (message.indexOf('invalid header value char') >= 0)
+		{
+			return true;
+		}
+
+		return (
+			code === 'ECONNABORTED'
+			|| code === 'ETIMEDOUT'
+			|| code === 'ECONNRESET'
+			|| message.indexOf('socket hang up') >= 0
+		);
+	}
+
+	isHttpStatus(error, statusCode)
+	{
+		if (!error)
+		{
+			return false;
+		}
+
+		if (error.response && error.response.status === statusCode)
+		{
+			return true;
+		}
+
+		return String(error.message || '') === `Request failed with status code ${statusCode}`;
+	}
+
+	getCommand400TrackerKey(deviceURL, local)
+	{
+		return `${local ? 'local' : 'cloud'}:${deviceURL || ''}`;
+	}
+
+	recordCommand400(deviceURL, local)
+	{
+		const key = this.getCommand400TrackerKey(deviceURL, local);
+		const now = Date.now();
+		const windowMs = 300000;
+
+		if (!this.deviceHttp400Tracker || (typeof this.deviceHttp400Tracker !== 'object'))
+		{
+			this.deviceHttp400Tracker = {};
+		}
+
+		const current = this.deviceHttp400Tracker[key] || { count: 0, firstAt: now, lastAt: now };
+		if ((now - current.lastAt) > windowMs)
+		{
+			current.count = 0;
+			current.firstAt = now;
+		}
+
+		current.count += 1;
+		current.lastAt = now;
+		this.deviceHttp400Tracker[key] = current;
+
+		return current.count;
+	}
+
+	clearCommand400(deviceURL, local)
+	{
+		const key = this.getCommand400TrackerKey(deviceURL, local);
+		if (this.deviceHttp400Tracker && this.deviceHttp400Tracker[key])
+		{
+			delete this.deviceHttp400Tracker[key];
+		}
+	}
+
+	async attemptCommand400Recovery(label, local)
+	{
+		const connectionType = local ? 'Local' : 'Cloud';
+		const tahomaConnection = local ? this.tahomaLocal : this.tahomaCloud;
+
+		if (!tahomaConnection)
+		{
+			return false;
+		}
+
+		try
+		{
+			if (!tahomaConnection.authenticated)
+			{
+				await this.initSync();
+				return !!tahomaConnection.authenticated;
+			}
+
+			await tahomaConnection.getEvents();
+			return true;
+		}
+		catch (error)
+		{
+			this.logInformation(`${label}: ${connectionType} command 400 recovery failed`, error.message ? error.message : error);
+			if (!tahomaConnection.authenticated)
+			{
+				try
+				{
+					await this.initSync();
+					return !!tahomaConnection.authenticated;
+				}
+				catch (initError)
+				{
+					this.logInformation(`${label}: ${connectionType} command 400 re-auth failed`, initError.message ? initError.message : initError);
+				}
+			}
+		}
+
+		return false;
 	}
 
 	getCloudClientForSession(username)
@@ -1681,7 +1815,7 @@ class myApp extends Homey.App
 			}
 			catch (err)
 			{
-				this.log(err);
+				this.homey.error('logInformation persist failed', err && err.message ? err.message : err);
 			}
 		}
 	}
@@ -2391,6 +2525,14 @@ class myApp extends Homey.App
 				}
 				catch (error)
 				{
+					if (this.isTransientSyncError(error))
+					{
+						const connectionType = tahomaConnection.localLogin ? 'Local' : 'Cloud';
+						this.log(`${connectionType} sync transient issue: ${error.message}`);
+						this.syncing = false;
+						return nextInterval;
+					}
+
 					// this.logInformation('syncLoop', error.message);
 					if (error.message)
 					{
@@ -2418,7 +2560,7 @@ class myApp extends Homey.App
 							this.logInformation('syncLoop', 'Postponed for 1 minute');
 							nextInterval = 61000;
 						}
-						else if (tahomaConnection.localLogin && error.message === 'Request failed with status code 400')
+						else if (tahomaConnection.localLogin && this.isHttpStatus(error, 400))
 						{
 							await this.syncEvents(null, true);
 						}
@@ -2615,10 +2757,26 @@ class myApp extends Homey.App
 		}
 		catch (err)
 		{
-			this.homey.app.updateLog(`VarToString Error: ${err}`, 0);
+			this.homey.error(`VarToString Error: ${err && err.message ? err.message : err}`);
 		}
 
-		return source.toString();
+		return String(source);
+	}
+
+	isActuatorNoAnswer(issue)
+	{
+		if (!issue)
+		{
+			return false;
+		}
+
+		const message = String(issue.message || issue.error || issue).toUpperCase();
+		const failureType = String(issue.failureType || '').toUpperCase();
+		const errorCode = String(issue.errorCode || '');
+
+		return (message.indexOf('ACTUATORNOANSWER') >= 0)
+			|| (failureType === 'ACTUATORNOANSWER')
+			|| (errorCode === '102');
 	}
 
 	async cancelExecution(label, id, local)
@@ -2670,14 +2828,31 @@ class myApp extends Homey.App
 					if (data.errorCode)
 					{
 						this.homey.app.logInformation(`${label}: onCapabilityHeatingModeState`, `Failed to send local command: ${JSON.stringify(action)}, error = ${data.error} (${data.errorCode})`);
+						if (this.isActuatorNoAnswer(data))
+						{
+							throw (new Error('Actuator did not answer'));
+						}
 						throw (new Error(data.error));
 					}
 
 					data.local = true;
+					this.clearCommand400(deviceURL, true);
 					return data;
 				}
 				catch (err)
 				{
+					if (this.isActuatorNoAnswer(err))
+					{
+						throw (new Error('Actuator did not answer'));
+					}
+
+					if (this.isHttpStatus(err, 400))
+					{
+						const count = this.recordCommand400(deviceURL, true);
+						this.logInformation(`${label}: Local command 400 transient`, `count=${count}, device=${deviceURL}`);
+						await this.attemptCommand400Recovery(label, true);
+					}
+
 					this.logInformation(`${label}: Local command failed (will try cloud)`, `command: ${this.varToString(action)}, error = ${this.varToString(err)})`);
 				}
 			}
@@ -2688,12 +2863,14 @@ class myApp extends Homey.App
 			const currentCredentialsLocalData = await this.tryLocalCommandForCurrentCredentials(label, deviceURL, action, action2);
 			if (currentCredentialsLocalData)
 			{
+				this.clearCommand400(deviceURL, true);
 				return currentCredentialsLocalData;
 			}
 
 			const sessionLocalData = await this.tryLocalCommandForSession(label, deviceURL, action, action2);
 			if (sessionLocalData)
 			{
+				this.clearCommand400(deviceURL, true);
 				return sessionLocalData;
 			}
 		}
@@ -2711,10 +2888,15 @@ class myApp extends Homey.App
 				if (data.errorCode)
 				{
 					this.homey.app.logInformation(`${this.getName()}: onCapabilityHeatingModeState`, `Failed to send cloud command: ${JSON.stringify(action)}, error = ${data.error} (${data.errorCode})`);
+						if (this.isActuatorNoAnswer(data))
+						{
+							throw (new Error('Actuator did not answer'));
+						}
 					throw (new Error(data.error));
 				}
 
 				data.local = false;
+				this.clearCommand400(deviceURL, false);
 				if (boostSync)
 				{
 					this.boostSync();
@@ -2723,6 +2905,54 @@ class myApp extends Homey.App
 			}
 			catch (err)
 			{
+				if (this.isActuatorNoAnswer(err))
+				{
+					throw (new Error('Actuator did not answer'));
+				}
+
+				if (this.isHttpStatus(err, 400))
+				{
+					const count = this.recordCommand400(deviceURL, false);
+					this.logInformation(`${label}: Cloud command 400 transient`, `count=${count}, device=${deviceURL}`);
+
+					if (count <= 2)
+					{
+						const recovered = await this.attemptCommand400Recovery(label, false);
+						if (recovered)
+						{
+							try
+							{
+								const retryData = await this.tahomaCloud.executeDeviceAction(label, deviceURL, action, action2);
+								if (!retryData.errorCode)
+								{
+									retryData.local = false;
+									this.clearCommand400(deviceURL, false);
+									if (boostSync)
+									{
+										this.boostSync();
+									}
+									return retryData;
+								}
+
+								if (this.isActuatorNoAnswer(retryData))
+								{
+									throw (new Error('Actuator did not answer'));
+								}
+
+								throw (new Error(retryData.error || 'Cloud retry command failed'));
+							}
+							catch (retryError)
+							{
+								err = retryError;
+							}
+						}
+					}
+					else
+					{
+						this.logInformation(`${label}: Cloud command 400 actionable`, `count=${count}, device=${deviceURL}`);
+					}
+				}
+
 				this.logInformation(`${label}: Cloud command failed`, `command: ${this.varToString(action)}, error = ${this.varToString(err)})`);
 				throw (err);
 			}

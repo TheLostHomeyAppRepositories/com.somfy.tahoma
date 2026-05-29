@@ -175,7 +175,12 @@ class HorizontalAwningDevice extends WindowCoveringsDevice
 
 	checkLockSate()
 	{
-		this._checkLockSate();
+		if (!this || typeof this._checkLockSate !== 'function')
+		{
+			return;
+		}
+
+		this._checkLockSate().catch((err) => this.error(err));
 	}
 
 	async _checkLockSate()

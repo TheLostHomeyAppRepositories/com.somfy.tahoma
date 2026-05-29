@@ -80,6 +80,9 @@ class WindowCoveringsDevice extends Device
 		this.setPositionActionName = 'setClosure'; // Name of the command to set the current position
 		this.openClosedStateName = 'core:OpenClosedState'; // Name of the state to get open / closed state
 		this.myCommand = 'my'; // Name of the command to set the My position
+		this.lastDispatchedCommand = '';
+		this.lastDispatchedAt = 0;
+		this.lastFailureType = '';
 
 		this.quietMode = false;
 
@@ -154,6 +157,19 @@ class WindowCoveringsDevice extends Device
 		}
 	}
 
+	shouldThrottleDuplicateCommand(signature, minIntervalMs = 2500)
+	{
+		const now = Date.now();
+		if ((this.lastDispatchedCommand === signature) && ((now - this.lastDispatchedAt) < minIntervalMs))
+		{
+			return true;
+		}
+
+		this.lastDispatchedCommand = signature;
+		this.lastDispatchedAt = now;
+		return false;
+	}
+
 	async onCapabilityWindowcoveringsState(value, opts)
 	{
 		if (!opts || !opts.fromCloudSync)
@@ -168,6 +184,13 @@ class WindowCoveringsDevice extends Device
 			try
 			{
 				const deviceData = this.getData();
+				const nextCommand = this.windowcoveringsActions[value];
+
+				if (this.shouldThrottleDuplicateCommand(`state:${nextCommand}`))
+				{
+					this.homey.app.logInformation(`${this.getName()}: onCapabilityWindowcoveringsState`, `Ignoring duplicate command ${nextCommand}`);
+					return;
+				}
 
 				if (value === 'idle' && (this.executionId !== null))
 				{
@@ -254,6 +277,13 @@ class WindowCoveringsDevice extends Device
 
 			try
 			{
+				const throttledValue = Math.round(value * 100) / 100;
+				if (this.shouldThrottleDuplicateCommand(`set:${throttledValue}`))
+				{
+					this.homey.app.logInformation(`${deviceData.label}: onCapabilityWindowcoveringsSet`, `Ignoring duplicate target ${throttledValue}`);
+					return;
+				}
+
 				if (this.executionCmd !== null)
 				{
 					if (this.executionCmd === `${this.setPositionActionName}, ${value}`)
@@ -960,6 +990,7 @@ class WindowCoveringsDevice extends Device
 								}
 
 								this.lastCommandFailed = false;
+								this.lastFailureType = '';
 
 								if (!local && this.boostSync)
 								{
@@ -996,6 +1027,12 @@ class WindowCoveringsDevice extends Device
 							this.executionId = null;
 							this.executionCmd = '';
 							this.lastCommandFailed = (element.newState === 'FAILED');
+							this.lastFailureType = this.lastCommandFailed ? String(element.failureType || '') : '';
+
+							if (this.lastFailureType.toUpperCase() === 'ACTUATORNOANSWER')
+							{
+								this.setWarning('Actuator did not answer').catch(this.error);
+							}
 						}
 					}
 				}
@@ -1021,6 +1058,11 @@ class WindowCoveringsDevice extends Device
 
 		if (this.lastCommandFailed)
 		{
+			if (this.lastFailureType && this.lastFailureType.toUpperCase() === 'ACTUATORNOANSWER')
+			{
+				throw new Error('Actuator did not answer');
+			}
+
 			throw new Error('Command failed');
 		}
 

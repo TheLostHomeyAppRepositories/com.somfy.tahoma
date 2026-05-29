@@ -13,7 +13,7 @@
     "ru": "Кондиционер Hitachi",
     "ko": "히타치 에어컨 유닛"
   },
-  "class": "fan",
+  "class": "airconditioning",
   "capabilities": [
     "onoff",
     "ac_holiday_mode",

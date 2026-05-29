@@ -931,5 +931,8 @@
 	},
 	"4.0.133": {
 		"en": "Added support for Netatmo CO2, humidity, rain and wind sensors, plus Netatmo Room Controller with cooling operating mode and pilot wire mode capabilities."
+	},
+	"4.0.134": {
+		"en": "Improved error handling"
 	}
 }
