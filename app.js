@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable max-len */
 /* jslint node: true */
 
@@ -1264,8 +1265,7 @@ class myApp extends Homey.App
 	{
 		const sessions = this.getAccountSessions()
 			.filter((session) => session && this.isValidSessionEmail(session.username) && session.password)
-			.map((session) =>
-			({
+			.map((session) => ({
 				username: this.normalizeSessionEmail(session.username),
 				password: session.password,
 				region: session.region || 'europe',
@@ -1701,8 +1701,7 @@ class myApp extends Homey.App
 		if (this.infoLogEnabled)
 		{
 			const cloudCount = Array.isArray(logData.sessions)
-				? logData.sessions.reduce((count, sessionLog) =>
-					count + ((sessionLog && sessionLog.devices && sessionLog.devices.cloud && Array.isArray(sessionLog.devices.cloud.devices)) ? sessionLog.devices.cloud.devices.length : 0), 0)
+				? logData.sessions.reduce((count, sessionLog) => count + ((sessionLog && sessionLog.devices && sessionLog.devices.cloud && Array.isArray(sessionLog.devices.cloud.devices)) ? sessionLog.devices.cloud.devices.length : 0), 0)
 				: 0;
 			const localCount = Array.isArray(logData.local.devices) ? logData.local.devices.length : 0;
 			this.logInformation('logDevices', `Log contains ${cloudCount + localCount} devices (${cloudCount} cloud from ${cloudFetches} session(s), ${localCount} local)`);
@@ -2306,7 +2305,7 @@ class myApp extends Homey.App
 
 	async syncAllLocalBridges()
 	{
-		let nextInterval = LOCAL_INTERVAL * 1000;
+		const nextInterval = LOCAL_INTERVAL * 1000;
 
 		const bridges = this.getDiscoveredLocalBridges();
 		if (!Array.isArray(bridges) || (bridges.length === 0))
@@ -2905,6 +2904,7 @@ class myApp extends Homey.App
 			}
 			catch (err)
 			{
+				let finalError = err;
 				if (this.isActuatorNoAnswer(err))
 				{
 					throw (new Error('Actuator did not answer'));
@@ -2943,7 +2943,7 @@ class myApp extends Homey.App
 							}
 							catch (retryError)
 							{
-								err = retryError;
+								finalError = retryError;
 							}
 						}
 					}
@@ -2953,8 +2953,8 @@ class myApp extends Homey.App
 					}
 				}
 
-				this.logInformation(`${label}: Cloud command failed`, `command: ${this.varToString(action)}, error = ${this.varToString(err)})`);
-				throw (err);
+				this.logInformation(`${label}: Cloud command failed`, `command: ${this.varToString(action)}, error = ${this.varToString(finalError)})`);
+				throw (finalError);
 			}
 		}
 
@@ -3758,8 +3758,7 @@ class myApp extends Homey.App
 	{
 		this.migrateLegacyCredentialsToSessions();
 
-		return this.getAccountSessions().map((session) =>
-		({
+		return this.getAccountSessions().map((session) => ({
 			username: session.username,
 			region: session.region,
 			lastUsed: session.lastUsed,
