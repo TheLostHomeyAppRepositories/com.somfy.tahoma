@@ -57,6 +57,7 @@
 		"log_sent_successfully": "Protokoll erfolgreich gesendet",
 		"enter_token_uuid_to_delete": "Token-UUID zum Löschen eingeben",
 		"driver_support_fetch_failed": "Treiberunterstützungsdaten konnten nicht abgerufen werden",
+		"driver_support_connect_login": "Bitte speichern Sie Ihre Anmeldedaten im Einstellungs-Tab, um sich mit Ihrem Konto zu verbinden",
 		"driver_support_generated": "Erstellt",
 		"driver_support_somfy_devices": "Somfy-Geräte",
 		"driver_support_matched_drivers": "Zugeordnete Treiber",

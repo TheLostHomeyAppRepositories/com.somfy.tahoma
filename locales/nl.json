@@ -53,6 +53,7 @@
 		"log_sent_successfully": "Log succesvol verzonden",
 		"enter_token_uuid_to_delete": "Voer een token-UUID in om te verwijderen",
 		"driver_support_fetch_failed": "Kan driverondersteuningsgegevens niet ophalen",
+		"driver_support_connect_login": "Sla je inloggegevens op in het tabblad instellingen om verbinding te maken met je account",
 		"driver_support_generated": "Gegenereerd",
 		"driver_support_somfy_devices": "Somfy-apparaten",
 		"driver_support_matched_drivers": "Overeenkomende drivers",

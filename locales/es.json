@@ -57,6 +57,7 @@
 		"log_sent_successfully": "Registro enviado correctamente",
 		"enter_token_uuid_to_delete": "Introduce un UUID de token para eliminar",
 		"driver_support_fetch_failed": "No se pudieron obtener los datos de compatibilidad de controladores",
+		"driver_support_connect_login": "Guarde sus credenciales de inicio de sesión en la pestaña de ajustes para conectarse a su cuenta",
 		"driver_support_generated": "Generado",
 		"driver_support_somfy_devices": "Dispositivos Somfy",
 		"driver_support_matched_drivers": "Controladores coincidentes",

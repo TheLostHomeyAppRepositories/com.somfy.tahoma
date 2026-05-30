@@ -57,6 +57,7 @@
 		"log_sent_successfully": "로그가 전송되었습니다",
 		"enter_token_uuid_to_delete": "삭제할 토큰 UUID를 입력하세요",
 		"driver_support_fetch_failed": "드라이버 지원 데이터를 가져오지 못했습니다",
+		"driver_support_connect_login": "설정 탭에 로그인 자격 증명을 저장하여 계정에 연결해 주세요",
 		"driver_support_generated": "생성 시각",
 		"driver_support_somfy_devices": "Somfy 장치",
 		"driver_support_matched_drivers": "일치한 드라이버",

@@ -57,6 +57,7 @@
 		"log_sent_successfully": "Registro inviato con successo",
 		"enter_token_uuid_to_delete": "Inserisci un UUID token da eliminare",
 		"driver_support_fetch_failed": "Impossibile recuperare i dati di supporto driver",
+		"driver_support_connect_login": "Salva le tue credenziali di accesso nella scheda impostazioni per connetterti al tuo account",
 		"driver_support_generated": "Generato",
 		"driver_support_somfy_devices": "Dispositivi Somfy",
 		"driver_support_matched_drivers": "Driver corrispondenti",

@@ -57,6 +57,7 @@
 		"log_sent_successfully": "Log sendt",
 		"enter_token_uuid_to_delete": "Indtast et token-UUID for at slette",
 		"driver_support_fetch_failed": "Kunne ikke hente driverunderstøttelsesdata",
+		"driver_support_connect_login": "Gem venligst dine loginoplysninger under fanen indstillinger for at oprette forbindelse til din konto",
 		"driver_support_generated": "Genereret",
 		"driver_support_somfy_devices": "Somfy-enheder",
 		"driver_support_matched_drivers": "Matchende drivere",

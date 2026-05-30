@@ -57,6 +57,7 @@
 		"log_sent_successfully": "Dziennik wyslany pomyslnie",
 		"enter_token_uuid_to_delete": "Wprowadź UUID tokena do usunięcia",
 		"driver_support_fetch_failed": "Nie udało się pobrać danych obsługi sterowników",
+		"driver_support_connect_login": "Zapisz dane logowania na karcie ustawień, aby połączyć się ze swoim kontem",
 		"driver_support_generated": "Wygenerowano",
 		"driver_support_somfy_devices": "Urządzenia Somfy",
 		"driver_support_matched_drivers": "Dopasowane sterowniki",

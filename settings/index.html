@@ -27,16 +27,58 @@
 			display: none;
 		}
 
-		.btn-clear {
-			background-color: #a5510d;
-			color: white;
+		button.btn-clear {
+			background-color: #dff3e6 !important;
+			color: #1f4d2e !important;
+			border: 1px solid #a8d5ba !important;
 			margin: 5px 20px 5px 5px;
+			box-shadow: none !important;
+			opacity: 1 !important;
+			-webkit-appearance: none;
+			appearance: none;
 		}
 
-		.btn-send {
-			background-color: #0f9e16;
-			color: white;
+		button.btn-send {
+			background-color: #cdebd8 !important;
+			color: #123a23 !important;
+			border: 1px solid #97c9aa !important;
 			margin: 5px 20px 5px 5px;
+			box-shadow: none !important;
+			opacity: 1 !important;
+			-webkit-appearance: none;
+			appearance: none;
+		}
+
+		button.btn-clear:hover {
+			background-color: #cfead8 !important;
+		}
+
+		button.btn-send:hover {
+			background-color: #b9e1c9 !important;
+		}
+
+		.homey-button-primary-full,
+		.homey-button-danger-shadow {
+			background-color: #cdebd8 !important;
+			color: #123a23 !important;
+			border: 1px solid #97c9aa !important;
+			box-shadow: none !important;
+		}
+
+		.homey-button-primary-full:hover,
+		.homey-button-danger-shadow:hover {
+			background-color: #b9e1c9 !important;
+		}
+
+		button.btn-clear:disabled,
+		button.btn-send:disabled,
+		.homey-button-primary-full:disabled,
+		.homey-button-danger-shadow:disabled {
+			background-color: #e9f5ed !important;
+			color: #6c8c76 !important;
+			border-color: #c7dfcf !important;
+			box-shadow: none !important;
+			opacity: 1 !important;
 		}
 
 		.btn-log {
@@ -1067,6 +1109,12 @@
 			{
 					renderDriverSupportError(tr('settings.no_data', 'No data'));
 					return;
+			}
+
+			if (result.hasConnectedSession === false)
+			{
+				renderDriverSupportError(tr('settings.driver_support_connect_login', 'Please save your login credentials in the settings tab to connect to your account'));
+				return;
 			}
 
 				driverSupportSummaryElement.innerHTML = '';

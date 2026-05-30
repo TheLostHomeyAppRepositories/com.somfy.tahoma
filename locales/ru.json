@@ -57,6 +57,7 @@
 		"log_sent_successfully": "Журнал успешно отправлен",
 		"enter_token_uuid_to_delete": "Введите UUID токена для удаления",
 		"driver_support_fetch_failed": "Не удалось получить данные поддержки драйверов",
+		"driver_support_connect_login": "Сохраните данные для входа на вкладке настроек, чтобы подключиться к вашей учетной записи",
 		"driver_support_generated": "Сформировано",
 		"driver_support_somfy_devices": "Устройства Somfy",
 		"driver_support_matched_drivers": "Подходящие драйверы",

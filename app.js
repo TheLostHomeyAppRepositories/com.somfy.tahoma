@@ -1757,6 +1757,7 @@ class myApp extends Homey.App
 
 	async getDriverSupportMatrix()
 	{
+		const hasConnectedSession = this.hasActiveDriverSupportSession();
 		const [drivers, somfyDevices] = await Promise.all([
 			this.getDriverDefinitions(),
 			this.getSomfyDevicesForDriverSupport(),
@@ -2026,6 +2027,7 @@ class myApp extends Homey.App
 
 		return {
 			generatedAt: new Date().toISOString(),
+			hasConnectedSession,
 			totalSomfyDevices: somfyDevices.length,
 			totalMatchedDrivers: driverList.length,
 			totalSupportedInstalled,
@@ -2040,6 +2042,16 @@ class myApp extends Homey.App
 			controllableNames,
 			drivers: driverList,
 		};
+	}
+
+	hasActiveDriverSupportSession()
+	{
+		const cloudLoggedIn = (this.tahomaCloud && this.tahomaCloud.authenticated)
+			|| (this.tahomaCloudsBySession && Object.values(this.tahomaCloudsBySession).some((client) => client && client.authenticated));
+
+		const localLoggedIn = this.tahomaLocal && this.tahomaLocal.authenticated;
+
+		return !!(cloudLoggedIn || localLoggedIn);
 	}
 
 	async getSomfyDevicesForDriverSupport()

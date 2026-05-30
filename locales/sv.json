@@ -57,6 +57,7 @@
 		"log_sent_successfully": "Logg skickad",
 		"enter_token_uuid_to_delete": "Ange token-UUID att ta bort",
 		"driver_support_fetch_failed": "Kunde inte hämta drivrutinsstödsdata",
+		"driver_support_connect_login": "Spara dina inloggningsuppgifter på fliken inställningar för att ansluta till ditt konto",
 		"driver_support_generated": "Genererad",
 		"driver_support_somfy_devices": "Somfy-enheter",
 		"driver_support_matched_drivers": "Matchade drivrutiner",

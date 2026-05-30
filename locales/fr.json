@@ -57,6 +57,7 @@
 		"log_sent_successfully": "Journal envoye avec succes",
 		"enter_token_uuid_to_delete": "Saisissez un UUID de jeton à supprimer",
 		"driver_support_fetch_failed": "Impossible de récupérer les données de support des pilotes",
+		"driver_support_connect_login": "Veuillez enregistrer vos identifiants de connexion dans l onglet paramètres pour vous connecter à votre compte",
 		"driver_support_generated": "Généré",
 		"driver_support_somfy_devices": "Appareils Somfy",
 		"driver_support_matched_drivers": "Pilotes correspondants",

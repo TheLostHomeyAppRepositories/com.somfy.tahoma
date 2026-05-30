@@ -63,6 +63,7 @@
 		"log_sent_successfully": "Log sent successfully",
 		"enter_token_uuid_to_delete": "Enter a token UUID to delete",
 		"driver_support_fetch_failed": "Failed to fetch driver support data",
+		"driver_support_connect_login": "Please save your login credentials in the settings tab to connect to your account",
 		"driver_support_generated": "Generated",
 		"driver_support_somfy_devices": "Somfy devices",
 		"driver_support_matched_drivers": "Matched drivers",
