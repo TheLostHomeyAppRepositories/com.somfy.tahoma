@@ -35,4 +35,8 @@ module.exports = {
 	{
 		return homey.app.deleteLocalToken(body.uuid);
 	},
+	async GetDriverSupportMatrix({ homey, body })
+	{
+		return homey.app.getDriverSupportMatrix();
+	},
 };

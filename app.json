@@ -37,6 +37,9 @@
   },
   "version": "4.0.133",
   "compatibility": ">=12.0.0",
+  "permissions": [
+    "homey:manager:api"
+  ],
   "author": {
     "name": "Adrian Rockall",
     "email": "ady@rockalls.uk"
@@ -148,6 +151,10 @@
     "DeleteLocalToken": {
       "method": "post",
       "path": "/DeleteLocalToken/"
+    },
+    "GetDriverSupportMatrix": {
+      "method": "post",
+      "path": "/GetDriverSupportMatrix/"
     }
   },
   "flow": {
@@ -11488,6 +11495,75 @@
       ],
       "settings": [
         {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class",
+            "nl": "Apparaatklasse",
+            "da": "Enhedsklasse",
+            "de": "Geräteklasse",
+            "es": "Clase del dispositivo",
+            "fr": "Classe de l'appareil",
+            "it": "Classe del dispositivo",
+            "no": "Enhetsklasse",
+            "sv": "Enhetsklass",
+            "pl": "Klasa urządzenia",
+            "ru": "Класс устройства",
+            "ko": "장치 클래스"
+          },
+          "value": "garagedoor",
+          "hint": {
+            "en": "Set the Homey class.",
+            "nl": "Stel de Homey-klasse in.",
+            "da": "Angiv Homey-klassen.",
+            "de": "Legen Sie die Homey-Klasse fest.",
+            "es": "Establece la clase de Homey.",
+            "fr": "Définissez la classe Homey.",
+            "it": "Imposta la classe Homey.",
+            "no": "Sett Homey-klassen.",
+            "sv": "Ställ in Homey-klassen.",
+            "pl": "Ustaw klasę Homey.",
+            "ru": "Установите класс Homey.",
+            "ko": "Homey 클래스를 설정합니다."
+          },
+          "values": [
+            {
+              "id": "garagedoor",
+              "label": {
+                "en": "Garage door",
+                "nl": "Garagedeur",
+                "da": "Garageport",
+                "de": "Garagentor",
+                "es": "Puerta de garaje",
+                "fr": "Porte de garage",
+                "it": "Porta del garage",
+                "no": "Garasjeport",
+                "sv": "Garageport",
+                "pl": "Brama garażowa",
+                "ru": "Гаражная дверь",
+                "ko": "차고 문"
+              }
+            },
+            {
+              "id": "blind",
+              "label": {
+                "en": "Blind",
+                "nl": "Jaloezie",
+                "da": "Persienne",
+                "de": "Jalousie",
+                "es": "Persiana",
+                "fr": "Store",
+                "it": "Tapparella",
+                "no": "Persienne",
+                "sv": "Persienn",
+                "pl": "Roleta",
+                "ru": "Жалюзи",
+                "ko": "블라인드"
+              }
+            }
+          ]
+        },
+        {
           "id": "invertUpDown",
           "type": "checkbox",
           "label": {
@@ -11734,6 +11810,75 @@
         "my_position"
       ],
       "settings": [
+        {
+          "id": "classType",
+          "type": "dropdown",
+          "label": {
+            "en": "Device Class",
+            "nl": "Apparaatklasse",
+            "da": "Enhedsklasse",
+            "de": "Geräteklasse",
+            "es": "Clase del dispositivo",
+            "fr": "Classe de l'appareil",
+            "it": "Classe del dispositivo",
+            "no": "Enhetsklasse",
+            "sv": "Enhetsklass",
+            "pl": "Klasa urządzenia",
+            "ru": "Класс устройства",
+            "ko": "장치 클래스"
+          },
+          "value": "garagedoor",
+          "hint": {
+            "en": "Set the Homey class.",
+            "nl": "Stel de Homey-klasse in.",
+            "da": "Angiv Homey-klassen.",
+            "de": "Legen Sie die Homey-Klasse fest.",
+            "es": "Establece la clase de Homey.",
+            "fr": "Définissez la classe Homey.",
+            "it": "Imposta la classe Homey.",
+            "no": "Sett Homey-klassen.",
+            "sv": "Ställ in Homey-klassen.",
+            "pl": "Ustaw klasę Homey.",
+            "ru": "Установите класс Homey.",
+            "ko": "Homey 클래스를 설정합니다."
+          },
+          "values": [
+            {
+              "id": "garagedoor",
+              "label": {
+                "en": "Garage door",
+                "nl": "Garagedeur",
+                "da": "Garageport",
+                "de": "Garagentor",
+                "es": "Puerta de garaje",
+                "fr": "Porte de garage",
+                "it": "Porta del garage",
+                "no": "Garasjeport",
+                "sv": "Garageport",
+                "pl": "Brama garażowa",
+                "ru": "Гаражная дверь",
+                "ko": "차고 문"
+              }
+            },
+            {
+              "id": "blind",
+              "label": {
+                "en": "Blind",
+                "nl": "Jaloezie",
+                "da": "Persienne",
+                "de": "Jalousie",
+                "es": "Persiana",
+                "fr": "Store",
+                "it": "Tapparella",
+                "no": "Persienne",
+                "sv": "Persienn",
+                "pl": "Roleta",
+                "ru": "Жалюзи",
+                "ko": "블라인드"
+              }
+            }
+          ]
+        },
         {
           "id": "invertUpDown",
           "type": "checkbox",

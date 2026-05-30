@@ -1,6 +1,5 @@
 {
-	"settings":
-	{
+	"settings": {
 		"title": "TaHoma / Connexoon Settings",
 		"intro": "To let Homey control TaHoma / Connexoon please authorize Homey, by filling out the TaHoma / Connexoon login credentials.",
 		"logintitle": "TaHoma / Connexoon login credentials",
@@ -47,7 +46,34 @@
 		"europe": "Europe",
 		"usa": "USA",
 		"oceana": "Oceana",
-		"localToken": "Local Token"
+		"localToken": "Local Token",
+		"driver_support_tab": "Driver Support",
+		"simulation_data_tab": "Simulation Data",
+		"simulator_debug_only": "For debug use only",
+		"simulator_activate": "Activate",
+		"simulator_clear": "Clear Sim",
+		"simulator_on": "Simulator on",
+		"simulator_off": "Simulator off",
+		"no_data_to_send": "No data to send",
+		"confirm_send_device_log": "Send the device log contents to the developer?",
+		"confirm_send_info_log": "Send the error log contents to the developer?",
+		"confirm_send_event_log": "Send the event log contents to the developer?",
+		"log_sent_with_id_prefix": "Log sent successfully. Please contact @Adrian_Rockall on the forum with the log ID: ",
+		"log_sent_with_id_suffix": " and explain the issue",
+		"log_sent_successfully": "Log sent successfully",
+		"enter_token_uuid_to_delete": "Enter a token UUID to delete",
+		"driver_support_fetch_failed": "Failed to fetch driver support data",
+		"driver_support_generated": "Generated",
+		"driver_support_somfy_devices": "Somfy devices",
+		"driver_support_matched_drivers": "Matched drivers",
+		"driver_support_supported_not_added": "Supported but not added to Homey",
+		"driver_support_supported_added": "Supported and already added to Homey",
+		"driver_support_unsupported": "Unsupported",
+		"driver_support_unsupported_devices": "Unsupported devices",
+		"driver_support_no_matching_devices": "No Somfy devices were available for matching.",
+		"unknown_driver": "Unknown driver",
+		"none": "None",
+		"no_data": "No data"
 	},
 	"pair": {
 		"select_region": {
@@ -60,12 +86,10 @@
 			"next": "Next"
 		}
 	},
-	"errors":
-	{
+	"errors": {
 		"on_pair_login_failure": "Unable to login. Please go to the settings screen and provide access to TaHoma for Homey."
 	},
-	"valve_heating_mode_state":
-	{
+	"valve_heating_mode_state": {
 		"away": "Away",
 		"comfort": "Home",
 		"eco": "Night",
@@ -74,15 +98,13 @@
 		"manual": "Manual",
 		"suddendropmode": "Open Window"
 	},
-	"defect_state":
-	{
+	"defect_state": {
 		"dead": "Dead",
 		"lowbattery": "Low Battery",
 		"maintenancerequired": "Maintainance Required",
 		"nodefect": "No Defect"
 	},
-	"valve_operating_mode_state":
-	{
+	"valve_operating_mode_state": {
 		"auto": "Auto (Schedule)",
 		"manual": "Manual"
 	},

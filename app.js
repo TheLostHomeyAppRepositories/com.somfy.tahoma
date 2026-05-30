@@ -1,4 +1,4 @@
-/* eslint-disable no-nested-ternary */
+﻿/* eslint-disable no-nested-ternary */
 /* eslint-disable max-len */
 /* jslint node: true */
 
@@ -12,6 +12,8 @@ if (process.env.DEBUG === '1')
 
 const Homey = require('homey');
 const nodemailer = require('nodemailer');
+const fs = require('fs/promises');
+const path = require('path');
 const Tahoma = require('./lib/Tahoma');
 
 const LOCAL_INTERVAL = 3;
@@ -25,6 +27,7 @@ class myApp extends Homey.App
 	async onInit()
 	{
 		this.log(`${Homey.manifest.id} running...`);
+		this.homeyApi = null;
 
 		this.localOnly = false; // set to true to prevent the cloud polling and only use local bridge if possible
 
@@ -61,6 +64,7 @@ class myApp extends Homey.App
 		this.cloudLastSyncBySession = {};
 		this.primaryCloudSessionUsername = '';
 		this.forceImmediateCloudSync = false;
+		this.currentConnectivityWarning = null;
 
 		if (this.localBridgeInfo && this.localBridgeInfo.pin && this.localBearer)
 		{
@@ -303,7 +307,6 @@ class myApp extends Homey.App
 			fw_version: discoveryResult.txt.fw_version,
 		};
 		this.upsertDiscoveredLocalBridge(this.localBridgeInfo);
-
 		if (!this.localBridgeInfo.pin)
 		{
 			this.logInformation('mDNS', 'No local pin discovered');
@@ -1752,6 +1755,795 @@ class myApp extends Homey.App
 			});
 	}
 
+	async getDriverSupportMatrix()
+	{
+		const [drivers, somfyDevices] = await Promise.all([
+			this.getDriverDefinitions(),
+			this.getSomfyDevicesForDriverSupport(),
+		]);
+
+		const driversByControllableName = {};
+		for (const driver of drivers)
+		{
+			for (const controllableName of driver.supportedControllableNames)
+			{
+				const controllableNameKey = String(controllableName || '').toLowerCase();
+				if (!controllableNameKey)
+				{
+					continue;
+				}
+
+				if (!driversByControllableName[controllableNameKey])
+				{
+					driversByControllableName[controllableNameKey] = [];
+				}
+
+				driversByControllableName[controllableNameKey].push(driver);
+			}
+		}
+
+		const controllableMap = {};
+		const recommendations = [];
+		for (const device of somfyDevices)
+		{
+			const controllableName = (device && device.controllableName) ? String(device.controllableName) : '';
+			const controllableNameKey = controllableName.toLowerCase();
+			if (!controllableName)
+			{
+				continue;
+			}
+
+			if (!controllableMap[controllableName])
+			{
+				const mappedDrivers = driversByControllableName[controllableNameKey] || [];
+				controllableMap[controllableName] = {
+					controllableName,
+					deviceCount: 0,
+					devices: [],
+					drivers: mappedDrivers.map((driver) => ({
+						driverId: driver.driverId,
+						driverName: driver.driverName,
+					})),
+				};
+			}
+
+			controllableMap[controllableName].deviceCount += 1;
+			controllableMap[controllableName].devices.push(
+				{
+					label: device.label || '',
+					oid: device.oid || '',
+					deviceURL: device.deviceURL || '',
+					source: device.source || '',
+					session: device.session || '',
+				},
+			);
+
+			const candidateDrivers = driversByControllableName[controllableNameKey] || [];
+			const scoredCandidates = candidateDrivers
+				.map((driver) =>
+				{
+					const scoreResult = this.scoreDriverForSomfyDevice(driver, device);
+					return {
+						driverId: driver.driverId,
+						driverName: driver.driverName,
+						driverIcon: driver.driverIcon || '',
+						score: scoreResult.score,
+						matchedCapabilities: scoreResult.matchedCapabilities,
+					};
+				})
+				.sort((a, b) =>
+				{
+					if (b.score !== a.score)
+					{
+						return b.score - a.score;
+					}
+
+					return a.driverName.localeCompare(b.driverName);
+				});
+
+			const best = scoredCandidates.length > 0 ? scoredCandidates[0] : null;
+			recommendations.push(
+				{
+					label: device.label || '',
+					oid: device.oid || '',
+					deviceURL: device.deviceURL || '',
+					controllableName,
+					source: device.source || '',
+					session: device.session || '',
+					recommendedDriverId: best ? best.driverId : '',
+					recommendedDriverName: best ? best.driverName : '',
+					recommendedDriverIcon: best ? best.driverIcon : '',
+					candidates: scoredCandidates,
+				},
+			);
+		}
+
+		const controllableNames = Object.values(controllableMap)
+			.sort((a, b) => a.controllableName.localeCompare(b.controllableName));
+
+		const matchedDriverIds = new Set();
+		for (const entry of controllableNames)
+		{
+			for (const driver of entry.drivers)
+			{
+				matchedDriverIds.add(driver.driverId);
+			}
+		}
+
+		const driverList = drivers
+			.filter((driver) => matchedDriverIds.has(driver.driverId))
+			.map((driver) =>
+			{
+				const getControllableEntry = (name) => controllableMap[name] || controllableMap[String(name || '').toLowerCase()] || null;
+				const matchedControllableNames = driver.supportedControllableNames
+					.filter((controllableName) => !!getControllableEntry(controllableName));
+
+				const matchedDeviceCount = matchedControllableNames
+					.reduce((count, controllableName) =>
+					{
+						const entry = getControllableEntry(controllableName);
+						return count + (entry ? entry.deviceCount : 0);
+					}, 0);
+
+				return {
+					driverId: driver.driverId,
+					driverName: driver.driverName,
+					supportedControllableNames: driver.supportedControllableNames,
+					matchedControllableNames,
+					matchedDeviceCount,
+				};
+			})
+			.sort((a, b) => a.driverName.localeCompare(b.driverName));
+
+		const installedKeysByDriverId = {};
+
+		const addInstalledKey = (driverShortId, key) =>
+		{
+			if (!driverShortId || !key)
+			{
+				return;
+			}
+
+			if (!installedKeysByDriverId[driverShortId])
+			{
+				installedKeysByDriverId[driverShortId] = new Set();
+			}
+
+			installedKeysByDriverId[driverShortId].add(key);
+		};
+
+		const addInstalledDeviceEntry = (driverShortId, existing, dataOverride = null) =>
+		{
+			if (!driverShortId || !existing)
+			{
+				return;
+			}
+
+			const data = dataOverride || existing.data || {};
+			if (data.deviceURL)
+			{
+				addInstalledKey(driverShortId, `url:${data.deviceURL}`);
+			}
+
+			const candidateIds = [data.id, data.oid, existing.id];
+			for (const candidateId of candidateIds)
+			{
+				if (candidateId)
+				{
+					addInstalledKey(driverShortId, `id:${candidateId}`);
+				}
+			}
+		};
+
+		const runtimeDrivers = this.homey.drivers && (typeof this.homey.drivers.getDrivers === 'function')
+			? this.homey.drivers.getDrivers()
+			: {};
+		for (const [driverKey, runtimeDriver] of Object.entries(runtimeDrivers || {}))
+		{
+			if (!runtimeDriver || (typeof runtimeDriver.getDevices !== 'function'))
+			{
+				continue;
+			}
+
+			const driverIdCandidates = [
+				String(driverKey || '').trim(),
+				String(runtimeDriver.id || '').trim(),
+			];
+			const driverShortId = driverIdCandidates
+				.map((id) => (id ? id.split(':').pop() : ''))
+				.find((id) => !!id);
+			if (!driverShortId)
+			{
+				continue;
+			}
+
+			const devices = runtimeDriver.getDevices();
+			for (const existing of Object.values(devices || {}))
+			{
+				if (!existing)
+				{
+					continue;
+				}
+
+				const data = (typeof existing.getData === 'function') ? existing.getData() : null;
+				addInstalledDeviceEntry(driverShortId, existing, data);
+			}
+		}
+
+		if (Object.keys(installedKeysByDriverId).length === 0 && this.homey.devices && (typeof this.homey.devices.getDevices === 'function'))
+		{
+			try
+			{
+				const installedDevices = await this.homey.devices.getDevices();
+				for (const existing of Object.values(installedDevices || {}))
+				{
+					if (!existing)
+					{
+						continue;
+					}
+
+					const existingDriverId = String(existing.driverId || '').trim();
+					const existingDriverShortId = existingDriverId ? existingDriverId.split(':').pop() : '';
+					addInstalledDeviceEntry(existingDriverShortId, existing);
+				}
+			}
+			catch (error)
+			{
+				this.logInformation('getDriverSupportMatrix getDevices', error.message ? error.message : error);
+			}
+		}
+
+		let totalSupportedInstalled = 0;
+		let totalSupportedNotInstalled = 0;
+		for (const recommendation of recommendations)
+		{
+			const recommendedDriverId = String(recommendation.recommendedDriverId || '').trim();
+			if (!recommendedDriverId)
+			{
+				recommendation.isInstalled = false;
+				continue;
+			}
+
+			const recommendedDriverShortId = recommendedDriverId.split(':').pop();
+			const installedKeys = installedKeysByDriverId[recommendedDriverShortId] || new Set();
+			const deviceURL = String(recommendation.deviceURL || '').trim();
+			const oid = String(recommendation.oid || '').trim();
+			const byUrl = !!(deviceURL && installedKeys.has(`url:${deviceURL}`));
+			const byId = !!(oid && installedKeys.has(`id:${oid}`));
+			recommendation.isInstalled = byUrl || byId;
+
+			if (recommendation.isInstalled)
+			{
+				totalSupportedInstalled += 1;
+			}
+			else
+			{
+				totalSupportedNotInstalled += 1;
+			}
+		}
+
+		const totalUnsupported = recommendations.length - (totalSupportedInstalled + totalSupportedNotInstalled);
+
+		return {
+			generatedAt: new Date().toISOString(),
+			totalSomfyDevices: somfyDevices.length,
+			totalMatchedDrivers: driverList.length,
+			totalSupportedInstalled,
+			totalSupportedNotInstalled,
+			totalUnsupported,
+			recommendations: recommendations.sort((a, b) =>
+			{
+				const an = (a.label || a.deviceURL || '').toLowerCase();
+				const bn = (b.label || b.deviceURL || '').toLowerCase();
+				return an.localeCompare(bn);
+			}),
+			controllableNames,
+			drivers: driverList,
+		};
+	}
+
+	async getSomfyDevicesForDriverSupport()
+	{
+		const collected = [];
+		const seen = new Set();
+
+		const isProtocolGatewayDevice = (device) =>
+		{
+			const uiClass = device && device.uiClass ? String(device.uiClass) : '';
+			const definitionUiClass = device && device.definition && device.definition.uiClass ? String(device.definition.uiClass) : '';
+			return (uiClass === 'ProtocolGateway') || (definitionUiClass === 'ProtocolGateway');
+		};
+
+		const addDevices = (source, sessionName, deviceList) =>
+		{
+			if (!Array.isArray(deviceList))
+			{
+				return;
+			}
+
+			for (const device of deviceList)
+			{
+				if (isProtocolGatewayDevice(device))
+				{
+					continue;
+				}
+
+				const deviceURL = device && device.deviceURL ? String(device.deviceURL) : '';
+				const oid = device && device.oid ? String(device.oid) : '';
+				const label = device && device.label ? String(device.label) : '';
+				const controllableName = device && device.controllableName ? String(device.controllableName) : '';
+				if (!controllableName)
+				{
+					continue;
+				}
+
+				const key = deviceURL
+					? `url:${deviceURL}`
+					: (oid ? `oid:${oid}` : `fallback:${controllableName}:${label}`);
+				if (seen.has(key))
+				{
+					continue;
+				}
+
+				seen.add(key);
+				collected.push(
+					{
+						label,
+						oid,
+						deviceURL,
+						controllableName,
+						source,
+						session: sessionName,
+						commands: this.getSomfyDeviceCommandNames(device),
+						states: this.getSomfyDeviceStateNames(device),
+					},
+				);
+			}
+		};
+
+		const cloudSessions = this.getCloudPollingSessions();
+		if ((!Array.isArray(cloudSessions) || (cloudSessions.length === 0)) && this.tahomaCloud && !this.tahomaCloud.authenticated)
+		{
+			await this.initSync();
+		}
+
+		if (Array.isArray(cloudSessions) && (cloudSessions.length > 0))
+		{
+			for (const session of cloudSessions)
+			{
+				try
+				{
+					const authenticated = await this.ensureCloudSessionAuthenticated(session.username, session.password, session.region, false);
+					if (!authenticated)
+					{
+						continue;
+					}
+
+					const cloudClient = this.getCloudClientForSession(session.username);
+					const devices = await cloudClient.getDeviceData();
+					addDevices('cloud', this.normalizeSessionEmail(session.username), devices);
+				}
+				catch (error)
+				{
+					this.logInformation('getSomfyDevicesForDriverSupport cloud', error.message ? error.message : error);
+				}
+			}
+		}
+		else if (this.tahomaCloud && this.tahomaCloud.authenticated)
+		{
+			try
+			{
+				const devices = await this.tahomaCloud.getDeviceData();
+				const session = this.normalizeSessionEmail(this.tahomaCloud.username || this.homey.settings.get('username') || '');
+				addDevices('cloud', session, devices);
+			}
+			catch (error)
+			{
+				this.logInformation('getSomfyDevicesForDriverSupport cloud', error.message ? error.message : error);
+			}
+		}
+
+		if (this.tahomaLocal && this.tahomaLocal.authenticated)
+		{
+			try
+			{
+				const localDevices = await this.tahomaLocal.getDeviceData();
+				addDevices('local', 'local', localDevices);
+			}
+			catch (error)
+			{
+				this.logInformation('getSomfyDevicesForDriverSupport local', error.message ? error.message : error);
+			}
+		}
+
+		return collected;
+	}
+
+	async getDriverDefinitions()
+	{
+		const driversRoot = path.join(__dirname, 'drivers');
+		const runtimeDrivers = this.homey.drivers && (typeof this.homey.drivers.getDrivers === 'function')
+			? this.homey.drivers.getDrivers()
+			: {};
+		const runtimeDriverList = Object.values(runtimeDrivers || {});
+		let entries = [];
+		try
+		{
+			entries = await fs.readdir(driversRoot, { withFileTypes: true });
+		}
+		catch (error)
+		{
+			this.logInformation('getDriverDefinitions readdir', error.message ? error.message : error);
+		}
+
+		const runtimeDriverMap = {};
+		for (const runtimeDriver of runtimeDriverList)
+		{
+			if (!runtimeDriver)
+			{
+				continue;
+			}
+
+			const runtimeDriverId = String(runtimeDriver.id || '').trim();
+			if (!runtimeDriverId)
+			{
+				continue;
+			}
+
+			runtimeDriverMap[runtimeDriverId] = runtimeDriver;
+		}
+
+		const drivers = [];
+		const seenDriverIds = new Set();
+
+		for (const [driverId, runtimeDriver] of Object.entries(runtimeDriverMap))
+		{
+			const supportedControllableNames = Array.isArray(runtimeDriver.deviceType)
+				? [...new Set(runtimeDriver.deviceType
+					.map((name) => String(name || '').trim())
+					.filter((name) => !!name))]
+				: [];
+
+			if (supportedControllableNames.length === 0)
+			{
+				continue;
+			}
+
+			const manifest = runtimeDriver.manifest || {};
+			drivers.push(
+				{
+					driverId,
+					driverName: this.getDriverFriendlyName(manifest, driverId),
+					driverIcon: this.getDriverIconPath(manifest, driverId),
+					supportedControllableNames,
+					capabilities: Array.isArray(manifest.capabilities) ? manifest.capabilities : [],
+				},
+			);
+
+			seenDriverIds.add(driverId);
+		}
+
+		for (const entry of entries)
+		{
+			if (!entry.isDirectory())
+			{
+				continue;
+			}
+
+			const driverId = entry.name;
+			if (seenDriverIds.has(driverId))
+			{
+				continue;
+			}
+
+			const driverDir = path.join(driversRoot, driverId);
+			const driverJsPath = path.join(driverDir, 'driver.js');
+			const composePath = path.join(driverDir, 'driver.compose.json');
+			try
+			{
+				let supportedControllableNames = [];
+				const runtimeDriver = runtimeDriverMap[driverId] || null;
+				if (runtimeDriver && Array.isArray(runtimeDriver.deviceType))
+				{
+					supportedControllableNames = runtimeDriver.deviceType
+						.map((name) => String(name || '').trim())
+						.filter((name) => !!name);
+				}
+				else if (await this.fileExists(driverJsPath))
+				{
+					const driverJs = await fs.readFile(driverJsPath, 'utf8');
+					supportedControllableNames = this.extractDeviceTypesFromDriverJs(driverJs);
+				}
+
+				supportedControllableNames = [...new Set(supportedControllableNames)];
+				if (supportedControllableNames.length === 0)
+				{
+					continue;
+				}
+
+				let compose = {};
+				if (await this.fileExists(composePath))
+				{
+					try
+					{
+						const composeRaw = await fs.readFile(composePath, 'utf8');
+						compose = JSON.parse(composeRaw);
+					}
+					catch (parseError)
+					{
+						this.logInformation('getDriverDefinitions compose parse', `${driverId}: ${parseError.message ? parseError.message : parseError}`);
+					}
+				}
+
+				let driverName = this.getDriverFriendlyName(compose, driverId);
+				let driverIcon = this.getDriverIconPath(compose, driverId);
+				const runtimeManifest = runtimeDriver && runtimeDriver.manifest ? runtimeDriver.manifest : null;
+				if (runtimeManifest)
+				{
+					driverName = this.getDriverFriendlyName(runtimeManifest, driverId);
+					driverIcon = this.getDriverIconPath(runtimeManifest, driverId) || driverIcon;
+				}
+
+				let capabilities = Array.isArray(compose.capabilities) ? compose.capabilities : [];
+				if (runtimeManifest && Array.isArray(runtimeManifest.capabilities) && (runtimeManifest.capabilities.length > 0))
+				{
+					capabilities = runtimeManifest.capabilities;
+				}
+
+				drivers.push(
+					{
+						driverId,
+						driverName,
+						driverIcon,
+						supportedControllableNames,
+						capabilities,
+					},
+				);
+
+				seenDriverIds.add(driverId);
+			}
+			catch (error)
+			{
+				this.logInformation('getDriverDefinitions', `${driverId}: ${error.message ? error.message : error}`);
+			}
+		}
+
+		return drivers;
+	}
+
+	async fileExists(filePath)
+	{
+		try
+		{
+			await fs.access(filePath);
+			return true;
+		}
+		catch (error)
+		{
+			return false;
+		}
+	}
+
+	getDriverFriendlyName(compose, driverId)
+	{
+		if (!compose || !compose.name)
+		{
+			return driverId;
+		}
+
+		if (typeof compose.name === 'string')
+		{
+			return compose.name;
+		}
+
+		const language = (this.homey && this.homey.i18n && (typeof this.homey.i18n.getLanguage === 'function'))
+			? this.homey.i18n.getLanguage()
+			: 'en';
+		if (language && compose.name[language])
+		{
+			return compose.name[language];
+		}
+
+		if (compose.name.en)
+		{
+			return compose.name.en;
+		}
+
+		const firstName = Object.values(compose.name).find((name) => typeof name === 'string' && name.length > 0);
+		return firstName || driverId;
+	}
+
+	getDriverIconPath(compose, driverId)
+	{
+		return `/drivers/${driverId}/assets/icon.svg`;
+	}
+
+	extractDeviceTypesFromDriverJs(driverJs)
+	{
+		if (!driverJs)
+		{
+			return [];
+		}
+
+		const match = driverJs.match(/this\.deviceType\s*=\s*\[([\s\S]*?)\];/m);
+		if (!match)
+		{
+			return [];
+		}
+
+		const block = match[1];
+		const results = [];
+		const regex = /'([^']+)'|"([^"]+)"/g;
+		let token = regex.exec(block);
+		while (token)
+		{
+			const value = token[1] || token[2] || '';
+			if (value && !results.includes(value))
+			{
+				results.push(value);
+			}
+
+			token = regex.exec(block);
+		}
+
+		return results;
+	}
+
+	getSomfyDeviceCommandNames(device)
+	{
+		if (!device || !device.definition || !Array.isArray(device.definition.commands))
+		{
+			return [];
+		}
+
+		const names = [];
+		for (const command of device.definition.commands)
+		{
+			if (!command || !command.commandName)
+			{
+				continue;
+			}
+
+			const name = String(command.commandName).toLowerCase();
+			if (name && !names.includes(name))
+			{
+				names.push(name);
+			}
+		}
+
+		return names;
+	}
+
+	getSomfyDeviceStateNames(device)
+	{
+		const names = [];
+		if (device && device.definition && Array.isArray(device.definition.states))
+		{
+			for (const state of device.definition.states)
+			{
+				const name = state && state.qualifiedName ? String(state.qualifiedName).toLowerCase() : '';
+				if (name && !names.includes(name))
+				{
+					names.push(name);
+				}
+			}
+		}
+
+		if (device && Array.isArray(device.states))
+		{
+			for (const state of device.states)
+			{
+				const name = state && state.name ? String(state.name).toLowerCase() : '';
+				if (name && !names.includes(name))
+				{
+					names.push(name);
+				}
+			}
+		}
+
+		return names;
+	}
+
+	scoreDriverForSomfyDevice(driver, somfyDevice)
+	{
+		const capabilities = Array.isArray(driver && driver.capabilities) ? driver.capabilities : [];
+		const commands = Array.isArray(somfyDevice && somfyDevice.commands) ? somfyDevice.commands : [];
+		const states = Array.isArray(somfyDevice && somfyDevice.states) ? somfyDevice.states : [];
+		const matchedCapabilities = [];
+
+		let score = 100;
+		for (const capability of capabilities)
+		{
+			if (this.doesCapabilityMatchSomfyFeatures(capability, commands, states))
+			{
+				score += 10;
+				matchedCapabilities.push(capability);
+			}
+		}
+
+		return {
+			score,
+			matchedCapabilities,
+		};
+	}
+
+	doesCapabilityMatchSomfyFeatures(capability, commands, states)
+	{
+		const cap = String(capability || '').toLowerCase();
+		if (!cap)
+		{
+			return false;
+		}
+
+		const hasCommand = (regex) => commands.some((command) => regex.test(command));
+		const hasState = (regex) => states.some((state) => regex.test(state));
+
+		if (cap === 'windowcoverings_state')
+		{
+			return hasState(/openclosed|closure|position|deployment|blind|shutter|window/i);
+		}
+
+		if (cap === 'windowcoverings_set')
+		{
+			return hasCommand(/setclosure|setposition|setdeployment|setpositionandlinearspeed|deploy|undeploy|open|close|go(?:to)?alias|partialposition/i);
+		}
+
+		if (cap === 'my_position')
+		{
+			return hasCommand(/^my$|go(?:to)?alias|partialposition/i);
+		}
+
+		if (cap === 'onoff')
+		{
+			return hasCommand(/^on$|^off$|setonoff/i) || hasState(/onoff/i);
+		}
+
+		if (cap === 'dim')
+		{
+			return hasCommand(/setintensity/i) || hasState(/lightintensity/i);
+		}
+
+		if (cap === 'measure_temperature')
+		{
+			return hasState(/temperature/i);
+		}
+
+		if (cap === 'measure_humidity')
+		{
+			return hasState(/humidity/i);
+		}
+
+		if (cap === 'measure_luminance')
+		{
+			return hasState(/light|lux|luminance/i);
+		}
+
+		if (cap === 'lock_state' || cap === 'locked')
+		{
+			return hasCommand(/lock|unlock/i) || hasState(/lock|prioritylock/i);
+		}
+
+		if (cap.indexOf('target_temperature') >= 0)
+		{
+			return hasCommand(/set.*temperature/i) || hasState(/targettemperature|setpoint/i);
+		}
+
+		const tokens = cap
+			.replace(/[^a-z0-9]/g, ' ')
+			.split(/\s+/)
+			.filter((token) => token.length >= 4 && ['measure', 'windowcoverings', 'target', 'alarm', 'state', 'mode'].indexOf(token) < 0);
+
+		for (const token of tokens)
+		{
+			if (hasCommand(new RegExp(token, 'i')) || hasState(new RegExp(token, 'i')))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	logInformation(source, error)
 	{
 		let data = '';
@@ -2452,6 +3244,8 @@ class myApp extends Homey.App
 
 		if (!tahomaConnection.authenticated)
 		{
+			await this.updateConnectivityWarningFromLoginIssue(tahomaConnection.lastLoginIssue || '');
+
 			if (this.infoLogEnabled)
 			{
 				this.logInformation(`Skipping ${tahomaConnection.localLogin ? 'local' : 'cloud'} sync: Not logged in`);
@@ -2468,6 +3262,8 @@ class myApp extends Homey.App
 
 			return nextInterval;
 		}
+
+		await this.updateConnectivityWarningFromLoginIssue('');
 
 		if (this.infoLogEnabled)
 		{
@@ -2540,6 +3336,7 @@ class myApp extends Homey.App
 							this.homey.clearTimeout(this.boostTimerId);
 							this.boostTimerId = null;
 							this.commandsQueued = 0;
+							await this.updateConnectivityWarningFromLoginIssue(error.message);
 							if (error.message.indexOf('15 minutes') >= 0)
 							{
 								nextInterval = 900000;
@@ -2556,6 +3353,7 @@ class myApp extends Homey.App
 							this.homey.clearTimeout(this.boostTimerId);
 							this.boostTimerId = null;
 							this.commandsQueued = 0;
+							await this.updateConnectivityWarningFromLoginIssue(error.message);
 							this.logInformation('syncLoop', 'Postponed for 1 minute');
 							nextInterval = 61000;
 						}
@@ -2877,6 +3675,10 @@ class myApp extends Homey.App
 		if (this.tahomaCloud.authenticated === false)
 		{
 			await this.initSync();
+			if (this.tahomaCloud.authenticated === false)
+			{
+				await this.updateConnectivityWarningFromLoginIssue(this.getCurrentLoginBlockIssue());
+			}
 		}
 
 		if (this.tahomaCloud.authenticated && !this.usingDebugData)
@@ -2959,7 +3761,193 @@ class myApp extends Homey.App
 		}
 
 		this.logInformation(`${label}: Command failed, no valid connections`, `command: ${this.varToString(action)}`);
+		await this.updateConnectivityWarningFromLoginIssue(this.getCurrentLoginBlockIssue());
 		throw (new Error('Failed to send command, no valid connections'));
+	}
+
+	isLoginBlockedIssue(message)
+	{
+		const text = String(message || '').toLowerCase();
+		if (!text)
+		{
+			return false;
+		}
+
+		return (text.indexOf('please leave 1 minutes between login attempts') >= 0)
+			|| (text.indexOf('far too many') >= 0)
+			|| (text.indexOf('blocked for ') >= 0);
+	}
+
+	getCurrentLoginBlockIssue()
+	{
+		const issueCandidates = [];
+		if (this.tahomaCloud && this.tahomaCloud.lastLoginIssue)
+		{
+			issueCandidates.push(this.tahomaCloud.lastLoginIssue);
+		}
+
+		if (this.tahomaLocal && this.tahomaLocal.lastLoginIssue)
+		{
+			issueCandidates.push(this.tahomaLocal.lastLoginIssue);
+		}
+
+		if (this.tahomaCloudsBySession && (typeof this.tahomaCloudsBySession === 'object'))
+		{
+			for (const cloudClient of Object.values(this.tahomaCloudsBySession))
+			{
+				if (cloudClient && cloudClient.lastLoginIssue)
+				{
+					issueCandidates.push(cloudClient.lastLoginIssue);
+				}
+			}
+		}
+
+		for (const issue of issueCandidates)
+		{
+			if (this.isLoginBlockedIssue(issue))
+			{
+				return issue;
+			}
+		}
+
+		return '';
+	}
+
+	async setConnectivityWarningForAllDevices(warning)
+	{
+		const normalizedWarning = warning ? String(warning) : null;
+		if (this.currentConnectivityWarning === normalizedWarning)
+		{
+			return;
+		}
+
+		let drivers = {};
+		try
+		{
+			drivers = this.homey.drivers.getDrivers();
+		}
+		catch (error)
+		{
+			this.logInformation('setConnectivityWarningForAllDevices getDrivers', error.message ? error.message : error);
+			return;
+		}
+
+		for (const driver of Object.values(drivers || {}))
+		{
+			const devices = (driver && (typeof driver.getDevices === 'function')) ? driver.getDevices() : {};
+			for (const device of Object.values(devices || {}))
+			{
+				if (!device || (typeof device.setWarning !== 'function'))
+				{
+					continue;
+				}
+
+				try
+				{
+					await device.setWarning(normalizedWarning);
+				}
+				catch (error)
+				{
+					this.logInformation('setConnectivityWarningForAllDevices setWarning', error.message ? error.message : error);
+				}
+			}
+		}
+
+		this.currentConnectivityWarning = normalizedWarning;
+	}
+
+	formatConnectivityWarning(issue)
+	{
+		const text = String(issue || '');
+		const lower = text.toLowerCase();
+		if (lower.indexOf('please leave 1 minutes between login attempts') >= 0)
+		{
+			return 'App offline: login is rate-limited. Retrying soon.';
+		}
+
+		const buildBlockedUntilMessage = (untilDate) =>
+		{
+			if (!(untilDate instanceof Date) || Number.isNaN(untilDate.getTime()))
+			{
+				return 'Sorry, login is temporarily blocked.';
+			}
+
+			const now = new Date();
+			const todayKey = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`;
+			const tomorrowDate = new Date(now.getTime());
+			tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+			const tomorrowKey = `${tomorrowDate.getFullYear()}-${tomorrowDate.getMonth()}-${tomorrowDate.getDate()}`;
+			const untilKey = `${untilDate.getFullYear()}-${untilDate.getMonth()}-${untilDate.getDate()}`;
+
+			let dayLabel = 'soon';
+			if (untilKey === todayKey)
+			{
+				dayLabel = 'today';
+			}
+			else if (untilKey === tomorrowKey)
+			{
+				dayLabel = 'tomorrow';
+			}
+
+			const hours = String(untilDate.getHours()).padStart(2, '0');
+			const minutes = String(untilDate.getMinutes()).padStart(2, '0');
+			const timeText = `${hours}:${minutes}`;
+			return `Sorry, login is blocked until ${timeText} ${dayLabel}.`;
+		};
+
+		if (lower.indexOf('far too many') >= 0)
+		{
+			let blockedMs = 0;
+			if (lower.indexOf('15 minutes') >= 0)
+			{
+				blockedMs = 15 * 60 * 1000;
+			}
+			else if (lower.indexOf('24 hours') >= 0)
+			{
+				blockedMs = 24 * 60 * 60 * 1000;
+			}
+
+			if (blockedMs > 0)
+			{
+				return buildBlockedUntilMessage(new Date(Date.now() + blockedMs));
+			}
+
+			return 'Sorry, login is temporarily blocked.';
+		}
+
+		const blockedMatch = lower.match(/blocked for\s+(\d+)s/);
+		if (blockedMatch)
+		{
+			const seconds = Number(blockedMatch[1]);
+			if (Number.isFinite(seconds) && seconds > 0)
+			{
+				return buildBlockedUntilMessage(new Date(Date.now() + (seconds * 1000)));
+			}
+		}
+
+		return 'App offline: login is temporarily unavailable. Retrying automatically.';
+	}
+
+	async updateConnectivityWarningFromLoginIssue(issue)
+	{
+		const blockedIssue = this.isLoginBlockedIssue(issue) ? issue : this.getCurrentLoginBlockIssue();
+		if (!blockedIssue)
+		{
+			if (this.currentConnectivityWarning)
+			{
+				this.logInformation('Connectivity warning cleared', 'Login connectivity restored');
+			}
+			await this.setConnectivityWarningForAllDevices(null);
+			return;
+		}
+
+		const userWarning = this.formatConnectivityWarning(blockedIssue);
+		if (this.currentConnectivityWarning !== userWarning)
+		{
+			this.logInformation('Connectivity warning active', blockedIssue);
+		}
+
+		await this.setConnectivityWarningForAllDevices(userWarning);
 	}
 
 	async getDeviceStates(deviceURL)

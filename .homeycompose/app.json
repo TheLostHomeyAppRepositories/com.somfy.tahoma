@@ -36,6 +36,9 @@
 	},
 	"version": "4.0.133",
 	"compatibility": ">=12.0.0",
+	"permissions": [
+		"homey:manager:api"
+	],
 	"author": {
 		"name": "Adrian Rockall",
 		"email": "ady@rockalls.uk"
@@ -147,6 +150,10 @@
 		"DeleteLocalToken": {
 			"method": "post",
 			"path": "/DeleteLocalToken/"
+		},
+		"GetDriverSupportMatrix": {
+			"method": "post",
+			"path": "/GetDriverSupportMatrix/"
 		}
 	}
 }

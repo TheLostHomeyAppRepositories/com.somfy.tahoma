@@ -52,6 +52,172 @@
 			gap: 5px;
 			flex-wrap: wrap;
 		}
+
+		.driver-support-wrap {
+			display: flex;
+			flex-direction: column;
+			gap: 14px;
+		}
+
+		.driver-support-summary {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+			gap: 10px;
+		}
+
+		.driver-support-chip {
+			padding: 10px 12px;
+			border-radius: 8px;
+			background: #f5f6f8;
+			border: 1px solid #e1e3e8;
+		}
+
+		.driver-support-chip-label {
+			display: block;
+			font-size: 12px;
+			color: #5f6673;
+			margin-bottom: 4px;
+		}
+
+		.driver-support-chip-value {
+			font-size: 18px;
+			font-weight: 700;
+			color: #1f2530;
+		}
+
+		.driver-support-sections {
+			display: grid;
+			gap: 14px;
+		}
+
+		.driver-support-section {
+			border: 1px solid #e1e3e8;
+			border-left: 4px solid #c9cfdb;
+			border-radius: 8px;
+			padding: 10px;
+			background: #fff;
+		}
+
+		.driver-support-section-not-installed {
+			border-left-color: #d18400;
+			background: #fff9ef;
+		}
+
+		.driver-support-section-installed {
+			border-left-color: #1d8f4d;
+			background: #f3fbf6;
+		}
+
+		.driver-support-section-unsupported {
+			border-left-color: #768195;
+			background: #f7f9fc;
+		}
+
+		.driver-support-section h3 {
+			margin: 0 0 8px 0;
+			font-size: 15px;
+			color: #1f2530;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 8px;
+		}
+
+		.driver-support-count-badge {
+			display: inline-block;
+			padding: 2px 9px;
+			border-radius: 999px;
+			font-size: 12px;
+			font-weight: 700;
+			background: #dde2ec;
+			color: #2d3442;
+		}
+
+		.driver-support-section-not-installed .driver-support-count-badge {
+			background: #ffdba0;
+			color: #8a5600;
+		}
+
+		.driver-support-section-installed .driver-support-count-badge {
+			background: #bce7cd;
+			color: #0e6735;
+		}
+
+		.driver-support-section-unsupported .driver-support-count-badge {
+			background: #dce2ec;
+			color: #4c5a70;
+		}
+
+		.driver-support-group {
+			border-top: 1px solid #eceef2;
+			padding-top: 8px;
+			margin-top: 8px;
+		}
+
+		.driver-support-group:first-of-type {
+			border-top: 0;
+			padding-top: 0;
+			margin-top: 0;
+		}
+
+		.driver-support-group-row {
+			display: grid;
+			grid-template-columns: 56px 1fr;
+			gap: 10px;
+			align-items: start;
+		}
+
+		.driver-support-group-content {
+			min-width: 0;
+		}
+
+		.driver-support-group-title {
+			font-weight: 600;
+			font-size: 14px;
+			color: #2d3442;
+			margin-bottom: 5px;
+		}
+
+		.driver-support-driver-icon {
+			width: 56px;
+			height: 56px;
+			object-fit: contain;
+			border-radius: 6px;
+			background: #ffffff;
+			border: 1px solid #dde2ea;
+			padding: 3px;
+			box-sizing: border-box;
+			display: block;
+		}
+
+		.driver-support-driver-fallback {
+			width: 56px;
+			height: 56px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 20px;
+			background: #e9edf4;
+			border: 1px solid #dde2ea;
+			border-radius: 6px;
+			color: #53607a;
+		}
+
+		.driver-support-list {
+			margin: 0;
+			padding-left: 18px;
+		}
+
+		.driver-support-list li {
+			margin: 2px 0;
+			font-size: 13px;
+			color: #303744;
+		}
+
+		.driver-support-empty {
+			font-size: 13px;
+			color: #677083;
+		}
 	</style>
 
 	<script type="text/javascript" src="/homey.js" data-origin="settings"></script>
@@ -73,7 +239,8 @@
 		<button class="tablinks" onclick="setPage(event, 'stateLog')" title="State Log"><span data-i18n="settings.state_log"></span></button>
 		<button class="tablinks" onclick="setPage(event, 'eventLog')" title="Event Log"><span data-i18n="settings.event_log"></span></button>
 		<button class="tablinks" onclick="setPage(event, 'localTokens')" title="Local Tokens"><span data-i18n="settings.local_tokens"></span></button>
-		<button class="tablinks is-hidden" onclick="setPage(event, 'simulator')" id="simLogTab" title="Simulation Data">Simulation Data</button>
+		<button class="tablinks" onclick="setPage(event, 'driverSupport')" title="Driver Support"><span id="driverSupportTabLabel">Driver Support</span></button>
+		<button class="tablinks is-hidden" onclick="setPage(event, 'simulator')" id="simLogTab" title="Simulation Data"><span id="simulationTabLabel">Simulation Data</span></button>
 	</div>
 
 	<!-- SETTINGS PAGE -->
@@ -163,7 +330,7 @@
 	<!--SIMULATION PAGE -->
 	<div id="simulator" class="tabcontent">
 		<fieldset class="homey-form-fieldset">
-			<h1>For debug use only</h1>
+			<h1 id="simulatorDebugTitle">For debug use only</h1>
 			<p class="sim-buttons"><button id="useSim" class="btn-send" title="Activate simulation">Activate</button><button id="clearSim" class="btn-clear" title="Clear simulation">Clear Sim</button></p>
 			<div class="field row">
 				<textarea id="simData" class="nowrap-textarea" title="Simulation data"></textarea>
@@ -209,7 +376,7 @@
 
 	<!--LOCAL TOKENS PAGE -->
 	<div id="localTokens" class="tabcontent">
-		<div class="homey-form-fieldset">
+		<fieldset class="homey-form-fieldset">
 			<p data-i18n="settings.intro5"></p>
 			<div class="homey-form-group">
 				<div class="field row">
@@ -223,6 +390,14 @@
 				<textarea id="localTokensData" class="nowrap-textarea" title="Local token data"></textarea>
 			</div>
 		</fieldset>
+	</div>
+
+	<!--DRIVER SUPPORT PAGE -->
+	<div id="driverSupport" class="tabcontent">
+		<div class="homey-form-fieldset driver-support-wrap">
+			<div id="driverSupportSummary" class="driver-support-summary"></div>
+			<div id="driverSupportView" class="driver-support-sections"></div>
+		</div>
 	</div>
 
 	<script type="text/javascript">
@@ -275,9 +450,33 @@
 		var deletelocalTokenElement = document.getElementById('deleteLocalToken');
 		var LocalTokenUUIDElement = document.getElementById('localTokenUUIDElement');
 
+		// Driver support tab
+		var driverSupportSummaryElement = document.getElementById('driverSupportSummary');
+		var driverSupportViewElement = document.getElementById('driverSupportView');
+		var driverSupportTabLabel = document.getElementById('driverSupportTabLabel');
+		var simulationTabLabel = document.getElementById('simulationTabLabel');
+		var simulatorDebugTitle = document.getElementById('simulatorDebugTitle');
+
 		// a method named 'onHomeyReady' must be present in your code
+		function tr(key, fallback)
+		{
+			var translated = __(key);
+			if (!translated || translated === key)
+			{
+				return fallback;
+			}
+
+			return translated;
+		}
+
 		function onHomeyReady(Homey)
 		{
+			driverSupportTabLabel.textContent = tr('settings.driver_support_tab', 'Driver Support');
+			simulationTabLabel.textContent = tr('settings.simulation_data_tab', 'Simulation Data');
+			simulatorDebugTitle.textContent = tr('settings.simulator_debug_only', 'For debug use only');
+			useSimElement.textContent = tr('settings.simulator_activate', 'Activate');
+			clearSimElement.textContent = tr('settings.simulator_clear', 'Clear Sim');
+
 			Homey.on('settings.set', function(param)
 			{
 				if (param === 'infoLog')
@@ -501,9 +700,9 @@
 			{
 				if (deviceLogElement.value.length < 15)
 				{
-					return Homey.alert("No Data to send");
+					return Homey.alert(tr('settings.no_data_to_send', 'No data to send'));
 				}
-				Homey.confirm("Send the device log contents to the developer?", null, function(e, ok)
+				Homey.confirm(tr('settings.confirm_send_device_log', 'Send the device log contents to the developer?'), null, function(e, ok)
 				{
 					if (ok)
 					{
@@ -519,7 +718,7 @@
 							}
 							else
 							{
-								Homey.alert(`Log sent successfully. Please contact @Adrian_Rockall on the forum with the log ID: ${result.message} and explain the issue`);
+								Homey.alert(`${tr('settings.log_sent_with_id_prefix', 'Log sent successfully. Please contact @Adrian_Rockall on the forum with the log ID: ')}${result.message}${tr('settings.log_sent_with_id_suffix', ' and explain the issue')}`);
 							}
 							waitCursor(false);
 						});
@@ -531,10 +730,10 @@
 			{
 				if (infoLogElement.value.length < 15)
 				{
-					return Homey.alert("No Data to send");
+					return Homey.alert(tr('settings.no_data_to_send', 'No data to send'));
 				}
 
-				Homey.confirm("Send the error log contents to the developer?", null, function(e, ok)
+				Homey.confirm(tr('settings.confirm_send_info_log', 'Send the error log contents to the developer?'), null, function(e, ok)
 				{
 					if (ok)
 					{
@@ -550,7 +749,7 @@
 							}
 							else
 							{
-								Homey.alert(`Log sent successfully. Please contact @Adrian_Rockall on the forum with the log ID: ${result.message} and explain the issue`);
+								Homey.alert(`${tr('settings.log_sent_with_id_prefix', 'Log sent successfully. Please contact @Adrian_Rockall on the forum with the log ID: ')}${result.message}${tr('settings.log_sent_with_id_suffix', ' and explain the issue')}`);
 							}
 							waitCursor(false);
 						});
@@ -562,9 +761,9 @@
 			{
 				if (eventLogElement.value.length < 15)
 				{
-					return Homey.alert("No Data to send");
+					return Homey.alert(tr('settings.no_data_to_send', 'No data to send'));
 				}
-				Homey.confirm("Send the event log contents to the developer?", null, function(e, ok)
+				Homey.confirm(tr('settings.confirm_send_event_log', 'Send the event log contents to the developer?'), null, function(e, ok)
 				{
 					if (ok)
 					{
@@ -580,7 +779,7 @@
 							}
 							else
 							{
-								Homey.alert("Log sent successfully");
+								Homey.alert(tr('settings.log_sent_successfully', 'Log sent successfully'));
 							}
 							waitCursor(false);
 						});
@@ -608,7 +807,7 @@
 			{
 				if (LocalTokenUUIDElement.value.length < 15)
 				{
-					return Homey.alert("Enter a Token uuid to delete");
+					return Homey.alert(tr('settings.enter_token_uuid_to_delete', 'Enter a token UUID to delete'));
 				}
 
 				waitCursor(true);
@@ -648,7 +847,7 @@
 						}
 						else
 						{
-							Homey.alert("Simulator On");
+							Homey.alert(tr('settings.simulator_on', 'Simulator on'));
 						}
 					});
 				}
@@ -668,7 +867,7 @@
 					}
 					else
 					{
-						return Homey.alert("Simulator Off");
+						return Homey.alert(tr('settings.simulator_off', 'Simulator off'));
 					}
 				});
 			});
@@ -818,6 +1017,320 @@
 				// Make the text box fill the page
 				localTokensElement.setAttribute('cols', localTokensElement.parentElement.clientWidth / 8);
 				localTokensElement.style.height = (window.innerHeight - localTokensElement.offsetTop - 40) + 'px';
+			}
+
+			if (tabPage == 'driverSupport')
+			{
+				refreshDriverSupport();
+			}
+		}
+
+		function refreshDriverSupport()
+		{
+			waitCursor(true);
+			Homey.api('POST', '/GetDriverSupportMatrix/', {}, function(err, result)
+			{
+				waitCursor(false);
+
+				if (err)
+				{
+					renderDriverSupportError(`${tr('settings.driver_support_fetch_failed', 'Failed to fetch driver support data')}: ${err.message || err}`);
+					return;
+				}
+
+				renderDriverSupport(result);
+			});
+		}
+
+			function renderDriverSupportError(message)
+			{
+				driverSupportSummaryElement.innerHTML = '';
+				driverSupportViewElement.innerHTML = '';
+
+				var section = document.createElement('section');
+				section.className = 'driver-support-section';
+				var title = document.createElement('h3');
+				title.textContent = tr('settings.driver_support_tab', 'Driver Support');
+				section.appendChild(title);
+
+				var body = document.createElement('p');
+				body.className = 'driver-support-empty';
+				body.textContent = message;
+				section.appendChild(body);
+
+				driverSupportViewElement.appendChild(section);
+			}
+
+			function renderDriverSupport(result)
+		{
+			if (!result)
+			{
+					renderDriverSupportError(tr('settings.no_data', 'No data'));
+					return;
+			}
+
+				driverSupportSummaryElement.innerHTML = '';
+				driverSupportViewElement.innerHTML = '';
+
+				var summaryItems = [
+					{ label: tr('settings.driver_support_generated', 'Generated'), value: result.generatedAt || '-' },
+					{ label: tr('settings.driver_support_somfy_devices', 'Somfy devices'), value: result.totalSomfyDevices || 0 },
+					{ label: tr('settings.driver_support_matched_drivers', 'Matched drivers'), value: result.totalMatchedDrivers || 0 },
+					{ label: tr('settings.driver_support_supported_not_added', 'Supported not added to Homey'), value: result.totalSupportedNotInstalled || 0 },
+					{ label: tr('settings.driver_support_supported_added', 'Supported already added to Homey'), value: result.totalSupportedInstalled || 0 },
+					{ label: tr('settings.driver_support_unsupported', 'Unsupported'), value: result.totalUnsupported || 0 }
+				];
+
+				summaryItems.forEach(function(item)
+				{
+					var chip = document.createElement('div');
+					chip.className = 'driver-support-chip';
+
+					var chipLabel = document.createElement('span');
+					chipLabel.className = 'driver-support-chip-label';
+					chipLabel.textContent = item.label;
+					chip.appendChild(chipLabel);
+
+					var chipValue = document.createElement('span');
+					chipValue.className = 'driver-support-chip-value';
+					chipValue.textContent = item.value;
+					chip.appendChild(chipValue);
+
+					driverSupportSummaryElement.appendChild(chip);
+				});
+
+			var recommendations = Array.isArray(result.recommendations) ? result.recommendations : [];
+			var appBasePath = (function()
+			{
+				var marker = '/settings/';
+				var idx = window.location.pathname.indexOf(marker);
+				return idx >= 0 ? window.location.pathname.substring(0, idx) : '';
+			})();
+
+			var buildDriverIconCandidates = function(driverId, iconPath)
+			{
+				var id = String(driverId || '').trim();
+				var candidates = [];
+
+				if (iconPath)
+				{
+					candidates.push(String(iconPath));
+				}
+
+				if (id)
+				{
+					var canonical = `/drivers/${id}/assets/icon.svg`;
+					candidates.push(canonical);
+					if (appBasePath)
+					{
+						candidates.push(`${appBasePath}${canonical}`);
+					}
+					candidates.push(`../drivers/${id}/assets/icon.svg`);
+				}
+
+				var unique = [];
+				var seen = {};
+				candidates.forEach(function(candidate)
+				{
+					if (!candidate || seen[candidate])
+					{
+						return;
+					}
+					seen[candidate] = true;
+					unique.push(candidate);
+				});
+
+				return unique;
+			};
+
+			var createDriverIconElement = function(driverId, iconPath)
+			{
+				var candidates = buildDriverIconCandidates(driverId, iconPath);
+				if (candidates.length === 0)
+				{
+					var noIcon = document.createElement('span');
+					noIcon.className = 'driver-support-driver-fallback';
+					noIcon.textContent = '\u25A3';
+					return noIcon;
+				}
+
+				var icon = document.createElement('img');
+				icon.className = 'driver-support-driver-icon';
+				icon.alt = '';
+				var index = 0;
+
+				var tryNext = function()
+				{
+					if (index >= candidates.length)
+					{
+						var fallback = document.createElement('span');
+						fallback.className = 'driver-support-driver-fallback';
+						fallback.textContent = '\u25A3';
+						icon.replaceWith(fallback);
+						return;
+					}
+
+					icon.src = candidates[index];
+					index += 1;
+				};
+
+				icon.onerror = tryNext;
+				tryNext();
+				return icon;
+			};
+
+			var supported = recommendations.filter(function(item)
+			{
+				return !!item.recommendedDriverId;
+			});
+			var supportedNotInstalled = supported.filter(function(item)
+			{
+				return !item.isInstalled;
+			});
+			var supportedInstalled = supported.filter(function(item)
+			{
+				return !!item.isInstalled;
+			});
+			var unsupported = recommendations.filter(function(item)
+			{
+				return !item.recommendedDriverId;
+			});
+
+			var createSection = function(title, count, modifierClass)
+			{
+				var section = document.createElement('section');
+				section.className = modifierClass ? `driver-support-section ${modifierClass}` : 'driver-support-section';
+
+				var header = document.createElement('h3');
+				var headerText = document.createElement('span');
+				headerText.textContent = title;
+				header.appendChild(headerText);
+
+				var badge = document.createElement('span');
+				badge.className = 'driver-support-count-badge';
+				badge.textContent = count;
+				header.appendChild(badge);
+				section.appendChild(header);
+
+				return section;
+			};
+
+			var appendSupportedSection = function(title, items)
+			{
+				var modifierClass = title === tr('settings.driver_support_supported_not_added', 'Supported but not added to Homey')
+					? 'driver-support-section-not-installed'
+					: 'driver-support-section-installed';
+				var section = createSection(title, items.length, modifierClass);
+				if (items.length === 0)
+				{
+					var empty = document.createElement('p');
+					empty.className = 'driver-support-empty';
+					empty.textContent = tr('settings.none', 'None');
+					section.appendChild(empty);
+					driverSupportViewElement.appendChild(section);
+					return;
+				}
+
+				var supportedByDriver = {};
+				items.forEach(function(item)
+				{
+					var driverKey = item.recommendedDriverId;
+					if (!supportedByDriver[driverKey])
+					{
+						supportedByDriver[driverKey] =
+						{
+							driverId: item.recommendedDriverId,
+							driverName: item.recommendedDriverName || tr('settings.unknown_driver', 'Unknown driver'),
+							driverIcon: item.recommendedDriverIcon || '',
+							devices: new Set(),
+						};
+					}
+
+					supportedByDriver[driverKey].devices.add(item.label || item.deviceURL || '-');
+				});
+
+				var supportedDriverGroups = Object.values(supportedByDriver)
+					.sort(function(a, b)
+					{
+						return a.driverName.localeCompare(b.driverName);
+					});
+
+				supportedDriverGroups.forEach(function(group)
+				{
+					var groupBox = document.createElement('div');
+					groupBox.className = 'driver-support-group';
+
+					var row = document.createElement('div');
+					row.className = 'driver-support-group-row';
+
+					row.appendChild(createDriverIconElement(group.driverId, group.driverIcon));
+
+					var content = document.createElement('div');
+					content.className = 'driver-support-group-content';
+
+					var groupTitle = document.createElement('div');
+					groupTitle.className = 'driver-support-group-title';
+
+					var titleText = document.createElement('span');
+					titleText.textContent = group.driverName;
+					groupTitle.appendChild(titleText);
+					content.appendChild(groupTitle);
+
+					var list = document.createElement('ul');
+					list.className = 'driver-support-list';
+					Array.from(group.devices).sort(function(a, b)
+					{
+						return a.localeCompare(b);
+					}).forEach(function(deviceName)
+					{
+						var li = document.createElement('li');
+						li.textContent = deviceName;
+						list.appendChild(li);
+					});
+					content.appendChild(list);
+
+					row.appendChild(content);
+					groupBox.appendChild(row);
+					section.appendChild(groupBox);
+				});
+
+				driverSupportViewElement.appendChild(section);
+			};
+
+			appendSupportedSection(tr('settings.driver_support_supported_not_added', 'Supported but not added to Homey'), supportedNotInstalled);
+			appendSupportedSection(tr('settings.driver_support_supported_added', 'Supported and already added to Homey'), supportedInstalled);
+
+			var unsupportedSection = createSection(tr('settings.driver_support_unsupported_devices', 'Unsupported devices'), unsupported.length, 'driver-support-section-unsupported');
+			if (unsupported.length > 0)
+			{
+				var unsupportedList = document.createElement('ul');
+				unsupportedList.className = 'driver-support-list';
+				unsupported.forEach(function(item)
+				{
+					var li = document.createElement('li');
+					li.textContent = item.label || item.deviceURL || '-';
+					unsupportedList.appendChild(li);
+				});
+				unsupportedSection.appendChild(unsupportedList);
+			}
+			else
+			{
+				var unsupportedEmpty = document.createElement('p');
+				unsupportedEmpty.className = 'driver-support-empty';
+				unsupportedEmpty.textContent = tr('settings.none', 'None');
+				unsupportedSection.appendChild(unsupportedEmpty);
+			}
+			driverSupportViewElement.appendChild(unsupportedSection);
+
+			if (recommendations.length === 0)
+			{
+				var noDataSection = document.createElement('section');
+				noDataSection.className = 'driver-support-section';
+				var noDataText = document.createElement('p');
+				noDataText.className = 'driver-support-empty';
+				noDataText.textContent = tr('settings.driver_support_no_matching_devices', 'No Somfy devices were available for matching.');
+				noDataSection.appendChild(noDataText);
+				driverSupportViewElement.appendChild(noDataSection);
 			}
 		}
 
