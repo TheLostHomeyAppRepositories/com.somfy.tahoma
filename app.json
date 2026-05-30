@@ -155,6 +155,10 @@
     "GetDriverSupportMatrix": {
       "method": "post",
       "path": "/GetDriverSupportMatrix/"
+    },
+    "SendUnsupportedDevices": {
+      "method": "post",
+      "path": "/SendUnsupportedDevices/"
     }
   },
   "flow": {

@@ -39,4 +39,8 @@ module.exports = {
 	{
 		return homey.app.getDriverSupportMatrix();
 	},
+	async SendUnsupportedDevices({ homey, body })
+	{
+		return homey.app.sendUnsupportedDevices(body && body.unsupportedDevices);
+	},
 };

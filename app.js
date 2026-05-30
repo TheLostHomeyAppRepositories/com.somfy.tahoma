@@ -1816,6 +1816,8 @@ class myApp extends Homey.App
 					deviceURL: device.deviceURL || '',
 					source: device.source || '',
 					session: device.session || '',
+					commands: Array.isArray(device.commands) ? device.commands : [],
+					states: Array.isArray(device.states) ? device.states : [],
 				},
 			);
 
@@ -1851,6 +1853,9 @@ class myApp extends Homey.App
 					controllableName,
 					source: device.source || '',
 					session: device.session || '',
+					commands: Array.isArray(device.commands) ? device.commands : [],
+					states: Array.isArray(device.states) ? device.states : [],
+					somfyDevice: device.somfyDevice || {},
 					recommendedDriverId: best ? best.driverId : '',
 					recommendedDriverName: best ? best.driverName : '',
 					recommendedDriverIcon: best ? best.driverIcon : '',
@@ -2073,6 +2078,19 @@ class myApp extends Homey.App
 				return;
 			}
 
+			const serializeSomfyDevice = (candidate) =>
+			{
+				try
+				{
+					return JSON.parse(JSON.stringify(candidate || {}));
+				}
+				catch (error)
+				{
+					this.logInformation('getSomfyDevicesForDriverSupport serialize', error.message ? error.message : error);
+					return {};
+				}
+			};
+
 			for (const device of deviceList)
 			{
 				if (isProtocolGatewayDevice(device))
@@ -2108,6 +2126,7 @@ class myApp extends Homey.App
 						session: sessionName,
 						commands: this.getSomfyDeviceCommandNames(device),
 						states: this.getSomfyDeviceStateNames(device),
+						somfyDevice: serializeSomfyDevice(device),
 					},
 				);
 			}
@@ -2734,6 +2753,146 @@ class myApp extends Homey.App
 		return {
 			message: 'Failed 5 attempts',
 		};
+	}
+
+	async sendUnsupportedDevices(unsupportedDevices)
+	{
+		try
+		{
+			const devices = Array.isArray(unsupportedDevices) ? unsupportedDevices : [];
+			if (!devices.length)
+			{
+				return {
+					error: new Error('No unsupported devices to send'),
+					message: null,
+				};
+			}
+
+			const lines = [];
+			lines.push('Unsupported devices report');
+			lines.push(`Homey hash: ${this.homeyHash}`);
+			lines.push(`App version: ${Homey.manifest.version}`);
+			lines.push(`Generated at: ${new Date().toISOString()}`);
+			lines.push('');
+
+			const groupedByControllableName = devices.reduce((groups, device) =>
+			{
+				const groupName = (device && device.controllableName)
+					? String(device.controllableName)
+					: 'Unknown controllableName';
+
+				if (!groups[groupName])
+				{
+					groups[groupName] = [];
+				}
+
+				groups[groupName].push(device);
+				return groups;
+			}, {});
+
+			const orderedGroupNames = Object.keys(groupedByControllableName)
+				.sort((a, b) => a.localeCompare(b));
+
+			let globalIndex = 0;
+			for (const groupName of orderedGroupNames)
+			{
+				const groupDevices = groupedByControllableName[groupName] || [];
+				lines.push(`ControllableName: ${groupName} (${groupDevices.length})`);
+				lines.push('');
+
+				for (const device of groupDevices)
+				{
+					globalIndex += 1;
+					const label = device && device.label ? device.label : '-';
+					const url = device && device.deviceURL ? device.deviceURL : '';
+					const cls = device && device.deviceClass ? device.deviceClass : '';
+					const commands = device && Array.isArray(device.availableCommands) ? device.availableCommands.join(', ') : '';
+					const controllableName = device && device.controllableName ? device.controllableName : '';
+					const states = device && Array.isArray(device.states) ? device.states.join(', ') : '';
+					const source = device && device.source ? device.source : '';
+					const oid = device && device.oid ? device.oid : '';
+					const somfyDeviceSection = device && device.somfyDevice ? device.somfyDevice : {};
+
+					lines.push(`${globalIndex}. ${label}`);
+					if (url)
+					{
+						lines.push(`   URL: ${url}`);
+					}
+					if (oid)
+					{
+						lines.push(`   OID: ${oid}`);
+					}
+					if (controllableName)
+					{
+						lines.push(`   ControllableName: ${controllableName}`);
+					}
+					if (source)
+					{
+						lines.push(`   Source: ${source}`);
+					}
+					if (cls)
+					{
+						lines.push(`   Class: ${cls}`);
+					}
+					if (commands)
+					{
+						lines.push(`   Commands: ${commands}`);
+					}
+					if (states)
+					{
+						lines.push(`   States: ${states}`);
+					}
+
+					lines.push('   Somfy device section:');
+					const somfyDeviceJson = JSON.stringify(somfyDeviceSection, null, 2) || '{}';
+					somfyDeviceJson.split('\n').forEach((line) => lines.push(`   ${line}`));
+					lines.push('');
+				}
+
+				lines.push('------------------------------------------------------------');
+				lines.push('');
+			}
+
+			const transporter = nodemailer.createTransport(
+				{
+					host: Homey.env.MAIL_HOST,
+					port: 465,
+					ignoreTLS: false,
+					secure: true,
+					auth:
+					{
+						user: Homey.env.MAIL_USER,
+						pass: Homey.env.MAIL_SECRET,
+					},
+					tls:
+					{
+						rejectUnauthorized: false,
+					},
+				},
+			);
+
+			const response = await transporter.sendMail(
+				{
+					from: `"Homey User" <${Homey.env.MAIL_USER}>`,
+					to: Homey.env.MAIL_RECIPIENT,
+					subject: 'Unsupported devices in the Tahoma app',
+					text: lines.join('\n'),
+				},
+			);
+
+			return {
+				error: response.err,
+				message: response.err ? null : `${this.homeyHash}`,
+			};
+		}
+		catch (err)
+		{
+			this.logInformation('Send unsupported devices error', err);
+			return {
+				error: err,
+				message: null,
+			};
+		}
 	}
 
 	/**

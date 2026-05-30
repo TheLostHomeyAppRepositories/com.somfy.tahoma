@@ -155,6 +155,10 @@
 			background: #f7f9fc;
 		}
 
+		.driver-support-section-clickable {
+			cursor: pointer;
+		}
+
 		.driver-support-section h3 {
 			margin: 0 0 8px 0;
 			font-size: 15px;
@@ -1351,6 +1355,48 @@
 			var unsupportedSection = createSection(tr('settings.driver_support_unsupported_devices', 'Unsupported devices'), unsupported.length, 'driver-support-section-unsupported');
 			if (unsupported.length > 0)
 			{
+				unsupportedSection.classList.add('driver-support-section-clickable');
+				unsupportedSection.title = tr('settings.driver_support_send_unsupported_title', 'Click to send unsupported device information to the developer');
+				unsupportedSection.addEventListener('click', function()
+				{
+					Homey.confirm(tr('settings.confirm_send_unsupported_devices', 'Would you like to send the information about these device to the developer so support can be considere?'), null, function(confirmErr, ok)
+					{
+						if (confirmErr || !ok)
+						{
+							return;
+						}
+
+						waitCursor(true);
+						Homey.api('POST', '/SendUnsupportedDevices/',
+						{
+							unsupportedDevices: unsupported.map(function(item)
+							{
+								return {
+									label: item.label || item.deviceURL || '-',
+									deviceURL: item.deviceURL || '',
+									oid: item.oid || '',
+									controllableName: item.controllableName || '',
+									source: item.source || '',
+									session: item.session || '',
+									availableCommands: Array.isArray(item.commands) ? item.commands : [],
+									states: Array.isArray(item.states) ? item.states : [],
+									somfyDevice: item.somfyDevice || {},
+								};
+							}),
+						}, function(apiErr, response)
+						{
+							waitCursor(false);
+							if (apiErr)
+							{
+								Homey.alert(apiErr);
+								return;
+							}
+
+							Homey.alert(`${tr('settings.log_sent_with_id_prefix', 'Log sent successfully. Please contact @Adrian_Rockall on the forum with the log ID: ')}${response.message}${tr('settings.log_sent_with_id_suffix', ' and explain the issue')}`);
+						});
+					});
+				});
+
 				var unsupportedList = document.createElement('ul');
 				unsupportedList.className = 'driver-support-list';
 				unsupported.forEach(function(item)
