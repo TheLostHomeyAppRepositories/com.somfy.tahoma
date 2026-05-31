@@ -536,11 +536,29 @@ class Device extends Homey.Device
 									newState = deviceValue ? (deviceValue / xRefEntry.scale) : 0;
 								}
 
+								if (xRefEntry.homeyName === 'measure_luminance')
+								{
+									const luminance = Number(newState);
+									if (Number.isFinite(luminance))
+									{
+										newState = luminance;
+									}
+									else
+									{
+										this.homey.app.logInformation(this.getName(),
+											{
+												message: 'Invalid luminance payload type',
+												stack: { capability: xRefEntry.homeyName, state: newState },
+											});
+										continue;
+									}
+								}
+
 								if (typeof oldState === 'number')
 								{
 									newState = Number(newState);
 								}
-								else if (typeof oldState === 'string')
+								else if ((typeof oldState === 'string') && (typeof newState === 'string'))
 								{
 									newState = newState.toLowerCase();
 								}

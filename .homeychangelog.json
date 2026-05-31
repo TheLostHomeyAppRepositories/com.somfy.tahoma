@@ -934,5 +934,8 @@
 	},
 	"4.0.134": {
 		"en": "Improved error handling. Added app settings page to show what devices are available to add along with the drivers name."
+	},
+	"4.0.135": {
+		"en": "Fix error when luminance is returned as a string instead of a number."
 	}
 }
