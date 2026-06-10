@@ -91,7 +91,7 @@ class WindowCoveringsDevice extends Device
 		this.registerCapabilityListener('windowcoverings_tilt_up', this.onCapabilityWindowcoveringsTiltUp.bind(this));
 		this.registerCapabilityListener('windowcoverings_tilt_down', this.onCapabilityWindowcoveringsTiltDown.bind(this));
 		this.registerCapabilityListener('my_position', this.onCapabilityMyPosition.bind(this));
-		this.registerCapabilityListener('quick_open', this.onCapabilityWindowcoveringsClosed.bind(this));
+		this.registerCapabilityListener('windowcoverings_closed', this.onCapabilityWindowcoveringsClosed.bind(this));
 		this.registerCapabilityListener('windowcoverings_tilt_set', this.onCapabilityWindowcoveringsTiltSet.bind(this));
 
 		await super.onInit();
@@ -255,15 +255,15 @@ class WindowCoveringsDevice extends Device
 			}
 
 			this.setCapabilityValue('windowcoverings_state', value).catch(this.error);
-			if (this.hasCapability('quick_open'))
+			if (this.hasCapability('windowcoverings_closed'))
 			{
 				if (this.invertTile)
 				{
-					this.setCapabilityValue('quick_open', value !== 'up').catch(this.error);
+					this.setCapabilityValue('windowcoverings_closed', value !== 'up').catch(this.error);
 				}
 				else
 				{
-					this.setCapabilityValue('quick_open', value !== 'down').catch(this.error);
+					this.setCapabilityValue('windowcoverings_closed', value !== 'down').catch(this.error);
 				}
 			}
 		}

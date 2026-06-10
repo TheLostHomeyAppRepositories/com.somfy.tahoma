@@ -27,9 +27,9 @@ class RollerShutterDeviceQuiet extends WindowCoveringsDevice
 			this.addCapability('my_position').catch(this.error);
 		}
 
-		if (!this.hasCapability('quick_open'))
+		if (!this.hasCapability('windowcoverings_closed'))
 		{
-			this.addCapability('quick_open').catch(this.error);
+			this.addCapability('windowcoverings_closed').catch(this.error);
 		}
 
 		if (!this.hasCapability('quiet_mode'))

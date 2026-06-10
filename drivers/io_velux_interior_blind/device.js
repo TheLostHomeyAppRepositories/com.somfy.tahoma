@@ -13,8 +13,8 @@ class VeluxInteriorBlindDevice extends WindowCoveringsDevice {
 
 		await super.onInit();
 
-		if (!this.hasCapability('quick_open')) {
-			this.addCapability('quick_open').catch(this.error);
+		if (!this.hasCapability('windowcoverings_closed')) {
+			this.addCapability('windowcoverings_closed').catch(this.error);
 		}
 	}
 

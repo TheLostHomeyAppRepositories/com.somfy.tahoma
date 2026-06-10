@@ -17,8 +17,8 @@ class VeluxRollerShutterDevice extends WindowCoveringsDevice {
 
 		await super.onInit();
 
-		if (!this.hasCapability('quick_open')) {
-			this.addCapability('quick_open').catch(this.error);
+		if (!this.hasCapability('quwindowcoverings_closedick_open')) {
+			this.addCapability('windowcoverings_closed').catch(this.error);
 		}
 
 		this.registerCapabilityListener('quiet_mode', this.onCapabilityQuietMode.bind(this));

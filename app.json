@@ -35,7 +35,7 @@
     "ru": "Сердце вашего умного дома",
     "ko": "스마트 홈의 중심"
   },
-  "version": "4.0.135",
+  "version": "4.0.136",
   "compatibility": ">=12.0.0",
   "permissions": [
     "homey:manager:api"
@@ -11214,7 +11214,7 @@
         "windowcoverings_state",
         "windowcoverings_set",
         "windowcoverings_tilt_set",
-        "quick_open",
+        "windowcoverings_closed",
         "my_position"
       ],
       "settings": [
@@ -12475,7 +12475,7 @@
         "windowcoverings_state",
         "windowcoverings_set",
         "my_position",
-        "quick_open",
+        "windowcoverings_closed",
         "lock_state"
       ],
       "settings": [
@@ -13908,7 +13908,7 @@
         "windowcoverings_state",
         "windowcoverings_set",
         "my_position",
-        "quick_open"
+        "windowcoverings_closed"
       ],
       "settings": [
         {
@@ -14191,7 +14191,7 @@
         "windowcoverings_set",
         "my_position",
         "quiet_mode",
-        "quick_open"
+        "windowcoverings_closed"
       ],
       "settings": [
         {
@@ -15109,7 +15109,7 @@
       "capabilities": [
         "windowcoverings_state",
         "windowcoverings_set",
-        "quick_open"
+        "windowcoverings_closed"
       ],
       "settings": [
         {
@@ -15390,7 +15390,7 @@
       "capabilities": [
         "windowcoverings_state",
         "windowcoverings_set",
-        "quick_open"
+        "windowcoverings_closed"
       ],
       "settings": [
         {
@@ -15671,7 +15671,7 @@
       "capabilities": [
         "windowcoverings_state",
         "windowcoverings_set",
-        "quick_open"
+        "windowcoverings_closed"
       ],
       "settings": [
         {
@@ -15952,7 +15952,7 @@
       "capabilities": [
         "windowcoverings_state",
         "windowcoverings_set",
-        "quick_open"
+        "windowcoverings_closed"
       ],
       "settings": [
         {
@@ -16232,7 +16232,7 @@
       "capabilities": [
         "windowcoverings_state",
         "windowcoverings_set",
-        "quick_open"
+        "windowcoverings_closed"
       ],
       "settings": [
         {

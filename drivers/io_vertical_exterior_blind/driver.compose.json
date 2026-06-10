@@ -17,7 +17,7 @@
   "capabilities": [
     "windowcoverings_state",
     "windowcoverings_set",
-    "quick_open"
+    "windowcoverings_closed"
   ],
   "settings": [
     {

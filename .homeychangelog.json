@@ -937,5 +937,8 @@
 	},
 	"4.0.135": {
 		"en": "Fix error when luminance is returned as a string instead of a number."
+	},
+	"4.0.136": {
+		"en": "Replace 'open_close' capability with 'windowcoverings_closed' for blinds and curtains, etc"
 	}
 }
