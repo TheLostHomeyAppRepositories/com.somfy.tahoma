@@ -940,5 +940,8 @@
 	},
 	"4.0.136": {
 		"en": "Replace 'open_close' capability with 'windowcoverings_closed' for blinds and curtains, etc"
+	},
+	"4.0.137": {
+		"en": "Check sibling components for extra information such as battery level."
 	}
 }
