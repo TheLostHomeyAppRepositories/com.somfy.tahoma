@@ -210,6 +210,20 @@ class LightControllerDevice extends Device
 						fromCloudSync: true,
 					}).catch(this.error);
 				}
+
+				const batteryLevelState = states.find((state) => (state && (state.name === 'core:BatteryLevelState')));
+				if (!await this.updateBatteryLevelCapability(batteryLevelState))
+				{
+					const batteryState = states.find((state) => (state && (state.name === 'core:BatteryState')));
+					if (!await this.updateBatteryLevelCapability(batteryState))
+					{
+						const relatedBatteryState = await this.getRelatedDeviceState(
+							['core:BatteryLevelState', 'core:BatteryState'],
+							this.getDeviceUrl(),
+						);
+						await this.updateBatteryLevelCapability(relatedBatteryState);
+					}
+				}
 			}
 
 			return states;
@@ -247,7 +261,7 @@ class LightControllerDevice extends Device
 			const element = events[i];
 			if (element.name === 'DeviceStateChangedEvent')
 			{
-				if ((element.deviceURL === myURL) && Array.isArray(element.deviceStates))
+				if (this.isRelatedDeviceURL(element.deviceURL, myURL) && Array.isArray(element.deviceStates))
 				{
 					if (this.homey.app.infoLogEnabled)
 					{
@@ -323,6 +337,11 @@ class LightControllerDevice extends Device
 	// Process the device sate
 	async processEventState(deviceState)
 	{
+		if (await this.updateBatteryLevelCapability(deviceState))
+		{
+			return true;
+		}
+
 		if (deviceState.name === 'core:OnOffState')
 		{
 			this.homey.app.logStates(`${this.getName()}: core:OnOffState = ${deviceState.value}`);

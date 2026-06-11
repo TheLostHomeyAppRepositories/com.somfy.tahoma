@@ -120,6 +120,170 @@ class Device extends Homey.Device
 	}
 
 	/**
+	 * Build a component root for related URLs (e.g. zigbee://.../23988/1 and zigbee://.../23988/232)
+	 * @param {String} deviceURL
+	 * @returns {String|null}
+	 */
+	getDeviceComponentRoot(deviceURL)
+	{
+		if (!deviceURL)
+		{
+			return null;
+		}
+
+		const value = String(deviceURL);
+		const hashIndex = value.indexOf('#');
+		if (hashIndex >= 0)
+		{
+			return value.substring(0, hashIndex);
+		}
+
+		const schemeIndex = value.indexOf('://');
+		if (schemeIndex < 0)
+		{
+			return null;
+		}
+
+		const pathStart = value.indexOf('/', schemeIndex + 3);
+		if (pathStart < 0)
+		{
+			return null;
+		}
+
+		const path = value.substring(pathStart + 1);
+		const pathParts = path.split('/').filter((part) => part !== '');
+		if (pathParts.length < 2)
+		{
+			return null;
+		}
+
+		const base = value.substring(0, pathStart + 1);
+		return `${base}${pathParts.slice(0, -1).join('/')}`;
+	}
+
+	/**
+	 * Check if an event URL belongs to this device, including sibling components when applicable
+	 * @param {String} eventURL
+	 * @param {String} referenceURL
+	 * @returns {Boolean}
+	 */
+	isRelatedDeviceURL(eventURL, referenceURL)
+	{
+		if (!eventURL || !referenceURL)
+		{
+			return false;
+		}
+
+		const eventURLText = String(eventURL);
+		const referenceURLText = String(referenceURL);
+		if (eventURLText === referenceURLText)
+		{
+			return true;
+		}
+
+		if (this.combineSubURLs)
+		{
+			const subURLRoot = this.getDeviceUrl(0);
+			if (subURLRoot && eventURLText.startsWith(subURLRoot))
+			{
+				return true;
+			}
+		}
+
+		const eventRoot = this.getDeviceComponentRoot(eventURLText);
+		const referenceRoot = this.getDeviceComponentRoot(referenceURLText);
+		return !!(eventRoot && referenceRoot && (eventRoot === referenceRoot));
+	}
+
+	/**
+	 * Get a state by name from a related sibling component URL
+	 * @param {Array} stateNames
+	 * @param {String} referenceURL
+	 * @returns {Object|null}
+	 */
+	async getRelatedDeviceState(stateNames, referenceURL)
+	{
+		if (!Array.isArray(stateNames) || (stateNames.length === 0))
+		{
+			return null;
+		}
+
+		const rootURL = this.getDeviceComponentRoot(referenceURL);
+		if (!rootURL)
+		{
+			return null;
+		}
+
+		if (!this.relatedStatesCache)
+		{
+			this.relatedStatesCache = new Map();
+		}
+
+		const namesKey = stateNames.join('|');
+		const cacheKey = `${rootURL}|${namesKey}`;
+		const cacheEntry = this.relatedStatesCache.get(cacheKey);
+		const now = Date.now();
+		if (cacheEntry && ((now - cacheEntry.time) < 300000))
+		{
+			return cacheEntry.state;
+		}
+
+		let state = null;
+		try
+		{
+			const allDevices = await this.homey.app.getDeviceData();
+			if (Array.isArray(allDevices))
+			{
+				for (const relatedDevice of allDevices)
+				{
+					if (!relatedDevice || !relatedDevice.deviceURL || (relatedDevice.deviceURL === referenceURL))
+					{
+						continue;
+					}
+
+					if (this.getDeviceComponentRoot(relatedDevice.deviceURL) !== rootURL)
+					{
+						continue;
+					}
+
+					if (!Array.isArray(relatedDevice.states))
+					{
+						continue;
+					}
+
+					for (const stateName of stateNames)
+					{
+						state = relatedDevice.states.find((entry) => (entry && (entry.name === stateName)));
+						if (state)
+						{
+							break;
+						}
+					}
+
+					if (state)
+					{
+						break;
+					}
+				}
+			}
+		}
+		catch (error)
+		{
+			if (this.homey.app.infoLogEnabled)
+			{
+				this.homey.app.logInformation(this.getName(),
+					{
+						message: 'Failed to read related component states',
+						stack: error,
+					});
+			}
+		}
+
+		this.relatedStatesCache.set(cacheKey, { time: now, state: state || null });
+		return state;
+	}
+
+	/**
 	 * Returns the io controllable name(s) of TaHoma
 	 * @return {Array} deviceType
 	 */
@@ -300,6 +464,114 @@ class Device extends Homey.Device
 	}
 
 	/**
+	 * Convert a TaHoma battery state value to a Homey battery percentage
+	 * @param {String} stateName
+	 * @param {*} stateValue
+	 * @returns {Number|null}
+	 */
+	getBatteryLevelPercent(stateName, stateValue)
+	{
+		if ((stateName === 'core:BatteryLevelState') && (stateValue !== null) && (stateValue !== undefined))
+		{
+			const batteryLevel = Number(stateValue);
+			if (Number.isFinite(batteryLevel))
+			{
+				return Math.max(0, Math.min(100, batteryLevel));
+			}
+		}
+
+		if ((stateName === 'core:BatteryState') && (typeof stateValue === 'string'))
+		{
+			const batteryStates = ['verylow', 'low', 'normal', 'full'];
+			const batteryIndex = batteryStates.findIndex((state) => state === stateValue.toLowerCase());
+			if (batteryIndex >= 0)
+			{
+				return (batteryIndex * 100) / 3;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Update Homey battery capability from a single TaHoma battery state
+	 * @param {Object} tahomaState
+	 * @returns {Boolean}
+	 */
+	async updateBatteryLevelCapability(tahomaState)
+	{
+		if (!tahomaState || !tahomaState.name)
+		{
+			return false;
+		}
+
+		const batteryLevel = this.getBatteryLevelPercent(tahomaState.name, tahomaState.value);
+		if (batteryLevel === null)
+		{
+			return false;
+		}
+
+		if (!this.hasCapability('measure_battery'))
+		{
+			try
+			{
+				await this.addCapability('measure_battery');
+			}
+			catch (error)
+			{
+				this.homey.app.logInformation(this.getName(),
+					{
+						message: error.message,
+						stack: error.stack,
+					});
+				return false;
+			}
+		}
+
+		this.homey.app.logStates(`${this.getName()}: ${tahomaState.name} = ${tahomaState.value}`);
+		this.triggerCapabilityListener('measure_battery', batteryLevel, { fromCloudSync: true }).catch(this.error);
+
+		return true;
+	}
+
+	/**
+	 * Update Homey battery capability from all TaHoma states when this driver does not define measure_battery itself
+	 * @param {Array} tahomaStates
+	 * @param {Array} CapabilitiesXRef
+	 */
+	async syncBatteryLevelCapability(tahomaStates, CapabilitiesXRef)
+	{
+		if (!Array.isArray(tahomaStates) || !Array.isArray(CapabilitiesXRef))
+		{
+			return;
+		}
+
+		const hasMeasureBatteryMapping = CapabilitiesXRef.some((entry) => entry.homeyName === 'measure_battery');
+		if (hasMeasureBatteryMapping)
+		{
+			return;
+		}
+
+		const batteryLevelState = tahomaStates.find((state) => (state && (state.name === 'core:BatteryLevelState')));
+		if (await this.updateBatteryLevelCapability(batteryLevelState))
+		{
+			return;
+		}
+
+		const batteryState = tahomaStates.find((state) => (state && (state.name === 'core:BatteryState')));
+		if (await this.updateBatteryLevelCapability(batteryState))
+		{
+			return;
+		}
+
+		const relatedBatteryState = await this.getRelatedDeviceState(
+			['core:BatteryLevelState', 'core:BatteryState'],
+			this.getDeviceUrl(),
+		);
+		await this.updateBatteryLevelCapability(relatedBatteryState);
+	}
+
+	/**
 	 * Gets the sensor data from the TaHoma cloud
 	 * Capabilities{somfyNameGet: 'name of the Somfy capability, homeyName: 'name of the Homey capability', compare:[] 'text array for false and true value or not specified if real value' }
 	 */
@@ -404,6 +676,8 @@ class Device extends Homey.Device
 					xRefEntry = null;
 				}
 
+				await this.syncBatteryLevelCapability(tahomaStates, CapabilitiesXRef);
+
 				tahomaStates = null;
 			}
 			else
@@ -452,6 +726,9 @@ class Device extends Homey.Device
 			return;
 		}
 
+		const hasMeasureBatteryMapping = Array.isArray(CapabilitiesXRef)
+			&& CapabilitiesXRef.some((entry) => entry.homeyName === 'measure_battery');
+
 		// Get the capability values for this device
 		const oldCapabilityStates = this.getState();
 
@@ -463,8 +740,18 @@ class Device extends Homey.Device
 			if (event.name === 'DeviceStateChangedEvent')
 			{
 				// If the URL matches then it is for this device
-				if (Array.isArray(event.deviceStates) && (event.deviceURL.startsWith(myURL)))
+				if (Array.isArray(event.deviceStates) && this.isRelatedDeviceURL(event.deviceURL, myURL))
 				{
+					if (!hasMeasureBatteryMapping)
+					{
+						const batteryLevelState = event.deviceStates.find((state) => (state && (state.name === 'core:BatteryLevelState')));
+						if (!await this.updateBatteryLevelCapability(batteryLevelState))
+						{
+							const batteryState = event.deviceStates.find((state) => (state && (state.name === 'core:BatteryState')));
+							await this.updateBatteryLevelCapability(batteryState);
+						}
+					}
+
 					if (this.homey.app.infoLogEnabled)
 					{
 						this.homey.app.logInformation(this.getName(),
@@ -786,7 +1073,7 @@ class Device extends Homey.Device
 		for (let i = startElement; i < events.length; i++)
 		{
 			const element = events[i];
-			if ((element.name === 'DeviceStateChangedEvent') && (element.deviceURL === myURL) && element.deviceStates)
+			if ((element.name === 'DeviceStateChangedEvent') && this.isRelatedDeviceURL(element.deviceURL, myURL) && element.deviceStates)
 			{
 				for (let x = startState; x < element.deviceStates.length; x++)
 				{

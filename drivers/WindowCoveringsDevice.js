@@ -668,34 +668,31 @@ class WindowCoveringsDevice extends Device
 					}).catch(this.error);
 				}
 
-				const batteryState = states.find((state) => (state && (state.name === 'core:BatteryLevelState')));
-				if (batteryState)
+				const batteryLevelState = states.find((state) => (state && (state.name === 'core:BatteryLevelState')));
+				if (batteryLevelState)
 				{
 					// Device battery level state
 					this.hasBatteryLevelState = true;
-
-					if (!this.hasCapability('measure_battery'))
-					{
-						await this.addCapability('measure_battery');
-					}
-					this.setCapabilityValue('measure_battery', batteryState.value).catch(this.error);
+					await this.updateBatteryLevelCapability(batteryLevelState);
 				}
 				else
 				{
 					const batteryState = states.find((state) => (state && (state.name === 'core:BatteryState')));
 					if (batteryState)
 					{
-						if (!this.hasCapability('measure_battery'))
+						await this.updateBatteryLevelCapability(batteryState);
+					}
+					else
+					{
+						const relatedBatteryState = await this.getRelatedDeviceState(
+							['core:BatteryLevelState', 'core:BatteryState'],
+							this.getDeviceUrl(),
+						);
+						if (relatedBatteryState && (relatedBatteryState.name === 'core:BatteryLevelState'))
 						{
-							await this.addCapability('measure_battery');
+							this.hasBatteryLevelState = true;
 						}
-
-						const batteryStates = ['verylow', 'low', 'normal', 'full'];
-						const batteryLevel = batteryStates.findIndex((state) => state === batteryState.value);
-						if (batteryLevel >= 0)
-						{
-							this.setCapabilityValue('measure_battery', (batteryLevel * 100) / 3).catch(this.error);
-						}
+						await this.updateBatteryLevelCapability(relatedBatteryState);
 					}
 				}
 
@@ -765,7 +762,7 @@ class WindowCoveringsDevice extends Device
 				const element = events[i];
 				if (element.name === 'DeviceStateChangedEvent')
 				{
-					if ((element.deviceURL === myURL) && Array.isArray(element.deviceStates))
+					if (this.isRelatedDeviceURL(element.deviceURL, myURL) && Array.isArray(element.deviceStates))
 					{
 						if (this.homey.app.infoLogEnabled)
 						{
