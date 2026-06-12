@@ -96,5 +96,14 @@
 	},
 	"my_position_token": "Mi Posición",
 	"command_queued": "Comando en cola, espera a que el dispositivo se despierte",
-	"command_failed": "Error en el comando"
+	"command_failed": "Error en el comando",
+	"ergonomics_mode": {
+		"onOff": "Encendido/Apagado",
+		"dimming": "Atenuación",
+		"1D": "1D",
+		"1Dadvanced": "1D Avanzado",
+		"2D": "2D",
+		"tiltOnly": "Solo inclinación",
+		"TDBU": "TDBU"
+	}
 }

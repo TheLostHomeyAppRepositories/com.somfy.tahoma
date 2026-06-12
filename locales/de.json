@@ -96,5 +96,14 @@
 	},
 	"my_position_token": "Meine Position",
 	"command_queued": "Befehl in Warteschlange, auf Aufwachen des Geräts warten",
-	"command_failed": "Befehl fehlgeschlagen"
+	"command_failed": "Befehl fehlgeschlagen",
+	"ergonomics_mode": {
+		"onOff": "Ein/Aus",
+		"dimming": "Dimmen",
+		"1D": "1D",
+		"1Dadvanced": "1D Fortgeschritten",
+		"2D": "2D",
+		"tiltOnly": "Nur Kippen",
+		"TDBU": "TDBU"
+	}
 }

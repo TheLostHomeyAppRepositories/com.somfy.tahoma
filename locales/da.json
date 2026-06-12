@@ -96,5 +96,14 @@
 	},
 	"my_position_token": "Min Position",
 	"command_queued": "Kommando køet, vent på at enheden vågner",
-	"command_failed": "Kommando mislykkedes"
+	"command_failed": "Kommando mislykkedes",
+	"ergonomics_mode": {
+		"onOff": "Til/Fra",
+		"dimming": "Dæmpning",
+		"1D": "1D",
+		"1Dadvanced": "1D Avanceret",
+		"2D": "2D",
+		"tiltOnly": "Kun vipning",
+		"TDBU": "TDBU"
+	}
 }

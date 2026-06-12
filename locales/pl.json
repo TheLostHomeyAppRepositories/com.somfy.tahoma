@@ -96,5 +96,14 @@
 	},
 	"my_position_token": "Moja Pozycja",
 	"command_queued": "Polecenie w kolejce, czekaj na obudzenie urządzenia",
-	"command_failed": "Polecenie nie powiodło się"
+	"command_failed": "Polecenie nie powiodło się",
+	"ergonomics_mode": {
+		"onOff": "Włączenie/Wyłączenie",
+		"dimming": "Przyciemnianie",
+		"1D": "1D",
+		"1Dadvanced": "1D Zaawansowany",
+		"2D": "2D",
+		"tiltOnly": "Tylko przechylanie",
+		"TDBU": "TDBU"
+	}
 }

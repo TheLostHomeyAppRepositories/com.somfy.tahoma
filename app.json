@@ -21368,6 +21368,185 @@
           }
         }
       ],
+      "icon": "/drivers/zigbee_remote_ergonomics/assets/icon.svg",
+      "images": {
+        "large": "/drivers/zigbee_remote_ergonomics/assets/images/large.png",
+        "small": "/drivers/zigbee_remote_ergonomics/assets/images/small.png"
+      },
+      "name": {
+        "en": "Somfy Ergonomic Remote",
+        "nl": "Somfy Ergonomische afstandsbediening",
+        "da": "Somfy Ergonomisk fjernbetjening",
+        "de": "Somfy Ergonomische Fernbedienung",
+        "es": "Control remoto ergonómico Somfy",
+        "fr": "Télécommande ergonomique Somfy",
+        "it": "Telecomando ergonomico Somfy",
+        "no": "Somfy ergonomisk fjernkontroll",
+        "sv": "Somfy ergonomisk fjärrkontroll",
+        "pl": "Ergonomiczny pilot Somfy",
+        "ru": "Эргономичный пульт Somfy",
+        "ko": "Somfy 인체공학적 리모컨"
+      },
+      "class": "remote",
+      "capabilities": [
+        "measure_battery",
+        "ergonomics_mode"
+      ],
+      "id": "zigbee_remote_ergonomics"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
+        {
+          "id": "session_select"
+        },
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices",
+            "prev": "login_credentials"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        }
+      ],
       "icon": "/drivers/zigbee_thermostat/assets/icon.svg",
       "images": {
         "large": "/drivers/zigbee_thermostat/assets/images/large.png",
@@ -23158,6 +23337,147 @@
       ],
       "getable": true,
       "setable": true
+    },
+    "ergonomics_mode": {
+      "type": "enum",
+      "title": {
+        "en": "Ergonomics Mode",
+        "nl": "Ergonomische modus",
+        "da": "Ergonomisk tilstand",
+        "de": "Ergonomischer Modus",
+        "es": "Modo ergonómico",
+        "fr": "Mode ergonomique",
+        "it": "Modalità ergonomica",
+        "no": "Ergonomisk modus",
+        "sv": "Ergonomiskt läge",
+        "pl": "Tryb ergonomiczny",
+        "ru": "Эргономичный режим",
+        "ko": "인체공학적 모드"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "onOff",
+          "title": {
+            "en": "On/Off",
+            "nl": "Aan/Uit",
+            "da": "Til/Fra",
+            "de": "Ein/Aus",
+            "es": "Encendido/Apagado",
+            "fr": "Marche/Arrêt",
+            "it": "Acceso/Spento",
+            "no": "På/Av",
+            "sv": "På/Av",
+            "pl": "Włączenie/Wyłączenie",
+            "ru": "Вкл/Выкл",
+            "ko": "켜기/끄기"
+          }
+        },
+        {
+          "id": "dimming",
+          "title": {
+            "en": "Dimming",
+            "nl": "Dimmen",
+            "da": "Dæmpning",
+            "de": "Dimmen",
+            "es": "Atenuación",
+            "fr": "Gradation",
+            "it": "Oscuramento",
+            "no": "Demping",
+            "sv": "Dimmning",
+            "pl": "Ściemnianie",
+            "ru": "Диммирование",
+            "ko": "조광"
+          }
+        },
+        {
+          "id": "1D",
+          "title": {
+            "en": "1D",
+            "nl": "1D",
+            "da": "1D",
+            "de": "1D",
+            "es": "1D",
+            "fr": "1D",
+            "it": "1D",
+            "no": "1D",
+            "sv": "1D",
+            "pl": "1D",
+            "ru": "1D",
+            "ko": "1D"
+          }
+        },
+        {
+          "id": "1Dadvanced",
+          "title": {
+            "en": "1D Advanced",
+            "nl": "1D Geavanceerd",
+            "da": "1D Avanceret",
+            "de": "1D Erweitert",
+            "es": "1D Avanzado",
+            "fr": "1D Avancé",
+            "it": "1D Avanzato",
+            "no": "1D Avansert",
+            "sv": "1D Avancerad",
+            "pl": "1D Zaawansowany",
+            "ru": "1D Продвинутый",
+            "ko": "1D 고급"
+          }
+        },
+        {
+          "id": "2D",
+          "title": {
+            "en": "2D",
+            "nl": "2D",
+            "da": "2D",
+            "de": "2D",
+            "es": "2D",
+            "fr": "2D",
+            "it": "2D",
+            "no": "2D",
+            "sv": "2D",
+            "pl": "2D",
+            "ru": "2D",
+            "ko": "2D"
+          }
+        },
+        {
+          "id": "tiltOnly",
+          "title": {
+            "en": "Tilt Only",
+            "nl": "Alleen kantelen",
+            "da": "Kun hæld",
+            "de": "Nur kippen",
+            "es": "Solo inclinación",
+            "fr": "Inclinaison uniquement",
+            "it": "Solo inclinazione",
+            "no": "Bare tilt",
+            "sv": "Endast lutning",
+            "pl": "Tylko pochylenie",
+            "ru": "Только наклон",
+            "ko": "기울기만"
+          }
+        },
+        {
+          "id": "TDBU",
+          "title": {
+            "en": "TDBU",
+            "nl": "TDBU",
+            "da": "TDBU",
+            "de": "TDBU",
+            "es": "TDBU",
+            "fr": "TDBU",
+            "it": "TDBU",
+            "no": "TDBU",
+            "sv": "TDBU",
+            "pl": "TDBU",
+            "ru": "TDBU",
+            "ko": "TDBU"
+          }
+        }
+      ]
     },
     "error_code_state": {
       "type": "number",

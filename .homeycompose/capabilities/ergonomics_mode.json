@@ -1,0 +1,141 @@
+{
+  "type": "enum",
+  "title": {
+    "en": "Ergonomics Mode",
+    "nl": "Ergonomische modus",
+    "da": "Ergonomisk tilstand",
+    "de": "Ergonomischer Modus",
+    "es": "Modo ergonómico",
+    "fr": "Mode ergonomique",
+    "it": "Modalità ergonomica",
+    "no": "Ergonomisk modus",
+    "sv": "Ergonomiskt läge",
+    "pl": "Tryb ergonomiczny",
+    "ru": "Эргономичный режим",
+    "ko": "인체공학적 모드"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "picker",
+  "values": [
+    {
+      "id": "onOff",
+      "title": {
+        "en": "On/Off",
+        "nl": "Aan/Uit",
+        "da": "Til/Fra",
+        "de": "Ein/Aus",
+        "es": "Encendido/Apagado",
+        "fr": "Marche/Arrêt",
+        "it": "Acceso/Spento",
+        "no": "På/Av",
+        "sv": "På/Av",
+        "pl": "Włączenie/Wyłączenie",
+        "ru": "Вкл/Выкл",
+        "ko": "켜기/끄기"
+      }
+    },
+    {
+      "id": "dimming",
+      "title": {
+        "en": "Dimming",
+        "nl": "Dimmen",
+        "da": "Dæmpning",
+        "de": "Dimmen",
+        "es": "Atenuación",
+        "fr": "Gradation",
+        "it": "Oscuramento",
+        "no": "Demping",
+        "sv": "Dimmning",
+        "pl": "Ściemnianie",
+        "ru": "Диммирование",
+        "ko": "조광"
+      }
+    },
+    {
+      "id": "1D",
+      "title": {
+        "en": "1D",
+        "nl": "1D",
+        "da": "1D",
+        "de": "1D",
+        "es": "1D",
+        "fr": "1D",
+        "it": "1D",
+        "no": "1D",
+        "sv": "1D",
+        "pl": "1D",
+        "ru": "1D",
+        "ko": "1D"
+      }
+    },
+    {
+      "id": "1Dadvanced",
+      "title": {
+        "en": "1D Advanced",
+        "nl": "1D Geavanceerd",
+        "da": "1D Avanceret",
+        "de": "1D Erweitert",
+        "es": "1D Avanzado",
+        "fr": "1D Avancé",
+        "it": "1D Avanzato",
+        "no": "1D Avansert",
+        "sv": "1D Avancerad",
+        "pl": "1D Zaawansowany",
+        "ru": "1D Продвинутый",
+        "ko": "1D 고급"
+      }
+    },
+    {
+      "id": "2D",
+      "title": {
+        "en": "2D",
+        "nl": "2D",
+        "da": "2D",
+        "de": "2D",
+        "es": "2D",
+        "fr": "2D",
+        "it": "2D",
+        "no": "2D",
+        "sv": "2D",
+        "pl": "2D",
+        "ru": "2D",
+        "ko": "2D"
+      }
+    },
+    {
+      "id": "tiltOnly",
+      "title": {
+        "en": "Tilt Only",
+        "nl": "Alleen kantelen",
+        "da": "Kun hæld",
+        "de": "Nur kippen",
+        "es": "Solo inclinación",
+        "fr": "Inclinaison uniquement",
+        "it": "Solo inclinazione",
+        "no": "Bare tilt",
+        "sv": "Endast lutning",
+        "pl": "Tylko pochylenie",
+        "ru": "Только наклон",
+        "ko": "기울기만"
+      }
+    },
+    {
+      "id": "TDBU",
+      "title": {
+        "en": "TDBU",
+        "nl": "TDBU",
+        "da": "TDBU",
+        "de": "TDBU",
+        "es": "TDBU",
+        "fr": "TDBU",
+        "it": "TDBU",
+        "no": "TDBU",
+        "sv": "TDBU",
+        "pl": "TDBU",
+        "ru": "TDBU",
+        "ko": "TDBU"
+      }
+    }
+  ]
+}

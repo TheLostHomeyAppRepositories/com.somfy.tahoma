@@ -96,5 +96,14 @@
 	},
 	"my_position_token": "내 위치",
 	"command_queued": "명령이 대기열에 추가되었습니다. 장치가 깨어날 때까지 기다리세요",
-	"command_failed": "명령 실패"
+	"command_failed": "명령 실패",
+	"ergonomics_mode": {
+		"onOff": "켜기/끄기",
+		"dimming": "조광",
+		"1D": "1D",
+		"1Dadvanced": "1D 고급",
+		"2D": "2D",
+		"tiltOnly": "기울임만",
+		"TDBU": "TDBU"
+	}
 }

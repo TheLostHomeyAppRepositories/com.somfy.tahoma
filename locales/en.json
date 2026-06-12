@@ -113,5 +113,14 @@
 	},
 	"my_position_token": "My Position",
 	"command_queued": "Command queued wait for device to wakeup",
-	"command_failed": "Command failed"
+	"command_failed": "Command failed",
+	"ergonomics_mode": {
+		"onOff": "On/Off",
+		"dimming": "Dimming",
+		"1D": "1D",
+		"1Dadvanced": "1D Advanced",
+		"2D": "2D",
+		"tiltOnly": "Tilt Only",
+		"TDBU": "TDBU"
+	}
 }

@@ -96,5 +96,14 @@
 	},
 	"my_position_token": "La Mia Posizione",
 	"command_queued": "Comando in coda, attendi che il dispositivo si svegli",
-	"command_failed": "Comando fallito"
+	"command_failed": "Comando fallito",
+	"ergonomics_mode": {
+		"onOff": "Acceso/Spento",
+		"dimming": "Dissolvenza",
+		"1D": "1D",
+		"1Dadvanced": "1D Avanzato",
+		"2D": "2D",
+		"tiltOnly": "Solo inclinazione",
+		"TDBU": "TDBU"
+	}
 }

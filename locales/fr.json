@@ -96,5 +96,14 @@
 	},
 	"my_position_token": "Ma Position",
 	"command_queued": "Commande en file d'attente, en attente du réveil de l'appareil",
-	"command_failed": "Échec de la commande"
+	"command_failed": "Échec de la commande",
+	"ergonomics_mode": {
+		"onOff": "Marche/Arrêt",
+		"dimming": "Variateur",
+		"1D": "1D",
+		"1Dadvanced": "1D Avancé",
+		"2D": "2D",
+		"tiltOnly": "Inclinaison seulement",
+		"TDBU": "TDBU"
+	}
 }

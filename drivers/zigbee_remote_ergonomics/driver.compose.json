@@ -1,0 +1,24 @@
+{
+	"name": {
+		"en": "Somfy Ergonomic Remote",
+		"nl": "Somfy Ergonomische afstandsbediening",
+		"da": "Somfy Ergonomisk fjernbetjening",
+		"de": "Somfy Ergonomische Fernbedienung",
+		"es": "Control remoto ergonómico Somfy",
+		"fr": "Télécommande ergonomique Somfy",
+		"it": "Telecomando ergonomico Somfy",
+		"no": "Somfy ergonomisk fjernkontroll",
+		"sv": "Somfy ergonomisk fjärrkontroll",
+		"pl": "Ergonomiczny pilot Somfy",
+		"ru": "Эргономичный пульт Somfy",
+		"ko": "Somfy 인체공학적 리모컨"
+	},
+	"class": "remote",
+	"capabilities": [
+		"measure_battery",
+		"ergonomics_mode"
+	],
+	"$extends": [
+		"cloudDriver"
+	]
+}

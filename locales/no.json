@@ -96,5 +96,14 @@
 	},
 	"my_position_token": "Min Posisjon",
 	"command_queued": "Kommando i kø, vent på at enheten skal våkne",
-	"command_failed": "Kommando mislyktes"
+	"command_failed": "Kommando mislyktes",
+	"ergonomics_mode": {
+		"onOff": "På/Av",
+		"dimming": "Dimmering",
+		"1D": "1D",
+		"1Dadvanced": "1D Avansert",
+		"2D": "2D",
+		"tiltOnly": "Bare vippe",
+		"TDBU": "TDBU"
+	}
 }

@@ -96,5 +96,14 @@
 	},
 	"my_position_token": "Моя позиция",
 	"command_queued": "Команда в очереди, ждите пробуждения устройства",
-	"command_failed": "Команда не выполнена"
+	"command_failed": "Команда не выполнена",
+	"ergonomics_mode": {
+		"onOff": "Вкл/Выкл",
+		"dimming": "Диммирование",
+		"1D": "1D",
+		"1Dadvanced": "1D Продвинутый",
+		"2D": "2D",
+		"tiltOnly": "Только наклон",
+		"TDBU": "TDBU"
+	}
 }
