@@ -21388,6 +21388,12 @@
         "ko": "Somfy 인체공학적 리모컨"
       },
       "class": "remote",
+      "energy": {
+        "batteries": [
+          "AA",
+          "AA"
+        ]
+      },
       "capabilities": [
         "measure_battery",
         "ergonomics_mode"
