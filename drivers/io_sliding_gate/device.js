@@ -30,6 +30,20 @@ class SlidingGateDevice extends WindowCoveringsDevice
 			this.controllableName = dd.controllableName.toString().toLowerCase();
 		}
 
+        const isDynamicGate = (this.controllableName === 'io:dynamicgateiocomponent');
+
+        if (isDynamicGate)
+        {
+            if (this.hasCapability('pedestrian'))
+            {
+                this.removeCapability('pedestrian').catch(this.error);
+            }
+        }
+        else if (!this.hasCapability('pedestrian'))
+        {
+            this.addCapability('pedestrian').catch(this.error);
+        }
+
 		if (this.controllableName === 'io:slidinggateopeneriocomponent')
 		{
 			if (!this.hasCapability('windowcoverings_set'))
@@ -53,8 +67,16 @@ class SlidingGateDevice extends WindowCoveringsDevice
 			this.setPositionActionName = ''; // Device is not positionable
 		}
 
-        this.openClosedStateName = 'core:OpenClosedPedestrianState';
-        this.myCommand = 'setPedestrianPosition'; // Name of the command to set the My position
+        if (isDynamicGate)
+        {
+            this.openClosedStateName = 'core:OpenClosedState';
+            this.myCommand = 'goToAlias'; // Name of the command to set the My position
+        }
+        else
+        {
+            this.openClosedStateName = 'core:OpenClosedPedestrianState';
+            this.myCommand = 'setPedestrianPosition'; // Name of the command to set the My position
+        }
 
         if (this.invertUpDown)
         {

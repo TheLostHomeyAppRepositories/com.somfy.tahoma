@@ -13,7 +13,7 @@ class SlidingGateDriver extends ioWindowCoveringsDriver
 
 	async onInit()
 	{
-		this.deviceType = ['io:SlidingDiscreteGateOpenerIOComponent', 'io:DiscreteGateOpenerIOComponent', 'io:SlidingDiscreteFullyPedestriableGateOpenerIOComponent', 'io:SlidingGateOpenerIOComponent'];
+		this.deviceType = ['io:SlidingDiscreteGateOpenerIOComponent', 'io:DiscreteGateOpenerIOComponent', 'io:SlidingDiscreteFullyPedestriableGateOpenerIOComponent', 'io:SlidingGateOpenerIOComponent', 'io:DynamicGateIOComponent'];
 
 		this.pedestrian_changedTrigger = this.homey.flow.getDeviceTriggerCard('pedestrian_changed');
 

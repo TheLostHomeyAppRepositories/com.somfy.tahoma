@@ -946,5 +946,8 @@
 	},
 	"4.0.138": {
 		"en": "Fix battery level update for devices that have a battery level in a sibling component."
+	},
+	"4.0.139": {
+		"en": "Added support for io:DynamicGateIOComponent, io:DynamicLight, io:DynamicOutletIOComponent and io:KeypadController."
 	}
 }

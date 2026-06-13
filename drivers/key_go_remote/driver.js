@@ -14,7 +14,7 @@ class key_go_remoteDriver extends Driver
 
 	async onInit()
 	{
-		this.deviceType = ['io:KeygoController', 'io:IzymoController'];
+		this.deviceType = ['io:KeygoController', 'io:IzymoController', 'io:KeypadController'];
 		await super.onInit();
 
 		this._remoteStateChangedTrigger = this.homey.flow.getDeviceTriggerCard('key_go_remote_state_changed');
