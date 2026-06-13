@@ -21392,6 +21392,11 @@
         "measure_battery",
         "ergonomics_mode"
       ],
+      "energy": {
+        "batteries": [
+          "AA"
+        ]
+      },
       "id": "zigbee_remote_ergonomics"
     },
     {
