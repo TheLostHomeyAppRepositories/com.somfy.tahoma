@@ -910,15 +910,7 @@ class WindowCoveringsDevice extends Device
 								// Check for more message that are the same
 								if (!this.checkForDuplicatesEvents(events, i, x + 1, myURL, 'core:BatteryLevelState'))
 								{
-									if (!this.hasCapability('measure_battery'))
-									{
-										await this.addCapability('measure_battery');
-									}
-									this.homey.app.logStates(`${this.getName()}: core:BatteryLevelState = ${deviceState.value}`);
-									this.triggerCapabilityListener('measure_battery', deviceState.value,
-										{
-											fromCloudSync: true,
-										}).catch(this.error);
+									await this.updateBatteryLevelCapability(deviceState);
 								}
 							}
 							else if ((deviceState.name === 'core:BatteryState') && !this.hasBatteryLevelState)
@@ -927,21 +919,7 @@ class WindowCoveringsDevice extends Device
 								// Check for more message that are the same
 								if (!this.checkForDuplicatesEvents(events, i, x + 1, myURL, 'core:BatteryState'))
 								{
-									if (!this.hasCapability('measure_battery'))
-									{
-										await this.addCapability('measure_battery');
-									}
-									const batteryStateValue = deviceState.value;
-									this.homey.app.logStates(`${this.getName()}: core:BatteryState = ${batteryStateValue}`);
-									const batteryStates = ['verylow', 'low', 'normal', 'full'];
-									const batteryLevel = batteryStates.findIndex((state) => state === batteryStateValue);
-									if (batteryLevel >= 0)
-									{
-										this.triggerCapabilityListener('measure_battery', ((batteryLevel * 100) / 3),
-										{
-											fromCloudSync: true,
-										}).catch(this.error);
-									}
+									await this.updateBatteryLevelCapability(deviceState);
 								}
 							}
 							else if (deviceState.name === 'core:ActivatedOptionsState')

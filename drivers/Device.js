@@ -529,7 +529,8 @@ class Device extends Homey.Device
 		}
 
 		this.homey.app.logStates(`${this.getName()}: ${tahomaState.name} = ${tahomaState.value}`);
-		this.triggerCapabilityListener('measure_battery', batteryLevel, { fromCloudSync: true }).catch(this.error);
+		this.homey.app.logStates(`${this.getName()}: measure_battery = ${batteryLevel}`);
+		this.setCapabilityValue('measure_battery', batteryLevel).catch(this.error);
 
 		return true;
 	}

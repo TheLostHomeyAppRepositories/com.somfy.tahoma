@@ -943,5 +943,8 @@
 	},
 	"4.0.137": {
 		"en": "Check sibling components for extra information such as battery level."
+	},
+	"4.0.138": {
+		"en": "Fix battery level update for devices that have a battery level in a sibling component."
 	}
 }
