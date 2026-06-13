@@ -18,6 +18,11 @@
 		"measure_battery",
 		"ergonomics_mode"
 	],
+	"energy": {
+		"batteries": [
+			"AA"
+		]
+	},
 	"$extends": [
 		"cloudDriver"
 	]
