@@ -12,6 +12,19 @@ const SensorDevice = require('../SensorDevice');
 class OneAlarmDevice extends SensorDevice
 {
 
+	logCapabilityCommandError(context, err)
+	{
+		const errorMessage = (err && err.message) ? err.message : String(err);
+		if (this.homey && this.homey.app && (typeof this.homey.app.logInformation === 'function'))
+		{
+			this.homey.app.logInformation(`${this.getName()}: ${context}`, errorMessage);
+		}
+		else
+		{
+			this.error(errorMessage);
+		}
+	}
+
 	async onInit()
 	{
 		this.retries = 0;
@@ -60,8 +73,9 @@ class OneAlarmDevice extends SensorDevice
 			}
 			catch (error)
 			{
+				this.executionCmd = '';
 				this.setWarning(error.message).catch(this.error);
-				throw (error);
+				this.logCapabilityCommandError('onCapabilityAlarmOn', error);
 			}
 		}
 		else
@@ -107,8 +121,9 @@ class OneAlarmDevice extends SensorDevice
 			}
 			catch (error)
 			{
+				this.executionCmd = '';
 				this.setWarning(error.message).catch(this.error);
-				throw (error);
+				this.logCapabilityCommandError('onCapabilityAlarmOff', error);
 			}
 		}
 		else

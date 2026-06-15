@@ -60,7 +60,7 @@ class VeluxRollerShutterDevice extends WindowCoveringsDevice {
 			{
 				this.executionCmd = '';
 				this.setWarning(err.message).catch(this.error);
-				throw (err);
+				this.logCapabilityCommandError('onCapabilityQuietMode', err);
 			}
 		}
 		else

@@ -170,6 +170,19 @@ class WindowCoveringsDevice extends Device
 		return false;
 	}
 
+	logCapabilityCommandError(context, err)
+	{
+		const errorMessage = (err && err.message) ? err.message : String(err);
+		if (this.homey && this.homey.app && (typeof this.homey.app.logInformation === 'function'))
+		{
+			this.homey.app.logInformation(`${this.getName()}: ${context}`, errorMessage);
+		}
+		else
+		{
+			this.error(errorMessage);
+		}
+	}
+
 	async onCapabilityWindowcoveringsState(value, opts)
 	{
 		if (!opts || !opts.fromCloudSync)
@@ -231,7 +244,7 @@ class WindowCoveringsDevice extends Device
 			{
 				this.executionCmd = '';
 				this.setWarning(err.message).catch(this.error);
-				throw (err);
+				this.logCapabilityCommandError('onCapabilityWindowcoveringsState', err);
 			}
 			finally
 			{
@@ -326,7 +339,7 @@ class WindowCoveringsDevice extends Device
 			{
 				this.executionCmd = '';
 				this.setWarning(err.message).catch(this.error);
-				throw (err);
+				this.logCapabilityCommandError('onCapabilityWindowcoveringsSet', err);
 			}
 		}
 		else
@@ -369,8 +382,9 @@ class WindowCoveringsDevice extends Device
 			}
 			catch (err)
 			{
+				this.executionCmd = '';
 				this.setWarning(err.message).catch(this.error);
-				throw (err);
+				this.logCapabilityCommandError('onCapabilityWindowcoveringsTiltSet', err);
 			}
 		}
 		else if (this.hasCapability('windowcoverings_tilt_set'))
@@ -411,8 +425,9 @@ class WindowCoveringsDevice extends Device
 			}
 			catch (err)
 			{
+				this.executionCmd = '';
 				this.setWarning(err.message).catch(this.error);
-				throw (err);
+				this.logCapabilityCommandError('onCapabilityWindowcoveringsTiltUp', err);
 			}
 		}
 	}
@@ -443,8 +458,9 @@ class WindowCoveringsDevice extends Device
 			}
 			catch (err)
 			{
+				this.executionCmd = '';
 				this.setWarning(err.message).catch(this.error);
-				throw (err);
+				this.logCapabilityCommandError('onCapabilityWindowcoveringsTiltDown', err);
 			}
 		}
 	}
@@ -473,8 +489,9 @@ class WindowCoveringsDevice extends Device
 			}
 			catch (err)
 			{
+				this.executionCmd = '';
 				this.setWarning(err.message).catch(this.error);
-				throw (err);
+				this.logCapabilityCommandError('onCapabilityMyPosition', err);
 			}
 		}
 	}
@@ -503,8 +520,9 @@ class WindowCoveringsDevice extends Device
 			}
 			catch (err)
 			{
+				this.executionCmd = '';
 				this.setWarning(err.message).catch(this.error);
-				throw (err);
+				this.logCapabilityCommandError('onCapabilityPedestrian', err);
 			}
 
 			this.setWarning(null).catch(this.error);

@@ -85,8 +85,9 @@ class PergolaDevice extends WindowCoveringsDevice
 			}
 			catch (err)
 			{
+				this.executionCmd = '';
 				this.setWarning(err.message).catch(this.error);
-				throw (err);
+				this.logCapabilityCommandError('onCapabilityMyPosition', err);
 			}
 		}
 	}
