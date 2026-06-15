@@ -949,5 +949,8 @@
 	},
 	"4.0.139": {
 		"en": "Added support for io:DynamicGateIOComponent, io:DynamicLight, io:DynamicOutletIOComponent and io:KeypadController."
+	},
+	"4.0.140": {
+		"en": "Improved error handling in window covering, pergola, Velux roller shutter and Protexial alarm drivers: command failures are now logged as warnings instead of throwing unhandled exceptions."
 	}
 }
