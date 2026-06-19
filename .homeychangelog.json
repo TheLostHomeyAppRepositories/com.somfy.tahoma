@@ -952,5 +952,8 @@
 	},
 	"4.0.140": {
 		"en": "Improved error handling in window covering, pergola, Velux roller shutter and Protexial alarm drivers: command failures are now logged as warnings instead of throwing unhandled exceptions."
+	},
+	"4.0.141": {
+		"en": "Improved the pairing sign-in flow with embedded region selection, saved-account UX updates and cleanup of the old region step."
 	}
 }
