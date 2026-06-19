@@ -61,13 +61,6 @@ class Driver extends Homey.Driver
 					await session.nextView();
 				}
 			}
-			else if (view === 'select_region')
-			{
-				if (region)
-				{
-					await session.nextView();
-				}
-			}
 		});
 
 		session.setHandler('sessions_list', async () =>
@@ -139,13 +132,6 @@ class Driver extends Homey.Driver
 			this.log('Select Region Setup');
 			const result = { region };
 			return result;
-		});
-
-		session.setHandler('select_region', async (regionObj) =>
-		{
-			this.log('Select Region', regionObj);
-			region = regionObj.region;
-			session.nextView().catch(this.error);
 		});
 
 		session.setHandler('login', async (data) =>

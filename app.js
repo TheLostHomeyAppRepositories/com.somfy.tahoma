@@ -1414,6 +1414,7 @@ class myApp extends Homey.App
 	// Throws an exception if the login fails
 	async newLogin_2(username, password, region, localToken, forceLogin = false)
 	{
+		region = region || 'europe';
 		const normalizedRequestedUsername = this.normalizeSessionEmail(username);
 		const normalizedCurrentCloudUsername = this.normalizeSessionEmail(this.tahomaCloud && this.tahomaCloud.username ? this.tahomaCloud.username : '');
 		const normalizedCurrentLocalUsername = this.normalizeSessionEmail(this.tahomaLocal && this.tahomaLocal.username ? this.tahomaLocal.username : '');

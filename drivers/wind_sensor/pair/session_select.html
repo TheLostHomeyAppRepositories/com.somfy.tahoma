@@ -35,7 +35,7 @@
 			<select class="homey-form-select" name="session_email" id="session_email"></select>
 		</form>
 
-		<button class="homey-button-secondary-full" id="use_new_account" type="button">Use another account</button>
+		<button class="homey-button-primary-full" id="use_new_account" type="button">Use another account</button>
 
 		<details id="manage_accounts_details">
 			<summary>Manage saved accounts</summary>
@@ -74,6 +74,7 @@
 			document.getElementById('submit_existing').disabled = true;
 			document.getElementById('remove_selected_account').disabled = true;
 			document.getElementById('force_remove_selected_account').disabled = true;
+			Homey.showView('login_credentials');
 			return;
 		}
 
