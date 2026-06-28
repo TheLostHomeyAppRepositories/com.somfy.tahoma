@@ -67,9 +67,10 @@ class RollerShutterDevice extends WindowCoveringsDevice
 			this.addCapability('windowcoverings_closed').catch(this.error);
 		}
 
-		if (controllableName === 'io:screenreceiverunoiocomponent')
+		if ((controllableName === 'io:screenreceiverunoiocomponent')
+			|| (controllableName === 'io:rollershutterunoiocomponent'))
 		{
-			// No feedback from this device
+			// These components expose target closure state and use setPosition.
 			this.positionStateName = 'core:TargetClosureState';
 			this.openClosedStateName = '';
 

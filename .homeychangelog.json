@@ -955,5 +955,9 @@
 	},
 	"4.0.141": {
 		"en": "Improved the pairing sign-in flow with embedded region selection, saved-account UX updates and cleanup of the old region step."
+	},
+	"4.0.142": {
+
+		"en": "Fixed position feedback event type for the io:RollerShutterUnoIOComponent."
 	}
 }
