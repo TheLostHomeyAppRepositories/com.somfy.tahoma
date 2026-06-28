@@ -87,6 +87,20 @@
 			"usa": "USA",
 			"oceana": "Oceana",
 			"next": "Next"
+		},
+		"gateway_list": {
+			"view_title": "Devices",
+			"title": "Select devices by gateway",
+			"subtitle": "Devices are grouped by TaHoma gateway to make multi-installation pairing easier.",
+			"select_all": "Select all",
+			"clear_all": "Clear all",
+			"add_selected": "Add selected devices",
+			"unknown_gateway": "Unknown gateway",
+			"gateway_prefix": "Gateway",
+			"unnamed_device": "Unnamed device",
+			"no_devices": "No devices found for this driver.",
+			"select_one": "Select at least one device.",
+			"partial_result": "Added {added} device(s), failed {failed}."
 		}
 	},
 	"errors": {

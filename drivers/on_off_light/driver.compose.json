@@ -17,26 +17,6 @@
   "capabilities": [
     "onoff"
   ],
-  "pair": [
-    {
-      "id": "session_select"
-    },
-    {
-      "id": "login_credentials"
-    },
-    {
-      "id": "list_my_devices",
-      "template": "list_devices",
-      "navigation": {
-        "next": "add_my_devices",
-        "prev": "login_credentials"
-      }
-    },
-    {
-      "id": "add_my_devices",
-      "template": "add_devices"
-    }
-  ],
   "$extends": [
     "cloudDriver"
   ]

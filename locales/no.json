@@ -72,6 +72,22 @@
 		"none": "Ingen",
 		"no_data": "Ingen data"
 	},
+	"pair": {
+		"gateway_list": {
+			"view_title": "Enheter",
+			"title": "Velg enheter per gateway",
+			"subtitle": "Enheter grupperes etter TaHoma-gateway for å gjøre paring av flere installasjoner enklere.",
+			"select_all": "Velg alle",
+			"clear_all": "Fjern alle",
+			"add_selected": "Legg til valgte enheter",
+			"unknown_gateway": "Ukjent gateway",
+			"gateway_prefix": "Gateway",
+			"unnamed_device": "Enhet uten navn",
+			"no_devices": "Ingen enheter funnet for denne driveren.",
+			"select_one": "Velg minst en enhet.",
+			"partial_result": "La til {added} enhet(er), {failed} feilet."
+		}
+	},
 	"errors": {
 		"on_pair_login_failure": "Kunne ikke logge inn. Gå til innstillingsskjermen og gi tilgang til TaHoma for Homey."
 	},

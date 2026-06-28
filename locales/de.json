@@ -72,6 +72,22 @@
 		"none": "Keine",
 		"no_data": "Keine Daten"
 	},
+	"pair": {
+		"gateway_list": {
+			"view_title": "Geräte",
+			"title": "Geräte nach Gateway auswählen",
+			"subtitle": "Geräte sind nach TaHoma-Gateway gruppiert, damit das Pairing mehrerer Installationen einfacher ist.",
+			"select_all": "Alle auswählen",
+			"clear_all": "Auswahl aufheben",
+			"add_selected": "Ausgewählte Geräte hinzufügen",
+			"unknown_gateway": "Unbekanntes Gateway",
+			"gateway_prefix": "Gateway",
+			"unnamed_device": "Unbenanntes Gerät",
+			"no_devices": "Keine Geräte für diesen Treiber gefunden.",
+			"select_one": "Wählen Sie mindestens ein Gerät aus.",
+			"partial_result": "{added} Gerät(e) hinzugefügt, {failed} fehlgeschlagen."
+		}
+	},
 	"errors": {
 		"on_pair_login_failure": "Anmeldung nicht möglich. Bitte gehen Sie zur Einstellungsseite und gewähren Sie Homey Zugriff auf TaHoma."
 	},

@@ -72,6 +72,22 @@
 		"none": "Ninguno",
 		"no_data": "Sin datos"
 	},
+	"pair": {
+		"gateway_list": {
+			"view_title": "Dispositivos",
+			"title": "Seleccionar dispositivos por pasarela",
+			"subtitle": "Los dispositivos se agrupan por pasarela TaHoma para facilitar el emparejamiento de varias instalaciones.",
+			"select_all": "Seleccionar todo",
+			"clear_all": "Borrar selección",
+			"add_selected": "Agregar dispositivos seleccionados",
+			"unknown_gateway": "Pasarela desconocida",
+			"gateway_prefix": "Pasarela",
+			"unnamed_device": "Dispositivo sin nombre",
+			"no_devices": "No se encontraron dispositivos para este controlador.",
+			"select_one": "Selecciona al menos un dispositivo.",
+			"partial_result": "Se agregaron {added} dispositivo(s), {failed} fallaron."
+		}
+	},
 	"errors": {
 		"on_pair_login_failure": "No se puede iniciar sesión. Por favor, ve a la pantalla de configuración y proporciona acceso a TaHoma para Homey."
 	},

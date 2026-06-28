@@ -72,6 +72,22 @@
 		"none": "Ingen",
 		"no_data": "Ingen data"
 	},
+	"pair": {
+		"gateway_list": {
+			"view_title": "Enheter",
+			"title": "Välj enheter per gateway",
+			"subtitle": "Enheter grupperas per TaHoma-gateway för att göra parkoppling av flera installationer enklare.",
+			"select_all": "Välj alla",
+			"clear_all": "Rensa alla",
+			"add_selected": "Lägg till valda enheter",
+			"unknown_gateway": "Okänd gateway",
+			"gateway_prefix": "Gateway",
+			"unnamed_device": "Namnlös enhet",
+			"no_devices": "Inga enheter hittades för den här drivrutinen.",
+			"select_one": "Välj minst en enhet.",
+			"partial_result": "Lade till {added} enhet(er), {failed} misslyckades."
+		}
+	},
 	"errors": {
 		"on_pair_login_failure": "Inloggning misslyckades. Vänligen gå till inställningsskärmen och ge åtkomst till TaHoma för Homey."
 	},

@@ -68,6 +68,22 @@
 		"none": "Geen",
 		"no_data": "Geen gegevens"
 	},
+	"pair": {
+		"gateway_list": {
+			"view_title": "Apparaten",
+			"title": "Selecteer apparaten per gateway",
+			"subtitle": "Apparaten zijn gegroepeerd per TaHoma-gateway om koppelen over meerdere installaties makkelijker te maken.",
+			"select_all": "Alles selecteren",
+			"clear_all": "Alles wissen",
+			"add_selected": "Geselecteerde apparaten toevoegen",
+			"unknown_gateway": "Onbekende gateway",
+			"gateway_prefix": "Gateway",
+			"unnamed_device": "Naamloos apparaat",
+			"no_devices": "Geen apparaten gevonden voor deze driver.",
+			"select_one": "Selecteer minimaal een apparaat.",
+			"partial_result": "{added} apparaat/apparaten toegevoegd, {failed} mislukt."
+		}
+	},
 	"errors": {
 		"on_pair_login_failure": "Inloggen niet gelukt. Ga a.u.b. naar het instellingen scherm en geef Homey toegang tot TaHoma."
 	},

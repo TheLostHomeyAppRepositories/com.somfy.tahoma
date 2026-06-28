@@ -72,6 +72,22 @@
 		"none": "Brak",
 		"no_data": "Brak danych"
 	},
+	"pair": {
+		"gateway_list": {
+			"view_title": "Urządzenia",
+			"title": "Wybierz urządzenia według bramy",
+			"subtitle": "Urządzenia są grupowane według bramy TaHoma, aby ułatwić parowanie wielu instalacji.",
+			"select_all": "Zaznacz wszystko",
+			"clear_all": "Wyczyść wszystko",
+			"add_selected": "Dodaj wybrane urządzenia",
+			"unknown_gateway": "Nieznana brama",
+			"gateway_prefix": "Brama",
+			"unnamed_device": "Urządzenie bez nazwy",
+			"no_devices": "Nie znaleziono urządzeń dla tego sterownika.",
+			"select_one": "Wybierz co najmniej jedno urządzenie.",
+			"partial_result": "Dodano {added} urządzeń/urządzenia, {failed} niepowodzeń."
+		}
+	},
 	"errors": {
 		"on_pair_login_failure": "Nie udało się zalogować. Proszę przejść do ekranu ustawień i udzielić dostępu do TaHoma dla Homey."
 	},

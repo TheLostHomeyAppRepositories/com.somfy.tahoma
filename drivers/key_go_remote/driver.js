@@ -34,7 +34,28 @@ class key_go_remoteDriver extends Driver
 			if (devices)
 			{
 				this.log('setup resolve');
-				const homeyDevices = devices.filter((device) => this.deviceType.indexOf(device.controllableName) !== -1).map((device) => {
+				const gatewayIdFromDeviceURL = (deviceURL) =>
+				{
+					if (!deviceURL)
+					{
+						return '';
+					}
+
+					const match = `${deviceURL}`.match(/^[^:]+:\/\/([^/]+)\//);
+					return (match && match[1]) ? match[1] : '';
+				};
+				const filteredDevices = devices.filter((device) => this.deviceType.indexOf(device.controllableName) !== -1);
+				const composedLabelCounts = {};
+				filteredDevices.forEach((device) =>
+				{
+					const attributes = Array.isArray(device.attributes) ? device.attributes : [];
+					const groupIndexAttribute = attributes.find((attribute) => attribute && attribute.name === 'core:GroupIndex' && attribute.value);
+					const readableIndex = groupIndexAttribute ? `: ${groupIndexAttribute.value}` : '';
+					const composedLabel = `${device.label}${readableIndex}`;
+					composedLabelCounts[composedLabel] = (composedLabelCounts[composedLabel] || 0) + 1;
+				});
+
+				const homeyDevices = filteredDevices.map((device) => {
 					let readableIndex = '';
 
 					// if the Attributes array contains an attribute with the name "core:GroupIndex", set readableIndex to that value as ': value', otherwise leave it at an empty string
@@ -45,12 +66,21 @@ class key_go_remoteDriver extends Driver
 						readableIndex = groupIndexAttribute ? `: ${groupIndexAttribute.value}` : '';
 					}
 
+					const gatewayId = device.gatewayId || gatewayIdFromDeviceURL(device.deviceURL);
+					const composedLabel = `${device.label}${readableIndex}`;
+					const hasDuplicateLabel = !!(composedLabelCounts[composedLabel] > 1);
+					const displayName = (hasDuplicateLabel && gatewayId)
+						? `${composedLabel} (${gatewayId})`
+						: composedLabel;
+
 					return {
-						name: `${device.label}${readableIndex}`,
+						name: displayName,
 						data:
 						{
-							id: device.oid,
+							id: device.deviceURL || device.oid,
+							oid: device.oid,
 							deviceURL: device.deviceURL,
+							gatewayId,
 							label: device.label,
 							controllableName: device.controllableName,
 						},

@@ -24,6 +24,7 @@
 		margin-top: auto;
 		padding-top: 8px;
 	}
+
 </style>
 
 <div id="session_select_page">
@@ -53,6 +54,21 @@
 
 <script type="text/javascript">
 	Homey.setTitle('Account');
+	let continueBusy = false;
+
+	function setContinueBusy(isBusy)
+	{
+		continueBusy = !!isBusy;
+
+		const submitButton = document.getElementById('submit_existing');
+		submitButton.disabled = continueBusy;
+		submitButton.classList.toggle('is-loading', continueBusy);
+
+		document.getElementById('use_new_account').disabled = continueBusy;
+		document.getElementById('remove_selected_account').disabled = continueBusy;
+		document.getElementById('force_remove_selected_account').disabled = continueBusy;
+		document.getElementById('session_email').disabled = continueBusy;
+	}
 
 	function showError(err)
 	{
@@ -154,6 +170,11 @@
 
 	function continueWithSelectedAccount()
 	{
+		if (continueBusy)
+		{
+			return;
+		}
+
 		const selectedEmail = document.getElementById('session_email').value;
 		if (!selectedEmail)
 		{
@@ -161,16 +182,20 @@
 			return;
 		}
 
+		setContinueBusy(true);
+
 		Homey.emit('session_select', { username: selectedEmail }, function(selectErr, selectResult)
 		{
 			if (selectErr)
 			{
+				setContinueBusy(false);
 				showError(selectErr);
 				return;
 			}
 
 			if (!selectResult || !selectResult.found)
 			{
+				setContinueBusy(false);
 				Homey.alert('Selected account was not found. Please sign in again.', 'warning');
 				Homey.showView('login_credentials');
 				return;
@@ -180,12 +205,14 @@
 			{
 				if (loginErr)
 				{
+					setContinueBusy(false);
 					showError(loginErr);
 					return;
 				}
 
 				if (!loginResult)
 				{
+					setContinueBusy(false);
 					Homey.alert('Login failed for selected account.', 'error');
 					return;
 				}

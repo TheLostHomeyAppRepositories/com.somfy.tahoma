@@ -72,6 +72,22 @@
 		"none": "Nessuno",
 		"no_data": "Nessun dato"
 	},
+	"pair": {
+		"gateway_list": {
+			"view_title": "Dispositivi",
+			"title": "Seleziona dispositivi per gateway",
+			"subtitle": "I dispositivi sono raggruppati per gateway TaHoma per facilitare l'associazione multi-installazione.",
+			"select_all": "Seleziona tutti",
+			"clear_all": "Deseleziona tutto",
+			"add_selected": "Aggiungi dispositivi selezionati",
+			"unknown_gateway": "Gateway sconosciuto",
+			"gateway_prefix": "Gateway",
+			"unnamed_device": "Dispositivo senza nome",
+			"no_devices": "Nessun dispositivo trovato per questo driver.",
+			"select_one": "Seleziona almeno un dispositivo.",
+			"partial_result": "Aggiunti {added} dispositivo/i, {failed} non riusciti."
+		}
+	},
 	"errors": {
 		"on_pair_login_failure": "Impossibile effettuare il login. Vai alla schermata delle impostazioni e fornisci accesso a TaHoma per Homey."
 	},

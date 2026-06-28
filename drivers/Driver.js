@@ -17,7 +17,7 @@ class Driver extends Homey.Driver
 	{
 		try
 		{
-			const app = this.homey.app;
+			const { app } = this.homey;
 			if (app && (typeof app.logInformation === 'function'))
 			{
 				app.logInformation(context, details);
@@ -279,21 +279,52 @@ class Driver extends Homey.Driver
 				const normalizedSessionUsername = (this.homey.app && (typeof this.homey.app.normalizeSessionEmail === 'function'))
 					? this.homey.app.normalizeSessionEmail(currentSessionUsername)
 					: currentSessionUsername;
-
-				const homeyDevices = devices.filter((device) => this.deviceType.indexOf(device.controllableName) !== -1).map((device) => (
+				const gatewayIdFromDeviceURL = (deviceURL) =>
 				{
-					name: device.label,
-					data:
+					if (!deviceURL)
 					{
-						id: device.oid,
-						deviceURL: device.deviceURL,
-						label: device.label,
-						controllableName: device.controllableName,
-					},
-					settings: normalizedSessionUsername
-						? { sessionUsername: normalizedSessionUsername }
-						: undefined,
-				}));
+						return '';
+					}
+
+					const match = `${deviceURL}`.match(/^[^:]+:\/\/([^/]+)\//);
+					return (match && match[1]) ? match[1] : '';
+				};
+				const filteredDevices = devices.filter((device) => this.deviceType.indexOf(device.controllableName) !== -1);
+				const labelCounts = {};
+				filteredDevices.forEach((device) =>
+				{
+					const label = String(device && device.label ? device.label : '').trim();
+					if (!label)
+					{
+						return;
+					}
+
+					labelCounts[label] = (labelCounts[label] || 0) + 1;
+				});
+
+				const homeyDevices = filteredDevices.map((device) =>
+				{
+					const gatewayId = device.gatewayId || gatewayIdFromDeviceURL(device.deviceURL);
+					const label = String(device && device.label ? device.label : 'Unnamed device');
+					const hasDuplicateLabel = !!(labelCounts[label] > 1);
+					const displayName = (hasDuplicateLabel && gatewayId) ? `${label} (${gatewayId})` : label;
+
+					return {
+						name: displayName,
+						data:
+						{
+							id: device.deviceURL || device.oid,
+							oid: device.oid,
+							deviceURL: device.deviceURL,
+							gatewayId,
+							label: device.label,
+							controllableName: device.controllableName,
+						},
+						settings: normalizedSessionUsername
+							? { sessionUsername: normalizedSessionUsername }
+							: undefined,
+					};
+				});
 				return homeyDevices;
 			}
 		}

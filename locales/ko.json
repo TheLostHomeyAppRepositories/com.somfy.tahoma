@@ -72,6 +72,22 @@
 		"none": "없음",
 		"no_data": "데이터 없음"
 	},
+	"pair": {
+		"gateway_list": {
+			"view_title": "장치",
+			"title": "게이트웨이별 장치 선택",
+			"subtitle": "여러 설치 환경의 페어링을 쉽게 하기 위해 장치를 TaHoma 게이트웨이별로 그룹화합니다.",
+			"select_all": "모두 선택",
+			"clear_all": "모두 해제",
+			"add_selected": "선택한 장치 추가",
+			"unknown_gateway": "알 수 없는 게이트웨이",
+			"gateway_prefix": "게이트웨이",
+			"unnamed_device": "이름 없는 장치",
+			"no_devices": "이 드라이버에서 찾은 장치가 없습니다.",
+			"select_one": "장치를 하나 이상 선택하세요.",
+			"partial_result": "{added}개 장치 추가, {failed}개 실패."
+		}
+	},
 	"errors": {
 		"on_pair_login_failure": "로그인할 수 없습니다. 설정 화면으로 이동하여 Homey에 대한 접근 권한을 제공해 주세요."
 	},

@@ -72,6 +72,22 @@
 		"none": "Aucun",
 		"no_data": "Aucune donnée"
 	},
+	"pair": {
+		"gateway_list": {
+			"view_title": "Appareils",
+			"title": "Sélectionner les appareils par passerelle",
+			"subtitle": "Les appareils sont groupés par passerelle TaHoma pour faciliter l'appairage multi-installations.",
+			"select_all": "Tout sélectionner",
+			"clear_all": "Tout effacer",
+			"add_selected": "Ajouter les appareils sélectionnés",
+			"unknown_gateway": "Passerelle inconnue",
+			"gateway_prefix": "Passerelle",
+			"unnamed_device": "Appareil sans nom",
+			"no_devices": "Aucun appareil trouvé pour ce pilote.",
+			"select_one": "Sélectionnez au moins un appareil.",
+			"partial_result": "{added} appareil(s) ajouté(s), {failed} échec(s)."
+		}
+	},
 	"errors": {
 		"on_pair_login_failure": "Impossible de se connecter. Veuillez aller dans l'écran des paramètres et fournir l'accès à TaHoma pour Homey."
 	},

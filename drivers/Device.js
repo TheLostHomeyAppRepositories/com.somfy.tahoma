@@ -1026,7 +1026,8 @@ class Device extends Homey.Device
 					const simData = this.homey.settings.get('simData');
 					if (simData)
 					{
-						const deviceOid = this.getData().id;
+						const deviceData = this.getData();
+						const deviceOid = deviceData.oid || deviceData.id;
 						if (simData.devices.cloud)
 						{
 							for (let i = 0; i < simData.devices.cloud.length; i++)
