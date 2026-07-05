@@ -959,5 +959,8 @@
 	"4.0.142": {
 
 		"en": "Fixed position feedback event type for the io:RollerShutterUnoIOComponent."
+	},
+	"4.0.143": {
+		"en": "Updated device pairing screens to distinguishes gateway information for multiple Tahoma gateways on an account."
 	}
 }
