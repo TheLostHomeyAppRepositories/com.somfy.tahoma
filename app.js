@@ -14,6 +14,7 @@ const Homey = require('homey');
 const nodemailer = require('nodemailer');
 const fs = require('fs/promises');
 const path = require('path');
+const net = require('net');
 const Tahoma = require('./lib/Tahoma');
 
 const LOCAL_INTERVAL = 3;
@@ -50,6 +51,17 @@ class myApp extends Homey.App
 		if (!Array.isArray(this.localBridges))
 		{
 			this.localBridges = [];
+		}
+
+		this.localMdnsLookup = this.homey.settings.get('localMdnsLookup');
+		if (!this.localMdnsLookup || (typeof this.localMdnsLookup !== 'object') || Array.isArray(this.localMdnsLookup))
+		{
+			this.localMdnsLookup = {};
+		}
+
+		for (const bridge of this.localBridges)
+		{
+			this.upsertLocalMdnsLookup(bridge, false);
 		}
 
 		this.localBearersByPin = this.homey.settings.get('localBearersByPin');
@@ -307,6 +319,7 @@ class myApp extends Homey.App
 			fw_version: discoveryResult.txt.fw_version,
 		};
 		this.upsertDiscoveredLocalBridge(this.localBridgeInfo);
+		this.upsertLocalMdnsLookup(this.localBridgeInfo);
 		if (!this.localBridgeInfo.pin)
 		{
 			this.logInformation('mDNS', 'No local pin discovered');
@@ -1608,6 +1621,14 @@ class myApp extends Homey.App
 					if (Array.isArray(sessionDevices))
 					{
 						sessionLog.devices.cloud.devices = sessionDevices;
+						if (cloudClient.lastSetupDiscovery)
+						{
+							sessionLog.devices.cloud.discovery = cloudClient.lastSetupDiscovery;
+							if (this.infoLogEnabled)
+							{
+								this.logInformation('logDevices', `Cloud setup discovery for ${session.username}: ${cloudClient.lastSetupDiscovery.totalDeviceCount} devices across ${cloudClient.lastSetupDiscovery.totalGatewayCount} gateway(s) (${cloudClient.lastSetupDiscovery.fetchedDeviceCount} fetched from dedicated device endpoint, ${cloudClient.lastSetupDiscovery.embeddedDeviceCount} from embedded setup)`);
+							}
+						}
 						cloudFetches++;
 					}
 				}
@@ -1633,6 +1654,14 @@ class myApp extends Homey.App
 						},
 					},
 				};
+				if (this.tahomaCloud.lastSetupDiscovery)
+				{
+					singleSessionLog.devices.cloud.discovery = this.tahomaCloud.lastSetupDiscovery;
+					if (this.infoLogEnabled)
+					{
+						this.logInformation('logDevices', `Cloud setup discovery for ${singleLogin}: ${this.tahomaCloud.lastSetupDiscovery.totalDeviceCount} devices across ${this.tahomaCloud.lastSetupDiscovery.totalGatewayCount} gateway(s) (${this.tahomaCloud.lastSetupDiscovery.fetchedDeviceCount} fetched from dedicated device endpoint, ${this.tahomaCloud.lastSetupDiscovery.embeddedDeviceCount} from embedded setup)`);
+					}
+				}
 				devices.sessions.push(singleSessionLog);
 
 				if (Array.isArray(singleCloudDevices))
@@ -1654,6 +1683,15 @@ class myApp extends Homey.App
 				if (Array.isArray(localDevices))
 				{
 					devices.local.devices = localDevices;
+				}
+
+				if (this.tahomaLocal.lastSetupDiscovery)
+				{
+					devices.local.discovery = this.tahomaLocal.lastSetupDiscovery;
+					if (this.infoLogEnabled)
+					{
+						this.logInformation('logDevices', `Local setup discovery: ${this.tahomaLocal.lastSetupDiscovery.totalDeviceCount} devices across ${this.tahomaLocal.lastSetupDiscovery.totalGatewayCount} gateway(s) (${this.tahomaLocal.lastSetupDiscovery.fetchedDeviceCount} fetched from dedicated device endpoint, ${this.tahomaLocal.lastSetupDiscovery.embeddedDeviceCount} from embedded setup)`);
+					}
 				}
 			}
 			catch (error)
@@ -4322,6 +4360,150 @@ class myApp extends Homey.App
 		}
 
 		this.homey.settings.set('localBridges', this.localBridges);
+	}
+
+	normalizeMdnsHost(hostValue)
+	{
+		if (!hostValue)
+		{
+			return '';
+		}
+
+		let normalizedHost = `${hostValue}`.trim().toLowerCase();
+		if (!normalizedHost)
+		{
+			return '';
+		}
+
+		if (normalizedHost.includes('://'))
+		{
+			try
+			{
+				const parsed = new URL(normalizedHost);
+				normalizedHost = parsed.hostname || '';
+			}
+			catch (error)
+			{
+				normalizedHost = normalizedHost.split('/')[0];
+			}
+		}
+
+		normalizedHost = normalizedHost.split('/')[0];
+		if (normalizedHost.startsWith('[') && normalizedHost.endsWith(']'))
+		{
+			normalizedHost = normalizedHost.slice(1, -1);
+		}
+
+		if (normalizedHost.indexOf(':') >= 0)
+		{
+			const parts = normalizedHost.split(':');
+			if (parts.length === 2 && /^\d+$/.test(parts[1]))
+			{
+				normalizedHost = parts[0];
+			}
+		}
+
+		normalizedHost = normalizedHost.replace(/\.+$/, '');
+		return normalizedHost;
+	}
+
+	getMdnsHostCandidatesForBridge(bridgeInfo)
+	{
+		const candidates = new Set();
+		if (!bridgeInfo)
+		{
+			return candidates;
+		}
+
+		const bridgePin = this.normalizeBridgePin(bridgeInfo.pin);
+		if (bridgePin)
+		{
+			candidates.add(`gateway-${bridgePin}.local`);
+			candidates.add(`${bridgePin}.local`);
+		}
+
+		const normalizedUrlHost = this.normalizeMdnsHost(bridgeInfo.url);
+		if (normalizedUrlHost)
+		{
+			candidates.add(normalizedUrlHost);
+		}
+
+		return candidates;
+	}
+
+	upsertLocalMdnsLookup(bridgeInfo, persist = true)
+	{
+		if (!bridgeInfo || !bridgeInfo.address)
+		{
+			return false;
+		}
+
+		const mappedIp = `${bridgeInfo.address}`.trim();
+		if (!net.isIP(mappedIp))
+		{
+			return false;
+		}
+
+		const hosts = this.getMdnsHostCandidatesForBridge(bridgeInfo);
+		if (hosts.size === 0)
+		{
+			return false;
+		}
+
+		let changed = false;
+		for (const host of hosts)
+		{
+			const normalizedHost = this.normalizeMdnsHost(host);
+			if (!normalizedHost)
+			{
+				continue;
+			}
+
+			if (this.localMdnsLookup[normalizedHost] !== mappedIp)
+			{
+				this.localMdnsLookup[normalizedHost] = mappedIp;
+				changed = true;
+			}
+		}
+
+		if (changed && persist)
+		{
+			this.homey.settings.set('localMdnsLookup', this.localMdnsLookup);
+		}
+
+		return changed;
+	}
+
+	resolveMdnsHostname(hostname)
+	{
+		const normalizedHost = this.normalizeMdnsHost(hostname);
+		if (!normalizedHost)
+		{
+			return '';
+		}
+
+		const mappedIp = this.localMdnsLookup && this.localMdnsLookup[normalizedHost];
+		if (mappedIp && net.isIP(mappedIp))
+		{
+			return mappedIp;
+		}
+
+		for (const bridge of this.getDiscoveredLocalBridges())
+		{
+			if (!bridge || !bridge.address || !net.isIP(bridge.address))
+			{
+				continue;
+			}
+
+			const hostCandidates = this.getMdnsHostCandidatesForBridge(bridge);
+			if (hostCandidates.has(normalizedHost))
+			{
+				this.upsertLocalMdnsLookup(bridge);
+				return bridge.address;
+			}
+		}
+
+		return '';
 	}
 
 	normalizeBridgePin(pin)
