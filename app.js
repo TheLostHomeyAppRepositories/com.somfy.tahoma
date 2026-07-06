@@ -35,6 +35,7 @@ class myApp extends Homey.App
 		this.syncing = false;
 		this.syncTimerId = null;
 		this.loginTimerId = null;
+		this.initSyncInFlight = null;
 		this.boostTimerId = null;
 		this.unBoostTimerID = null;
 		this.unBoosting = false;
@@ -43,6 +44,7 @@ class myApp extends Homey.App
 		this._logoutInProgress = null;
 		this.lastLogTime = new Date(Date.now());
 		this.deviceHttp400Tracker = {};
+		this.deviceStateLogSignatures = {};
 
 		this.localBridgeInfo = this.homey.settings.get('localBridge');
 		this.localBearer = this.homey.settings.get('localBearer');
@@ -73,6 +75,7 @@ class myApp extends Homey.App
 		this.localPollingNoPinMatchLogged = false;
 		this.tahomaCloudsBySession = {};
 		this.cloudSessionRetryAfter = {};
+		this.cloudSessionAuthInFlight = {};
 		this.cloudLastSyncBySession = {};
 		this.primaryCloudSessionUsername = '';
 		this.forceImmediateCloudSync = false;
@@ -1353,41 +1356,80 @@ class myApp extends Homey.App
 			return false;
 		}
 
-		const cloudClient = this.getCloudClientForSession(normalizedUsername);
-		const clientUsername = this.normalizeSessionEmail(cloudClient.username);
-		const shouldRelogin = forceLogin || !cloudClient.authenticated || (clientUsername && (clientUsername !== normalizedUsername));
-		if (!shouldRelogin)
+		if (!this.cloudSessionAuthInFlight || (typeof this.cloudSessionAuthInFlight !== 'object'))
 		{
+			this.cloudSessionAuthInFlight = {};
+		}
+
+		const inFlightAuth = this.cloudSessionAuthInFlight[normalizedUsername];
+		if (inFlightAuth)
+		{
+			if (!forceLogin)
+			{
+				return inFlightAuth;
+			}
+
+			try
+			{
+				await inFlightAuth;
+			}
+			catch (error)
+			{
+				// Ignore previous in-flight failure and continue with forced login.
+			}
+		}
+
+		const authPromise = (async () =>
+		{
+			const cloudClient = this.getCloudClientForSession(normalizedUsername);
+			const clientUsername = this.normalizeSessionEmail(cloudClient.username);
+			const shouldRelogin = forceLogin || !cloudClient.authenticated || (clientUsername && (clientUsername !== normalizedUsername));
+			if (!shouldRelogin)
+			{
+				return true;
+			}
+
+			const retryAfter = this.cloudSessionRetryAfter[normalizedUsername] || 0;
+			if (!forceLogin && (retryAfter > Date.now()))
+			{
+				return false;
+			}
+
+			try
+			{
+				await cloudClient.logout();
+			}
+			catch (error)
+			{
+				this.logInformation('Cloud logout before relogin', error.message ? error.message : error);
+			}
+
+			// Keep a small gap between logout and login to avoid auth race conditions.
+			await new Promise((resolve) => this.homey.setTimeout(resolve, 1000));
+
+			const authenticated = await this.loginCloudClient(cloudClient, normalizedUsername, password, region || 'europe');
+			if (!authenticated)
+			{
+				this.cloudSessionRetryAfter[normalizedUsername] = Date.now() + 60000;
+				return false;
+			}
+
+			delete this.cloudSessionRetryAfter[normalizedUsername];
 			return true;
-		}
+		})();
 
-		const retryAfter = this.cloudSessionRetryAfter[normalizedUsername] || 0;
-		if (!forceLogin && (retryAfter > Date.now()))
-		{
-			return false;
-		}
-
+		this.cloudSessionAuthInFlight[normalizedUsername] = authPromise;
 		try
 		{
-			await cloudClient.logout();
+			return await authPromise;
 		}
-		catch (error)
+		finally
 		{
-			this.logInformation('Cloud logout before relogin', error.message ? error.message : error);
+			if (this.cloudSessionAuthInFlight[normalizedUsername] === authPromise)
+			{
+				delete this.cloudSessionAuthInFlight[normalizedUsername];
+			}
 		}
-
-		// Keep a small gap between logout and login to avoid auth race conditions.
-		await new Promise((resolve) => this.homey.setTimeout(resolve, 1000));
-
-		const authenticated = await this.loginCloudClient(cloudClient, normalizedUsername, password, region || 'europe');
-		if (!authenticated)
-		{
-			this.cloudSessionRetryAfter[normalizedUsername] = Date.now() + 60000;
-			return false;
-		}
-
-		delete this.cloudSessionRetryAfter[normalizedUsername];
-		return true;
 	}
 
 	async syncAllCloudSessions()
@@ -1585,6 +1627,27 @@ class myApp extends Homey.App
 				devices: [],
 			},
 		};
+
+		const buildDiscoveryStatus = (discovery) =>
+		{
+			if (!discovery || (typeof discovery !== 'object'))
+			{
+				return null;
+			}
+
+			return {
+				setupOID: discovery.setupOID || '',
+				accountSetupCount: discovery.accountSetupCount || 0,
+				attemptedSetupOIDCount: Array.isArray(discovery.attemptedSetupOIDs) ? discovery.attemptedSetupOIDs.length : 0,
+				crossSetupAttemptCount: discovery.crossSetupAttemptCount || 0,
+				crossSetupSuccessCount: discovery.crossSetupSuccessCount || 0,
+				crossSetupErrorCount: discovery.crossSetupErrorCount || 0,
+				totalGatewayCount: discovery.totalGatewayCount || 0,
+				totalDeviceCount: discovery.totalDeviceCount || 0,
+				deviceEndpointHitCount: Array.isArray(discovery.deviceEndpointHits) ? discovery.deviceEndpointHits.length : 0,
+				gatewayEndpointHitCount: Array.isArray(discovery.gatewayEndpointHits) ? discovery.gatewayEndpointHits.length : 0,
+			};
+		};
 		let cloudFetches = 0;
 
 		const cloudSessions = this.getCloudPollingSessions();
@@ -1624,9 +1687,16 @@ class myApp extends Homey.App
 						if (cloudClient.lastSetupDiscovery)
 						{
 							sessionLog.devices.cloud.discovery = cloudClient.lastSetupDiscovery;
+							sessionLog.devices.cloud.discoveryStatus = buildDiscoveryStatus(cloudClient.lastSetupDiscovery);
 							if (this.infoLogEnabled)
 							{
 								this.logInformation('logDevices', `Cloud setup discovery for ${session.username}: ${cloudClient.lastSetupDiscovery.totalDeviceCount} devices across ${cloudClient.lastSetupDiscovery.totalGatewayCount} gateway(s) (${cloudClient.lastSetupDiscovery.fetchedDeviceCount} fetched from dedicated device endpoint, ${cloudClient.lastSetupDiscovery.embeddedDeviceCount} from embedded setup)`);
+								this.logInformation('logDevices multi-setup status', {
+									scope: 'cloud',
+									session: session.username,
+									status: sessionLog.devices.cloud.discoveryStatus,
+									crossSetupAttempts: cloudClient.lastSetupDiscovery.crossSetupAttempts || [],
+								});
 							}
 						}
 						cloudFetches++;
@@ -1657,9 +1727,16 @@ class myApp extends Homey.App
 				if (this.tahomaCloud.lastSetupDiscovery)
 				{
 					singleSessionLog.devices.cloud.discovery = this.tahomaCloud.lastSetupDiscovery;
+					singleSessionLog.devices.cloud.discoveryStatus = buildDiscoveryStatus(this.tahomaCloud.lastSetupDiscovery);
 					if (this.infoLogEnabled)
 					{
 						this.logInformation('logDevices', `Cloud setup discovery for ${singleLogin}: ${this.tahomaCloud.lastSetupDiscovery.totalDeviceCount} devices across ${this.tahomaCloud.lastSetupDiscovery.totalGatewayCount} gateway(s) (${this.tahomaCloud.lastSetupDiscovery.fetchedDeviceCount} fetched from dedicated device endpoint, ${this.tahomaCloud.lastSetupDiscovery.embeddedDeviceCount} from embedded setup)`);
+						this.logInformation('logDevices multi-setup status', {
+							scope: 'cloud',
+							session: singleLogin,
+							status: singleSessionLog.devices.cloud.discoveryStatus,
+							crossSetupAttempts: this.tahomaCloud.lastSetupDiscovery.crossSetupAttempts || [],
+						});
 					}
 				}
 				devices.sessions.push(singleSessionLog);
@@ -1688,9 +1765,15 @@ class myApp extends Homey.App
 				if (this.tahomaLocal.lastSetupDiscovery)
 				{
 					devices.local.discovery = this.tahomaLocal.lastSetupDiscovery;
+					devices.local.discoveryStatus = buildDiscoveryStatus(this.tahomaLocal.lastSetupDiscovery);
 					if (this.infoLogEnabled)
 					{
 						this.logInformation('logDevices', `Local setup discovery: ${this.tahomaLocal.lastSetupDiscovery.totalDeviceCount} devices across ${this.tahomaLocal.lastSetupDiscovery.totalGatewayCount} gateway(s) (${this.tahomaLocal.lastSetupDiscovery.fetchedDeviceCount} fetched from dedicated device endpoint, ${this.tahomaLocal.lastSetupDiscovery.embeddedDeviceCount} from embedded setup)`);
+						this.logInformation('logDevices multi-setup status', {
+							scope: 'local',
+							status: devices.local.discoveryStatus,
+							crossSetupAttempts: this.tahomaLocal.lastSetupDiscovery.crossSetupAttempts || [],
+						});
 					}
 				}
 			}
@@ -2614,7 +2697,7 @@ class myApp extends Homey.App
 		return false;
 	}
 
-	logInformation(source, error)
+	logInformation(source, error, level = 1)
 	{
 		let data = '';
 		if (error)
@@ -2642,7 +2725,7 @@ class myApp extends Homey.App
 			data = this.varToString(data);
 		}
 
-		this.homey.error(`${source}, ${data}`);
+		this.homey.error(`[L${level}] ${source}, ${data}`);
 
 		if (this.homeyIP)
 		{
@@ -2663,6 +2746,7 @@ class myApp extends Homey.App
 					{
 						time: nowTime.toJSON(),
 						elapsed: timeDiff,
+						level,
 						source,
 						data,
 					},
@@ -2946,65 +3030,90 @@ class myApp extends Homey.App
 			this.loginTimerId = null;
 		}
 
-		const username = this.homey.settings.get('username');
-		const password = this.homey.settings.get('password');
-		const region = this.homey.settings.get('region');
-		if ((!username || !password) && (typeof this.ensureCredentialsFromSessions === 'function'))
-		{
-			this.ensureCredentialsFromSessions();
-		}
-
-		const retryUsername = this.homey.settings.get('username');
-		const retryPassword = this.homey.settings.get('password');
-		const effectiveUsername = retryUsername || username;
-		const effectivePassword = retryPassword || password;
-		const effectiveRegion = this.homey.settings.get('region') || region;
-		if (!effectiveUsername || !effectivePassword)
-		{
-			return;
-		}
-
-		let timeout = 15000;
-
-		try
+		if (this.initSyncInFlight)
 		{
 			if (this.infoLogEnabled)
 			{
-				this.logInformation('initSync', 'Starting');
+				this.logInformation('initSync', 'Already running; joining existing attempt');
 			}
-
-			await this.newLogin_2(effectiveUsername, effectivePassword, effectiveRegion);
-			return;
+			return this.initSyncInFlight;
 		}
-		catch (error)
+
+		const syncPromise = (async () =>
 		{
-			if (error.message)
+			const username = this.homey.settings.get('username');
+			const password = this.homey.settings.get('password');
+			const region = this.homey.settings.get('region');
+			if ((!username || !password) && (typeof this.ensureCredentialsFromSessions === 'function'))
 			{
-				this.logInformation('initSync', `Error: ${error.message}`);
+				this.ensureCredentialsFromSessions();
+			}
 
-				if (error.message.indexOf('Far Too many') >= 0)
+			const retryUsername = this.homey.settings.get('username');
+			const retryPassword = this.homey.settings.get('password');
+			const effectiveUsername = retryUsername || username;
+			const effectivePassword = retryPassword || password;
+			const effectiveRegion = this.homey.settings.get('region') || region;
+			if (!effectiveUsername || !effectivePassword)
+			{
+				return;
+			}
+
+			let timeout = 15000;
+
+			try
+			{
+				if (this.infoLogEnabled)
 				{
-					this.homey.clearTimeout(this.boostTimerId);
-					this.boostTimerId = null;
-					this.commandsQueued = 0;
-					timeout = this.homeyIP ? 910000 : 86410000;
+					this.logInformation('initSync', 'Starting');
 				}
-				else if (error.message === 'Please leave 1 minutes between login attempts')
+
+				await this.newLogin_2(effectiveUsername, effectivePassword, effectiveRegion);
+				return;
+			}
+			catch (error)
+			{
+				if (error.message)
 				{
-					this.homey.clearTimeout(this.boostTimerId);
-					this.boostTimerId = null;
-					this.commandsQueued = 0;
-					timeout = 61000;
+					this.logInformation('initSync', `Error: ${error.message}`);
+
+					if (error.message.indexOf('Far Too many') >= 0)
+					{
+						this.homey.clearTimeout(this.boostTimerId);
+						this.boostTimerId = null;
+						this.commandsQueued = 0;
+						timeout = this.homeyIP ? 910000 : 86410000;
+					}
+					else if (error.message === 'Please leave 1 minutes between login attempts')
+					{
+						this.homey.clearTimeout(this.boostTimerId);
+						this.boostTimerId = null;
+						this.commandsQueued = 0;
+						timeout = 61000;
+					}
+				}
+				else
+				{
+					this.logInformation('initSync', error);
 				}
 			}
-			else
+
+			// Try again later
+			this.loginTimerId = this.homey.setTimeout(() => this.initSync(), timeout);
+		})();
+
+		this.initSyncInFlight = syncPromise;
+		try
+		{
+			return await syncPromise;
+		}
+		finally
+		{
+			if (this.initSyncInFlight === syncPromise)
 			{
-				this.logInformation('initSync', error);
+				this.initSyncInFlight = null;
 			}
 		}
-
-		// Try again later
-		this.loginTimerId = this.homey.setTimeout(() => this.initSync(), timeout);
 	}
 
 	// Boost the sync speed when a command is executed that has status feedback
@@ -3719,6 +3828,29 @@ class myApp extends Homey.App
 		await new Promise((resolve) => this.homey.setTimeout(resolve, period));
 	}
 
+	logDeviceStatesDelta(source, deviceURL, states)
+	{
+		if (!this.infoLogEnabled)
+		{
+			return;
+		}
+
+		if (!this.deviceStateLogSignatures || (typeof this.deviceStateLogSignatures !== 'object'))
+		{
+			this.deviceStateLogSignatures = {};
+		}
+
+		const stateSignature = this.varToString(states);
+		const signatureKey = `${source}|${String(deviceURL || '')}`;
+		if (this.deviceStateLogSignatures[signatureKey] === stateSignature)
+		{
+			return;
+		}
+
+		this.deviceStateLogSignatures[signatureKey] = stateSignature;
+		this.logInformation(source, states);
+	}
+
 	varToString(source)
 	{
 		try
@@ -4172,7 +4304,7 @@ class myApp extends Homey.App
 				{
 					if (this.infoLogEnabled)
 					{
-						this.logInformation('Device local states', states);
+						this.logDeviceStatesDelta('Device local states', deviceURL, states);
 					}
 
 					return states;
@@ -4188,7 +4320,7 @@ class myApp extends Homey.App
 			{
 				if (this.infoLogEnabled)
 				{
-					this.logInformation('Device routed local states', states);
+					this.logDeviceStatesDelta('Device routed local states', deviceURL, states);
 				}
 
 				return states;
@@ -4206,7 +4338,7 @@ class myApp extends Homey.App
 			const states = await this.tahomaCloud.getDeviceStates(deviceURL);
 			if (this.infoLogEnabled)
 			{
-				this.logInformation('Device cloud states', states);
+				this.logDeviceStatesDelta('Device cloud states', deviceURL, states);
 			}
 
 			// Make sure we are not in local only mode as this device is cloud only
