@@ -1305,12 +1305,12 @@ class myApp extends Homey.App
 		return sessions;
 	}
 
-	async loginCloudClient(cloudClient, username, password, region)
+	async loginCloudClient(cloudClient, username, password, region, loginReason = 'session-auth')
 	{
 		let loginMethod = true;
 		try
 		{
-			await cloudClient.login(username, password, region, loginMethod, this.homeyIP);
+			await cloudClient.login(username, password, region, loginMethod, this.homeyIP, false, '', loginReason);
 		}
 		catch (error)
 		{
@@ -1330,7 +1330,7 @@ class myApp extends Homey.App
 		{
 			try
 			{
-				await cloudClient.login(username, password, region, loginMethod, this.homeyIP);
+				await cloudClient.login(username, password, region, loginMethod, this.homeyIP, false, '', `${loginReason}:fallback`);
 			}
 			catch (error)
 			{
@@ -1348,7 +1348,7 @@ class myApp extends Homey.App
 		return cloudClient.authenticated;
 	}
 
-	async ensureCloudSessionAuthenticated(username, password, region, forceLogin = false)
+	async ensureCloudSessionAuthenticated(username, password, region, forceLogin = false, loginReason = 'session-auth')
 	{
 		const normalizedUsername = this.normalizeSessionEmail(username);
 		if (!normalizedUsername || !password)
@@ -1407,7 +1407,8 @@ class myApp extends Homey.App
 			// Keep a small gap between logout and login to avoid auth race conditions.
 			await new Promise((resolve) => this.homey.setTimeout(resolve, 1000));
 
-			const authenticated = await this.loginCloudClient(cloudClient, normalizedUsername, password, region || 'europe');
+			const effectiveReason = forceLogin ? `${loginReason}:forced` : loginReason;
+			const authenticated = await this.loginCloudClient(cloudClient, normalizedUsername, password, region || 'europe', effectiveReason);
 			if (!authenticated)
 			{
 				this.cloudSessionRetryAfter[normalizedUsername] = Date.now() + 60000;
@@ -1447,7 +1448,7 @@ class myApp extends Homey.App
 		let nextInterval = CLOUD_INTERVAL * 1000;
 		for (const session of sessions)
 		{
-			const authenticated = await this.ensureCloudSessionAuthenticated(session.username, session.password, session.region, false);
+			const authenticated = await this.ensureCloudSessionAuthenticated(session.username, session.password, session.region, false, 'sync-loop');
 			if (!authenticated)
 			{
 				continue;
@@ -1519,7 +1520,7 @@ class myApp extends Homey.App
 
 			await this.stopSync('cloud');
 
-			const cloudAuthenticated = await this.ensureCloudSessionAuthenticated(username, password, region, true);
+			const cloudAuthenticated = await this.ensureCloudSessionAuthenticated(username, password, region, true, 'new-login');
 			if (cloudAuthenticated)
 			{
 				this.setPrimaryCloudSession(username);
@@ -1672,7 +1673,7 @@ class myApp extends Homey.App
 
 				try
 				{
-					const authenticated = await this.ensureCloudSessionAuthenticated(session.username, session.password, session.region, false);
+					const authenticated = await this.ensureCloudSessionAuthenticated(session.username, session.password, session.region, false, 'log-devices');
 					if (!authenticated)
 					{
 						devices.sessions.push(sessionLog);
@@ -2266,7 +2267,7 @@ class myApp extends Homey.App
 			{
 				try
 				{
-					const authenticated = await this.ensureCloudSessionAuthenticated(session.username, session.password, session.region, false);
+					const authenticated = await this.ensureCloudSessionAuthenticated(session.username, session.password, session.region, false, 'driver-support');
 					if (!authenticated)
 					{
 						continue;

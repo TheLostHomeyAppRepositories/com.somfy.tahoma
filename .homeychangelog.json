@@ -964,6 +964,9 @@
 		"en": "Updated device pairing screens to distinguishes gateway information for multiple Tahoma gateways on an account."
 	},
 	"4.0.144": {
-		"en": "Added support local DNS resolution of mDNS lookup. further attempt to support multiple Tahoma gateways on an account."
-	}
+		"en": "Added support local DNS resolution of mDNS lookup. Further attempt to support multiple Tahoma gateways on an account."
+	},
+	"4.0.145": {
+		"en": "Further attempt to support multiple Tahoma gateways on an account."
+	},
 }
