@@ -63,6 +63,22 @@ class TemperatureSensorDevice extends SensorDevice
 	// Update the capabilities
 	async syncEvents(events, local)
 	{
+		if (this.homey.app.infoLogEnabled && Array.isArray(events))
+		{
+			const controllableName = (this.getData().controllableName || '').toString();
+			for (const event of events)
+			{
+				if ((event.name === 'DeviceStateChangedEvent') && this.isRelatedDeviceURL(event.deviceURL, this.getDeviceUrl()) && Array.isArray(event.deviceStates))
+				{
+					const stateNames = event.deviceStates.map((state) => state && state.name).filter(Boolean);
+					this.homey.app.logInformation(this.getName(), {
+						message: `${controllableName} state names`,
+						stack: stateNames,
+					});
+				}
+			}
+		}
+
 		this.syncEventsList(events, this.CapabilitiesXRef, local);
 	}
 

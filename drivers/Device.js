@@ -592,8 +592,10 @@ class Device extends Homey.Device
 					try
 					{
 						// Find the tahoma device state for the table entry
-						const somfyName = xRefEntry.somfyNameGet;
-						const tahomaState = tahomaStates.find((state) => (state && (state.name === somfyName)));
+						const somfyNames = Array.isArray(xRefEntry.somfyNameGet)
+							? xRefEntry.somfyNameGet
+							: [xRefEntry.somfyNameGet];
+						const tahomaState = tahomaStates.find((state) => (state && somfyNames.indexOf(state.name) >= 0));
 						if (tahomaState)
 						{
 							let { value } = tahomaState;
@@ -628,7 +630,7 @@ class Device extends Homey.Device
 							}
 
 							// Found the entry
-							this.homey.app.logStates(`${this.getName()}: ${xRefEntry.somfyNameGet} = ${value}`);
+							this.homey.app.logStates(`${this.getName()}: ${tahomaState.name} = ${value}`);
 							if (xRefEntry.compare)
 							{
 								if (xRefEntry.compare[1].charAt(0) === '!')
@@ -772,7 +774,10 @@ class Device extends Homey.Device
 						// look up the entry so we can get all the Homey capability, etc
 						for (const xRefEntry of CapabilitiesXRef)
 						{
-							if (xRefEntry.somfyNameGet === tahomaState.name)
+							const somfyNames = Array.isArray(xRefEntry.somfyNameGet)
+								? xRefEntry.somfyNameGet
+								: [xRefEntry.somfyNameGet];
+							if (somfyNames.indexOf(tahomaState.name) >= 0)
 							{
 								// Yep we can relate to this one
 								let deviceValue = 'nodefect';
@@ -801,7 +806,7 @@ class Device extends Homey.Device
 									deviceValue = xRefEntry.conversions[tahomaState.value];
 								}
 
-								this.homey.app.logStates(`${this.getName()}: ${xRefEntry.somfyNameGet}= ${deviceValue}`);
+								this.homey.app.logStates(`${this.getName()}: ${tahomaState.name}= ${deviceValue}`);
 								const oldState = oldCapabilityStates[xRefEntry.homeyName];
 								let newState = deviceValue;
 								if (xRefEntry.compare)

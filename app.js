@@ -1476,6 +1476,8 @@ class myApp extends Homey.App
 		const normalizedCurrentLocalUsername = this.normalizeSessionEmail(this.tahomaLocal && this.tahomaLocal.username ? this.tahomaLocal.username : '');
 		const switchCloudAccount = !!(normalizedRequestedUsername && normalizedCurrentCloudUsername && (normalizedRequestedUsername !== normalizedCurrentCloudUsername));
 		const switchLocalAccount = !!(normalizedRequestedUsername && normalizedCurrentLocalUsername && (normalizedRequestedUsername !== normalizedCurrentLocalUsername));
+		const needsCloudLogin = !!(this.tahomaCloud && (!this.tahomaCloud.authenticated || forceLogin || switchCloudAccount));
+		let cloudAuthenticated = !needsCloudLogin && this.tahomaCloud ? this.tahomaCloud.authenticated : false;
 
 		// Stop the timer so periodic updates don't happen while changing login
 		if (this.loginTimerId)
@@ -1484,7 +1486,32 @@ class myApp extends Homey.App
 			this.loginTimerId = null;
 		}
 
-		if (this.localBridgeInfo && this.localBridgeInfo.pin && (!this.tahomaLocal.authenticated || forceLogin || switchLocalAccount))
+		// Need to do cloud login
+		if (needsCloudLogin)
+		{
+			if (switchCloudAccount && this.infoLogEnabled)
+			{
+				this.logInformation('newLogin_2', `Switching cloud account from ${normalizedCurrentCloudUsername} to ${normalizedRequestedUsername}`);
+			}
+
+			await this.stopSync('cloud');
+
+			cloudAuthenticated = await this.ensureCloudSessionAuthenticated(username, password, region, true, 'new-login');
+			if (cloudAuthenticated)
+			{
+				this.setPrimaryCloudSession(username);
+
+				// All good so save the credentials
+				this.homey.settings.set('username', username);
+				this.homey.settings.set('password', password);
+				this.homey.settings.set('region', region);
+
+				const setupInfo = await this.tahomaCloud.getSetupOID();
+				this.somfySetupOID = setupInfo.result;
+			}
+		}
+
+		if ((!forceLogin || !needsCloudLogin || cloudAuthenticated) && this.localBridgeInfo && this.localBridgeInfo.pin && (!this.tahomaLocal.authenticated || forceLogin || switchLocalAccount))
 		{
 			const bridgeCandidates = this.getCandidateCredentialsForLocalRouting(username, this.localBridgeInfo.pin);
 			if (bridgeCandidates.length > 0)
@@ -1510,33 +1537,13 @@ class myApp extends Homey.App
 			}
 		}
 
-		// Need to do cloud login
-		if (this.tahomaCloud && (!this.tahomaCloud.authenticated || forceLogin || switchCloudAccount))
-		{
-			if (switchCloudAccount && this.infoLogEnabled)
-			{
-				this.logInformation('newLogin_2', `Switching cloud account from ${normalizedCurrentCloudUsername} to ${normalizedRequestedUsername}`);
-			}
-
-			await this.stopSync('cloud');
-
-			const cloudAuthenticated = await this.ensureCloudSessionAuthenticated(username, password, region, true, 'new-login');
-			if (cloudAuthenticated)
-			{
-				this.setPrimaryCloudSession(username);
-
-				// All good so save the credentials
-				this.homey.settings.set('username', username);
-				this.homey.settings.set('password', password);
-				this.homey.settings.set('region', region);
-
-				const setupInfo = await this.tahomaCloud.getSetupOID();
-				this.somfySetupOID = setupInfo.result;
-			}
-		}
-
 		// Start the sync process
 		this.startSync();
+		if (needsCloudLogin)
+		{
+			return cloudAuthenticated;
+		}
+
 		if (this.localOnly)
 		{
 			return this.tahomaLocal.authenticated;

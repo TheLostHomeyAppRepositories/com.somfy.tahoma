@@ -91,6 +91,21 @@ class LightSensorDevice extends SensorDevice
 	// Update the capabilities
 	async syncEvents(events, local)
 	{
+		if (this.homey.app.infoLogEnabled && Array.isArray(events) && this.getData().controllableName === 'io:SunEnergyActuatorSensor')
+		{
+			for (const event of events)
+			{
+				if ((event.name === 'DeviceStateChangedEvent') && this.isRelatedDeviceURL(event.deviceURL, this.getDeviceUrl()) && Array.isArray(event.deviceStates))
+				{
+					const stateNames = event.deviceStates.map((state) => state && state.name).filter(Boolean);
+					this.homey.app.logInformation(this.getName(), {
+						message: 'SunEnergyActuatorSensor state names',
+						stack: stateNames,
+					});
+				}
+			}
+		}
+
 		await this.syncEventsList(events, this.CapabilitiesXRef, local);
 	}
 
