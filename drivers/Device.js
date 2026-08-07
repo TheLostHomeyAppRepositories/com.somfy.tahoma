@@ -58,13 +58,14 @@ class Device extends Homey.Device
 
 		try
 		{
+			const app = this.getAppSafe();
 			const settings = (typeof this.getSettings === 'function') ? this.getSettings() : {};
 			const sessionUsername = settings ? settings.sessionUsername : null;
-			if (sessionUsername && this.homey.app && (typeof this.homey.app.autoRemoveUnusedSession === 'function'))
+			if (sessionUsername && app && (typeof app.autoRemoveUnusedSession === 'function'))
 			{
 				this.homey.setTimeout(() =>
 				{
-					this.homey.app.autoRemoveUnusedSession(sessionUsername).catch((error) =>
+					app.autoRemoveUnusedSession(sessionUsername).catch((error) =>
 					{
 						this.error('autoRemoveUnusedSession failed', error);
 					});
@@ -231,7 +232,14 @@ class Device extends Homey.Device
 		let state = null;
 		try
 		{
-			const allDevices = await this.homey.app.getDeviceData();
+			const app = this.getAppSafe();
+			if (!app)
+			{
+				this.relatedStatesCache.set(cacheKey, { time: now, state: null });
+				return null;
+			}
+
+			const allDevices = await app.getDeviceData();
 			if (Array.isArray(allDevices))
 			{
 				for (const relatedDevice of allDevices)
@@ -269,9 +277,10 @@ class Device extends Homey.Device
 		}
 		catch (error)
 		{
-			if (this.homey.app.infoLogEnabled)
+			const app = this.getAppSafe();
+			if (app && app.infoLogEnabled)
 			{
-				this.homey.app.logInformation(this.getName(),
+				this.logInformationSafe(this.getName(),
 					{
 						message: 'Failed to read related component states',
 						stack: error,
@@ -295,6 +304,42 @@ class Device extends Homey.Device
 	isReady()
 	{
 		return this._ready;
+	}
+
+	getAppSafe()
+	{
+		try
+		{
+			return this.homey.app;
+		}
+		catch (error)
+		{
+			return null;
+		}
+	}
+
+	logInformationSafe(source, details)
+	{
+		const app = this.getAppSafe();
+		if (app && (typeof app.logInformation === 'function'))
+		{
+			app.logInformation(source, details);
+			return;
+		}
+
+		if (details && details.message)
+		{
+			this.error(`${source}: ${details.message}`);
+		}
+	}
+
+	logStatesSafe(message)
+	{
+		const app = this.getAppSafe();
+		if (app && (typeof app.logStates === 'function'))
+		{
+			app.logStates(message);
+		}
 	}
 
 	async onCapability(capabilityXRef, value, opts)
@@ -519,7 +564,7 @@ class Device extends Homey.Device
 			}
 			catch (error)
 			{
-				this.homey.app.logInformation(this.getName(),
+				this.logInformationSafe(this.getName(),
 					{
 						message: error.message,
 						stack: error.stack,
@@ -528,8 +573,8 @@ class Device extends Homey.Device
 			}
 		}
 
-		this.homey.app.logStates(`${this.getName()}: ${tahomaState.name} = ${tahomaState.value}`);
-		this.homey.app.logStates(`${this.getName()}: measure_battery = ${batteryLevel}`);
+		this.logStatesSafe(`${this.getName()}: ${tahomaState.name} = ${tahomaState.value}`);
+		this.logStatesSafe(`${this.getName()}: measure_battery = ${batteryLevel}`);
 		this.setCapabilityValue('measure_battery', batteryLevel).catch(this.error);
 
 		return true;
@@ -578,6 +623,12 @@ class Device extends Homey.Device
 	 */
 	async syncList(CapabilitiesXRef)
 	{
+		const app = this.getAppSafe();
+		if (!app)
+		{
+			return;
+		}
+
 		try
 		{
 			// Get this devices states from Tahoma
@@ -630,7 +681,7 @@ class Device extends Homey.Device
 							}
 
 							// Found the entry
-							this.homey.app.logStates(`${this.getName()}: ${tahomaState.name} = ${value}`);
+							this.logStatesSafe(`${this.getName()}: ${tahomaState.name} = ${value}`);
 							if (xRefEntry.compare)
 							{
 								if (xRefEntry.compare[1].charAt(0) === '!')
@@ -669,7 +720,7 @@ class Device extends Homey.Device
 					}
 					catch (error)
 					{
-						this.homey.app.logInformation(this.getName(),
+						this.logInformationSafe(this.getName(),
 							{
 								message: error.message,
 								stack: error.stack,
@@ -685,7 +736,7 @@ class Device extends Homey.Device
 			}
 			else
 			{
-				this.homey.app.logInformation(this.getName(),
+				this.logInformationSafe(this.getName(),
 					{
 						message: 'No states returned from Tahoma',
 					});
@@ -693,7 +744,7 @@ class Device extends Homey.Device
 		}
 		catch (error)
 		{
-			this.homey.app.logInformation(this.getName(),
+			this.logInformationSafe(this.getName(),
 				{
 					message: error.message,
 					stack: error.stack,
@@ -704,6 +755,12 @@ class Device extends Homey.Device
 	// look for updates in the events array
 	async syncEventsList(events, CapabilitiesXRef, local)
 	{
+		const app = this.getAppSafe();
+		if (!app)
+		{
+			return;
+		}
+
 		if (events === null)
 		{
 			// No events so synchronise all capabilities
@@ -723,7 +780,7 @@ class Device extends Homey.Device
 			myURL = this.getDeviceUrl();
 		}
 
-		if (!local && this.homey.app.isLocalDevice(myURL, this.combineSubURLs))
+		if (!local && app.isLocalDevice(myURL, this.combineSubURLs))
 		{
 			// This device is handled locally so ignore cloud updates
 			return;
@@ -755,9 +812,9 @@ class Device extends Homey.Device
 						}
 					}
 
-					if (this.homey.app.infoLogEnabled)
+					if (app.infoLogEnabled)
 					{
-						this.homey.app.logInformation(this.getName(),
+						this.logInformationSafe(this.getName(),
 							{
 								message: 'Processing device state change event',
 								stack: event,
@@ -787,9 +844,9 @@ class Device extends Homey.Device
 								}
 								else if (!xRefEntry.allowNull)
 								{
-									if (this.homey.app.infoLogEnabled)
+									if (app.infoLogEnabled)
 									{
-										this.homey.app.logInformation(this.getName(),
+										this.logInformationSafe(this.getName(),
 											{
 												message: 'State has no value',
 												stack: { capability: xRefEntry.homeyName },
@@ -806,7 +863,7 @@ class Device extends Homey.Device
 									deviceValue = xRefEntry.conversions[tahomaState.value];
 								}
 
-								this.homey.app.logStates(`${this.getName()}: ${tahomaState.name}= ${deviceValue}`);
+								this.logStatesSafe(`${this.getName()}: ${tahomaState.name}= ${deviceValue}`);
 								const oldState = oldCapabilityStates[xRefEntry.homeyName];
 								let newState = deviceValue;
 								if (xRefEntry.compare)
@@ -838,7 +895,7 @@ class Device extends Homey.Device
 									}
 									else
 									{
-										this.homey.app.logInformation(this.getName(),
+										this.logInformationSafe(this.getName(),
 											{
 												message: 'Invalid luminance payload type',
 												stack: { capability: xRefEntry.homeyName, state: newState },
@@ -885,9 +942,9 @@ class Device extends Homey.Device
 										}
 									}
 
-									if (this.homey.app.infoLogEnabled)
+									if (app.infoLogEnabled)
 									{
-										this.homey.app.logInformation(this.getName(),
+										this.logInformationSafe(this.getName(),
 											{
 												message: 'Setting new state',
 												stack: { capability: xRefEntry.homeyName, state: newState },
@@ -896,9 +953,9 @@ class Device extends Homey.Device
 									const { homeyName } = xRefEntry;
 									this.triggerCapabilityListener(homeyName, newState, { fromCloudSync: true }).catch(this.error);
 								}
-								else if (this.homey.app.infoLogEnabled)
+								else if (app.infoLogEnabled)
 								{
-									this.homey.app.logInformation(this.getName(),
+									this.logInformationSafe(this.getName(),
 										{
 											message: 'Same as existing state',
 											stack: { capability: xRefEntry.homeyName, state: newState },
@@ -926,7 +983,7 @@ class Device extends Homey.Device
 								const newIdx = this.executionCommands.push({ id: event.execId, name: eventAction.command });
 								if (!local && this.boostSync)
 								{
-									if (!await this.homey.app.boostSync())
+									if (!await app.boostSync())
 									{
 										this.executionCommands.splice(newIdx, 1);
 									}
@@ -945,10 +1002,10 @@ class Device extends Homey.Device
 					if (idx >= 0)
 					{
 						// We did know so unreference our event boost
-						await this.homey.app.unBoostSync();
+						await app.unBoostSync();
 						this.executionCommands.splice(idx, 1);
 
-						this.homey.app.triggerCommandComplete(this, this.executionCmd, (event.newState === 'COMPLETED'));
+						app.triggerCommandComplete(this, this.executionCmd, (event.newState === 'COMPLETED'));
 						this.driver.triggerDeviceCommandComplete(this, this.executionCmd, (event.newState === 'COMPLETED'));
 						this.commandExecuting = '';
 
@@ -977,27 +1034,33 @@ class Device extends Homey.Device
 	// Get all the states for this device from Tahoma
 	async getStates()
 	{
+		const app = this.getAppSafe();
+		if (!app)
+		{
+			return null;
+		}
+
 		try
 		{
-			if (this.homey.app.isLoggedIn())
+			if (app.isLoggedIn())
 			{
-				if (this.homey.app.infoLogEnabled)
+				if (app.infoLogEnabled)
 				{
-					this.homey.app.logInformation('Device Get States.', this.getName());
+					this.logInformationSafe('Device Get States.', this.getName());
 				}
 
 				// Get the recorded url (might include a #1 on the end)
 				const deviceURL = this.getDeviceUrl(1);
 				if (deviceURL)
 				{
-					let states = await this.homey.app.getDeviceStates(deviceURL);
+					let states = await app.getDeviceStates(deviceURL);
 					if (!states)
 					{
 						const url0 = this.getDeviceUrl(0);
 						if (url0 && (deviceURL !== url0))
 						{
 							// We have a sub url to check
-							states = await this.homey.app.getDeviceStates(url0);
+							states = await app.getDeviceStates(url0);
 						}
 					}
 
@@ -1010,7 +1073,7 @@ class Device extends Homey.Device
 							// We have a sub url to check
 							try
 							{
-								const states2 = await this.homey.app.getDeviceStates(url2);
+								const states2 = await app.getDeviceStates(url2);
 								states = states.concat(states2);
 							}
 							catch (err)
@@ -1062,7 +1125,7 @@ class Device extends Homey.Device
 		catch (error)
 		{
 			const stack = error.response ? error.response.data : error;
-			this.homey.app.logInformation('Device initial sync error',
+			this.logInformationSafe('Device initial sync error',
 				{
 					message: this.getName(),
 					stack,
@@ -1088,9 +1151,10 @@ class Device extends Homey.Device
 					if (deviceState.name === stateName)
 					{
 						// Found a duplicate
-						if (this.homey.app.infoLogEnabled)
+						const app = this.getAppSafe();
+						if (app && app.infoLogEnabled)
 						{
-							this.homey.app.logInformation(this.getName(),
+							this.logInformationSafe(this.getName(),
 								{
 									message: 'Ignoring duplicate event',
 									stack: deviceState,

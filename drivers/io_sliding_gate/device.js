@@ -11,6 +11,103 @@ const WindowCoveringsDevice = require('../WindowCoveringsDevice');
 class SlidingGateDevice extends WindowCoveringsDevice
 {
 
+    async resolveDynamicGatePedestrianAliasId()
+    {
+        try
+        {
+            const allDevices = await this.homey.app.getDeviceData();
+            if (!Array.isArray(allDevices))
+            {
+                return '';
+            }
+
+            const myURL = this.getDeviceUrl();
+            const current = allDevices.find((device) => device && device.deviceURL === myURL);
+            if (!current || !Array.isArray(current.attributes))
+            {
+                return '';
+            }
+
+            const supportedAliasesAttribute = current.attributes.find((attribute) => (
+                attribute
+                && (attribute.name === 'core:SupportedAliases')
+                && Array.isArray(attribute.value)
+            ));
+            if (!supportedAliasesAttribute)
+            {
+                return '';
+            }
+
+            const pedestrianAlias = supportedAliasesAttribute.value.find((alias) => (
+                alias
+                && (alias.type === 'pedestrian')
+                && alias.id
+            ));
+
+            if (!pedestrianAlias)
+            {
+                return '';
+            }
+
+            return String(pedestrianAlias.id);
+        }
+        catch (error)
+        {
+            return '';
+        }
+    }
+
+    async onCapabilityPedestrian(value, opts)
+    {
+        if (!opts || !opts.fromCloudSync)
+        {
+            if (this.controllableName !== 'io:dynamicgateiocomponent')
+            {
+                return super.onCapabilityPedestrian(value, opts);
+            }
+
+            if (!value)
+            {
+                return Promise.resolve();
+            }
+
+            const aliasId = this.dynamicPedestrianAliasId || '';
+            if (!aliasId)
+            {
+                return Promise.resolve();
+            }
+
+            const deviceData = this.getData();
+            try
+            {
+                if (this.executionId !== null)
+                {
+                    await this.homey.app.cancelExecution(deviceData.label, this.executionId.id, this.executionId.local);
+                }
+
+                const action = {
+                    name: 'goToAlias',
+                    parameters: [aliasId],
+                };
+                const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
+                this.executionCmd = action.name;
+                this.executionId = { id: result.execId, local: result.local };
+
+                this.setWarning(null).catch(this.error);
+            }
+            catch (err)
+            {
+                this.executionCmd = '';
+                this.setWarning(err.message).catch(this.error);
+                this.logCapabilityCommandError('onCapabilityPedestrian', err);
+            }
+
+            return Promise.resolve();
+        }
+
+        return super.onCapabilityPedestrian(value, opts);
+    }
+
     async onInit()
     {
         if (this.hasCapability('lock_state'))
@@ -31,10 +128,18 @@ class SlidingGateDevice extends WindowCoveringsDevice
 		}
 
         const isDynamicGate = (this.controllableName === 'io:dynamicgateiocomponent');
+        this.dynamicPedestrianAliasId = isDynamicGate ? await this.resolveDynamicGatePedestrianAliasId() : '';
 
         if (isDynamicGate)
         {
-            if (this.hasCapability('pedestrian'))
+            if (this.dynamicPedestrianAliasId)
+            {
+                if (!this.hasCapability('pedestrian'))
+                {
+                    this.addCapability('pedestrian').catch(this.error);
+                }
+            }
+            else if (this.hasCapability('pedestrian'))
             {
                 this.removeCapability('pedestrian').catch(this.error);
             }

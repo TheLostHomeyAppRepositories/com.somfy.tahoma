@@ -2193,6 +2193,9 @@ class myApp extends Homey.App
 	{
 		const collected = [];
 		const seen = new Set();
+		const ignoredControllableNames = new Set([
+			'internal:wificomponent',
+		]);
 
 		const isProtocolGatewayDevice = (device) =>
 		{
@@ -2233,6 +2236,11 @@ class myApp extends Homey.App
 				const label = device && device.label ? String(device.label) : '';
 				const controllableName = device && device.controllableName ? String(device.controllableName) : '';
 				if (!controllableName)
+				{
+					continue;
+				}
+
+				if (ignoredControllableNames.has(controllableName.toLowerCase()))
 				{
 					continue;
 				}

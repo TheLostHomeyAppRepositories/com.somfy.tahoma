@@ -968,5 +968,8 @@
 	},
 	"4.0.145": {
 		"en": "Further attempt to support multiple Tahoma gateways on an account."
+	},
+	"4.0.146": {
+		"en": "Enhance device handling with safe app access and improve local login attempt management."
 	}
 }
