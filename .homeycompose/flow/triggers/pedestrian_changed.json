@@ -37,7 +37,7 @@
 		{
 			"name": "device",
 			"type": "device",
-			"filter": "driver_id=i0_gate|io_sliding_gate"
+			"filter": "driver_id=io_gate|io_sliding_gate"
 		}
 	]
 }

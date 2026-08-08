@@ -66,7 +66,7 @@ class SlidingGateDevice extends WindowCoveringsDevice
                 return super.onCapabilityPedestrian(value, opts);
             }
 
-            if (!value)
+            if (value === false)
             {
                 return Promise.resolve();
             }

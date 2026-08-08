@@ -971,5 +971,8 @@
 	},
 	"4.0.146": {
 		"en": "Enhance device handling with safe app access and improve local login attempt management."
+	},
+	"4.0.147": {
+		"en": "Changed pedestrian button to non-latched button as the function does not toggle."
 	}
 }

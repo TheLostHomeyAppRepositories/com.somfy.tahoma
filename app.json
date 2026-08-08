@@ -35,7 +35,7 @@
     "ru": "Сердце вашего умного дома",
     "ko": "스마트 홈의 중심"
   },
-  "version": "4.0.146",
+  "version": "4.0.147",
   "compatibility": ">=12.0.0",
   "permissions": [
     "homey:manager:api"
@@ -533,7 +533,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=i0_gate|io_sliding_gate"
+            "filter": "driver_id=io_gate|io_sliding_gate"
           }
         ],
         "id": "pedestrian_changed"
@@ -20034,7 +20034,7 @@
     },
     "pedestrian": {
       "type": "boolean",
-      "getable": true,
+      "getable": false,
       "setable": true,
       "uiComponent": "button",
       "title": {

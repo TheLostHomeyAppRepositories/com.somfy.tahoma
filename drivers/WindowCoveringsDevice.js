@@ -83,6 +83,7 @@ class WindowCoveringsDevice extends Device
 		this.lastDispatchedCommand = '';
 		this.lastDispatchedAt = 0;
 		this.lastFailureType = '';
+		this.lastPedestrianState = null;
 
 		this.quietMode = false;
 
@@ -530,14 +531,27 @@ class WindowCoveringsDevice extends Device
 		else
 		{
 			// New value from Tahoma
-			this.setCapabilityValue('pedestrian', value).catch(this.error);
-
 			// trigger flows
 			const tokens = {
 				pedestrian: value,
 			};
 			this.driver.triggerPedestrianChange(this, tokens);
 		}
+	}
+
+	updatePedestrianState(value)
+	{
+		const pedestrianState = (value === 'pedestrian');
+		if (this.lastPedestrianState === pedestrianState)
+		{
+			return;
+		}
+
+		this.lastPedestrianState = pedestrianState;
+		this.triggerCapabilityListener('pedestrian', pedestrianState,
+		{
+			fromCloudSync: true,
+		}).catch(this.error);
 	}
 
 	async onCapabilityWindowcoveringsClosed(value, opts)
@@ -635,6 +649,10 @@ class WindowCoveringsDevice extends Device
 				if (openClosedState)
 				{
 					this.homey.app.logStates(`${this.getName()}: ${this.openClosedStateName} = ${openClosedState.value}`);
+					if (this.hasCapability('pedestrian'))
+					{
+						this.updatePedestrianState(openClosedState.value);
+					}
 
 					// Convert Tahoma states to Homey equivalent
 					if (closureState && (closureState.value !== 0) && (closureState.value !== 100))
@@ -644,15 +662,6 @@ class WindowCoveringsDevice extends Device
 					}
 					else
 					{
-						if (this.openClosedStateName === 'core:OpenClosedPedestrianState')
-						{
-							// Special state = My Position
-							this.triggerCapabilityListener('pedestrian', (openClosedState.value === 'pedestrian'),
-							{
-								fromCloudSync: true,
-							}).catch(this.error);
-						}
-
 						openClosedState.value = this.windowcoveringsStatesMap[openClosedState.value];
 					}
 
@@ -887,6 +896,11 @@ class WindowCoveringsDevice extends Device
 								// Check for more message that are the same
 								if (!this.checkForDuplicatesEvents(events, i, x + 1, myURL, this.openClosedStateName))
 								{
+									if (this.hasCapability('pedestrian'))
+									{
+										this.updatePedestrianState(deviceState.value);
+									}
+
 									// Device Open / Closed state. Only process if the last position was 0 or 100
 									if (lastPosition === null)
 									{

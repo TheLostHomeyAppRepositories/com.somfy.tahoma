@@ -1,6 +1,6 @@
 {
   "type": "boolean",
-  "getable": true,
+  "getable": false,
   "setable": true,
   "uiComponent": "button",
   "title": {
