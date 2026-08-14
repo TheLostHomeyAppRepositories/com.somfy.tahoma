@@ -974,5 +974,8 @@
 	},
 	"4.0.147": {
 		"en": "Changed pedestrian button to non-latched button as the function does not toggle."
+	},
+	"4.0.148": {
+		"en": "Added drivers for RTS light and Socket."
 	}
 }
