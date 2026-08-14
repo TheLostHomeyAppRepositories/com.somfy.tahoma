@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "Velux roof window (io)",
-    "nl": "Velux dakraam (io)",
-    "da": "Velux tagvindue (io)",
-    "de": "Velux Dachfenster (io)",
-    "es": "Ventana de tejado Velux (io)",
-    "fr": "Fenêtre de toit Velux (io)",
-    "it": "Finestra da tetto Velux (io)",
-    "no": "Velux takvindu (io)",
-    "sv": "Velux takfönster (io)",
-    "pl": "Okno dachowe Velux (io)",
-    "ru": "Мансардное окно Velux (io)",
-    "ko": "벨룩스 지붕 창문(io)"
+    "en": "Velux roof window (IO)",
+    "nl": "Velux dakraam (IO)",
+    "da": "Velux tagvindue (IO)",
+    "de": "Velux Dachfenster (IO)",
+    "es": "Ventana de tejado Velux (IO)",
+    "fr": "FenÃªtre de toit Velux (IO)",
+    "it": "Finestra da tetto Velux (IO)",
+    "no": "Velux takvindu (IO)",
+    "sv": "Velux takfÃ¶nster (IO)",
+    "pl": "Okno dachowe Velux (IO)",
+    "ru": "ÐœÐ°Ð½ÑÐ°Ñ€Ð´Ð½Ð¾Ðµ Ð¾ÐºÐ½Ð¾ Velux (IO)",
+    "ko": "ë²¨ë£©ìŠ¤ ì§€ë¶• ì°½ë¬¸(IO)"
   },
   "class": "windowcoverings",
   "capabilities": [
@@ -30,27 +30,27 @@
         "de": "Hoch / Runter invertieren",
         "es": "Invertir arriba / abajo",
         "fr": "Inverser haut / bas",
-        "it": "Inverti su / giù",
+        "it": "Inverti su / giÃ¹",
         "no": "Omvendt opp / ned",
         "sv": "Invertera upp / ner",
-        "pl": "Odwróć góra / dół",
-        "ru": "Перевернуть вверх / вниз",
-        "ko": "위 / 아래 반전"
+        "pl": "OdwrÃ³Ä‡ gÃ³ra / dÃ³Å‚",
+        "ru": "ÐŸÐµÑ€ÐµÐ²ÐµÑ€Ð½ÑƒÑ‚ÑŒ Ð²Ð²ÐµÑ€Ñ… / Ð²Ð½Ð¸Ð·",
+        "ko": "ìœ„ / ì•„ëž˜ ë°˜ì „"
       },
       "value": false,
       "hint": {
         "en": "Reverse the Up / Down direction controls",
         "nl": "Draai de bedieningselementen omhoog/omlaag om",
-        "da": "Vend retningen på op/ned-kontrollerne",
+        "da": "Vend retningen pÃ¥ op/ned-kontrollerne",
         "de": "Umkehren der Hoch-/Runter-Richtungssteuerung",
-        "es": "Invertir los controles de dirección arriba / abajo",
+        "es": "Invertir los controles de direcciÃ³n arriba / abajo",
         "fr": "Inverser les commandes de direction haut / bas",
-        "it": "Inverti i controlli di direzione su / giù",
-        "no": "Vend retningen på opp/ned-kontrollene",
-        "sv": "Vänd upp / ner-riktningskontroller",
-        "pl": "Odwróć kierunki góra / dół",
-        "ru": "Перевернуть управление направлением вверх / вниз",
-        "ko": "위 / 아래 방향 조작을 반전"
+        "it": "Inverti i controlli di direzione su / giÃ¹",
+        "no": "Vend retningen pÃ¥ opp/ned-kontrollene",
+        "sv": "VÃ¤nd upp / ner-riktningskontroller",
+        "pl": "OdwrÃ³Ä‡ kierunki gÃ³ra / dÃ³Å‚",
+        "ru": "ÐŸÐµÑ€ÐµÐ²ÐµÑ€Ð½ÑƒÑ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸ÐµÐ¼ Ð²Ð²ÐµÑ€Ñ… / Ð²Ð½Ð¸Ð·",
+        "ko": "ìœ„ / ì•„ëž˜ ë°©í–¥ ì¡°ìž‘ì„ ë°˜ì „"
       }
     },
     {
@@ -61,29 +61,29 @@
         "nl": "Tegelactie omkeren",
         "da": "Omvend flisehandling",
         "de": "Fliesenaktion invertieren",
-        "es": "Invertir la acción de la baldosa",
+        "es": "Invertir la acciÃ³n de la baldosa",
         "fr": "Inverser l'action de la tuile",
         "it": "Inverti l'azione della piastrella",
         "no": "Omvendt flishandling",
-        "sv": "Invertera plattåtgärd",
-        "pl": "Odwróć akcję kafelka",
-        "ru": "Инвертировать действие плитки",
-        "ko": "타일 동작 반전"
+        "sv": "Invertera plattÃ¥tgÃ¤rd",
+        "pl": "OdwrÃ³Ä‡ akcjÄ™ kafelka",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸",
+        "ko": "íƒ€ì¼ ë™ìž‘ ë°˜ì „"
       },
       "value": false,
       "hint": {
         "en": "Reverse the Open / Close state of the Tile",
         "nl": "Keer de Open / Sluit-status van de tegel om",
-        "da": "Vend den åbne / lukkede tilstand på flisen",
-        "de": "Umkehren des Öffnen / Schließen-Zustands der Fliese",
+        "da": "Vend den Ã¥bne / lukkede tilstand pÃ¥ flisen",
+        "de": "Umkehren des Ã–ffnen / SchlieÃŸen-Zustands der Fliese",
         "es": "Invertir el estado de abierto / cerrado del azulejo",
-        "fr": "Inverser l'état ouvert / fermé de la tuile",
+        "fr": "Inverser l'Ã©tat ouvert / fermÃ© de la tuile",
         "it": "Inverti lo stato di apertura / chiusura della piastrella",
-        "no": "Vend den åpne / lukkede tilstanden til flisen",
-        "sv": "Vänd den öppna/stängda statusen på plattan",
-        "pl": "Odwróć stan otwarte / zamknięte kafelka",
-        "ru": "Инвертировать состояние плитки «Открыто/закрыто»",
-        "ko": "타일의 열기 / 닫기 상태를 반전"
+        "no": "Vend den Ã¥pne / lukkede tilstanden til flisen",
+        "sv": "VÃ¤nd den Ã¶ppna/stÃ¤ngda statusen pÃ¥ plattan",
+        "pl": "OdwrÃ³Ä‡ stan otwarte / zamkniÄ™te kafelka",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸ Â«ÐžÑ‚ÐºÑ€Ñ‹Ñ‚Ð¾/Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¾Â»",
+        "ko": "íƒ€ì¼ì˜ ì—´ê¸° / ë‹«ê¸° ìƒíƒœë¥¼ ë°˜ì „"
       }
     },
     {
@@ -94,14 +94,14 @@
         "nl": "Positie omkeren",
         "da": "Omvend position",
         "de": "Position invertieren",
-        "es": "Invertir posición",
+        "es": "Invertir posiciÃ³n",
         "fr": "Inverser la position",
         "it": "Inverti posizione",
         "no": "Omvend posisjon",
         "sv": "Invertera positionen",
-        "pl": "Odwróć pozycję",
-        "ru": "Инвертировать положение",
-        "ko": "위치 반전"
+        "pl": "OdwrÃ³Ä‡ pozycjÄ™",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ",
+        "ko": "ìœ„ì¹˜ ë°˜ì „"
       },
       "value": false,
       "hint": {
@@ -109,14 +109,14 @@
         "nl": "Draai de positieregeling om.",
         "da": "Vend positionskontrollen.",
         "de": "Umkehr der Positionssteuerung.",
-        "es": "Invertir el control de posición.",
+        "es": "Invertir el control de posiciÃ³n.",
         "fr": "Inverser la commande de position.",
         "it": "Inverti il controllo della posizione.",
         "no": "Vend posisjonskontrollen.",
-        "sv": "Vänd positionskontrollen.",
-        "pl": "Odwróć kontrolę pozycji.",
-        "ru": "Инвертировать управление позицией.",
-        "ko": "위치 제어를 반전"
+        "sv": "VÃ¤nd positionskontrollen.",
+        "pl": "OdwrÃ³Ä‡ kontrolÄ™ pozycji.",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÐµÐ¹.",
+        "ko": "ìœ„ì¹˜ ì œì–´ë¥¼ ë°˜ì „"
       }
     }
   ],

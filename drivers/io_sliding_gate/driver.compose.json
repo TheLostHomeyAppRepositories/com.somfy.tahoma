@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "Sliding gate (io)",
-    "nl": "Schuifpoort (io)",
-    "da": "Skydelåge (io)",
-    "de": "Schiebetor (io)",
-    "es": "Puerta corredera (io)",
-    "fr": "Portail coulissant (io)",
-    "it": "Cancello scorrevole (io)",
-    "no": "Skyveport (io)",
-    "sv": "Skjutport (io)",
-    "pl": "Brama przesuwna (io)",
-    "ru": "Раздвижные ворота (io)",
-    "ko": "슬라이딩 게이트 (io)"
+    "en": "Sliding gate (IO)",
+    "nl": "Schuifpoort (IO)",
+    "da": "SkydelÃ¥ge (IO)",
+    "de": "Schiebetor (IO)",
+    "es": "Puerta corredera (IO)",
+    "fr": "Portail coulissant (IO)",
+    "it": "Cancello scorrevole (IO)",
+    "no": "Skyveport (IO)",
+    "sv": "Skjutport (IO)",
+    "pl": "Brama przesuwna (IO)",
+    "ru": "Ð Ð°Ð·Ð´Ð²Ð¸Ð¶Ð½Ñ‹Ðµ Ð²Ð¾Ñ€Ð¾Ñ‚Ð° (IO)",
+    "ko": "ìŠ¬ë¼ì´ë”© ê²Œì´íŠ¸ (IO)"
   },
   "class": "other",
   "capabilities": [

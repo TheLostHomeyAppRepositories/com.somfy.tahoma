@@ -1973,6 +1973,96 @@
             ]
           }
         ]
+      },
+      {
+        "id": "ergonomics_mode_changed",
+        "title": {
+          "en": "The ergonomics mode changed"
+        },
+        "tokens": [
+          {
+            "name": "mode",
+            "type": "string",
+            "title": {
+              "en": "New Mode"
+            },
+            "example": "onOff"
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=zigbee_remote_ergonomics"
+          }
+        ]
+      },
+      {
+        "id": "ergonomics_mode_changed_to",
+        "title": {
+          "en": "The ergonomics mode changed to"
+        },
+        "titleFormatted": {
+          "en": "The ergonomics mode changed to [[expected_mode]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=zigbee_remote_ergonomics"
+          },
+          {
+            "type": "dropdown",
+            "name": "expected_mode",
+            "title": {
+              "en": "Expected Mode"
+            },
+            "values": [
+              {
+                "id": "onOff",
+                "label": {
+                  "en": "On/Off"
+                }
+              },
+              {
+                "id": "dimming",
+                "label": {
+                  "en": "Dimming"
+                }
+              },
+              {
+                "id": "1D",
+                "label": {
+                  "en": "1D"
+                }
+              },
+              {
+                "id": "1Dadvanced",
+                "label": {
+                  "en": "1D Advanced"
+                }
+              },
+              {
+                "id": "2D",
+                "label": {
+                  "en": "2D"
+                }
+              },
+              {
+                "id": "tiltOnly",
+                "label": {
+                  "en": "Tilt Only"
+                }
+              },
+              {
+                "id": "TDBU",
+                "label": {
+                  "en": "TDBU"
+                }
+              }
+            ]
+          }
+        ]
       }
     ],
     "conditions": [
@@ -3132,7 +3222,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=heater_variable|rts_dimmable_light"
+            "filter": "driver_id=heater_variable|rts_dimmable_light|on_off_switch_rts"
           }
         ]
       },
@@ -3156,7 +3246,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=heater_variable|rts_dimmable_light"
+            "filter": "driver_id=heater_variable|rts_dimmable_lightA|on_off_switch_rts"
           }
         ]
       },
@@ -3194,7 +3284,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=rts_dimmable_light"
+            "filter": "driver_id=rts_dimmable_light|on_off_switch_rts"
           },
           {
             "name": "duration",
@@ -6766,18 +6856,18 @@
         "small": "/drivers/color_light/assets/images/small.png"
       },
       "name": {
-        "en": "RGB Light",
-        "nl": "RGB-licht",
-        "da": "RGB Lys",
-        "de": "RGB Licht",
-        "es": "Luz RGB",
-        "fr": "Lumière RGB",
-        "it": "Luce RGB",
-        "no": "RGB Lys",
-        "sv": "RGB Ljus",
-        "pl": "Światło RGB",
-        "ru": "RGB свет",
-        "ko": "RGB 조명"
+        "en": "RGB Light (IO)",
+        "nl": "RGB-licht (IO)",
+        "da": "RGB Lys (IO)",
+        "de": "RGB Licht (IO)",
+        "es": "Luz RGB (IO)",
+        "fr": "Lumière RGB (IO)",
+        "it": "Luce RGB (IO)",
+        "no": "RGB Lys (IO)",
+        "sv": "RGB Ljus (IO)",
+        "pl": "Światło RGB (IO)",
+        "ru": "RGB свет (IO)",
+        "ko": "RGB 조명 (IO)"
       },
       "class": "light",
       "capabilities": [
@@ -6883,18 +6973,18 @@
         "small": "/drivers/color_temperature_light/assets/images/small.png"
       },
       "name": {
-        "en": "RGBW Light",
-        "nl": "RGBW-licht",
-        "da": "RGBW Lys",
-        "de": "RGBW Licht",
-        "es": "Luz RGBW",
-        "fr": "Lumière RGBW",
-        "it": "Luce RGBW",
-        "no": "RGBW Lys",
-        "sv": "RGBW Ljus",
-        "pl": "Światło RGBW",
-        "ru": "RGBW свет",
-        "ko": "RGBW 조명"
+        "en": "RGBW Light (Hue)",
+        "nl": "RGBW-licht (Hue)",
+        "da": "RGBW Lys (Hue)",
+        "de": "RGBW Licht (Hue)",
+        "es": "Luz RGBW (Hue)",
+        "fr": "Lumière RGBW (Hue)",
+        "it": "Luce RGBW (Hue)",
+        "no": "RGBW Lys (Hue)",
+        "sv": "RGBW Ljus (Hue)",
+        "pl": "Światło RGBW (Hue)",
+        "ru": "RGBW свет (Hue)",
+        "ko": "RGBW 조명 (Hue)"
       },
       "class": "light",
       "capabilities": [
@@ -7191,18 +7281,18 @@
         "small": "/drivers/dimmable_light/assets/images/small.png"
       },
       "name": {
-        "en": "Dimmable light",
-        "nl": "Dimbaar licht",
-        "da": "Dæmpbart lys",
-        "de": "Dimmbares Licht",
-        "es": "Luz regulable",
-        "fr": "Lumière dimmable",
-        "it": "Luce dimmerabile",
-        "no": "Dimbar lys",
-        "sv": "Dimbar ljus",
-        "pl": "Światło ściemniane",
-        "ru": "Регулируемый свет",
-        "ko": "조광 가능한 빛"
+        "en": "Dimmable light (IO, Hue, ZWave)",
+        "nl": "Dimbaar licht (IO, Hue, ZWave)",
+        "da": "Dæmpbart lys (IO, Hue, ZWave)",
+        "de": "Dimmbares Licht (IO, Hue, ZWave)",
+        "es": "Luz regulable (IO, Hue, ZWave)",
+        "fr": "Lumière dimmable (IO, Hue, ZWave)",
+        "it": "Luce dimmerabile (IO, Hue, ZWave)",
+        "no": "Dimbar lys (IO, Hue, ZWave)",
+        "sv": "Dimbar ljus (IO, Hue, ZWave)",
+        "pl": "Światło ściemniane (IO, Hue, ZWave)",
+        "ru": "Регулируемый свет (IO, Hue, ZWave)",
+        "ko": "조광 가능한 빛 (IO, Hue, ZWave)"
       },
       "class": "light",
       "capabilities": [
@@ -9264,18 +9354,18 @@
         "small": "/drivers/io_door_lock/assets/images/small.png"
       },
       "name": {
-        "en": "Door Lock (io)",
-        "nl": "Deurslot (io)",
-        "da": "Dørlås (io)",
-        "de": "Türschloss (io)",
-        "es": "Cerradura de puerta (io)",
-        "fr": "Serrure de porte (io)",
-        "it": "Serratura della porta (io)",
-        "no": "Dørlås (io)",
-        "sv": "Dörrlås (io)",
-        "pl": "Zamek do drzwi (io)",
-        "ru": "Дверной замок (io)",
-        "ko": "문 잠금 장치 (io)"
+        "en": "Door Lock (IO)",
+        "nl": "Deurslot (IO)",
+        "da": "Dørlås (IO)",
+        "de": "Türschloss (IO)",
+        "es": "Cerradura de puerta (IO)",
+        "fr": "Serrure de porte (IO)",
+        "it": "Serratura della porta (IO)",
+        "no": "Dørlås (IO)",
+        "sv": "Dörrlås (IO)",
+        "pl": "Zamek do drzwi (IO)",
+        "ru": "Дверной замок (IO)",
+        "ko": "문 잠금 장치 (IO)"
       },
       "class": "lock",
       "capabilities": [
@@ -9823,18 +9913,18 @@
         "small": "/drivers/io_garage_door/assets/images/small.png"
       },
       "name": {
-        "en": "Garage Door with Position Control (io)",
-        "nl": "Garagedeur met Positiebesturing (io)",
-        "da": "Garageport med Positionskontrol (io)",
-        "de": "Garagentor mit Positionskontrolle (io)",
-        "es": "Puerta de Garaje con Control de Posición (io)",
-        "fr": "Porte de Garage avec Contrôle de Position (io)",
-        "it": "Porta del Garage con Controllo di Posizione (io)",
-        "no": "Garasjeport med Posisjonskontroll (io)",
-        "sv": "Garagedörr med Positionskontroll (io)",
-        "pl": "Drzwi Garażowe z Kontrolą Pozycji (io)",
-        "ru": "Гаражные ворота с контролем положения (io)",
-        "ko": "위치 제어가 있는 차고 문 (io)"
+        "en": "Garage Door with Position Control (IO)",
+        "nl": "Garagedeur met Positiebesturing (IO)",
+        "da": "Garageport med Positionskontrol (IO)",
+        "de": "Garagentor mit Positionskontrolle (IO)",
+        "es": "Puerta de Garaje con Control de Posición (IO)",
+        "fr": "Porte de Garage avec Contrôle de Position (IO)",
+        "it": "Porta del Garage con Controllo di Posizione (IO)",
+        "no": "Garasjeport med Posisjonskontroll (IO)",
+        "sv": "Garagedörr med Positionskontroll (IO)",
+        "pl": "Drzwi Garażowe z Kontrolą Pozycji (IO)",
+        "ru": "Гаражные ворота с контролем положения (IO)",
+        "ko": "위치 제어가 있는 차고 문 (IO)"
       },
       "class": "garagedoor",
       "capabilities": [
@@ -10070,18 +10160,18 @@
         "small": "/drivers/io_garage_door_partial/assets/images/small.png"
       },
       "name": {
-        "en": "Garage Door - Open and Close (io)",
-        "nl": "Garagedeur - Openen en Sluiten (io)",
-        "da": "Garageport - Åben og Luk (io)",
-        "de": "Garagentor - Öffnen und Schließen (io)",
-        "es": "Puerta de garaje - Abrir y cerrar (io)",
-        "fr": "Porte de garage - Ouvrir et Fermer (io)",
-        "it": "Porta del garage - Apri e Chiudi (io)",
-        "no": "Garasjedør - Åpne og Lukk (io)",
-        "sv": "Garageport - Öppna och Stäng (io)",
-        "pl": "Drzwi Garażowe - Otwieranie i Zamykane (io)",
-        "ru": "Гаражная дверь - Открыть и Закрыть (io)",
-        "ko": "차고 문 - 열고 닫기 (io)"
+        "en": "Garage Door - Open and Close (IO)",
+        "nl": "Garagedeur - Openen en Sluiten (IO)",
+        "da": "Garageport - Åben og Luk (IO)",
+        "de": "Garagentor - Öffnen und Schließen (IO)",
+        "es": "Puerta de garaje - Abrir y cerrar (IO)",
+        "fr": "Porte de garage - Ouvrir et Fermer (IO)",
+        "it": "Porta del garage - Apri e Chiudi (IO)",
+        "no": "Garasjedør - Åpne og Lukk (IO)",
+        "sv": "Garageport - Öppna och Stäng (IO)",
+        "pl": "Drzwi Garażowe - Otwieranie i Zamykane (IO)",
+        "ru": "Гаражная дверь - Открыть и Закрыть (IO)",
+        "ko": "차고 문 - 열고 닫기 (IO)"
       },
       "class": "garagedoor",
       "capabilities": [
@@ -10274,7 +10364,7 @@
         "small": "/drivers/io_gate/assets/images/small.png"
       },
       "name": {
-        "en": "Positionable Gate (io)",
+        "en": "Positionable Gate (IO)",
         "fr": "Portail positionnable (IO)",
         "de": "Positionierbares Tor (IO)",
         "nl": "Positioneerbare poort (IO)"
@@ -10291,14 +10381,14 @@
           "type": "dropdown",
           "label": {
             "en": "Device Class",
-            "fr": "Classe de périphérique",
-            "de": "Geräteklasse",
+            "fr": "Classe de pÃ©riphÃ©rique",
+            "de": "GerÃ¤teklasse",
             "nl": "Apparaatklassen"
           },
           "value": "other",
           "hint": {
             "en": "Set the Homey class.",
-            "fr": "Définissez la classe Homey.",
+            "fr": "DÃ©finissez la classe Homey.",
             "de": "Setzen Sie die Homey-Klasse.",
             "nl": "Stel de Homey-klasse in."
           },
@@ -10307,7 +10397,7 @@
               "id": "other",
               "label": {
                 "en": "Generic class",
-                "fr": "Classe générique",
+                "fr": "Classe gÃ©nÃ©rique",
                 "de": "Generische Klasse",
                 "nl": "Generieke klasse"
               }
@@ -10525,18 +10615,18 @@
         "small": "/drivers/io_horizontal_awning/assets/images/small.png"
       },
       "name": {
-        "en": "Awning / Pergola (io)",
-        "nl": "Buitenzonwering / Pergola (io)",
-        "da": "Markise / Pergola (io)",
-        "de": "Markise / Pergola (io)",
-        "es": "Toldo / Pérgola (io)",
-        "fr": "Auvent / Pergola (io)",
-        "it": "Tenda / Pergola (io)",
-        "no": "Markise / Pergola (io)",
-        "sv": "Markis / Pergola (io)",
-        "pl": "Markiza / Pergola (io)",
-        "ru": "Маркиза / Пергола (io)",
-        "ko": "차양 / 퍼골라 (io)"
+        "en": "Awning / Pergola (IO)",
+        "nl": "Buitenzonwering / Pergola (IO)",
+        "da": "Markise / Pergola (IO)",
+        "de": "Markise / Pergola (IO)",
+        "es": "Toldo / PÃ©rgola (IO)",
+        "fr": "Auvent / Pergola (IO)",
+        "it": "Tenda / Pergola (IO)",
+        "no": "Markise / Pergola (IO)",
+        "sv": "Markis / Pergola (IO)",
+        "pl": "Markiza / Pergola (IO)",
+        "ru": "ÐœÐ°Ñ€ÐºÐ¸Ð·Ð° / ÐŸÐµÑ€Ð³Ð¾Ð»Ð° (IO)",
+        "ko": "ì°¨ì–‘ / í¼ê³¨ë¼ (IO)"
       },
       "class": "sunshade",
       "capabilities": [
@@ -10557,12 +10647,12 @@
             "de": "Umdrehen Hoch / Runter",
             "es": "Invertir Arriba / Abajo",
             "fr": "Inverser Haut / Bas",
-            "it": "Inverti Su / Giù",
+            "it": "Inverti Su / GiÃ¹",
             "no": "Inverter opp / ned",
             "sv": "Invertera upp / ner",
-            "pl": "Odwróć Góra / Dół",
-            "ru": "Инвертировать Вверх / Вниз",
-            "ko": "위 / 아래 반전"
+            "pl": "OdwrÃ³Ä‡ GÃ³ra / DÃ³Å‚",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð’Ð²ÐµÑ€Ñ… / Ð’Ð½Ð¸Ð·",
+            "ko": "ìœ„ / ì•„ëž˜ ë°˜ì „"
           },
           "value": true,
           "hint": {
@@ -10570,14 +10660,14 @@
             "nl": "Draai de bedieningselementen omhoog/omlaag om",
             "da": "Vend retningen af op / ned kontroller",
             "de": "Richtung der Hoch / Runter Steuerung umkehren",
-            "es": "Invertir los controles de dirección Arriba / Abajo",
+            "es": "Invertir los controles de direcciÃ³n Arriba / Abajo",
             "fr": "Inverser les commandes de direction Haut / Bas",
-            "it": "Inverti i controlli della direzione Su / Giù",
+            "it": "Inverti i controlli della direzione Su / GiÃ¹",
             "no": "Inverter retningen for opp / ned kontrollene",
-            "sv": "Invertera riktningen för upp / ner kontrollerna",
-            "pl": "Odwróć kierunek sterowania Góra / Dół",
-            "ru": "Инвертировать направление управления Вверх / Вниз",
-            "ko": "위 / 아래 방향 제어 반전"
+            "sv": "Invertera riktningen fÃ¶r upp / ner kontrollerna",
+            "pl": "OdwrÃ³Ä‡ kierunek sterowania GÃ³ra / DÃ³Å‚",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð’Ð²ÐµÑ€Ñ… / Ð’Ð½Ð¸Ð·",
+            "ko": "ìœ„ / ì•„ëž˜ ë°©í–¥ ì œì–´ ë°˜ì „"
           }
         },
         {
@@ -10588,29 +10678,29 @@
             "nl": "Tegelactie omkeren",
             "da": "Vend flisehandling",
             "de": "Kachelaktion umdrehen",
-            "es": "Invertir acción de baldosa",
+            "es": "Invertir acciÃ³n de baldosa",
             "fr": "Inverser l'action de la tuile",
             "it": "Invertire azione piastrella",
             "no": "Inverter flisehandling",
-            "sv": "Invertera kakelåtgärd",
-            "pl": "Odwróć działanie płytki",
-            "ru": "Инвертировать действие плитки",
-            "ko": "타일 동작 반전"
+            "sv": "Invertera kakelÃ¥tgÃ¤rd",
+            "pl": "OdwrÃ³Ä‡ dziaÅ‚anie pÅ‚ytki",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸",
+            "ko": "íƒ€ì¼ ë™ìž‘ ë°˜ì „"
           },
           "value": true,
           "hint": {
             "en": "Reverse the Open / Close state of the Tile",
             "nl": "Keer de Open / Sluit-status van de tegel om",
-            "da": "Vend åben / lukket tilstand for flisen",
-            "de": "Zustand der Kachel Öffnen / Schließen umkehren",
+            "da": "Vend Ã¥ben / lukket tilstand for flisen",
+            "de": "Zustand der Kachel Ã–ffnen / SchlieÃŸen umkehren",
             "es": "Invertir el estado Abierto / Cerrado de la baldosa",
-            "fr": "Inverser l'état Ouvert / Fermé de la tuile",
+            "fr": "Inverser l'Ã©tat Ouvert / FermÃ© de la tuile",
             "it": "Inverti lo stato di apertura / chiusura della piastrella",
-            "no": "Inverter åpen / lukket tilstand på flisen",
-            "sv": "Invertera kaklets öppna / stängda tillstånd",
-            "pl": "Odwróć stan otwarcia / zamknięcia płytki",
-            "ru": "Инвертировать состояние плитки Открыто / Закрыто",
-            "ko": "타일 열림 / 닫힘 상태 반전"
+            "no": "Inverter Ã¥pen / lukket tilstand pÃ¥ flisen",
+            "sv": "Invertera kaklets Ã¶ppna / stÃ¤ngda tillstÃ¥nd",
+            "pl": "OdwrÃ³Ä‡ stan otwarcia / zamkniÄ™cia pÅ‚ytki",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸ ÐžÑ‚ÐºÑ€Ñ‹Ñ‚Ð¾ / Ð—Ð°ÐºÑ€Ñ‹Ñ‚Ð¾",
+            "ko": "íƒ€ì¼ ì—´ë¦¼ / ë‹«íž˜ ìƒíƒœ ë°˜ì „"
           }
         },
         {
@@ -10621,14 +10711,14 @@
             "nl": "Positie omkeren",
             "da": "Vend position",
             "de": "Position umkehren",
-            "es": "Invertir posición",
+            "es": "Invertir posiciÃ³n",
             "fr": "Inverser la position",
             "it": "Inverti posizione",
             "no": "Inverter posisjon",
             "sv": "Invertera position",
-            "pl": "Odwróć pozycję",
-            "ru": "Инвертировать положение",
-            "ko": "위치 반전"
+            "pl": "OdwrÃ³Ä‡ pozycjÄ™",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ",
+            "ko": "ìœ„ì¹˜ ë°˜ì „"
           },
           "value": true,
           "hint": {
@@ -10636,14 +10726,14 @@
             "nl": "Draai de positieregeling om.",
             "da": "Vend positionskontrollen.",
             "de": "Positionsteuerung umkehren.",
-            "es": "Invertir el control de posición.",
-            "fr": "Inverser le contrôle de position.",
+            "es": "Invertir el control de posiciÃ³n.",
+            "fr": "Inverser le contrÃ´le de position.",
             "it": "Inverti il controllo della posizione.",
             "no": "Inverter posisjonskontrollen.",
             "sv": "Invertera positionskontrollen.",
-            "pl": "Odwróć sterowanie pozycją.",
-            "ru": "Инвертировать управление положением.",
-            "ko": "위치 제어 반전."
+            "pl": "OdwrÃ³Ä‡ sterowanie pozycjÄ….",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸ÐµÐ¼.",
+            "ko": "ìœ„ì¹˜ ì œì–´ ë°˜ì „."
           }
         }
       ],
@@ -10739,18 +10829,18 @@
         "small": "/drivers/io_light_sensor/assets/images/small.png"
       },
       "name": {
-        "en": "Sun sensor (io)",
-        "nl": "Zonsensor (io)",
-        "da": "SSolsensor (io)",
-        "de": "Sonnensensor (io)",
-        "es": "Sensor solar (io)",
-        "fr": "Capteur solaire (io)",
-        "it": "Sensore solare (io)",
-        "no": "SSolsensor (io)",
-        "sv": "SSolsensor (io)",
-        "pl": "Czujnik słońca (io)",
-        "ru": "Солнечный датчик (io)",
-        "ko": "태양 센서 (io)"
+        "en": "Sun sensor (IO)",
+        "nl": "Zonsensor (IO)",
+        "da": "SSolsensor (IO)",
+        "de": "Sonnensensor (IO)",
+        "es": "Sensor solar (IO)",
+        "fr": "Capteur solaire (IO)",
+        "it": "Sensore solare (IO)",
+        "no": "SSolsensor (IO)",
+        "sv": "SSolsensor (IO)",
+        "pl": "Czujnik sÅ‚oÅ„ca (IO)",
+        "ru": "Ð¡Ð¾Ð»Ð½ÐµÑ‡Ð½Ñ‹Ð¹ Ð´Ð°Ñ‚Ñ‡Ð¸Ðº (IO)",
+        "ko": "íƒœì–‘ ì„¼ì„œ (IO)"
       },
       "class": "sensor",
       "energy": {
@@ -10856,18 +10946,18 @@
         "small": "/drivers/io_occupancy_detector/assets/images/small.png"
       },
       "name": {
-        "en": "Occupancy Detector (io)",
-        "nl": "Bezettingsdetector (io)",
-        "da": "Belægningsdetektor (io)",
-        "de": "Belegungsdetektor (io)",
-        "es": "Detector de Ocupación (io)",
-        "fr": "Détecteur d'Occupation (io)",
-        "it": "Rilevatore di Occupazione (io)",
-        "no": "Okkuperingsdetektor (io)",
-        "sv": "Beläggningsdetektor (io)",
-        "pl": "Detektor zajętości (io)",
-        "ru": "Датчик занятости (io)",
-        "ko": "점유 감지기 (io)"
+        "en": "Occupancy Detector (IO)",
+        "nl": "Bezettingsdetector (IO)",
+        "da": "BelÃ¦gningsdetektor (IO)",
+        "de": "Belegungsdetektor (IO)",
+        "es": "Detector de OcupaciÃ³n (IO)",
+        "fr": "DÃ©tecteur d'Occupation (IO)",
+        "it": "Rilevatore di Occupazione (IO)",
+        "no": "Okkuperingsdetektor (IO)",
+        "sv": "BelÃ¤ggningsdetektor (IO)",
+        "pl": "Detektor zajÄ™toÅ›ci (IO)",
+        "ru": "Ð”Ð°Ñ‚Ñ‡Ð¸Ðº Ð·Ð°Ð½ÑÑ‚Ð¾ÑÑ‚Ð¸ (IO)",
+        "ko": "ì ìœ  ê°ì§€ê¸° (IO)"
       },
       "class": "sensor",
       "capabilities": [
@@ -11074,18 +11164,18 @@
         "small": "/drivers/io_opening_detector/assets/images/small.png"
       },
       "name": {
-        "en": "Opening Detector (io)",
-        "nl": "Openingsmelder (io)",
-        "da": "Åbningsdetektor (io)",
-        "de": "Öffnungsdetektor (io)",
-        "es": "Detector de Apertura (io)",
-        "fr": "Détecteur d'Ouverture (io)",
-        "it": "Rivelatore di Apertura (io)",
-        "no": "Åpningsdetektor (io)",
-        "sv": "Öppningsdetektor (io)",
-        "pl": "Detektor Otwarcia (io)",
-        "ru": "Датчик Открывания (io)",
-        "ko": "개폐 감지기 (io)"
+        "en": "Opening Detector (IO)",
+        "nl": "Openingsmelder (IO)",
+        "da": "Ã…bningsdetektor (IO)",
+        "de": "Ã–ffnungsdetektor (IO)",
+        "es": "Detector de Apertura (IO)",
+        "fr": "DÃ©tecteur d'Ouverture (IO)",
+        "it": "Rivelatore di Apertura (IO)",
+        "no": "Ã…pningsdetektor (IO)",
+        "sv": "Ã–ppningsdetektor (IO)",
+        "pl": "Detektor Otwarcia (IO)",
+        "ru": "Ð”Ð°Ñ‚Ñ‡Ð¸Ðº ÐžÑ‚ÐºÑ€Ñ‹Ð²Ð°Ð½Ð¸Ñ (IO)",
+        "ko": "ê°œí ê°ì§€ê¸° (IO)"
       },
       "class": "sensor",
       "energy": {
@@ -11191,18 +11281,18 @@
         "small": "/drivers/io_pergola/assets/images/small.png"
       },
       "name": {
-        "en": "Slated Pergola (io)",
-        "nl": "Lamel Pergola (io)",
-        "da": "Skifer Pergola (io)",
-        "de": "Schiefer Pergola (io)",
-        "es": "Pérgola de Lamas (io)",
-        "fr": "Pergola Lattée (io)",
-        "it": "Pergola Lamellare (io)",
-        "no": "Skjelett Pergola (io)",
-        "sv": "Skiffer Pergola (io)",
-        "pl": "Pergola Łupkowa (io)",
-        "ru": "Шиферная Пергола (io)",
-        "ko": "슬레이트 퍼골라 (io)"
+        "en": "Slated Pergola (IO)",
+        "nl": "Lamel Pergola (IO)",
+        "da": "Skifer Pergola (IO)",
+        "de": "Schiefer Pergola (IO)",
+        "es": "PÃ©rgola de Lamas (IO)",
+        "fr": "Pergola LattÃ©e (IO)",
+        "it": "Pergola Lamellare (IO)",
+        "no": "Skjelett Pergola (IO)",
+        "sv": "Skiffer Pergola (IO)",
+        "pl": "Pergola Åupkowa (IO)",
+        "ru": "Ð¨Ð¸Ñ„ÐµÑ€Ð½Ð°Ñ ÐŸÐµÑ€Ð³Ð¾Ð»Ð° (IO)",
+        "ko": "ìŠ¬ë ˆì´íŠ¸ í¼ê³¨ë¼ (IO)"
       },
       "class": "sunshade",
       "capabilities": [
@@ -11220,12 +11310,12 @@
             "de": "Umkehren Hoch / Runter",
             "es": "Invertir Arriba / Abajo",
             "fr": "Inverser Haut / Bas",
-            "it": "Inverti Su / Giù",
+            "it": "Inverti Su / GiÃ¹",
             "no": "Vend opp / ned",
-            "sv": "Vänd upp / ner",
-            "pl": "Odwróć góra / dół",
-            "ru": "Инвертировать Вверх / Вниз",
-            "ko": "위 / 아래 반전"
+            "sv": "VÃ¤nd upp / ner",
+            "pl": "OdwrÃ³Ä‡ gÃ³ra / dÃ³Å‚",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð’Ð²ÐµÑ€Ñ… / Ð’Ð½Ð¸Ð·",
+            "ko": "ìœ„ / ì•„ëž˜ ë°˜ì „"
           },
           "value": false,
           "hint": {
@@ -11233,14 +11323,14 @@
             "nl": "Draai de bedieningselementen omhoog/omlaag om",
             "da": "Vend retningen for Op / Ned kontrol",
             "de": "Umkehren der Hoch / Runter Richtungssteuerung",
-            "es": "Invertir los controles de dirección Arriba / Abajo",
+            "es": "Invertir los controles de direcciÃ³n Arriba / Abajo",
             "fr": "Inverser les commandes de direction Haut / Bas",
-            "it": "Inverti i controlli della direzione Su / Giù",
+            "it": "Inverti i controlli della direzione Su / GiÃ¹",
             "no": "Vend retningen for opp / ned kontrollene",
-            "sv": "Vänd riktning för upp / ner kontrollerna",
-            "pl": "Odwróć kierunek sterowania góra / dół",
-            "ru": "Инвертировать управление направлением Вверх / Вниз",
-            "ko": "위 / 아래 방향 제어 반전"
+            "sv": "VÃ¤nd riktning fÃ¶r upp / ner kontrollerna",
+            "pl": "OdwrÃ³Ä‡ kierunek sterowania gÃ³ra / dÃ³Å‚",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸ÐµÐ¼ Ð’Ð²ÐµÑ€Ñ… / Ð’Ð½Ð¸Ð·",
+            "ko": "ìœ„ / ì•„ëž˜ ë°©í–¥ ì œì–´ ë°˜ì „"
           }
         },
         {
@@ -11251,14 +11341,14 @@
             "nl": "Positie omkeren",
             "da": "Vend Position",
             "de": "Position Umkehren",
-            "es": "Invertir Posición",
+            "es": "Invertir PosiciÃ³n",
             "fr": "Inverser la Position",
             "it": "Inverti la Posizione",
             "no": "Vend Posisjon",
-            "sv": "Vänd Position",
-            "pl": "Odwróć Pozycję",
-            "ru": "Инвертировать Позицию",
-            "ko": "위치 반전"
+            "sv": "VÃ¤nd Position",
+            "pl": "OdwrÃ³Ä‡ PozycjÄ™",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÐŸÐ¾Ð·Ð¸Ñ†Ð¸ÑŽ",
+            "ko": "ìœ„ì¹˜ ë°˜ì „"
           },
           "value": false,
           "hint": {
@@ -11266,14 +11356,14 @@
             "nl": "Draai de positieregeling om.",
             "da": "Vend positionskontrollen.",
             "de": "Umkehren der Positionssteuerung.",
-            "es": "Invertir el control de posición.",
+            "es": "Invertir el control de posiciÃ³n.",
             "fr": "Inverser la commande de position.",
             "it": "Inverti il controllo della posizione.",
             "no": "Vend posisjonskontrollen.",
-            "sv": "Vänd positionskontrollen.",
-            "pl": "Odwróć sterowanie pozycją.",
-            "ru": "Инвертировать управление положением.",
-            "ko": "위치 제어 반전."
+            "sv": "VÃ¤nd positionskontrollen.",
+            "pl": "OdwrÃ³Ä‡ sterowanie pozycjÄ….",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸ÐµÐ¼.",
+            "ko": "ìœ„ì¹˜ ì œì–´ ë°˜ì „."
           }
         }
       ],
@@ -11475,18 +11565,18 @@
         "small": "/drivers/io_roller_shutter/assets/images/small.png"
       },
       "name": {
-        "en": "Roller shutter (io)",
-        "nl": "Rolluik (io)",
-        "da": "Rullegardin (io)",
-        "de": "Rollladen (io)",
-        "es": "Persiana enrollable (io)",
-        "fr": "Volet roulant (io)",
-        "it": "Tapparella (io)",
-        "no": "Rulleskodde (io)",
-        "sv": "Rulljalusi (io)",
-        "pl": "Roleta (io)",
-        "ru": "Роллеты (io)",
-        "ko": "롤러 셔터 (io)"
+        "en": "Roller shutter (IO)",
+        "nl": "Rolluik (IO)",
+        "da": "Rullegardin (IO)",
+        "de": "Rollladen (IO)",
+        "es": "Persiana enrollable (IO)",
+        "fr": "Volet roulant (IO)",
+        "it": "Tapparella (IO)",
+        "no": "Rulleskodde (IO)",
+        "sv": "Rulljalusi (IO)",
+        "pl": "Roleta (IO)",
+        "ru": "Ð Ð¾Ð»Ð»ÐµÑ‚Ñ‹ (IO)",
+        "ko": "ë¡¤ëŸ¬ ì…”í„° (IO)"
       },
       "class": "blinds",
       "capabilities": [
@@ -11506,27 +11596,27 @@
             "de": "Hoch / Runter umkehren",
             "es": "Invertir Arriba / Abajo",
             "fr": "Inverser Haut / Bas",
-            "it": "Inverti Su / Giù",
+            "it": "Inverti Su / GiÃ¹",
             "no": "Omvend Opp / Ned",
             "sv": "Invertera Upp / Ner",
-            "pl": "Odwróć Góra / Dół",
-            "ru": "Инвертировать Вверх / Вниз",
-            "ko": "위 / 아래 반전"
+            "pl": "OdwrÃ³Ä‡ GÃ³ra / DÃ³Å‚",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð’Ð²ÐµÑ€Ñ… / Ð’Ð½Ð¸Ð·",
+            "ko": "ìœ„ / ì•„ëž˜ ë°˜ì „"
           },
           "value": false,
           "hint": {
             "en": "Reverse the Up / Down direction controls",
             "nl": "Draai de bedieningselementen omhoog/omlaag om",
-            "da": "Omvend retningen på Op / Ned kontrollerne",
-            "de": "Richtungskontrollen für Hoch / Runter umkehren",
-            "es": "Invertir los controles de dirección Arriba / Abajo",
+            "da": "Omvend retningen pÃ¥ Op / Ned kontrollerne",
+            "de": "Richtungskontrollen fÃ¼r Hoch / Runter umkehren",
+            "es": "Invertir los controles de direcciÃ³n Arriba / Abajo",
             "fr": "Inverser les commandes de direction Haut / Bas",
-            "it": "Inverti i controlli di direzione Su / Giù",
-            "no": "Omvend retningen på Opp / Ned kontrollene",
-            "sv": "Invertera riktningen på Upp / Ner kontrollerna",
-            "pl": "Odwróć sterowanie kierunkiem Góra / Dół",
-            "ru": "Инвертировать направления управления Вверх / Вниз",
-            "ko": "위 / 아래 방향 제어 반전"
+            "it": "Inverti i controlli di direzione Su / GiÃ¹",
+            "no": "Omvend retningen pÃ¥ Opp / Ned kontrollene",
+            "sv": "Invertera riktningen pÃ¥ Upp / Ner kontrollerna",
+            "pl": "OdwrÃ³Ä‡ sterowanie kierunkiem GÃ³ra / DÃ³Å‚",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð’Ð²ÐµÑ€Ñ… / Ð’Ð½Ð¸Ð·",
+            "ko": "ìœ„ / ì•„ëž˜ ë°©í–¥ ì œì–´ ë°˜ì „"
           }
         },
         {
@@ -11537,29 +11627,29 @@
             "nl": "Tegelactie omkeren",
             "da": "Omvend Flisehandling",
             "de": "Fliesenaktion umkehren",
-            "es": "Invertir Acción del Azulejo",
+            "es": "Invertir AcciÃ³n del Azulejo",
             "fr": "Inverser l'Action de la Tuile",
             "it": "Inverti Azione della Piastrella",
             "no": "Omvend Flishandling",
-            "sv": "Invertera Plattåtgärd",
-            "pl": "Odwróć Działanie Płytki",
-            "ru": "Инвертировать действие плитки",
-            "ko": "타일 액션 반전"
+            "sv": "Invertera PlattÃ¥tgÃ¤rd",
+            "pl": "OdwrÃ³Ä‡ DziaÅ‚anie PÅ‚ytki",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸",
+            "ko": "íƒ€ì¼ ì•¡ì…˜ ë°˜ì „"
           },
           "value": false,
           "hint": {
             "en": "Reverse the Open / Close state of the Tile",
             "nl": "Keer de Open / Sluit-status van de tegel om",
-            "da": "Omvend Åben / Luk tilstanden af Flisen",
-            "de": "Den Öffnen / Schließen Zustand der Fliese umkehren",
+            "da": "Omvend Ã…ben / Luk tilstanden af Flisen",
+            "de": "Den Ã–ffnen / SchlieÃŸen Zustand der Fliese umkehren",
             "es": "Invertir el estado de Abierto / Cerrado del Azulejo",
-            "fr": "Inverser l'état Ouvrir / Fermer de la Tuile",
+            "fr": "Inverser l'Ã©tat Ouvrir / Fermer de la Tuile",
             "it": "Inverti lo stato Aperto / Chiuso della Piastrella",
-            "no": "Omvend Åpen / Lukket tilstand av Flisen",
-            "sv": "Invertera Öppna / Stänga tillståndet för Plattan",
-            "pl": "Odwróć stan Otwórz / Zamknij Płytki",
-            "ru": "Инвертировать состояние Открыть / Закрыть плитки",
-            "ko": "타일의 열림 / 닫힘 상태 반전"
+            "no": "Omvend Ã…pen / Lukket tilstand av Flisen",
+            "sv": "Invertera Ã–ppna / StÃ¤nga tillstÃ¥ndet fÃ¶r Plattan",
+            "pl": "OdwrÃ³Ä‡ stan OtwÃ³rz / Zamknij PÅ‚ytki",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÑŒ / Ð—Ð°ÐºÑ€Ñ‹Ñ‚ÑŒ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸",
+            "ko": "íƒ€ì¼ì˜ ì—´ë¦¼ / ë‹«íž˜ ìƒíƒœ ë°˜ì „"
           }
         },
         {
@@ -11570,14 +11660,14 @@
             "nl": "Positie omkeren",
             "da": "Omvend Position",
             "de": "Position umkehren",
-            "es": "Invertir Posición",
+            "es": "Invertir PosiciÃ³n",
             "fr": "Inverser Position",
             "it": "Inverti Posizione",
             "no": "Omvend Posisjon",
             "sv": "Invertera Position",
-            "pl": "Odwróć Pozycję",
-            "ru": "Инвертировать Позицию",
-            "ko": "위치 반전"
+            "pl": "OdwrÃ³Ä‡ PozycjÄ™",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÐŸÐ¾Ð·Ð¸Ñ†Ð¸ÑŽ",
+            "ko": "ìœ„ì¹˜ ë°˜ì „"
           },
           "value": false,
           "hint": {
@@ -11585,14 +11675,14 @@
             "nl": "Draai de positieregeling om.",
             "da": "Omvend positionskontrollen.",
             "de": "Positionssteuerung umkehren.",
-            "es": "Invertir el control de posición.",
-            "fr": "Inverser le contrôle de position.",
+            "es": "Invertir el control de posiciÃ³n.",
+            "fr": "Inverser le contrÃ´le de position.",
             "it": "Inverti il controllo della posizione.",
             "no": "Omvend posisjonskontrollen.",
             "sv": "Invertera positionskontrollen.",
-            "pl": "Odwróć sterowanie pozycją.",
-            "ru": "Инвертировать управление позицией.",
-            "ko": "위치 제어 반전."
+            "pl": "OdwrÃ³Ä‡ sterowanie pozycjÄ….",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÐµÐ¹.",
+            "ko": "ìœ„ì¹˜ ì œì–´ ë°˜ì „."
           }
         }
       ],
@@ -11688,18 +11778,18 @@
         "small": "/drivers/io_roller_shutter_quiet/assets/images/small.png"
       },
       "name": {
-        "en": "Roller shutter with quiet mode (io)",
-        "nl": "Rolluik met stille modus (io)",
-        "da": "Rulleskodde med stillefunktion (io)",
-        "de": "Rollladen mit leisem Modus (io)",
-        "es": "Persiana enrollable con modo silencioso (io)",
-        "fr": "Volet roulant avec mode silencieux (io)",
-        "it": "Tapparella con modalità silenziosa (io)",
-        "no": "Rullegardin med stillemodus (io)",
-        "sv": "Rullgardin med tyst läge (io)",
-        "pl": "Rolety z cichym trybem (io)",
-        "ru": "Роликовая штора с тихим режимом (io)",
-        "ko": "조용한 모드가 있는 롤러 셔터 (io)"
+        "en": "Roller shutter with quiet mode (IO)",
+        "nl": "Rolluik met stille modus (IO)",
+        "da": "Rulleskodde med stillefunktion (IO)",
+        "de": "Rollladen mit leisem Modus (IO)",
+        "es": "Persiana enrollable con modo silencioso (IO)",
+        "fr": "Volet roulant avec mode silencieux (IO)",
+        "it": "Tapparella con modalitÃ  silenziosa (IO)",
+        "no": "Rullegardin med stillemodus (IO)",
+        "sv": "Rullgardin med tyst lÃ¤ge (IO)",
+        "pl": "Rolety z cichym trybem (IO)",
+        "ru": "Ð Ð¾Ð»Ð¸ÐºÐ¾Ð²Ð°Ñ ÑˆÑ‚Ð¾Ñ€Ð° Ñ Ñ‚Ð¸Ñ…Ð¸Ð¼ Ñ€ÐµÐ¶Ð¸Ð¼Ð¾Ð¼ (IO)",
+        "ko": "ì¡°ìš©í•œ ëª¨ë“œê°€ ìžˆëŠ” ë¡¤ëŸ¬ ì…”í„° (IO)"
       },
       "class": "blinds",
       "capabilities": [
@@ -11720,12 +11810,12 @@
             "de": "Umkehren Auf / Ab",
             "es": "Invertir arriba / abajo",
             "fr": "Inverser haut / bas",
-            "it": "Inverti su / giù",
+            "it": "Inverti su / giÃ¹",
             "no": "Vend opp / ned",
             "sv": "Invert Up / Down",
-            "pl": "Odwróć w górę / w dół",
-            "ru": "Инвертировать вверх / вниз",
-            "ko": "위 / 아래 반전"
+            "pl": "OdwrÃ³Ä‡ w gÃ³rÄ™ / w dÃ³Å‚",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð²Ð²ÐµÑ€Ñ… / Ð²Ð½Ð¸Ð·",
+            "ko": "ìœ„ / ì•„ëž˜ ë°˜ì „"
           },
           "value": false,
           "hint": {
@@ -11733,14 +11823,14 @@
             "nl": "Draai de bedieningselementen omhoog/omlaag om",
             "da": "Vend retningen op / ned kontrol",
             "de": "Umkehrrichtung Auf / Ab steuern",
-            "es": "Invertir los controles de dirección arriba / abajo",
+            "es": "Invertir los controles de direcciÃ³n arriba / abajo",
             "fr": "Inverser les commandes de direction haut / bas",
-            "it": "Inverta i controlli di direzione su / giù",
+            "it": "Inverta i controlli di direzione su / giÃ¹",
             "no": "Vend opp / ned retningskontrollene",
-            "sv": "Omvänd Up / Down-riktning kontroller",
-            "pl": "Odwróć sterowanie kierunkiem w górę / w dół",
-            "ru": "Инвертировать управление направлением вверх / вниз",
-            "ko": "위/아래 방향 제어를 반전"
+            "sv": "OmvÃ¤nd Up / Down-riktning kontroller",
+            "pl": "OdwrÃ³Ä‡ sterowanie kierunkiem w gÃ³rÄ™ / w dÃ³Å‚",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸ÐµÐ¼ Ð²Ð²ÐµÑ€Ñ… / Ð²Ð½Ð¸Ð·",
+            "ko": "ìœ„/ì•„ëž˜ ë°©í–¥ ì œì–´ë¥¼ ë°˜ì „"
           }
         },
         {
@@ -11751,29 +11841,29 @@
             "nl": "Tegelactie omkeren",
             "da": "Vend flis handling",
             "de": "Umkehren Kachelaktion",
-            "es": "Invertir acción de mosaico",
+            "es": "Invertir acciÃ³n de mosaico",
             "fr": "Inverser l'action de la tuile",
             "it": "Inverti azione piastrella",
             "no": "Vend flisehandlingen",
-            "sv": "Omvänd kakelåtgärd",
-            "pl": "Odwróć działanie płytki",
-            "ru": "Инвертировать действие плитки",
-            "ko": "타일 작업 반전"
+            "sv": "OmvÃ¤nd kakelÃ¥tgÃ¤rd",
+            "pl": "OdwrÃ³Ä‡ dziaÅ‚anie pÅ‚ytki",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸",
+            "ko": "íƒ€ì¼ ìž‘ì—… ë°˜ì „"
           },
           "value": false,
           "hint": {
             "en": "Reverse the Open / Close state of the Tile",
             "nl": "Keer de Open / Sluit-status van de tegel om",
-            "da": "Vend åben / luk tilstanden af flisen",
-            "de": "Umkehren Sie den Öffnen / Schließen Zustand der Kachel",
+            "da": "Vend Ã¥ben / luk tilstanden af flisen",
+            "de": "Umkehren Sie den Ã–ffnen / SchlieÃŸen Zustand der Kachel",
             "es": "Invertir el estado abierto / cerrado del mosaico",
-            "fr": "Inverser l'état ouvert / fermé de la tuile",
+            "fr": "Inverser l'Ã©tat ouvert / fermÃ© de la tuile",
             "it": "Inverti lo stato di apertura / chiusura della piastrella",
-            "no": "Vend åpen / lukket tilstanden til flisen",
-            "sv": "Omvänd öppen / stängd status på plattan",
-            "pl": "Odwróć stan otwarty / zamknięty płytki",
-            "ru": "Инвертировать состояние открыто / закрыто плитки",
-            "ko": "타일의 열림 / 닫힘 상태 반전"
+            "no": "Vend Ã¥pen / lukket tilstanden til flisen",
+            "sv": "OmvÃ¤nd Ã¶ppen / stÃ¤ngd status pÃ¥ plattan",
+            "pl": "OdwrÃ³Ä‡ stan otwarty / zamkniÄ™ty pÅ‚ytki",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¾ / Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¾ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸",
+            "ko": "íƒ€ì¼ì˜ ì—´ë¦¼ / ë‹«íž˜ ìƒíƒœ ë°˜ì „"
           }
         },
         {
@@ -11784,14 +11874,14 @@
             "nl": "Positie omkeren",
             "da": "Vend Position",
             "de": "Position umkehren",
-            "es": "Invertir posición",
+            "es": "Invertir posiciÃ³n",
             "fr": "Inverser la position",
             "it": "Inverti posizione",
             "no": "Vend posisjon",
-            "sv": "Omvänd position",
-            "pl": "Odwróć pozycję",
-            "ru": "Инвертировать позицию",
-            "ko": "위치 반전"
+            "sv": "OmvÃ¤nd position",
+            "pl": "OdwrÃ³Ä‡ pozycjÄ™",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÑŽ",
+            "ko": "ìœ„ì¹˜ ë°˜ì „"
           },
           "value": false,
           "hint": {
@@ -11799,14 +11889,14 @@
             "nl": "Draai de positieregeling om.",
             "da": "Vend positionskontrollen.",
             "de": "Umkehren Sie die Positionssteuerung.",
-            "es": "Invertir el control de posición.",
-            "fr": "Inverser le contrôle de position.",
+            "es": "Invertir el control de posiciÃ³n.",
+            "fr": "Inverser le contrÃ´le de position.",
             "it": "Inverti il controllo della posizione.",
             "no": "Vend posisjonskontrollen.",
-            "sv": "Omvänd positionskontroll.",
-            "pl": "Odwróć kontrolę pozycji.",
-            "ru": "Инвертировать управление положением.",
-            "ko": "위치 제어 반전."
+            "sv": "OmvÃ¤nd positionskontroll.",
+            "pl": "OdwrÃ³Ä‡ kontrolÄ™ pozycji.",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸ÐµÐ¼.",
+            "ko": "ìœ„ì¹˜ ì œì–´ ë°˜ì „."
           }
         }
       ],
@@ -11902,18 +11992,18 @@
         "small": "/drivers/io_sliding_gate/assets/images/small.png"
       },
       "name": {
-        "en": "Sliding gate (io)",
-        "nl": "Schuifpoort (io)",
-        "da": "Skydelåge (io)",
-        "de": "Schiebetor (io)",
-        "es": "Puerta corredera (io)",
-        "fr": "Portail coulissant (io)",
-        "it": "Cancello scorrevole (io)",
-        "no": "Skyveport (io)",
-        "sv": "Skjutport (io)",
-        "pl": "Brama przesuwna (io)",
-        "ru": "Раздвижные ворота (io)",
-        "ko": "슬라이딩 게이트 (io)"
+        "en": "Sliding gate (IO)",
+        "nl": "Schuifpoort (IO)",
+        "da": "SkydelÃ¥ge (IO)",
+        "de": "Schiebetor (IO)",
+        "es": "Puerta corredera (IO)",
+        "fr": "Portail coulissant (IO)",
+        "it": "Cancello scorrevole (IO)",
+        "no": "Skyveport (IO)",
+        "sv": "Skjutport (IO)",
+        "pl": "Brama przesuwna (IO)",
+        "ru": "Ð Ð°Ð·Ð´Ð²Ð¸Ð¶Ð½Ñ‹Ðµ Ð²Ð¾Ñ€Ð¾Ñ‚Ð° (IO)",
+        "ko": "ìŠ¬ë¼ì´ë”© ê²Œì´íŠ¸ (IO)"
       },
       "class": "other",
       "capabilities": [
@@ -12012,18 +12102,18 @@
         "small": "/drivers/io_temperature_sensor/assets/images/small.png"
       },
       "name": {
-        "en": "Temperature Sensor (io)",
-        "nl": "Thermis WireFree sensor (io)",
-        "da": "Temperaturføler (io)",
-        "de": "Temperatursensor (io)",
-        "es": "Sensor de Temperatura (io)",
-        "fr": "Capteur de Température (io)",
-        "it": "Sensore di Temperatura (io)",
-        "no": "Temperatursensor (io)",
-        "sv": "Temperatursensor (io)",
-        "pl": "Czujnik Temperatury (io)",
-        "ru": "Датчик температуры (io)",
-        "ko": "온도 센서 (io)"
+        "en": "Temperature Sensor (IO)",
+        "nl": "Thermis WireFree sensor (IO)",
+        "da": "TemperaturfÃ¸ler (IO)",
+        "de": "Temperatursensor (IO)",
+        "es": "Sensor de Temperatura (IO)",
+        "fr": "Capteur de TempÃ©rature (IO)",
+        "it": "Sensore di Temperatura (IO)",
+        "no": "Temperatursensor (IO)",
+        "sv": "Temperatursensor (IO)",
+        "pl": "Czujnik Temperatury (IO)",
+        "ru": "Ð”Ð°Ñ‚Ñ‡Ð¸Ðº Ñ‚ÐµÐ¼Ð¿ÐµÑ€Ð°Ñ‚ÑƒÑ€Ñ‹ (IO)",
+        "ko": "ì˜¨ë„ ì„¼ì„œ (IO)"
       },
       "class": "sensor",
       "energy": {
@@ -12332,18 +12422,18 @@
         "small": "/drivers/io_velux_interior_blind/assets/images/small.png"
       },
       "name": {
-        "en": "Velux interior blind (io)",
-        "nl": "Velux binnenzonwering (io)",
-        "da": "Velux indvendig blind (io)",
-        "de": "Velux Innenjalousie (io)",
-        "es": "Persiana interior Velux (io)",
-        "fr": "Store intérieur Velux (io)",
-        "it": "Tenda interna Velux (io)",
-        "no": "Velux innvendig blind (io)",
-        "sv": "Velux inomhus rullgardin (io)",
-        "pl": "Roleta wewnętrzna Velux (io)",
-        "ru": "Внутренняя штора Velux (io)",
-        "ko": "벨룩스 실내 블라인드 (io)"
+        "en": "Velux interior blind (IO)",
+        "nl": "Velux binnenzonwering (IO)",
+        "da": "Velux indvendig blind (IO)",
+        "de": "Velux Innenjalousie (IO)",
+        "es": "Persiana interior Velux (IO)",
+        "fr": "Store intÃ©rieur Velux (IO)",
+        "it": "Tenda interna Velux (IO)",
+        "no": "Velux innvendig blind (IO)",
+        "sv": "Velux inomhus rullgardin (IO)",
+        "pl": "Roleta wewnÄ™trzna Velux (IO)",
+        "ru": "Ð’Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½ÑÑ ÑˆÑ‚Ð¾Ñ€Ð° Velux (IO)",
+        "ko": "ë²¨ë£©ìŠ¤ ì‹¤ë‚´ ë¸”ë¼ì¸ë“œ (IO)"
       },
       "class": "sunshade",
       "capabilities": [
@@ -12362,27 +12452,27 @@
             "de": "Oben/Unten umkehren",
             "es": "Invertir arriba / abajo",
             "fr": "Inverser haut / bas",
-            "it": "Inverti su / giù",
+            "it": "Inverti su / giÃ¹",
             "no": "Snu opp/ned",
             "sv": "Invertera upp / ner",
-            "pl": "Odwróć góra / dół",
-            "ru": "Инвертировать вверх / вниз",
-            "ko": "상하 반전"
+            "pl": "OdwrÃ³Ä‡ gÃ³ra / dÃ³Å‚",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð²Ð²ÐµÑ€Ñ… / Ð²Ð½Ð¸Ð·",
+            "ko": "ìƒí•˜ ë°˜ì „"
           },
           "value": false,
           "hint": {
             "en": "Reverse the Up / Down direction controls",
             "nl": "Draai de bedieningselementen omhoog/omlaag om",
             "da": "Omvend op / ned retning styring",
-            "de": "Drehen Sie die Aufwärts-/Abwärts-Richtungskontrollen um",
-            "es": "Invierte los controles de dirección arriba / abajo",
+            "de": "Drehen Sie die AufwÃ¤rts-/AbwÃ¤rts-Richtungskontrollen um",
+            "es": "Invierte los controles de direcciÃ³n arriba / abajo",
             "fr": "Inversez les commandes de direction haut/bas",
-            "it": "Inverti i controlli della direzione su / giù",
+            "it": "Inverti i controlli della direzione su / giÃ¹",
             "no": "Omvendt opp / ned retning kontroller",
-            "sv": "Omvänd upp / ner riktningskontrollerna",
-            "pl": "Odwróć kontrolki kierunku góra / dół",
-            "ru": "Инвертировать элементы управления направлением вверх / вниз",
-            "ko": "위/아래 방향 제어 반전"
+            "sv": "OmvÃ¤nd upp / ner riktningskontrollerna",
+            "pl": "OdwrÃ³Ä‡ kontrolki kierunku gÃ³ra / dÃ³Å‚",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ‹ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸ÐµÐ¼ Ð²Ð²ÐµÑ€Ñ… / Ð²Ð½Ð¸Ð·",
+            "ko": "ìœ„/ì•„ëž˜ ë°©í–¥ ì œì–´ ë°˜ì „"
           }
         },
         {
@@ -12393,29 +12483,29 @@
             "nl": "Tegelactie omkeren",
             "da": "Vend fliseaktion",
             "de": "Fliesentile-Aktion umkehren",
-            "es": "Invertir acción de baldosa",
+            "es": "Invertir acciÃ³n de baldosa",
             "fr": "Inverser l'action de la tuile",
             "it": "Inverti azione della piastrella",
             "no": "Snu flisehandling",
-            "sv": "Invertera kakelåtgärd",
-            "pl": "Odwróć akcję płytki",
-            "ru": "Инвертировать действие плитки",
-            "ko": "타일 동작 반전"
+            "sv": "Invertera kakelÃ¥tgÃ¤rd",
+            "pl": "OdwrÃ³Ä‡ akcjÄ™ pÅ‚ytki",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸",
+            "ko": "íƒ€ì¼ ë™ìž‘ ë°˜ì „"
           },
           "value": false,
           "hint": {
             "en": "Reverse the Open / Close state of the Tile",
             "nl": "Keer de Open / Sluit-status van de tegel om",
-            "da": "Omvend flisens åben/lukket tilstand",
+            "da": "Omvend flisens Ã¥ben/lukket tilstand",
             "de": "Kehren Sie den offenen / geschlossenen Zustand der Kachel um",
             "es": "Invierte el estado Abrir/Cerrar de la baldosa",
-            "fr": "Inversez l'état Ouvrir / Fermer de la tuile",
+            "fr": "Inversez l'Ã©tat Ouvrir / Fermer de la tuile",
             "it": "Inverti lo stato Apri / Chiudi della piastrella",
-            "no": "Snu flisens åpen/lukket status",
-            "sv": "Omvänd plattans öppna/stäng tillstånd",
-            "pl": "Odwróć stan Otwórz/Zamknij płytki",
-            "ru": "Перевернуть состояние плитки Открыто / Закрыто",
-            "ko": "타일의 열기/닫기 상태 반전"
+            "no": "Snu flisens Ã¥pen/lukket status",
+            "sv": "OmvÃ¤nd plattans Ã¶ppna/stÃ¤ng tillstÃ¥nd",
+            "pl": "OdwrÃ³Ä‡ stan OtwÃ³rz/Zamknij pÅ‚ytki",
+            "ru": "ÐŸÐµÑ€ÐµÐ²ÐµÑ€Ð½ÑƒÑ‚ÑŒ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸ ÐžÑ‚ÐºÑ€Ñ‹Ñ‚Ð¾ / Ð—Ð°ÐºÑ€Ñ‹Ñ‚Ð¾",
+            "ko": "íƒ€ì¼ì˜ ì—´ê¸°/ë‹«ê¸° ìƒíƒœ ë°˜ì „"
           }
         },
         {
@@ -12426,14 +12516,14 @@
             "nl": "Positie omkeren",
             "da": "Vend position",
             "de": "Position umkehren",
-            "es": "Invertir posición",
+            "es": "Invertir posiciÃ³n",
             "fr": "Inverser la position",
             "it": "Inverti posizione",
             "no": "Snu posisjon",
             "sv": "Invertera position",
-            "pl": "Odwróć pozycję",
-            "ru": "Инвертировать положение",
-            "ko": "위치 반전"
+            "pl": "OdwrÃ³Ä‡ pozycjÄ™",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ",
+            "ko": "ìœ„ì¹˜ ë°˜ì „"
           },
           "value": false,
           "hint": {
@@ -12441,14 +12531,14 @@
             "nl": "Draai de positieregeling om.",
             "da": "Omvend positionskontrol",
             "de": "Drehen Sie die Positionssteuerung um.",
-            "es": "Invierte el control de posición.",
-            "fr": "Inversez le contrôle de position.",
+            "es": "Invierte el control de posiciÃ³n.",
+            "fr": "Inversez le contrÃ´le de position.",
             "it": "Inverti i controlli di posizione.",
             "no": "Omvend posisjonskontroll.",
-            "sv": "Omvänd positionskontrollen.",
-            "pl": "Odwróć sterowanie pozycją.",
-            "ru": "Инвертировать управление положением.",
-            "ko": "위치 제어 반전."
+            "sv": "OmvÃ¤nd positionskontrollen.",
+            "pl": "OdwrÃ³Ä‡ sterowanie pozycjÄ….",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸ÐµÐ¼.",
+            "ko": "ìœ„ì¹˜ ì œì–´ ë°˜ì „."
           }
         }
       ],
@@ -12544,18 +12634,18 @@
         "small": "/drivers/io_velux_roller_shutter/assets/images/small.png"
       },
       "name": {
-        "en": "Velux roller shutter(io)",
-        "nl": "Velux rolluik (io)",
-        "da": "Velux rullegardin(io)",
-        "de": "Velux Rollladen(io)",
-        "es": "Persiana enrollable Velux(io)",
-        "fr": "Volet roulant Velux(io)",
-        "it": "Tapparella Velux(io)",
-        "no": "Velux rulleskodde(io)",
-        "sv": "Velux rullgardin(io)",
-        "pl": "Roleta Velux(io)",
-        "ru": "Рольставни Velux(io)",
-        "ko": "벨룩스 롤러 셔터(io)"
+        "en": "Velux roller shutter(IO)",
+        "nl": "Velux rolluik (IO)",
+        "da": "Velux rullegardin(IO)",
+        "de": "Velux Rollladen(IO)",
+        "es": "Persiana enrollable Velux(IO)",
+        "fr": "Volet roulant Velux(IO)",
+        "it": "Tapparella Velux(IO)",
+        "no": "Velux rulleskodde(IO)",
+        "sv": "Velux rullgardin(IO)",
+        "pl": "Roleta Velux(IO)",
+        "ru": "Ð Ð¾Ð»ÑŒÑÑ‚Ð°Ð²Ð½Ð¸ Velux(IO)",
+        "ko": "ë²¨ë£©ìŠ¤ ë¡¤ëŸ¬ ì…”í„°(IO)"
       },
       "class": "blinds",
       "capabilities": [
@@ -12574,27 +12664,27 @@
             "de": "Unten / oben umkehren",
             "es": "Invertir arriba / abajo",
             "fr": "Inverser Haut / Bas",
-            "it": "Inverti su / giù",
+            "it": "Inverti su / giÃ¹",
             "no": "Inverter opp / ned",
             "sv": "Invertera upp / ner",
-            "pl": "Odwróć Góra / Dół",
-            "ru": "Инвертировать вверх/вниз",
-            "ko": "위/아래 반대로"
+            "pl": "OdwrÃ³Ä‡ GÃ³ra / DÃ³Å‚",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð²Ð²ÐµÑ€Ñ…/Ð²Ð½Ð¸Ð·",
+            "ko": "ìœ„/ì•„ëž˜ ë°˜ëŒ€ë¡œ"
           },
           "value": false,
           "hint": {
             "en": "Reverse the Up / Down direction controls",
             "nl": "Draai de bedieningselementen omhoog/omlaag om",
             "da": "Vend op / ned retningskontrollerne",
-            "de": "Richtungskontrollen für oben/unten umkehren",
-            "es": "Invierte los controles de dirección arriba/abajo",
+            "de": "Richtungskontrollen fÃ¼r oben/unten umkehren",
+            "es": "Invierte los controles de direcciÃ³n arriba/abajo",
             "fr": "Inversez les commandes de direction Haut / Bas",
-            "it": "Inverti i controlli di direzione su / giù",
+            "it": "Inverti i controlli di direzione su / giÃ¹",
             "no": "Snu retning for opp / ned kontrollene",
-            "sv": "Vänd riktningskontrollerna uppåt / nedåt",
-            "pl": "Odwróć kontrolki kierunku Góra / Dół",
-            "ru": "Переверните органы управления вверх/вниз",
-            "ko": "위/아래 방향 컨트롤을 반대로"
+            "sv": "VÃ¤nd riktningskontrollerna uppÃ¥t / nedÃ¥t",
+            "pl": "OdwrÃ³Ä‡ kontrolki kierunku GÃ³ra / DÃ³Å‚",
+            "ru": "ÐŸÐµÑ€ÐµÐ²ÐµÑ€Ð½Ð¸Ñ‚Ðµ Ð¾Ñ€Ð³Ð°Ð½Ñ‹ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð²Ð²ÐµÑ€Ñ…/Ð²Ð½Ð¸Ð·",
+            "ko": "ìœ„/ì•„ëž˜ ë°©í–¥ ì»¨íŠ¸ë¡¤ì„ ë°˜ëŒ€ë¡œ"
           }
         },
         {
@@ -12605,29 +12695,29 @@
             "nl": "Tegelactie omkeren",
             "da": "Inverter flisehandling",
             "de": "Fliesenaktion umkehren",
-            "es": "Invertir acción de azulejo",
+            "es": "Invertir acciÃ³n de azulejo",
             "fr": "Inverser l'action de carreau",
             "it": "Inverti azione piastrella",
             "no": "Inverter flisehandling",
-            "sv": "Invertera kakelåtgärd",
-            "pl": "Odwróć działanie płytki",
-            "ru": "Инвертировать действие плитки",
-            "ko": "타일 동작 반대로"
+            "sv": "Invertera kakelÃ¥tgÃ¤rd",
+            "pl": "OdwrÃ³Ä‡ dziaÅ‚anie pÅ‚ytki",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸",
+            "ko": "íƒ€ì¼ ë™ìž‘ ë°˜ëŒ€ë¡œ"
           },
           "value": false,
           "hint": {
             "en": "Reverse the Open / Close state of the Tile",
             "nl": "Keer de Open / Sluit-status van de tegel om",
-            "da": "Vend flisens åben / lukket tilstand",
+            "da": "Vend flisens Ã¥ben / lukket tilstand",
             "de": "Offen-/Geschlossen-Zustand der Fliese umkehren",
             "es": "Invierte el estado Abierto / Cerrado del azulejo",
-            "fr": "Inversez l'état Ouvert / Fermé du carreau",
+            "fr": "Inversez l'Ã©tat Ouvert / FermÃ© du carreau",
             "it": "Inverti lo stato Aperto / Chiuso della piastrella",
-            "no": "Vend flisens åpne / lukkede tilstand",
-            "sv": "Vänd den öppna/stängda statusen för plattan",
-            "pl": "Odwróć stan otwarte/zamknięte płytki",
-            "ru": "Переверните состояние Открыто/Закрыто плитки",
-            "ko": "타일의 열림/닫힘 상태를 반대로"
+            "no": "Vend flisens Ã¥pne / lukkede tilstand",
+            "sv": "VÃ¤nd den Ã¶ppna/stÃ¤ngda statusen fÃ¶r plattan",
+            "pl": "OdwrÃ³Ä‡ stan otwarte/zamkniÄ™te pÅ‚ytki",
+            "ru": "ÐŸÐµÑ€ÐµÐ²ÐµÑ€Ð½Ð¸Ñ‚Ðµ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ ÐžÑ‚ÐºÑ€Ñ‹Ñ‚Ð¾/Ð—Ð°ÐºÑ€Ñ‹Ñ‚Ð¾ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸",
+            "ko": "íƒ€ì¼ì˜ ì—´ë¦¼/ë‹«íž˜ ìƒíƒœë¥¼ ë°˜ëŒ€ë¡œ"
           }
         },
         {
@@ -12638,14 +12728,14 @@
             "nl": "Positie omkeren",
             "da": "Inverter position",
             "de": "Position umkehren",
-            "es": "Invertir posición",
+            "es": "Invertir posiciÃ³n",
             "fr": "Inverser la position",
             "it": "Inverti posizione",
             "no": "Inverter posisjon",
             "sv": "Invertera position",
-            "pl": "Odwróć pozycję",
-            "ru": "Инвертировать позицию",
-            "ko": "위치 반대로"
+            "pl": "OdwrÃ³Ä‡ pozycjÄ™",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÑŽ",
+            "ko": "ìœ„ì¹˜ ë°˜ëŒ€ë¡œ"
           },
           "value": false,
           "hint": {
@@ -12653,14 +12743,14 @@
             "nl": "Draai de positieregeling om.",
             "da": "Vend positionskontrollen.",
             "de": "Positionseinstellung umkehren.",
-            "es": "Invierte el control de posición.",
-            "fr": "Inversez le contrôle de position.",
+            "es": "Invierte el control de posiciÃ³n.",
+            "fr": "Inversez le contrÃ´le de position.",
             "it": "Inverti il controllo della posizione.",
             "no": "Snu posisjonskontrollen.",
-            "sv": "Vänd positionskontrollen.",
-            "pl": "Odwróć kontrolę pozycji.",
-            "ru": "Инвертировать контроль положения.",
-            "ko": "위치 제어 반대로"
+            "sv": "VÃ¤nd positionskontrollen.",
+            "pl": "OdwrÃ³Ä‡ kontrolÄ™ pozycji.",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÐºÐ¾Ð½Ñ‚Ñ€Ð¾Ð»ÑŒ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ñ.",
+            "ko": "ìœ„ì¹˜ ì œì–´ ë°˜ëŒ€ë¡œ"
           }
         }
       ],
@@ -12756,18 +12846,18 @@
         "small": "/drivers/io_velux_roof_window/assets/images/small.png"
       },
       "name": {
-        "en": "Velux roof window (io)",
-        "nl": "Velux dakraam (io)",
-        "da": "Velux tagvindue (io)",
-        "de": "Velux Dachfenster (io)",
-        "es": "Ventana de tejado Velux (io)",
-        "fr": "Fenêtre de toit Velux (io)",
-        "it": "Finestra da tetto Velux (io)",
-        "no": "Velux takvindu (io)",
-        "sv": "Velux takfönster (io)",
-        "pl": "Okno dachowe Velux (io)",
-        "ru": "Мансардное окно Velux (io)",
-        "ko": "벨룩스 지붕 창문(io)"
+        "en": "Velux roof window (IO)",
+        "nl": "Velux dakraam (IO)",
+        "da": "Velux tagvindue (IO)",
+        "de": "Velux Dachfenster (IO)",
+        "es": "Ventana de tejado Velux (IO)",
+        "fr": "FenÃªtre de toit Velux (IO)",
+        "it": "Finestra da tetto Velux (IO)",
+        "no": "Velux takvindu (IO)",
+        "sv": "Velux takfÃ¶nster (IO)",
+        "pl": "Okno dachowe Velux (IO)",
+        "ru": "ÐœÐ°Ð½ÑÐ°Ñ€Ð´Ð½Ð¾Ðµ Ð¾ÐºÐ½Ð¾ Velux (IO)",
+        "ko": "ë²¨ë£©ìŠ¤ ì§€ë¶• ì°½ë¬¸(IO)"
       },
       "class": "windowcoverings",
       "capabilities": [
@@ -12786,27 +12876,27 @@
             "de": "Hoch / Runter invertieren",
             "es": "Invertir arriba / abajo",
             "fr": "Inverser haut / bas",
-            "it": "Inverti su / giù",
+            "it": "Inverti su / giÃ¹",
             "no": "Omvendt opp / ned",
             "sv": "Invertera upp / ner",
-            "pl": "Odwróć góra / dół",
-            "ru": "Перевернуть вверх / вниз",
-            "ko": "위 / 아래 반전"
+            "pl": "OdwrÃ³Ä‡ gÃ³ra / dÃ³Å‚",
+            "ru": "ÐŸÐµÑ€ÐµÐ²ÐµÑ€Ð½ÑƒÑ‚ÑŒ Ð²Ð²ÐµÑ€Ñ… / Ð²Ð½Ð¸Ð·",
+            "ko": "ìœ„ / ì•„ëž˜ ë°˜ì „"
           },
           "value": false,
           "hint": {
             "en": "Reverse the Up / Down direction controls",
             "nl": "Draai de bedieningselementen omhoog/omlaag om",
-            "da": "Vend retningen på op/ned-kontrollerne",
+            "da": "Vend retningen pÃ¥ op/ned-kontrollerne",
             "de": "Umkehren der Hoch-/Runter-Richtungssteuerung",
-            "es": "Invertir los controles de dirección arriba / abajo",
+            "es": "Invertir los controles de direcciÃ³n arriba / abajo",
             "fr": "Inverser les commandes de direction haut / bas",
-            "it": "Inverti i controlli di direzione su / giù",
-            "no": "Vend retningen på opp/ned-kontrollene",
-            "sv": "Vänd upp / ner-riktningskontroller",
-            "pl": "Odwróć kierunki góra / dół",
-            "ru": "Перевернуть управление направлением вверх / вниз",
-            "ko": "위 / 아래 방향 조작을 반전"
+            "it": "Inverti i controlli di direzione su / giÃ¹",
+            "no": "Vend retningen pÃ¥ opp/ned-kontrollene",
+            "sv": "VÃ¤nd upp / ner-riktningskontroller",
+            "pl": "OdwrÃ³Ä‡ kierunki gÃ³ra / dÃ³Å‚",
+            "ru": "ÐŸÐµÑ€ÐµÐ²ÐµÑ€Ð½ÑƒÑ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸ÐµÐ¼ Ð²Ð²ÐµÑ€Ñ… / Ð²Ð½Ð¸Ð·",
+            "ko": "ìœ„ / ì•„ëž˜ ë°©í–¥ ì¡°ìž‘ì„ ë°˜ì „"
           }
         },
         {
@@ -12817,29 +12907,29 @@
             "nl": "Tegelactie omkeren",
             "da": "Omvend flisehandling",
             "de": "Fliesenaktion invertieren",
-            "es": "Invertir la acción de la baldosa",
+            "es": "Invertir la acciÃ³n de la baldosa",
             "fr": "Inverser l'action de la tuile",
             "it": "Inverti l'azione della piastrella",
             "no": "Omvendt flishandling",
-            "sv": "Invertera plattåtgärd",
-            "pl": "Odwróć akcję kafelka",
-            "ru": "Инвертировать действие плитки",
-            "ko": "타일 동작 반전"
+            "sv": "Invertera plattÃ¥tgÃ¤rd",
+            "pl": "OdwrÃ³Ä‡ akcjÄ™ kafelka",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸",
+            "ko": "íƒ€ì¼ ë™ìž‘ ë°˜ì „"
           },
           "value": false,
           "hint": {
             "en": "Reverse the Open / Close state of the Tile",
             "nl": "Keer de Open / Sluit-status van de tegel om",
-            "da": "Vend den åbne / lukkede tilstand på flisen",
-            "de": "Umkehren des Öffnen / Schließen-Zustands der Fliese",
+            "da": "Vend den Ã¥bne / lukkede tilstand pÃ¥ flisen",
+            "de": "Umkehren des Ã–ffnen / SchlieÃŸen-Zustands der Fliese",
             "es": "Invertir el estado de abierto / cerrado del azulejo",
-            "fr": "Inverser l'état ouvert / fermé de la tuile",
+            "fr": "Inverser l'Ã©tat ouvert / fermÃ© de la tuile",
             "it": "Inverti lo stato di apertura / chiusura della piastrella",
-            "no": "Vend den åpne / lukkede tilstanden til flisen",
-            "sv": "Vänd den öppna/stängda statusen på plattan",
-            "pl": "Odwróć stan otwarte / zamknięte kafelka",
-            "ru": "Инвертировать состояние плитки «Открыто/закрыто»",
-            "ko": "타일의 열기 / 닫기 상태를 반전"
+            "no": "Vend den Ã¥pne / lukkede tilstanden til flisen",
+            "sv": "VÃ¤nd den Ã¶ppna/stÃ¤ngda statusen pÃ¥ plattan",
+            "pl": "OdwrÃ³Ä‡ stan otwarte / zamkniÄ™te kafelka",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸ Â«ÐžÑ‚ÐºÑ€Ñ‹Ñ‚Ð¾/Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¾Â»",
+            "ko": "íƒ€ì¼ì˜ ì—´ê¸° / ë‹«ê¸° ìƒíƒœë¥¼ ë°˜ì „"
           }
         },
         {
@@ -12850,14 +12940,14 @@
             "nl": "Positie omkeren",
             "da": "Omvend position",
             "de": "Position invertieren",
-            "es": "Invertir posición",
+            "es": "Invertir posiciÃ³n",
             "fr": "Inverser la position",
             "it": "Inverti posizione",
             "no": "Omvend posisjon",
             "sv": "Invertera positionen",
-            "pl": "Odwróć pozycję",
-            "ru": "Инвертировать положение",
-            "ko": "위치 반전"
+            "pl": "OdwrÃ³Ä‡ pozycjÄ™",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ",
+            "ko": "ìœ„ì¹˜ ë°˜ì „"
           },
           "value": false,
           "hint": {
@@ -12865,14 +12955,14 @@
             "nl": "Draai de positieregeling om.",
             "da": "Vend positionskontrollen.",
             "de": "Umkehr der Positionssteuerung.",
-            "es": "Invertir el control de posición.",
+            "es": "Invertir el control de posiciÃ³n.",
             "fr": "Inverser la commande de position.",
             "it": "Inverti il controllo della posizione.",
             "no": "Vend posisjonskontrollen.",
-            "sv": "Vänd positionskontrollen.",
-            "pl": "Odwróć kontrolę pozycji.",
-            "ru": "Инвертировать управление позицией.",
-            "ko": "위치 제어를 반전"
+            "sv": "VÃ¤nd positionskontrollen.",
+            "pl": "OdwrÃ³Ä‡ kontrolÄ™ pozycji.",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÐµÐ¹.",
+            "ko": "ìœ„ì¹˜ ì œì–´ë¥¼ ë°˜ì „"
           }
         }
       ],
@@ -12968,18 +13058,18 @@
         "small": "/drivers/io_vertical_exterior_blind/assets/images/small.png"
       },
       "name": {
-        "en": "Exterior blind (io)",
-        "nl": "Verticale buitenzonwering (io)",
-        "da": "Udvendig rullegardin (io)",
-        "de": "Außenjalousie (io)",
-        "es": "Persiana exterior (io)",
-        "fr": "Store extérieur (io)",
-        "it": "Tenda esterna (io)",
-        "no": "Utvendig persienne (io)",
-        "sv": "Utvändig persienn (io)",
-        "pl": "Żaluzje zewnętrzne (io)",
-        "ru": "Наружная жалюзи (io)",
-        "ko": "외부 블라인드 (io)"
+        "en": "Exterior blind (IO)",
+        "nl": "Verticale buitenzonwering (IO)",
+        "da": "Udvendig rullegardin (IO)",
+        "de": "AuÃŸenjalousie (IO)",
+        "es": "Persiana exterior (IO)",
+        "fr": "Store extÃ©rieur (IO)",
+        "it": "Tenda esterna (IO)",
+        "no": "Utvendig persienne (IO)",
+        "sv": "UtvÃ¤ndig persienn (IO)",
+        "pl": "Å»aluzje zewnÄ™trzne (IO)",
+        "ru": "ÐÐ°Ñ€ÑƒÐ¶Ð½Ð°Ñ Ð¶Ð°Ð»ÑŽÐ·Ð¸ (IO)",
+        "ko": "ì™¸ë¶€ ë¸”ë¼ì¸ë“œ (IO)"
       },
       "class": "sunshade",
       "capabilities": [
@@ -12998,12 +13088,12 @@
             "de": "Hoch / Runter umkehren",
             "es": "Invertir arriba / abajo",
             "fr": "Inverser haut / bas",
-            "it": "Inverti su / giù",
+            "it": "Inverti su / giÃ¹",
             "no": "Vend opp / ned",
-            "sv": "Vänd upp / ner",
-            "pl": "Odwróć góra / dół",
-            "ru": "Инвертировать вверх / вниз",
-            "ko": "위아래 반전"
+            "sv": "VÃ¤nd upp / ner",
+            "pl": "OdwrÃ³Ä‡ gÃ³ra / dÃ³Å‚",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð²Ð²ÐµÑ€Ñ… / Ð²Ð½Ð¸Ð·",
+            "ko": "ìœ„ì•„ëž˜ ë°˜ì „"
           },
           "value": false,
           "hint": {
@@ -13011,14 +13101,14 @@
             "nl": "Draai de bedieningselementen omhoog/omlaag om",
             "da": "Vend op / ned retningskontrol",
             "de": "Umkehrung der Auf / Ab-Richtungskontrollen",
-            "es": "Invertir los controles de dirección arriba / abajo",
+            "es": "Invertir los controles de direcciÃ³n arriba / abajo",
             "fr": "Inverser les commandes de direction haut / bas",
-            "it": "Inverti i controlli di direzione su / giù",
+            "it": "Inverti i controlli di direzione su / giÃ¹",
             "no": "Vend kontrollene opp / ned",
-            "sv": "Vänd upp / ner-styrningen",
-            "pl": "Odwróć kontrolę kierunków (góra / dół)",
-            "ru": "Инвертировать элементы управления вверх / вниз",
-            "ko": "위아래 방향 제어 반전"
+            "sv": "VÃ¤nd upp / ner-styrningen",
+            "pl": "OdwrÃ³Ä‡ kontrolÄ™ kierunkÃ³w (gÃ³ra / dÃ³Å‚)",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ‹ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð²Ð²ÐµÑ€Ñ… / Ð²Ð½Ð¸Ð·",
+            "ko": "ìœ„ì•„ëž˜ ë°©í–¥ ì œì–´ ë°˜ì „"
           }
         },
         {
@@ -13029,29 +13119,29 @@
             "nl": "Tegelactie omkeren",
             "da": "Vend Flisehandling",
             "de": "Kachelaktion umkehren",
-            "es": "Invertir acción del azulejo",
+            "es": "Invertir acciÃ³n del azulejo",
             "fr": "Inverser l'action de la tuile",
             "it": "Inverti azione tessera",
             "no": "Vend flisehandling",
-            "sv": "Vänd kakelåtgärd",
-            "pl": "Odwróć działanie kafelka",
-            "ru": "Инвертировать действие плитки",
-            "ko": "타일 동작 반전"
+            "sv": "VÃ¤nd kakelÃ¥tgÃ¤rd",
+            "pl": "OdwrÃ³Ä‡ dziaÅ‚anie kafelka",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸",
+            "ko": "íƒ€ì¼ ë™ìž‘ ë°˜ì „"
           },
           "value": false,
           "hint": {
             "en": "Reverse the Open / Close state of the Tile",
             "nl": "Keer de Open / Sluit-status van de tegel om",
-            "da": "Vend åbne / lukke tilstanden for flisen",
+            "da": "Vend Ã¥bne / lukke tilstanden for flisen",
             "de": "Den Offen- / Geschlossen-Zustand der Kachel umkehren",
             "es": "Invertir el estado abrir / cerrar del azulejo",
-            "fr": "Inverser l'état d'ouverture / fermeture de la tuile",
+            "fr": "Inverser l'Ã©tat d'ouverture / fermeture de la tuile",
             "it": "Inverti lo stato di apertura / chiusura della tessera",
-            "no": "Vend åpen / lukket tilstanden til flisen",
-            "sv": "Vänd öppet / stängt tillstånd för kakel",
-            "pl": "Odwróć stan otwarcia / zamknięcia kafelka",
-            "ru": "Изменить состояние плитки открыто / закрыто",
-            "ko": "타일의 열림 / 닫힘 상태 반전"
+            "no": "Vend Ã¥pen / lukket tilstanden til flisen",
+            "sv": "VÃ¤nd Ã¶ppet / stÃ¤ngt tillstÃ¥nd fÃ¶r kakel",
+            "pl": "OdwrÃ³Ä‡ stan otwarcia / zamkniÄ™cia kafelka",
+            "ru": "Ð˜Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¾ / Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¾",
+            "ko": "íƒ€ì¼ì˜ ì—´ë¦¼ / ë‹«íž˜ ìƒíƒœ ë°˜ì „"
           }
         },
         {
@@ -13060,16 +13150,16 @@
           "label": {
             "en": "Invert Position",
             "nl": "Positie omkeren",
-            "da": "Invertér position",
+            "da": "InvertÃ©r position",
             "de": "Position umkehren",
-            "es": "Invertir posición",
+            "es": "Invertir posiciÃ³n",
             "fr": "Inverser la position",
             "it": "Inverti posizione",
             "no": "Vend posisjon",
-            "sv": "Vänd position",
-            "pl": "Odwróć pozycję",
-            "ru": "Инвертировать позицию",
-            "ko": "위치 반전"
+            "sv": "VÃ¤nd position",
+            "pl": "OdwrÃ³Ä‡ pozycjÄ™",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÑŽ",
+            "ko": "ìœ„ì¹˜ ë°˜ì „"
           },
           "value": false,
           "hint": {
@@ -13077,14 +13167,14 @@
             "nl": "Draai de positieregeling om.",
             "da": "Vend positionskontrollen.",
             "de": "Position umkehren.",
-            "es": "Invertir el control de posición.",
-            "fr": "Inverser le contrôle de position.",
+            "es": "Invertir el control de posiciÃ³n.",
+            "fr": "Inverser le contrÃ´le de position.",
             "it": "Inverti il controllo della posizione.",
             "no": "Vend posisjonskontrollen.",
-            "sv": "Vänd positionskontrollen.",
-            "pl": "Odwróć kontrolę pozycji.",
-            "ru": "Инвертировать управление положением.",
-            "ko": "위치 제어 반전."
+            "sv": "VÃ¤nd positionskontrollen.",
+            "pl": "OdwrÃ³Ä‡ kontrolÄ™ pozycji.",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸ÐµÐ¼.",
+            "ko": "ìœ„ì¹˜ ì œì–´ ë°˜ì „."
           }
         }
       ],
@@ -13180,17 +13270,17 @@
         "small": "/drivers/io_vertical_interior_blind/assets/images/small.png"
       },
       "name": {
-        "en": "Interior Blind (io)",
-        "da": "Indvendig Persienne (io)",
-        "de": "Innenjalousie (io)",
-        "es": "Persiana Interior (io)",
-        "fr": "Store Intérieur (io)",
-        "it": "Tenda Interna (io)",
-        "no": "Innvendig Persienne (io)",
-        "sv": "Inre Persienn (io)",
-        "pl": "Roleta Wewnętrzna (io)",
-        "ru": "Внутренняя Жалюзи (io)",
-        "ko": "실내 블라인드 (io)"
+        "en": "Interior Blind (IO)",
+        "da": "Indvendig Persienne (IO)",
+        "de": "Innenjalousie (IO)",
+        "es": "Persiana Interior (IO)",
+        "fr": "Store IntÃ©rieur (IO)",
+        "it": "Tenda Interna (IO)",
+        "no": "Innvendig Persienne (IO)",
+        "sv": "Inre Persienn (IO)",
+        "pl": "Roleta WewnÄ™trzna (IO)",
+        "ru": "Ð’Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½ÑÑ Ð–Ð°Ð»ÑŽÐ·Ð¸ (IO)",
+        "ko": "ì‹¤ë‚´ ë¸”ë¼ì¸ë“œ (IO)"
       },
       "class": "blinds",
       "capabilities": [
@@ -13209,12 +13299,12 @@
             "de": "Oben / Unten Umkehren",
             "es": "Invertir Arriba / Abajo",
             "fr": "Inverser Haut / Bas",
-            "it": "Inverti Su / Giù",
+            "it": "Inverti Su / GiÃ¹",
             "no": "Omvendt Opp / Ned",
-            "sv": "Omvänd Upp / Ner",
-            "pl": "Odwróć Góra / Dół",
-            "ru": "Перевернуть Вверх / Вниз",
-            "ko": "위 / 아래 반전"
+            "sv": "OmvÃ¤nd Upp / Ner",
+            "pl": "OdwrÃ³Ä‡ GÃ³ra / DÃ³Å‚",
+            "ru": "ÐŸÐµÑ€ÐµÐ²ÐµÑ€Ð½ÑƒÑ‚ÑŒ Ð’Ð²ÐµÑ€Ñ… / Ð’Ð½Ð¸Ð·",
+            "ko": "ìœ„ / ì•„ëž˜ ë°˜ì „"
           },
           "value": false,
           "hint": {
@@ -13222,14 +13312,14 @@
             "nl": "Draai de bedieningselementen omhoog/omlaag om",
             "da": "Vend op / ned-retning styringerne",
             "de": "Kehrt die Steuerung der Auf / Ab Richtung um",
-            "es": "Invierte los controles de dirección de Arriba / Abajo",
+            "es": "Invierte los controles de direcciÃ³n de Arriba / Abajo",
             "fr": "Inverse les commandes de direction Haut / Bas",
-            "it": "Inverti i controlli di direzione Su / Giù",
+            "it": "Inverti i controlli di direzione Su / GiÃ¹",
             "no": "Omvendt Opp / Ned retning kontroller",
-            "sv": "Vänd riktning kontroller upp / ner",
-            "pl": "Odwróć kierunkowe sterowanie Góra/Dół",
-            "ru": "Изменить направление управления Вверх / Вниз",
-            "ko": "위 / 아래 방향 제어 반전"
+            "sv": "VÃ¤nd riktning kontroller upp / ner",
+            "pl": "OdwrÃ³Ä‡ kierunkowe sterowanie GÃ³ra/DÃ³Å‚",
+            "ru": "Ð˜Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð’Ð²ÐµÑ€Ñ… / Ð’Ð½Ð¸Ð·",
+            "ko": "ìœ„ / ì•„ëž˜ ë°©í–¥ ì œì–´ ë°˜ì „"
           }
         },
         {
@@ -13240,29 +13330,29 @@
             "nl": "Tegelactie omkeren",
             "da": "Omvend flise handling",
             "de": "Kachelaktion umkehren",
-            "es": "Invertir acción de los azulejos",
+            "es": "Invertir acciÃ³n de los azulejos",
             "fr": "Inverser l'action de la tuile",
             "it": "Inverti azione della piastrella",
             "no": "Omvendt flis handling",
-            "sv": "Omvänd kakel åtgärd",
-            "pl": "Odwróć działanie płytki",
-            "ru": "Перевернуть действие плитки",
-            "ko": "타일 동작 반전"
+            "sv": "OmvÃ¤nd kakel Ã¥tgÃ¤rd",
+            "pl": "OdwrÃ³Ä‡ dziaÅ‚anie pÅ‚ytki",
+            "ru": "ÐŸÐµÑ€ÐµÐ²ÐµÑ€Ð½ÑƒÑ‚ÑŒ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸",
+            "ko": "íƒ€ì¼ ë™ìž‘ ë°˜ì „"
           },
           "value": false,
           "hint": {
             "en": "Reverse the Open / Close state of the Tile",
             "nl": "Keer de Open / Sluit-status van de tegel om",
-            "da": "Vend åben / lukket state af flisen",
-            "de": "Den Öffnen / Schließen-Zustand der Kachel umkehren",
+            "da": "Vend Ã¥ben / lukket state af flisen",
+            "de": "Den Ã–ffnen / SchlieÃŸen-Zustand der Kachel umkehren",
             "es": "Invierte el estado de Abrir/Cerrar del Azulejo",
-            "fr": "Inverse l'état Ouvert/Fermé de la tuile",
+            "fr": "Inverse l'Ã©tat Ouvert/FermÃ© de la tuile",
             "it": "Inverti lo stato di Aperto/Chiuso della piastrella",
-            "no": "Omvend åpen/lukket status for flisen",
-            "sv": "Vänd öppen/stängd status för kakel",
-            "pl": "Odwróć stan Otwórz/Zamknij płytki",
-            "ru": "Измените состояние плитки Открыто / Закрыто",
-            "ko": "타일의 열기 / 닫기 상태 반전"
+            "no": "Omvend Ã¥pen/lukket status for flisen",
+            "sv": "VÃ¤nd Ã¶ppen/stÃ¤ngd status fÃ¶r kakel",
+            "pl": "OdwrÃ³Ä‡ stan OtwÃ³rz/Zamknij pÅ‚ytki",
+            "ru": "Ð˜Ð·Ð¼ÐµÐ½Ð¸Ñ‚Ðµ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸ ÐžÑ‚ÐºÑ€Ñ‹Ñ‚Ð¾ / Ð—Ð°ÐºÑ€Ñ‹Ñ‚Ð¾",
+            "ko": "íƒ€ì¼ì˜ ì—´ê¸° / ë‹«ê¸° ìƒíƒœ ë°˜ì „"
           }
         },
         {
@@ -13273,14 +13363,14 @@
             "nl": "Positie omkeren",
             "da": "Omvend position",
             "de": "Position umkehren",
-            "es": "Invertir posición",
+            "es": "Invertir posiciÃ³n",
             "fr": "Inverser la position",
             "it": "Inverti posizione",
             "no": "Omvend posisjon",
-            "sv": "Omvänd position",
-            "pl": "Odwróć pozycję",
-            "ru": "Поменять положение",
-            "ko": "위치 반전"
+            "sv": "OmvÃ¤nd position",
+            "pl": "OdwrÃ³Ä‡ pozycjÄ™",
+            "ru": "ÐŸÐ¾Ð¼ÐµÐ½ÑÑ‚ÑŒ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ",
+            "ko": "ìœ„ì¹˜ ë°˜ì „"
           },
           "value": false,
           "hint": {
@@ -13288,14 +13378,14 @@
             "nl": "Draai de positieregeling om.",
             "da": "Vend positionskontrol.",
             "de": "Die Positionsteuerung umkehren.",
-            "es": "Invierte el control de posición.",
-            "fr": "Inversez le contrôle de position.",
+            "es": "Invierte el control de posiciÃ³n.",
+            "fr": "Inversez le contrÃ´le de position.",
             "it": "Inverti il controllo della posizione.",
             "no": "Omvend posisjonskontroll.",
-            "sv": "Vänd positionskontrollen.",
-            "pl": "Odwróć sterowanie pozycją.",
-            "ru": "Инвертировать управление позицией.",
-            "ko": "위치 제어 반전."
+            "sv": "VÃ¤nd positionskontrollen.",
+            "pl": "OdwrÃ³Ä‡ sterowanie pozycjÄ….",
+            "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÐµÐ¹.",
+            "ko": "ìœ„ì¹˜ ì œì–´ ë°˜ì „."
           }
         }
       ],
@@ -13728,18 +13818,18 @@
         "small": "/drivers/on_off_light/assets/images/small.png"
       },
       "name": {
-        "en": "On/Off Light",
-        "nl": "Aan/Uit Licht",
-        "da": "Tænd/Sluk Lys",
-        "de": "Ein/Aus Licht",
-        "es": "Luz Encendido/Apagado",
-        "fr": "Lumière Marche/Arrêt",
-        "it": "Luce Accendi/Spegni",
-        "no": "På/Av Lys",
-        "sv": "På/Av Ljus",
-        "pl": "Światło Włącz/Wyłącz",
-        "ru": "Вкл/Выкл Свет",
-        "ko": "켜기/끄기 조명"
+        "en": "Light (IO & ZWave)",
+        "nl": "Licht (IO & ZWave)",
+        "da": "Lys (IO & ZWave)",
+        "de": "Licht (IO & ZWave)",
+        "es": "Luz (IO & ZWave)",
+        "fr": "Lumière (IO & ZWave)",
+        "it": "Luce (IO & ZWave)",
+        "no": "Lys (IO & ZWave)",
+        "sv": "Ljus (IO & ZWave)",
+        "pl": "Światło (IO & ZWave)",
+        "ru": "Свет (IO & ZWave)",
+        "ko": "조명 (IO & ZWave)"
       },
       "class": "light",
       "capabilities": [
@@ -13837,18 +13927,18 @@
         "small": "/drivers/on_off_socket/assets/images/small.png"
       },
       "name": {
-        "en": "Socket (RTS & io)",
-        "nl": "Stopcontact (RTS & io)",
-        "da": "Stikkontakt (RTS & io)",
-        "de": "Steckdose (RTS & io)",
-        "es": "Enchufe (RTS & io)",
-        "fr": "Prise (RTS & io)",
-        "it": "Presa (RTS & io)",
-        "no": "Stikkontakt (RTS & io)",
-        "sv": "Vägguttag (RTS & io)",
-        "pl": "Gniazdko (RTS & io)",
-        "ru": "Розетка (RTS и io)",
-        "ko": "소켓 (RTS & io)"
+        "en": "Socket (IO)",
+        "nl": "Stopcontact (IO)",
+        "da": "Stikkontakt (IO)",
+        "de": "Steckdose (IO)",
+        "es": "Enchufe (IO)",
+        "fr": "Prise (IO)",
+        "it": "Presa (IO)",
+        "no": "Stikkontakt (IO)",
+        "sv": "VÃ¤gguttag (IO)",
+        "pl": "Gniazdko (IO)",
+        "ru": "Ð Ð¾Ð·ÐµÑ‚ÐºÐ° (IO)",
+        "ko": "ì†Œì¼“ (IO)"
       },
       "class": "socket",
       "capabilities": [
@@ -13947,18 +14037,18 @@
         "small": "/drivers/on_off_switch/assets/images/small.png"
       },
       "name": {
-        "en": "Switch (RTS & io)",
-        "nl": "Schakelaar (RTS & io)",
-        "da": "Kontakt (RTS & io)",
-        "de": "Schalter (RTS & io)",
-        "es": "Interruptor (RTS & io)",
-        "fr": "Interrupteur (RTS & io)",
-        "it": "Interruttore (RTS & io)",
-        "no": "Bryter (RTS & io)",
-        "sv": "Strömbrytare (RTS & io)",
-        "pl": "Przełącznik (RTS & io)",
-        "ru": "Выключатель (RTS & io)",
-        "ko": "스위치 (RTS & io)"
+        "en": "Light with Timer (IO)",
+        "nl": "Licht met timer (IO)",
+        "da": "Lys med timer (IO)",
+        "de": "Licht mit Timer (IO)",
+        "es": "Luz con temporizador (IO)",
+        "fr": "Lumière avec minuterie (IO)",
+        "it": "Luce con timer (IO)",
+        "no": "Lys med timer (IO)",
+        "sv": "Ljus med timer (IO)",
+        "pl": "Światło z timerem (IO)",
+        "ru": "Свет с таймером (IO)",
+        "ko": "타이머가 있는 조명 (IO)"
       },
       "class": "light",
       "capabilities": [
@@ -15489,6 +15579,117 @@
           }
         }
       ],
+      "icon": "/drivers/rts_on_off_socket/assets/icon.svg",
+      "images": {
+        "large": "/drivers/rts_on_off_socket/assets/images/large.png",
+        "small": "/drivers/rts_on_off_socket/assets/images/small.png"
+      },
+      "name": {
+        "en": "Socket (RTS)",
+        "nl": "Stopcontact (RTS)",
+        "da": "Stikkontakt (RTS)",
+        "de": "Steckdose (RTS)",
+        "es": "Enchufe (RTS)",
+        "fr": "Prise (RTS)",
+        "it": "Presa (RTS)",
+        "no": "Stikkontakt (RTS)",
+        "sv": "Vägguttag (RTS)",
+        "pl": "Gniazdko (RTS)",
+        "ru": "Розетка (RTS)",
+        "ko": "소켓 (RTS)"
+      },
+      "class": "socket",
+      "capabilities": [
+        "on_button",
+        "on_with_timer",
+        "off_button"
+      ],
+      "id": "rts_on_off_socket"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
+        {
+          "id": "session_select"
+        },
+        {
+          "id": "login_credentials"
+        },
+        {
+          "id": "list_my_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        }
+      ],
       "icon": "/drivers/rts_open_close/assets/icon.svg",
       "images": {
         "large": "/drivers/rts_open_close/assets/images/large.png",
@@ -15604,18 +15805,18 @@
         "small": "/drivers/siren/assets/images/small.png"
       },
       "name": {
-        "en": "Siren (io)",
-        "nl": "Sirene (io)",
-        "da": "Sirene (io)",
-        "de": "Sirene (io)",
-        "es": "Sirena (io)",
-        "fr": "Sirène (io)",
-        "it": "Sirena (io)",
-        "no": "Sirene (io)",
-        "sv": "Sirén (io)",
-        "pl": "Syrena (io)",
-        "ru": "Сирена (io)",
-        "ko": "사이렌 (io)"
+        "en": "Siren (IO)",
+        "nl": "Sirene (IO)",
+        "da": "Sirene (IO)",
+        "de": "Sirene (IO)",
+        "es": "Sirena (IO)",
+        "fr": "SirÃ¨ne (IO)",
+        "it": "Sirena (IO)",
+        "no": "Sirene (IO)",
+        "sv": "SirÃ©n (IO)",
+        "pl": "Syrena (IO)",
+        "ru": "Ð¡Ð¸Ñ€ÐµÐ½Ð° (IO)",
+        "ko": "ì‚¬ì´ë Œ (IO)"
       },
       "class": "homealarm",
       "energy": {

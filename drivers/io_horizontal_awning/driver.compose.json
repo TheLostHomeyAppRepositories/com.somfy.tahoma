@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "Awning / Pergola (io)",
-    "nl": "Buitenzonwering / Pergola (io)",
-    "da": "Markise / Pergola (io)",
-    "de": "Markise / Pergola (io)",
-    "es": "Toldo / Pérgola (io)",
-    "fr": "Auvent / Pergola (io)",
-    "it": "Tenda / Pergola (io)",
-    "no": "Markise / Pergola (io)",
-    "sv": "Markis / Pergola (io)",
-    "pl": "Markiza / Pergola (io)",
-    "ru": "Маркиза / Пергола (io)",
-    "ko": "차양 / 퍼골라 (io)"
+    "en": "Awning / Pergola (IO)",
+    "nl": "Buitenzonwering / Pergola (IO)",
+    "da": "Markise / Pergola (IO)",
+    "de": "Markise / Pergola (IO)",
+    "es": "Toldo / PÃ©rgola (IO)",
+    "fr": "Auvent / Pergola (IO)",
+    "it": "Tenda / Pergola (IO)",
+    "no": "Markise / Pergola (IO)",
+    "sv": "Markis / Pergola (IO)",
+    "pl": "Markiza / Pergola (IO)",
+    "ru": "ÐœÐ°Ñ€ÐºÐ¸Ð·Ð° / ÐŸÐµÑ€Ð³Ð¾Ð»Ð° (IO)",
+    "ko": "ì°¨ì–‘ / í¼ê³¨ë¼ (IO)"
   },
   "class": "sunshade",
   "capabilities": [
@@ -32,12 +32,12 @@
         "de": "Umdrehen Hoch / Runter",
         "es": "Invertir Arriba / Abajo",
         "fr": "Inverser Haut / Bas",
-        "it": "Inverti Su / Giù",
+        "it": "Inverti Su / GiÃ¹",
         "no": "Inverter opp / ned",
         "sv": "Invertera upp / ner",
-        "pl": "Odwróć Góra / Dół",
-        "ru": "Инвертировать Вверх / Вниз",
-        "ko": "위 / 아래 반전"
+        "pl": "OdwrÃ³Ä‡ GÃ³ra / DÃ³Å‚",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð’Ð²ÐµÑ€Ñ… / Ð’Ð½Ð¸Ð·",
+        "ko": "ìœ„ / ì•„ëž˜ ë°˜ì „"
       },
       "value": true,
       "hint": {
@@ -45,14 +45,14 @@
         "nl": "Draai de bedieningselementen omhoog/omlaag om",
         "da": "Vend retningen af op / ned kontroller",
         "de": "Richtung der Hoch / Runter Steuerung umkehren",
-        "es": "Invertir los controles de dirección Arriba / Abajo",
+        "es": "Invertir los controles de direcciÃ³n Arriba / Abajo",
         "fr": "Inverser les commandes de direction Haut / Bas",
-        "it": "Inverti i controlli della direzione Su / Giù",
+        "it": "Inverti i controlli della direzione Su / GiÃ¹",
         "no": "Inverter retningen for opp / ned kontrollene",
-        "sv": "Invertera riktningen för upp / ner kontrollerna",
-        "pl": "Odwróć kierunek sterowania Góra / Dół",
-        "ru": "Инвертировать направление управления Вверх / Вниз",
-        "ko": "위 / 아래 방향 제어 반전"
+        "sv": "Invertera riktningen fÃ¶r upp / ner kontrollerna",
+        "pl": "OdwrÃ³Ä‡ kierunek sterowania GÃ³ra / DÃ³Å‚",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð’Ð²ÐµÑ€Ñ… / Ð’Ð½Ð¸Ð·",
+        "ko": "ìœ„ / ì•„ëž˜ ë°©í–¥ ì œì–´ ë°˜ì „"
       }
     },
     {
@@ -63,29 +63,29 @@
         "nl": "Tegelactie omkeren",
         "da": "Vend flisehandling",
         "de": "Kachelaktion umdrehen",
-        "es": "Invertir acción de baldosa",
+        "es": "Invertir acciÃ³n de baldosa",
         "fr": "Inverser l'action de la tuile",
         "it": "Invertire azione piastrella",
         "no": "Inverter flisehandling",
-        "sv": "Invertera kakelåtgärd",
-        "pl": "Odwróć działanie płytki",
-        "ru": "Инвертировать действие плитки",
-        "ko": "타일 동작 반전"
+        "sv": "Invertera kakelÃ¥tgÃ¤rd",
+        "pl": "OdwrÃ³Ä‡ dziaÅ‚anie pÅ‚ytki",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸",
+        "ko": "íƒ€ì¼ ë™ìž‘ ë°˜ì „"
       },
       "value": true,
       "hint": {
         "en": "Reverse the Open / Close state of the Tile",
         "nl": "Keer de Open / Sluit-status van de tegel om",
-        "da": "Vend åben / lukket tilstand for flisen",
-        "de": "Zustand der Kachel Öffnen / Schließen umkehren",
+        "da": "Vend Ã¥ben / lukket tilstand for flisen",
+        "de": "Zustand der Kachel Ã–ffnen / SchlieÃŸen umkehren",
         "es": "Invertir el estado Abierto / Cerrado de la baldosa",
-        "fr": "Inverser l'état Ouvert / Fermé de la tuile",
+        "fr": "Inverser l'Ã©tat Ouvert / FermÃ© de la tuile",
         "it": "Inverti lo stato di apertura / chiusura della piastrella",
-        "no": "Inverter åpen / lukket tilstand på flisen",
-        "sv": "Invertera kaklets öppna / stängda tillstånd",
-        "pl": "Odwróć stan otwarcia / zamknięcia płytki",
-        "ru": "Инвертировать состояние плитки Открыто / Закрыто",
-        "ko": "타일 열림 / 닫힘 상태 반전"
+        "no": "Inverter Ã¥pen / lukket tilstand pÃ¥ flisen",
+        "sv": "Invertera kaklets Ã¶ppna / stÃ¤ngda tillstÃ¥nd",
+        "pl": "OdwrÃ³Ä‡ stan otwarcia / zamkniÄ™cia pÅ‚ytki",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸ ÐžÑ‚ÐºÑ€Ñ‹Ñ‚Ð¾ / Ð—Ð°ÐºÑ€Ñ‹Ñ‚Ð¾",
+        "ko": "íƒ€ì¼ ì—´ë¦¼ / ë‹«íž˜ ìƒíƒœ ë°˜ì „"
       }
     },
     {
@@ -96,14 +96,14 @@
         "nl": "Positie omkeren",
         "da": "Vend position",
         "de": "Position umkehren",
-        "es": "Invertir posición",
+        "es": "Invertir posiciÃ³n",
         "fr": "Inverser la position",
         "it": "Inverti posizione",
         "no": "Inverter posisjon",
         "sv": "Invertera position",
-        "pl": "Odwróć pozycję",
-        "ru": "Инвертировать положение",
-        "ko": "위치 반전"
+        "pl": "OdwrÃ³Ä‡ pozycjÄ™",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ",
+        "ko": "ìœ„ì¹˜ ë°˜ì „"
       },
       "value": true,
       "hint": {
@@ -111,14 +111,14 @@
         "nl": "Draai de positieregeling om.",
         "da": "Vend positionskontrollen.",
         "de": "Positionsteuerung umkehren.",
-        "es": "Invertir el control de posición.",
-        "fr": "Inverser le contrôle de position.",
+        "es": "Invertir el control de posiciÃ³n.",
+        "fr": "Inverser le contrÃ´le de position.",
         "it": "Inverti il controllo della posizione.",
         "no": "Inverter posisjonskontrollen.",
         "sv": "Invertera positionskontrollen.",
-        "pl": "Odwróć sterowanie pozycją.",
-        "ru": "Инвертировать управление положением.",
-        "ko": "위치 제어 반전."
+        "pl": "OdwrÃ³Ä‡ sterowanie pozycjÄ….",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸ÐµÐ¼.",
+        "ko": "ìœ„ì¹˜ ì œì–´ ë°˜ì „."
       }
     }
   ],

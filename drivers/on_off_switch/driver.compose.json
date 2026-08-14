@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "Switch (io)",
-    "nl": "Schakelaar (io)",
-    "da": "Kontakt (io)",
-    "de": "Schalter (io)",
-    "es": "Interruptor (io)",
-    "fr": "Interrupteur (io)",
-    "it": "Interruttore (io)",
-    "no": "Bryter (io)",
-    "sv": "Strömbrytare (io)",
-    "pl": "Przełącznik (io)",
-    "ru": "Выключатель (io)",
-    "ko": "스위치 (io)"
+    "en": "Light with Timer (IO)",
+	"nl": "Licht met timer (IO)",
+	"da": "Lys med timer (IO)",
+	"de": "Licht mit Timer (IO)",
+	"es": "Luz con temporizador (IO)",
+	"fr": "Lumière avec minuterie (IO)",
+	"it": "Luce con timer (IO)",
+	"no": "Lys med timer (IO)",
+	"sv": "Ljus med timer (IO)",
+	"pl": "Światło z timerem (IO)",
+	"ru": "Свет с таймером (IO)",
+	"ko": "타이머가 있는 조명 (IO)"
   },
   "class": "light",
   "capabilities": [

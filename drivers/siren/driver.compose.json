@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "Siren (io)",
-    "nl": "Sirene (io)",
-    "da": "Sirene (io)",
-    "de": "Sirene (io)",
-    "es": "Sirena (io)",
-    "fr": "Sirène (io)",
-    "it": "Sirena (io)",
-    "no": "Sirene (io)",
-    "sv": "Sirén (io)",
-    "pl": "Syrena (io)",
-    "ru": "Сирена (io)",
-    "ko": "사이렌 (io)"
+    "en": "Siren (IO)",
+    "nl": "Sirene (IO)",
+    "da": "Sirene (IO)",
+    "de": "Sirene (IO)",
+    "es": "Sirena (IO)",
+    "fr": "SirÃ¨ne (IO)",
+    "it": "Sirena (IO)",
+    "no": "Sirene (IO)",
+    "sv": "SirÃ©n (IO)",
+    "pl": "Syrena (IO)",
+    "ru": "Ð¡Ð¸Ñ€ÐµÐ½Ð° (IO)",
+    "ko": "ì‚¬ì´ë Œ (IO)"
   },
   "class": "homealarm",
   "energy": {

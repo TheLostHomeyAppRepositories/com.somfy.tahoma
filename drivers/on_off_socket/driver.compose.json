@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "Socket (RTS & io)",
-    "nl": "Stopcontact (RTS & io)",
-    "da": "Stikkontakt (RTS & io)",
-    "de": "Steckdose (RTS & io)",
-    "es": "Enchufe (RTS & io)",
-    "fr": "Prise (RTS & io)",
-    "it": "Presa (RTS & io)",
-    "no": "Stikkontakt (RTS & io)",
-    "sv": "Vägguttag (RTS & io)",
-    "pl": "Gniazdko (RTS & io)",
-    "ru": "Розетка (RTS и io)",
-    "ko": "소켓 (RTS & io)"
+    "en": "Socket (IO)",
+    "nl": "Stopcontact (IO)",
+    "da": "Stikkontakt (IO)",
+    "de": "Steckdose (IO)",
+    "es": "Enchufe (IO)",
+    "fr": "Prise (IO)",
+    "it": "Presa (IO)",
+    "no": "Stikkontakt (IO)",
+    "sv": "VÃ¤gguttag (IO)",
+    "pl": "Gniazdko (IO)",
+    "ru": "Ð Ð¾Ð·ÐµÑ‚ÐºÐ° (IO)",
+    "ko": "ì†Œì¼“ (IO)"
   },
   "class": "socket",
   "capabilities": [

@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "Door Lock (io)",
-    "nl": "Deurslot (io)",
-    "da": "Dørlås (io)",
-    "de": "Türschloss (io)",
-    "es": "Cerradura de puerta (io)",
-    "fr": "Serrure de porte (io)",
-    "it": "Serratura della porta (io)",
-    "no": "Dørlås (io)",
-    "sv": "Dörrlås (io)",
-    "pl": "Zamek do drzwi (io)",
-    "ru": "Дверной замок (io)",
-    "ko": "문 잠금 장치 (io)"
+    "en": "Door Lock (IO)",
+    "nl": "Deurslot (IO)",
+    "da": "Dørlås (IO)",
+    "de": "Türschloss (IO)",
+    "es": "Cerradura de puerta (IO)",
+    "fr": "Serrure de porte (IO)",
+    "it": "Serratura della porta (IO)",
+    "no": "Dørlås (IO)",
+    "sv": "Dörrlås (IO)",
+    "pl": "Zamek do drzwi (IO)",
+    "ru": "Дверной замок (IO)",
+    "ko": "문 잠금 장치 (IO)"
   },
   "class": "lock",
   "capabilities": [

@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "Dimmable light",
-    "nl": "Dimbaar licht",
-    "da": "Dæmpbart lys",
-    "de": "Dimmbares Licht",
-    "es": "Luz regulable",
-    "fr": "Lumière dimmable",
-    "it": "Luce dimmerabile",
-    "no": "Dimbar lys",
-    "sv": "Dimbar ljus",
-    "pl": "Światło ściemniane",
-    "ru": "Регулируемый свет",
-    "ko": "조광 가능한 빛"
+    "en": "Dimmable light (IO, Hue, ZWave)",
+    "nl": "Dimbaar licht (IO, Hue, ZWave)",
+    "da": "Dæmpbart lys (IO, Hue, ZWave)",
+    "de": "Dimmbares Licht (IO, Hue, ZWave)",
+    "es": "Luz regulable (IO, Hue, ZWave)",
+    "fr": "Lumière dimmable (IO, Hue, ZWave)",
+    "it": "Luce dimmerabile (IO, Hue, ZWave)",
+    "no": "Dimbar lys (IO, Hue, ZWave)",
+    "sv": "Dimbar ljus (IO, Hue, ZWave)",
+    "pl": "Światło ściemniane (IO, Hue, ZWave)",
+    "ru": "Регулируемый свет (IO, Hue, ZWave)",
+    "ko": "조광 가능한 빛 (IO, Hue, ZWave)"
   },
   "class": "light",
   "capabilities": [

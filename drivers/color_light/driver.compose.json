@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "RGB Light",
-    "nl": "RGB-licht",
-    "da": "RGB Lys",
-    "de": "RGB Licht",
-    "es": "Luz RGB",
-    "fr": "Lumière RGB",
-    "it": "Luce RGB",
-    "no": "RGB Lys",
-    "sv": "RGB Ljus",
-    "pl": "Światło RGB",
-    "ru": "RGB свет",
-    "ko": "RGB 조명"
+    "en": "RGB Light (IO)",
+    "nl": "RGB-licht (IO)",
+    "da": "RGB Lys (IO)",
+    "de": "RGB Licht (IO)",
+    "es": "Luz RGB (IO)",
+    "fr": "Lumière RGB (IO)",
+    "it": "Luce RGB (IO)",
+    "no": "RGB Lys (IO)",
+    "sv": "RGB Ljus (IO)",
+    "pl": "Światło RGB (IO)",
+    "ru": "RGB свет (IO)",
+    "ko": "RGB 조명 (IO)"
   },
   "class": "light",
   "capabilities": [

@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "Sun sensor (io)",
-    "nl": "Zonsensor (io)",
-    "da": "SSolsensor (io)",
-    "de": "Sonnensensor (io)",
-    "es": "Sensor solar (io)",
-    "fr": "Capteur solaire (io)",
-    "it": "Sensore solare (io)",
-    "no": "SSolsensor (io)",
-    "sv": "SSolsensor (io)",
-    "pl": "Czujnik słońca (io)",
-    "ru": "Солнечный датчик (io)",
-    "ko": "태양 센서 (io)"
+    "en": "Sun sensor (IO)",
+    "nl": "Zonsensor (IO)",
+    "da": "SSolsensor (IO)",
+    "de": "Sonnensensor (IO)",
+    "es": "Sensor solar (IO)",
+    "fr": "Capteur solaire (IO)",
+    "it": "Sensore solare (IO)",
+    "no": "SSolsensor (IO)",
+    "sv": "SSolsensor (IO)",
+    "pl": "Czujnik sÅ‚oÅ„ca (IO)",
+    "ru": "Ð¡Ð¾Ð»Ð½ÐµÑ‡Ð½Ñ‹Ð¹ Ð´Ð°Ñ‚Ñ‡Ð¸Ðº (IO)",
+    "ko": "íƒœì–‘ ì„¼ì„œ (IO)"
   },
   "class": "sensor",
   "energy": {

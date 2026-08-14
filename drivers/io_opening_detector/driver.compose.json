@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "Opening Detector (io)",
-    "nl": "Openingsmelder (io)",
-    "da": "Åbningsdetektor (io)",
-    "de": "Öffnungsdetektor (io)",
-    "es": "Detector de Apertura (io)",
-    "fr": "Détecteur d'Ouverture (io)",
-    "it": "Rivelatore di Apertura (io)",
-    "no": "Åpningsdetektor (io)",
-    "sv": "Öppningsdetektor (io)",
-    "pl": "Detektor Otwarcia (io)",
-    "ru": "Датчик Открывания (io)",
-    "ko": "개폐 감지기 (io)"
+    "en": "Opening Detector (IO)",
+    "nl": "Openingsmelder (IO)",
+    "da": "Ã…bningsdetektor (IO)",
+    "de": "Ã–ffnungsdetektor (IO)",
+    "es": "Detector de Apertura (IO)",
+    "fr": "DÃ©tecteur d'Ouverture (IO)",
+    "it": "Rivelatore di Apertura (IO)",
+    "no": "Ã…pningsdetektor (IO)",
+    "sv": "Ã–ppningsdetektor (IO)",
+    "pl": "Detektor Otwarcia (IO)",
+    "ru": "Ð”Ð°Ñ‚Ñ‡Ð¸Ðº ÐžÑ‚ÐºÑ€Ñ‹Ð²Ð°Ð½Ð¸Ñ (IO)",
+    "ko": "ê°œí ê°ì§€ê¸° (IO)"
   },
   "class": "sensor",
   "energy": {

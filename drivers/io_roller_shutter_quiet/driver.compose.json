@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "Roller shutter with quiet mode (io)",
-    "nl": "Rolluik met stille modus (io)",
-    "da": "Rulleskodde med stillefunktion (io)",
-    "de": "Rollladen mit leisem Modus (io)",
-    "es": "Persiana enrollable con modo silencioso (io)",
-    "fr": "Volet roulant avec mode silencieux (io)",
-    "it": "Tapparella con modalità silenziosa (io)",
-    "no": "Rullegardin med stillemodus (io)",
-    "sv": "Rullgardin med tyst läge (io)",
-    "pl": "Rolety z cichym trybem (io)",
-    "ru": "Роликовая штора с тихим режимом (io)",
-    "ko": "조용한 모드가 있는 롤러 셔터 (io)"
+    "en": "Roller shutter with quiet mode (IO)",
+    "nl": "Rolluik met stille modus (IO)",
+    "da": "Rulleskodde med stillefunktion (IO)",
+    "de": "Rollladen mit leisem Modus (IO)",
+    "es": "Persiana enrollable con modo silencioso (IO)",
+    "fr": "Volet roulant avec mode silencieux (IO)",
+    "it": "Tapparella con modalitÃ  silenziosa (IO)",
+    "no": "Rullegardin med stillemodus (IO)",
+    "sv": "Rullgardin med tyst lÃ¤ge (IO)",
+    "pl": "Rolety z cichym trybem (IO)",
+    "ru": "Ð Ð¾Ð»Ð¸ÐºÐ¾Ð²Ð°Ñ ÑˆÑ‚Ð¾Ñ€Ð° Ñ Ñ‚Ð¸Ñ…Ð¸Ð¼ Ñ€ÐµÐ¶Ð¸Ð¼Ð¾Ð¼ (IO)",
+    "ko": "ì¡°ìš©í•œ ëª¨ë“œê°€ ìžˆëŠ” ë¡¤ëŸ¬ ì…”í„° (IO)"
   },
   "class": "blinds",
   "capabilities": [
@@ -32,12 +32,12 @@
         "de": "Umkehren Auf / Ab",
         "es": "Invertir arriba / abajo",
         "fr": "Inverser haut / bas",
-        "it": "Inverti su / giù",
+        "it": "Inverti su / giÃ¹",
         "no": "Vend opp / ned",
         "sv": "Invert Up / Down",
-        "pl": "Odwróć w górę / w dół",
-        "ru": "Инвертировать вверх / вниз",
-        "ko": "위 / 아래 반전"
+        "pl": "OdwrÃ³Ä‡ w gÃ³rÄ™ / w dÃ³Å‚",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð²Ð²ÐµÑ€Ñ… / Ð²Ð½Ð¸Ð·",
+        "ko": "ìœ„ / ì•„ëž˜ ë°˜ì „"
       },
       "value": false,
       "hint": {
@@ -45,14 +45,14 @@
         "nl": "Draai de bedieningselementen omhoog/omlaag om",
         "da": "Vend retningen op / ned kontrol",
         "de": "Umkehrrichtung Auf / Ab steuern",
-        "es": "Invertir los controles de dirección arriba / abajo",
+        "es": "Invertir los controles de direcciÃ³n arriba / abajo",
         "fr": "Inverser les commandes de direction haut / bas",
-        "it": "Inverta i controlli di direzione su / giù",
+        "it": "Inverta i controlli di direzione su / giÃ¹",
         "no": "Vend opp / ned retningskontrollene",
-        "sv": "Omvänd Up / Down-riktning kontroller",
-        "pl": "Odwróć sterowanie kierunkiem w górę / w dół",
-        "ru": "Инвертировать управление направлением вверх / вниз",
-        "ko": "위/아래 방향 제어를 반전"
+        "sv": "OmvÃ¤nd Up / Down-riktning kontroller",
+        "pl": "OdwrÃ³Ä‡ sterowanie kierunkiem w gÃ³rÄ™ / w dÃ³Å‚",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸ÐµÐ¼ Ð²Ð²ÐµÑ€Ñ… / Ð²Ð½Ð¸Ð·",
+        "ko": "ìœ„/ì•„ëž˜ ë°©í–¥ ì œì–´ë¥¼ ë°˜ì „"
       }
     },
     {
@@ -63,29 +63,29 @@
         "nl": "Tegelactie omkeren",
         "da": "Vend flis handling",
         "de": "Umkehren Kachelaktion",
-        "es": "Invertir acción de mosaico",
+        "es": "Invertir acciÃ³n de mosaico",
         "fr": "Inverser l'action de la tuile",
         "it": "Inverti azione piastrella",
         "no": "Vend flisehandlingen",
-        "sv": "Omvänd kakelåtgärd",
-        "pl": "Odwróć działanie płytki",
-        "ru": "Инвертировать действие плитки",
-        "ko": "타일 작업 반전"
+        "sv": "OmvÃ¤nd kakelÃ¥tgÃ¤rd",
+        "pl": "OdwrÃ³Ä‡ dziaÅ‚anie pÅ‚ytki",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸",
+        "ko": "íƒ€ì¼ ìž‘ì—… ë°˜ì „"
       },
       "value": false,
       "hint": {
         "en": "Reverse the Open / Close state of the Tile",
         "nl": "Keer de Open / Sluit-status van de tegel om",
-        "da": "Vend åben / luk tilstanden af flisen",
-        "de": "Umkehren Sie den Öffnen / Schließen Zustand der Kachel",
+        "da": "Vend Ã¥ben / luk tilstanden af flisen",
+        "de": "Umkehren Sie den Ã–ffnen / SchlieÃŸen Zustand der Kachel",
         "es": "Invertir el estado abierto / cerrado del mosaico",
-        "fr": "Inverser l'état ouvert / fermé de la tuile",
+        "fr": "Inverser l'Ã©tat ouvert / fermÃ© de la tuile",
         "it": "Inverti lo stato di apertura / chiusura della piastrella",
-        "no": "Vend åpen / lukket tilstanden til flisen",
-        "sv": "Omvänd öppen / stängd status på plattan",
-        "pl": "Odwróć stan otwarty / zamknięty płytki",
-        "ru": "Инвертировать состояние открыто / закрыто плитки",
-        "ko": "타일의 열림 / 닫힘 상태 반전"
+        "no": "Vend Ã¥pen / lukket tilstanden til flisen",
+        "sv": "OmvÃ¤nd Ã¶ppen / stÃ¤ngd status pÃ¥ plattan",
+        "pl": "OdwrÃ³Ä‡ stan otwarty / zamkniÄ™ty pÅ‚ytki",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¾ / Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¾ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸",
+        "ko": "íƒ€ì¼ì˜ ì—´ë¦¼ / ë‹«íž˜ ìƒíƒœ ë°˜ì „"
       }
     },
     {
@@ -96,14 +96,14 @@
         "nl": "Positie omkeren",
         "da": "Vend Position",
         "de": "Position umkehren",
-        "es": "Invertir posición",
+        "es": "Invertir posiciÃ³n",
         "fr": "Inverser la position",
         "it": "Inverti posizione",
         "no": "Vend posisjon",
-        "sv": "Omvänd position",
-        "pl": "Odwróć pozycję",
-        "ru": "Инвертировать позицию",
-        "ko": "위치 반전"
+        "sv": "OmvÃ¤nd position",
+        "pl": "OdwrÃ³Ä‡ pozycjÄ™",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÑŽ",
+        "ko": "ìœ„ì¹˜ ë°˜ì „"
       },
       "value": false,
       "hint": {
@@ -111,14 +111,14 @@
         "nl": "Draai de positieregeling om.",
         "da": "Vend positionskontrollen.",
         "de": "Umkehren Sie die Positionssteuerung.",
-        "es": "Invertir el control de posición.",
-        "fr": "Inverser le contrôle de position.",
+        "es": "Invertir el control de posiciÃ³n.",
+        "fr": "Inverser le contrÃ´le de position.",
         "it": "Inverti il controllo della posizione.",
         "no": "Vend posisjonskontrollen.",
-        "sv": "Omvänd positionskontroll.",
-        "pl": "Odwróć kontrolę pozycji.",
-        "ru": "Инвертировать управление положением.",
-        "ko": "위치 제어 반전."
+        "sv": "OmvÃ¤nd positionskontroll.",
+        "pl": "OdwrÃ³Ä‡ kontrolÄ™ pozycji.",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸ÐµÐ¼.",
+        "ko": "ìœ„ì¹˜ ì œì–´ ë°˜ì „."
       }
     }
   ],

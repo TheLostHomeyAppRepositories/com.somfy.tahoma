@@ -1,6 +1,6 @@
 {
 	"name": {
-		"en": "Positionable Gate (io)",
+		"en": "Positionable Gate (IO)",
 		"fr": "Portail positionnable (IO)",
 		"de": "Positionierbares Tor (IO)",
 		"nl": "Positioneerbare poort (IO)"
@@ -17,14 +17,14 @@
 			"type": "dropdown",
 			"label": {
 				"en": "Device Class",
-				"fr": "Classe de périphérique",
-				"de": "Geräteklasse",
+				"fr": "Classe de pÃ©riphÃ©rique",
+				"de": "GerÃ¤teklasse",
 				"nl": "Apparaatklassen"
 			},
 			"value": "other",
 			"hint": {
 				"en": "Set the Homey class.",
-				"fr": "Définissez la classe Homey.",
+				"fr": "DÃ©finissez la classe Homey.",
 				"de": "Setzen Sie die Homey-Klasse.",
 				"nl": "Stel de Homey-klasse in."
 			},
@@ -33,7 +33,7 @@
 					"id": "other",
 					"label": {
 						"en": "Generic class",
-						"fr": "Classe générique",
+						"fr": "Classe gÃ©nÃ©rique",
 						"de": "Generische Klasse",
 						"nl": "Generieke klasse"
 					}

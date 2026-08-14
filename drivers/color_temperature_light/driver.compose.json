@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "RGBW Light",
-    "nl": "RGBW-licht",
-    "da": "RGBW Lys",
-    "de": "RGBW Licht",
-    "es": "Luz RGBW",
-    "fr": "Lumière RGBW",
-    "it": "Luce RGBW",
-    "no": "RGBW Lys",
-    "sv": "RGBW Ljus",
-    "pl": "Światło RGBW",
-    "ru": "RGBW свет",
-    "ko": "RGBW 조명"
+    "en": "RGBW Light (Hue)",
+    "nl": "RGBW-licht (Hue)",
+    "da": "RGBW Lys (Hue)",
+    "de": "RGBW Licht (Hue)",
+    "es": "Luz RGBW (Hue)",
+    "fr": "Lumière RGBW (Hue)",
+    "it": "Luce RGBW (Hue)",
+    "no": "RGBW Lys (Hue)",
+    "sv": "RGBW Ljus (Hue)",
+    "pl": "Światło RGBW (Hue)",
+    "ru": "RGBW свет (Hue)",
+    "ko": "RGBW 조명 (Hue)"
   },
   "class": "light",
   "capabilities": [

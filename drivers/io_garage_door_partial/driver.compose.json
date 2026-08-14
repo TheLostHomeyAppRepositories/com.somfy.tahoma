@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "Garage Door - Open and Close (io)",
-    "nl": "Garagedeur - Openen en Sluiten (io)",
-    "da": "Garageport - Åben og Luk (io)",
-    "de": "Garagentor - Öffnen und Schließen (io)",
-    "es": "Puerta de garaje - Abrir y cerrar (io)",
-    "fr": "Porte de garage - Ouvrir et Fermer (io)",
-    "it": "Porta del garage - Apri e Chiudi (io)",
-    "no": "Garasjedør - Åpne og Lukk (io)",
-    "sv": "Garageport - Öppna och Stäng (io)",
-    "pl": "Drzwi Garażowe - Otwieranie i Zamykane (io)",
-    "ru": "Гаражная дверь - Открыть и Закрыть (io)",
-    "ko": "차고 문 - 열고 닫기 (io)"
+    "en": "Garage Door - Open and Close (IO)",
+    "nl": "Garagedeur - Openen en Sluiten (IO)",
+    "da": "Garageport - Åben og Luk (IO)",
+    "de": "Garagentor - Öffnen und Schließen (IO)",
+    "es": "Puerta de garaje - Abrir y cerrar (IO)",
+    "fr": "Porte de garage - Ouvrir et Fermer (IO)",
+    "it": "Porta del garage - Apri e Chiudi (IO)",
+    "no": "Garasjedør - Åpne og Lukk (IO)",
+    "sv": "Garageport - Öppna och Stäng (IO)",
+    "pl": "Drzwi Garażowe - Otwieranie i Zamykane (IO)",
+    "ru": "Гаражная дверь - Открыть и Закрыть (IO)",
+    "ko": "차고 문 - 열고 닫기 (IO)"
   },
   "class": "garagedoor",
   "capabilities": [

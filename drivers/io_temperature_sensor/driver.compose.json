@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "Temperature Sensor (io)",
-    "nl": "Thermis WireFree sensor (io)",
-    "da": "Temperaturføler (io)",
-    "de": "Temperatursensor (io)",
-    "es": "Sensor de Temperatura (io)",
-    "fr": "Capteur de Température (io)",
-    "it": "Sensore di Temperatura (io)",
-    "no": "Temperatursensor (io)",
-    "sv": "Temperatursensor (io)",
-    "pl": "Czujnik Temperatury (io)",
-    "ru": "Датчик температуры (io)",
-    "ko": "온도 센서 (io)"
+    "en": "Temperature Sensor (IO)",
+    "nl": "Thermis WireFree sensor (IO)",
+    "da": "TemperaturfÃ¸ler (IO)",
+    "de": "Temperatursensor (IO)",
+    "es": "Sensor de Temperatura (IO)",
+    "fr": "Capteur de TempÃ©rature (IO)",
+    "it": "Sensore di Temperatura (IO)",
+    "no": "Temperatursensor (IO)",
+    "sv": "Temperatursensor (IO)",
+    "pl": "Czujnik Temperatury (IO)",
+    "ru": "Ð”Ð°Ñ‚Ñ‡Ð¸Ðº Ñ‚ÐµÐ¼Ð¿ÐµÑ€Ð°Ñ‚ÑƒÑ€Ñ‹ (IO)",
+    "ko": "ì˜¨ë„ ì„¼ì„œ (IO)"
   },
   "class": "sensor",
   "energy": {

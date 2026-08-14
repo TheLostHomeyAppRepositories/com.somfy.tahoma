@@ -1,16 +1,16 @@
 {
   "name": {
-    "en": "Interior Blind (io)",
-    "da": "Indvendig Persienne (io)",
-    "de": "Innenjalousie (io)",
-    "es": "Persiana Interior (io)",
-    "fr": "Store Intérieur (io)",
-    "it": "Tenda Interna (io)",
-    "no": "Innvendig Persienne (io)",
-    "sv": "Inre Persienn (io)",
-    "pl": "Roleta Wewnętrzna (io)",
-    "ru": "Внутренняя Жалюзи (io)",
-    "ko": "실내 블라인드 (io)"
+    "en": "Interior Blind (IO)",
+    "da": "Indvendig Persienne (IO)",
+    "de": "Innenjalousie (IO)",
+    "es": "Persiana Interior (IO)",
+    "fr": "Store IntÃ©rieur (IO)",
+    "it": "Tenda Interna (IO)",
+    "no": "Innvendig Persienne (IO)",
+    "sv": "Inre Persienn (IO)",
+    "pl": "Roleta WewnÄ™trzna (IO)",
+    "ru": "Ð’Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½ÑÑ Ð–Ð°Ð»ÑŽÐ·Ð¸ (IO)",
+    "ko": "ì‹¤ë‚´ ë¸”ë¼ì¸ë“œ (IO)"
   },
   "class": "blinds",
   "capabilities": [
@@ -29,12 +29,12 @@
         "de": "Oben / Unten Umkehren",
         "es": "Invertir Arriba / Abajo",
         "fr": "Inverser Haut / Bas",
-        "it": "Inverti Su / Giù",
+        "it": "Inverti Su / GiÃ¹",
         "no": "Omvendt Opp / Ned",
-        "sv": "Omvänd Upp / Ner",
-        "pl": "Odwróć Góra / Dół",
-        "ru": "Перевернуть Вверх / Вниз",
-        "ko": "위 / 아래 반전"
+        "sv": "OmvÃ¤nd Upp / Ner",
+        "pl": "OdwrÃ³Ä‡ GÃ³ra / DÃ³Å‚",
+        "ru": "ÐŸÐµÑ€ÐµÐ²ÐµÑ€Ð½ÑƒÑ‚ÑŒ Ð’Ð²ÐµÑ€Ñ… / Ð’Ð½Ð¸Ð·",
+        "ko": "ìœ„ / ì•„ëž˜ ë°˜ì „"
       },
       "value": false,
       "hint": {
@@ -42,14 +42,14 @@
         "nl": "Draai de bedieningselementen omhoog/omlaag om",
         "da": "Vend op / ned-retning styringerne",
         "de": "Kehrt die Steuerung der Auf / Ab Richtung um",
-        "es": "Invierte los controles de dirección de Arriba / Abajo",
+        "es": "Invierte los controles de direcciÃ³n de Arriba / Abajo",
         "fr": "Inverse les commandes de direction Haut / Bas",
-        "it": "Inverti i controlli di direzione Su / Giù",
+        "it": "Inverti i controlli di direzione Su / GiÃ¹",
         "no": "Omvendt Opp / Ned retning kontroller",
-        "sv": "Vänd riktning kontroller upp / ner",
-        "pl": "Odwróć kierunkowe sterowanie Góra/Dół",
-        "ru": "Изменить направление управления Вверх / Вниз",
-        "ko": "위 / 아래 방향 제어 반전"
+        "sv": "VÃ¤nd riktning kontroller upp / ner",
+        "pl": "OdwrÃ³Ä‡ kierunkowe sterowanie GÃ³ra/DÃ³Å‚",
+        "ru": "Ð˜Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð’Ð²ÐµÑ€Ñ… / Ð’Ð½Ð¸Ð·",
+        "ko": "ìœ„ / ì•„ëž˜ ë°©í–¥ ì œì–´ ë°˜ì „"
       }
     },
     {
@@ -60,29 +60,29 @@
         "nl": "Tegelactie omkeren",
         "da": "Omvend flise handling",
         "de": "Kachelaktion umkehren",
-        "es": "Invertir acción de los azulejos",
+        "es": "Invertir acciÃ³n de los azulejos",
         "fr": "Inverser l'action de la tuile",
         "it": "Inverti azione della piastrella",
         "no": "Omvendt flis handling",
-        "sv": "Omvänd kakel åtgärd",
-        "pl": "Odwróć działanie płytki",
-        "ru": "Перевернуть действие плитки",
-        "ko": "타일 동작 반전"
+        "sv": "OmvÃ¤nd kakel Ã¥tgÃ¤rd",
+        "pl": "OdwrÃ³Ä‡ dziaÅ‚anie pÅ‚ytki",
+        "ru": "ÐŸÐµÑ€ÐµÐ²ÐµÑ€Ð½ÑƒÑ‚ÑŒ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸",
+        "ko": "íƒ€ì¼ ë™ìž‘ ë°˜ì „"
       },
       "value": false,
       "hint": {
         "en": "Reverse the Open / Close state of the Tile",
         "nl": "Keer de Open / Sluit-status van de tegel om",
-        "da": "Vend åben / lukket state af flisen",
-        "de": "Den Öffnen / Schließen-Zustand der Kachel umkehren",
+        "da": "Vend Ã¥ben / lukket state af flisen",
+        "de": "Den Ã–ffnen / SchlieÃŸen-Zustand der Kachel umkehren",
         "es": "Invierte el estado de Abrir/Cerrar del Azulejo",
-        "fr": "Inverse l'état Ouvert/Fermé de la tuile",
+        "fr": "Inverse l'Ã©tat Ouvert/FermÃ© de la tuile",
         "it": "Inverti lo stato di Aperto/Chiuso della piastrella",
-        "no": "Omvend åpen/lukket status for flisen",
-        "sv": "Vänd öppen/stängd status för kakel",
-        "pl": "Odwróć stan Otwórz/Zamknij płytki",
-        "ru": "Измените состояние плитки Открыто / Закрыто",
-        "ko": "타일의 열기 / 닫기 상태 반전"
+        "no": "Omvend Ã¥pen/lukket status for flisen",
+        "sv": "VÃ¤nd Ã¶ppen/stÃ¤ngd status fÃ¶r kakel",
+        "pl": "OdwrÃ³Ä‡ stan OtwÃ³rz/Zamknij pÅ‚ytki",
+        "ru": "Ð˜Ð·Ð¼ÐµÐ½Ð¸Ñ‚Ðµ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸ ÐžÑ‚ÐºÑ€Ñ‹Ñ‚Ð¾ / Ð—Ð°ÐºÑ€Ñ‹Ñ‚Ð¾",
+        "ko": "íƒ€ì¼ì˜ ì—´ê¸° / ë‹«ê¸° ìƒíƒœ ë°˜ì „"
       }
     },
     {
@@ -93,14 +93,14 @@
         "nl": "Positie omkeren",
         "da": "Omvend position",
         "de": "Position umkehren",
-        "es": "Invertir posición",
+        "es": "Invertir posiciÃ³n",
         "fr": "Inverser la position",
         "it": "Inverti posizione",
         "no": "Omvend posisjon",
-        "sv": "Omvänd position",
-        "pl": "Odwróć pozycję",
-        "ru": "Поменять положение",
-        "ko": "위치 반전"
+        "sv": "OmvÃ¤nd position",
+        "pl": "OdwrÃ³Ä‡ pozycjÄ™",
+        "ru": "ÐŸÐ¾Ð¼ÐµÐ½ÑÑ‚ÑŒ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ",
+        "ko": "ìœ„ì¹˜ ë°˜ì „"
       },
       "value": false,
       "hint": {
@@ -108,14 +108,14 @@
         "nl": "Draai de positieregeling om.",
         "da": "Vend positionskontrol.",
         "de": "Die Positionsteuerung umkehren.",
-        "es": "Invierte el control de posición.",
-        "fr": "Inversez le contrôle de position.",
+        "es": "Invierte el control de posiciÃ³n.",
+        "fr": "Inversez le contrÃ´le de position.",
         "it": "Inverti il controllo della posizione.",
         "no": "Omvend posisjonskontroll.",
-        "sv": "Vänd positionskontrollen.",
-        "pl": "Odwróć sterowanie pozycją.",
-        "ru": "Инвертировать управление позицией.",
-        "ko": "위치 제어 반전."
+        "sv": "VÃ¤nd positionskontrollen.",
+        "pl": "OdwrÃ³Ä‡ sterowanie pozycjÄ….",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÐµÐ¹.",
+        "ko": "ìœ„ì¹˜ ì œì–´ ë°˜ì „."
       }
     }
   ],

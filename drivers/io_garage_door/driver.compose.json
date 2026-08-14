@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "Garage Door with Position Control (io)",
-    "nl": "Garagedeur met Positiebesturing (io)",
-    "da": "Garageport med Positionskontrol (io)",
-    "de": "Garagentor mit Positionskontrolle (io)",
-    "es": "Puerta de Garaje con Control de Posición (io)",
-    "fr": "Porte de Garage avec Contrôle de Position (io)",
-    "it": "Porta del Garage con Controllo di Posizione (io)",
-    "no": "Garasjeport med Posisjonskontroll (io)",
-    "sv": "Garagedörr med Positionskontroll (io)",
-    "pl": "Drzwi Garażowe z Kontrolą Pozycji (io)",
-    "ru": "Гаражные ворота с контролем положения (io)",
-    "ko": "위치 제어가 있는 차고 문 (io)"
+    "en": "Garage Door with Position Control (IO)",
+    "nl": "Garagedeur met Positiebesturing (IO)",
+    "da": "Garageport med Positionskontrol (IO)",
+    "de": "Garagentor mit Positionskontrolle (IO)",
+    "es": "Puerta de Garaje con Control de Posición (IO)",
+    "fr": "Porte de Garage avec Contrôle de Position (IO)",
+    "it": "Porta del Garage con Controllo di Posizione (IO)",
+    "no": "Garasjeport med Posisjonskontroll (IO)",
+    "sv": "Garagedörr med Positionskontroll (IO)",
+    "pl": "Drzwi Garażowe z Kontrolą Pozycji (IO)",
+    "ru": "Гаражные ворота с контролем положения (IO)",
+    "ko": "위치 제어가 있는 차고 문 (IO)"
   },
   "class": "garagedoor",
   "capabilities": [

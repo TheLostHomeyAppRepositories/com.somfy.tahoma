@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "Slated Pergola (io)",
-    "nl": "Lamel Pergola (io)",
-    "da": "Skifer Pergola (io)",
-    "de": "Schiefer Pergola (io)",
-    "es": "Pérgola de Lamas (io)",
-    "fr": "Pergola Lattée (io)",
-    "it": "Pergola Lamellare (io)",
-    "no": "Skjelett Pergola (io)",
-    "sv": "Skiffer Pergola (io)",
-    "pl": "Pergola Łupkowa (io)",
-    "ru": "Шиферная Пергола (io)",
-    "ko": "슬레이트 퍼골라 (io)"
+    "en": "Slated Pergola (IO)",
+    "nl": "Lamel Pergola (IO)",
+    "da": "Skifer Pergola (IO)",
+    "de": "Schiefer Pergola (IO)",
+    "es": "PÃ©rgola de Lamas (IO)",
+    "fr": "Pergola LattÃ©e (IO)",
+    "it": "Pergola Lamellare (IO)",
+    "no": "Skjelett Pergola (IO)",
+    "sv": "Skiffer Pergola (IO)",
+    "pl": "Pergola Åupkowa (IO)",
+    "ru": "Ð¨Ð¸Ñ„ÐµÑ€Ð½Ð°Ñ ÐŸÐµÑ€Ð³Ð¾Ð»Ð° (IO)",
+    "ko": "ìŠ¬ë ˆì´íŠ¸ í¼ê³¨ë¼ (IO)"
   },
   "class": "sunshade",
   "capabilities": [
@@ -29,12 +29,12 @@
         "de": "Umkehren Hoch / Runter",
         "es": "Invertir Arriba / Abajo",
         "fr": "Inverser Haut / Bas",
-        "it": "Inverti Su / Giù",
+        "it": "Inverti Su / GiÃ¹",
         "no": "Vend opp / ned",
-        "sv": "Vänd upp / ner",
-        "pl": "Odwróć góra / dół",
-        "ru": "Инвертировать Вверх / Вниз",
-        "ko": "위 / 아래 반전"
+        "sv": "VÃ¤nd upp / ner",
+        "pl": "OdwrÃ³Ä‡ gÃ³ra / dÃ³Å‚",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð’Ð²ÐµÑ€Ñ… / Ð’Ð½Ð¸Ð·",
+        "ko": "ìœ„ / ì•„ëž˜ ë°˜ì „"
       },
       "value": false,
       "hint": {
@@ -42,14 +42,14 @@
         "nl": "Draai de bedieningselementen omhoog/omlaag om",
         "da": "Vend retningen for Op / Ned kontrol",
         "de": "Umkehren der Hoch / Runter Richtungssteuerung",
-        "es": "Invertir los controles de dirección Arriba / Abajo",
+        "es": "Invertir los controles de direcciÃ³n Arriba / Abajo",
         "fr": "Inverser les commandes de direction Haut / Bas",
-        "it": "Inverti i controlli della direzione Su / Giù",
+        "it": "Inverti i controlli della direzione Su / GiÃ¹",
         "no": "Vend retningen for opp / ned kontrollene",
-        "sv": "Vänd riktning för upp / ner kontrollerna",
-        "pl": "Odwróć kierunek sterowania góra / dół",
-        "ru": "Инвертировать управление направлением Вверх / Вниз",
-        "ko": "위 / 아래 방향 제어 반전"
+        "sv": "VÃ¤nd riktning fÃ¶r upp / ner kontrollerna",
+        "pl": "OdwrÃ³Ä‡ kierunek sterowania gÃ³ra / dÃ³Å‚",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸ÐµÐ¼ Ð’Ð²ÐµÑ€Ñ… / Ð’Ð½Ð¸Ð·",
+        "ko": "ìœ„ / ì•„ëž˜ ë°©í–¥ ì œì–´ ë°˜ì „"
       }
     },
     {
@@ -60,14 +60,14 @@
         "nl": "Positie omkeren",
         "da": "Vend Position",
         "de": "Position Umkehren",
-        "es": "Invertir Posición",
+        "es": "Invertir PosiciÃ³n",
         "fr": "Inverser la Position",
         "it": "Inverti la Posizione",
         "no": "Vend Posisjon",
-        "sv": "Vänd Position",
-        "pl": "Odwróć Pozycję",
-        "ru": "Инвертировать Позицию",
-        "ko": "위치 반전"
+        "sv": "VÃ¤nd Position",
+        "pl": "OdwrÃ³Ä‡ PozycjÄ™",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÐŸÐ¾Ð·Ð¸Ñ†Ð¸ÑŽ",
+        "ko": "ìœ„ì¹˜ ë°˜ì „"
       },
       "value": false,
       "hint": {
@@ -75,14 +75,14 @@
         "nl": "Draai de positieregeling om.",
         "da": "Vend positionskontrollen.",
         "de": "Umkehren der Positionssteuerung.",
-        "es": "Invertir el control de posición.",
+        "es": "Invertir el control de posiciÃ³n.",
         "fr": "Inverser la commande de position.",
         "it": "Inverti il controllo della posizione.",
         "no": "Vend posisjonskontrollen.",
-        "sv": "Vänd positionskontrollen.",
-        "pl": "Odwróć sterowanie pozycją.",
-        "ru": "Инвертировать управление положением.",
-        "ko": "위치 제어 반전."
+        "sv": "VÃ¤nd positionskontrollen.",
+        "pl": "OdwrÃ³Ä‡ sterowanie pozycjÄ….",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸ÐµÐ¼.",
+        "ko": "ìœ„ì¹˜ ì œì–´ ë°˜ì „."
       }
     }
   ],

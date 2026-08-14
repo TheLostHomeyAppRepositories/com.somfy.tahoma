@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "On/Off Light",
-    "nl": "Aan/Uit Licht",
-    "da": "Tænd/Sluk Lys",
-    "de": "Ein/Aus Licht",
-    "es": "Luz Encendido/Apagado",
-    "fr": "Lumière Marche/Arrêt",
-    "it": "Luce Accendi/Spegni",
-    "no": "På/Av Lys",
-    "sv": "På/Av Ljus",
-    "pl": "Światło Włącz/Wyłącz",
-    "ru": "Вкл/Выкл Свет",
-    "ko": "켜기/끄기 조명"
+    "en": "Light (IO & ZWave)",
+    "nl": "Licht (IO & ZWave)",
+    "da": "Lys (IO & ZWave)",
+    "de": "Licht (IO & ZWave)",
+    "es": "Luz (IO & ZWave)",
+    "fr": "Lumière (IO & ZWave)",
+    "it": "Luce (IO & ZWave)",
+    "no": "Lys (IO & ZWave)",
+    "sv": "Ljus (IO & ZWave)",
+    "pl": "Światło (IO & ZWave)",
+    "ru": "Свет (IO & ZWave)",
+    "ko": "조명 (IO & ZWave)"
   },
   "class": "light",
   "capabilities": [

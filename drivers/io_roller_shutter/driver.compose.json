@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "Roller shutter (io)",
-    "nl": "Rolluik (io)",
-    "da": "Rullegardin (io)",
-    "de": "Rollladen (io)",
-    "es": "Persiana enrollable (io)",
-    "fr": "Volet roulant (io)",
-    "it": "Tapparella (io)",
-    "no": "Rulleskodde (io)",
-    "sv": "Rulljalusi (io)",
-    "pl": "Roleta (io)",
-    "ru": "Роллеты (io)",
-    "ko": "롤러 셔터 (io)"
+    "en": "Roller shutter (IO)",
+    "nl": "Rolluik (IO)",
+    "da": "Rullegardin (IO)",
+    "de": "Rollladen (IO)",
+    "es": "Persiana enrollable (IO)",
+    "fr": "Volet roulant (IO)",
+    "it": "Tapparella (IO)",
+    "no": "Rulleskodde (IO)",
+    "sv": "Rulljalusi (IO)",
+    "pl": "Roleta (IO)",
+    "ru": "Ð Ð¾Ð»Ð»ÐµÑ‚Ñ‹ (IO)",
+    "ko": "ë¡¤ëŸ¬ ì…”í„° (IO)"
   },
   "class": "blinds",
   "capabilities": [
@@ -31,27 +31,27 @@
         "de": "Hoch / Runter umkehren",
         "es": "Invertir Arriba / Abajo",
         "fr": "Inverser Haut / Bas",
-        "it": "Inverti Su / Giù",
+        "it": "Inverti Su / GiÃ¹",
         "no": "Omvend Opp / Ned",
         "sv": "Invertera Upp / Ner",
-        "pl": "Odwróć Góra / Dół",
-        "ru": "Инвертировать Вверх / Вниз",
-        "ko": "위 / 아래 반전"
+        "pl": "OdwrÃ³Ä‡ GÃ³ra / DÃ³Å‚",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð’Ð²ÐµÑ€Ñ… / Ð’Ð½Ð¸Ð·",
+        "ko": "ìœ„ / ì•„ëž˜ ë°˜ì „"
       },
       "value": false,
       "hint": {
         "en": "Reverse the Up / Down direction controls",
         "nl": "Draai de bedieningselementen omhoog/omlaag om",
-        "da": "Omvend retningen på Op / Ned kontrollerne",
-        "de": "Richtungskontrollen für Hoch / Runter umkehren",
-        "es": "Invertir los controles de dirección Arriba / Abajo",
+        "da": "Omvend retningen pÃ¥ Op / Ned kontrollerne",
+        "de": "Richtungskontrollen fÃ¼r Hoch / Runter umkehren",
+        "es": "Invertir los controles de direcciÃ³n Arriba / Abajo",
         "fr": "Inverser les commandes de direction Haut / Bas",
-        "it": "Inverti i controlli di direzione Su / Giù",
-        "no": "Omvend retningen på Opp / Ned kontrollene",
-        "sv": "Invertera riktningen på Upp / Ner kontrollerna",
-        "pl": "Odwróć sterowanie kierunkiem Góra / Dół",
-        "ru": "Инвертировать направления управления Вверх / Вниз",
-        "ko": "위 / 아래 방향 제어 반전"
+        "it": "Inverti i controlli di direzione Su / GiÃ¹",
+        "no": "Omvend retningen pÃ¥ Opp / Ned kontrollene",
+        "sv": "Invertera riktningen pÃ¥ Upp / Ner kontrollerna",
+        "pl": "OdwrÃ³Ä‡ sterowanie kierunkiem GÃ³ra / DÃ³Å‚",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð’Ð²ÐµÑ€Ñ… / Ð’Ð½Ð¸Ð·",
+        "ko": "ìœ„ / ì•„ëž˜ ë°©í–¥ ì œì–´ ë°˜ì „"
       }
     },
     {
@@ -62,29 +62,29 @@
         "nl": "Tegelactie omkeren",
         "da": "Omvend Flisehandling",
         "de": "Fliesenaktion umkehren",
-        "es": "Invertir Acción del Azulejo",
+        "es": "Invertir AcciÃ³n del Azulejo",
         "fr": "Inverser l'Action de la Tuile",
         "it": "Inverti Azione della Piastrella",
         "no": "Omvend Flishandling",
-        "sv": "Invertera Plattåtgärd",
-        "pl": "Odwróć Działanie Płytki",
-        "ru": "Инвертировать действие плитки",
-        "ko": "타일 액션 반전"
+        "sv": "Invertera PlattÃ¥tgÃ¤rd",
+        "pl": "OdwrÃ³Ä‡ DziaÅ‚anie PÅ‚ytki",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸",
+        "ko": "íƒ€ì¼ ì•¡ì…˜ ë°˜ì „"
       },
       "value": false,
       "hint": {
         "en": "Reverse the Open / Close state of the Tile",
         "nl": "Keer de Open / Sluit-status van de tegel om",
-        "da": "Omvend Åben / Luk tilstanden af Flisen",
-        "de": "Den Öffnen / Schließen Zustand der Fliese umkehren",
+        "da": "Omvend Ã…ben / Luk tilstanden af Flisen",
+        "de": "Den Ã–ffnen / SchlieÃŸen Zustand der Fliese umkehren",
         "es": "Invertir el estado de Abierto / Cerrado del Azulejo",
-        "fr": "Inverser l'état Ouvrir / Fermer de la Tuile",
+        "fr": "Inverser l'Ã©tat Ouvrir / Fermer de la Tuile",
         "it": "Inverti lo stato Aperto / Chiuso della Piastrella",
-        "no": "Omvend Åpen / Lukket tilstand av Flisen",
-        "sv": "Invertera Öppna / Stänga tillståndet för Plattan",
-        "pl": "Odwróć stan Otwórz / Zamknij Płytki",
-        "ru": "Инвертировать состояние Открыть / Закрыть плитки",
-        "ko": "타일의 열림 / 닫힘 상태 반전"
+        "no": "Omvend Ã…pen / Lukket tilstand av Flisen",
+        "sv": "Invertera Ã–ppna / StÃ¤nga tillstÃ¥ndet fÃ¶r Plattan",
+        "pl": "OdwrÃ³Ä‡ stan OtwÃ³rz / Zamknij PÅ‚ytki",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÑŒ / Ð—Ð°ÐºÑ€Ñ‹Ñ‚ÑŒ Ð¿Ð»Ð¸Ñ‚ÐºÐ¸",
+        "ko": "íƒ€ì¼ì˜ ì—´ë¦¼ / ë‹«íž˜ ìƒíƒœ ë°˜ì „"
       }
     },
     {
@@ -95,14 +95,14 @@
         "nl": "Positie omkeren",
         "da": "Omvend Position",
         "de": "Position umkehren",
-        "es": "Invertir Posición",
+        "es": "Invertir PosiciÃ³n",
         "fr": "Inverser Position",
         "it": "Inverti Posizione",
         "no": "Omvend Posisjon",
         "sv": "Invertera Position",
-        "pl": "Odwróć Pozycję",
-        "ru": "Инвертировать Позицию",
-        "ko": "위치 반전"
+        "pl": "OdwrÃ³Ä‡ PozycjÄ™",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÐŸÐ¾Ð·Ð¸Ñ†Ð¸ÑŽ",
+        "ko": "ìœ„ì¹˜ ë°˜ì „"
       },
       "value": false,
       "hint": {
@@ -110,14 +110,14 @@
         "nl": "Draai de positieregeling om.",
         "da": "Omvend positionskontrollen.",
         "de": "Positionssteuerung umkehren.",
-        "es": "Invertir el control de posición.",
-        "fr": "Inverser le contrôle de position.",
+        "es": "Invertir el control de posiciÃ³n.",
+        "fr": "Inverser le contrÃ´le de position.",
         "it": "Inverti il controllo della posizione.",
         "no": "Omvend posisjonskontrollen.",
         "sv": "Invertera positionskontrollen.",
-        "pl": "Odwróć sterowanie pozycją.",
-        "ru": "Инвертировать управление позицией.",
-        "ko": "위치 제어 반전."
+        "pl": "OdwrÃ³Ä‡ sterowanie pozycjÄ….",
+        "ru": "Ð˜Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÐµÐ¹.",
+        "ko": "ìœ„ì¹˜ ì œì–´ ë°˜ì „."
       }
     }
   ],
