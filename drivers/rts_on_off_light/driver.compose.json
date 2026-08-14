@@ -1,0 +1,25 @@
+{
+  "name": {
+    "en": "Light (RTS)",
+    "nl": "Licht (RTS)",
+    "da": "Lys (RTS)",
+    "de": "Licht (RTS)",
+    "es": "Luz (RTS)",
+    "fr": "Lumière (RTS)",
+    "it": "Luce (RTS)",
+    "no": "Lys (RTS)",
+    "sv": "Ljus (RTS)",
+    "pl": "Światło (RTS)",
+    "ru": "Свет (RTS)",
+    "ko": "조명 (RTS)"
+  },
+  "class": "light",
+  "capabilities": [
+    "on_button",
+    "on_with_timer",
+	"off_button"
+  ],
+  "$extends": [
+    "cloudDriver"
+  ]
+}

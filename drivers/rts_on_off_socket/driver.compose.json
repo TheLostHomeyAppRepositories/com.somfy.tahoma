@@ -1,0 +1,25 @@
+{
+  "name": {
+    "en": "Socket (RTS)",
+	"nl": "Stopcontact (RTS)",
+	"da": "Stikkontakt (RTS)",
+	"de": "Steckdose (RTS)",
+	"es": "Enchufe (RTS)",
+	"fr": "Prise (RTS)",
+	"it": "Presa (RTS)",
+	"no": "Stikkontakt (RTS)",
+	"sv": "Vägguttag (RTS)",
+	"pl": "Gniazdko (RTS)",
+	"ru": "Розетка (RTS)",
+	"ko": "소켓 (RTS)"
+  },
+  "class": "socket",
+  "capabilities": [
+    "on_button",
+    "on_with_timer",
+	"off_button"
+  ],
+  "$extends": [
+    "cloudDriver"
+  ]
+}

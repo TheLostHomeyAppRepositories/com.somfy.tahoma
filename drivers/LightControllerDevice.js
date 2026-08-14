@@ -36,6 +36,16 @@ class LightControllerDevice extends Device
 		this.getStates();
 	}
 
+	async onCapabilityOn(value, opts)
+	{
+		return this.onCapabilityOnOff(true, opts);
+	}
+
+	async onCapabilityOff(value, opts)
+	{
+		return this.onCapabilityOnOff(false, opts);
+	}
+
 	async onCapabilityOnOff(value, opts)
 	{
 		if (!opts || !opts.fromCloudSync)

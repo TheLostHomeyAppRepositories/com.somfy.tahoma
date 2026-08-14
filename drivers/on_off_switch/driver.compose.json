@@ -1,17 +1,17 @@
 {
   "name": {
-    "en": "Switch (RTS & io)",
-    "nl": "Schakelaar (RTS & io)",
-    "da": "Kontakt (RTS & io)",
-    "de": "Schalter (RTS & io)",
-    "es": "Interruptor (RTS & io)",
-    "fr": "Interrupteur (RTS & io)",
-    "it": "Interruttore (RTS & io)",
-    "no": "Bryter (RTS & io)",
-    "sv": "Strömbrytare (RTS & io)",
-    "pl": "Przełącznik (RTS & io)",
-    "ru": "Выключатель (RTS & io)",
-    "ko": "스위치 (RTS & io)"
+    "en": "Switch (io)",
+    "nl": "Schakelaar (io)",
+    "da": "Kontakt (io)",
+    "de": "Schalter (io)",
+    "es": "Interruptor (io)",
+    "fr": "Interrupteur (io)",
+    "it": "Interruttore (io)",
+    "no": "Bryter (io)",
+    "sv": "Strömbrytare (io)",
+    "pl": "Przełącznik (io)",
+    "ru": "Выключатель (io)",
+    "ko": "스위치 (io)"
   },
   "class": "light",
   "capabilities": [
