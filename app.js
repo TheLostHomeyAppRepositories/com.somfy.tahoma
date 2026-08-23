@@ -551,6 +551,10 @@ class myApp extends Homey.App
 
 			if (bridgeInfo && bridgeInfo.pin)
 			{
+				if (persistCredentials)
+				{
+					this.upsertAccountSession({ username, password, region });
+				}
 				this.linkSessionToBridgePin(username, bridgeInfo.pin);
 			}
 
@@ -1464,7 +1468,13 @@ class myApp extends Homey.App
 	// Throws an exception if the login fails
 	async newLogin(args)
 	{
-		await this.newLogin_2(args.username, args.password, args.region, args.localToken, true);
+		const authenticated = await this.newLogin_2(args.username, args.password, args.region, args.localToken, true);
+		if (!authenticated)
+		{
+			throw new Error('Unable to authenticate with Somfy cloud or the local bridge');
+		}
+
+		return true;
 	}
 
 	// Throws an exception if the login fails
@@ -1511,10 +1521,11 @@ class myApp extends Homey.App
 			}
 		}
 
-		if ((!forceLogin || !needsCloudLogin || cloudAuthenticated) && this.localBridgeInfo && this.localBridgeInfo.pin && (!this.tahomaLocal.authenticated || forceLogin || switchLocalAccount))
+		const hasProvidedLocalToken = !!(localToken && `${localToken}`.trim());
+		if ((hasProvidedLocalToken || !forceLogin || !needsCloudLogin || cloudAuthenticated) && this.localBridgeInfo && this.localBridgeInfo.pin && (!this.tahomaLocal.authenticated || forceLogin || switchLocalAccount))
 		{
 			const bridgeCandidates = this.getCandidateCredentialsForLocalRouting(username, this.localBridgeInfo.pin);
-			if (bridgeCandidates.length > 0)
+			if (hasProvidedLocalToken || (bridgeCandidates.length > 0))
 			{
 				try
 				{
@@ -1541,7 +1552,7 @@ class myApp extends Homey.App
 		this.startSync();
 		if (needsCloudLogin)
 		{
-			return cloudAuthenticated;
+			return cloudAuthenticated || (this.tahomaLocal && this.tahomaLocal.authenticated);
 		}
 
 		if (this.localOnly)

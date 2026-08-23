@@ -977,5 +977,8 @@
 	},
 	"4.0.148": {
 		"en": "Added drivers for RTS light and Socket."
+	},
+	"4.0.149": {
+		"en": "Improved USA region support for local access."
 	}
 }
