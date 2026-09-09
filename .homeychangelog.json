@@ -980,5 +980,8 @@
 	},
 	"4.0.149": {
 		"en": "Improved USA region support for local access."
+	},
+	"4.0.150": {
+		"en": "Added support for RTS interior venetian blinds."
 	}
 }
