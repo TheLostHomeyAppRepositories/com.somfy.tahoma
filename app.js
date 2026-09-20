@@ -1973,6 +1973,8 @@ class myApp extends Homey.App
 						driverIcon: driver.driverIcon || '',
 						score: scoreResult.score,
 						matchedCapabilities: scoreResult.matchedCapabilities,
+						unmatchedCapabilities: scoreResult.unmatchedCapabilities,
+						compatibilityRatio: scoreResult.compatibilityRatio,
 					};
 				})
 				.sort((a, b) =>
@@ -1980,6 +1982,16 @@ class myApp extends Homey.App
 					if (b.score !== a.score)
 					{
 						return b.score - a.score;
+					}
+
+					if (b.compatibilityRatio !== a.compatibilityRatio)
+					{
+						return b.compatibilityRatio - a.compatibilityRatio;
+					}
+
+					if (a.unmatchedCapabilities.length !== b.unmatchedCapabilities.length)
+					{
+						return a.unmatchedCapabilities.length - b.unmatchedCapabilities.length;
 					}
 
 					return a.driverName.localeCompare(b.driverName);
@@ -2630,20 +2642,32 @@ class myApp extends Homey.App
 		const commands = Array.isArray(somfyDevice && somfyDevice.commands) ? somfyDevice.commands : [];
 		const states = Array.isArray(somfyDevice && somfyDevice.states) ? somfyDevice.states : [];
 		const matchedCapabilities = [];
+		const unmatchedCapabilities = [];
 
 		let score = 100;
 		for (const capability of capabilities)
 		{
 			if (this.doesCapabilityMatchSomfyFeatures(capability, commands, states))
 			{
-				score += 10;
+				score += 20;
 				matchedCapabilities.push(capability);
 			}
+			else
+			{
+				score -= 12;
+				unmatchedCapabilities.push(capability);
+			}
 		}
+
+		const capabilityCount = capabilities.length;
+		const compatibilityRatio = capabilityCount > 0 ? (matchedCapabilities.length / capabilityCount) : 0;
+		score += Math.round(compatibilityRatio * 10);
 
 		return {
 			score,
 			matchedCapabilities,
+			unmatchedCapabilities,
+			compatibilityRatio,
 		};
 	}
 
@@ -2668,9 +2692,20 @@ class myApp extends Homey.App
 			return hasCommand(/setclosure|setposition|setdeployment|setpositionandlinearspeed|deploy|undeploy|open|close|go(?:to)?alias|partialposition/i);
 		}
 
+		if (cap === 'windowcoverings_closed')
+		{
+			return hasState(/openclosedstate|openclosed|closed|open/i);
+		}
+
 		if (cap === 'my_position')
 		{
 			return hasCommand(/^my$|go(?:to)?alias|partialposition/i);
+		}
+
+		if (cap === 'quiet_mode')
+		{
+			return hasState(/activatedoptionsstate|activatedoptions|silence|silent/i)
+				|| hasCommand(/setpositionandlinearspeed|lowspeed|silence|silent/i);
 		}
 
 		if (cap === 'onoff')

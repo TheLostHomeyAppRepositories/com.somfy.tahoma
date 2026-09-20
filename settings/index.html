@@ -260,10 +260,148 @@
 			color: #303744;
 		}
 
+		.driver-support-list-item-row {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+		}
+
+		.driver-support-reason-button {
+			display: inline-grid;
+			place-items: center;
+			position: relative;
+			width: 22px !important;
+			height: 22px !important;
+			border-radius: 999px;
+			border: 0 !important;
+			background: transparent !important;
+			color: #315b92 !important;
+			font-family: Arial, sans-serif;
+			font-size: 18px !important;
+			font-weight: 700 !important;
+			line-height: 22px;
+			-webkit-text-stroke: 0.25px currentColor;
+			cursor: pointer;
+			padding: 0 !important;
+			appearance: none !important;
+			-webkit-appearance: none !important;
+			transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease, transform 120ms ease;
+		}
+
+		.driver-support-reason-button:hover {
+			background: #e2ebf7 !important;
+			color: #294b7d !important;
+			transform: translateY(-1px);
+		}
+
+		.driver-support-reason-button:focus {
+			outline: 2px solid #88a7d8;
+			outline-offset: 1px;
+		}
+
 		.driver-support-empty {
 			font-size: 13px;
 			color: #677083;
 		}
+
+		.driver-support-modal-overlay {
+			position: fixed;
+			inset: 0;
+			background: rgba(18, 26, 38, 0.45);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 16px;
+			z-index: 200;
+		}
+
+		.driver-support-modal-overlay.is-hidden {
+			display: none;
+		}
+
+		.driver-support-modal {
+			width: min(560px, 100%);
+			max-height: 85vh;
+			background: #ffffff;
+			border-radius: 12px;
+			border: 1px solid #d7deea;
+			box-shadow: 0 14px 40px rgba(17, 29, 48, 0.2);
+			display: flex;
+			flex-direction: column;
+			overflow: hidden;
+		}
+
+		.driver-support-modal-header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 10px;
+			padding: 12px 14px;
+			background: #f3f7fd;
+			border-bottom: 1px solid #d7deea;
+		}
+
+		.driver-support-modal-title {
+			font-size: 15px;
+			font-weight: 700;
+			color: #1f2530;
+			margin: 0;
+		}
+
+		.driver-support-modal-close {
+			border: 0;
+			background: transparent;
+			font-size: 22px;
+			line-height: 1;
+			width: 28px;
+			height: 28px;
+			border-radius: 6px;
+			color: #41516b;
+			cursor: pointer;
+		}
+
+		.driver-support-modal-close:hover {
+			background: #e6eef9;
+		}
+
+		.driver-support-modal-content {
+			padding: 14px;
+			overflow: auto;
+			white-space: pre-line;
+			color: #2a3445;
+			font-size: 13px;
+			line-height: 1.45;
+		}
+
+		.driver-support-modal-content p {
+			margin: 0 0 10px 0;
+		}
+
+		.driver-support-modal-subheading {
+			font-weight: 700;
+			color: #1f2530;
+			margin: 10px 0 4px 0;
+		}
+
+		.driver-support-modal-capability-list {
+			list-style: none;
+			margin: 0 0 8px 0;
+			padding: 0 0 0 12px;
+		}
+
+		.driver-support-modal-capability-list li {
+			margin: 2px 0;
+			padding-left: 8px;
+			position: relative;
+		}
+
+		.driver-support-modal-capability-list li::before {
+			content: '\2022';
+			position: absolute;
+			left: 0;
+			color: #6f7f98;
+		}
+
 	</style>
 
 	<script type="text/javascript" src="/homey.js" data-origin="settings"></script>
@@ -446,6 +584,16 @@
 		</div>
 	</div>
 
+	<div id="driverSupportReasonModal" class="driver-support-modal-overlay is-hidden" role="dialog" aria-modal="true" aria-labelledby="driverSupportReasonTitle">
+		<div class="driver-support-modal">
+			<div class="driver-support-modal-header">
+				<h3 id="driverSupportReasonTitle" class="driver-support-modal-title">Driver recommendation details</h3>
+				<button id="driverSupportReasonCloseTop" class="driver-support-modal-close" type="button" aria-label="Close">&times;</button>
+			</div>
+			<div id="driverSupportReasonContent" class="driver-support-modal-content"></div>
+		</div>
+	</div>
+
 	<script type="text/javascript">
 		// Create the busy indicator
 		var busyi;
@@ -500,8 +648,103 @@
 		var driverSupportSummaryElement = document.getElementById('driverSupportSummary');
 		var driverSupportViewElement = document.getElementById('driverSupportView');
 		var driverSupportTabLabel = document.getElementById('driverSupportTabLabel');
+		var driverSupportReasonModalElement = document.getElementById('driverSupportReasonModal');
+		var driverSupportReasonTitleElement = document.getElementById('driverSupportReasonTitle');
+		var driverSupportReasonContentElement = document.getElementById('driverSupportReasonContent');
+		var driverSupportReasonCloseTopElement = document.getElementById('driverSupportReasonCloseTop');
 		var simulationTabLabel = document.getElementById('simulationTabLabel');
 		var simulatorDebugTitle = document.getElementById('simulatorDebugTitle');
+
+		function closeDriverSupportReasonModal()
+		{
+			driverSupportReasonModalElement.classList.add('is-hidden');
+		}
+
+		function escapeHtml(text)
+		{
+			return String(text || '')
+				.replace(/&/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '&quot;')
+				.replace(/'/g, '&#39;');
+		}
+
+		function formatDriverSupportReasonHtml(reason)
+		{
+			var buildCapabilitiesListHtml = function(rawText)
+			{
+				var values = String(rawText || '')
+					.split(',')
+					.map(function(item)
+					{
+						return String(item || '').trim();
+					})
+					.filter(function(item)
+					{
+						return item.length > 0;
+					});
+
+				if ((values.length === 0) || ((values.length === 1) && (values[0].toLowerCase() === 'none')))
+				{
+					values = [tr('settings.none', 'None')];
+				}
+
+				return `<ul class="driver-support-modal-capability-list">${values.map(function(item)
+				{
+					return `<li>${escapeHtml(item)}</li>`;
+				}).join('')}</ul>`;
+			};
+
+			var lines = String(reason || '').split('\n');
+			if (lines.length === 0)
+			{
+				return `<p>${escapeHtml(tr('settings.no_data', 'No data'))}</p>`;
+			}
+
+			var htmlParts = [];
+			lines.forEach(function(line)
+			{
+				var raw = String(line || '');
+				if (!raw.trim())
+				{
+					return;
+				}
+
+				if (raw.indexOf('Matched capabilities:') === 0)
+				{
+					var matchedText = raw.substring('Matched capabilities:'.length).trim();
+					htmlParts.push('<div class="driver-support-modal-subheading">Matched capabilities</div>');
+					htmlParts.push(buildCapabilitiesListHtml(matchedText));
+					return;
+				}
+
+				if (raw.indexOf('Unmatched capabilities:') === 0)
+				{
+					var unmatchedText = raw.substring('Unmatched capabilities:'.length).trim();
+					htmlParts.push('<div class="driver-support-modal-subheading">Unmatched capabilities</div>');
+					htmlParts.push(buildCapabilitiesListHtml(unmatchedText));
+					return;
+				}
+
+				htmlParts.push(`<p>${escapeHtml(raw)}</p>`);
+			});
+
+			if (htmlParts.length === 0)
+			{
+				return `<p>${escapeHtml(tr('settings.no_data', 'No data'))}</p>`;
+			}
+
+			return htmlParts.join('');
+		}
+
+		function openDriverSupportReasonModal(deviceName, reason)
+		{
+			var titlePrefix = tr('settings.driver_support_recommendation_reason_title', 'Why this driver was selected');
+			driverSupportReasonTitleElement.textContent = `${titlePrefix} - ${deviceName}`;
+			driverSupportReasonContentElement.innerHTML = formatDriverSupportReasonHtml(reason);
+			driverSupportReasonModalElement.classList.remove('is-hidden');
+		}
 
 		// a method named 'onHomeyReady' must be present in your code
 		function tr(key, fallback)
@@ -522,6 +765,23 @@
 			simulatorDebugTitle.textContent = tr('settings.simulator_debug_only', 'For debug use only');
 			useSimElement.textContent = tr('settings.simulator_activate', 'Activate');
 			clearSimElement.textContent = tr('settings.simulator_clear', 'Clear Sim');
+
+			driverSupportReasonCloseTopElement.addEventListener('click', closeDriverSupportReasonModal);
+			driverSupportReasonModalElement.addEventListener('click', function(event)
+			{
+				if (event.target === driverSupportReasonModalElement)
+				{
+					closeDriverSupportReasonModal();
+				}
+			});
+
+			document.addEventListener('keydown', function(event)
+			{
+				if ((event.key === 'Escape') && !driverSupportReasonModalElement.classList.contains('is-hidden'))
+				{
+					closeDriverSupportReasonModal();
+				}
+			});
 
 			Homey.on('settings.set', function(param)
 			{
@@ -1267,6 +1527,62 @@
 				return section;
 			};
 
+			var formatCapabilityList = function(list)
+			{
+				if (!Array.isArray(list) || list.length === 0)
+				{
+					return tr('settings.none', 'None');
+				}
+
+				return list.join(', ');
+			};
+
+			var getSelectedCandidate = function(item)
+			{
+				if (!item || !Array.isArray(item.candidates) || !item.recommendedDriverId)
+				{
+					return null;
+				}
+
+				for (var i = 0; i < item.candidates.length; i++)
+				{
+					var candidate = item.candidates[i];
+					if (candidate && candidate.driverId === item.recommendedDriverId)
+					{
+						return candidate;
+					}
+				}
+
+				return null;
+			};
+
+			var buildRecommendationReason = function(item)
+			{
+				var candidate = getSelectedCandidate(item);
+				if (!candidate)
+				{
+					return '';
+				}
+
+				var matched = Array.isArray(candidate.matchedCapabilities) ? candidate.matchedCapabilities : [];
+				var unmatched = Array.isArray(candidate.unmatchedCapabilities) ? candidate.unmatchedCapabilities : [];
+				var ratio = Number(candidate.compatibilityRatio || 0);
+				if ((ratio <= 0) && ((matched.length + unmatched.length) > 0))
+				{
+					ratio = matched.length / (matched.length + unmatched.length);
+				}
+
+				var percent = Math.round(ratio * 100);
+				var lines = [
+					`Match score: ${candidate.score}`,
+					`Compatibility: ${percent}%`,
+					`Matched capabilities: ${formatCapabilityList(matched)}`,
+					`Unmatched capabilities: ${formatCapabilityList(unmatched)}`,
+				];
+
+				return lines.join('\n');
+			};
+
 			var appendSupportedSection = function(title, items)
 			{
 				var modifierClass = title === tr('settings.driver_support_supported_not_added', 'Supported but not added to Homey')
@@ -1294,11 +1610,25 @@
 							driverId: item.recommendedDriverId,
 							driverName: item.recommendedDriverName || tr('settings.unknown_driver', 'Unknown driver'),
 							driverIcon: item.recommendedDriverIcon || '',
-							devices: new Set(),
+							devices: [],
+							seenDeviceKeys: {},
 						};
 					}
 
-					supportedByDriver[driverKey].devices.add(item.label || item.deviceURL || '-');
+					var deviceName = item.label || item.deviceURL || '-';
+					var deviceKey = `${item.oid || ''}|${item.deviceURL || ''}|${deviceName}`;
+					if (supportedByDriver[driverKey].seenDeviceKeys[deviceKey])
+					{
+						return;
+					}
+
+					supportedByDriver[driverKey].seenDeviceKeys[deviceKey] = true;
+					supportedByDriver[driverKey].devices.push(
+						{
+							name: deviceName,
+							reason: buildRecommendationReason(item),
+						},
+					);
 				});
 
 				var supportedDriverGroups = Object.values(supportedByDriver)
@@ -1330,13 +1660,41 @@
 
 					var list = document.createElement('ul');
 					list.className = 'driver-support-list';
-					Array.from(group.devices).sort(function(a, b)
+					group.devices.sort(function(a, b)
 					{
-						return a.localeCompare(b);
-					}).forEach(function(deviceName)
+						return a.name.localeCompare(b.name);
+					}).forEach(function(device)
 					{
 						var li = document.createElement('li');
-						li.textContent = deviceName;
+
+						var row = document.createElement('span');
+						row.className = 'driver-support-list-item-row';
+
+						var label = document.createElement('span');
+						label.textContent = device.name;
+						row.appendChild(label);
+
+						if (device.reason)
+						{
+							li.title = device.reason;
+
+							var reasonButton = document.createElement('button');
+							reasonButton.type = 'button';
+							reasonButton.className = 'driver-support-reason-button';
+								reasonButton.textContent = '\u24d8';
+							reasonButton.title = tr('settings.driver_support_recommendation_reason_title', 'Why this driver was selected');
+							reasonButton.setAttribute('aria-label', tr('settings.driver_support_recommendation_reason_title', 'Why this driver was selected'));
+							reasonButton.addEventListener('click', function(event)
+							{
+								event.preventDefault();
+								event.stopPropagation();
+								openDriverSupportReasonModal(device.name, device.reason);
+							});
+
+							row.appendChild(reasonButton);
+						}
+
+						li.appendChild(row);
 						list.appendChild(li);
 					});
 					content.appendChild(list);
