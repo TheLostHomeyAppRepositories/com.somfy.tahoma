@@ -1272,6 +1272,40 @@ class myApp extends Homey.App
 		return this.tahomaCloudsBySession[normalizedUsername];
 	}
 
+	// Resolves the cloud client that actually owns a given device, so commands/state reads
+	// always target the account the device was paired with, not whichever account is
+	// currently the "active" primary session (which pairing can temporarily switch).
+	async getCloudClientForDevice(deviceURL)
+	{
+		const sessionUsername = this.getDeviceSessionUsername(deviceURL);
+		const currentPrimaryUsername = this.normalizeSessionEmail(this.tahomaCloud && this.tahomaCloud.username ? this.tahomaCloud.username : '');
+		if (!sessionUsername || (sessionUsername === currentPrimaryUsername))
+		{
+			return this.tahomaCloud;
+		}
+
+		const session = this.getSessionByEmail(sessionUsername);
+		if (!session || !session.password)
+		{
+			return this.tahomaCloud;
+		}
+
+		const client = this.getCloudClientForSession(sessionUsername);
+		if (!client.authenticated)
+		{
+			try
+			{
+				await this.ensureCloudSessionAuthenticated(session.username, session.password, session.region || 'europe', false, 'device-session-routing');
+			}
+			catch (error)
+			{
+				this.logInformation('getCloudClientForDevice', error.message ? error.message : error);
+			}
+		}
+
+		return client.authenticated ? client : this.tahomaCloud;
+	}
+
 	setPrimaryCloudSession(username)
 	{
 		const normalizedUsername = this.normalizeSessionEmail(username);
@@ -1282,6 +1316,43 @@ class myApp extends Homey.App
 
 		this.primaryCloudSessionUsername = normalizedUsername;
 		this.tahomaCloud = this.getCloudClientForSession(normalizedUsername);
+	}
+
+	// Restores the app's configured primary account (as shown in the app Settings page) as the
+	// active cloud session. Used after a pairing wizard, which may have temporarily switched the
+	// active/"primary" session to a different account to list that account's devices.
+	async restorePrimaryCloudSession(username, password, region)
+	{
+		const normalizedUsername = this.normalizeSessionEmail(username);
+		if (!normalizedUsername || !password)
+		{
+			return;
+		}
+
+		const currentUsername = this.normalizeSessionEmail(this.tahomaCloud && this.tahomaCloud.username ? this.tahomaCloud.username : '');
+		const currentSettingsUsername = this.normalizeSessionEmail(this.homey.settings.get('username'));
+		if ((currentUsername === normalizedUsername) && (currentSettingsUsername === normalizedUsername))
+		{
+			// Already pointing at the primary account, nothing to restore.
+			return;
+		}
+
+		// Pairing's login handler persists whichever account it authenticated as the app's
+		// single configured account; restore the original primary account credentials here.
+		this.homey.settings.set('username', normalizedUsername);
+		this.homey.settings.set('password', password);
+		this.homey.settings.set('region', region || 'europe');
+
+		this.setPrimaryCloudSession(normalizedUsername);
+
+		try
+		{
+			await this.ensureCloudSessionAuthenticated(normalizedUsername, password, region || 'europe', false, 'restore-primary-after-pairing');
+		}
+		catch (error)
+		{
+			this.logInformation('restorePrimaryCloudSession', error.message ? error.message : error);
+		}
 	}
 
 	getCloudPollingSessions()
@@ -4076,20 +4147,27 @@ class myApp extends Homey.App
 			}
 		}
 
-		if (this.tahomaCloud.authenticated === false)
+		const cloudClient = await this.getCloudClientForDevice(deviceURL);
+		const usingPrimaryCloudClient = (cloudClient === this.tahomaCloud);
+
+		if (cloudClient.authenticated === false)
 		{
-			await this.initSync();
-			if (this.tahomaCloud.authenticated === false)
+			if (usingPrimaryCloudClient)
+			{
+				await this.initSync();
+			}
+
+			if (cloudClient.authenticated === false)
 			{
 				await this.updateConnectivityWarningFromLoginIssue(this.getCurrentLoginBlockIssue());
 			}
 		}
 
-		if (this.tahomaCloud.authenticated && !this.usingDebugData)
+		if (cloudClient.authenticated && !this.usingDebugData)
 		{
 			try
 			{
-				const data = await this.tahomaCloud.executeDeviceAction(label, deviceURL, action, action2);
+				const data = await cloudClient.executeDeviceAction(label, deviceURL, action, action2);
 				if (data.errorCode)
 				{
 					this.homey.app.logInformation(`${this.getName()}: onCapabilityHeatingModeState`, `Failed to send cloud command: ${JSON.stringify(action)}, error = ${data.error} (${data.errorCode})`);
@@ -4121,14 +4199,14 @@ class myApp extends Homey.App
 					const count = this.recordCommand400(deviceURL, false);
 					this.logInformation(`${label}: Cloud command 400 transient`, `count=${count}, device=${deviceURL}`);
 
-					if (count <= 2)
+					if (count <= 2 && usingPrimaryCloudClient)
 					{
 						const recovered = await this.attemptCommand400Recovery(label, false);
 						if (recovered)
 						{
 							try
 							{
-								const retryData = await this.tahomaCloud.executeDeviceAction(label, deviceURL, action, action2);
+								const retryData = await cloudClient.executeDeviceAction(label, deviceURL, action, action2);
 								if (!retryData.errorCode)
 								{
 									retryData.local = false;
@@ -4389,15 +4467,16 @@ class myApp extends Homey.App
 			}
 		}
 
-		if (!this.tahomaCloud.authenticated)
+		const cloudClient = await this.getCloudClientForDevice(deviceURL);
+		if (!cloudClient.authenticated && (cloudClient === this.tahomaCloud))
 		{
 			// Try to login to the cloud first
 			await this.initSync();
 		}
 
-		if (this.tahomaCloud.authenticated && !this.usingDebugData)
+		if (cloudClient.authenticated && !this.usingDebugData)
 		{
-			const states = await this.tahomaCloud.getDeviceStates(deviceURL);
+			const states = await cloudClient.getDeviceStates(deviceURL);
 			if (this.infoLogEnabled)
 			{
 				this.logDeviceStatesDelta('Device cloud states', deviceURL, states);

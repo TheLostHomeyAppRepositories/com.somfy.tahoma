@@ -51,6 +51,28 @@ class Driver extends Homey.Driver
 		let password = '';
 		let region = this.homey.settings.get('region');
 		let selectedExistingSession = false;
+		const originalPrimaryUsername = this.homey.settings.get('username');
+		const originalPrimaryPassword = this.homey.settings.get('password');
+		const originalPrimaryRegion = this.homey.settings.get('region');
+
+		session.setHandler('disconnect', async () =>
+		{
+			// Pairing can temporarily switch the app's "active" cloud session to a
+			// different (secondary) account so its devices can be listed. Restore the
+			// original primary account once the pairing wizard closes so devices/settings
+			// tied to the primary account keep working afterwards.
+			if (originalPrimaryUsername && username && (typeof this.homey.app.restorePrimaryCloudSession === 'function'))
+			{
+				try
+				{
+					await this.homey.app.restorePrimaryCloudSession(originalPrimaryUsername, originalPrimaryPassword, originalPrimaryRegion);
+				}
+				catch (error)
+				{
+					this.error('Failed to restore primary session after pairing', error);
+				}
+			}
+		});
 
 		session.setHandler('showView', async (view) =>
 		{

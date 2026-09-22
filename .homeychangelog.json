@@ -957,7 +957,6 @@
 		"en": "Improved the pairing sign-in flow with embedded region selection, saved-account UX updates and cleanup of the old region step."
 	},
 	"4.0.142": {
-
 		"en": "Fixed position feedback event type for the io:RollerShutterUnoIOComponent."
 	},
 	"4.0.143": {
@@ -983,5 +982,8 @@
 	},
 	"4.0.150": {
 		"en": "Added support for RTS interior venetian blinds."
+	},
+	"4.0.151": {
+		"en": "Improved driver recomendations in app settings."
 	}
 }
