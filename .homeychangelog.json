@@ -985,5 +985,8 @@
 	},
 	"4.0.151": {
 		"en": "Improved driver recomendations in app settings."
+	},
+	"4.0.152": {
+		"en": "Updated the app settings to support multiple Somfy accounts."
 	}
 }
