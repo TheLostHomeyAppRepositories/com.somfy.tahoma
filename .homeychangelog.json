@@ -988,5 +988,8 @@
 	},
 	"4.0.152": {
 		"en": "Updated the app settings to support multiple Somfy accounts."
+	},
+	"4.0.153": {
+		"en": "Added support for zigbee:SomfyTiltOnlyInteriorBlindComponent and rts:LightRTSComponent."
 	}
 }

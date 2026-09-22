@@ -2289,6 +2289,8 @@ class myApp extends Homey.App
 		const seen = new Set();
 		const ignoredControllableNames = new Set([
 			'internal:wificomponent',
+			'zigbee:zigbeenetworknode',
+			'zigbee:somfyconfigurationtoolcomponent',
 		]);
 
 		const isProtocolGatewayDevice = (device) =>

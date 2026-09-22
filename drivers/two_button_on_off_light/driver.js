@@ -14,7 +14,7 @@ class two_button_on_offDriver extends Driver
 
 	async onInit()
 	{
-		this.deviceType = ['enocean:EnOceanOnOffLight', 'rts:OnOffRTSComponent', 'rts:ExteriorHeatingRTSComponent'];
+		this.deviceType = ['enocean:EnOceanOnOffLight', 'rts:OnOffRTSComponent', 'rts:ExteriorHeatingRTSComponent', 'rts:LightRTSComponent'];
 		await super.onInit();
 	}
 
