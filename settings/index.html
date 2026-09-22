@@ -304,6 +304,78 @@
 			color: #677083;
 		}
 
+		.account-select-row {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			flex-wrap: wrap;
+		}
+
+		.account-select-row select {
+			flex: 1 1 auto;
+			min-width: 180px;
+		}
+
+		.icon-button {
+			flex: 0 0 auto;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 40px !important;
+			height: 40px !important;
+			line-height: 1;
+			padding: 0;
+			border-radius: 6px !important;
+			background-color: #baccf0 !important;
+			color: #123a23 !important;
+			border: 1px solid #78a3ec !important;
+			box-shadow: none !important;
+			cursor: pointer;
+			font-size: 25px !important;
+			margin: 5px !important;
+		}
+
+		.icon-button:hover {
+			background-color: #e9edf3 !important;
+		}
+
+		.account-primary-hint {
+			font-size: 12px;
+			color: #677083;
+		}
+
+		.account-modal-actions {
+			display: flex;
+			gap: 10px;
+			flex-wrap: wrap;
+		}
+
+		#accountModal .driver-support-modal-content {
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+		}
+
+		#accountModal .field.row {
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+			margin: 0 0 6px 0 !important;
+		}
+
+		#accountModal .homey-form-label {
+			margin: 0 !important;
+		}
+
+		#accountModal .homey-form-checkbox {
+			margin: 2px 0 0 0 !important;
+		}
+
+		#accountModal .field.row.account-modal-actions {
+			flex-direction: row;
+			margin-top: 6px !important;
+		}
+
 		.driver-support-modal-overlay {
 			position: fixed;
 			inset: 0;
@@ -436,41 +508,15 @@
 			<fieldset class="homey-form-fieldset">
 				<legend class="homey-form-legend" data-i18n="settings.logintitle"></legend>
 				<span id="response"></span>
-				<div class="field row">
-					<label class="homey-form-label" for="username" data-i18n="settings.username"></label>
-					<input class="homey-form-input" id="username" type="text" value="" title="Username" />
+				<div class="field row account-select-row">
+					<label class="homey-form-label" for="accountSelect" data-i18n="settings.username"></label>
+					<select class="homey-form-select" id="accountSelect" title="Account"></select>
+					<button type="button" id="editAccountButton" class="icon-button" title="Edit account">&#9998;</button>
+					<button type="button" id="addAccountButton" class="icon-button" title="Add account">&#43;</button>
+					<button type="button" id="deleteAccountButton" class="icon-button" title="Delete account">&#128465;</button>
 				</div>
-				<div class="field row">
-					<label class="homey-form-label" for="password" data-i18n="settings.password"></label>
-					<input class="homey-form-input" id="password" type="password" value="" title="Password" />
-					<label class="homey-form-checkbox">
-						<input class="homey-form-checkbox-input" id="showPassword" type="checkbox" value="showPassword" title="Show password" />
-						<span class="homey-form-checkbox-checkmark"></span>
-						<span class="homey-form-checkbox-text"><span data-i18n="settings.show_password"></span></span>
-					</label>
-					<p></p>
-				</div>
-				<div class="field row">
-					<label class="homey-form-label" for="localToken" data-i18n="settings.localToken"></label>
-					<input class="homey-form-input" id="localToken" type="text" value="" title="Local token" />
-				</div>
-				<div class="field row">
-					<label class="homey-form-label" for="region" data-i18n="settings.region"></label>
-					<select class="homey-form-select" name="region" id="region" title="Region">
-						<option value="europe" data-i18n="settings.europe"></option>
-						<option value="usa" data-i18n="settings.usa"></option>
-						<option value="oceana" data-i18n="settings.oceana"></option>
-					</select>
-					<p></p>
-				</div>
-				<div class="field row">
-					<button class="homey-button-primary-full" id="saveButton" data-i18n="settings.save" title="Save"></button>
-				</div>
-			</fieldset>
-			<fieldset class="homey-form-fieldset is-hidden" id="logoutElement">
-				<legend class="homey-form-legend" data-i18n="settings.logouttitle"></legend>
-				<p id="logoutText" data-i18n="settings.logout_description"></p>
-				<button id="logoutButton" class="homey-button-danger-shadow" data-i18n="settings.logout" title="Log out"></button>
+				<p id="accountPrimaryHint" class="account-primary-hint"></p>
+				<p id="noAccountsHint" class="account-primary-hint is-hidden" data-i18n="settings.no_accounts"></p>
 			</fieldset>
 	</div>
 
@@ -594,21 +640,81 @@
 		</div>
 	</div>
 
+	<div id="accountModal" class="driver-support-modal-overlay is-hidden" role="dialog" aria-modal="true" aria-labelledby="accountModalTitle">
+		<div class="driver-support-modal">
+			<div class="driver-support-modal-header">
+				<h3 id="accountModalTitle" class="driver-support-modal-title" data-i18n="settings.add_account"></h3>
+				<button id="accountModalClose" class="driver-support-modal-close" type="button" aria-label="Close">&times;</button>
+			</div>
+			<div class="driver-support-modal-content">
+				<p id="accountModalResponse"></p>
+				<div class="field row">
+					<label class="homey-form-label" for="accountUsername" data-i18n="settings.username"></label>
+					<input class="homey-form-input" id="accountUsername" type="text" value="" title="Username" />
+				</div>
+				<div class="field row">
+					<label class="homey-form-label" for="accountPassword" data-i18n="settings.password"></label>
+					<input class="homey-form-input" id="accountPassword" type="password" value="" title="Password" />
+					<label class="homey-form-checkbox">
+						<input class="homey-form-checkbox-input" id="accountShowPassword" type="checkbox" value="showPassword" title="Show password" />
+						<span class="homey-form-checkbox-checkmark"></span>
+						<span class="homey-form-checkbox-text"><span data-i18n="settings.show_password"></span></span>
+					</label>
+				</div>
+				<div class="field row">
+					<label class="homey-form-label" for="accountLocalToken" data-i18n="settings.localToken"></label>
+					<input class="homey-form-input" id="accountLocalToken" type="text" value="" title="Local token" />
+				</div>
+				<div class="field row">
+					<label class="homey-form-label" for="accountRegion" data-i18n="settings.region"></label>
+					<select class="homey-form-select" id="accountRegion" title="Region">
+						<option value="europe" data-i18n="settings.europe"></option>
+						<option value="usa" data-i18n="settings.usa"></option>
+						<option value="oceana" data-i18n="settings.oceana"></option>
+					</select>
+				</div>
+				<div class="field row">
+					<label class="homey-form-checkbox">
+						<input class="homey-form-checkbox-input" id="accountSetPrimary" type="checkbox" value="setPrimary" title="Set as primary account" />
+						<span class="homey-form-checkbox-checkmark"></span>
+						<span class="homey-form-checkbox-text"><span data-i18n="settings.set_primary_account"></span></span>
+					</label>
+				</div>
+				<div class="field row account-modal-actions">
+					<button class="homey-button-primary-full" id="accountSaveButton" data-i18n="settings.save" title="Save"></button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<script type="text/javascript">
 		// Create the busy indicator
 		var busyi;
 		busyi = new busy_indicator(document.getElementById("busybox"), document.querySelector("#busybox div"));
 
 		// Settings tab
-		var saveButton = document.getElementById('saveButton');
-		var logoutButton = document.getElementById('logoutButton');
 		var response = document.getElementById('response');
-		var usernameEl = document.getElementById('username');
-		var passwordEl = document.getElementById('password');
-		var showPasswordEl = document.getElementById('showPassword');
-		var localTokenEl = document.getElementById('localToken');
-		var regionE1 = document.getElementById('region');
-		var logoutEl = document.getElementById('logoutElement');
+		var accountSelectEl = document.getElementById('accountSelect');
+		var editAccountButton = document.getElementById('editAccountButton');
+		var addAccountButton = document.getElementById('addAccountButton');
+		var deleteAccountButton = document.getElementById('deleteAccountButton');
+		var accountPrimaryHintEl = document.getElementById('accountPrimaryHint');
+		var noAccountsHintEl = document.getElementById('noAccountsHint');
+
+		// Account modal
+		var accountModalEl = document.getElementById('accountModal');
+		var accountModalTitleEl = document.getElementById('accountModalTitle');
+		var accountModalCloseEl = document.getElementById('accountModalClose');
+		var accountModalResponseEl = document.getElementById('accountModalResponse');
+		var accountUsernameEl = document.getElementById('accountUsername');
+		var accountPasswordEl = document.getElementById('accountPassword');
+		var accountShowPasswordEl = document.getElementById('accountShowPassword');
+		var accountLocalTokenEl = document.getElementById('accountLocalToken');
+		var accountRegionEl = document.getElementById('accountRegion');
+		var accountSetPrimaryEl = document.getElementById('accountSetPrimary');
+		var accountSaveButton = document.getElementById('accountSaveButton');
+		var accountModalMode = 'add';
+		var accountModalOriginalUsername = '';
 
 		// Information log tab
 		var infoLogElement = document.getElementById('infoLogData');
@@ -746,6 +852,183 @@
 			driverSupportReasonModalElement.classList.remove('is-hidden');
 		}
 
+		var lastAccountsList = [];
+
+		function loadAccountSessions(selectUsername)
+		{
+			Homey.api('POST', '/ListAccountSessions/', {}, function(err, accounts)
+			{
+				if (err)
+				{
+					return Homey.alert(err);
+				}
+
+				accounts = Array.isArray(accounts) ? accounts : [];
+				lastAccountsList = accounts;
+				accountSelectEl.innerHTML = '';
+
+				if (accounts.length === 0)
+				{
+					noAccountsHintEl.classList.remove('is-hidden');
+					accountPrimaryHintEl.textContent = '';
+					editAccountButton.disabled = true;
+					deleteAccountButton.disabled = true;
+					return;
+				}
+
+				noAccountsHintEl.classList.add('is-hidden');
+				editAccountButton.disabled = false;
+				deleteAccountButton.disabled = false;
+
+				accounts.forEach(function(account)
+				{
+					var option = document.createElement('option');
+					option.value = account.username;
+					option.textContent = account.isPrimary ? `${account.username} (${tr('settings.primary_account', 'Primary')})` : account.username;
+					accountSelectEl.appendChild(option);
+				});
+
+				var usernameToSelect = selectUsername || accountSelectEl.value;
+				if (usernameToSelect && accounts.some(function(account) { return account.username === usernameToSelect; }))
+				{
+					accountSelectEl.value = usernameToSelect;
+				}
+
+				updatePrimaryHint(accounts);
+			});
+		}
+
+		function updatePrimaryHint(accounts)
+		{
+			var selected = accounts.find(function(account) { return account.username === accountSelectEl.value; });
+			if (selected && selected.isPrimary)
+			{
+				accountPrimaryHintEl.textContent = tr('settings.primary_account_hint', 'This is the primary account.');
+			}
+			else
+			{
+				accountPrimaryHintEl.textContent = '';
+			}
+		}
+
+		function openAccountModal(mode, username)
+		{
+			accountModalMode = mode;
+			accountModalOriginalUsername = (mode === 'edit') ? username : '';
+			accountModalResponseEl.textContent = '';
+			accountModalResponseEl.style.color = '';
+			accountModalTitleEl.textContent = (mode === 'edit')
+				? tr('settings.edit_account', 'Edit account')
+				: tr('settings.add_account', 'Add account');
+			accountPasswordEl.type = 'password';
+
+			if (mode === 'edit')
+			{
+				Homey.api('POST', '/GetAccountSession/', { username: username }, function(err, details)
+				{
+					if (err)
+					{
+						return Homey.alert(err);
+					}
+
+					accountUsernameEl.value = details.username || '';
+					accountPasswordEl.value = details.password || '';
+					accountLocalTokenEl.value = details.localToken || '';
+					accountRegionEl.value = details.region || 'europe';
+					accountSetPrimaryEl.checked = !!details.isPrimary;
+					accountSetPrimaryEl.disabled = !!details.isPrimary;
+					accountModalEl.classList.remove('is-hidden');
+				});
+			}
+			else
+			{
+				accountUsernameEl.value = '';
+				accountPasswordEl.value = '';
+				accountLocalTokenEl.value = '';
+				accountRegionEl.value = 'europe';
+				accountSetPrimaryEl.checked = false;
+				accountSetPrimaryEl.disabled = false;
+				accountModalEl.classList.remove('is-hidden');
+			}
+		}
+
+		function closeAccountModal()
+		{
+			accountModalEl.classList.add('is-hidden');
+		}
+
+		function saveAccount()
+		{
+			var payload = {
+				originalUsername: accountModalOriginalUsername,
+				username: accountUsernameEl.value.trim(),
+				password: accountPasswordEl.value,
+				region: accountRegionEl.value,
+				localToken: accountLocalTokenEl.value,
+				setPrimary: accountSetPrimaryEl.checked,
+			};
+
+			if (!payload.username || !payload.password)
+			{
+				accountModalResponseEl.style.color = 'red';
+				accountModalResponseEl.textContent = tr('settings.login_failure', 'Login failed');
+				return;
+			}
+
+			Object.values(document.querySelectorAll('*')).forEach(element => element.style.cursor = "wait");
+			accountModalResponseEl.style.color = '';
+			accountModalResponseEl.textContent = __('settings.save_verifying');
+
+			Homey.api('POST', '/SaveAccountSession/', payload, function(err, result)
+			{
+				Object.values(document.querySelectorAll('*')).forEach(element => element.style.cursor = "default");
+				if (err)
+				{
+					accountModalResponseEl.style.color = 'red';
+					accountModalResponseEl.textContent = __('settings.login_failure') + '<br/>' + (err.message || err);
+					return;
+				}
+
+				closeAccountModal();
+				loadAccountSessions(payload.username);
+			});
+		}
+
+		function deleteAccount(username, force, closeModalAfter)
+		{
+			Homey.api('POST', '/DeleteAccountSession/', { username: username, force: !!force }, function(err, result)
+			{
+				if (err)
+				{
+					response.style.color = 'red';
+					response.innerHTML = err.message || err;
+					return;
+				}
+
+				if (result && result.inUse && !force)
+				{
+					var deviceNames = (result.usage && Array.isArray(result.usage.devices))
+						? result.usage.devices.map(function(device) { return device.name; }).join(', ')
+						: '';
+					var confirmMessage = tr('settings.delete_account_in_use', 'This account is still used by devices ({devices}). Delete anyway?').replace('{devices}', deviceNames);
+					if (confirm(confirmMessage))
+					{
+						deleteAccount(username, true, closeModalAfter);
+					}
+					return;
+				}
+
+				if (closeModalAfter)
+				{
+					closeAccountModal();
+				}
+
+				response.style.color = 'green';
+				response.innerHTML = __('settings.delete_account_success');
+				loadAccountSessions();
+			});
+		}
+
 		// a method named 'onHomeyReady' must be present in your code
 		function tr(key, fallback)
 		{
@@ -856,101 +1139,70 @@
 
 			document.getElementById("defaultOpen").click();
 
-			Homey.get('username', function(err, username)
+			loadAccountSessions();
+
+			accountSelectEl.addEventListener('change', function()
 			{
-				if (err) return Homey.alert(err);
-				console.log('username: ', username);
-				usernameEl.value = username;
-				if (username && username.length > 0)
+				updatePrimaryHint(lastAccountsList);
+			});
+
+			editAccountButton.addEventListener('click', function()
+			{
+				var selectedUsername = accountSelectEl.value;
+				if (!selectedUsername)
 				{
-					logoutEl.style.display = 'block';
+					return;
+				}
+
+				openAccountModal('edit', selectedUsername);
+			});
+
+			addAccountButton.addEventListener('click', function()
+			{
+				openAccountModal('add', '');
+			});
+
+			deleteAccountButton.addEventListener('click', function()
+			{
+				var selectedUsername = accountSelectEl.value;
+				if (!selectedUsername)
+				{
+					return;
+				}
+
+				if (!confirm(tr('settings.delete_account_confirm', 'Delete this account? Devices paired with it may stop working.').replace('{username}', selectedUsername)))
+				{
+					return;
+				}
+
+				deleteAccount(selectedUsername, false);
+			});
+
+			accountModalCloseEl.addEventListener('click', closeAccountModal);
+			accountModalEl.addEventListener('click', function(event)
+			{
+				if (event.target === accountModalEl)
+				{
+					closeAccountModal();
 				}
 			});
 
-			Homey.get('password', function(err, password)
+			document.addEventListener('keydown', function(event)
 			{
-				if (err) return Homey.alert(err);
-				console.log('password: ', password);
-				passwordEl.value = password;
-				if (password && password.length > 0)
+				if ((event.key === 'Escape') && !accountModalEl.classList.contains('is-hidden'))
 				{
-					logoutEl.style.display = 'block';
+					closeAccountModal();
 				}
 			});
 
-			Homey.get('localToken', function(err, localToken)
+			accountShowPasswordEl.addEventListener('click', function()
 			{
-				if (err) return Homey.alert(err);
-				console.log('localToken: ', localToken);
-				localTokenEl.value = localToken;
+				accountPasswordEl.type = (accountPasswordEl.type === 'password') ? 'text' : 'password';
 			});
 
-			Homey.get('region', function(err, region)
+			accountSaveButton.addEventListener('click', function()
 			{
-				if (err) return Homey.alert(err);
-				console.log('region: ', region);
-				regionE1.value = region;
-			});
-
-			saveButton.addEventListener('click', function()
-			{
-				Object.values(document.querySelectorAll('*')).forEach(element => element.style.cursor = "wait");
-				response.innerHTML = __('settings.save_verifying');
-				const username = usernameEl.value;
-				const password = passwordEl.value; // Changed var to const for consistency
-				const region = regionE1.value;
-				const localToken = localTokenEl.value; // Added localToken variable
-				Homey.api('POST', '/login/',
-				{
-					"username": username,
-					"password": password,
-					"region": region,
-					"localToken": localToken
-				}, function(err, result)
-				{
-					Object.values(document.querySelectorAll('*')).forEach(element => element.style.cursor = "default");
-					if (err)
-					{
-						response.style.color = 'red';
-						response.innerHTML = __('settings.login_failure') + '<br/>' + err;
-						return Homey.alert(err);
-					}
-					response.style.color = 'green';
-					response.innerHTML = __('settings.login_success');
-					logoutEl.style.visibility = "visible";
-				});
-			});
-
-			logoutButton.addEventListener('click', function()
-			{
-				Homey.api('POST', '/logout/', {}, function(err, result)
-				{
-					if (err)
-					{
-						response.style.color = 'red';
-						response.innerHTML = __('settings.logout_failure') + '<br/>' + err.message;
-					}
-					else
-					{
-						response.style.color = 'green';
-						response.innerHTML = __('settings.logout_success');
-						usernameEl.value = ('');
-						passwordEl.value = ('');
-						localTokenEl.value = ('');
-					}
-				});
-			});
-
-			showPasswordEl.addEventListener('click', function(e)
-			{
-				if (passwordEl.type === "password")
-				{
-					passwordEl.type = "text";
-				}
-				else
-				{
-					passwordEl.type = "password";
-				}
+				saveAccount();
 			});
 
 			getDeviceLogElement.addEventListener('click', function(e)

@@ -11,6 +11,22 @@ module.exports = {
 	{
 		return homey.app.logOut();
 	},
+	async ListAccountSessions({ homey, body })
+	{
+		return homey.app.getAccountSessionsForSettings();
+	},
+	async GetAccountSession({ homey, body })
+	{
+		return homey.app.getAccountSessionDetails(body && body.username);
+	},
+	async SaveAccountSession({ homey, body })
+	{
+		return homey.app.saveAccountSession(body || {});
+	},
+	async DeleteAccountSession({ homey, body })
+	{
+		return homey.app.deleteAccountSession(body && body.username, !!(body && body.force));
+	},
 	async GetDeviceLog({ homey, body })
 	{
 		return homey.app.logDevices();

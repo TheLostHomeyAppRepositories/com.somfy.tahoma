@@ -3611,7 +3611,7 @@ class myApp extends Homey.App
 					{
 						try
 						{
-							const ok = await this.doLocalLoginForClient(localClientForBridge, candidate.username, candidate.password, candidate.region, null, bridge, false, true, false);
+							const ok = await this.doLocalLoginForClient(localClientForBridge, candidate.username, candidate.password, candidate.region, candidate.localToken || null, bridge, false, true, false);
 							if (ok && localClientForBridge.authenticated)
 							{
 								authenticated = true;
@@ -4506,7 +4506,7 @@ class myApp extends Homey.App
 					try
 					{
 						const localClientForBridge = this.getLocalClientForBridge(bridge);
-						const ok = await this.doLocalLoginForClient(localClientForBridge, candidate.username, candidate.password, candidate.region, null, bridge, false, true, false);
+						const ok = await this.doLocalLoginForClient(localClientForBridge, candidate.username, candidate.password, candidate.region, candidate.localToken || null, bridge, false, true, false);
 						if (!ok || !localClientForBridge || !localClientForBridge.authenticated)
 						{
 							continue;
@@ -4917,7 +4917,7 @@ class myApp extends Homey.App
 		const candidates = [];
 		const seen = new Set();
 
-		const addCandidate = (username, password, region) =>
+		const addCandidate = (username, password, region, localToken) =>
 		{
 			const normalized = this.normalizeSessionEmail(username);
 			if (!normalized || !password)
@@ -4936,6 +4936,7 @@ class myApp extends Homey.App
 				username: normalized,
 				password,
 				region: region || 'europe',
+				localToken: localToken || '',
 			});
 		};
 
@@ -4955,16 +4956,16 @@ class myApp extends Homey.App
 		const preferred = preferredSessionUsername ? this.getSessionByEmail(preferredSessionUsername) : null;
 		if (preferred && preferred.password)
 		{
-			addCandidate(preferred.username, preferred.password, preferred.region);
+			addCandidate(preferred.username, preferred.password, preferred.region, preferred.localToken);
 		}
 
-		addCandidate(this.homey.settings.get('username'), this.homey.settings.get('password'), this.homey.settings.get('region'));
+		addCandidate(this.homey.settings.get('username'), this.homey.settings.get('password'), this.homey.settings.get('region'), this.homey.settings.get('localToken'));
 
 		for (const session of sessions)
 		{
 			if (session && session.password)
 			{
-				addCandidate(session.username, session.password, session.region);
+				addCandidate(session.username, session.password, session.region, session.localToken);
 			}
 		}
 
@@ -5008,7 +5009,7 @@ class myApp extends Homey.App
 				try
 				{
 					const localClientForBridge = this.getLocalClientForBridge(bridge);
-					const ok = await this.doLocalLoginForClient(localClientForBridge, candidate.username, candidate.password, candidate.region, null, bridge, false, true, false);
+					const ok = await this.doLocalLoginForClient(localClientForBridge, candidate.username, candidate.password, candidate.region, candidate.localToken || null, bridge, false, true, false);
 					if (!ok || !localClientForBridge || !localClientForBridge.authenticated || !localClientForBridge.supportedDevices)
 					{
 						continue;
@@ -5140,7 +5141,7 @@ class myApp extends Homey.App
 			try
 			{
 				const localClientForBridge = this.getLocalClientForBridge(bridge);
-				const ok = await this.doLocalLoginForClient(localClientForBridge, session.username, session.password, session.region || 'europe', null, bridge, false, true, false);
+				const ok = await this.doLocalLoginForClient(localClientForBridge, session.username, session.password, session.region || 'europe', session.localToken || null, bridge, false, true, false);
 				if (!ok || !localClientForBridge || !localClientForBridge.authenticated || !localClientForBridge.supportedDevices)
 				{
 					continue;
@@ -5325,7 +5326,9 @@ class myApp extends Homey.App
 		return sessions[idx];
 	}
 
-	upsertAccountSession({ username, password, region })
+	upsertAccountSession({
+		username, password, region, localToken,
+	})
 	{
 		const normalized = this.normalizeSessionEmail(username);
 		if (!this.isValidSessionEmail(normalized))
@@ -5348,6 +5351,7 @@ class myApp extends Homey.App
 				username: normalized,
 				password: password === undefined ? sessions[idx].password : password,
 				region: region || sessions[idx].region || 'europe',
+				localToken: localToken === undefined ? sessions[idx].localToken : localToken,
 				bridgePins: normalizedPins,
 				lastUsed: now,
 			};
@@ -5360,6 +5364,7 @@ class myApp extends Homey.App
 			username: normalized,
 			password,
 			region: region || 'europe',
+			localToken: localToken || '',
 			bridgePins: [],
 			lastUsed: now,
 		};
@@ -5378,6 +5383,139 @@ class myApp extends Homey.App
 			region: session.region,
 			lastUsed: session.lastUsed,
 		}));
+	}
+
+	// Account list for the Settings page dropdown (no passwords).
+	getAccountSessionsForSettings()
+	{
+		this.migrateLegacyCredentialsToSessions();
+		const primaryUsername = this.normalizeSessionEmail(this.homey.settings.get('username'));
+
+		return this.getAccountSessions().map((session) => ({
+			username: session.username,
+			region: session.region || 'europe',
+			hasLocalToken: !!(session.localToken && `${session.localToken}`.trim()),
+			isPrimary: (this.normalizeSessionEmail(session.username) === primaryUsername) && !!primaryUsername,
+			lastUsed: session.lastUsed,
+		}));
+	}
+
+	// Full details (including password) for the Settings page edit/add popup.
+	getAccountSessionDetails(username)
+	{
+		const normalized = this.normalizeSessionEmail(username);
+		const primaryUsername = this.normalizeSessionEmail(this.homey.settings.get('username'));
+		const session = normalized ? this.getSessionByEmail(normalized) : null;
+
+		if (!session)
+		{
+			return {
+				username: normalized || '', password: '', region: 'europe', localToken: '', isPrimary: false,
+			};
+		}
+
+		return {
+			username: session.username,
+			password: session.password || '',
+			region: session.region || 'europe',
+			localToken: session.localToken || '',
+			isPrimary: (this.normalizeSessionEmail(session.username) === primaryUsername) && !!primaryUsername,
+		};
+	}
+
+	// Adds/updates an account from the Settings page popup. Only ever switches the app's
+	// single primary/active account (Settings' username/password) when explicitly requested,
+	// when it is editing the current primary, or when there is no primary configured yet.
+	async saveAccountSession({
+		originalUsername, username, password, region, localToken, setPrimary,
+	})
+	{
+		const normalized = this.normalizeSessionEmail(username);
+		if (!this.isValidSessionEmail(normalized))
+		{
+			throw new Error('Please enter a valid email address');
+		}
+
+		if (!password)
+		{
+			throw new Error('Please enter a password');
+		}
+
+		const normalizedOriginal = originalUsername ? this.normalizeSessionEmail(originalUsername) : '';
+		const currentPrimaryUsername = this.normalizeSessionEmail(this.homey.settings.get('username'));
+		const wasPrimary = !!(normalizedOriginal && (normalizedOriginal === currentPrimaryUsername));
+		const shouldBePrimary = !!setPrimary || wasPrimary || !currentPrimaryUsername;
+
+		if (normalizedOriginal && (normalizedOriginal !== normalized))
+		{
+			this.removeAccountSession(normalizedOriginal, { force: true, clearGlobalCredentials: false });
+		}
+
+		if (shouldBePrimary)
+		{
+			const authenticated = await this.newLogin_2(normalized, password, region, localToken, true);
+			if (!authenticated)
+			{
+				throw new Error('Unable to authenticate with Somfy cloud or the local bridge');
+			}
+		}
+		else
+		{
+			const authenticated = await this.ensureCloudSessionAuthenticated(normalized, password, region || 'europe', true, 'settings-save-account');
+			if (!authenticated)
+			{
+				throw new Error('Unable to authenticate with Somfy cloud');
+			}
+		}
+
+		this.upsertAccountSession({
+			username: normalized, password, region, localToken,
+		});
+
+		return this.getAccountSessionDetails(normalized);
+	}
+
+	// Deletes a saved account. If it was the primary/active account, promotes the most
+	// recently used remaining account to primary (if any are left).
+	async deleteAccountSession(username, force = false)
+	{
+		const normalized = this.normalizeSessionEmail(username);
+		if (!this.isValidSessionEmail(normalized))
+		{
+			throw new Error('Please enter a valid email address');
+		}
+
+		const result = this.removeAccountSession(normalized, { force, clearGlobalCredentials: true });
+		if (result && result.removed)
+		{
+			if (this.tahomaCloudsBySession && this.tahomaCloudsBySession[normalized])
+			{
+				delete this.tahomaCloudsBySession[normalized];
+			}
+
+			const currentPrimaryUsername = this.normalizeSessionEmail(this.homey.settings.get('username'));
+			if (currentPrimaryUsername === normalized)
+			{
+				const remaining = this.getAccountSessions()
+					.filter((session) => session && session.password)
+					.sort((a, b) => (b.lastUsed || 0) - (a.lastUsed || 0));
+
+				if (remaining.length > 0)
+				{
+					const next = remaining[0];
+					try
+					{
+						await this.newLogin_2(next.username, next.password, next.region, next.localToken, true);
+					}
+					catch (error)
+					{
+						this.logInformation('deleteAccountSession promote next primary', error.message ? error.message : error);
+					}
+				}
+			}
+		}
+
+		return result;
 	}
 
 	getSessionUsage(username)

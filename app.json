@@ -126,6 +126,22 @@
       "method": "post",
       "path": "/logout/"
     },
+    "ListAccountSessions": {
+      "method": "post",
+      "path": "/ListAccountSessions/"
+    },
+    "GetAccountSession": {
+      "method": "post",
+      "path": "/GetAccountSession/"
+    },
+    "SaveAccountSession": {
+      "method": "post",
+      "path": "/SaveAccountSession/"
+    },
+    "DeleteAccountSession": {
+      "method": "post",
+      "path": "/DeleteAccountSession/"
+    },
     "GetDeviceLog": {
       "method": "post",
       "path": "/GetDeviceLog/"
