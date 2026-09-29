@@ -393,10 +393,13 @@ class WindowCoveringsDevice extends Device
 			this.setCapabilityValue('windowcoverings_tilt_set', value).catch(this.error);
 
 			// trigger flows
-			const tokens = {
-				windowcoverings_tilt: value,
-			};
-			this.driver.triggerTiltChange(this, tokens);
+			if (this.driver.triggerTiltChange)
+			{
+				const tokens = {
+					windowcoverings_tilt: value,
+				};
+				this.driver.triggerTiltChange(this, tokens);
+			}
 		}
 	}
 
@@ -685,7 +688,7 @@ class WindowCoveringsDevice extends Device
 					}).catch(this.error);
 				}
 
-				if (tiltState)
+				if (tiltState && this.hasCapability('windowcoverings_tilt_set'))
 				{
 					this.homey.app.logStates(`${this.getName()}: core:SlateOrientationState = ${tiltState.value}`);
 
