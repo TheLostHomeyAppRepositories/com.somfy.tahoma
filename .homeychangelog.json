@@ -991,5 +991,8 @@
 	},
 	"4.0.153": {
 		"en": "Added support for zigbee:SomfyTiltOnlyInteriorBlindComponent and rts:LightRTSComponent."
+	},
+	"4.0.154": {
+		"en": "Corrected logic for setting windowcoverings_closed capability based on invertTile."
 	}
 }
