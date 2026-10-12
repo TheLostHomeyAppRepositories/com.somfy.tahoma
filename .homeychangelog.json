@@ -994,5 +994,8 @@
 	},
 	"4.0.154": {
 		"en": "Corrected logic for setting windowcoverings_closed capability based on invertTile."
+	},
+	"4.0.155": {
+		"en": "Updated logic for windowcoverings_closed and onCapabilityWindowcoveringsTiltSet to account for invert settings."
 	}
 }

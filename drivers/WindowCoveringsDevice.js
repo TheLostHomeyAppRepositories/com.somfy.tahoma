@@ -355,7 +355,9 @@ class WindowCoveringsDevice extends Device
 			this.setCapabilityValue('windowcoverings_set', value).catch(this.error);
 			if (this.hasCapability('windowcoverings_closed'))
 			{
-				this.setCapabilityValue('windowcoverings_closed', value === (this.invertTile ? 1 : 0)).catch(this.error);
+				const position = this.invertPosition ? 1 - value : value;
+				const closedPosition = this.invertTile ? (this.invertUpDown ? 0 : 1) : (this.invertUpDown ? 1 : 0);
+				this.setCapabilityValue('windowcoverings_closed', position === closedPosition).catch(this.error);
 			}
 		}
 	}
@@ -565,10 +567,10 @@ class WindowCoveringsDevice extends Device
 	{
 		if (this.invertTile)
 		{
-			return this.onCapabilityWindowcoveringsState(value ? 'down' : 'up', null);
+			return this.onCapabilityWindowcoveringsState(value ? 'up' : 'down', null);
 		}
 
-			return this.onCapabilityWindowcoveringsState(value ? 'up' : 'down', null);
+		return this.onCapabilityWindowcoveringsState(value ? 'down' : 'up', null);
 	}
 
 	/**
