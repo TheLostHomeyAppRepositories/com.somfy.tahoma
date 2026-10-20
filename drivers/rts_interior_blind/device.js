@@ -27,27 +27,22 @@ class InteriorBlindDevice extends WindowCoveringsDevice {
 			controllableName = dd.controllableName.toString().toLowerCase();
 		}
 
-		if (controllableName === 'ogp:blind')
+		if (!this.hasCapability('my_position'))
 		{
-			if (this.hasCapability('my_position'))
-			{
-				this.removeCapability('my_position').catch(this.error);
-			}
+			await this.addCapability('my_position');
 		}
-		else
+		if (controllableName === 'profalux868:profalux868rollershutter')
 		{
-			if (controllableName === 'profalux868:profalux868rollershutter')
-			{
-				this.myCommand = 'goToMemorized1Position';
-			}
-
-			if (!this.hasCapability('my_position'))
-			{
-				this.addCapability('my_position').catch(this.error);
-			}
+			this.myCommand = 'goToMemorized1Position';
 		}
 
 		await super.onInit();
+
+		if (controllableName === 'ogp:blind')
+		{
+			this.myCommand = 'goToAlias';
+			this.myParameter = ['1'];
+		}
 
 		this.positionStateName = '';
 		this.openClosedStateName = '';

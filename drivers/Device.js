@@ -550,6 +550,21 @@ class Device extends Homey.Device
 			return false;
 		}
 
+		if (tahomaState.name === 'core:BatteryDiscreteLevelState')
+		{
+			if (!['good', 'low', 'critical'].includes(tahomaState.value))
+			{
+				this.logInformationSafe(this.getName(), `Unknown discrete battery level: ${tahomaState.value}`);
+				return false;
+			}
+			if (!this.hasCapability('alarm_battery'))
+			{
+				await this.addCapability('alarm_battery');
+			}
+			await this.setCapabilityValue('alarm_battery', tahomaState.value !== 'good');
+			return true;
+		}
+
 		const batteryLevel = this.getBatteryLevelPercent(tahomaState.name, tahomaState.value);
 		if (batteryLevel === null)
 		{
@@ -611,10 +626,14 @@ class Device extends Homey.Device
 		}
 
 		const relatedBatteryState = await this.getRelatedDeviceState(
-			['core:BatteryLevelState', 'core:BatteryState'],
+			['core:BatteryLevelState', 'core:BatteryState', 'core:BatteryDiscreteLevelState'],
 			this.getDeviceUrl(),
 		);
-		await this.updateBatteryLevelCapability(relatedBatteryState);
+		if (!await this.updateBatteryLevelCapability(relatedBatteryState))
+		{
+			const discreteBatteryState = tahomaStates.find((state) => (state && (state.name === 'core:BatteryDiscreteLevelState')));
+			await this.updateBatteryLevelCapability(discreteBatteryState);
+		}
 	}
 
 	/**

@@ -6,5 +6,18 @@ Use the power of Homey Flows to automate your Somfy devices.
 Written to fully comply with Somfy's latest guidelines, so you can use the app with peace of mind.
 The app requires one of the Somfy gateways, TaHoma, Connexoon, Switch or Connectivity kit.
 
+Connectivity kit devices:
+- Add the kit's status LED using Dimmable light (IO, Hue, ZWave). It supports brightness control rather than a separate on/off switch.
+- Add RTS screens such as Screen Veranda using Blind or Shutter (RTS).
+- Add RTS awnings such as Zonnescherm Tuin using Awning (RTS).
+The RTS screen and awning support up, down, stop and the My favourite position, but do not report their position or support percentage positioning.
+The kit's internal io2way and RTS bridges are not separate devices to add.
+
+Somfy Zigbee devices:
+- Add Somfy roller shades using Roller shutter (IO), including percentage positioning and the My favourite position.
+- Add Zigbee smart plugs using Socket (IO), including on/off and the timer.
+- Add remote channels using Somfy Ergonomic Remote. This driver reports ergonomics mode and battery information, not button presses.
+Battery readings on related configuration endpoints are used automatically. Discrete battery reports provide a low-battery indicator rather than an estimated percentage.
+
 Suggestions or problems?
 If you have a device that's not supported or a suggestion or problem with this app please go to the forum or the github page linked on this page and let me know.

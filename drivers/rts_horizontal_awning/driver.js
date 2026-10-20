@@ -13,7 +13,7 @@ class HorizontalAwningRTSDriver extends Driver
 
 	async onInit()
 	{
-		this.deviceType = ['rts:HorizontalAwningRTSComponent'];
+		this.deviceType = ['rts:HorizontalAwningRTSComponent', 'ogp:Awning'];
 	}
 
 }

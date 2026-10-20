@@ -20,9 +20,35 @@ class HorizontalAwningRTSDevice extends WindowCoveringsDevice {
 
 		await super.onInit();
 
+		this.controllableName = (this.getData().controllableName || '').toLowerCase();
+		if (this.controllableName === 'ogp:awning')
+		{
+			this.myCommand = 'goToAlias';
+			this.myParameter = ['1'];
+			this.updateOgpActions();
+		}
+
 		this.positionStateName = '';
 		this.openClosedStateName = '';
 		this.boostSync = false;
+	}
+
+	async onSettings(event)
+	{
+		await super.onSettings(event);
+		this.updateOgpActions();
+	}
+
+	updateOgpActions()
+	{
+		if (this.controllableName === 'ogp:awning')
+		{
+			this.windowcoveringsActions = {
+				up: this.invertUpDown ? 'rollOut' : 'rollUp',
+				idle: 'stop',
+				down: this.invertUpDown ? 'rollUp' : 'rollOut',
+			};
+		}
 	}
 
 	async sync() {

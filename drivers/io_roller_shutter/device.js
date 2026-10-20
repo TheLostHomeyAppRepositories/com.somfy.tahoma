@@ -39,7 +39,8 @@ class RollerShutterDevice extends WindowCoveringsDevice
 			|| (controllableName === 'io:rollershutterunoiocomponent')
 			|| (controllableName === 'io:screenreceiverunoiocomponent')
 			|| (controllableName === 'io:rollershutterwithbatterysomfyiocomponent')
-			|| (controllableName === 'io:dynamicrollershutteriocomponent'))
+			|| (controllableName === 'io:dynamicrollershutteriocomponent')
+			|| (controllableName === 'zigbee:somfyrollershadecomponent'))
 		{
 			if (!this.hasCapability('my_position'))
 			{

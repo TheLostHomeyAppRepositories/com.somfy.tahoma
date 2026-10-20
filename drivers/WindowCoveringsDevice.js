@@ -80,6 +80,7 @@ class WindowCoveringsDevice extends Device
 		this.setPositionActionName = 'setClosure'; // Name of the command to set the current position
 		this.openClosedStateName = 'core:OpenClosedState'; // Name of the state to get open / closed state
 		this.myCommand = 'my'; // Name of the command to set the My position
+		this.myParameter = [];
 		this.lastDispatchedCommand = '';
 		this.lastDispatchedAt = 0;
 		this.lastFailureType = '';
@@ -489,7 +490,7 @@ class WindowCoveringsDevice extends Device
 
 				const action = {
 					name: this.myCommand,
-					parameters: [],
+					parameters: this.myParameter,
 				};
 				const result = await this.homey.app.executeDeviceAction(deviceData.label, deviceData.deviceURL, action, this.boostSync);
 				this.executionCmd = action.name;
@@ -713,7 +714,8 @@ class WindowCoveringsDevice extends Device
 				}
 				else
 				{
-					const batteryState = states.find((state) => (state && (state.name === 'core:BatteryState')));
+					const batteryState = states.find((state) => (state && (state.name === 'core:BatteryState')))
+						|| states.find((state) => (state && (state.name === 'core:BatteryDiscreteLevelState')));
 					if (batteryState)
 					{
 						await this.updateBatteryLevelCapability(batteryState);
@@ -721,7 +723,7 @@ class WindowCoveringsDevice extends Device
 					else
 					{
 						const relatedBatteryState = await this.getRelatedDeviceState(
-							['core:BatteryLevelState', 'core:BatteryState'],
+							['core:BatteryLevelState', 'core:BatteryState', 'core:BatteryDiscreteLevelState'],
 							this.getDeviceUrl(),
 						);
 						if (relatedBatteryState && (relatedBatteryState.name === 'core:BatteryLevelState'))
@@ -954,11 +956,11 @@ class WindowCoveringsDevice extends Device
 									await this.updateBatteryLevelCapability(deviceState);
 								}
 							}
-							else if ((deviceState.name === 'core:BatteryState') && !this.hasBatteryLevelState)
+							else if (((deviceState.name === 'core:BatteryState') || (deviceState.name === 'core:BatteryDiscreteLevelState')) && !this.hasBatteryLevelState)
 							{
 								// Device battery state
 								// Check for more message that are the same
-								if (!this.checkForDuplicatesEvents(events, i, x + 1, myURL, 'core:BatteryState'))
+								if (!this.checkForDuplicatesEvents(events, i, x + 1, myURL, deviceState.name))
 								{
 									await this.updateBatteryLevelCapability(deviceState);
 								}

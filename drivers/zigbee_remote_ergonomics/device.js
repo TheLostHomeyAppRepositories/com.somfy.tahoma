@@ -43,7 +43,8 @@ class ZigbeeRemoteErgonomicsDevice extends Device
 	{
 		if (events === null)
 		{
-			return this.syncList(CapabilitiesXRef);
+			await this.syncList(CapabilitiesXRef);
+			return;
 		}
 
 		const myURL = this.getDeviceUrl();
@@ -95,23 +96,18 @@ class ZigbeeRemoteErgonomicsDevice extends Device
 								}
 							}
 						}
-						else if ((tahomaState.name === 'core:BatteryLevelState') || (tahomaState.name === 'core:BatteryState'))
-						{
-							await this.updateBatteryLevelCapability(tahomaState);
-						}
 					}
+					await this.syncBatteryLevelCapability(event.deviceStates, CapabilitiesXRef);
 				}
 			}
 		}
-
-		await this.syncBatteryLevelCapability(event?.deviceStates || [], CapabilitiesXRef);
 	}
 
 	async syncList(CapabilitiesXRef)
 	{
 		try
 		{
-			let tahomaStates = await this.getStates();
+			const tahomaStates = await this.getStates();
 			if (tahomaStates)
 			{
 				for (const xRefEntry of CapabilitiesXRef)
