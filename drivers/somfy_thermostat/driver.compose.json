@@ -1,0 +1,25 @@
+{
+  "name": {
+    "en": "Somfy Thermostat"
+  },
+  "class": "thermostat",
+  "energy": {
+    "batteries": [
+      "AA",
+      "AA"
+    ]
+  },
+  "capabilities": [
+    "target_temperature",
+    "measure_battery"
+  ],
+  "capabilitiesOptions": {
+    "target_temperature": {
+      "min": 5,
+      "max": 30
+    }
+  },
+  "$extends": [
+    "cloudDriver"
+  ]
+}

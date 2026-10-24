@@ -21,6 +21,7 @@ class TemperatureSensorDriver extends Driver
 			'zwave:ZWaveTemperatureSensor',
 			'io:TemperatureInCelciusIOSystemDeviceSensor',
 			'netatmo:TemperatureComponent',
+			'somfythermostat:SomfyThermostatTemperatureSensor',
 			'io:TemperatureSensor',
 			'io:TemperatureMeasurementSensor',
 		];

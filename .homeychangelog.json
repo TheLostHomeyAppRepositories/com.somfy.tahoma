@@ -1000,5 +1000,8 @@
 	},
 	"4.0.156": {
 		"en": "Added support for ogp:Blind and ogp:Awning, zigbee:somfyrollershadecomponent."
+	},
+	"4.0.157": {
+		"en": "Added support for somfy:Thermostat, somfythermostat:SomfyThermostatTemperatureSensor and somfythermostat:SomfyThermostatHumiditySensor."
 	}
 }

@@ -8,7 +8,10 @@ class HumiditySensorDriver extends Driver
 {
 	async onInit()
 	{
-		this.deviceType = ['netatmo:HumidityComponent'];
+		this.deviceType = [
+			'netatmo:HumidityComponent',
+			'somfythermostat:SomfyThermostatHumiditySensor',
+		];
 	}
 }
 
