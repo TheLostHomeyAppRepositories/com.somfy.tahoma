@@ -3,6 +3,9 @@ Connect your Somfy TaHoma, Switch or Connexoon account to Homey then control and
 
 Use the power of Homey Flows to automate your Somfy devices.
 
+TaHoma scenarios are fetched and executed through the Somfy cloud, even when devices use local mode. Scenarios require a Somfy cloud login and an internet connection; a local token alone is not sufficient.
+Enable Information Log in the app settings to record successful scenario fetches, including the number, names and IDs of scenarios returned. Open the scenario selector in a Flow to fetch the list. Failed lookups are logged and reported to Homey rather than shown as an empty list.
+
 Written to fully comply with Somfy's latest guidelines, so you can use the app with peace of mind.
 The app requires one of the Somfy gateways, TaHoma, Connexoon, Switch or Connectivity kit.
 

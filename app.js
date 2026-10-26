@@ -3903,6 +3903,27 @@ class myApp extends Homey.App
 			.catch(this.error);
 	}
 
+	async getScenarioCloudClient()
+	{
+		// The local API does not support fetching or executing saved scenarios.
+		if (this.tahomaCloud.authenticated)
+		{
+			return this.tahomaCloud;
+		}
+
+		this.ensureCredentialsFromSessions();
+		const username = this.homey.settings.get('username');
+		const password = this.homey.settings.get('password');
+		const region = this.homey.settings.get('region') || 'europe';
+		const authenticated = await this.ensureCloudSessionAuthenticated(username, password, region, false, 'scenario');
+		if (!authenticated)
+		{
+			throw new Error('Somfy cloud login is required for scenarios, including in local mode');
+		}
+
+		return this.getCloudClientForSession(username);
+	}
+
 	/**
 	 * Adds a listener for flowcard scenario actions
 	 */
@@ -3912,33 +3933,35 @@ class myApp extends Homey.App
 		this.homey.flow.getActionCard('activate_scenario')
 			.registerRunListener(async (args, state) =>
 			{
-				if (this.localOnly)
-				{
-					return this.tahomaLocal.executeScenario(args.scenario.oid);
-				}
-				return this.tahomaCloud.executeScenario(args.scenario.oid);
+					const client = await this.getScenarioCloudClient();
+					return client.executeScenario(args.scenario.oid);
 			})
-			.getArgument('scenario').registerAutocompleteListener((query) =>
+			.getArgument('scenario').registerAutocompleteListener(async (query) =>
 			{
-				if (this.localOnly)
-				{
-					return this.tahomaLocal.getScenarios().then((data) => data.map(({ oid, label }) => (
+					try
 					{
-						oid,
-						name: label,
-					})).filter(({ name }) => name.toLowerCase().indexOf(query.toLowerCase()) > -1)).catch((error) =>
+						const client = await this.getScenarioCloudClient();
+						const data = await client.getActionGroups();
+						const scenarios = data.map(({ oid, label }) => (
+						{
+							oid,
+							name: label,
+						}));
+						if (this.infoLogEnabled)
+					{
+							this.logInformation('Cloud scenario fetch',
+							{
+								count: scenarios.length,
+								scenarios: data.map(({ oid, label }) => ({ oid, label })),
+							});
+						}
+						return scenarios.filter(({ name }) => name.toLowerCase().indexOf(query.toLowerCase()) > -1);
+					}
+					catch (error)
 					{
 						this.logInformation('addScenarioActionListeners', error.message);
-					});
-				}
-				return this.tahomaCloud.getActionGroups().then((data) => data.map(({ oid, label }) => (
-					{
-						oid,
-						name: label,
-					})).filter(({ name }) => name.toLowerCase().indexOf(query.toLowerCase()) > -1)).catch((error) =>
-					{
-						this.logInformation('addScenarioActionListeners', error.message);
-					});
+						throw error;
+					}
 			});
 	}
 

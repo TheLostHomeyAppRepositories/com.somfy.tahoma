@@ -1003,5 +1003,8 @@
 	},
 	"4.0.157": {
 		"en": "Added support for somfy:Thermostat, somfythermostat:SomfyThermostatTemperatureSensor and somfythermostat:SomfyThermostatHumiditySensor."
+	},
+	"4.0.158": {
+		"en": "Log scenario fetches / errors."
 	}
 }
