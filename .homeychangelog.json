@@ -1006,5 +1006,8 @@
 	},
 	"4.0.158": {
 		"en": "Log scenario fetches / errors."
+	},
+	"4.0.159": {
+		"en": "Added support for ogp:AudioPlayer and rts:BioclimaticPergolaRTSComponent."
 	}
 }
