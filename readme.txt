@@ -22,5 +22,9 @@ Somfy Zigbee devices:
 - Add remote channels using Somfy Ergonomic Remote. This driver reports ergonomics mode and battery information, not button presses.
 Battery readings on related configuration endpoints are used automatically. Discrete battery reports provide a low-battery indicator rather than an estimated percentage.
 
+Additional devices:
+- Add Sonos Audio Players using Audio Player (Sonos) for volume and mute control.
+- Add RTS bioclimatic pergola screens using Pergola Screen (RTS) for open, close, stop and My favourite position. These devices do not report position.
+
 Suggestions or problems?
 If you have a device that's not supported or a suggestion or problem with this app please go to the forum or the github page linked on this page and let me know.

@@ -1,0 +1,14 @@
+{
+  "name": {
+    "en": "Audio Player (Sonos)",
+    "nl": "Audioplayer (Sonos)"
+  },
+  "class": "speaker",
+  "capabilities": [
+    "volume_set",
+    "volume_mute"
+  ],
+  "$extends": [
+    "cloudDriver"
+  ]
+}

@@ -6759,6 +6759,106 @@
           }
         }
       ],
+      "icon": "/drivers/audio_player/assets/icon.svg",
+      "images": {
+        "large": "/drivers/audio_player/assets/images/large.png",
+        "small": "/drivers/audio_player/assets/images/small.png"
+      },
+      "name": {
+        "en": "Audio Player (Sonos)",
+        "nl": "Audioplayer (Sonos)"
+      },
+      "class": "speaker",
+      "capabilities": [
+        "volume_set",
+        "volume_mute"
+      ],
+      "id": "audio_player"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
+        {
+          "id": "session_select"
+        },
+        {
+          "id": "login_credentials"
+        },
+        {
+          "id": "list_my_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        }
+      ],
       "icon": "/drivers/co2_sensor/assets/icon.svg",
       "images": {
         "large": "/drivers/co2_sensor/assets/images/large.png",
@@ -15732,6 +15832,121 @@
         "button"
       ],
       "id": "rts_open_close"
+    },
+    {
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "pair": [
+        {
+          "id": "session_select"
+        },
+        {
+          "id": "login_credentials"
+        },
+        {
+          "id": "list_my_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "usernameLabel": {
+              "en": "E-mail address",
+              "nl": "E-mailadres",
+              "da": "E-mailadresse",
+              "de": "E-Mail-Adresse",
+              "es": "Dirección de correo electrónico",
+              "fr": "Adresse e-mail",
+              "it": "Indirizzo e-mail",
+              "no": "E-postadresse",
+              "sv": "E-postadress",
+              "pl": "Adres e-mail",
+              "ru": "Адрес электронной почты",
+              "ko": "이메일 주소"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "john@doe.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "john@doe.com",
+              "fr": "john@doe.com",
+              "it": "john@doe.com",
+              "no": "john@doe.com",
+              "sv": "john@doe.com",
+              "pl": "john@doe.com",
+              "ru": "john@doe.com",
+              "ko": "john@doe.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        }
+      ],
+      "icon": "/drivers/rts_pergola/assets/icon.svg",
+      "images": {
+        "large": "/drivers/rts_pergola/assets/images/large.png",
+        "small": "/drivers/rts_pergola/assets/images/small.png"
+      },
+      "name": {
+        "en": "Pergola Screen (RTS)",
+        "nl": "Pergolascherm (RTS)"
+      },
+      "class": "sunshade",
+      "capabilities": [
+        "windowcoverings_state",
+        "my_position"
+      ],
+      "settings": [
+        {
+          "id": "invertUpDown",
+          "type": "checkbox",
+          "label": {
+            "en": "Invert Up / Down",
+            "nl": "Omkeren omhoog / omlaag"
+          },
+          "value": false,
+          "hint": {
+            "en": "Reverse the Up / Down direction controls",
+            "nl": "Draai de bedieningselementen omhoog/omlaag om"
+          }
+        }
+      ],
+      "id": "rts_pergola"
     },
     {
       "platforms": [
