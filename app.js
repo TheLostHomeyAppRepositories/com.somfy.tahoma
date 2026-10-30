@@ -3508,29 +3508,37 @@ class myApp extends Homey.App
 
 		let nextInterval = 0;
 
-		if (this.nextCloudInterval !== 0)
+		try
 		{
-			if (this.tahomaLocal)
+			if (this.nextCloudInterval !== 0)
 			{
-				nextInterval = await this.syncAllLocalBridges();
-			}
-			else
-			{
-				nextInterval = LOCAL_INTERVAL * 1000;
-			}
-
-			if (!this.localOnly)
-			{
-				if ((this.nextCloudInterval - (LOCAL_INTERVAL * 1000)) <= 0)
+				if (this.tahomaLocal)
 				{
-					nextInterval = await this.syncAllCloudSessions();
-					this.nextCloudInterval = nextInterval;
+					nextInterval = await this.syncAllLocalBridges();
 				}
 				else
 				{
-					this.nextCloudInterval -= (LOCAL_INTERVAL * 1000);
+					nextInterval = LOCAL_INTERVAL * 1000;
+				}
+
+				if (!this.localOnly)
+				{
+					if ((this.nextCloudInterval - (LOCAL_INTERVAL * 1000)) <= 0)
+					{
+						nextInterval = await this.syncAllCloudSessions();
+						this.nextCloudInterval = nextInterval;
+					}
+					else
+					{
+						this.nextCloudInterval -= (LOCAL_INTERVAL * 1000);
+					}
 				}
 			}
+		}
+		catch (error)
+		{
+			this.logInformation('syncLoop recovery', error.message ? error.message : error);
+			nextInterval = 0;
 		}
 
 		if (nextInterval > 0)
@@ -3736,99 +3744,98 @@ class myApp extends Homey.App
 		if (!this.syncing)
 		{
 			this.syncing = true;
-			const cloudSessionKey = !tahomaConnection.localLogin
-				? this.normalizeSessionEmail(tahomaConnection.sessionUsername || tahomaConnection.username || '')
-				: '';
-			const connectionLastSync = tahomaConnection.localLogin
-				? this.lastSync
-				: (cloudSessionKey ? (this.cloudLastSyncBySession[cloudSessionKey] || 0) : this.lastSync);
-
-			// Make sure it has been about 30 seconds since last sync unless boost is on or a local login
-			if (tahomaConnection.localLogin || this.boostTimerId || ((Date.now() - connectionLastSync) > 28000))
+			try
 			{
-				if (!tahomaConnection.localLogin)
-				{
-					if (cloudSessionKey)
-					{
-						this.cloudLastSyncBySession[cloudSessionKey] = Date.now();
-					}
-					else
-					{
-						this.lastSync = Date.now();
-					}
-				}
+				const cloudSessionKey = !tahomaConnection.localLogin
+					? this.normalizeSessionEmail(tahomaConnection.sessionUsername || tahomaConnection.username || '')
+					: '';
+				const connectionLastSync = tahomaConnection.localLogin
+					? this.lastSync
+					: (cloudSessionKey ? (this.cloudLastSyncBySession[cloudSessionKey] || 0) : this.lastSync);
 
-				try
+				// Make sure it has been about 30 seconds since last sync unless boost is on or a local login
+				if (tahomaConnection.localLogin || this.boostTimerId || ((Date.now() - connectionLastSync) > 28000))
 				{
-					let events = await tahomaConnection.getEvents();
-					if ((events === null && this.boostTimerId === null) || (events && events.length > 0))
+					if (!tahomaConnection.localLogin)
 					{
-						// If events === null and boostTimer === null then refresh all the devices, but don't do that if the boost is on
-						if (events !== null && this.eventLogEnabled)
+						if (cloudSessionKey)
 						{
-							this.logEvents(this.varToString(events));
+							this.cloudLastSyncBySession[cloudSessionKey] = Date.now();
 						}
-						await this.syncEvents(events, tahomaConnection.localLogin);
-					}
-					events = null;
-				}
-				catch (error)
-				{
-					if (this.isTransientSyncError(error))
-					{
-						const connectionType = tahomaConnection.localLogin ? 'Local' : 'Cloud';
-						this.log(`${connectionType} sync transient issue: ${error.message}`);
-						this.syncing = false;
-						return nextInterval;
+						else
+						{
+							this.lastSync = Date.now();
+						}
 					}
 
-					// this.logInformation('syncLoop', error.message);
-					if (error.message)
+					try
 					{
-						if (error.message.indexOf('Far Too many') >= 0)
+						let events = await tahomaConnection.getEvents();
+						if ((events === null && this.boostTimerId === null) || (events && events.length > 0))
 						{
-							this.homey.clearTimeout(this.boostTimerId);
-							this.boostTimerId = null;
-							this.commandsQueued = 0;
-							await this.updateConnectivityWarningFromLoginIssue(error.message);
-							if (error.message.indexOf('15 minutes') >= 0)
+							// If events === null and boostTimer === null then refresh all the devices, but don't do that if the boost is on
+							if (events !== null && this.eventLogEnabled)
 							{
-								nextInterval = 900000;
-								this.logInformation('syncLoop', 'Postponed for 15 minutes');
+								this.logEvents(this.varToString(events));
 							}
-							else
+							await this.syncEvents(events, tahomaConnection.localLogin);
+						}
+						events = null;
+					}
+					catch (error)
+					{
+						if (this.isTransientSyncError(error))
+						{
+							const connectionType = tahomaConnection.localLogin ? 'Local' : 'Cloud';
+							this.log(`${connectionType} sync transient issue: ${error.message}`);
+							return nextInterval;
+						}
+
+						this.logInformation('syncLoop', error.message ? error.message : error);
+						if (error.message)
+						{
+							if (error.message.indexOf('Far Too many') >= 0)
 							{
-								nextInterval = 86400000;
-								this.logInformation('syncLoop', 'Postponed for 24 hours');
+								this.homey.clearTimeout(this.boostTimerId);
+								this.boostTimerId = null;
+								this.commandsQueued = 0;
+								await this.updateConnectivityWarningFromLoginIssue(error.message);
+								if (error.message.indexOf('15 minutes') >= 0)
+								{
+									nextInterval = 900000;
+									this.logInformation('syncLoop', 'Postponed for 15 minutes');
+								}
+								else
+								{
+									nextInterval = 86400000;
+									this.logInformation('syncLoop', 'Postponed for 24 hours');
+								}
 							}
-						}
-						else if (error.message === 'Please leave 1 minutes between login attempts')
-						{
-							this.homey.clearTimeout(this.boostTimerId);
-							this.boostTimerId = null;
-							this.commandsQueued = 0;
-							await this.updateConnectivityWarningFromLoginIssue(error.message);
-							this.logInformation('syncLoop', 'Postponed for 1 minute');
-							nextInterval = 61000;
-						}
-						else if (tahomaConnection.localLogin && this.isHttpStatus(error, 400))
-						{
-							await this.syncEvents(null, true);
+							else if (error.message === 'Please leave 1 minutes between login attempts')
+							{
+								this.homey.clearTimeout(this.boostTimerId);
+								this.boostTimerId = null;
+								this.commandsQueued = 0;
+								await this.updateConnectivityWarningFromLoginIssue(error.message);
+								this.logInformation('syncLoop', 'Postponed for 1 minute');
+								nextInterval = 61000;
+							}
+							else if (tahomaConnection.localLogin && this.isHttpStatus(error, 400))
+							{
+								await this.syncEvents(null, true);
+							}
 						}
 					}
-					else
-					{
-						this.logInformation('syncLoop', error);
-					}
+				}
+				else if (this.infoLogEnabled)
+				{
+					this.logInformation('Skipping sync: too soon');
 				}
 			}
-			else if (this.infoLogEnabled)
+			finally
 			{
-				this.logInformation('Skipping sync: too soon');
+				this.syncing = false;
 			}
-
-			// Signal that the sync has completed
-			this.syncing = false;
 		}
 		else if (this.infoLogEnabled)
 		{

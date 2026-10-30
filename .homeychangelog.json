@@ -1009,5 +1009,8 @@
 	},
 	"4.0.159": {
 		"en": "Added support for ogp:AudioPlayer and rts:BioclimaticPergolaRTSComponent."
+	},
+	"4.0.160": {
+		"en": "Enhanced error handling and reauthentication flow."
 	}
 }
